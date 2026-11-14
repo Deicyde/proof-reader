@@ -427,7 +427,8 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
 
 /* Proof Reader: the neighbourhood drawing. */
 .nearmap { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; background: var(--sheet); }
-.nearmap__world { position: relative; }
+.nearmap__fit { position: relative; overflow: hidden; }
+.nearmap__world { position: relative; transform-origin: 50% 0; }
 .nearmap__lines { position: absolute; left: 0; top: 0; pointer-events: none; }
 .nearmap__band { fill: color-mix(in oklab, var(--ink-3) 7%, var(--sheet)); stroke: none; }
 .nearmap__bandlabel { font-family: var(--font-sans); font-size: 11px; fill: var(--ink-3); }
