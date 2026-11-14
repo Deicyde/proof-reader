@@ -936,57 +936,57 @@
  },
  "notes": {
   "PCP.Verifier.ImplementedBy": {
-   "text": "The left side unfolds alg with budget V.queries. In QueryTree.ofStep, a request for a further query at budget zero becomes a rejecting leaf (CostModel.lean, lines 42 to 44), so the equation compares V.run x r with this capped unfolding. The doc comment at lines 38 to 40 speaks of halting within q queries; in the definition, an algorithm that has not halted in time rejects.",
+   "text": "The left side unfolds alg with budget V.queries. At budget zero, a request for a further query becomes a rejecting leaf (CostModel.lean, lines 42 to 44, as the comment above ofStep says), so the equation compares V.run x r with this capped unfolding.",
    "because": [
     "implementation-prose",
     "implementation-code"
    ]
   },
   "PCP.Verifier.ReadsBelow": {
-   "text": "QueryTree.addresses (Definition.lean, lines 47 to 49) collects the address of every query node on both branches. So ReadsBelow bounds every branch of every tree, including a branch that asks the same address twice and takes different answers, which no single proof produces. This agrees with the guide's \"whatever the random string and the answers\".",
+   "text": "QueryTree.addresses (Definition.lean, lines 47 to 49) collects the address of every query node on both branches, so ReadsBelow bounds the addresses on every branch of every tree, whatever the answers along the way.",
    "because": [
     "proof-bound-prose",
     "reads-below-code"
    ]
   },
   "PCP.QueryTree.ofStep": {
-   "text": "The guide calls this unfolding alg. In detail, it starts from the answers so far and a budget d. While d is positive, a halt gives a leaf and a request for address a gives a query node at a, continuing with d − 1 on each answer. At d = 0 a request gives a rejecting leaf.",
+   "text": "Builds the tree by running the step function on the answers so far. While budget remains, a decision gives a leaf and a request for address a gives a query node at a, whose two branches continue with that answer appended and one less query. At budget zero a request gives a rejecting leaf.",
    "because": [
     "implementation-prose"
    ]
   },
   "PCP.bitsOfFin": {
-   "text": "The guide calls this the random string r as bits. It writes the index r as exactly k bits, least significant bit first, so every random string handed to alg has length k.",
+   "text": "Writes the random string's index r as exactly k bits, least significant bit first, so alg always receives k random bits.",
    "because": [
     "algorithm-step-prose"
    ]
   },
   "PCP.Machine.encodeTriple": {
-   "text": "The guide has no sentence on this helper. The machine's input is x, a separator, the random bits, a separator, then the answers so far.",
+   "text": "The tape a verifier step reads: the input x, a separator, the random bits, a separator, then the answers so far.",
    "because": [
     "polytime-algorithm-code"
    ]
   },
   "PCP.Machine.encodeAnswer": {
-   "text": "The guide has no sentence on this helper. A decision is written as one bit; a query is a separator followed by the address in binary (Nat.bits).",
+   "text": "How a step's result is written: a decision is one bit, and a query is a separator followed by the address in binary (Nat.bits).",
    "because": [
     "polytime-algorithm-code"
    ]
   },
   "PCP.Machine.encodeBool": {
-   "text": "The guide has no sentence on this helper. A Boolean result is written as a single bit.",
+   "text": "How the witness checker's answer is written: a single bit.",
    "because": [
     "polytime-relation-code"
    ]
   },
   "PCP.Machine.ofBits": {
-   "text": "The guide has no sentence on this helper. Each bit becomes one tape symbol, in order, with no separators.",
+   "text": "Writes a bit string on the tape, one bit symbol per bit, in order.",
    "because": [
     "pair-encoding-prose"
    ]
   },
   "PCP.Machine.Sym": {
-   "text": "The guide has no sentence on this type. A tape cell holds a bit or the separator that marks where one argument ends.",
+   "text": "The tape alphabet: a bit, or a separator that marks where one argument ends and the next begins.",
    "because": [
     "pair-encoding-prose"
    ]
@@ -995,7 +995,7 @@
  "fidelity": {
   "PCP.np_subset_pcp": {
    "verdict": "same",
-   "text": "The guide's line-by-line table gives one row for each part of the Lean statement, in order, and each row says what that part says. The notes on ImplementedBy and ReadsBelow give the exact reading of two rows.",
+   "text": "The guide's line-by-line table gives one row for each part of the Lean statement, in order, and each row says what that part says. The notes on ImplementedBy and ReadsBelow spell out the definitions behind two of the rows.",
    "because": [
     "headline-statement",
     "pcp-summary",

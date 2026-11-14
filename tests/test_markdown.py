@@ -137,6 +137,27 @@ class MarkdownAnchors(unittest.TestCase):
             reading.check_tags('<a href="&#x6a;ava&#10;script:alert(1)">x</a>')
 
 
+class StatementSheets(unittest.TestCase):
+    def test_closure_is_leaves_first_with_prose_notes_and_boundary(self):
+        decl = lambda name, keyword, statement, body=(), note=None: {
+            "id": name, "keyword": keyword, "uses_statement": list(statement), "uses": list(statement) + list(body), "note": note}
+        declarations = [decl("T", "theorem", ["B"], ["Proofonly"]), decl("B", "def", [], ["A"]), decl("A", "def", [], [], {"text": "ours"}),
+                        decl("Proofonly", "def", [])]
+        passages = [{"id": "p1", "lean": ["B"], "role": "explains", "code": False},
+                    {"id": "p2", "lean": ["A"], "role": "uses", "code": False},
+                    {"id": "p3", "lean": ["A"], "role": "defines", "code": True}]
+        rows = {"T": {"type_dependencies": ["B", "Nat"], "value_dependencies": ["Proofonly", "Classical.choice"]},
+                "B": {"type_dependencies": [], "value_dependencies": ["A", "List.map", "instHAdd"]},
+                "A": {"type_dependencies": ["Nat"], "value_dependencies": []}, "Proofonly": {}}
+        owner = lambda n: n if n in rows else None
+        [sheet] = paper.statement_sheets([{"id": "c", "title": "C", "lean": ["T"]}], declarations, passages, {"rows": rows, "owner": owner})
+        self.assertEqual([e["id"] for e in sheet["heads"]], ["T"])
+        self.assertEqual([e["id"] for e in sheet["entries"]], ["A", "B"])
+        self.assertEqual({e["id"]: e["reading"] for e in sheet["entries"]}, {"A": "note", "B": "authors"})
+        self.assertEqual((sheet["explained"], sheet["total"]), (1, 2))
+        self.assertEqual([b["name"] for b in sheet["boundary"]], ["List.map", "Nat"])
+
+
 class MarkdownEdition(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()

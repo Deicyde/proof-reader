@@ -755,9 +755,10 @@ export function PaperPage({ edition }: { edition: Edition }) {
           </div>
           {(wide ? !showRight : !entry.sheet) && <button type="button" className="bar__open" onClick={() => (wide ? onLayout({ ...layout, graph: true }) : open({ sheet: true, record: readRoute().record, tab: entry.tab, lean: entry.lean }))}>Graph</button>}
           <button type="button" className="bar__theme" aria-label={scheme === "dark" ? "Use the day theme" : "Use the night theme"} onClick={() => setScheme(scheme === "dark" ? "light" : "dark")}>{scheme === "dark" ? "Day" : "Night"}</button>
-          <a className="bar__film" href={SHORT_FILM.youtube} target="_blank" rel="noopener noreferrer" title={`${SHORT_FILM.title}, video on YouTube`}>
+          {paper.films && <a className="bar__film" href={SHORT_FILM.youtube} target="_blank" rel="noopener noreferrer" title={`${SHORT_FILM.title}, video on YouTube`}>
             <span className="bar__film-mark" aria-hidden="true" />Video, {clockTime(SHORT_FILM.seconds)}<span className="sr-only"> on YouTube</span>
-          </a>
+          </a>}
+          {!!edition.sheets?.length && <a className="bar__link" href={routeHref({ paper: slug, record: "@sheet" })} title="The theorem and every definition it needs, on one page">Statement sheet</a>}
           <a className="bar__link" href={paper.url}>{markdown ? "Source Markdown" : "Published paper"}</a>
           <a className="bar__link" href={lean.source}>Lean artifact</a>
         </div>
@@ -773,6 +774,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
       <main className={`spread${edition.reading ? " spread--reading" : ""}${showRight ? " has-right" : ""}`} ref={spread}>
         {edition.reading && (
           <Contents
+            noun={noun(edition)}
             outline={edition.reading.outline}
             current={copy === "reading" ? section : outline.find((e) => e.number === passages.get(line.id ?? "")?.section)?.id ?? null}
             open={rail}
@@ -821,19 +823,20 @@ export function PaperPage({ edition }: { edition: Edition }) {
                     <span className="start__go">
                       {firstSection && <button type="button" onClick={() => jumpTo(firstSection.id)}>{firstSection.number ? sectionLabel(firstSection.number) : firstSection.title}: the first linked statement</button>}
                       {claimSection && <button type="button" onClick={() => jumpTo(claimSection.id)}>{sectionLabel(claimSection.number)}: the main claim</button>}
+                      {!!edition.sheets?.length && <a className="start__sheet" data-leave href={routeHref({ paper: slug, record: "@sheet" })}>Statement sheet: the theorem and every definition it needs</a>}
                     </span>
                   )}
                 </p>
-                <p className="firstfilm">
+                {paper.films && <p className="firstfilm">
                   <a href={SHORT_FILM.youtube} target="_blank" rel="noopener noreferrer"><span className="bar__film-mark" aria-hidden="true" />{SHORT_FILM.title}, {clockTime(SHORT_FILM.seconds)}</a>
                   <a href={LONG_FILM.youtube} target="_blank" rel="noopener noreferrer"><span className="bar__film-mark" aria-hidden="true" />{LONG_FILM.title}, {clockTime(LONG_FILM.seconds)}</a>
-                </p>
+                </p>}
                 </div>
               )}
               foot={<footer className="foot">{credit}<SisterSites /></footer>}
             />
           ) : (
-            copy === "reading" && <p className="status" data-paper-pane role={readingFailed ? "alert" : undefined}>{readingFailed ? <>Could not open the {noun(edition)}. <a href={paper.url}>Read the source Markdown</a>.</> : "Opening the paper…"}</p>
+            copy === "reading" && <p className="status" data-paper-pane role={readingFailed ? "alert" : undefined}>{readingFailed ? <>Could not open the {noun(edition)}. <a href={paper.url}>Read the source Markdown</a>.</> : `Opening the ${noun(edition)}…`}</p>
           ))}
           {hasPdf && paper.crop && pdfSeen && (
             <Suspense fallback={<p className="status" data-paper-pane>Opening the PDF…</p>}>

@@ -28,6 +28,8 @@ interface Props {
   onClose(): void;
   /** A search is starting: it reads the Lean as well as the paper. */
   onSearch(): void;
+  /** What the page calls the authors' text. */
+  noun?: string;
 }
 
 interface Block {
@@ -79,7 +81,7 @@ function Snippet({ text, at, length }: { text: string; at: number; length: numbe
   );
 }
 
-export function Contents({ outline, current, open, declarations, files, html, copy, onJump, onTop, onName, onPage, onBlock, onIndex, onClose, onSearch }: Props) {
+export function Contents({ outline, current, open, declarations, files, html, copy, onJump, onTop, onName, onPage, onBlock, onIndex, onClose, onSearch, noun = "paper" }: Props) {
   const list = useRef<HTMLOListElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const blocks = useRef<Block[]>([]);
@@ -160,8 +162,8 @@ export function Contents({ outline, current, open, declarations, files, html, co
           ref={input}
           type="search"
           value={query}
-          placeholder="Search the paper  ( / )"
-          aria-label="Search the paper and the Lean names"
+          placeholder={`Search the ${noun}  ( / )`}
+          aria-label={`Search the ${noun} and the Lean names`}
           onFocus={onSearch}
           onChange={(event) => setQuery(event.target.value)}
           onKeyDown={(event) => {
@@ -176,7 +178,7 @@ export function Contents({ outline, current, open, declarations, files, html, co
       </div>
       {needle ? (
         names.length + found.length + inLean.length === 0 ? (
-          <p className="rail__none">Nothing in the paper or the Lean matches that search.</p>
+          <p className="rail__none">Nothing in the {noun} or the Lean matches that search.</p>
         ) : (
           <ul className="rail__found">
             {found.map(({ block, at }) => (

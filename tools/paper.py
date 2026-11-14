@@ -280,7 +280,73 @@ def shards(folder: Path, config: dict) -> tuple[dict, dict]:
     if provenance["kind"] not in ("lean", "source-read"):
         raise PaperError(f"generated/lean.json: unknown provenance {provenance['kind']!r}")
     return {"written": written, "uses": uses, "texts": texts, "lean_version": report["lean_version"],
-            "provenance": provenance}, rows
+            "provenance": provenance, "rows": rows, "owner": owner}, rows
+
+
+# Names Lean makes for itself, never written by the authors (after the Plectis maths
+# site's declaration-graph extractor). They are not boundary names a reader needs.
+GENERATED = re.compile(
+    r"^(?:_.*|eq_\d+|eq_def|eq_unfold|proof_\d+|match_\d+|injEq|inj|sizeOf_spec|ctorIdx|"
+    r"noConfusionType|noConfusion|rec|recOn|casesOn|below|brecOn|binductionOn|ibelow|"
+    r"induct|mutual_induct|fun_cases|ext_iff|ext|congr_simp|.*_def_\d+|inst.*)$")
+
+
+def statement_sheets(claims: list[dict], declarations: list[dict], passages: list[dict], shard_info: dict) -> list[dict]:
+    """One sheet per claim: its theorems, then every declaration its statement needs, leaves
+    first, each with the authors' prose where a passage links it, and the names where the
+    closure leaves the authors' project. A theorem's proof is not followed; a definition's
+    body is, because the body is what the definition means."""
+    by_id = {d["id"]: d for d in declarations}
+    prose = {}
+    for p in passages:
+        # The authors' reading of a declaration: sentences that state, define or explain it,
+        # never a line of code or a passing use.
+        if p.get("code") or p.get("role") not in ("states", "defines", "explains", "proves"):
+            continue
+        for name in p.get("lean", []):
+            prose.setdefault(name, []).append(p["id"])
+    rows, owner = shard_info["rows"], shard_info["owner"]
+    sheets = []
+    for claim in claims:
+        heads = [n for n in claim.get("lean", []) if n in by_id]
+        order: list[str] = []
+        seen: set[str] = set()
+
+        def visit(name: str) -> None:
+            if name in seen or name not in by_id:
+                return
+            seen.add(name)
+            d = by_id[name]
+            follow = d["uses_statement"] if d["keyword"] in ("theorem", "lemma") else d["uses"]
+            for target in follow:
+                visit(target)
+            order.append(name)
+
+        for head in heads:
+            visit(head)
+        members = [n for n in order if n not in heads]
+        boundary: dict[str, list[str]] = {}
+        for name in [*heads, *members]:
+            theorem = by_id[name]["keyword"] in ("theorem", "lemma")
+            for row_name, row in rows.items():
+                if owner(row_name) != name:
+                    continue
+                fields = ("type_dependencies",) if theorem and row_name == name else ("type_dependencies", "value_dependencies")
+                for field in fields:
+                    for dep in row.get(field, []):
+                        if owner(dep) is None and not GENERATED.match(dep.rpartition(".")[2]):
+                            boundary.setdefault(dep, []).append(name)
+
+        def entry(name: str) -> dict:
+            d = by_id[name]
+            said = prose.get(name, [])
+            return {"id": name, "prose": said, "reading": "authors" if said else "note" if d.get("note") else "none"}
+
+        explained = sum(1 for n in members if prose.get(n))
+        sheets.append({"claim": claim["id"], "title": claim.get("title", ""), "heads": [entry(n) for n in heads],
+                       "entries": [entry(n) for n in members], "explained": explained, "total": len(members),
+                       "boundary": [{"name": n, "used_by": sorted(set(u))} for n, u in sorted(boundary.items())]})
+    return sheets
 
 
 def statement_end(lines: list[str], first: int, last: int, keyword: str) -> int:
@@ -688,6 +754,7 @@ def edition(slug: str) -> dict:
         "declarations": declarations,
         "checks": data["checks"],
         "shelf": {"example": examples[0] if examples else None, "examples": examples},
+        "sheets": statement_sheets(links.get("claims", []), declarations, data["passages"], shard_info),
         "coverage": {"sections": tied_sections, "ties": len(data["passages"])},
         "reading": {k: v for k, v in setting.items() if k != "html"} if setting else None,
         "reading_html": setting["html"] if setting else None,

@@ -44,6 +44,37 @@ import { traceTiming } from "./canvas/trace";
 import { SimplifiedMap } from "./canvas/SimplifiedMap";
 import "./tree.css";
 
+/**
+ * Proof Reader: when the whole map is wider than the pane at the reading floor, pan
+ * so that as few cards as possible are cut by the pane's edges, keeping the goal whole
+ * and staying as near the centred view as that allows.
+ */
+function uncutX(l: Layout, v: View, vp: Viewport, goal: Bounds | null): number {
+  const left = vp.insets.left;
+  const right = vp.width - vp.insets.right;
+  const cards = [...l.boxes.values()];
+  if (!cards.length) return v.x;
+  const x0 = Math.min(...cards.map((r) => r.x));
+  const x1 = Math.max(...cards.map((r) => r.x + r.w));
+  if ((x1 - x0) * v.k <= right - left + 0.5) return v.x;
+  const cut = (x: number) => cards.filter((r) => x + r.x * v.k < left - 0.5 && x + (r.x + r.w) * v.k > left + 0.5
+    || x + r.x * v.k < right - 0.5 && x + (r.x + r.w) * v.k > right + 0.5).length;
+  const lo = right - x1 * v.k;
+  const hi = left - x0 * v.k;
+  let best = v.x;
+  let bestCut = cut(v.x);
+  for (let x = lo; x <= hi; x += 2) {
+    if (goal && (x + goal.x0 * v.k < left || x + goal.x1 * v.k > right)) continue;
+    const c = cut(x);
+    if (c < bestCut || (c === bestCut && Math.abs(x - v.x) < Math.abs(best - v.x))) {
+      best = x;
+      bestCut = c;
+    }
+  }
+  return best;
+}
+
+
 export type { MapScene } from "./canvas/scene";
 export type { MapMode } from "./canvas/representation";
 
@@ -442,10 +473,12 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
         pin = r;
       } else pin = null;
     }
-    const { layout, plan } = layoutTree({ root: goal, nodes: split.nodes, edges: split.edges, size, metrics, prev: prevLayout, pin, keepOrder: hold });
+    // Proof Reader: the overview's rows wrap to what the pane holds at the reading floor.
+    const wrapWidth = dense && paneW > 10 ? Math.max(DENSE_ROOT_W, (paneW - insets.left - insets.right - 32) / DENSE_MIN_K) : undefined;
+    const { layout, plan } = layoutTree({ root: goal, nodes: split.nodes, edges: split.edges, size, metrics, prev: prevLayout, pin, keepOrder: hold, wrapWidth });
     return { layout, plan, skeleton: split.edges, shared: split.shared, implied: skel.implied, provisional, pin };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [graph, goal, visible, skel, heights, compact, metrics, rootW, dense, lens]);
+  }, [graph, goal, visible, skel, heights, compact, metrics, rootW, dense, lens, dense ? paneW : 0]);
   const layout = built.layout;
   /** For each assumption, the drawn cards that carry it as a tag. */
   const tagHolders = useMemo(() => {
@@ -1221,7 +1254,11 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
       const b = layoutBounds(l);
       const box = { x0: b.x0 - 16, y0: b.y0 - 16, x1: b.x1 + 16, y1: b.y1 + 16 };
       // As large as fits, never below the 11px floor: what does not fit then pans.
-      if (denseRef.current) return frameBox(box, viewport(), { min: DENSE_MIN_K, max: fitMaxRef.current, anchor: boxOf(l, goalRef.current), top: fitMaxRef.current <= 1.15 });
+      if (denseRef.current) {
+        const vp = viewport();
+        const v = frameBox(box, vp, { min: DENSE_MIN_K, max: fitMaxRef.current, anchor: boxOf(l, goalRef.current), top: fitMaxRef.current <= 1.15 });
+        return { ...v, x: uncutX(l, v, vp, boxOf(l, goalRef.current)) };
+      }
       return fitBounds(box, viewport(), { max: 1, min: floorK(false, compact) });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

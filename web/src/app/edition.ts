@@ -118,6 +118,8 @@ export interface Edition {
     licence_url: string;
     /** What the page calls the authors' text: "paper" unless paper.toml says otherwise, as "guide". */
     noun?: string;
+    /** Whether the page shows Proof Reader's own films; off unless paper.toml says films = true. */
+    films?: boolean;
     pages: number;
     sizes: [number, number][];
     crop: [number, number, number, number] | null;
@@ -138,6 +140,7 @@ export interface Edition {
     files: Record<string, string>;
   };
   claims: Claim[];
+  sheets?: Sheet[];
   passages: Passage[];
   mentions: Mention[];
   declarations: Declaration[];
@@ -163,6 +166,24 @@ export interface Edition {
 }
 
 /** One linked sentence and its Lean lines, chosen in paper.toml and cut out by the build. */
+/** One entry of a statement sheet: a declaration and the authors' sentences that read it. */
+export interface SheetEntry {
+  id: string;
+  prose: string[];
+  reading: "authors" | "note" | "none";
+}
+
+/** A claim's statement sheet, computed by the build from the Lean dependencies and the links. */
+export interface Sheet {
+  claim: string;
+  title: string;
+  heads: SheetEntry[];
+  entries: SheetEntry[];
+  explained: number;
+  total: number;
+  boundary: { name: string; used_by: string[] }[];
+}
+
 export interface ShelfExample {
   id: string;
   /** The passage's role in links.json: "proves", "states" and so on. */

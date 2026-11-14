@@ -36,6 +36,43 @@ export interface LayoutInput {
   pin?: string | null;
   /** Keep the cards in the order `prev` has them: no crossing sweep, so nothing a reader knows changes place. */
   keepOrder?: boolean;
+  /**
+   * Proof Reader: the widest a row may be, in world pixels. A wider rank wraps into bands
+   * below it, as the Plectis maths site's reader wraps a wide layer. Unset, ranks never wrap.
+   */
+  wrapWidth?: number;
+}
+
+/**
+ * Proof Reader: split ranks wider than `maxW` into bands. A card that does not fit moves one
+ * rank down, and every deeper rank moves with it, so every edge still points down; the long
+ * edges that now cross a band count as dummies in its width.
+ */
+export function wrapRanks(rank: Map<string, number>, nodes: readonly string[], edges: readonly EngineEdge[],
+  width: (id: string) => number, metrics: Metrics, maxW: number): void {
+  const outs = new Map<string, number>();
+  for (const id of nodes) outs.set(id, 0);
+  for (const e of edges) if (outs.has(e.from) && rank.has(e.to)) outs.set(e.from, outs.get(e.from)! + 1);
+  const rowWidth = (ids: string[], through: number) =>
+    ids.reduce((sum, id) => sum + width(id), 0) + Math.max(0, ids.length - 1) * metrics.sepCard + through * (metrics.sepDummy + 1);
+  for (let r = 1; r <= Math.max(0, ...rank.values()); r++) {
+    const members = nodes.filter((id) => rank.get(id) === r);
+    const through = edges.filter((e) => (rank.get(e.from) ?? 0) < r && (rank.get(e.to) ?? 0) > r).length;
+    if (members.length < 2 || rowWidth(members, through) <= maxW) continue;
+    // Cards with inputs of their own stay first; a moved card's inputs move down with every deeper rank.
+    const order = [...members.filter((id) => outs.get(id)! > 0), ...members.filter((id) => outs.get(id) === 0)];
+    const kept: string[] = [];
+    const pushed: string[] = [];
+    order.forEach((id, i) => {
+      // Every card after this one passes through this band as a dummy if it moves.
+      const later = order.length - i - 1;
+      if (kept.length === 0 || rowWidth([...kept, id], through + pushed.length + later) <= maxW) kept.push(id);
+      else pushed.push(id);
+    });
+    if (!pushed.length) continue;
+    for (const [id, rr] of rank) if (rr > r) rank.set(id, rr + 1);
+    for (const id of pushed) rank.set(id, r + 1);
+  }
 }
 
 export const ANCHOR = 0.03;
@@ -78,6 +115,7 @@ export function computeRanks(root: string, nodes: readonly string[], edges: read
 export function layoutTree(input: LayoutInput): { layout: Layout; plan: Plan } {
   const { root, nodes, edges, metrics, prev, pin } = input;
   const rank = computeRanks(root, nodes, edges);
+  if (input.wrapWidth) wrapRanks(rank, nodes, edges, (id) => input.size(id).w, metrics, input.wrapWidth);
   const depth = Math.max(0, ...rank.values());
 
   // Dummies and the segment graph.
@@ -282,6 +320,40 @@ export function layoutTree(input: LayoutInput): { layout: Layout; plan: Plan } {
     seedCrossings: ordered.seedCrossings,
     seedLayers,
   };
+  // Proof Reader: with wrapped rows, slide each row (cards and the long edges crossing it)
+  // the least distance that keeps it inside a window of the wrap width centred on the root,
+  // so the whole map is no wider than the pane holds. The router then draws the steps.
+  if (input.wrapWidth) {
+    const rootBox = boxes.get(root)!;
+    const lo = rootBox.x + rootBox.w / 2 - input.wrapWidth / 2;
+    const hi = lo + input.wrapWidth;
+    ordered.layers.forEach((layer, r) => {
+      const cards = layer.filter((id) => !isDummyKey(id) && boxes.has(id));
+      const xs0 = [...cards.map((id) => boxes.get(id)!.x), ...layer.filter(isDummyKey).map((k) => dummies.get(k)!.x)];
+      const xs1 = [...cards.map((id) => boxes.get(id)!.x + boxes.get(id)!.w), ...layer.filter(isDummyKey).map((k) => dummies.get(k)!.x)];
+      if (!xs0.length || r === 0) return;
+      let left = Math.min(...xs0);
+      let right = Math.max(...xs1);
+      if (right - left > hi - lo) {
+        // Too wide even so: pack the row tight in its order, keeping only the minimum gaps.
+        let x = 0;
+        layer.forEach((id, i) => {
+          if (i > 0) x += isDummyKey(id) || isDummyKey(layer[i - 1]) ? metrics.sepDummy : metrics.sepCard;
+          if (isDummyKey(id)) dummies.get(id)!.x = x;
+          else if (boxes.has(id)) {
+            boxes.get(id)!.x = x;
+            x += boxes.get(id)!.w;
+          }
+        });
+        left = 0;
+        right = x;
+      }
+      const shift = right - left > hi - lo ? lo + (hi - lo) / 2 - (left + right) / 2 : left < lo ? lo - left : right > hi ? hi - right : 0;
+      if (!shift) return;
+      for (const id of cards) boxes.get(id)!.x += shift;
+      for (const k of layer) if (isDummyKey(k)) dummies.get(k)!.x += shift;
+    });
+  }
   const p = plan(layout);
   layout.gap = rowHeight.map((_, r) => gapFor(p.trackCount[r] ?? 0, metrics));
   let y = 0;

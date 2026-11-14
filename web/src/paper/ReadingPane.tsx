@@ -572,6 +572,8 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
       return;
     }
     const link = target.closest<HTMLAnchorElement>("a");
+    // A link to another page of the site (the statement sheet) is the browser's to follow.
+    if (link?.dataset.leave !== undefined) return;
     if (link) {
       if (link.classList.contains("nm")) {
         event.preventDefault();

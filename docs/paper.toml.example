@@ -6,6 +6,8 @@ venue = ""
 doi = ""
 url = ""
 pdf = "paper.pdf"
+# Show Proof Reader's own explainer films in the header and on the first screen.
+# films = true
 # For an author's Markdown guide, replace pdf above with:
 # markdown = "guide.md"
 # Set url to the source file so its relative links keep their destination.

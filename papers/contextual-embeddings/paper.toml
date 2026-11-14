@@ -6,6 +6,7 @@ venue = "Proc. ACM Program. Lang. 10, PLDI, Article 191 (June 2026)"
 doi = "10.1145/3808269"
 url = "https://doi.org/10.1145/3808269"
 pdf = "paper.pdf"
+films = true
 pdf_source = "https://mengwangoxf.github.io/Papers/PLDI26.pdf"
 licence = "CC BY 4.0"
 licence_url = "https://creativecommons.org/licenses/by/4.0/"
