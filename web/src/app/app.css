@@ -194,6 +194,26 @@ button:disabled { cursor: default; }
 .graph { flex: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
 .graph__paused { flex: none; display: flex; align-items: center; gap: 10px; min-height: 28px; margin: 0; padding: 2px 16px; font-size: var(--fs-sm); color: var(--ink-2); background: var(--highlight-soft); }
 .graph__paused button { min-height: 24px; color: var(--lit); text-decoration: underline; text-underline-offset: 3px; }
+/* Proof Reader: how much of the map to show, the cards that use the one in view, and the list form. */
+.graph__view { flex: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 4px 16px; border-bottom: 1px solid var(--rule); font-size: var(--fs-sm); color: var(--ink-2); }
+.graph__view button { min-height: 26px; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule-control); }
+.graph__view button[aria-pressed] { font-weight: 600; }
+.graph__usedby button { margin-left: 2px; color: var(--lit); }
+.graph__usedby button + button::before { content: ", "; color: var(--ink-2); }
+.graph__hint { color: var(--ink-3); }
+.graph--quiet .tree .links { opacity: 0.12; transition: opacity 120ms; }
+/* In the neighbourhood every card under the root is used by it, so rows say it without lines. */
+.graph--near .tree .links, .graph--near .tree .links-over { display: none; }
+@media (prefers-reduced-motion: reduce) { .graph--quiet .tree .links { transition: none; } }
+.maplist { flex: 1; min-height: 0; overflow-y: auto; margin: 0; padding: 4px 16px 24px; list-style: none; }
+.maplist li { padding: 8px 0; border-bottom: 1px solid var(--rule); }
+.maplist li.is-lit { background: var(--highlight-soft); }
+.maplist p { margin: 0; }
+.maplist button { min-height: 24px; text-align: left; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule-control); }
+.maplist__title button { font-family: var(--font-serif); font-size: var(--fs-base); }
+.maplist__title code { font-size: var(--fs-xs); color: var(--ink-3); }
+.maplist__rel { font-size: var(--fs-sm); color: var(--ink-2); }
+.maplist button:focus-visible, .graph__view button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 .graph__canvas { position: relative; flex: 1; min-height: 0; overflow: hidden; }
 .graph__canvas .tree { background: var(--sheet); }
 .graph .card__src, .graph .card__inputs, .graph .src-sq { display: none; }

@@ -172,6 +172,10 @@ export interface TreeProps {
   tileWidth?: number;
   /** The dense layout's tile height, for a tile that also holds a raw name. */
   tileHeight?: number;
+  /** Proof Reader: each tile's own height, so a long title wraps whole where there is room. */
+  tileHeightOf?: (id: string) => number;
+  /** Proof Reader: the small word above the root's title ("Main result" unless the root is a centred card). */
+  rootLabel?: string;
   /** The largest scale the overview fits to. */
   fitMax?: number;
   /** Draw a shared record once, with every use, instead of once under each use. */
@@ -453,7 +457,7 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
       const id = recordOf(lid);
       const node = graph.nodes.get(id) ?? fullGraph.nodes.get(id)!;
       const isRoot = lid === goal;
-      if (dense) return isRoot ? { w: DENSE_ROOT_W, h: DENSE_ROOT_H } : { w: props.tileWidth ?? DENSE_W, h: props.tileHeight ?? (lens ? DENSE_H_SECTION : DENSE_H) };
+      if (dense) return isRoot ? { w: DENSE_ROOT_W, h: DENSE_ROOT_H } : { w: props.tileWidth ?? DENSE_W, h: props.tileHeightOf?.(id) ?? props.tileHeight ?? (lens ? DENSE_H_SECTION : DENSE_H) };
       const h = heights.get(lid);
       if (h === undefined) provisional = true;
       if (lid !== id) return { w: compact ? 184 : 176, h: h ?? (compact ? 54 : 96) };
@@ -2571,7 +2575,7 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
                 )}
               </div>
               <div className="card__compact" aria-hidden="true">
-                {isRoot && <span className="card__cmain">Main result</span>}
+                {isRoot && <span className="card__cmain">{props.rootLabel ?? "Main result"}</span>}
                 <span className={`card__ctitle${tileLean ? " lean" : ""}`}>{tileLean ? <LeanName name={tile} camel /> : isRoot ? <WholeWords text={tile} /> : tile}</span>
                 {section && <span className="card__csec">{section}</span>}
                 {node.rawName && <code className="card__craw">{node.rawName}</code>}
