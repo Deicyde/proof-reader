@@ -6,7 +6,7 @@
 // camera back exactly. The reader stays in charge: moving the map pauses following.
 
 import { memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type Ref } from "react";
-import type { Edition } from "../app/edition";
+import { loadSource, type Edition } from "../app/edition";
 import { ArgumentTree, type Insets, type MapViewHandle } from "../map/ArgumentTree";
 import type { MapScene } from "../map/canvas/scene";
 import { isType } from "../model/fromEdition";
@@ -111,13 +111,22 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
   const [whole, setWhole] = useState(!big);
   const [centre, setCentre] = useState(goal);
   useEffect(() => {
-    setCentre(selected && selected !== goal && fullGraph.nodes.has(selected) ? selected : goal);
-  }, [selected, goal, fullGraph]);
+    setCentre(selected && selected !== goal && edition.declarations.some((d) => d.id === selected) ? selected : goal);
+  }, [selected, goal, edition]);
   const near = !whole;
   const graph = useMemo(() => (near ? neighbourhood(fullGraph, centre, goal) : fullGraph), [near, fullGraph, centre, goal]);
   const root = near ? centre : goal;
-  const usedBy = useMemo(() => (near && centre !== goal ? (fullGraph.in.get(centre) ?? []).map((e) => e.from).filter((id) => id !== goal) : []), [near, centre, goal, fullGraph]);
   const heightOf = useCallback((id: string) => tileHeight(fullGraph.nodes.get(id)?.label ?? "", near ? NEAR_W : TILE_W), [fullGraph, near]);
+  // The authors' Lean, for the order in which a statement names what it uses.
+  const [files, setFiles] = useState<Record<string, string> | null>(null);
+  useEffect(() => {
+    if (!big) return;
+    let live = true;
+    loadSource(edition.slug).then((src) => live && setFiles(src.files), () => undefined);
+    return () => {
+      live = false;
+    };
+  }, [big, edition.slug]);
   // A narrow pane, a phone: the cards as a list, which is also the keyboard's way through.
   const [narrow, setNarrow] = useState(false);
   useEffect(() => {
@@ -373,22 +382,21 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
           )}
           {near && !narrow && centre !== goal && <button type="button" onClick={() => setCentre(goal)}>Back to the main result</button>}
           {near && !narrow && centre !== goal && <button type="button" onClick={() => onSelect(centre)}>Open its Lean</button>}
-          {near && !narrow && usedBy.length > 0 && (
-            <span className="graph__usedby">Used by{" "}
-              {usedBy.map((id) => <button key={id} type="button" onClick={() => setCentre(id)}>{fullGraph.nodes.get(id)?.label ?? id}</button>)}
-            </span>
-          )}
           {whole && big && !narrow && <span className="graph__hint">Point at a card to see its lines.</span>}
           {near && !narrow && (
             <span className="graph__hint">
               {centre === goal
-                ? "Under the theorem: everything its statement uses. Click a card to see what it uses."
-                : `Under it: everything ${fullGraph.nodes.get(centre)?.label ?? centre} uses. Click a card to go on.`}
+                ? "Click a card to see what it uses, or the theorem to open its Lean."
+                : "Click a card to see what it uses, or the card in view to open its Lean."}
             </span>
           )}
         </div>
       )}
-      {narrow ? <MapList graph={fullGraph} goal={goal} lit={lit} onSelect={onSelect} onHover={onHover} /> : <div className="graph__canvas" ref={body}>{map}</div>}
+      {narrow
+        ? <MapList graph={fullGraph} goal={goal} lit={lit} onSelect={onSelect} onHover={onHover} />
+        : near
+          ? <NearGrid edition={edition} graph={fullGraph} goal={goal} claimTitle={claim?.title ?? ""} centre={centre} files={files} lit={lit} onCentre={setCentre} onOpen={onSelect} onHover={onHover} />
+          : <div className="graph__canvas" ref={body}>{map}</div>}
     </section>
   );
 });
@@ -414,5 +422,87 @@ function MapList({ graph, goal, lit, onSelect, onHover }: { graph: ArgGraph; goa
         );
       })}
     </ol>
+  );
+}
+
+/** Where a declaration's own text first names each of `ids`: the order a reader meets them. */
+function orderOfUse(edition: Edition, files: Record<string, string> | null, owner: string, ids: string[]): string[] {
+  const d = edition.declarations.find((x) => x.id === owner);
+  const text = d && files?.[d.file] ? files[d.file].split("\n").slice(d.line - 1, d.end_line).join("\n") : (d?.type ?? "");
+  const at = (id: string) => {
+    const last = id.split(".").pop()!.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const m = new RegExp(`(?<![\\w'])${last}(?![\\w'])`).exec(text);
+    return m ? m.index : Number.MAX_SAFE_INTEGER;
+  };
+  return [...ids].sort((a, b) => at(a) - at(b) || a.localeCompare(b));
+}
+
+/**
+ * The neighbourhood as a grid: the card in view at the top, what uses it above that, and
+ * what it uses below in even rows, in the order its own text names them. No lines: every
+ * card in the grid is used by the card above it, and the caption says so.
+ */
+function NearGrid({ edition, graph, goal, claimTitle, centre, files, lit, onCentre, onOpen, onHover }: {
+  edition: Edition; graph: ArgGraph; goal: string; claimTitle: string; centre: string; files: Record<string, string> | null;
+  lit: readonly string[]; onCentre(id: string): void; onOpen(id: string): void; onHover(id: string | null): void;
+}) {
+  // From the declarations themselves, so types (drawn on the shelf, not the map) take their place too.
+  const decl = (id: string) => edition.declarations.find((d) => d.id === id);
+  const atGoal = centre === goal;
+  const heads = atGoal ? (edition.claims.find((c) => c.id === goal)?.lean ?? []).filter((id) => decl(id)) : [centre];
+  const owner = heads[0];
+  // What a theorem's statement uses; what a definition uses anywhere, since its body is its meaning.
+  const usesOf = (id: string) => {
+    const d = decl(id);
+    return d ? (d.keyword === "theorem" || d.keyword === "lemma" ? d.uses_statement : d.uses) : [];
+  };
+  const uses = [...new Set(heads.flatMap(usesOf))].filter((id) => !heads.includes(id));
+  const ordered = orderOfUse(edition, files, owner, uses);
+  const users = atGoal ? [] : (decl(centre)?.used_by ?? []);
+  const node = (id: string) => {
+    const d = decl(id);
+    return d ? { label: d.plain, rawName: d.id, shape: graph.nodes.get(id)?.shape } : graph.nodes.get(id);
+  };
+  const card = (id: string, head = false) => (
+    <button
+      key={id}
+      type="button"
+      className={`near__card${head ? " near__card--head" : ""}${lit.includes(id) ? " is-lit" : ""}`}
+      data-record={id}
+      data-shape={node(id)?.shape}
+      onClick={() => (head ? onOpen(id) : onCentre(id))}
+      onMouseEnter={() => onHover(id)}
+      onMouseLeave={() => onHover(null)}
+      onFocus={() => onHover(id)}
+      onBlur={() => onHover(null)}
+      title={head ? "Open its Lean" : "Show what it uses"}
+    >
+      <span className="near__title">{node(id)?.label ?? id}</span>
+      <code className="near__raw">{(node(id)?.rawName ?? id).split(".").map((part, i, all) => <span key={i}>{part}{i < all.length - 1 && <>.<wbr /></>}</span>)}</code>
+    </button>
+  );
+  return (
+    <div className="near" aria-label="The card in view and what it uses">
+      {atGoal && (
+        <div className="near__plate">
+          <span className="near__kicker">Main result</span>
+          <span className="near__claim">{claimTitle}</span>
+        </div>
+      )}
+      {users.length > 0 && (
+        <>
+          <p className="near__caption">Used by:</p>
+          <div className="near__grid">{users.map((id) => card(id))}</div>
+        </>
+      )}
+      <div className="near__heads">{heads.map((h) => card(h, true))}</div>
+      {ordered.length > 0 && (
+        <>
+          <p className="near__caption">{atGoal ? "Its statement uses, in the order it names them:" : "It uses, in the order it names them:"}</p>
+          <div className="near__grid">{ordered.map((id) => card(id))}</div>
+        </>
+      )}
+      {!ordered.length && <p className="near__caption">It uses nothing else on this page.</p>}
+    </div>
   );
 }
