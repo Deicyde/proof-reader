@@ -105,7 +105,7 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
 
   const byPage = useMemo(() => {
     const map = new Map<number, Passage[]>();
-    for (const p of passages) map.set(p.page, [...(map.get(p.page) ?? []), p]);
+    for (const p of passages) if (p.page !== null) map.set(p.page, [...(map.get(p.page) ?? []), p]);
     return map;
   }, [passages]);
 
@@ -117,7 +117,7 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
 
   const passageTop = useCallback(
     // From the page sizes, not the DOM, so it holds while the layout settles.
-    (p: Passage) => PAGE_GAP + (p.page - 1) * (pageHeight + PAGE_GAP) + (p.rects[0][1] - top) * scale,
+    (p: Passage) => p.page === null ? Infinity : PAGE_GAP + (p.page - 1) * (pageHeight + PAGE_GAP) + (p.rects[0][1] - top) * scale,
     [pageHeight, scale, top],
   );
 

@@ -11,7 +11,9 @@ import { readFileSync } from "node:fs";
 import katex from "katex";
 import MarkdownIt from "markdown-it";
 
-const [source, slug, language = "haskell"] = process.argv.slice(2);
+const [source, slug, language = "haskell", mode] = process.argv.slice(2);
+const guide = mode === "--guide";
+const guideLinks = guide ? JSON.parse(readFileSync(0, "utf8") || "{}") : {};
 const OPEN = "";
 const CLOSE = "";
 const DISPLAY_OPEN = "";
@@ -187,19 +189,46 @@ md.renderer.rules.image = (tokens, index) => {
 };
 
 const outline = [];
+const headingAliases = {};
 md.core.ruler.push("section_ids", (state) => {
   state.tokens.forEach((token, index) => {
     if (token.type !== "heading_open" || token.tag === "h1") return;
     const inline = state.tokens[index + 1];
-    const number = /^([A-Z]|\d+(?:\.\d+)*)\s+/.exec(inline.content);
+    const number = (guide ? /^([A-Z]|\d+(?:\.\d+)*)(?:\.\s+|\s+)/ : /^([A-Z]|\d+(?:\.\d+)*)\s+/).exec(inline.content);
     const title = number ? inline.content.slice(number[0].length) : inline.content;
     const id = `s-${number ? number[1] : title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-$/, "")}`;
     token.attrSet("id", id);
+    if (guide) headingAliases[inline.content.toLowerCase().replace(/[^\p{L}\p{N}_\-\s]/gu, "").replace(/\s/g, "-")] = id;
     outline.push({ id, number: number ? number[1] : "", title, level: Number(token.tag[1]) });
   });
 });
 
 let text = readFileSync(source, "utf8");
+const sourceBlocks = [];
+if (guide) {
+  // Use the parser's top-level source maps. A table or list is one block;
+  // blank lines inside a fence do not split it. Headings reset the index.
+  const tokens = new MarkdownIt({ html: true }).parse(text, {});
+  let heading = "";
+  let block = 0;
+  const insertions = new Map();
+  const add = (line, marker) => insertions.set(line, (insertions.get(line) ?? "") + marker);
+  for (let i = 0; i < tokens.length; i++) {
+    const token = tokens[i];
+    if (token.level !== 0 || !token.map) continue;
+    if (token.type === "heading_open") {
+      heading = tokens[i + 1].content;
+      block = 0;
+      continue;
+    }
+    const id = `md-${token.map[0] + 1}`;
+    sourceBlocks.push({ heading, block: ++block, id, kind: token.type, line: token.map[0] + 1, end_line: token.map[1] });
+    add(token.map[0], `<div hidden data-source-start="${id}"></div>\n\n`);
+    add(token.map[1], `\n<div hidden data-source-end="${id}"></div>\n\n`);
+  }
+  const lines = text.split("\n");
+  text = lines.map((line, i) => (insertions.get(i) ?? "") + line).join("\n") + (insertions.get(lines.length) ?? "");
+}
 const spans = [];
 text = protectMath(text, spans);
 
@@ -212,7 +241,18 @@ text = text.replace(/^\[\^(\d+)\]: (.*)$\n?/gm, (_all, number, body) => {
 
 text = text.replace(/<figcaption>(.*?)<\/figcaption>/g, (_all, body) => `<figcaption>${md.renderInline(body)}</figcaption>`);
 
-let html = md.render(text);
+const environment = {};
+let html = md.render(text, environment);
+const quoteHtml = {};
+if (guide) {
+  for (const passage of guideLinks.passages ?? []) {
+    const anchor = passage.anchor ?? {};
+    const block = sourceBlocks.find((b) => b.heading === anchor.heading && b.block === anchor.block);
+    quoteHtml[passage.id] = block?.kind === "fence" || block?.kind === "code_block"
+      ? escapeHtml(passage.quote)
+      : md.renderInline(protectMath(passage.quote, spans), environment);
+  }
+}
 
 html = html.replace(/<(h[234]) id="([^"]+)">([A-Z]|\d+(?:\.\d+)*) /g, '<$1 id="$2"><span class="sec-no">$3</span> ');
 html = html.replace(/<p><a id="(cite-[^"]+)"><\/a>/g, '<p class="ref" id="$1">');
@@ -249,9 +289,13 @@ const place = (n, display) => {
 html = html.replace(new RegExp(`<p>${DISPLAY_OPEN}(\\d+)${DISPLAY_CLOSE}</p>`, "g"), (_m, n) => place(n, true));
 html = html.replace(new RegExp(`${DISPLAY_OPEN}(\\d+)${DISPLAY_CLOSE}`, "g"), (_m, n) => place(n, true));
 html = html.replace(new RegExp(`${OPEN}(\\d+)${CLOSE}`, "g"), (_m, n) => place(n, false));
+for (const id of Object.keys(quoteHtml)) {
+  quoteHtml[id] = quoteHtml[id].replace(new RegExp(`${OPEN}(\\d+)${CLOSE}`, "g"), (_m, n) => place(n, false));
+  quoteHtml[id] = quoteHtml[id].replace(new RegExp(`${DISPLAY_OPEN}(\\d+)${DISPLAY_CLOSE}`, "g"), (_m, n) => place(n, true));
+}
 
 for (const entry of outline) {
   entry.title = entry.title.replace(new RegExp(`${OPEN}(\\d+)${CLOSE}`, "g"), (_m, n) => plainMath(spans[Number(n)].tex, false));
 }
 
-process.stdout.write(JSON.stringify({ html, math, outline }));
+process.stdout.write(JSON.stringify({ html, math, outline, ...(guide ? { source_blocks: sourceBlocks, quote_html: quoteHtml, heading_aliases: headingAliases } : {}) }));

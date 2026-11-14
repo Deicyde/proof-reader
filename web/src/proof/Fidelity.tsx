@@ -3,7 +3,7 @@
 // says how the page was made.
 
 import { useState, type ReactNode } from "react";
-import { hasComparisons, type Check, type Declaration, type Edition, type Verdict } from "../app/edition";
+import { hasComparisons, passageLocation, type Check, type Declaration, type Edition, type Verdict } from "../app/edition";
 import { routeHref } from "../app/router";
 import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code";
 import { sectionLabel } from "../model/fromEdition";
@@ -87,7 +87,7 @@ export function FidelityBlock({ edition, d, act, onPassage }: { edition: Edition
   const because = f.because.map((id) => edition.passages.find((p) => p.id === id)).filter((p) => !!p);
   const seen = new Set<string>();
   const stops = because.filter((p) => {
-    const key = `${p.section}/${p.page}`;
+    const key = `${p.section}/${passageLocation(p)}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
@@ -107,7 +107,7 @@ export function FidelityBlock({ edition, d, act, onPassage }: { edition: Edition
                 if (event.metaKey || event.ctrlKey || event.shiftKey) return;
                 event.preventDefault();
                 onPassage(p.id);
-              }}>{sectionLabel(p.section)}, page {p.page}</a>
+              }}>{sectionLabel(p.section)}, {passageLocation(p)}</a>
             </span>
           ))}.
         </p>
@@ -180,7 +180,9 @@ export function HowMade({ edition }: { edition: Edition }) {
     <section className="made" id="how-this-page-was-made" aria-labelledby="made-title">
       <h3 id="made-title">How this page was made</h3>
       <p>
-        {edition.reading
+        {edition.source?.kind === "markdown"
+          ? <>We rendered the authors’ Markdown directly. We checked every raw quotation once in that source and checked its heading and block. <a href={edition.paper.url}>Read the source Markdown</a>.</>
+          : edition.reading
           ? <>A program compares the reading copy with text extracted from the authors’ PDF. The comparison leaves out margins and figures, and the original PDF is one click away.</>
           : <>Each linked quotation was found in text extracted from the authors’ PDF.</>}
       </p>

@@ -43,7 +43,7 @@ interface Found {
 }
 
 const LIMIT = 24;
-const BLOCKS = "p, li, pre, figcaption, aside, h2, h3";
+const BLOCKS = "p, li, pre, figcaption, aside, h2, h3, tr";
 
 /** The paper's blocks, each with its section and PDF page. */
 function readBlocks(outline: OutlineEntry[], html: string): Block[] {

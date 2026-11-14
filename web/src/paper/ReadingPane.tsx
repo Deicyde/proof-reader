@@ -49,7 +49,7 @@ interface Bar {
 }
 
 /** The blocks of the paper, in reading order: an address can name any of them. */
-const BLOCKS = ".sheet__text p, .sheet__text li, .sheet__text pre, .sheet__text figure, .sheet__text h2, .sheet__text h3, .sheet__text .ref";
+const BLOCKS = ".sheet__text p, .sheet__text li, .sheet__text pre, .sheet__text figure, .sheet__text h2, .sheet__text h3, .sheet__text tr, .sheet__text .ref";
 
 const prefersReduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

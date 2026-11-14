@@ -3,7 +3,7 @@
 // reports about its axioms, where the paper states it and the authors' source.
 
 import { useEffect, useState } from "react";
-import type { Declaration, Edition, Passage } from "../app/edition";
+import { passageLocation, type Declaration, type Edition, type Passage } from "../app/edition";
 import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code";
 import { isType, sectionLabel, shapeOf } from "../model/fromEdition";
 import { routeHref } from "../app/router";
@@ -171,7 +171,7 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
                     onPassage(p.id);
                   }}
                 >
-                  <span className="decl__at">{sectionLabel(p.section)}, page {p.page}</span> {p.quote}
+                  <span className="decl__at">{sectionLabel(p.section)}, {passageLocation(p)}</span> {p.quote}
                 </a>
               </li>
             ))}

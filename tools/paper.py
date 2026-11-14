@@ -3,13 +3,13 @@
 
   extract SLUG   build the Lean project and list its declarations; compile
                  the paper's checks/ against it and record their axioms
-  check SLUG     check links.json against the PDF and the Lean, and paper.md word
-                 for word against the PDF; print coverage
+  check SLUG     check links.json against its PDF or Markdown source and the Lean;
+                 compare a PDF's reading copy and print coverage
   build [SLUG]   write web/public/papers/ for the website (all papers by default)
   new SLUG       create an empty paper folder
 
-Standard library only. Needs Poppler, elan for `extract`, and Node with the
-packages in web/ when a paper has a paper.md.
+Standard library only. Needs Poppler for PDF sources, elan for `extract`, and
+Node with the packages in web/ for a reading copy or a Markdown source.
 """
 from __future__ import annotations
 
@@ -471,13 +471,36 @@ def load_links(folder: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def paper_source(folder: Path, config: dict) -> dict:
+    """A paper has one author source. Markdown is not a PDF transcription."""
+    paper = config["paper"]
+    kinds = [kind for kind in ("pdf", "markdown") if paper.get(kind)]
+    if len(kinds) != 1:
+        raise PaperError("[paper] needs exactly one of pdf or markdown")
+    kind = kinds[0]
+    path = folder / paper[kind]
+    if not path.is_file():
+        raise PaperError(f"source is missing: {path}")
+    if kind == "markdown" and config.get("reading", {}).get("figure"):
+        raise PaperError("[reading] figure crops require a PDF source")
+    return {"kind": kind, "file": paper[kind], "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+
+
 def resolve(slug: str) -> dict:
     """Check every link. Any quote or name that cannot be found stops the build."""
     folder, config = load_paper(slug)
     shard_info, _ = shards(folder, config)
     written = shard_info["written"]
     links = load_links(folder)
-    words, sizes = pdf_words(folder / config["paper"]["pdf"])
+    source = paper_source(folder, config)
+    markdown_render = None
+    markdown_passages = {}
+    if source["kind"] == "markdown":
+        markdown_render, resolved = reading_copy.resolve_markdown(folder / source["file"], slug, links["passages"])
+        markdown_passages = {p["id"]: p for p in resolved}
+        words, sizes = [], []
+    else:
+        words, sizes = pdf_words(folder / source["file"])
     errors: list[str] = []
     passages = []
     ids = set()
@@ -486,13 +509,17 @@ def resolve(slug: str) -> dict:
         if pid in ids:
             errors.append(f"passage {pid}: repeated id")
         ids.add(pid)
-        hits = find_quote(item["quote"], words)
-        if item.get("page"):
-            hits = [h for h in hits if words[h]["page"] == item["page"]]
-        if len(hits) != 1:
-            errors.append(f"passage {pid}: quote found {len(hits)} times, needs exactly one: {item['quote'][:70]!r}")
-            continue
-        page, rects, last = span_rects(item["quote"], hits[0], words)
+        if source["kind"] == "markdown":
+            resolved = markdown_passages[pid]
+        else:
+            hits = find_quote(item["quote"], words)
+            if item.get("page"):
+                hits = [h for h in hits if words[h]["page"] == item["page"]]
+            if len(hits) != 1:
+                errors.append(f"passage {pid}: quote found {len(hits)} times, needs exactly one: {item['quote'][:70]!r}")
+                continue
+            page, rects, last = span_rects(item["quote"], hits[0], words)
+            resolved = {**item, "page": page, "rects": rects, "order": hits[0], "last_page": last}
         for name in item.get("lean", []):
             if name not in written:
                 errors.append(f"passage {pid}: no Lean declaration called {name}")
@@ -503,7 +530,7 @@ def resolve(slug: str) -> dict:
                 errors.append(f"passage {pid}: lines {first} to {last_line} are not inside {item.get('lean', ['?'])[0]}")
         if item.get("role") not in ROLES:
             errors.append(f"passage {pid}: role must be one of {ROLES}")
-        passages.append({**item, "page": page, "rects": rects, "order": hits[0], "last_page": last})
+        passages.append(resolved)
     passages.sort(key=lambda p: p["order"])
     claims = links.get("claims", [])
     if not claims:
@@ -540,7 +567,8 @@ def resolve(slug: str) -> dict:
     if errors:
         raise PaperError("\n".join(errors))
     return {"folder": folder, "config": config, "shards": shard_info, "links": links, "passages": passages,
-            "sizes": sizes, "words": words, "checks": checks["checks"], "required": required}
+            "sizes": sizes, "words": words, "checks": checks["checks"], "required": required,
+            "source": source, "markdown_render": markdown_render}
 
 
 def plain_problem(name: str, title: str) -> str | None:
@@ -612,9 +640,15 @@ def edition(slug: str) -> dict:
         })
     names = [d["id"] for d in declarations if d["id"] not in links.get("unlinked_names", [])]
     setting = None
-    if (data["folder"] / "paper.md").is_file():
+    if data["source"]["kind"] == "markdown":
+        setting = reading_copy.build_markdown(data["markdown_render"], slug, data["passages"], names, config["paper"].get("url", ""))
+        display_quotes = setting.pop("display_quotes")
+        for passage in data["passages"]:
+            passage["quote"] = display_quotes[passage["id"]]
+    elif (data["folder"] / "paper.md").is_file():
         setting = reading_copy.build(data["folder"], slug, data["passages"], names, data["words"],
                                      config.get("reading", {}), links)
+    if setting:
         # Blocks move between the PDF and the reading copy, so tie order follows the reader.
         place = {pid: index for index, pid in enumerate(setting.pop("order"))}
         data["passages"].sort(key=lambda p: place[p["id"]])
@@ -631,7 +665,9 @@ def edition(slug: str) -> dict:
     tied_sections = list(dict.fromkeys(p["section"] for p in data["passages"]))
     return {
         "schema": 1, "slug": slug,
-        "paper": {**paper, "pages": len(data["sizes"]), "sizes": data["sizes"], "crop": ink_box(data["folder"] / config["paper"]["pdf"], data["sizes"])},
+        "source": data["source"],
+        "paper": {**paper, "pages": len(data["sizes"]), "sizes": data["sizes"],
+                  "crop": ink_box(data["folder"] / paper["pdf"], data["sizes"]) if data["source"]["kind"] == "pdf" else None},
         "lean": {**{k: v for k, v in config["lean"].items() if k != "project"},
                  "toolchain": (lean_project(data["folder"], config) / "lean-toolchain").read_text().strip(),
                  "version": shard_info["lean_version"],
@@ -656,7 +692,7 @@ def edition(slug: str) -> dict:
             "standard_axioms": {a: sorted(d["id"] for d in declarations if a in d["standard_axioms"]) for a in sorted(STANDARD_AXIOMS)},
             "sorry": sorted(name for name in keep if "sorryAx" in written[name]["axioms"]),
             "proof_lines": sum(d["lines"] for d in declarations if d["keyword"] in ("theorem", "lemma")),
-            "pages_with_links": sorted({p["page"] for p in data["passages"]}),
+            "pages_with_links": sorted({p["page"] for p in data["passages"] if p["page"] is not None}),
             "fidelity": {
                 "required": data["required"],
                 **{verdict: sorted(n for n, e in fidelity.items() if e["verdict"] == verdict) for verdict in VERDICTS},
@@ -725,7 +761,8 @@ def shelf_examples(config: dict, passages: list[dict], paragraphs: dict, written
         around = paragraphs.get(pid) or {"before": "", "after": ""}
         examples.append({
             "id": pid, "section": passage.get("section", ""),
-            "page_label": label.format(page=passage["page"]) if label else str(passage["page"]),
+            "page_label": (label.format(page=passage["page"]) if label else str(passage["page"])) if passage["page"] is not None else "",
+            "source_lines": passage.get("source_lines"),
             "before": around["before"], "quote": passage["quote"], "after": around["after"],
             "name": name, "plain": plain[name], "keyword": row["keyword"],
             "file": f"{project_root}/{row['module'].replace('.', '/')}.lean",
@@ -753,7 +790,8 @@ def check(slug: str) -> None:
     stats = built["analytics"]
     print(f"{slug}: every quote found once and every Lean name exists")
     if built["reading"]:
-        print(f"  reading copy: {built['reading']['words']} words and {built['reading']['formulas']} formulas, none differing from the PDF")
+        origin = "rendered from the Markdown source; exact raw quotes and block anchors checked" if built["source"]["kind"] == "markdown" else "none differing from the PDF"
+        print(f"  reading copy: {built['reading']['words']} words and {built['reading']['formulas']} formulas, {origin}")
     print(f"  {stats['linked_to_paper']} of {stats['declarations']} declarations tied to the paper, "
           f"on pages {stats['pages_with_links']}")
     if stats["not_linked"]:
@@ -782,14 +820,21 @@ def build(slugs: list[str]) -> None:
         (out / "reading.html").unlink(missing_ok=True)
         if page:
             (out / "reading.html").write_text(page, encoding="utf-8")
-            crop_figures(folder / built["paper"]["pdf"], built, out, load_paper(slug)[1])
+            if built["source"]["kind"] == "pdf":
+                crop_figures(folder / built["paper"]["pdf"], built, out, load_paper(slug)[1])
         # The first screen needs neither: the Lean's text and the names on the PDF come on demand.
         source = {"files": built["lean"].pop("files"), "mentions": built.pop("mentions")}
         (out / "source.json").write_text(json.dumps(source, ensure_ascii=False), encoding="utf-8")
         (out / "edition.json").write_text(json.dumps(built, ensure_ascii=False), encoding="utf-8")
-        shutil.copyfile(folder / built["paper"]["pdf"], out / "paper.pdf")
-        subprocess.run(["pdftocairo", "-png", "-singlefile", "-f", "1", "-l", "1", "-scale-to", "420",
-                        str(folder / built["paper"]["pdf"]), str(out / "first-page")], check=True)
+        if built["source"]["kind"] == "pdf":
+            (out / "guide.md").unlink(missing_ok=True)
+            shutil.copyfile(folder / built["paper"]["pdf"], out / "paper.pdf")
+            subprocess.run(["pdftocairo", "-png", "-singlefile", "-f", "1", "-l", "1", "-scale-to", "420",
+                            str(folder / built["paper"]["pdf"]), str(out / "first-page")], check=True)
+        else:
+            (out / "paper.pdf").unlink(missing_ok=True)
+            (out / "first-page.png").unlink(missing_ok=True)
+            shutil.copyfile(folder / built["source"]["file"], out / "guide.md")
         print(f"built {slug}")
     write_shelf()
 
@@ -828,6 +873,7 @@ def shelf_entry(slug: str, built: dict, files: dict[str, str]) -> dict:
     return {
         "slug": slug, "title": paper["title"], "short_title": paper.get("short_title") or paper["title"],
         "authors": paper["authors"], "venue": paper.get("venue", ""),
+        "source_kind": built.get("source", {}).get("kind", "pdf"),
         "declarations": built["analytics"]["declarations"],
         "lean": {"files": len(used), "lines": sum(len(files[f].splitlines()) for f in used),
                  "version": built["lean"]["version"], "axioms": len(built["analytics"]["axioms"]),
@@ -848,7 +894,7 @@ def new(slug: str) -> None:
         raise PaperError(f"{folder} already exists")
     (folder / "lean").mkdir(parents=True)
     (folder / "paper.toml").write_text((ROOT / "docs" / "paper.toml.example").read_text(encoding="utf-8"), encoding="utf-8")
-    print(f"created {folder.relative_to(ROOT)}: add paper.pdf and the Lean project, then fill in paper.toml")
+    print(f"created {folder.relative_to(ROOT)}: add paper.pdf or guide.md and the Lean project, then fill in paper.toml")
 
 
 def main() -> int:
@@ -863,7 +909,7 @@ def main() -> int:
             parser.error("this command needs a paper name")
         else:
             {"extract": extract, "check": check, "new": new}[args.command](args.slug)
-    except PaperError as error:
+    except (PaperError, reading_copy.ReadingError) as error:
         print(error, file=sys.stderr)
         return 1
     return 0

@@ -11,9 +11,14 @@ export interface Passage {
   code?: boolean;
   quote: string;
   lean: string[];
-  page: number;
-  last_page: number;
+  /** Null for Markdown; source_lines give its location. */
+  page: number | null;
+  last_page: number | null;
   rects: number[][];
+  source_quote?: string;
+  source_lines?: [number, number];
+  source_block?: string;
+  anchor?: { heading: string; block: number };
   /** The exact Lean lines this passage describes, when it is narrower than the declaration. */
   lines?: [number, number];
 }
@@ -25,7 +30,7 @@ export interface OutlineEntry {
   level: number;
   ties: number;
   /** The PDF page the section starts on. */
-  page: number;
+  page: number | null;
 }
 
 /** A Lean name printed in the paper, found by matching words at build time. */
@@ -98,6 +103,8 @@ export interface Check {
 export interface Edition {
   schema: 1;
   slug: string;
+  source?: { kind: "pdf" | "markdown"; file: string; sha256: string };
+  credit?: { text?: string };
   paper: {
     title: string;
     short_title: string;
@@ -105,12 +112,13 @@ export interface Edition {
     venue: string;
     doi: string;
     url: string;
-    pdf: string;
+    pdf?: string;
+    markdown?: string;
     licence: string;
     licence_url: string;
     pages: number;
     sizes: [number, number][];
-    crop: [number, number, number, number];
+    crop: [number, number, number, number] | null;
   };
   lean: {
     modules: string[];
@@ -156,6 +164,7 @@ export interface ShelfExample {
   role?: string;
   section: string;
   page_label: string;
+  source_lines?: [number, number] | null;
   before: string;
   quote: string;
   after: string;
@@ -176,6 +185,7 @@ export interface ShelfItem {
   short_title?: string;
   authors: string[];
   venue: string;
+  source_kind?: "pdf" | "markdown";
   declarations: number;
   lean?: { files: number; lines: number; version: string; axioms: number; sorry: number };
   linked?: number;
@@ -204,3 +214,8 @@ export const loadShelf = () => json<{ papers: ShelfItem[] }>(`${base}papers/inde
 
 /** True when the page carries comparisons of the paper's statements with the Lean. */
 export const hasComparisons = (edition: Edition) => edition.declarations.some((d) => !!d.fidelity);
+
+/** Source coordinates stay separate from the Lean lines a passage describes. */
+export const passageLocation = (passage: Passage) => passage.source_lines
+  ? `guide lines ${passage.source_lines[0]} to ${passage.source_lines[1]}`
+  : `page ${passage.page}`;

@@ -83,7 +83,7 @@ export function Shelf() {
             <dl className="sources">
               <div>
                 <dt>The authors</dt>
-                <dd>The text of the paper, in the authors’ wording, and their Lean file, unchanged. The original PDF is one click away.</dd>
+                <dd>The text of the paper, in the authors’ wording, and their Lean file, unchanged. The original PDF or Markdown source is one click away.</dd>
               </div>
               <div>
                 <dt>Lean</dt>
@@ -128,7 +128,7 @@ export function Shelf() {
               {(papers ?? []).map((p) => (
                 <li key={p.slug}>
                   <a href={routeHref({ paper: p.slug })}>
-                    <img src={paperFile(p.slug, "first-page.png")} alt="" width={96} height={142} />
+                    {p.source_kind !== "markdown" && <img src={paperFile(p.slug, "first-page.png")} alt="" width={96} height={142} />}
                     <span>
                       <span className="shelf__title">{p.title}</span>
                       <span className="shelf__by">{p.authors.join(", ")}</span>
@@ -210,7 +210,7 @@ function Specimen({ paper, example }: { paper: ShelfItem; example: ShelfExample 
   return (
     <figure className="specimen" ref={frame}>
       <div className="specimen__paper">
-        <p className="specimen__label">{paper.short_title ?? paper.title}, §{example.section}, page {example.page_label}</p>
+        <p className="specimen__label">{paper.short_title ?? paper.title}, §{example.section}, {example.source_lines ? `guide lines ${example.source_lines[0]} to ${example.source_lines[1]}` : `page ${example.page_label}`}</p>
         <p className="specimen__text">
           {lead_in(example.before)}
           <a className="specimen__quote" href={href} title="Open this sentence and its Lean lines on the paper’s page">{example.quote}</a>

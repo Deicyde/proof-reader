@@ -9,7 +9,7 @@
 
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { blankEntry, newEntryId, pushEntry, readEntry, replaceEntry, returning, type Copy, type Entry, type Pin, type Tab } from "../app/history";
-import { hasComparisons, loadSource, paperFile, type Edition, type Passage } from "../app/edition";
+import { hasComparisons, loadSource, paperFile, passageLocation, type Edition, type Passage } from "../app/edition";
 import { Lockup, SisterSites } from "../app/Family";
 import { readRoute, routeHref } from "../app/router";
 import { setScheme, useScheme } from "../app/theme";
@@ -73,7 +73,7 @@ function resolve(edition: Edition, record: string | undefined, extra: string | u
     const page = /^page-(\d+)$/.exec(at);
     if (page) {
       const n = Number(page[1]);
-      if (n >= 1 && n <= edition.paper.pages) return { entry: { copy: "pdf" }, target: { page: n }, bad: null };
+      if (edition.paper.pdf && n >= 1 && n <= edition.paper.pages) return { entry: { copy: "pdf" }, target: { page: n }, bad: null };
       return { entry: {}, target: { start: true }, bad: record };
     }
     return { entry: {}, target: { place: at }, bad: null };
@@ -90,6 +90,8 @@ function resolve(edition: Edition, record: string | undefined, extra: string | u
 export function PaperPage({ edition }: { edition: Edition }) {
   const slug = edition.slug;
   const { paper, lean } = edition;
+  const hasPdf = !!paper.pdf;
+  const markdown = edition.source?.kind === "markdown";
   const graph = useMemo(() => editionGraph(edition), [edition]);
   const passages = useMemo(() => new Map(edition.passages.map((p) => [p.id, p])), [edition]);
   const declarations = useMemo(() => new Map(edition.declarations.map((d) => [d.id, d])), [edition]);
@@ -99,7 +101,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const started = useRef<{ entry: Entry; target: Target | null; record: string | undefined } | null>(null);
   if (!started.current) {
     const route = readRoute();
-    const saved = readEntry(slug, returning());
+    const retained = readEntry(slug, returning());
+    const saved = retained && { ...retained, copy: hasPdf ? retained.copy : "reading" as const };
     const meaning = resolve(edition, route.record, route.extra);
     if (saved) {
       replaceEntry(saved);
@@ -119,6 +122,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const entryRef = useRef(entry);
   entryRef.current = entry;
   const [html, setHtml] = useState<string | null>(null);
+  const [readingFailed, setReadingFailed] = useState(false);
   const [pdfSeen, setPdfSeen] = useState(entry.copy === "pdf");
   const [section, setSection] = useState<string | null>(null);
   const [line, setLine] = useState<{ id: string | null; zone: Zone; above: string | null }>({ id: null, zone: "before", above: null });
@@ -188,13 +192,15 @@ export function PaperPage({ edition }: { edition: Edition }) {
       })
       .then((text) => live && setHtml(text), () => {
         if (!live) return;
-        setPdfSeen(true);
-        setEntry((e) => ({ ...e, copy: "pdf" }));
+        if (hasPdf) {
+          setPdfSeen(true);
+          setEntry((e) => ({ ...e, copy: "pdf" }));
+        } else setReadingFailed(true);
       });
     return () => {
       live = false;
     };
-  }, [edition, slug]);
+  }, [edition, hasPdf, slug]);
 
   /** Put the paper where it is waiting to go, once its pane can take it. */
   const flush = useCallback(() => {
@@ -264,7 +270,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
       saveNow();
       o.after?.();
       const cur = entryRef.current;
-      const copy = o.copy ?? cur.copy;
+      const copy = hasPdf ? o.copy ?? cur.copy : "reading";
       const label = o.from === "right" && cur.pin ? (pinLabel(cur.pin) ?? paperLabel()) : paperLabel();
       const next: Entry = {
         ...cur,
@@ -302,14 +308,15 @@ export function PaperPage({ edition }: { edition: Edition }) {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [pane, paperLabel, saveNow, slug, wide],
+    [hasPdf, pane, paperLabel, saveNow, slug, wide],
   );
 
   /** Follow the address the browser now holds: Back, Forward, or one typed in. */
   const sync = useCallback(() => {
     const route = readRoute();
     if (route.paper !== slug) return;
-    const saved = readEntry(slug, true);
+    const retained = readEntry(slug, true);
+    const saved = retained && { ...retained, copy: hasPdf ? retained.copy : "reading" as const };
     const cur = entryRef.current;
     if (saved?.id === cur.id) return;
     const meaning = resolve(edition, route.record, route.extra);
@@ -344,7 +351,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
       pending.current = meaning.target ? { target: meaning.target, instant: false, record: route.record } : null;
     }
     setTick((t) => t + 1);
-  }, [edition, homeCopy, paperLabel, slug, wide]);
+  }, [edition, hasPdf, homeCopy, paperLabel, slug, wide]);
 
   useEffect(() => {
     window.history.scrollRestoration = "manual";
@@ -490,6 +497,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   }, [open, pane]);
 
   const switchCopy = useCallback((next: Copy, page?: number) => {
+    if (next === "pdf" && !hasPdf) return;
     const cur = entryRef.current;
     if (next === cur.copy && !page) return;
     const handle = pane();
@@ -498,8 +506,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
     let target: Target = page ? { page } : { page: onPage, into: where?.into };
     if (cur.copy === "reading" && handle) leftReading.current = { top: handle.top(), width: handle.width(), page: onPage };
     if (next === "reading" && leftReading.current?.page === onPage) target = { top: leftReading.current.top, width: leftReading.current.width, fallback: target };
-    open({ record: next === "pdf" ? `@page-${onPage}` : `@${where?.section ?? outline.find((e) => e.page >= onPage)?.id ?? "s-1"}`, copy: next, target, stay: true });
-  }, [open, outline, pane]);
+    open({ record: next === "pdf" ? `@page-${onPage}` : `@${where?.section ?? outline.find((e) => e.page !== null && e.page >= onPage)?.id ?? "s-1"}`, copy: next, target, stay: true });
+  }, [hasPdf, open, outline, pane]);
 
   const onTab = useCallback((tab: Tab) => {
     if (entryRef.current.tab === tab) return;
@@ -624,7 +632,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (shown.decl) return { key: `d:${shown.decl}`, title: null, passage: null, decls: [shown.decl], exact: null, untied: null };
     const passage = shown.passage;
     if (!passage) return { key: "none", title: null, passage: null, decls: [], exact: null, untied: { section: hereLabel, last: lastTie } };
-    const title = shown.mode === "start" ? `The paper’s main claim, ${sectionLabel(passage.section)}` : `${sectionLabel(passage.section)}, page ${passage.page}`;
+    const title = shown.mode === "start" ? `The paper’s main claim, ${sectionLabel(passage.section)}` : `${sectionLabel(passage.section)}, ${passageLocation(passage)}`;
     return { key: `p:${passage.id}`, title, passage, decls: passage.lean, exact: passage.lines ?? null, untied: null };
   }, [hereLabel, lastTie, shown]);
 
@@ -692,7 +700,13 @@ export function PaperPage({ edition }: { edition: Edition }) {
 
   const tiedLine = order >= 0 ? `Statement ${order + 1} of ${edition.coverage.ties}` : line.zone === "after" ? "After the last statement" : line.zone === "before" ? "Before the first statement" : `After statement ${reached}`;
   const copy = entry.copy;
-  const credit = (
+  const credit = markdown ? (
+    <p>
+      {edition.credit?.text ?? `Text: ${paper.authors.join(", ")}, ${paper.licence}`}.
+      {" "}We rendered the authors’ Markdown directly and checked each quotation against its source heading and block. <a href={paper.url}>Read the source Markdown</a>.
+      {" "}Lean from the authors’ artifact, built here on Lean {lean.version}. Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.
+    </p>
+  ) : (
     <p>
       Paper © its authors, <a href={paper.licence_url}>{paper.licence}</a>
       {copy === "reading" ? ". Reading copy retypeset from the PDF, with its figures copied from the PDF; the layout is ours" : ", with only its blank margins trimmed"}.
@@ -726,7 +740,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
             <span>{tiedLine}</span>
             <button type="button" title="The next statement (j)" onClick={() => step(1)} disabled={reached >= edition.passages.length}>Next</button>
           </div>
-          {edition.reading && (
+          {edition.reading && hasPdf && (
             <div className="switch" role="group" aria-label="The left-hand page">
               <button type="button" aria-pressed={copy === "reading"} onClick={() => switchCopy("reading")}>Reading copy</button>
               <button type="button" aria-pressed={copy === "pdf"} onClick={() => switchCopy("pdf")}>PDF</button>
@@ -742,7 +756,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
           <a className="bar__film" href={SHORT_FILM.youtube} target="_blank" rel="noopener noreferrer" title={`${SHORT_FILM.title}, video on YouTube`}>
             <span className="bar__film-mark" aria-hidden="true" />Video, {clockTime(SHORT_FILM.seconds)}<span className="sr-only"> on YouTube</span>
           </a>
-          <a className="bar__link" href={paper.url}>Published paper</a>
+          <a className="bar__link" href={paper.url}>{markdown ? "Source Markdown" : "Published paper"}</a>
           <a className="bar__link" href={lean.source}>Lean artifact</a>
         </div>
       </header>
@@ -817,9 +831,9 @@ export function PaperPage({ edition }: { edition: Edition }) {
               foot={<footer className="foot">{credit}<SisterSites /></footer>}
             />
           ) : (
-            copy === "reading" && <p className="status" data-paper-pane>Opening the paper…</p>
+            copy === "reading" && <p className="status" data-paper-pane role={readingFailed ? "alert" : undefined}>{readingFailed ? <>Could not open the guide. <a href={paper.url}>Read the source Markdown</a>.</> : "Opening the paper…"}</p>
           ))}
-          {pdfSeen && (
+          {hasPdf && paper.crop && pdfSeen && (
             <Suspense fallback={<p className="status" data-paper-pane>Opening the PDF…</p>}>
               <PdfPane
                 ref={pdf}

@@ -2,7 +2,7 @@
 // every declaration, or the authors' whole file. The tab is part of the address.
 
 import { memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type Ref } from "react";
-import { hasComparisons, type Edition, type Passage } from "../app/edition";
+import { hasComparisons, passageLocation, type Edition, type Passage } from "../app/edition";
 import type { Tab } from "../app/history";
 import { routeHref } from "../app/router";
 import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code";
@@ -206,7 +206,7 @@ function Crumbs({ edition, id, onPassage }: { edition: Edition; id: string | und
   const seen = new Set<string>();
   const stops = d.passages.flatMap((pid) => {
     const p = edition.passages.find((x) => x.id === pid);
-    const key = p ? `${p.section}/${p.page}` : "";
+    const key = p ? `${p.section}/${passageLocation(p)}` : "";
     if (!p || seen.has(key)) return [];
     seen.add(key);
     return [p];
@@ -219,7 +219,7 @@ function Crumbs({ edition, id, onPassage }: { edition: Edition; id: string | und
           if (event.metaKey || event.ctrlKey || event.shiftKey) return;
           event.preventDefault();
           onPassage(p.id);
-        }}>{sectionLabel(p.section)}, page {p.page}</a>
+        }}>{sectionLabel(p.section)}, {passageLocation(p)}</a>
       ))}
     </nav>
   );
