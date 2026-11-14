@@ -710,6 +710,11 @@ def edition(slug: str) -> dict:
             "passages": linked.get(name, []),
             "note": links.get("notes", {}).get(name),
             "fidelity": fidelity_of(links.get("fidelity", {}).get(name)),
+            # Where these facts come from, per declaration: "lean" (read by Lean from the
+            # compiled module), "statement-compiled" (only the statement compiled here) or
+            # "source-read" (read from the source by hand).
+            "provenance": row.get("provenance") or shard_info["provenance"]["kind"],
+            "doc": row.get("doc"),
         })
     names = [d["id"] for d in declarations if d["id"] not in links.get("unlinked_names", [])]
     setting = None

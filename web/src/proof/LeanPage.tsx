@@ -282,7 +282,7 @@ function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions 
         </tbody>
       </table>
       <p className="index__source">{fromLean(edition)
-        ? <>These names, kinds, line numbers, uses and axioms are the output of Lean {edition.lean.version} on the authors’ file.</>
+        ? <>These names, kinds, line numbers, uses and axioms are the output of Lean {edition.lean.version} on the authors’ file.{edition.declarations.some((d) => d.provenance === "statement-compiled") && <> For {edition.declarations.filter((d) => d.provenance === "statement-compiled").map((d) => d.plain).join(", ")}, Lean compiled the statement here; the proof was not built for this page, so it has no axiom report.</>}</>
         : <>These names, kinds, line numbers and uses were read from the authors’ source with AI. Lean has not been run on it for this page.</>}</p>
     </div>
   );

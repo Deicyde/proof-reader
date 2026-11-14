@@ -202,21 +202,10 @@ button:disabled { cursor: default; }
 .graph__usedby button + button::before { content: ", "; color: var(--ink-2); }
 .graph__hint { color: var(--ink-3); }
 .graph--quiet .tree .links { opacity: 0.12; transition: opacity 120ms; }
-/* In the neighbourhood every card under the root is used by it, so rows say it without lines. */
-.near { flex: 1; min-height: 0; overflow-y: auto; padding: 14px 16px 24px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.near__plate { width: min(100%, 420px); padding: 8px 12px; text-align: center; background: var(--sheet); border: 1px solid var(--card-border); border-radius: var(--radius-card); }
-.near__kicker { display: block; font-size: var(--fs-micro); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
-.near__claim { display: block; font-family: var(--font-serif); font-size: var(--fs-h3); color: var(--ink); }
-.near__heads, .near__grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; }
-.near__caption { margin: 6px 0 0; font-size: var(--fs-sm); color: var(--ink-2); }
-.near__card { box-sizing: border-box; width: 168px; min-height: 56px; display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 6px 8px; text-align: center; background: var(--lean-fill); border: 1px solid var(--lean-fill-line); border-radius: var(--radius-s); color: var(--ink); cursor: pointer; }
-.near__card--head { width: 220px; border-width: 2px; border-color: var(--thread); background: var(--highlight-soft); }
-.near__card:hover { border-color: var(--ink-2); }
-.near__card:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
-.near__card.is-lit { box-shadow: 0 0 0 2px var(--thread); }
-.near__title { font-size: var(--fs-sm); line-height: 1.25; }
-.near__raw { font-family: var(--font-mono); font-size: var(--fs-micro); color: var(--ink-3); }
-.graph--near .tree .links, .graph--near .tree .links-over { display: none; }
+/* The neighbourhood draws its few lines at one quiet weight; pointing at a card brings its own lines forward and dims the rest. */
+.graph--quiet.graph--near .tree .links { opacity: 0.7; }
+.graph--quiet .tree:has(.card:hover) .links, .graph--quiet .tree:has(.card:focus-visible) .links { opacity: 0.12; }
+.graph__via { color: var(--ink-2); }
 @media (prefers-reduced-motion: reduce) { .graph--quiet .tree .links { transition: none; } }
 .maplist { flex: 1; min-height: 0; overflow-y: auto; margin: 0; padding: 4px 16px 24px; list-style: none; }
 .maplist li { padding: 8px 0; border-bottom: 1px solid var(--rule); }
@@ -435,3 +424,27 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
   .rail { top: 0; }
   .proof__caption { padding-left: 10px; }
 }
+
+/* Proof Reader: the neighbourhood drawing. */
+.nearmap { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; background: var(--sheet); }
+.nearmap__world { position: relative; }
+.nearmap__lines { position: absolute; left: 0; top: 0; pointer-events: none; }
+.nearmap__line { stroke: color-mix(in oklab, var(--ink-3) 70%, var(--sheet)); stroke-width: 1.25; fill: none; }
+.nearmap__line--statement { stroke-dasharray: 4 3; }
+.nearmap[data-hot] .nearmap__line { opacity: 0.25; }
+.nearmap[data-hot] .nearmap__line.is-hot { opacity: 1; stroke: var(--thread); stroke-width: 1.75; }
+.nearmap__plate { position: absolute; left: 50%; top: 12px; transform: translateX(-50%); width: min(calc(100% - 32px), 420px); box-sizing: border-box; padding: 6px 12px; text-align: center; background: var(--sheet); border: 1px solid var(--card-border); border-radius: var(--radius-card); }
+.nearmap__kicker { display: block; font-size: var(--fs-micro); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.nearmap__claim { display: block; font-family: var(--font-serif); font-size: var(--fs-h3); color: var(--ink); }
+.nearmap__card { position: absolute; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 2px; padding: 5px 8px; text-align: center; background: var(--lean-fill); border: 1px solid var(--lean-fill-line); border-radius: var(--radius-s); color: var(--ink); cursor: pointer; }
+.nearmap__card[data-shape="theorem"] { border-radius: 14px; }
+.nearmap__card.is-head { border: 2px solid var(--thread); background: var(--highlight-soft); }
+.nearmap__card.is-lit, .nearmap__card.is-selected { box-shadow: 0 0 0 2px var(--thread); }
+.nearmap[data-hot] .nearmap__card:not(.is-near) { opacity: 0.55; }
+.nearmap__card:hover { border-color: var(--ink-2); }
+.nearmap__card:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.nearmap__title { font-size: var(--fs-sm); line-height: 1.2; }
+.nearmap__raw { font-family: var(--font-mono); font-size: var(--fs-micro); color: var(--ink-3); }
+.nearmap__key { margin: 0; padding: 6px 16px 10px; font-size: var(--fs-sm); color: var(--ink-2); }
+.proof:has(.graph--near) .proof__key { display: none; }
+@media (prefers-reduced-motion: no-preference) { .nearmap__card, .nearmap__line { transition: opacity 120ms; } }

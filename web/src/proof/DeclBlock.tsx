@@ -3,7 +3,7 @@
 // reports about its axioms, where the paper states it and the authors' source.
 
 import { useEffect, useState } from "react";
-import { fromLean, noun, passageLocation, type Declaration, type Edition, type Passage } from "../app/edition";
+import { declOrigin, fromLean, noun, passageLocation, type Declaration, type Edition, type Passage } from "../app/edition";
 import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code";
 import { isType, sectionLabel, shapeOf } from "../model/fromEdition";
 import { routeHref } from "../app/router";
@@ -55,7 +55,8 @@ function Names({ edition, names, act }: { edition: Edition; names: string[]; act
 function Axioms({ edition, d, act }: { edition: Edition; d: Declaration; act: LeanActions }) {
   if (d.keyword === "axiom") return <p className="decl__axiom">Assumed, not proved. Lean accepts this without a proof.</p>;
   if (d.keyword !== "theorem" && d.keyword !== "lemma") return null;
-  if (!fromLean(edition)) return <p className="decl__facts">No axiom report: Lean has not been run on this file for this page.</p>;
+  if (d.provenance === "statement-compiled") return <p className="decl__facts">No axiom report: Lean compiled this statement here, and its proof was not built for this page.</p>;
+  if (!fromLean(edition) || d.provenance === "source-read") return <p className="decl__facts">No axiom report: Lean has not been run on this file for this page.</p>;
   const sorry = edition.analytics.sorry.includes(d.id);
   return (
     <p className="decl__facts">
@@ -117,7 +118,7 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
         <h3 className="decl__name"><a href={routeHref({ paper: edition.slug, record: d.id })}>{d.plain}</a></h3>
         <code className="decl__raw">{d.id}</code>
         <CopyName name={d.id} />
-        <span className="decl__kind">{KIND_WORDS[d.keyword] ?? d.keyword}, line{d.lines > 1 ? `s ${d.line} to ${d.end_line}` : ` ${d.line}`}</span>
+        <span className="decl__kind">{KIND_WORDS[d.keyword] ?? d.keyword}, line{d.lines > 1 ? `s ${d.line} to ${d.end_line}` : ` ${d.line}`}; {declOrigin(edition, d)}</span>
       </header>
       {passage && <p className="decl__relation">{relation(passage)}</p>}
       {d.note && <p className="decl__note"><span className="decl__note-by">Note added for this page</span>{d.note.text}</p>}

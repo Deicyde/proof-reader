@@ -8,6 +8,7 @@
 import { memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type Ref } from "react";
 import { loadSource, type Edition } from "../app/edition";
 import { ArgumentTree, type Insets, type MapViewHandle } from "../map/ArgumentTree";
+import { NearMap } from "./NearMap";
 import type { MapScene } from "../map/canvas/scene";
 import { isType } from "../model/fromEdition";
 import type { ArgEdge, ArgGraph } from "../model/graph";
@@ -26,7 +27,7 @@ const BAND = 340;
 const MAP_LIMIT = 16;
 const LIST_BELOW = 440;
 /** Neighbourhood tiles are wider, and each is as tall as its title needs, up to four lines. */
-const NEAR_W = 176;
+const NEAR_W = 140;
 const tileHeight = (title: string, width: number) => {
   const perLine = Math.max(8, Math.floor((width - 14) / 6.6));
   const words = title.split(/\s+/);
@@ -41,33 +42,75 @@ const tileHeight = (title: string, width: number) => {
   return 30 + Math.min(4, lines) * 17;
 };
 
-/** One card, what it uses, and nothing else: the neighbourhood of `centre`. At the main
- * result it is the claim, its theorems and what their statements use. Only the edges from
- * the centre's own level are drawn, so every line can be followed. */
-export function neighbourhood(graph: ArgGraph, centre: string, goal: string): ArgGraph {
-  const level = centre === goal ? [goal, ...(graph.out.get(goal) ?? []).map((e) => e.to)] : [centre];
-  const ids = new Set<string>(level);
-  for (const id of level) for (const e of graph.out.get(id) ?? []) ids.add(e.to);
-  const edges: ArgEdge[] = graph.edges.filter((e) => level.includes(e.from) && ids.has(e.to));
-  const nodes = new Map([...graph.nodes].filter(([id]) => ids.has(id)));
-  const out = new Map<string, ArgEdge[]>([...ids].map((id) => [id, []]));
-  const into = new Map<string, ArgEdge[]>([...ids].map((id) => [id, []]));
+/**
+ * The neighbourhood of `centre`, drawn as the map draws a proof: the card (at the main
+ * result, the claim and its theorems), then everything it uses directly, ranked by how
+ * those use one another. The map draws the transitive reduction, so a use that runs
+ * through another card in view is not drawn twice. Lines keep their kind: dashed where
+ * only a statement uses the declaration, solid where a proof or definition body does.
+ * Types stay on the shelf, as on the whole map. Edges are added in the order the
+ * centre's own Lean names them, which the layout keeps as its tie-break.
+ */
+export function neighbourhood(edition: Edition, graph: ArgGraph, centre: string, goal: string, files: Record<string, string> | null): ArgGraph {
+  const decl = (id: string) => edition.declarations.find((d) => d.id === id);
+  const drawn = (id: string) => graph.nodes.has(id) && graph.nodes.get(id)!.kind !== "goal";
+  const atGoal = centre === goal;
+  const heads = atGoal ? (edition.claims.find((c) => c.id === goal)?.lean ?? []).filter(drawn) : [centre];
+  const usesOf = (id: string) => {
+    const d = decl(id);
+    return d ? (d.keyword === "theorem" || d.keyword === "lemma" ? d.uses_statement : d.uses) : [];
+  };
+  const members = orderOfUse(edition, files, heads[0] ?? centre, [...new Set(heads.flatMap(usesOf))].filter((id) => drawn(id) && !heads.includes(id)));
+  const ids = [...(atGoal ? [goal] : []), ...heads, ...members];
+  const inView = new Set(ids);
+  const edges: ArgEdge[] = [];
+  const add = (from: string, to: string, kind: ArgEdge["kind"]) =>
+    edges.push({ key: `${from}→${to}→${kind}`, from, to, kind, linkIds: [`${from}→${to}`], scoped: false, semanticClass: kind });
+  if (atGoal) for (const h of heads) add(goal, h, "formalizes");
+  for (const from of [...heads, ...members]) {
+    const d = decl(from);
+    if (!d) continue;
+    const statement = new Set(d.uses_statement);
+    const targets = heads.includes(from) ? members : orderOfUse(edition, files, from, usesOf(from).filter((t) => inView.has(t) && t !== from && !heads.includes(t)));
+    for (const to of targets) {
+      if (!usesOf(from).includes(to)) continue;
+      add(from, to, statement.has(to) ? "lean_type_dependency" : "supports");
+    }
+  }
+  const nodes = new Map(ids.map((id) => [id, graph.nodes.get(id)!]));
+  const out = new Map<string, ArgEdge[]>(ids.map((id) => [id, []]));
+  const into = new Map<string, ArgEdge[]>(ids.map((id) => [id, []]));
   for (const e of edges) {
     out.get(e.from)!.push(e);
     into.get(e.to)!.push(e);
   }
-  const members = graph.order.filter((id) => ids.has(id));
+  const root = atGoal ? goal : centre;
   return {
     ...graph,
     nodes,
-    order: members,
+    order: ids,
     edges,
     out,
     in: into,
-    regions: [{ id: centre, title: graph.nodes.get(centre)?.label ?? "", goal: centre, members }],
-    regionOf: new Map(members.map((id) => [id, centre])),
-    goals: [centre],
+    regions: [{ id: root, title: graph.nodes.get(root)?.label ?? "", goal: root, members: ids }],
+    regionOf: new Map(ids.map((id) => [id, root])),
+    goals: [root],
   };
+}
+
+/** For a card in view, the declarations it uses that the drawing reaches through another card. */
+function viaOf(graph: ArgGraph, id: string): { target: string; via: string }[] {
+  const direct = (graph.out.get(id) ?? []).map((e) => e.to);
+  const reach = (from: string, seen = new Set<string>()): Set<string> => {
+    for (const e of graph.out.get(from) ?? []) if (!seen.has(e.to)) { seen.add(e.to); reach(e.to, seen); }
+    return seen;
+  };
+  const found: { target: string; via: string }[] = [];
+  for (const t of direct) {
+    const through = direct.find((m) => m !== t && reach(m).has(t));
+    if (through) found.push({ target: t, via: through });
+  }
+  return found;
 }
 
 export interface MapPaneHandle {
@@ -114,9 +157,6 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
     setCentre(selected && selected !== goal && edition.declarations.some((d) => d.id === selected) ? selected : goal);
   }, [selected, goal, edition]);
   const near = !whole;
-  const graph = useMemo(() => (near ? neighbourhood(fullGraph, centre, goal) : fullGraph), [near, fullGraph, centre, goal]);
-  const root = near ? centre : goal;
-  const heightOf = useCallback((id: string) => tileHeight(fullGraph.nodes.get(id)?.label ?? "", near ? NEAR_W : TILE_W), [fullGraph, near]);
   // The authors' Lean, for the order in which a statement names what it uses.
   const [files, setFiles] = useState<Record<string, string> | null>(null);
   useEffect(() => {
@@ -127,6 +167,16 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
       live = false;
     };
   }, [big, edition.slug]);
+  const graph = useMemo(() => (near ? neighbourhood(edition, fullGraph, centre, goal, files) : fullGraph), [near, edition, fullGraph, centre, goal, files]);
+  const usedBy = useMemo(() => (near && centre !== goal ? (edition.declarations.find((d) => d.id === centre)?.used_by ?? []) : []), [near, centre, goal, edition]);
+  // What the pointer or focus is on, for the "via" line under the controls.
+  const [hovered, setHovered] = useState<string | null>(null);
+  const hover = useCallback((id: string | null) => {
+    setHovered(id);
+    onHover(id);
+  }, [onHover]);
+  const root = near ? centre : goal;
+  const heightOf = useCallback((id: string) => tileHeight(fullGraph.nodes.get(id)?.label ?? "", near ? NEAR_W : TILE_W), [fullGraph, near]);
   // A narrow pane, a phone: the cards as a list, which is also the keyboard's way through.
   const [narrow, setNarrow] = useState(false);
   useEffect(() => {
@@ -310,9 +360,10 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
   // a click on the card in view opens its Lean, as a click does on the whole map.
   const select = useCallback((id: string | null) => {
     if (!id) return;
-    if (near && id !== centre && fullGraph.nodes.get(id)?.kind !== "goal") setCentre(id);
+    const head = centre === goal && (claims.find((c) => c.id === goal)?.lean ?? []).includes(id);
+    if (near && id !== centre && !head && fullGraph.nodes.get(id)?.kind !== "goal") setCentre(id);
     else onSelect(id);
-  }, [near, centre, fullGraph, onSelect]);
+  }, [near, centre, goal, claims, fullGraph, onSelect]);
   const onUserMove = useCallback(() => setPause(true), [setPause]);
   const noTrace = useCallback(() => undefined, []);
 
@@ -338,15 +389,15 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
         rootExcerpt={root === goal ? <span>{claim?.title}</span> : undefined}
         onSelect={select}
         onTrace={noTrace}
-        onHover={onHover}
+        onHover={hover}
         onUserMove={onUserMove}
       />
     ),
-    [goal, root, whole, near, graph, heightOf, selected, litIds, pointed, claim, select, noTrace, onHover, onUserMove],
+    [goal, root, whole, near, graph, heightOf, selected, litIds, pointed, claim, select, noTrace, hover, onUserMove],
   );
 
   return (
-    <section ref={section} className={`graph${whole && big ? " graph--quiet" : ""}${near ? " graph--near" : ""}`} aria-label="Graph of the Lean proof">
+    <section ref={section} className={`graph${big ? " graph--quiet" : ""}${near ? " graph--near" : ""}`} aria-label="Graph of the Lean proof">
       {paused && (
         <p className="graph__paused" role="status">
           Paused while you move the graph.
@@ -382,12 +433,22 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
           )}
           {near && !narrow && centre !== goal && <button type="button" onClick={() => setCentre(goal)}>Back to the main result</button>}
           {near && !narrow && centre !== goal && <button type="button" onClick={() => onSelect(centre)}>Open its Lean</button>}
+          {near && !narrow && usedBy.length > 0 && (
+            <span className="graph__usedby">Used by{" "}
+              {usedBy.map((id) => <button key={id} type="button" onClick={() => setCentre(id)}>{edition.declarations.find((d) => d.id === id)?.plain ?? id}</button>)}
+            </span>
+          )}
           {whole && big && !narrow && <span className="graph__hint">Point at a card to see its lines.</span>}
-          {near && !narrow && (
+          {!narrow && hovered && graph.nodes.has(hovered) && viaOf(graph, hovered).length > 0 && (
+            <span className="graph__via" role="status">
+              {graph.nodes.get(hovered)?.label} also uses {viaOf(graph, hovered).map((v) => `${graph.nodes.get(v.target)?.label} (via ${graph.nodes.get(v.via)?.label})`).join(", ")}.
+            </span>
+          )}
+          {near && !narrow && !hovered && (
             <span className="graph__hint">
               {centre === goal
                 ? "Click a card to see what it uses, or the theorem to open its Lean."
-                : "Click a card to see what it uses, or the card in view to open its Lean."}
+                : "Click a card to see what it uses, or the card at the top to open its Lean."}
             </span>
           )}
         </div>
@@ -395,7 +456,17 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
       {narrow
         ? <MapList graph={fullGraph} goal={goal} lit={lit} onSelect={onSelect} onHover={onHover} />
         : near
-          ? <NearGrid edition={edition} graph={fullGraph} goal={goal} claimTitle={claim?.title ?? ""} centre={centre} files={files} lit={lit} onCentre={setCentre} onOpen={onSelect} onHover={onHover} />
+          ? (
+            <NearMap
+              graph={graph}
+              heads={centre === goal ? (claims.find((c) => c.id === goal)?.lean ?? []).filter((id) => graph.nodes.has(id)) : [centre]}
+              plate={centre === goal ? (claim?.title ?? null) : null}
+              lit={lit}
+              selected={selected}
+              onCard={(id) => select(id)}
+              onHover={hover}
+            />
+          )
           : <div className="graph__canvas" ref={body}>{map}</div>}
     </section>
   );
@@ -435,74 +506,4 @@ function orderOfUse(edition: Edition, files: Record<string, string> | null, owne
     return m ? m.index : Number.MAX_SAFE_INTEGER;
   };
   return [...ids].sort((a, b) => at(a) - at(b) || a.localeCompare(b));
-}
-
-/**
- * The neighbourhood as a grid: the card in view at the top, what uses it above that, and
- * what it uses below in even rows, in the order its own text names them. No lines: every
- * card in the grid is used by the card above it, and the caption says so.
- */
-function NearGrid({ edition, graph, goal, claimTitle, centre, files, lit, onCentre, onOpen, onHover }: {
-  edition: Edition; graph: ArgGraph; goal: string; claimTitle: string; centre: string; files: Record<string, string> | null;
-  lit: readonly string[]; onCentre(id: string): void; onOpen(id: string): void; onHover(id: string | null): void;
-}) {
-  // From the declarations themselves, so types (drawn on the shelf, not the map) take their place too.
-  const decl = (id: string) => edition.declarations.find((d) => d.id === id);
-  const atGoal = centre === goal;
-  const heads = atGoal ? (edition.claims.find((c) => c.id === goal)?.lean ?? []).filter((id) => decl(id)) : [centre];
-  const owner = heads[0];
-  // What a theorem's statement uses; what a definition uses anywhere, since its body is its meaning.
-  const usesOf = (id: string) => {
-    const d = decl(id);
-    return d ? (d.keyword === "theorem" || d.keyword === "lemma" ? d.uses_statement : d.uses) : [];
-  };
-  const uses = [...new Set(heads.flatMap(usesOf))].filter((id) => !heads.includes(id));
-  const ordered = orderOfUse(edition, files, owner, uses);
-  const users = atGoal ? [] : (decl(centre)?.used_by ?? []);
-  const node = (id: string) => {
-    const d = decl(id);
-    return d ? { label: d.plain, rawName: d.id, shape: graph.nodes.get(id)?.shape } : graph.nodes.get(id);
-  };
-  const card = (id: string, head = false) => (
-    <button
-      key={id}
-      type="button"
-      className={`near__card${head ? " near__card--head" : ""}${lit.includes(id) ? " is-lit" : ""}`}
-      data-record={id}
-      data-shape={node(id)?.shape}
-      onClick={() => (head ? onOpen(id) : onCentre(id))}
-      onMouseEnter={() => onHover(id)}
-      onMouseLeave={() => onHover(null)}
-      onFocus={() => onHover(id)}
-      onBlur={() => onHover(null)}
-      title={head ? "Open its Lean" : "Show what it uses"}
-    >
-      <span className="near__title">{node(id)?.label ?? id}</span>
-      <code className="near__raw">{(node(id)?.rawName ?? id).split(".").map((part, i, all) => <span key={i}>{part}{i < all.length - 1 && <>.<wbr /></>}</span>)}</code>
-    </button>
-  );
-  return (
-    <div className="near" aria-label="The card in view and what it uses">
-      {atGoal && (
-        <div className="near__plate">
-          <span className="near__kicker">Main result</span>
-          <span className="near__claim">{claimTitle}</span>
-        </div>
-      )}
-      {users.length > 0 && (
-        <>
-          <p className="near__caption">Used by:</p>
-          <div className="near__grid">{users.map((id) => card(id))}</div>
-        </>
-      )}
-      <div className="near__heads">{heads.map((h) => card(h, true))}</div>
-      {ordered.length > 0 && (
-        <>
-          <p className="near__caption">{atGoal ? "Its statement uses, in the order it names them:" : "It uses, in the order it names them:"}</p>
-          <div className="near__grid">{ordered.map((id) => card(id))}</div>
-        </>
-      )}
-      {!ordered.length && <p className="near__caption">It uses nothing else on this page.</p>}
-    </div>
-  );
 }

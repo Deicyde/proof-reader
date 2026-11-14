@@ -187,7 +187,7 @@ export function HowMade({ edition }: { edition: Edition }) {
           : <>Each linked quotation was found in text extracted from the authors’ PDF.</>}
       </p>
       {fromLean(edition)
-        ? <p>The graph’s arrows, and each declaration’s kind, lines and axioms, are Lean’s own output on the authors’ file, from Lean {edition.lean.version}.</p>
+        ? <p>The graph’s arrows, and each declaration’s kind, lines and axioms, are Lean’s own output on the authors’ file, from Lean {edition.lean.version}.{edition.declarations.some((d) => d.provenance === "statement-compiled") && <> {edition.declarations.filter((d) => d.provenance === "statement-compiled").map((d) => d.plain).join(", ")}: Lean compiled the statement here and the proof was not built, so it has no axiom report.</>}</p>
         : <p>The graph’s arrows, and each declaration’s kind and lines, were read from the authors’ source with AI. Lean has not been run on the files for this page, so no axioms are reported. A run of Lean will replace them.</p>}
       {hasComparisons(edition)
         ? <>

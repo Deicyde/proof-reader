@@ -693,9 +693,11 @@ export function PaperPage({ edition }: { edition: Edition }) {
   ) : entry.lean ? null : line.zone === "after" ? (
     <p>{lean.scope}</p>
   ) : (
-    fromLean(edition)
-      ? <p className="proof__key">Square cards are definitions, round cards theorems and the violet box an axiom; green means defined or proved in Lean, and a dashed line means used in a statement.</p>
-      : <p className="proof__key">Square cards are definitions, round cards theorems, and a dashed line means used in a statement. <strong>Read from the source with AI; Lean not yet run here.</strong></p>
+    <p className="proof__key">
+      Square cards are definitions, round cards theorems{edition.analytics.axioms.length ? " and the violet box an axiom" : ""}.
+      {" "}A line runs down from a declaration to one it uses: dashed when only its statement uses it, solid when its proof or definition body does.
+      {!fromLean(edition) && <> <strong>Read from the source with AI; Lean not yet run here.</strong></>}
+    </p>
   );
 
   const act = useMemo((): LeanActions => ({ walk: (id) => walk(id), name: (id) => setPoint(id ? { kind: "name", id } : null), plain: plainOf }), [plainOf, walk]);

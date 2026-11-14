@@ -71,6 +71,10 @@ export interface Declaration {
   used_by_proof: string[];
   axioms: string[];
   standard_axioms: string[];
+  /** Where this declaration's facts come from. */
+  provenance?: "lean" | "statement-compiled" | "source-read";
+  /** The declaration's doc comment, as Lean records it. */
+  doc?: string | null;
   passages: string[];
   note: { text: string; because: string[] } | null;
   /** How the paper's statement stands to this Lean, compared with AI; absent before it was run. */
@@ -247,6 +251,14 @@ export const fromLean = (edition: Edition) => (edition.lean.provenance?.kind ?? 
 export const leanOrigin = (edition: Edition) => fromLean(edition)
   ? `Lean from the authors’ artifact, built here on Lean ${edition.lean.version}.`
   : "Lean files from the authors’ repository, unchanged. Lean has not been run on them for this page: the declarations, lines and uses shown were read from the source with AI, and no axioms are reported.";
+
+/** One plain phrase for where a declaration's facts come from. */
+export const declOrigin = (edition: Edition, d: Declaration) => {
+  const kind = d.provenance ?? (fromLean(edition) ? "lean" : "source-read");
+  return kind === "lean" ? `read by Lean ${edition.lean.version}`
+    : kind === "statement-compiled" ? `statement compiled by Lean ${edition.lean.version} here; proof not built here`
+      : "read from the source by hand, with AI";
+};
 
 /** The word for the authors' text, as in "In the guide". */
 export const noun = (edition: Edition) => edition.paper.noun || "paper";
