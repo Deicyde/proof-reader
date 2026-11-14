@@ -1,0 +1,862 @@
+{
+ "declarations": [
+  {
+   "axioms": [],
+   "end_line": 33,
+   "is_class": false,
+   "kind": "theorem",
+   "line": 25,
+   "module": "PCP.Theorem",
+   "name": "PCP.np_subset_pcp",
+   "structural_dependencies": [],
+   "type": "theorem np_subset_pcp (L : Language) (hL : InNP Machine.PolyTimeRel L) :\n    ∃ (V : Verifier) (alg : VerifierAlg) (a b q : ℕ) (p : Polynomial ℕ),\n      Machine.PolyTimeAlg alg ∧\n      V.ImplementedBy alg ∧\n      V.queries = q ∧\n      V.CanonicalRandomness a b ∧\n      (∀ x : List Bool, V.ReadsBelow x (p.eval x.length)) ∧\n      (∀ x : List Bool, L x → V.CompleteAt x) ∧\n      (∀ x : List Bool, ¬ L x → V.SoundAt x (1 / 2))",
+   "type_dependencies": [
+    "And",
+    "Bool",
+    "Eq",
+    "Exists",
+    "List",
+    "List.length",
+    "Nat",
+    "Not",
+    "PCP.InNP",
+    "PCP.Language",
+    "PCP.Machine.PolyTimeAlg",
+    "PCP.Machine.PolyTimeRel",
+    "PCP.Verifier",
+    "PCP.Verifier.CanonicalRandomness",
+    "PCP.Verifier.CompleteAt",
+    "PCP.Verifier.ImplementedBy",
+    "PCP.Verifier.ReadsBelow",
+    "PCP.Verifier.SoundAt",
+    "PCP.Verifier.queries",
+    "PCP.VerifierAlg",
+    "Polynomial",
+    "Polynomial.eval"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 15,
+   "is_class": false,
+   "kind": "definition",
+   "line": 15,
+   "module": "PCP.Complexity.NP",
+   "name": "PCP.Language",
+   "structural_dependencies": [],
+   "type": "def Language : Type",
+   "type_dependencies": [],
+   "value_dependencies": [
+    "Bool",
+    "List"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 39,
+   "is_class": false,
+   "kind": "inductive",
+   "line": 30,
+   "module": "PCP.Complexity.NP",
+   "name": "PCP.NPCertificate",
+   "structural_dependencies": [
+    "PCP.NPCertificate.mk"
+   ],
+   "type": "structure NPCertificate (P : (List Bool → List Bool → Bool) → Prop) (L : Language)",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "PCP.Language"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 39,
+   "is_class": false,
+   "kind": "constructor",
+   "line": 30,
+   "module": "PCP.Complexity.NP",
+   "name": "PCP.NPCertificate.mk",
+   "structural_dependencies": [
+    "PCP.NPCertificate"
+   ],
+   "type": "structure NPCertificate (P : (List Bool → List Bool → Bool) → Prop) (L : Language) where\n  /-- Polynomial bound on witness length. -/\n  witnessBound : Polynomial ℕ\n  /-- The witness-checking relation. -/\n  check : List Bool → List Bool → Bool\n  /-- The relation is polynomial-time checkable. -/\n  check_polyTime : P check\n  /-- The relation defines `L`. -/\n  spec : ∀ x : List Bool, L x ↔\n    ∃ w : List Bool, w.length ≤ witnessBound.eval x.length ∧ check x w = true",
+   "type_dependencies": [
+    "And",
+    "Bool",
+    "Eq",
+    "Exists",
+    "Iff",
+    "List",
+    "List.length",
+    "Nat",
+    "PCP.Language",
+    "PCP.NPCertificate",
+    "Polynomial",
+    "Polynomial.eval"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 32,
+   "is_class": false,
+   "kind": "definition",
+   "line": 32,
+   "module": "PCP.Complexity.NP",
+   "name": "PCP.NPCertificate.witnessBound",
+   "structural_dependencies": [],
+   "type": "  witnessBound : Polynomial ℕ",
+   "type_dependencies": [
+    "Nat",
+    "PCP.NPCertificate",
+    "Polynomial"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 34,
+   "is_class": false,
+   "kind": "definition",
+   "line": 34,
+   "module": "PCP.Complexity.NP",
+   "name": "PCP.NPCertificate.check",
+   "structural_dependencies": [],
+   "type": "  check : List Bool → List Bool → Bool",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "PCP.NPCertificate"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 36,
+   "is_class": false,
+   "kind": "definition",
+   "line": 36,
+   "module": "PCP.Complexity.NP",
+   "name": "PCP.NPCertificate.check_polyTime",
+   "structural_dependencies": [],
+   "type": "  check_polyTime : P check",
+   "type_dependencies": [
+    "PCP.NPCertificate"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 39,
+   "is_class": false,
+   "kind": "definition",
+   "line": 38,
+   "module": "PCP.Complexity.NP",
+   "name": "PCP.NPCertificate.spec",
+   "structural_dependencies": [],
+   "type": "  spec : ∀ x : List Bool, L x ↔\n    ∃ w : List Bool, w.length ≤ witnessBound.eval x.length ∧ check x w = true",
+   "type_dependencies": [
+    "And",
+    "Bool",
+    "Eq",
+    "Exists",
+    "Iff",
+    "List",
+    "List.length",
+    "PCP.NPCertificate",
+    "Polynomial.eval"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 43,
+   "is_class": false,
+   "kind": "definition",
+   "line": 42,
+   "module": "PCP.Complexity.NP",
+   "name": "PCP.InNP",
+   "structural_dependencies": [],
+   "type": "def InNP (P : (List Bool → List Bool → Bool) → Prop) (L : Language) : Prop",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "PCP.Language"
+   ],
+   "value_dependencies": [
+    "Nonempty",
+    "PCP.NPCertificate"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 28,
+   "is_class": false,
+   "kind": "definition",
+   "line": 28,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.ProofOracle",
+   "structural_dependencies": [],
+   "type": "abbrev ProofOracle : Type",
+   "type_dependencies": [],
+   "value_dependencies": [
+    "Bool",
+    "Nat"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 37,
+   "is_class": false,
+   "kind": "inductive",
+   "line": 33,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.QueryTree",
+   "structural_dependencies": [
+    "PCP.QueryTree.leaf",
+    "PCP.QueryTree.query"
+   ],
+   "type": "inductive QueryTree : ℕ → Type",
+   "type_dependencies": [
+    "Nat"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 35,
+   "is_class": false,
+   "kind": "constructor",
+   "line": 35,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.QueryTree.leaf",
+   "structural_dependencies": [
+    "PCP.QueryTree"
+   ],
+   "type": "  | leaf {d : ℕ} (accept : Bool) : QueryTree d",
+   "type_dependencies": [
+    "Bool",
+    "Nat",
+    "PCP.QueryTree"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 37,
+   "is_class": false,
+   "kind": "constructor",
+   "line": 37,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.QueryTree.query",
+   "structural_dependencies": [
+    "PCP.QueryTree"
+   ],
+   "type": "  | query {d : ℕ} (addr : ℕ) (onFalse onTrue : QueryTree d) : QueryTree (d + 1)",
+   "type_dependencies": [
+    "Nat",
+    "PCP.QueryTree"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 44,
+   "is_class": false,
+   "kind": "definition",
+   "line": 42,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.QueryTree.eval",
+   "structural_dependencies": [],
+   "type": "def eval : {d : ℕ} → QueryTree d → ProofOracle → Bool\n  | _, .leaf b, _ => b\n  | _, .query a f t, π => if π a then (t.eval π) else (f.eval π)",
+   "type_dependencies": [
+    "Bool",
+    "Nat",
+    "PCP.ProofOracle",
+    "PCP.QueryTree"
+   ],
+   "value_dependencies": [
+    "PCP.QueryTree.eval",
+    "PCP.QueryTree.leaf",
+    "PCP.QueryTree.query"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 49,
+   "is_class": false,
+   "kind": "definition",
+   "line": 47,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.QueryTree.addresses",
+   "structural_dependencies": [],
+   "type": "def addresses : {d : ℕ} → QueryTree d → Finset ℕ\n  | _, .leaf _ => ∅\n  | _, .query a f t => insert a (f.addresses ∪ t.addresses)",
+   "type_dependencies": [
+    "Finset",
+    "Nat",
+    "PCP.QueryTree"
+   ],
+   "value_dependencies": [
+    "PCP.QueryTree.addresses",
+    "PCP.QueryTree.leaf",
+    "PCP.QueryTree.query"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 91,
+   "is_class": false,
+   "kind": "inductive",
+   "line": 85,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier",
+   "structural_dependencies": [
+    "PCP.Verifier.mk"
+   ],
+   "type": "structure Verifier",
+   "type_dependencies": [],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 91,
+   "is_class": false,
+   "kind": "constructor",
+   "line": 85,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier.mk",
+   "structural_dependencies": [
+    "PCP.Verifier"
+   ],
+   "type": "structure Verifier where\n  /-- Fair random bits used on inputs of length `n`. -/\n  randomness : ℕ → ℕ\n  /-- Bound on the number of proof **bits** read (bits, not larger proof symbols). -/\n  queries : ℕ\n  /-- The decision tree used on input `x` and random string `r`. -/\n  run : (x : List Bool) → Fin (2 ^ randomness x.length) → QueryTree queries",
+   "type_dependencies": [
+    "Bool",
+    "Fin",
+    "List",
+    "List.length",
+    "Nat",
+    "PCP.QueryTree",
+    "PCP.Verifier"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 87,
+   "is_class": false,
+   "kind": "definition",
+   "line": 87,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier.randomness",
+   "structural_dependencies": [],
+   "type": "  randomness : ℕ → ℕ",
+   "type_dependencies": [
+    "Nat",
+    "PCP.Verifier"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 89,
+   "is_class": false,
+   "kind": "definition",
+   "line": 89,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier.queries",
+   "structural_dependencies": [],
+   "type": "  queries : ℕ",
+   "type_dependencies": [
+    "Nat",
+    "PCP.Verifier"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 91,
+   "is_class": false,
+   "kind": "definition",
+   "line": 91,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier.run",
+   "structural_dependencies": [],
+   "type": "  run : (x : List Bool) → Fin (2 ^ randomness x.length) → QueryTree queries",
+   "type_dependencies": [
+    "Bool",
+    "Fin",
+    "List",
+    "List.length",
+    "PCP.QueryTree",
+    "PCP.Verifier"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 99,
+   "is_class": false,
+   "kind": "definition",
+   "line": 98,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier.acceptingRandomness",
+   "structural_dependencies": [],
+   "type": "def acceptingRandomness : Finset (Fin (2 ^ V.randomness x.length))",
+   "type_dependencies": [
+    "Bool",
+    "Fin",
+    "Finset",
+    "List",
+    "List.length",
+    "PCP.ProofOracle",
+    "PCP.Verifier",
+    "PCP.Verifier.randomness"
+   ],
+   "value_dependencies": [
+    "Bool.true",
+    "Eq",
+    "Finset.filter",
+    "Finset.univ",
+    "PCP.QueryTree.eval",
+    "PCP.Verifier.run"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 104,
+   "is_class": false,
+   "kind": "definition",
+   "line": 103,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier.accProb",
+   "structural_dependencies": [],
+   "type": "def accProb : ℚ",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "PCP.ProofOracle",
+    "PCP.Verifier",
+    "Rat"
+   ],
+   "value_dependencies": [
+    "Finset.card",
+    "List.length",
+    "PCP.Verifier.acceptingRandomness",
+    "PCP.Verifier.randomness"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 119,
+   "is_class": false,
+   "kind": "definition",
+   "line": 118,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier.ReadsBelow",
+   "structural_dependencies": [],
+   "type": "def ReadsBelow (N : ℕ) : Prop",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "Nat",
+    "PCP.Verifier"
+   ],
+   "value_dependencies": [
+    "PCP.QueryTree.addresses",
+    "PCP.Verifier.run"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 131,
+   "is_class": false,
+   "kind": "definition",
+   "line": 131,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier.CompleteAt",
+   "structural_dependencies": [],
+   "type": "def CompleteAt : Prop",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "PCP.Verifier"
+   ],
+   "value_dependencies": [
+    "Eq",
+    "Exists",
+    "PCP.ProofOracle",
+    "PCP.Verifier.accProb"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 134,
+   "is_class": false,
+   "kind": "definition",
+   "line": 134,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier.SoundAt",
+   "structural_dependencies": [],
+   "type": "def SoundAt (s : ℚ) : Prop",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "PCP.Verifier",
+    "Rat"
+   ],
+   "value_dependencies": [
+    "PCP.ProofOracle",
+    "PCP.Verifier.accProb"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 155,
+   "is_class": false,
+   "kind": "definition",
+   "line": 154,
+   "module": "PCP.Verifier.Definition",
+   "name": "PCP.Verifier.CanonicalRandomness",
+   "structural_dependencies": [],
+   "type": "def CanonicalRandomness (a b : ℕ) : Prop",
+   "type_dependencies": [
+    "Nat",
+    "PCP.Verifier"
+   ],
+   "value_dependencies": [
+    "Eq",
+    "Nat.clog",
+    "PCP.Verifier.randomness"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 24,
+   "is_class": false,
+   "kind": "definition",
+   "line": 24,
+   "module": "PCP.Complexity.CostModel",
+   "name": "PCP.VerifierAlg",
+   "structural_dependencies": [],
+   "type": "abbrev VerifierAlg : Type",
+   "type_dependencies": [],
+   "value_dependencies": [
+    "Bool",
+    "List",
+    "Nat",
+    "Sum"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 28,
+   "is_class": false,
+   "kind": "definition",
+   "line": 27,
+   "module": "PCP.Complexity.CostModel",
+   "name": "PCP.bitsOfFin",
+   "structural_dependencies": [],
+   "type": "def bitsOfFin (k : ℕ) (r : Fin (2 ^ k)) : List Bool",
+   "type_dependencies": [
+    "Bool",
+    "Fin",
+    "List",
+    "Nat"
+   ],
+   "value_dependencies": [
+    "Fin.val",
+    "List.map",
+    "List.range",
+    "Nat.testBit"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 47,
+   "is_class": false,
+   "kind": "definition",
+   "line": 41,
+   "module": "PCP.Complexity.CostModel",
+   "name": "PCP.QueryTree.ofStep",
+   "structural_dependencies": [],
+   "type": "def ofStep (f : List Bool → Bool ⊕ ℕ) : (d : ℕ) → List Bool → QueryTree d\n  | 0, as => match f as with\n      | .inl b => .leaf b\n      | .inr _ => .leaf false\n  | _ + 1, as => match f as with\n      | .inl b => .leaf b\n      | .inr addr => .query addr (ofStep f _ (as ++ [false])) (ofStep f _ (as ++ [true]))",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "Nat",
+    "PCP.QueryTree",
+    "Sum"
+   ],
+   "value_dependencies": [
+    "Bool.false",
+    "Bool.true",
+    "List.cons",
+    "List.nil",
+    "PCP.QueryTree.leaf",
+    "PCP.QueryTree.ofStep",
+    "PCP.QueryTree.query",
+    "Sum.inl",
+    "Sum.inr"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 64,
+   "is_class": false,
+   "kind": "definition",
+   "line": 62,
+   "module": "PCP.Complexity.CostModel",
+   "name": "PCP.Verifier.ImplementedBy",
+   "structural_dependencies": [],
+   "type": "def ImplementedBy (V : Verifier) (alg : VerifierAlg) : Prop",
+   "type_dependencies": [
+    "PCP.Verifier",
+    "PCP.VerifierAlg"
+   ],
+   "value_dependencies": [
+    "Bool",
+    "Eq",
+    "Fin",
+    "List",
+    "List.length",
+    "List.nil",
+    "PCP.QueryTree.ofStep",
+    "PCP.Verifier.queries",
+    "PCP.Verifier.randomness",
+    "PCP.Verifier.run",
+    "PCP.bitsOfFin"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 25,
+   "is_class": false,
+   "kind": "inductive",
+   "line": 22,
+   "module": "PCP.Complexity.Machine",
+   "name": "PCP.Machine.Sym",
+   "structural_dependencies": [
+    "PCP.Machine.Sym.bit",
+    "PCP.Machine.Sym.sep"
+   ],
+   "type": "inductive Sym",
+   "type_dependencies": [],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 23,
+   "is_class": false,
+   "kind": "constructor",
+   "line": 23,
+   "module": "PCP.Complexity.Machine",
+   "name": "PCP.Machine.Sym.bit",
+   "structural_dependencies": [
+    "PCP.Machine.Sym"
+   ],
+   "type": "  | bit (b : Bool)",
+   "type_dependencies": [
+    "Bool",
+    "PCP.Machine.Sym"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 24,
+   "is_class": false,
+   "kind": "constructor",
+   "line": 24,
+   "module": "PCP.Complexity.Machine",
+   "name": "PCP.Machine.Sym.sep",
+   "structural_dependencies": [
+    "PCP.Machine.Sym"
+   ],
+   "type": "  | sep",
+   "type_dependencies": [
+    "PCP.Machine.Sym"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [],
+   "end_line": 28,
+   "is_class": false,
+   "kind": "definition",
+   "line": 28,
+   "module": "PCP.Complexity.Machine",
+   "name": "PCP.Machine.ofBits",
+   "structural_dependencies": [],
+   "type": "def ofBits (x : List Bool) : List Sym",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "PCP.Machine.Sym"
+   ],
+   "value_dependencies": [
+    "List.map",
+    "PCP.Machine.Sym.bit"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 35,
+   "is_class": false,
+   "kind": "definition",
+   "line": 34,
+   "module": "PCP.Complexity.Machine",
+   "name": "PCP.Machine.encodePair",
+   "structural_dependencies": [],
+   "type": "def encodePair (p : List Bool × List Bool) : List Sym",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "PCP.Machine.Sym",
+    "Prod"
+   ],
+   "value_dependencies": [
+    "List.cons",
+    "PCP.Machine.Sym.sep",
+    "PCP.Machine.ofBits",
+    "Prod.fst",
+    "Prod.snd"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 39,
+   "is_class": false,
+   "kind": "definition",
+   "line": 38,
+   "module": "PCP.Complexity.Machine",
+   "name": "PCP.Machine.encodeTriple",
+   "structural_dependencies": [],
+   "type": "def encodeTriple (t : List Bool × List Bool × List Bool) : List Sym",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "PCP.Machine.Sym",
+    "Prod"
+   ],
+   "value_dependencies": [
+    "List.cons",
+    "PCP.Machine.Sym.sep",
+    "PCP.Machine.ofBits",
+    "Prod.fst",
+    "Prod.snd"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 45,
+   "is_class": false,
+   "kind": "definition",
+   "line": 43,
+   "module": "PCP.Complexity.Machine",
+   "name": "PCP.Machine.encodeAnswer",
+   "structural_dependencies": [],
+   "type": "def encodeAnswer : Bool ⊕ ℕ → List Sym\n  | .inl b => [.bit b]\n  | .inr a => .sep :: ofBits (Nat.bits a)",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "Nat",
+    "PCP.Machine.Sym",
+    "Sum"
+   ],
+   "value_dependencies": [
+    "List.cons",
+    "List.nil",
+    "Nat.bits",
+    "PCP.Machine.Sym.bit",
+    "PCP.Machine.Sym.sep",
+    "PCP.Machine.ofBits",
+    "Sum.inl",
+    "Sum.inr"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 48,
+   "is_class": false,
+   "kind": "definition",
+   "line": 48,
+   "module": "PCP.Complexity.Machine",
+   "name": "PCP.Machine.encodeBool",
+   "structural_dependencies": [],
+   "type": "def encodeBool (b : Bool) : List Sym",
+   "type_dependencies": [
+    "Bool",
+    "List",
+    "PCP.Machine.Sym"
+   ],
+   "value_dependencies": [
+    "List.cons",
+    "List.nil",
+    "PCP.Machine.Sym.bit"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 67,
+   "is_class": false,
+   "kind": "definition",
+   "line": 66,
+   "module": "PCP.Complexity.Machine",
+   "name": "PCP.Machine.PolyTimeRel",
+   "structural_dependencies": [],
+   "type": "def PolyTimeRel (R : List Bool → List Bool → Bool) : Prop",
+   "type_dependencies": [
+    "Bool",
+    "List"
+   ],
+   "value_dependencies": [
+    "Nonempty",
+    "PCP.Machine.encodeBool",
+    "PCP.Machine.encodePair",
+    "Prod.fst",
+    "Prod.snd",
+    "Turing.TM2ComputableInPolyTime"
+   ]
+  },
+  {
+   "axioms": [],
+   "end_line": 73,
+   "is_class": false,
+   "kind": "definition",
+   "line": 71,
+   "module": "PCP.Complexity.Machine",
+   "name": "PCP.Machine.PolyTimeAlg",
+   "structural_dependencies": [],
+   "type": "def PolyTimeAlg (alg : VerifierAlg) : Prop",
+   "type_dependencies": [
+    "PCP.VerifierAlg"
+   ],
+   "value_dependencies": [
+    "Nonempty",
+    "PCP.Machine.encodeAnswer",
+    "PCP.Machine.encodeTriple",
+    "Prod.fst",
+    "Prod.snd",
+    "Turing.TM2ComputableInPolyTime"
+   ]
+  }
+ ],
+ "lean_version": null,
+ "modules": [
+  "PCP.Theorem",
+  "PCP.Complexity.NP",
+  "PCP.Verifier.Definition",
+  "PCP.Complexity.CostModel",
+  "PCP.Complexity.Machine"
+ ],
+ "provenance": {
+  "kind": "source-read",
+  "root_mode": "type only; theorem proof deliberately excluded",
+  "source_pin": "troyjlee/tcs-formalizations a0ce13e",
+  "status": "read from source, pending Lean extraction",
+  "text": "Declarations, line numbers and uses were read from the authors' source by hand, with AI, and have not been produced by Lean. No axioms are reported."
+ }
+}

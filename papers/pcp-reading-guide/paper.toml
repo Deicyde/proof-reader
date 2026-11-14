@@ -1,0 +1,26 @@
+[paper]
+title = "Reading the Lean PCP proof"
+short_title = "Reading the Lean PCP proof"
+authors = ["Troy Lee"]
+venue = "Reading guide in tcs-formalizations, docs/pcp/reading-guide.md at a0ce13e"
+doi = ""
+url = "https://github.com/troyjlee/tcs-formalizations/blob/a0ce13ed0fa264f051c1278e039596ce65557fa4/docs/pcp/reading-guide.md"
+markdown = "guide.md"
+noun = "guide"
+licence = "Apache-2.0"
+licence_url = "https://github.com/troyjlee/tcs-formalizations/blob/a0ce13ed0fa264f051c1278e039596ce65557fa4/LICENSE"
+
+[credit]
+text = "Text: Troy Lee, tcs-formalizations at a0ce13e, Apache-2.0"
+
+[lean]
+project = "lean"
+modules = ["PCP.Theorem", "PCP.Complexity.NP", "PCP.Verifier.Definition", "PCP.Complexity.CostModel", "PCP.Complexity.Machine"]
+source = "https://github.com/troyjlee/tcs-formalizations/tree/a0ce13ed0fa264f051c1278e039596ce65557fa4"
+source_name = "tcs-formalizations at a0ce13e"
+source_lines = "https://github.com/troyjlee/tcs-formalizations/blob/a0ce13ed0fa264f051c1278e039596ce65557fa4/{path}#L{line}-L{end}"
+licence = "Apache-2.0"
+scope = "This page links Sections 3 and 4 of the guide to the five Lean files behind the statement of PCP.np_subset_pcp. The proof of the theorem and the later sections of the guide are not linked here."
+
+[reading]
+language = "lean"
