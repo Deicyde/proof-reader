@@ -32,6 +32,26 @@ export function shapeOf(d: Declaration): "definition" | "theorem" | "axiom" {
 /** A section as a reader names it: "§3.3". */
 export const sectionLabel = (number: string) => (/^[0-9A-Z]/.test(number) ? `§${number}` : number);
 
+/** One declaration as a map card. Types use it too where a view draws them (the neighbourhood). */
+export function declarationNode(edition: Edition, d: Declaration, region: string): ArgNode {
+  return {
+    papers: {},
+    region,
+    passedExtraction: true,
+    id: d.id,
+    ref: d.id,
+    kind: d.keyword === "axiom" ? "assumption" : "declaration",
+    kindLabel: KIND_WORDS[d.keyword] ?? (isType(d) ? "Type" : d.keyword),
+    label: d.plain,
+    rawName: d.id,
+    declaration: d.id,
+    shape: shapeOf(d),
+    leanFill: d.keyword === "axiom" ? undefined : edition.analytics.sorry.includes(d.id) ? "part" : "whole",
+    status: d.keyword === "axiom" ? "axiom" : "kernel_checked",
+    origin: LEAN,
+  };
+}
+
 export function editionGraph(edition: Edition): ArgGraph {
   const goal = edition.claims[0]?.id ?? "";
   const drawn = edition.declarations.filter((d) => !isType(d));
@@ -40,22 +60,7 @@ export function editionGraph(edition: Edition): ArgGraph {
   for (const claim of edition.claims) {
     nodes.set(claim.id, { ...blank, id: claim.id, ref: claim.id, kind: "goal", kindLabel: "The paper's claim", label: claim.title, status: "external", origin: PAPER });
   }
-  for (const d of drawn) {
-    nodes.set(d.id, {
-      ...blank,
-      id: d.id,
-      ref: d.id,
-      kind: d.keyword === "axiom" ? "assumption" : "declaration",
-      kindLabel: KIND_WORDS[d.keyword],
-      label: d.plain,
-      rawName: d.id,
-      declaration: d.id,
-      shape: shapeOf(d),
-      leanFill: d.keyword === "axiom" ? undefined : edition.analytics.sorry.includes(d.id) ? "part" : "whole",
-      status: d.keyword === "axiom" ? "axiom" : "kernel_checked",
-      origin: LEAN,
-    });
-  }
+  for (const d of drawn) nodes.set(d.id, declarationNode(edition, d, goal));
   const edges: ArgEdge[] = [];
   const add = (from: string, to: string, kind: LinkKind) =>
     edges.push({ key: `${from}→${to}→${kind}`, from, to, kind, linkIds: [`${from}→${to}`], scoped: false, semanticClass: kind });

@@ -430,6 +430,7 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
 .nearmap__world { position: relative; }
 .nearmap__lines { position: absolute; left: 0; top: 0; pointer-events: none; }
 .nearmap__band { fill: color-mix(in oklab, var(--ink-3) 7%, var(--sheet)); stroke: none; }
+.nearmap__bandlabel { font-family: var(--font-sans); font-size: 11px; fill: var(--ink-3); }
 .nearmap__line { stroke: color-mix(in oklab, var(--ink-3) 70%, var(--sheet)); stroke-width: 1.25; fill: none; }
 .nearmap__line--statement { stroke-dasharray: 4 3; }
 .nearmap[data-hot] .nearmap__line { opacity: 0.25; }

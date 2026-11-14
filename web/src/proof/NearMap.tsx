@@ -12,19 +12,21 @@
 // Every drawing checks itself: data-crossings and data-behind count crossing lines and
 // lines behind cards.
 
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { ArgGraph } from "../model/graph";
 
 const CARD_W = 150;
-const COL_GAP = 14;
+const COL_GAP = 26;
+/** Spacing of lines from different cards that pass one gutter. */
+const LANE = 5;
 /** Between the wrapped rows of one rank, and between ranks: a wrap must not read as a level. */
 const ROW_GAP = 18;
 const RANK_GAP = 44;
 const LINE_H = 16;
 
 /** Lines a title wraps to in a card of CARD_W at the card's type size. */
-function titleLines(title: string): number {
-  const perLine = Math.floor((CARD_W - 16) / 6.9);
+function titleLines(title: string, width = CARD_W): number {
+  const perLine = Math.floor((width - 16) / 6.9);
   let lines = 1;
   let used = 0;
   for (const w of title.split(/\s+/)) {
@@ -37,8 +39,8 @@ function titleLines(title: string): number {
 }
 
 /** Lines a raw Lean name wraps to, breaking only after a dot. */
-function rawLines(name: string): number {
-  const perLine = Math.floor((CARD_W - 16) / 6.6);
+function rawLines(name: string, width = CARD_W): number {
+  const perLine = Math.floor((width - 16) / 6.6);
   let lines = 1;
   let used = 0;
   for (const part of name.split(".")) {
@@ -53,6 +55,20 @@ function rawLines(name: string): number {
 
 interface Placed { id: string; x: number; y: number; w: number; h: number; rank: number; row: number }
 interface Segment { x1: number; y1: number; x2: number; y2: number; edges: string[]; kind: string }
+
+/** How many times a horizontal segment crosses a vertical one in their interiors. */
+function crossCount(lines: Segment[]): number {
+  let n = 0;
+  const hs = lines.filter((s) => s.y1 === s.y2);
+  const vs = lines.filter((s) => s.x1 === s.x2);
+  for (const h of hs)
+    for (const v of vs) {
+      const [x0, x1] = [Math.min(h.x1, h.x2), Math.max(h.x1, h.x2)];
+      const [y0, y1] = [Math.min(v.y1, v.y2), Math.max(v.y1, v.y2)];
+      if (v.x1 > x0 + 0.5 && v.x1 < x1 - 0.5 && h.y1 > y0 + 0.5 && h.y1 < y1 - 0.5) n += 1;
+    }
+  return n;
+}
 
 /** Drop every edge u→v that another path u→…→v already covers. */
 export function reduce(ids: string[], edges: { from: string; to: string }[]): Set<string> {
@@ -95,6 +111,8 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
     return () => observer.disconnect();
   }, []);
   const [hot, setHot] = useState<string | null>(null);
+  // A new card in view starts with nothing pointed at, whatever lies under the pointer now.
+  useEffect(() => setHot(null), [graph]);
 
   const drawing = useMemo(() => {
     if (!width) return null;
@@ -110,158 +128,241 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
     const depth = Math.max(0, ...rank.values());
     const order = new Map(ids.map((id, i) => [id, i]));
     const hasLower = (id: string) => edges.some((e) => e.from === id);
-    const cols = Math.max(1, Math.floor((width - 24 + COL_GAP) / (CARD_W + COL_GAP)));
-    const placed = new Map<string, Placed>();
-    // Rows: each rank wraps on a column grid. Cards that use something lower go in the
-    // rank's last row, so their lines drop straight down; the rows fill from the bottom.
-    const rowsPlan: { ids: string[]; rank: number }[] = [];
-    const cardH = (id: string) => 22 + titleLines(graph.nodes.get(id)?.label ?? id) * LINE_H + rawLines(graph.nodes.get(id)?.rawName ?? id) * 13;
-    const slot = new Map<string, number>();
-    for (let r = 0; r <= depth; r++) {
-      const members = ids.filter((id) => rank.get(id) === r);
-      if (!members.length) continue;
-      // Within a rank: under the cards that use them, in the order of the Lean.
-      const meanParent = (id: string) => {
-        const ps = edges.filter((e) => e.to === id && slot.has(e.from)).map((e) => slot.get(e.from)!);
-        return ps.length ? ps.reduce((a, b) => a + b, 0) / ps.length : 0;
-      };
-      const plain = members.filter((id) => !hasLower(id)).sort((a, b) => order.get(a)! - order.get(b)!);
-      const users = members.filter(hasLower).sort((a, b) => meanParent(a) - meanParent(b) || order.get(a)! - order.get(b)!);
-      const line = [...plain, ...users];
-      const count = Math.ceil(line.length / cols);
-      const first = line.length - (count - 1) * cols;
-      for (let k = 0, start = 0; k < count; k++) {
-        const n = k === 0 ? first : cols;
-        const row = line.slice(start, start + n);
-        row.forEach((id, i) => slot.set(id, rowsPlan.length * 100 + i - (row.length - 1) / 2));
-        rowsPlan.push({ ids: row, rank: r });
-        start += n;
-      }
-    }
-    const rowOf = new Map<string, number>();
-    rowsPlan.forEach((row, ri) => row.ids.forEach((id) => rowOf.set(id, ri)));
-    const xOf = new Map<string, number>();
-    rowsPlan.forEach((row) => {
-      const rowW = row.ids.length * CARD_W + (row.ids.length - 1) * COL_GAP;
-      row.ids.forEach((id, i) => xOf.set(id, (width - rowW) / 2 + i * (CARD_W + COL_GAP)));
-    });
-    const cx = (id: string) => xOf.get(id)! + CARD_W / 2;
-
-    // Groups of lines in each gap (gap g lies above row g): each card that uses something
-    // lower has one channel per gap it reaches, from its own row down to its last child's
-    // row. Only lines from one card share a channel; a card fed by several has one port on
-    // its top edge for each, in the order of the cards feeding it.
-    interface Group { key: string; gap: number; parent: string | null; child: string | null; edges: typeof edges; xs: number[]; trunk: boolean; continues: boolean; y: number }
-    const groups = new Map<string, Group>();
-    const group = (key: string, gap: number, init: Partial<Group>) => {
-      if (!groups.has(key)) groups.set(key, { key, gap, parent: null, child: null, edges: [], xs: [], trunk: false, continues: false, y: 0, ...init });
-      return groups.get(key)!;
-    };
-    const portX = (e: (typeof edges)[number]) => {
-      const ins = edges.filter((x) => x.to === e.to).sort((a, b) => cx(a.from) - cx(b.from));
-      return xOf.get(e.to)! + (CARD_W * (ins.indexOf(e) + 1)) / (ins.length + 1);
-    };
-    for (const p of ids) {
-      const outs = edges.filter((e) => e.from === p);
-      if (!outs.length) continue;
-      const last = Math.max(...outs.map((e) => rowOf.get(e.to)!));
-      for (let gap = rowOf.get(p)! + 1; gap <= last; gap++) {
-        const g = group(`out:${p}:${gap}`, gap, { parent: p, trunk: gap > rowOf.get(p)! + 1, continues: gap < last });
-        for (const e of outs.filter((x) => rowOf.get(x.to) === gap)) {
-          g.edges.push(e);
-          g.xs.push(portX(e));
+    // Room on each side for the outer gutters, then three columns where the pane allows.
+    const usable = width - 2 * COL_GAP - 8;
+    const cardW = Math.max(120, Math.min(CARD_W, Math.floor((usable + COL_GAP) / 3) - COL_GAP));
+    const cols = Math.max(1, Math.floor((usable + COL_GAP) / (cardW + COL_GAP)));
+    // Layout and routing for one choice of order within each rank.
+    const plan = (lineOf: (r: number, members: string[]) => string[]) => {
+      const placed = new Map<string, Placed>();
+      // Rows: each rank wraps on a column grid. Cards that use something lower go in the
+      // rank's last row, so their lines drop straight down; the rows fill from the bottom.
+      const rowsPlan: { ids: string[]; rank: number }[] = [];
+      const cardH = (id: string) => 22 + titleLines(graph.nodes.get(id)?.label ?? id, cardW) * LINE_H + rawLines(graph.nodes.get(id)?.rawName ?? id, cardW) * 13;
+      const slot = new Map<string, number>();
+      for (let r = 0; r <= depth; r++) {
+        const members = ids.filter((id) => rank.get(id) === r);
+        if (!members.length) continue;
+        // Within a rank: under the cards that use them, in the order of the Lean.
+        const meanParent = (id: string) => {
+          const ps = edges.filter((e) => e.to === id && slot.has(e.from)).map((e) => slot.get(e.from)!);
+          return ps.length ? ps.reduce((a, b) => a + b, 0) / ps.length : 0;
+        };
+        const plain = members.filter((id) => !hasLower(id)).sort((a, b) => order.get(a)! - order.get(b)!);
+        const users = members.filter(hasLower).sort((a, b) => meanParent(a) - meanParent(b) || order.get(a)! - order.get(b)!);
+        const line = lineOf(r, [...plain, ...users]);
+        const count = Math.ceil(line.length / cols);
+        const first = line.length - (count - 1) * cols;
+        for (let k = 0, start = 0; k < count; k++) {
+          const n = k === 0 ? first : cols;
+          const row = line.slice(start, start + n);
+          row.forEach((id, i) => slot.set(id, rowsPlan.length * 100 + i - (row.length - 1) / 2));
+          rowsPlan.push({ ids: row, rank: r });
+          start += n;
         }
-        if (gap === rowOf.get(p)! + 1) g.xs.push(cx(p));
       }
-    }
-    // Where a parent's line passes a row: the gutter of that row nearest where it is.
-    const gutterNear = (ri: number, x: number) => {
-      const xs = rowsPlan[ri].ids.map((id) => xOf.get(id)!);
-      const options = [xs[0] - COL_GAP / 2, ...xs.map((v) => v + CARD_W + COL_GAP / 2)];
-      return options.reduce((best, v) => (Math.abs(v - x) < Math.abs(best - x) ? v : best), options[0]);
+      const rowOf = new Map<string, number>();
+      rowsPlan.forEach((row, ri) => row.ids.forEach((id) => rowOf.set(id, ri)));
+      const xOf = new Map<string, number>();
+      rowsPlan.forEach((row) => {
+        const rowW = row.ids.length * cardW + (row.ids.length - 1) * COL_GAP;
+        row.ids.forEach((id, i) => xOf.set(id, (width - rowW) / 2 + i * (cardW + COL_GAP)));
+      });
+      const cx = (id: string) => xOf.get(id)! + cardW / 2;
+
+      // Groups of lines in each gap (gap g lies above row g): each card that uses something
+      // lower has one channel per gap it reaches, from its own row down to its last child's
+      // row. Only lines from one card share a channel; a card fed by several has one port on
+      // its top edge for each, in the order of the cards feeding it.
+      interface Group { key: string; gap: number; parent: string | null; child: string | null; edges: typeof edges; xs: number[]; trunk: boolean; continues: boolean; y: number }
+      const groups = new Map<string, Group>();
+      const group = (key: string, gap: number, init: Partial<Group>) => {
+        if (!groups.has(key)) groups.set(key, { key, gap, parent: null, child: null, edges: [], xs: [], trunk: false, continues: false, y: 0, ...init });
+        return groups.get(key)!;
+      };
+      const arriveX = (e: (typeof edges)[number]) => {
+        const g = groups.get(`out:${e.from}:${rowOf.get(e.to)}`);
+        return (g && trunkX?.get(g.key)) ?? cx(e.from);
+      };
+      let trunkX: Map<string, number> | null = null;
+      const portX = (e: (typeof edges)[number]) => {
+        const ins = edges.filter((x) => x.to === e.to && !collective(x)).sort((a, b) => arriveX(a) - arriveX(b));
+        return xOf.get(e.to)! + (cardW * (ins.indexOf(e) + 1)) / (ins.length + 1);
+      };
+      // A card that uses every card of a wrapped rank just below it draws one line to that
+      // rank's band; the band's label says what the line means.
+      const bandOf = new Map<number, string>();
+      for (const r of new Set(rowsPlan.map((x) => x.rank))) {
+        const theseRows = rowsPlan.filter((x) => x.rank === r);
+        if (theseRows.length < 2) continue;
+        const members = theseRows.flatMap((x) => x.ids);
+        const owner = ids.find((q) => rank.get(q) === r - 1 && members.every((m) => edges.some((e) => e.from === q && e.to === m)));
+        if (owner) bandOf.set(r, owner);
+      }
+      const collective = (e: (typeof edges)[number]) => bandOf.get(rank.get(e.to)!) === e.from;
+      for (const p of ids) {
+        const outs = edges.filter((e) => e.from === p && !collective(e));
+        if (!outs.length) continue;
+        const last = Math.max(...outs.map((e) => rowOf.get(e.to)!));
+        for (let gap = rowOf.get(p)! + 1; gap <= last; gap++) {
+          const g = group(`out:${p}:${gap}`, gap, { parent: p, trunk: gap > rowOf.get(p)! + 1, continues: gap < last });
+          for (const e of outs.filter((x) => rowOf.get(x.to) === gap)) g.edges.push(e);
+          if (gap === rowOf.get(p)! + 1) g.xs.push(cx(p));
+        }
+      }
+      // Where a parent's line passes a row: the gutter of that row nearest where it is.
+      const gutterNear = (ri: number, x: number) => {
+        const xs = rowsPlan[ri].ids.map((id) => xOf.get(id)!);
+        const options = [xs[0] - COL_GAP / 2, ...xs.map((v) => v + cardW + COL_GAP / 2)];
+        return options.reduce((best, v) => (Math.abs(v - x) < Math.abs(best - x) ? v : best), options[0]);
+      };
+      trunkX = new Map<string, number>();
+      const lanes = new Map<string, number>();
+      for (const g of [...groups.values()].sort((a, b) => a.gap - b.gap))
+        if (g.trunk && g.parent) {
+          const prev = groups.get(`out:${g.parent}:${g.gap - 1}`)!;
+          const from = trunkX.get(prev.key) ?? cx(g.parent);
+          const base = gutterNear(g.gap - 1, from);
+          const used = lanes.get(`${g.gap - 1}:${base}`) ?? 0;
+          lanes.set(`${g.gap - 1}:${base}`, used + 1);
+          const x = base + (used === 0 ? 0 : (used % 2 ? 1 : -1) * Math.ceil(used / 2) * LANE);
+          trunkX!.set(g.key, x);
+          prev.xs.push(x);
+          g.xs.push(x);
+        }
+      // Ports are known once every line's arrival is: add them to the spans.
+      for (const g of groups.values()) for (const e of g.edges) g.xs.push(portX(e));
+      // Tracks in each gap: lines coming down a trunk on top, lines going on to lower rows at
+      // the bottom, the rest nested by their spans so that no vertical crosses a horizontal.
+      const gapHeights: number[] = [];
+      for (let gap = 1; gap < rowsPlan.length; gap++) {
+        const here = [...groups.values()].filter((g) => g.gap === gap);
+        here.sort((a, b) => Number(b.trunk) - Number(a.trunk) || Number(a.continues) - Number(b.continues) || (Math.min(...a.xs) - Math.min(...b.xs)) || (Math.max(...b.xs) - Math.max(...a.xs)));
+        here.forEach((g, i) => (g.y = i));
+        gapHeights[gap] = Math.max(rowsPlan[gap].rank !== rowsPlan[gap - 1].rank ? RANK_GAP : ROW_GAP, (here.length + 1) * 10);
+      }
+      // Vertical placement.
+      const rows: { y: number; h: number; ids: string[]; rank: number }[] = [];
+      let y = plate ? 78 : 14;
+      rowsPlan.forEach((row, ri) => {
+        if (ri > 0) y += gapHeights[ri] + (bandOf.has(row.rank) && rowsPlan[ri - 1].rank !== row.rank ? 22 : 0);
+        const h = Math.max(...row.ids.map(cardH));
+        row.ids.forEach((id) => placed.set(id, { id, x: xOf.get(id)!, y, w: cardW, h, rank: row.rank, row: ri }));
+        rows.push({ y, h, ids: row.ids, rank: row.rank });
+        y += h;
+      });
+      const trackY = (g: Group) => {
+        const top = rows[g.gap - 1].y + rows[g.gap - 1].h;
+        const n = [...groups.values()].filter((x) => x.gap === g.gap).length;
+        return top + ((rows[g.gap].y - top) * (g.y + 1)) / (n + 1);
+      };
+      const build = () => {
+        const out: Segment[] = [];
+        const add = (x1: number, y1: number, x2: number, y2: number, edge: string, kind: string) => out.push({ x1, y1, x2, y2, edges: [edge], kind });
+        for (const g of groups.values()) {
+          const ty = trackY(g);
+          const kind = g.edges[0]?.kind ?? edges.find((e) => e.from === g.parent)?.kind ?? "supports";
+          const names = g.edges.map((e) => `${e.from}→${e.to}`);
+          const label = names.length ? names.join(" ") : edges.filter((e) => e.from === g.parent).map((e) => `${e.from}→${e.to}`).join(" ");
+          if (g.xs.length > 1) add(Math.min(...g.xs), ty, Math.max(...g.xs), ty, label, kind);
+          for (const e of g.edges) add(portX(e), ty, portX(e), placed.get(e.to)!.y, `${e.from}→${e.to}`, e.kind);
+          if (g.parent && !g.trunk) add(cx(g.parent), placed.get(g.parent)!.y + placed.get(g.parent)!.h, cx(g.parent), ty, label, kind);
+          if (g.parent && g.trunk) {
+            const prev = groups.get(`out:${g.parent}:${g.gap - 1}`)!;
+            const x = trunkX!.get(g.key)!;
+            add(x, trackY(prev), x, ty, label, kind);
+          }
+        }
+        for (const [r, owner] of bandOf) {
+          const first = rows.find((x) => x.rank === r)!;
+          const o = placed.get(owner)!;
+          const names = edges.filter((e) => e.from === owner && rank.get(e.to) === r).map((e) => `${e.from}→${e.to}`).join(" ");
+          add(cx(owner), o.y + o.h, cx(owner), first.y - 24, names, edges.find((e) => e.from === owner)?.kind ?? "supports");
+        }
+        return out;
+      };
+      // Try the orders of the tracks in each gap, keeping the one with fewest crossings.
+      for (let gap = 1; gap < rowsPlan.length; gap++) {
+        const here = [...groups.values()].filter((g) => g.gap === gap);
+        if (here.length < 2 || here.length > 7 || crossCount(build()) === 0) continue;
+        const start = here.map((g) => g.y);
+        let bestOrder = start;
+        let bestCount = crossCount(build());
+        const permute = (rest: number[], chosen: number[]) => {
+          if (bestCount === 0) return;
+          if (!rest.length) {
+            here.forEach((g, i) => (g.y = chosen[i]));
+            const c = crossCount(build());
+            if (c < bestCount) {
+              bestCount = c;
+              bestOrder = [...chosen];
+            }
+            return;
+          }
+          rest.forEach((v, i) => permute([...rest.slice(0, i), ...rest.slice(i + 1)], [...chosen, v]));
+        };
+        permute(start.slice().sort((a, b) => a - b), []);
+        here.forEach((g, i) => (g.y = bestOrder[i]));
+      }
+      const segments = build();
+      // Merge identical segments (drawn once).
+      const seen = new Map<string, Segment>();
+      for (const s of segments) {
+        const k = `${s.x1.toFixed(1)},${s.y1.toFixed(1)},${s.x2.toFixed(1)},${s.y2.toFixed(1)}`;
+        if (seen.has(k)) seen.get(k)!.edges.push(...s.edges);
+        else seen.set(k, s);
+      }
+      const lines = [...seen.values()];
+      // Self-check, kept on the drawing for tests: crossings between lines of different
+      // groups, and lines passing behind a card.
+      const crossings = crossCount(lines);
+      let behind = 0;
+      for (const s of lines)
+        for (const p of placed.values()) {
+          const [x0, x1] = [Math.min(s.x1, s.x2), Math.max(s.x1, s.x2)];
+          const [y0, y1] = [Math.min(s.y1, s.y2), Math.max(s.y1, s.y2)];
+          if (x1 > p.x + 0.5 && x0 < p.x + p.w - 0.5 && y1 > p.y + 0.5 && y0 < p.y + p.h - 0.5) behind += 1;
+        }
+      return { placed, lines, crossings, behind, rows, xOf, y, bandOf };
     };
-    const trunkX = new Map<string, number>();
-    for (const g of [...groups.values()].sort((a, b) => a.gap - b.gap))
-      if (g.trunk && g.parent) {
-        const prev = groups.get(`out:${g.parent}:${g.gap - 1}`)!;
-        const from = trunkX.get(prev.key) ?? cx(g.parent);
-        const x = gutterNear(g.gap - 1, from);
-        trunkX.set(g.key, x);
-        prev.xs.push(x);
-        g.xs.push(x);
-      }
-    // Tracks in each gap: lines coming down a trunk on top, lines going on to lower rows at
-    // the bottom, the rest nested by their spans so that no vertical crosses a horizontal.
-    const gapHeights: number[] = [];
-    for (let gap = 1; gap < rowsPlan.length; gap++) {
-      const here = [...groups.values()].filter((g) => g.gap === gap);
-      here.sort((a, b) => Number(b.trunk) - Number(a.trunk) || Number(a.continues) - Number(b.continues) || (Math.min(...a.xs) - Math.min(...b.xs)) || (Math.max(...b.xs) - Math.max(...a.xs)));
-      here.forEach((g, i) => (g.y = i));
-      gapHeights[gap] = Math.max(rowsPlan[gap].rank !== rowsPlan[gap - 1].rank ? RANK_GAP : ROW_GAP, (here.length + 1) * 10);
-    }
-    // Vertical placement.
-    const rows: { y: number; h: number; ids: string[]; rank: number }[] = [];
-    let y = plate ? 78 : 14;
-    rowsPlan.forEach((row, ri) => {
-      if (ri > 0) y += gapHeights[ri];
-      const h = Math.max(...row.ids.map(cardH));
-      row.ids.forEach((id) => placed.set(id, { id, x: xOf.get(id)!, y, w: CARD_W, h, rank: row.rank, row: ri }));
-      rows.push({ y, h, ids: row.ids, rank: row.rank });
-      y += h;
-    });
-    const trackY = (g: Group) => {
-      const top = rows[g.gap - 1].y + rows[g.gap - 1].h;
-      const n = [...groups.values()].filter((x) => x.gap === g.gap).length;
-      return top + ((rows[g.gap].y - top) * (g.y + 1)) / (n + 1);
-    };
-    const segments: Segment[] = [];
-    const add = (x1: number, y1: number, x2: number, y2: number, edge: string, kind: string) => segments.push({ x1, y1, x2, y2, edges: [edge], kind });
-    for (const g of groups.values()) {
-      const ty = trackY(g);
-      const kind = g.edges[0]?.kind ?? edges.find((e) => e.from === g.parent)?.kind ?? "supports";
-      const names = g.edges.map((e) => `${e.from}→${e.to}`);
-      const label = names.length ? names.join(" ") : edges.filter((e) => e.from === g.parent).map((e) => `${e.from}→${e.to}`).join(" ");
-      if (g.xs.length > 1) add(Math.min(...g.xs), ty, Math.max(...g.xs), ty, label, kind);
-      for (const e of g.edges) add(portX(e), ty, portX(e), placed.get(e.to)!.y, `${e.from}→${e.to}`, e.kind);
-      if (g.parent && !g.trunk) add(cx(g.parent), placed.get(g.parent)!.y + placed.get(g.parent)!.h, cx(g.parent), ty, label, kind);
-      if (g.parent && g.trunk) {
-        const prev = groups.get(`out:${g.parent}:${g.gap - 1}`)!;
-        const x = trunkX.get(g.key)!;
-        add(x, trackY(prev), x, ty, label, kind);
+    // The heuristic order first; then swaps within a rank while they remove crossings
+    // (then lines behind cards), keeping the Lean's order where it costs nothing.
+    const orders = new Map<number, string[]>();
+    const lineOf = (r: number, members: string[]) => orders.get(r) ?? members;
+    let best = plan((r, m) => { if (!orders.has(r)) orders.set(r, m); return orders.get(r)!; });
+    const score = (x: ReturnType<typeof plan>) => x.crossings * 1000 + x.behind * 1000
+      + [...orders.values()].reduce((sum, list) => sum + list.reduce((t, id, k) => t + Math.abs(k - (order.get(id) ?? k)) * 0.001, 0), 0);
+    let bestScore = score(best);
+    for (let round = 0, improved = true; improved && round < 6 && best.crossings + best.behind > 0; round++) {
+      improved = false;
+      for (const [r, list] of [...orders.entries()]) {
+        for (let a = 0; a < list.length; a++)
+          for (let b = a + 1; b < list.length; b++) {
+            const next = [...orders.get(r)!];
+            [next[a], next[b]] = [next[b], next[a]];
+            const before = orders.get(r)!;
+            orders.set(r, next);
+            const trial = plan(lineOf);
+            const sc = score(trial);
+            if (sc < bestScore - 1e-9) {
+              best = trial;
+              bestScore = sc;
+              improved = true;
+            } else orders.set(r, before);
+          }
       }
     }
-    // Merge identical segments (drawn once).
-    const seen = new Map<string, Segment>();
-    for (const s of segments) {
-      const k = `${s.x1.toFixed(1)},${s.y1.toFixed(1)},${s.x2.toFixed(1)},${s.y2.toFixed(1)}`;
-      if (seen.has(k)) seen.get(k)!.edges.push(...s.edges);
-      else seen.set(k, s);
-    }
-    const lines = [...seen.values()];
-    // Self-check, kept on the drawing for tests: crossings between lines of different
-    // groups, and lines passing behind a card.
-    let crossings = 0;
-    const hs = lines.filter((s) => s.y1 === s.y2);
-    const vs = lines.filter((s) => s.x1 === s.x2);
-    for (const h of hs)
-      for (const v of vs) {
-        const [x0, x1] = [Math.min(h.x1, h.x2), Math.max(h.x1, h.x2)];
-        const [y0, y1] = [Math.min(v.y1, v.y2), Math.max(v.y1, v.y2)];
-        if (v.x1 > x0 + 0.5 && v.x1 < x1 - 0.5 && h.y1 > y0 + 0.5 && h.y1 < y1 - 0.5) crossings += 1;
-      }
-    let behind = 0;
-    for (const s of lines)
-      for (const p of placed.values()) {
-        const [x0, x1] = [Math.min(s.x1, s.x2), Math.max(s.x1, s.x2)];
-        const [y0, y1] = [Math.min(s.y1, s.y2), Math.max(s.y1, s.y2)];
-        if (x1 > p.x + 0.5 && x0 < p.x + p.w - 0.5 && y1 > p.y + 0.5 && y0 < p.y + p.h - 0.5) behind += 1;
-      }
+    const { placed, lines, crossings, behind, rows, xOf, y, bandOf } = best;
     const kinds = new Set(edges.map((e) => e.kind));
     const bands = [...new Set(rows.map((r) => r.rank))].flatMap((r) => {
       const these = rows.filter((x) => x.rank === r);
       if (these.length < 2) return [];
       const xs = these.flatMap((x) => x.ids.map((id) => xOf.get(id)!));
-      return [{ x: Math.min(...xs) - 8, y: these[0].y - 6, w: Math.max(...xs) + CARD_W - Math.min(...xs) + 16, h: these[these.length - 1].y + these[these.length - 1].h - these[0].y + 12 }];
+      const owner = bandOf.get(r);
+      // A labelled band has room at its top for the label, where the owner's line ends.
+      const top = these[0].y - (owner ? 24 : 6);
+      return [{ x: Math.min(...xs) - 8, y: top, w: Math.max(...xs) + cardW - Math.min(...xs) + 16, h: these[these.length - 1].y + these[these.length - 1].h - top + 6,
+        label: owner ? `Everything on this band is used by ${graph.nodes.get(owner)?.label ?? owner}` : null }];
     });
     return { placed, lines, height: y + 24, crossings, behind, kinds, edges, bands };
   }, [graph, heads, plate, width]);
@@ -283,6 +384,7 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
           )}
           <svg className="nearmap__lines" width={width} height={drawing.height} aria-hidden="true">
             {drawing.bands.map((b, i) => <rect key={`band${i}`} className="nearmap__band" x={b.x} y={b.y} width={b.w} height={b.h} rx={8} />)}
+            {drawing.bands.map((b, i) => b.label && <text key={`bandlabel${i}`} className="nearmap__bandlabel" x={b.x + 10} y={b.y + 13}>{b.label}</text>)}
             {drawing.lines.map((s, i) => (
               <line
                 key={i}

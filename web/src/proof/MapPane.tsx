@@ -10,7 +10,7 @@ import { loadSource, type Edition } from "../app/edition";
 import { ArgumentTree, type Insets, type MapViewHandle } from "../map/ArgumentTree";
 import { NearMap } from "./NearMap";
 import type { MapScene } from "../map/canvas/scene";
-import { isType } from "../model/fromEdition";
+import { declarationNode, isType } from "../model/fromEdition";
 import type { ArgEdge, ArgGraph } from "../model/graph";
 
 const INSETS: Insets = { top: 10, right: 12, bottom: 10, left: 12 };
@@ -48,12 +48,15 @@ const tileHeight = (title: string, width: number) => {
  * those use one another. The map draws the transitive reduction, so a use that runs
  * through another card in view is not drawn twice. Lines keep their kind: dashed where
  * only a statement uses the declaration, solid where a proof or definition body does.
- * Types stay on the shelf, as on the whole map. Edges are added in the order the
+ * Types the card uses get cards here too (the whole map keeps them on its shelf). Edges are added in the order the
  * centre's own Lean names them, which the layout keeps as its tie-break.
  */
 export function neighbourhood(edition: Edition, graph: ArgGraph, centre: string, goal: string, files: Record<string, string> | null): ArgGraph {
   const decl = (id: string) => edition.declarations.find((d) => d.id === id);
-  const drawn = (id: string) => graph.nodes.has(id) && graph.nodes.get(id)!.kind !== "goal";
+  // Every declaration of the page counts here, types included: the whole map keeps types on
+  // its shelf because nearly everything uses them, but in one card's neighbourhood a type it
+  // uses (a structure such as Verifier) is often the object the card is about.
+  const drawn = (id: string) => (graph.nodes.has(id) && graph.nodes.get(id)!.kind !== "goal") || !!decl(id);
   const atGoal = centre === goal;
   const heads = atGoal ? (edition.claims.find((c) => c.id === goal)?.lean ?? []).filter(drawn) : [centre];
   const usesOf = (id: string) => {
@@ -77,7 +80,7 @@ export function neighbourhood(edition: Edition, graph: ArgGraph, centre: string,
       add(from, to, statement.has(to) ? "lean_type_dependency" : "supports");
     }
   }
-  const nodes = new Map(ids.map((id) => [id, graph.nodes.get(id)!]));
+  const nodes = new Map(ids.map((id) => [id, graph.nodes.get(id) ?? declarationNode(edition, decl(id)!, atGoal ? goal : centre)]));
   const out = new Map<string, ArgEdge[]>(ids.map((id) => [id, []]));
   const into = new Map<string, ArgEdge[]>(ids.map((id) => [id, []]));
   for (const e of edges) {
