@@ -9,7 +9,7 @@
 
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { blankEntry, newEntryId, pushEntry, readEntry, replaceEntry, returning, type Copy, type Entry, type Pin, type Tab } from "../app/history";
-import { hasComparisons, loadSource, paperFile, passageLocation, type Edition, type Passage } from "../app/edition";
+import { fromLean, hasComparisons, leanOrigin, loadSource, noun, paperFile, passageLocation, type Edition, type Passage } from "../app/edition";
 import { Lockup, SisterSites } from "../app/Family";
 import { readRoute, routeHref } from "../app/router";
 import { setScheme, useScheme } from "../app/theme";
@@ -632,7 +632,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (shown.decl) return { key: `d:${shown.decl}`, title: null, passage: null, decls: [shown.decl], exact: null, untied: null };
     const passage = shown.passage;
     if (!passage) return { key: "none", title: null, passage: null, decls: [], exact: null, untied: { section: hereLabel, last: lastTie } };
-    const title = shown.mode === "start" ? `The paper’s main claim, ${sectionLabel(passage.section)}` : `${sectionLabel(passage.section)}, ${passageLocation(passage)}`;
+    const title = shown.mode === "start" ? `The ${noun(edition)}’s main claim, ${sectionLabel(passage.section)}` : `${sectionLabel(passage.section)}, ${passageLocation(passage)}`;
     return { key: `p:${passage.id}`, title, passage, decls: passage.lean, exact: passage.lines ?? null, untied: null };
   }, [hereLabel, lastTie, shown]);
 
@@ -676,7 +676,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (shown.mode === "after") return <><b>{hereLabel ? `No statement in ${hereLabel} is linked to this Lean.` : "No statement here is linked to this Lean."}</b> The linked statements are in {sectionLabel(firstTie)} to {sectionLabel(lastSection)}.</>;
     if (shown.mode === "between") return <><b>No statement at this line.</b> The last was {name}.</>;
     if (shown.mode === "start") return <><b>Before the first statement,</b> in {sectionLabel(firstTie)}. Showing the main claim.</>;
-    return <><b>Following the paper:</b> {stepView.title}</>;
+    return <><b>Following the {noun(edition)}:</b> {stepView.title}</>;
   })();
 
   const backButton = entry.back && <button type="button" className="back" onClick={back} title="Your browser’s Back ( [ or Alt + Left )">Back to {entry.back}</button>;
@@ -693,7 +693,9 @@ export function PaperPage({ edition }: { edition: Edition }) {
   ) : entry.lean ? null : line.zone === "after" ? (
     <p>{lean.scope}</p>
   ) : (
-    <p className="proof__key">Square cards are definitions, round cards theorems and the violet box an axiom; green means defined or proved in Lean, and a dashed line means used in a statement.</p>
+    fromLean(edition)
+      ? <p className="proof__key">Square cards are definitions, round cards theorems and the violet box an axiom; green means defined or proved in Lean, and a dashed line means used in a statement.</p>
+      : <p className="proof__key">Square cards are definitions, round cards theorems, and a dashed line means used in a statement. <strong>Read from the source with AI; Lean not yet run here.</strong></p>
   );
 
   const act = useMemo((): LeanActions => ({ walk: (id) => walk(id), name: (id) => setPoint(id ? { kind: "name", id } : null), plain: plainOf }), [plainOf, walk]);
@@ -704,7 +706,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     <p>
       {edition.credit?.text ?? `Text: ${paper.authors.join(", ")}, ${paper.licence}`}.
       {" "}We rendered the authors’ Markdown directly and checked each quotation against its source heading and block. <a href={paper.url}>Read the source Markdown</a>.
-      {" "}Lean from the authors’ artifact, built here on Lean {lean.version}. Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.
+      {" "}{leanOrigin(edition)} Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.
     </p>
   ) : (
     <p>
@@ -713,7 +715,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
       {" "}{edition.reading
         ? "A program checked the reading copy against text extracted from the PDF. The check omits margins and figures and can miss changes in text order. Use the original PDF to verify the wording."
         : "Each linked quotation was found in text extracted from the authors’ PDF."}
-      {" "}Lean from the authors’ artifact, built here on Lean {lean.version}. Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.
+      {" "}{leanOrigin(edition)} Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.
     </p>
   );
 
@@ -811,13 +813,13 @@ export function PaperPage({ edition }: { edition: Edition }) {
               hint={(
                 <div className="start">
                 <p className="firstline firstline--status">{hasComparisons(edition)
-                  ? "The links from this paper to its proof in Lean, the notes and the comparisons were made with AI"
-                  : "The links from this paper to its proof in Lean, and the notes, were made with AI"} and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.</p>
+                  ? `The links from this ${noun(edition)} to its proof in Lean, the notes and the comparisons were made with AI`
+                  : `The links from this ${noun(edition)} to its proof in Lean, and the notes, were made with AI`} and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.</p>
                 <p className="firstline">
                   Click a statement with a mark<span className="firstline__mark" aria-hidden="true" /> beside it to read its Lean.
                   {(firstSection || claimSection) && (
                     <span className="start__go">
-                      {firstSection && <button type="button" onClick={() => jumpTo(firstSection.id)}>{sectionLabel(firstSection.number)}: the first linked statement</button>}
+                      {firstSection && <button type="button" onClick={() => jumpTo(firstSection.id)}>{firstSection.number ? sectionLabel(firstSection.number) : firstSection.title}: the first linked statement</button>}
                       {claimSection && <button type="button" onClick={() => jumpTo(claimSection.id)}>{sectionLabel(claimSection.number)}: the main claim</button>}
                     </span>
                   )}
@@ -831,7 +833,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
               foot={<footer className="foot">{credit}<SisterSites /></footer>}
             />
           ) : (
-            copy === "reading" && <p className="status" data-paper-pane role={readingFailed ? "alert" : undefined}>{readingFailed ? <>Could not open the guide. <a href={paper.url}>Read the source Markdown</a>.</> : "Opening the paper…"}</p>
+            copy === "reading" && <p className="status" data-paper-pane role={readingFailed ? "alert" : undefined}>{readingFailed ? <>Could not open the {noun(edition)}. <a href={paper.url}>Read the source Markdown</a>.</> : "Opening the paper…"}</p>
           ))}
           {hasPdf && paper.crop && pdfSeen && (
             <Suspense fallback={<p className="status" data-paper-pane>Opening the PDF…</p>}>

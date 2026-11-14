@@ -3,17 +3,17 @@
 // says how the page was made.
 
 import { useState, type ReactNode } from "react";
-import { hasComparisons, passageLocation, type Check, type Declaration, type Edition, type Verdict } from "../app/edition";
+import { fromLean, hasComparisons, noun, passageLocation, type Check, type Declaration, type Edition, type Verdict } from "../app/edition";
 import { routeHref } from "../app/router";
 import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code";
 import { sectionLabel } from "../model/fromEdition";
 
-export const VERDICT_WORDS: Record<Verdict, string> = {
-  same: "Says the same as the paper",
-  stronger: "Says more than the paper",
-  weaker: "Says less than the paper",
-  different: "Says something different from the paper",
-};
+export const verdictWords = (verdict: Verdict, text = "paper") => ({
+  same: `Says the same as the ${text}`,
+  stronger: `Says more than the ${text}`,
+  weaker: `Says less than the ${text}`,
+  different: `Says something different from the ${text}`,
+})[verdict];
 
 /** A check's doc comment, with `names` set as code. */
 export function Doc({ text }: { text: string }) {
@@ -93,9 +93,9 @@ export function FidelityBlock({ edition, d, act, onPassage }: { edition: Edition
     return true;
   });
   return (
-    <section className="fid" data-verdict={f.verdict} aria-label="The paper and the Lean">
-      <p className="fid__head"><span className="decl__label">The paper and the Lean</span> <span className="fid__by">Compared by AI</span></p>
-      <p className="fid__verdict">{VERDICT_WORDS[f.verdict]}.</p>
+    <section className="fid" data-verdict={f.verdict} aria-label={`The ${noun(edition)} and the Lean`}>
+      <p className="fid__head"><span className="decl__label">The {noun(edition)} and the Lean</span> <span className="fid__by">Compared by AI</span></p>
+      <p className="fid__verdict">{verdictWords(f.verdict, noun(edition))}.</p>
       <p className="fid__text">{f.text}</p>
       {stops.length > 0 && (
         <p className="fid__because">
@@ -125,14 +125,14 @@ export function FidelityLines({ edition, ids, act, onGo }: { edition: Edition; i
   if (!decls.length) return null;
   const byName = (id: string) => edition.declarations.find((d) => d.id === id);
   return (
-    <ul className="stepline__fid" aria-label="The paper and the Lean, compared by AI">
+    <ul className="stepline__fid" aria-label={`The ${noun(edition)} and the Lean, compared by AI`}>
       {decls.map((d) => {
         const own = checksOf(edition, d.fidelity!.checks);
         const leaning = d.axioms.map(byName).filter((a): a is Declaration => !!a?.fidelity?.checks.length);
         const flagged = d.fidelity!.verdict !== "same" || own.length > 0 || leaning.length > 0;
         return (
           <li key={d.id} data-fid={d.id} data-flagged={flagged || undefined}>
-            <button type="button" onClick={() => onGo(d.id)}>{d.plain}</button>: {VERDICT_WORDS[d.fidelity!.verdict].toLowerCase()}.
+            <button type="button" onClick={() => onGo(d.id)}>{d.plain}</button>: {verdictWords(d.fidelity!.verdict, noun(edition)).toLowerCase()}.
             {own.map((c) => <span key={c.name}> Lean accepted a proof that <Doc text={lower(c.doc)} /></span>)}
             {leaning.map((a) => (
               <span key={a.id}> Its proof rests on <DeclLink paper={edition.slug} name={a.id} act={act} className="declname declname--axiom"><span>{a.plain}</span></DeclLink>
@@ -186,10 +186,12 @@ export function HowMade({ edition }: { edition: Edition }) {
           ? <>A program compares the reading copy with text extracted from the authors’ PDF. The comparison leaves out margins and figures, and the original PDF is one click away.</>
           : <>Each linked quotation was found in text extracted from the authors’ PDF.</>}
       </p>
-      <p>The graph’s arrows, and each declaration’s kind, lines and axioms, are Lean’s own output on the authors’ file, from Lean {edition.lean.version}.</p>
+      {fromLean(edition)
+        ? <p>The graph’s arrows, and each declaration’s kind, lines and axioms, are Lean’s own output on the authors’ file, from Lean {edition.lean.version}.</p>
+        : <p>The graph’s arrows, and each declaration’s kind and lines, were read from the authors’ source with AI. Lean has not been run on the files for this page, so no axioms are reported. A run of Lean will replace them.</p>}
       {hasComparisons(edition)
         ? <>
-            <p>The links from sentences to Lean, the plain titles, the notes and the comparisons between the paper and the Lean were made with AI. The authors have not reviewed them.</p>
+            <p>The links from sentences to Lean, the plain titles, the notes and the comparisons between the {noun(edition)} and the Lean were made with AI. The authors have not reviewed them.</p>
             <p>Where a comparison cites a Lean proof written for this page, the proof is shown with it, and Lean accepted the proof against the authors’ file.</p>
           </>
         : <p>The links from sentences to Lean, the plain titles and the notes were made with AI. The authors have not reviewed them.</p>}

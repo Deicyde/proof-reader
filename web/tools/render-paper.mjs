@@ -12,7 +12,7 @@ import katex from "katex";
 import MarkdownIt from "markdown-it";
 
 const [source, slug, language = "haskell", mode] = process.argv.slice(2);
-const guide = mode === "--guide";
+const guide = mode === "--markdown-source";
 const guideLinks = guide ? JSON.parse(readFileSync(0, "utf8") || "{}") : {};
 const OPEN = "";
 const CLOSE = "";

@@ -41,7 +41,7 @@ All data is static under ${SITE_URL}papers/.
 - papers/<slug>/source.json: the authors' Lean files, and where each Lean name is printed in the PDF
 - papers/<slug>/reading.html: the paper's reading copy as HTML, with its statements, Lean names and page marks marked up
 - papers/<slug>/paper.pdf: the authors' PDF, unchanged, for a PDF source
-- papers/<slug>/guide.md: the authors' Markdown, unchanged, for a Markdown source
+- papers/<slug>/source.md: the authors' Markdown, unchanged, for a Markdown source
 
 ## Addresses
 

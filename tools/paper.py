@@ -274,7 +274,13 @@ def shards(folder: Path, config: dict) -> tuple[dict, dict]:
                         uses[home][target] = "statement"
                     else:
                         uses[home].setdefault(target, "proof")
-    return {"written": written, "uses": uses, "texts": texts, "lean_version": report["lean_version"]}, rows
+    # A lean.json without `provenance` is the output of `extract`. One marked "source-read"
+    # was read from the authors' source by hand and must never be labelled as Lean's output.
+    provenance = report.get("provenance") or {"kind": "lean"}
+    if provenance["kind"] not in ("lean", "source-read"):
+        raise PaperError(f"generated/lean.json: unknown provenance {provenance['kind']!r}")
+    return {"written": written, "uses": uses, "texts": texts, "lean_version": report["lean_version"],
+            "provenance": provenance}, rows
 
 
 def statement_end(lines: list[str], first: int, last: int, keyword: str) -> int:
@@ -496,7 +502,8 @@ def resolve(slug: str) -> dict:
     markdown_render = None
     markdown_passages = {}
     if source["kind"] == "markdown":
-        markdown_render, resolved = reading_copy.resolve_markdown(folder / source["file"], slug, links["passages"])
+        language = config.get("reading", {}).get("language", "lean")
+        markdown_render, resolved = reading_copy.resolve_markdown(folder / source["file"], slug, links["passages"], language)
         markdown_passages = {p["id"]: p for p in resolved}
         words, sizes = [], []
     else:
@@ -641,7 +648,8 @@ def edition(slug: str) -> dict:
     names = [d["id"] for d in declarations if d["id"] not in links.get("unlinked_names", [])]
     setting = None
     if data["source"]["kind"] == "markdown":
-        setting = reading_copy.build_markdown(data["markdown_render"], slug, data["passages"], names, config["paper"].get("url", ""))
+        setting = reading_copy.build_markdown(data["markdown_render"], slug, data["passages"], names, config["paper"].get("url", ""),
+                                              links.get("name_sections"))
         display_quotes = setting.pop("display_quotes")
         for passage in data["passages"]:
             passage["quote"] = display_quotes[passage["id"]]
@@ -671,6 +679,7 @@ def edition(slug: str) -> dict:
         "lean": {**{k: v for k, v in config["lean"].items() if k != "project"},
                  "toolchain": (lean_project(data["folder"], config) / "lean-toolchain").read_text().strip(),
                  "version": shard_info["lean_version"],
+                 "provenance": shard_info["provenance"],
                  "files": {f"{project_root}/{m.replace('.', '/')}.lean": text for m, text in texts.items()}},
         "credit": config.get("credit", {}),
         "claims": links.get("claims", []),
@@ -792,8 +801,10 @@ def check(slug: str) -> None:
     if built["reading"]:
         origin = "rendered from the Markdown source; exact raw quotes and block anchors checked" if built["source"]["kind"] == "markdown" else "none differing from the PDF"
         print(f"  reading copy: {built['reading']['words']} words and {built['reading']['formulas']} formulas, {origin}")
-    print(f"  {stats['linked_to_paper']} of {stats['declarations']} declarations tied to the paper, "
-          f"on pages {stats['pages_with_links']}")
+    where = f", on pages {stats['pages_with_links']}" if built["source"]["kind"] == "pdf" else ""
+    print(f"  {stats['linked_to_paper']} of {stats['declarations']} declarations tied to the paper{where}")
+    if built["lean"]["provenance"]["kind"] != "lean":
+        print(f"  Lean data is {built['lean']['provenance']['kind']}, not Lean output: {built['lean']['provenance'].get('text', '')}")
     if stats["not_linked"]:
         print(f"  not tied yet: {', '.join(stats['not_linked'])}")
     for axiom, names in stats["resting_on_axioms"].items():
@@ -827,14 +838,15 @@ def build(slugs: list[str]) -> None:
         (out / "source.json").write_text(json.dumps(source, ensure_ascii=False), encoding="utf-8")
         (out / "edition.json").write_text(json.dumps(built, ensure_ascii=False), encoding="utf-8")
         if built["source"]["kind"] == "pdf":
-            (out / "guide.md").unlink(missing_ok=True)
+            (out / "source.md").unlink(missing_ok=True)
             shutil.copyfile(folder / built["paper"]["pdf"], out / "paper.pdf")
             subprocess.run(["pdftocairo", "-png", "-singlefile", "-f", "1", "-l", "1", "-scale-to", "420",
                             str(folder / built["paper"]["pdf"]), str(out / "first-page")], check=True)
         else:
             (out / "paper.pdf").unlink(missing_ok=True)
             (out / "first-page.png").unlink(missing_ok=True)
-            shutil.copyfile(folder / built["source"]["file"], out / "guide.md")
+            # The authors' Markdown, byte for byte, under one name whatever the paper calls it.
+            shutil.copyfile(folder / built["source"]["file"], out / "source.md")
         print(f"built {slug}")
     write_shelf()
 
@@ -873,10 +885,10 @@ def shelf_entry(slug: str, built: dict, files: dict[str, str]) -> dict:
     return {
         "slug": slug, "title": paper["title"], "short_title": paper.get("short_title") or paper["title"],
         "authors": paper["authors"], "venue": paper.get("venue", ""),
-        "source_kind": built.get("source", {}).get("kind", "pdf"),
+        "source_kind": built.get("source", {}).get("kind", "pdf"), "noun": paper.get("noun") or "paper",
         "declarations": built["analytics"]["declarations"],
         "lean": {"files": len(used), "lines": sum(len(files[f].splitlines()) for f in used),
-                 "version": built["lean"]["version"], "axioms": len(built["analytics"]["axioms"]),
+                 "version": built["lean"]["version"], "provenance": built["lean"].get("provenance", {"kind": "lean"})["kind"], "axioms": len(built["analytics"]["axioms"]),
                  "sorry": len(built["analytics"]["sorry"])},
         "linked": len(built["passages"]),
         "example": (built.get("shelf", {}).get("examples") or [None])[0],
@@ -894,7 +906,7 @@ def new(slug: str) -> None:
         raise PaperError(f"{folder} already exists")
     (folder / "lean").mkdir(parents=True)
     (folder / "paper.toml").write_text((ROOT / "docs" / "paper.toml.example").read_text(encoding="utf-8"), encoding="utf-8")
-    print(f"created {folder.relative_to(ROOT)}: add paper.pdf or guide.md and the Lean project, then fill in paper.toml")
+    print(f"created {folder.relative_to(ROOT)}: add paper.pdf or the Markdown source and the Lean project, then fill in paper.toml")
 
 
 def main() -> int:

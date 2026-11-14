@@ -60,10 +60,11 @@ class Page:
     visible: str = ""
 
 
-def render(markdown: Path, slug: str, *, guide: bool = False, passages: list[dict] | None = None) -> dict:
+def render(markdown: Path, slug: str, *, guide: bool = False, passages: list[dict] | None = None,
+           language: str = "haskell") -> dict:
     args = ["node", str(RENDER), str(markdown), slug]
     if guide:
-        args += ["lean", "--guide"]
+        args += [language, "--markdown-source"]
     done = subprocess.run(args, input=json.dumps({"passages": passages or []}) if guide else None,
                           capture_output=True, text=True, cwd=ROOT / "web")
     if done.returncode != 0:
@@ -71,10 +72,10 @@ def render(markdown: Path, slug: str, *, guide: bool = False, passages: list[dic
     return json.loads(done.stdout)
 
 
-def resolve_markdown(markdown: Path, slug: str, passages: list[dict]) -> tuple[dict, list[dict]]:
+def resolve_markdown(markdown: Path, slug: str, passages: list[dict], language: str = "lean") -> tuple[dict, list[dict]]:
     """Resolve exact raw quotes before rendering. An anchor never excuses a duplicate."""
     source = markdown.read_bytes().decode("utf-8")
-    done = render(markdown, slug, guide=True, passages=passages)
+    done = render(markdown, slug, guide=True, passages=passages, language=language)
     lines = source.splitlines(keepends=True)
     offsets = [0]
     for line in lines:
@@ -140,7 +141,20 @@ def locate_markdown(page: Page, done: dict, passages: list[dict]) -> tuple[dict,
     return spans, visible_quotes
 
 
-def build_markdown(done: dict, slug: str, passages: list[dict], names: list[str], source_url: str) -> dict:
+def numbered_ranges(ranges: list[tuple[str, int]], outline: list[dict]) -> list[tuple[str, int]]:
+    """An unnumbered subheading belongs to the numbered section above it, so that
+    `name_sections` can name section 3 and cover its subheadings too."""
+    owner, stack = {}, []
+    for entry in outline:
+        while stack and stack[-1]["level"] >= entry["level"]:
+            stack.pop()
+        owner[entry["id"]] = entry["id"] if entry["number"] else next((s["id"] for s in reversed(stack) if s["number"]), entry["id"])
+        stack.append(entry)
+    return [(owner.get(name, name), start) for name, start in ranges]
+
+
+def build_markdown(done: dict, slug: str, passages: list[dict], names: list[str], source_url: str,
+                   name_sections: list[str] | None = None) -> dict:
     """Render the author's Markdown directly, with source lines instead of PDF pages."""
     route = f"./#/{slug}"
 
@@ -156,7 +170,7 @@ def build_markdown(done: dict, slug: str, passages: list[dict], names: list[str]
     page = parse(source)
     spans, quotes = locate_markdown(page, done, passages)
     ranges = section_ranges(page, done["outline"])
-    mentions = names_in(page, names, ranges, None)
+    mentions = names_in(page, names, numbered_ranges(ranges, done["outline"]), name_sections)
     body = weave(page, spans, mentions, {}, done["math"], route)
     counts = Counter(section_at(ranges, start) for start, _ in spans.values())
     code_blocks = {b["id"] for b in done["source_blocks"] if b["kind"] in ("fence", "code_block")}

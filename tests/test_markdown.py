@@ -99,6 +99,17 @@ class MarkdownAnchors(unittest.TestCase):
         self.assertEqual(len(found), 1)
         self.assertEqual(page.visible[found[0][0]:found[0][1]], "Foo.bar")
 
+    def test_name_sections_cover_unnumbered_subheadings_and_exclude_others(self):
+        source = ("## 1. Intro\n\nSee `Foo.bar`.\n\n## 3. Definitions\n\n### Details\n\nHere `Foo.bar` again.\n\n"
+                  "## 4. Theorem\n\nIt holds.\n")
+        done, passages = self.resolve(source, "It holds.", heading="4. Theorem")
+        built = reading.build_markdown(done, "test", passages, ["Foo.bar"], "https://example.org/guide.md", ["3"])
+        intro, rest = built["html"].split('id="s-3"')
+        self.assertNotIn('data-name="Foo.bar"', intro)
+        self.assertIn('data-name="Foo.bar"', rest.split('id="s-4"')[0])
+        everywhere = reading.build_markdown(done, "test", passages, ["Foo.bar"], "https://example.org/guide.md")
+        self.assertIn('data-name="Foo.bar"', everywhere["html"].split('id="s-3"')[0])
+
     def test_fenced_quote_stays_code_and_has_no_pdf_coordinates(self):
         done, passages = self.resolve("## Section\n\n```lean\ndef x_y : Nat := 0\n```\n", "def x_y : Nat := 0")
         built = reading.build_markdown(done, "test", passages, [], "https://example.org/guide.md")
@@ -168,7 +179,7 @@ class MarkdownEdition(unittest.TestCase):
 
         with patch.object(paper.subprocess, "run", side_effect=only_node), patch.object(paper, "pdf_words", side_effect=AssertionError("PDF read")), patch.object(paper, "ink_box", side_effect=AssertionError("PDF crop")):
             paper.build(["example"])
-        self.assertEqual((out / "guide.md").read_bytes(), self.source)
+        self.assertEqual((out / "source.md").read_bytes(), self.source)
         self.assertFalse((out / "paper.pdf").exists())
         self.assertFalse((out / "first-page.png").exists())
         edition = json.loads((out / "edition.json").read_text())
@@ -179,6 +190,20 @@ class MarkdownEdition(unittest.TestCase):
         self.assertEqual(edition["passages"][0]["source_quote"], "Here is `Demo.statement`.")
         self.assertEqual(edition["shelf"]["example"]["page_label"], "")
         self.assertEqual(json.loads((paper.PUBLIC / "index.json").read_text())["papers"][0]["source_kind"], "markdown")
+
+    def test_source_read_lean_data_is_labelled_and_unknown_provenance_fails(self):
+        report = json.loads((self.folder / "generated" / "lean.json").read_text())
+        report["provenance"] = {"kind": "source-read", "text": "Read from the source by hand."}
+        (self.folder / "generated" / "lean.json").write_text(json.dumps(report))
+        built = paper.edition("example")
+        self.assertEqual(built["lean"]["provenance"]["kind"], "source-read")
+        report["provenance"] = {"kind": "kernel"}
+        (self.folder / "generated" / "lean.json").write_text(json.dumps(report))
+        with self.assertRaisesRegex(paper.PaperError, "unknown provenance"):
+            paper.edition("example")
+
+    def test_extracted_lean_data_defaults_to_lean_provenance(self):
+        self.assertEqual(paper.edition("example")["lean"]["provenance"], {"kind": "lean"})
 
     def test_source_config_is_explicit_and_exclusive(self):
         for config in ({"paper": {}}, {"paper": {"pdf": "paper.pdf", "markdown": "guide.md"}}):

@@ -116,6 +116,8 @@ export interface Edition {
     markdown?: string;
     licence: string;
     licence_url: string;
+    /** What the page calls the authors' text: "paper" unless paper.toml says otherwise, as "guide". */
+    noun?: string;
     pages: number;
     sizes: [number, number][];
     crop: [number, number, number, number] | null;
@@ -129,7 +131,10 @@ export interface Edition {
     /** Where one declaration's lines can be read: {path}, {line} and {end} are filled in. */
     source_lines?: string;
     toolchain: string;
-    version: string;
+    /** Null when the Lean facts were read from the source instead of produced by Lean. */
+    version: string | null;
+    /** Absent or "lean": names, lines and uses are the output of `paper.py extract`. "source-read": read from the authors' source by hand, pending extraction. */
+    provenance?: { kind: "lean" | "source-read"; text?: string };
     files: Record<string, string>;
   };
   claims: Claim[];
@@ -186,6 +191,7 @@ export interface ShelfItem {
   authors: string[];
   venue: string;
   source_kind?: "pdf" | "markdown";
+  noun?: string;
   declarations: number;
   lean?: { files: number; lines: number; version: string; axioms: number; sorry: number };
   linked?: number;
@@ -213,9 +219,20 @@ export const loadSource = (slug: string) => json<{ files: Record<string, string>
 export const loadShelf = () => json<{ papers: ShelfItem[] }>(`${base}papers/index.json`);
 
 /** True when the page carries comparisons of the paper's statements with the Lean. */
+/** True when the page's declarations, lines, uses and axioms are Lean's own output on the authors' files. */
+export const fromLean = (edition: Edition) => (edition.lean.provenance?.kind ?? "lean") === "lean";
+
+/** One sentence on where the Lean facts came from, for credits and the account of how the page was made. */
+export const leanOrigin = (edition: Edition) => fromLean(edition)
+  ? `Lean from the authors’ artifact, built here on Lean ${edition.lean.version}.`
+  : "Lean files from the authors’ repository, unchanged. Lean has not been run on them for this page: the declarations, lines and uses shown were read from the source with AI, and no axioms are reported.";
+
+/** The word for the authors' text, as in "In the guide". */
+export const noun = (edition: Edition) => edition.paper.noun || "paper";
+
 export const hasComparisons = (edition: Edition) => edition.declarations.some((d) => !!d.fidelity);
 
 /** Source coordinates stay separate from the Lean lines a passage describes. */
 export const passageLocation = (passage: Passage) => passage.source_lines
-  ? `guide lines ${passage.source_lines[0]} to ${passage.source_lines[1]}`
+  ? passage.source_lines[0] === passage.source_lines[1] ? `source line ${passage.source_lines[0]}` : `source lines ${passage.source_lines[0]} to ${passage.source_lines[1]}`
   : `page ${passage.page}`;

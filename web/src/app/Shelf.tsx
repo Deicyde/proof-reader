@@ -138,7 +138,7 @@ export function Shelf() {
                           {count(p.lean.files, "Lean file")} of {count(p.lean.lines, "line")}, {count(p.declarations, "declaration")}{p.linked ? `, ${count(p.linked, "linked passage")}` : ""}
                         </span>
                       )}
-                      <span className="shelf__status">The links from this paper to its proof in Lean, and the notes, were made with AI and have not been reviewed by the authors.</span>
+                      <span className="shelf__status">The links from this {p.noun || "paper"} to its proof in Lean, and the notes, were made with AI and have not been reviewed by the authors.</span>
                     </span>
                   </a>
                 </li>
@@ -210,7 +210,7 @@ function Specimen({ paper, example }: { paper: ShelfItem; example: ShelfExample 
   return (
     <figure className="specimen" ref={frame}>
       <div className="specimen__paper">
-        <p className="specimen__label">{paper.short_title ?? paper.title}, §{example.section}, {example.source_lines ? `guide lines ${example.source_lines[0]} to ${example.source_lines[1]}` : `page ${example.page_label}`}</p>
+        <p className="specimen__label">{paper.short_title ?? paper.title}, §{example.section}, {example.source_lines ? `source lines ${example.source_lines[0]} to ${example.source_lines[1]}` : `page ${example.page_label}`}</p>
         <p className="specimen__text">
           {lead_in(example.before)}
           <a className="specimen__quote" href={href} title="Open this sentence and its Lean lines on the paper’s page">{example.quote}</a>

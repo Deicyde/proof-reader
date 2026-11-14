@@ -2,7 +2,7 @@
 // every declaration, or the authors' whole file. The tab is part of the address.
 
 import { memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type Ref } from "react";
-import { hasComparisons, passageLocation, type Edition, type Passage } from "../app/edition";
+import { fromLean, hasComparisons, noun, passageLocation, type Edition, type Passage } from "../app/edition";
 import type { Tab } from "../app/history";
 import { routeHref } from "../app/router";
 import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code";
@@ -122,7 +122,8 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
     const first = el.querySelector<HTMLElement>(".decl");
     const top = first ? first.getBoundingClientRect().top - box.top : 0;
     if (el.querySelector(".stepline__fid li[data-flagged]") && fits(0)) target = 0;
-    else if (first?.querySelector('.fid:not([data-verdict="same"]), .fid .fid__check') && fits(top)) target = Math.min(target, top);
+    // So is any note or comparison on the card, so that its label stays in view with it.
+    else if (first?.querySelector('.fid, .decl__note') && fits(top)) target = Math.min(target, top);
     el.scrollTop = Math.max(0, target);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, step]);
@@ -212,8 +213,8 @@ function Crumbs({ edition, id, onPassage }: { edition: Edition; id: string | und
     return [p];
   });
   return (
-    <nav className="crumbs" aria-label={`Where the paper discusses ${d.plain}`}>
-      <span>In the paper</span>
+    <nav className="crumbs" aria-label={`Where the ${noun(edition)} discusses ${d.plain}`}>
+      <span>In the {noun(edition)}</span>
       {stops.map((p) => (
         <a key={p.id} href={routeHref({ paper: edition.slug, record: `@${p.id}` })} onClick={(event) => {
           if (event.metaKey || event.ctrlKey || event.shiftKey) return;
@@ -247,7 +248,8 @@ function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions 
     <div className="index">
       <HowMade edition={edition} />
       <h3>Axioms, as Lean reports them</h3>
-      {analytics.axioms.length === 0 && <p>The authors state no axioms.</p>}
+      {!fromLean(edition) && <p>Not reported. Lean has not been run on the authors’ files for this page.</p>}
+      {fromLean(edition) && analytics.axioms.length === 0 && <p>The authors state no axioms.</p>}
       {analytics.axioms.map((name) => (
         <p key={name}>
           <DeclLink paper={slug} name={name} act={act} className="declname declname--axiom" /> is the authors’ axiom, assumed and not proved.{" "}
@@ -255,15 +257,15 @@ function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions 
           {analytics.free_of_axioms.length > 0 && <> Proofs that do not: {plain(analytics.free_of_axioms)}.</>}
         </p>
       ))}
-      <p>
+      {fromLean(edition) && <p>
         Lean’s own standard axioms: {list(standard.map(([name, users]) => `${name} (${users.length ? plain(users) : "not used"})`))}.
         {" "}{analytics.sorry.length ? <strong>sorry appears in {plain(analytics.sorry)}.</strong> : <>No declaration here uses sorry.</>}
-      </p>
+      </p>}
       <AllChecks edition={edition} act={act} />
       <h3>All {declarations.length} declarations</h3>
       <table>
         <thead>
-          <tr><th scope="col">Declaration</th><th scope="col">Kind</th><th scope="col">Lines</th><th scope="col">In the paper</th></tr>
+          <tr><th scope="col">Declaration</th><th scope="col">Kind</th><th scope="col">Lines</th><th scope="col">In the {noun(edition)}</th></tr>
         </thead>
         <tbody>
           {declarations.map((d) => {
@@ -279,7 +281,9 @@ function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions 
           })}
         </tbody>
       </table>
-      <p className="index__source">These names, kinds, line numbers, uses and axioms are the output of Lean {edition.lean.version} on the authors’ file.</p>
+      <p className="index__source">{fromLean(edition)
+        ? <>These names, kinds, line numbers, uses and axioms are the output of Lean {edition.lean.version} on the authors’ file.</>
+        : <>These names, kinds, line numbers and uses were read from the authors’ source with AI. Lean has not been run on it for this page.</>}</p>
     </div>
   );
 }
