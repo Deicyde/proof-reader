@@ -447,8 +447,8 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
           {near && !narrow && !hovered && (
             <span className="graph__hint">
               {centre === goal
-                ? "Click a card to see what it uses, or the theorem to open its Lean."
-                : "Click a card to see what it uses, or the card at the top to open its Lean."}
+                ? "Click a card for what it uses; the theorem opens its Lean."
+                : "Click a card for what it uses; the top card opens its Lean."}
             </span>
           )}
         </div>

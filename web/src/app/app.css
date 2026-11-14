@@ -429,6 +429,7 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
 .nearmap { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; background: var(--sheet); }
 .nearmap__world { position: relative; }
 .nearmap__lines { position: absolute; left: 0; top: 0; pointer-events: none; }
+.nearmap__band { fill: color-mix(in oklab, var(--ink-3) 7%, var(--sheet)); stroke: none; }
 .nearmap__line { stroke: color-mix(in oklab, var(--ink-3) 70%, var(--sheet)); stroke-width: 1.25; fill: none; }
 .nearmap__line--statement { stroke-dasharray: 4 3; }
 .nearmap[data-hot] .nearmap__line { opacity: 0.25; }
@@ -445,6 +446,6 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
 .nearmap__card:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 .nearmap__title { font-size: var(--fs-sm); line-height: 1.2; }
 .nearmap__raw { font-family: var(--font-mono); font-size: var(--fs-micro); color: var(--ink-3); }
-.nearmap__key { margin: 0; padding: 6px 16px 10px; font-size: var(--fs-sm); color: var(--ink-2); }
+.nearmap__key { margin: 0; padding: 6px 16px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: var(--fs-sm); color: var(--ink-2); }
 .proof:has(.graph--near) .proof__key { display: none; }
 @media (prefers-reduced-motion: no-preference) { .nearmap__card, .nearmap__line { transition: opacity 120ms; } }

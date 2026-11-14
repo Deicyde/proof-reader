@@ -17,8 +17,9 @@ import type { ArgGraph } from "../model/graph";
 
 const CARD_W = 150;
 const COL_GAP = 14;
-const ROW_GAP = 30;
-const RANK_GAP = 34;
+/** Between the wrapped rows of one rank, and between ranks: a wrap must not read as a level. */
+const ROW_GAP = 18;
+const RANK_GAP = 44;
 const LINE_H = 16;
 
 /** Lines a title wraps to in a card of CARD_W at the card's type size. */
@@ -146,34 +147,29 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
     });
     const cx = (id: string) => xOf.get(id)! + CARD_W / 2;
 
-    // Groups of lines in each gap (gap g lies above row g). A child fed by several cards of
-    // the row just above gets one bus of its own; otherwise each parent has one bus per gap
-    // it reaches, from its own row down to its last child's row.
+    // Groups of lines in each gap (gap g lies above row g): each card that uses something
+    // lower has one channel per gap it reaches, from its own row down to its last child's
+    // row. Only lines from one card share a channel; a card fed by several has one port on
+    // its top edge for each, in the order of the cards feeding it.
     interface Group { key: string; gap: number; parent: string | null; child: string | null; edges: typeof edges; xs: number[]; trunk: boolean; continues: boolean; y: number }
     const groups = new Map<string, Group>();
     const group = (key: string, gap: number, init: Partial<Group>) => {
       if (!groups.has(key)) groups.set(key, { key, gap, parent: null, child: null, edges: [], xs: [], trunk: false, continues: false, y: 0, ...init });
       return groups.get(key)!;
     };
-    const fanIn = new Set<string>();
-    for (const c of ids) {
-      const ins = edges.filter((e) => e.to === c);
-      if (ins.length > 1 && ins.every((e) => rowOf.get(e.from) === rowOf.get(c)! - 1)) {
-        fanIn.add(c);
-        const g = group(`in:${c}`, rowOf.get(c)!, { child: c });
-        g.edges.push(...ins);
-        g.xs.push(cx(c), ...ins.map((e) => cx(e.from)));
-      }
-    }
+    const portX = (e: (typeof edges)[number]) => {
+      const ins = edges.filter((x) => x.to === e.to).sort((a, b) => cx(a.from) - cx(b.from));
+      return xOf.get(e.to)! + (CARD_W * (ins.indexOf(e) + 1)) / (ins.length + 1);
+    };
     for (const p of ids) {
-      const outs = edges.filter((e) => e.from === p && !fanIn.has(e.to));
+      const outs = edges.filter((e) => e.from === p);
       if (!outs.length) continue;
       const last = Math.max(...outs.map((e) => rowOf.get(e.to)!));
       for (let gap = rowOf.get(p)! + 1; gap <= last; gap++) {
         const g = group(`out:${p}:${gap}`, gap, { parent: p, trunk: gap > rowOf.get(p)! + 1, continues: gap < last });
         for (const e of outs.filter((x) => rowOf.get(x.to) === gap)) {
           g.edges.push(e);
-          g.xs.push(cx(e.to));
+          g.xs.push(portX(e));
         }
         if (gap === rowOf.get(p)! + 1) g.xs.push(cx(p));
       }
@@ -201,7 +197,7 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
       const here = [...groups.values()].filter((g) => g.gap === gap);
       here.sort((a, b) => Number(b.trunk) - Number(a.trunk) || Number(a.continues) - Number(b.continues) || (Math.min(...a.xs) - Math.min(...b.xs)) || (Math.max(...b.xs) - Math.max(...a.xs)));
       here.forEach((g, i) => (g.y = i));
-      gapHeights[gap] = Math.max(rowsPlan[gap].rank !== rowsPlan[gap - 1].rank ? RANK_GAP : ROW_GAP, (here.length + 1) * 9);
+      gapHeights[gap] = Math.max(rowsPlan[gap].rank !== rowsPlan[gap - 1].rank ? RANK_GAP : ROW_GAP, (here.length + 1) * 10);
     }
     // Vertical placement.
     const rows: { y: number; h: number; ids: string[]; rank: number }[] = [];
@@ -226,8 +222,7 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
       const names = g.edges.map((e) => `${e.from}→${e.to}`);
       const label = names.length ? names.join(" ") : edges.filter((e) => e.from === g.parent).map((e) => `${e.from}→${e.to}`).join(" ");
       if (g.xs.length > 1) add(Math.min(...g.xs), ty, Math.max(...g.xs), ty, label, kind);
-      for (const e of g.edges) add(cx(e.to), ty, cx(e.to), placed.get(e.to)!.y, `${e.from}→${e.to}`, e.kind);
-      if (g.child) for (const e of g.edges) add(cx(e.from), placed.get(e.from)!.y + placed.get(e.from)!.h, cx(e.from), ty, `${e.from}→${e.to}`, e.kind);
+      for (const e of g.edges) add(portX(e), ty, portX(e), placed.get(e.to)!.y, `${e.from}→${e.to}`, e.kind);
       if (g.parent && !g.trunk) add(cx(g.parent), placed.get(g.parent)!.y + placed.get(g.parent)!.h, cx(g.parent), ty, label, kind);
       if (g.parent && g.trunk) {
         const prev = groups.get(`out:${g.parent}:${g.gap - 1}`)!;
@@ -262,7 +257,13 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
         if (x1 > p.x + 0.5 && x0 < p.x + p.w - 0.5 && y1 > p.y + 0.5 && y0 < p.y + p.h - 0.5) behind += 1;
       }
     const kinds = new Set(edges.map((e) => e.kind));
-    return { placed, lines, height: y + 24, crossings, behind, kinds, edges };
+    const bands = [...new Set(rows.map((r) => r.rank))].flatMap((r) => {
+      const these = rows.filter((x) => x.rank === r);
+      if (these.length < 2) return [];
+      const xs = these.flatMap((x) => x.ids.map((id) => xOf.get(id)!));
+      return [{ x: Math.min(...xs) - 8, y: these[0].y - 6, w: Math.max(...xs) + CARD_W - Math.min(...xs) + 16, h: these[these.length - 1].y + these[these.length - 1].h - these[0].y + 12 }];
+    });
+    return { placed, lines, height: y + 24, crossings, behind, kinds, edges, bands };
   }, [graph, heads, plate, width]);
 
   const near = (id: string) => !!hot && (id === hot || !!drawing?.edges.some((e) => (e.from === hot && e.to === id) || (e.to === hot && e.from === id)));
@@ -281,6 +282,7 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
             </div>
           )}
           <svg className="nearmap__lines" width={width} height={drawing.height} aria-hidden="true">
+            {drawing.bands.map((b, i) => <rect key={`band${i}`} className="nearmap__band" x={b.x} y={b.y} width={b.w} height={b.h} rx={8} />)}
             {drawing.lines.map((s, i) => (
               <line
                 key={i}
@@ -318,11 +320,8 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
       {drawing && (
         <p className="nearmap__key">
           {drawing.kinds.size > 1
-            ? "A line runs down from a card to each declaration it uses: dashed where only its statement uses it, solid where its proof or definition body does."
-            : drawing.kinds.has("lean_type_dependency")
-              ? "A line runs down from a card to each declaration its statement uses."
-              : "A line runs down from a card to each declaration its proof or definition body uses."}
-          {" "}A use that runs through another card here is drawn once, through that card. Square cards are definitions, round cards theorems.
+            ? "Lines run down to what a card uses; dashed: its statement only."
+            : "Each line runs down from a card to a declaration it uses."}
         </p>
       )}
     </div>
