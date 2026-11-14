@@ -38,10 +38,10 @@ TEMPLATE = ROOT / "tools" / "extract_built.lean.template"
 MARKER = "PROOF_READER_JSON:"
 
 
-def lean_env(project: Path) -> tuple[str, dict[str, str]]:
+def lean_env(project: Path, binary: Path | None = None) -> tuple[str, dict[str, str]]:
     toolchain = (project / "lean-toolchain").read_text(encoding="utf-8").strip()
     folder = toolchain.replace("/", "--").replace(":", "---")
-    lean = Path.home() / ".elan" / "toolchains" / folder / "bin" / "lean"
+    lean = binary or Path.home() / ".elan" / "toolchains" / folder / "bin" / "lean"
     paths = [project / ".lake" / "build" / "lib" / "lean"]
     packages = project / ".lake" / "packages"
     if packages.is_dir():
@@ -51,7 +51,9 @@ def lean_env(project: Path) -> tuple[str, dict[str, str]]:
 
 
 def check_modules(project: Path, copy: Path, modules: list[str]) -> None:
-    if subprocess.run(["git", "-C", str(project), "diff", "--quiet"]).returncode != 0:
+    # A git checkout must have no changes to tracked files; any tree must hold, byte for
+    # byte, the paper's copy of each module it compiled (checked below).
+    if (project / ".git").exists() and subprocess.run(["git", "-C", str(project), "diff", "--quiet"]).returncode != 0:
         sys.exit(f"{project} has changes to tracked files: its .olean files may not be the authors' Lean")
     for m in modules:
         rel = m.replace(".", "/") + ".lean"
@@ -89,6 +91,7 @@ def main() -> None:
     ap.add_argument("slug")
     ap.add_argument("--project", type=Path, required=True, help="a compiled Lake project at the authors' commit")
     ap.add_argument("--statement", action="append", default=[], help="MODULE:NAME:FIRST:LAST of a theorem to compile as a statement only")
+    ap.add_argument("--lean", type=Path, help="the lean binary to run (default: the project's toolchain under ~/.elan)")
     args = ap.parse_args()
     folder = ROOT / "papers" / args.slug
     config = tomllib.loads((folder / "paper.toml").read_text(encoding="utf-8"))
@@ -104,7 +107,7 @@ def main() -> None:
     source = source.replace("__MODULES__", ", ".join(f"`{m}" for m in modules))
     source = source.replace("__ROOTS__", ", ".join(f"`{r}" for r in roots)).replace("__SURROGATE_ROOTS__", ", ".join(roots) or "nothing")
     source = source.replace("__SURROGATE__", "\n\n".join(p[0] for p in pieces))
-    lean, env = lean_env(project)
+    lean, env = lean_env(project, args.lean)
     with tempfile.TemporaryDirectory(prefix="proof-reader-built-") as scratch:
         driver = Path(scratch) / "ProofReaderBuiltDriver.lean"
         driver.write_text(source, encoding="utf-8")
