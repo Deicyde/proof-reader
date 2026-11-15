@@ -559,6 +559,25 @@ def paper_source(folder: Path, config: dict) -> dict:
     return {"kind": kind, "file": paper[kind], "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
 
 
+def markdown_images(folder: Path, rendered: str) -> dict[str, str]:
+    """Validate local Markdown images and retain their hashes with the source."""
+    images = {}
+    for encoded in re.findall(r'data-figure="([^"]+)"', rendered):
+        name = html.unescape(encoded)
+        parts = name.split("/")
+        if (not name or any(part in ("", ".", "..") for part in parts)
+                or any(char in name for char in '\\?#:<>%"')
+                or Path(name).is_absolute()):
+            raise PaperError(f"[reading] image path must stay within the paper folder: {name}")
+        path = (folder / name).resolve()
+        if not path.is_relative_to(folder.resolve()):
+            raise PaperError(f"[reading] image path escapes the paper folder: {name}")
+        if not path.is_file():
+            raise PaperError(f"[reading] image is missing: {name}")
+        images[name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    return dict(sorted(images.items()))
+
+
 def resolve(slug: str) -> dict:
     """Check every link. Any quote or name that cannot be found stops the build."""
     folder, config = load_paper(slug)
@@ -571,6 +590,9 @@ def resolve(slug: str) -> dict:
     if source["kind"] == "markdown":
         language = config.get("reading", {}).get("language", "lean")
         markdown_render, resolved = reading_copy.resolve_markdown(folder / source["file"], slug, links["passages"], language)
+        images = markdown_images(folder, markdown_render["html"])
+        if images:
+            source["images"] = images
         markdown_passages = {p["id"]: p for p in resolved}
         words, sizes = [], []
     else:
@@ -928,6 +950,10 @@ def build(slugs: list[str]) -> None:
             (out / "first-page.png").unlink(missing_ok=True)
             # The authors' Markdown, byte for byte, under one name whatever the paper calls it.
             shutil.copyfile(folder / built["source"]["file"], out / "source.md")
+            for name in built["source"].get("images", {}):
+                target = out / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(folder / name, target)
         print(f"built {slug}")
     write_shelf()
 

@@ -243,6 +243,38 @@ class MarkdownEdition(unittest.TestCase):
         self.assertEqual(edition["shelf"]["example"]["page_label"], "")
         self.assertEqual(json.loads((paper.PUBLIC / "index.json").read_text())["papers"][0]["source_kind"], "markdown")
 
+    def test_build_copies_local_markdown_image_beside_reading_html(self):
+        name = "assets/figure.png"
+        image = b"\x89PNG\r\n\x1a\nfixture"
+        (self.folder / "assets").mkdir()
+        (self.folder / name).write_bytes(image)
+        (self.folder / "guide.md").write_bytes(self.source + f"\n![A proof map]({name})\n".encode())
+
+        paper.build(["example"])
+
+        out = paper.PUBLIC / "example"
+        self.assertEqual((out / name).read_bytes(), image)
+        self.assertIn(f'src="papers/example/{name}"', (out / "reading.html").read_text())
+        edition = json.loads((out / "edition.json").read_text())
+        self.assertEqual(edition["source"]["images"], {name: hashlib.sha256(image).hexdigest()})
+
+    def test_missing_or_escaping_markdown_image_fails_check(self):
+        source = self.source + b"\n![A proof map](assets/missing.png)\n"
+        (self.folder / "guide.md").write_bytes(source)
+        with self.assertRaisesRegex(paper.PaperError, "image is missing"):
+            paper.edition("example")
+
+        (self.folder / "guide.md").write_bytes(self.source + b"\n![A proof map](../outside.png)\n")
+        (self.folder.parent / "outside.png").write_bytes(b"outside")
+        with self.assertRaisesRegex(paper.PaperError, "image path must stay within"):
+            paper.edition("example")
+
+        (self.folder / "assets").mkdir()
+        (self.folder / "assets" / "escape.png").symlink_to(self.folder.parent / "outside.png")
+        (self.folder / "guide.md").write_bytes(self.source + b"\n![A proof map](assets/escape.png)\n")
+        with self.assertRaisesRegex(paper.PaperError, "image path escapes"):
+            paper.edition("example")
+
     def test_source_read_lean_data_is_labelled_and_unknown_provenance_fails(self):
         report = json.loads((self.folder / "generated" / "lean.json").read_text())
         report["provenance"] = {"kind": "source-read", "text": "Read from the source by hand."}

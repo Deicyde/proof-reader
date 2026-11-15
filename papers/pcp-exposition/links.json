@@ -148,7 +148,7 @@
       ],
       "anchor": {
         "heading": "An algebraic proof of the PCP theorem, through worked examples",
-        "block": 4
+        "block": 5
       }
     },
     {
@@ -265,7 +265,7 @@
       ],
       "anchor": {
         "heading": "9. From the seven checks to a colouring",
-        "block": 4
+        "block": 6
       }
     },
     {
@@ -291,7 +291,7 @@
       ],
       "anchor": {
         "heading": "9. From the seven checks to a colouring",
-        "block": 3
+        "block": 5
       }
     },
     {
@@ -437,6 +437,36 @@
         "heading": "Following the one-edge certificate to bits",
         "block": 12
       }
+    },
+    {
+      "id": "pcp-expository-check-matrix",
+      "section": "9",
+      "role": "explains",
+      "quote": "The eight received tables were listed after the grid certificate in Section 5. The verifier runs\nfour low-degree tests, one for each primary table and its line table;\ntwo ZERO tests, one for each colouring condition; and one difference\ncheck connecting $\\chi'$ to $\\chi$. It accepts only if all seven pass.",
+      "lean": [
+        "PCP.Algebraic.ThreeColorVerifier.Proof",
+        "PCP.Algebraic.ThreeColorVerifier.BranchSeed",
+        "PCP.Algebraic.ThreeColorVerifier.branchTest",
+        "PCP.Algebraic.ThreeColorVerifier.test"
+      ],
+      "anchor": {
+        "heading": "9. From the seven checks to a colouring",
+        "block": 1
+      }
+    },
+    {
+      "id": "pcp-expository-vertex-branch-source",
+      "section": "9",
+      "role": "uses",
+      "quote": "The line tables used for correction are the same ones used in the low-degree tests. In check 5, the colour table supplies a derived observation of $\\chi(x)^3-1$, while the vertex-certificate tables supply corrected observations at $(x,0)$ and $(x,Z_H(x))$.",
+      "lean": [
+        "PCP.Algebraic.ThreeColorVerifier.branchTest",
+        "PCP.Algebraic.BinaryLocalCorrection.run"
+      ],
+      "anchor": {
+        "heading": "9. From the seven checks to a colouring",
+        "block": 3
+      }
     }
   ],
   "plain": {
@@ -494,7 +524,10 @@
     "PCP.Algebraic.ThreeColorVerifier.Query": "Eight physical query tags",
     "PCP.Algebraic.ThreeColorVerifier.read": "Read a tagged proof bit",
     "PCP.Algebraic.BinaryLocalCorrection.run": "Run outer local correction",
-    "PCP.Algebraic.SetMultilinear.totalDegree_encode_le": "Constant digit-encoding degree"
+    "PCP.Algebraic.SetMultilinear.totalDegree_encode_le": "Constant digit-encoding degree",
+    "PCP.Algebraic.ThreeColorVerifier.BranchSeed": "Seven branch seed types",
+    "PCP.Algebraic.ThreeColorVerifier.branchTest": "Seven concrete branch tests",
+    "PCP.Algebraic.ThreeColorVerifier.test": "Conjunction of the seven checks"
   },
   "fidelity_held": "The selected source has not yet been compared against elaborated Lean statements for this page."
 }
