@@ -115,7 +115,7 @@
       "id": "pcp-short-abstract",
       "section": "Abstract",
       "role": "explains",
-      "quote": "The PCP theorem states that every language in NP has a polynomial-time verifier with logarithmic randomness, constantly many proof-bit queries, perfect completeness and constant soundness error.",
+      "quote": "The PCP theorem gives every language in NP a polynomial-time verifier with logarithmic randomness, constantly many proof-bit queries, perfect completeness and soundness error at most one half.",
       "lean": [
         "PCP.np_subset_pcp"
       ],
@@ -146,34 +146,34 @@
         "PCP.Algebraic.ThreeColorGrid.colorable_iff_exists_constraints"
       ],
       "anchor": {
-        "heading": "2. Three-colouring as two vanishing conditions",
-        "block": 7
+        "heading": "2. Four polynomials and seven checks",
+        "block": 8
       }
     },
     {
       "id": "pcp-short-weighted-test",
       "section": "4",
       "role": "explains",
-      "quote": "If (10) rejects with probability $\\delta<1/[2(c+2)^2]$, then $f$ is within $2\\delta$ of a degree-$c$ polynomial.",
+      "quote": "If uniform $(u,v)$ violates it with probability $\\delta<1/[2(c+2)^2]$, one degree-at-most-$c$ polynomial is within $2\\delta$ of $f$.",
       "lean": [
         "PCP.Algebraic.GeneratorLowDegreeTest.exists_close"
       ],
       "anchor": {
-        "heading": "4. The local tests and their decoding guarantee",
-        "block": 7
+        "heading": "4. What the low-degree tests supply",
+        "block": 6
       }
     },
     {
       "id": "pcp-short-binary-decoding",
       "section": "4",
       "role": "explains",
-      "quote": "There is no small-rejection premise in (11), and both bounds concern the same decoded polynomial.",
+      "quote": "Under the field and node assumptions above, every received inner table has one polynomial $U$ of total degree at most $c$ whose full-label and homogeneous-label distances are each at most $K$ times the tester's rejection probability. There is no small-rejection premise: the proof uses the trivial distance bound outside the weighted theorem's small-error regime.",
       "lean": [
         "PCP.Algebraic.BinaryLocalRowDecoding.exists_polynomial_distance_le"
       ],
       "anchor": {
-        "heading": "4. The local tests and their decoding guarantee",
-        "block": 23
+        "heading": "4. What the low-degree tests supply",
+        "block": 16
       }
     },
     {
@@ -185,8 +185,8 @@
         "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close"
       ],
       "anchor": {
-        "heading": "4. The local tests and their decoding guarantee",
-        "block": 38
+        "heading": "4. What the low-degree tests supply",
+        "block": 32
       }
     },
     {
@@ -199,7 +199,7 @@
       ],
       "anchor": {
         "heading": "5. Correcting the nonuniform certificate queries",
-        "block": 10
+        "block": 11
       }
     },
     {
@@ -212,7 +212,7 @@
       ],
       "anchor": {
         "heading": "5. Correcting the nonuniform certificate queries",
-        "block": 17
+        "block": 19
       }
     },
     {
@@ -225,7 +225,7 @@
       ],
       "anchor": {
         "heading": "6. One decoding for all seven checks",
-        "block": 15
+        "block": 13
       }
     },
     {
@@ -280,7 +280,7 @@
       ],
       "anchor": {
         "heading": "5. Correcting the nonuniform certificate queries",
-        "block": 19
+        "block": 21
       },
       "section": "5. Correcting the nonuniform certificate queries"
     },
@@ -309,6 +309,33 @@
         "block": 2
       },
       "section": "1. The theorem and the encoding problem"
+    },
+    {
+      "id": "pcp-short-proof-table-type",
+      "section": "2",
+      "role": "explains",
+      "quote": "The received proof consists of eight arbitrary binary tables.",
+      "lean": [
+        "PCP.Algebraic.ThreeColorVerifier.Proof"
+      ],
+      "anchor": {
+        "heading": "2. Four polynomials and seven checks",
+        "block": 18
+      }
+    },
+    {
+      "id": "pcp-short-query-type",
+      "section": "2",
+      "role": "uses",
+      "quote": "A primary address consists of a point and a label.",
+      "lean": [
+        "PCP.Algebraic.ThreeColorVerifier.Query",
+        "PCP.Algebraic.ThreeColorVerifier.read"
+      ],
+      "anchor": {
+        "heading": "2. Four polynomials and seven checks",
+        "block": 21
+      }
     }
   ],
   "plain": {
@@ -360,7 +387,12 @@
     "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_lower_bound": "ZERO rejection lower bound",
     "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_decomposition": "Grid vanishing decomposition",
     "PCP.Algebraic.DerivedZeroOnGrid.rejectionRate_lower_bound": "Derived ZERO rejection bound",
-    "PCP.ReferenceNP.inNP_iff_mem": "Equivalence with reference NP"
+    "PCP.ReferenceNP.inNP_iff_mem": "Equivalence with reference NP",
+    "PCP.Algebraic.SetMultilinear.evaluationPoint": "Digit-substitution point",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.Auxiliary": "Encoded line-table type",
+    "PCP.Algebraic.ThreeColorVerifier.Proof": "The eight proof tables",
+    "PCP.Algebraic.ThreeColorVerifier.Query": "Eight physical query tags",
+    "PCP.Algebraic.ThreeColorVerifier.read": "Read a tagged proof bit"
   },
   "fidelity_held": "The selected source has not yet been compared against elaborated Lean statements for this page."
 }

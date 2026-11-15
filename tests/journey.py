@@ -1295,6 +1295,62 @@ def companions(page: Page, url: str, shots: Path | None) -> None:
     section_link = page.locator(".proof__lean a", has_text="The algebraic PCP theorem").first.inner_text()
     check(section_link.startswith("The algebraic PCP theorem"), "an unnumbered heading is displayed by title, without a section mark")
 
+    # These two ordinary clicks failed in a reported live desktop session. Exercise
+    # their actual links and the return positions, not only the exposition route.
+    page.goto(full, wait_until="load")
+    page.locator(".sheet__text h1").wait_for()
+    link = page.locator('.sheet__text a[href="./#/pcp-specialist"]').first
+    link.evaluate("el => el.addEventListener('click', () => { window.companionSourceTop = el.closest('[data-paper-pane]').scrollTop; }, { once: true })")
+    before = entries(page)
+    link.click()
+    origin = page.evaluate("window.companionSourceTop")
+    page.wait_for_url(f"{specialist}*")
+    page.locator(".sheet__text h1").wait_for()
+    check(entries(page) == before + 1, "the long paper's specialist link opens with one history entry")
+    page.go_back()
+    page.wait_for_url(f"{full}*")
+    page.locator(".sheet__text h1").wait_for()
+    wait_until(page, lambda: abs(top(page) - origin) < 5, "Back restores the long paper's source position")
+
+    page.goto(specialist, wait_until="load")
+    page.locator(".sheet__text h1").wait_for()
+    link = page.locator('.sheet__text a[href="./#/pcp-full-argument/@4-bivariate-agreement"]')
+    link.evaluate("el => el.addEventListener('click', () => { window.companionSourceTop = el.closest('[data-paper-pane]').scrollTop; }, { once: true })")
+    before = entries(page)
+    link.click()
+    origin = page.evaluate("window.companionSourceTop")
+    wait_until(page, lambda: page.url.startswith(full), "the bivariate link changes to the full-argument route")
+    wait_until(page, lambda: (
+        (box := page.locator(".sheet__text #s-4").bounding_box()) is not None
+        and (pane := page.locator("[data-paper-pane]").bounding_box()) is not None
+        and pane["y"] <= box["y"] < pane["y"] + 150
+    ), "the specialist's bivariate link opens at the full argument's heading")
+    check(entries(page) == before + 1, "the bivariate link opens with one history entry")
+    page.go_back()
+    page.wait_for_url(f"{specialist}*")
+    page.locator(".sheet__text h1").wait_for()
+    wait_until(page, lambda: abs(top(page) - origin) < 5, "Back restores the specialist's source position")
+
+
+def narrow_header(page: Page, url: str, shots: Path | None) -> None:
+    """A long history label stays in its column when Graph is closed."""
+    print("Narrow reader header at 1363px")
+    page.goto(f"{url}#/pcp-full-argument", wait_until="load")
+    page.locator(".sheet__text h1").wait_for()
+    items = page.locator(".rail__item")
+    items.filter(has_text="A high-degree univariate polynomial as a low-degree multivariate polynomial").click()
+    items.filter(has_text="Binary labels for field elements").click()
+    page.locator(".proof__close").click()
+    page.locator(".proof").wait_for(state="hidden")
+    back = page.locator(".bar .back")
+    check("A high-degree univariate polynomial" in back.inner_text(), "history keeps the full source-section Back label")
+    back_box = back.bounding_box()
+    title_box = page.locator(".bar__paper").bounding_box()
+    check(back_box is not None and title_box is not None and back_box["x"] + back_box["width"] + 8 <= title_box["x"],
+          "the Back label stays clear of the paper title")
+    check(title_box["width"] >= 100, "the title keeps readable space")
+    shot(page, shots, "pcp-narrow-header-1363")
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -1351,6 +1407,9 @@ def main() -> int:
                     context = graph_first(browser.new_context(viewport={"width": w, "height": h}, reduced_motion="reduce"))
                     companions(context.new_page(), url, args.shots)
                     context.close()
+                context = graph_first(browser.new_context(viewport={"width": 1363, "height": 936}, reduced_motion="reduce"))
+                narrow_header(context.new_page(), url, args.shots)
+                context.close()
             browser.close()
     except Stop as failure:
         print(f"\nFAILED: {failure}")

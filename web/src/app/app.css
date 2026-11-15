@@ -90,7 +90,7 @@ button:disabled { cursor: default; }
 .switch button { min-height: 28px; padding: 0 9px; border-radius: var(--radius-s); color: var(--ink-2); white-space: nowrap; }
 .switch button:hover { color: var(--ink); }
 .switch button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-decoration-color: var(--thread); text-decoration-thickness: 2px; text-underline-offset: 5px; }
-.back { flex: none; min-height: 28px; padding: 0 8px 0 4px; border-radius: var(--radius-s); color: var(--lit); font-size: var(--fs-sm); white-space: nowrap; text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; }
+.back { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; min-height: 28px; padding: 0 8px 0 4px; border-radius: var(--radius-s); color: var(--lit); font-size: var(--fs-sm); white-space: nowrap; text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 3px; }
 .back::before { content: "\2190\00a0"; }
 .back:hover { background: var(--hover-wash); }
 .badline { flex: none; margin: 0; padding: 8px 20px; background: var(--highlight-soft); border-bottom: 1px solid var(--rule-strong); font-size: var(--fs-ui); color: var(--ink); }
