@@ -7,7 +7,7 @@
 .sheetpage__about { max-width: 70ch; font-family: var(--font-serif); font-size: var(--fs-read); line-height: 1.5; }
 .sheetpage__prov { max-width: 80ch; font-size: var(--fs-sm); color: var(--ink-2); }
 .sheetpage__print { border: 0; background: none; cursor: pointer; font: inherit; }
-.sheet h2 { margin: 32px 0 4px; font-family: var(--font-serif); font-size: var(--fs-h2); font-weight: 500; }
+.sheetpage__main .sheet > h2 { margin: 32px 0 4px; font-family: var(--font-serif); font-size: var(--fs-h2); font-weight: 500; }
 .sheet__coverage { margin: 0 0 8px; font-size: var(--fs-ui); color: var(--ink-2); }
 .sheet__part { margin: 26px 0 8px; font-size: var(--fs-h4); }
 .sheet__list { margin: 0; padding: 0; list-style: none; counter-reset: entry; }

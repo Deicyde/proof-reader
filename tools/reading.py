@@ -19,7 +19,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 from difflib import SequenceMatcher
 from pathlib import Path
-from urllib.parse import urljoin
+from urllib.parse import quote as urlquote, unquote, urljoin
 
 ROOT = Path(__file__).resolve().parent.parent
 RENDER = ROOT / "web" / "tools" / "render-paper.mjs"
@@ -154,14 +154,30 @@ def numbered_ranges(ranges: list[tuple[str, int]], outline: list[dict]) -> list[
 
 
 def build_markdown(done: dict, slug: str, passages: list[dict], names: list[str], source_url: str,
-                   name_sections: list[str] | None = None) -> dict:
+                   name_sections: list[str] | None = None, companions: dict[str, str] | None = None) -> dict:
     """Render the author's Markdown directly, with source lines instead of PDF pages."""
     route = f"./#/{slug}"
 
     def link(match):
         url = html.unescape(match[1])
-        if url.startswith("#") and url[1:] in done["heading_aliases"]:
-            return f'href="{route}/@{done["heading_aliases"][url[1:]]}"'
+        aliases = done["heading_aliases"]
+        reader_url = url.removeprefix("./")
+        path, _, fragment = url.partition("#")
+        if companions and path in companions:
+            reader_url = f"#/{urlquote(companions[path], safe='')}"
+            if fragment:
+                reader_url += f"#{fragment}"
+        companion = re.fullmatch(r"#/([^/#]+)#([^#]+)", reader_url)
+        if companion:
+            paper, heading = companion.groups()
+            heading = unquote(heading)
+            if unquote(paper) == slug:
+                heading = aliases.get(heading, heading)
+            reader_url = f"#/{paper}/@{urlquote(heading, safe='')}"
+        if reader_url.startswith("#/"):
+            return f'href="./{html.escape(reader_url, quote=True)}"'
+        if url.startswith("#") and unquote(url[1:]) in aliases:
+            return f'href="{route}/@{aliases[unquote(url[1:])]}"'
         return f'href="{html.escape(urljoin(source_url, url), quote=True)}"'
 
     source = re.sub(r'href="([^"]+)"', link, done["html"])
@@ -176,6 +192,7 @@ def build_markdown(done: dict, slug: str, passages: list[dict], names: list[str]
     code_blocks = {b["id"] for b in done["source_blocks"] if b["kind"] in ("fence", "code_block")}
     code = {p["id"] for p in passages if p["source_block"] in code_blocks}
     return {"html": body, "outline": [{**entry, "ties": counts[entry["id"]], "page": None} for entry in done["outline"]],
+            "heading_aliases": done["heading_aliases"],
             "words": len(page.visible.split()), "formulas": len(done["math"]), "pages": 0,
             "order": sorted(spans, key=lambda pid: spans[pid][0]), "code": code, "display_quotes": quotes,
             "paragraphs": {pid: paragraph(page, start, stop, quotes[pid]) for pid, (start, stop) in spans.items()}}

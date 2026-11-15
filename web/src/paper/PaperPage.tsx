@@ -9,7 +9,7 @@
 
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { blankEntry, newEntryId, pushEntry, readEntry, replaceEntry, returning, type Copy, type Entry, type Pin, type Tab } from "../app/history";
-import { fromLean, hasComparisons, leanOrigin, loadSource, noun, paperFile, passageLocation, type Edition, type Passage } from "../app/edition";
+import { declEvidence, fromLean, hasComparisons, leanOrigin, loadSource, noun, paperFile, passageLocation, type Edition, type Passage } from "../app/edition";
 import { Lockup, SisterSites } from "../app/Family";
 import { readRoute, routeHref } from "../app/router";
 import { setScheme, useScheme } from "../app/theme";
@@ -76,7 +76,9 @@ function resolve(edition: Edition, record: string | undefined, extra: string | u
       if (edition.paper.pdf && n >= 1 && n <= edition.paper.pages) return { entry: { copy: "pdf" }, target: { page: n }, bad: null };
       return { entry: {}, target: { start: true }, bad: record };
     }
-    return { entry: {}, target: { place: at }, bad: null };
+    const aliases = edition.reading?.heading_aliases;
+    const place = aliases && Object.hasOwn(aliases, at) ? aliases[at] : at;
+    return { entry: {}, target: { place }, bad: null };
   }
   const claim = edition.claims.find((c) => c.id === record);
   if (claim) return { entry: { pin: { passage: claim.passage, decl: null, at: null }, lean: true }, target: { passage: claim.passage }, bad: null };
@@ -246,10 +248,11 @@ export function PaperPage({ edition }: { edition: Edition }) {
   }, [pane]);
 
   const saveNow = useCallback(() => {
+    if (readEntry(slug)?.id !== entryRef.current.id) return;
     const next = snapshot();
     entryRef.current = next;
     replaceEntry(next);
-  }, [snapshot]);
+  }, [slug, snapshot]);
 
   /** The paper's own place as a reader would name it. */
   const paperLabel = useCallback(() => {
@@ -385,7 +388,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
   /** The paper stopped: remember the pixel, and keep the address on the nearest sentence. */
   const settled = useCallback(() => {
     const handle = pane();
-    if (!handle || pending.current) return;
+    // A native fragment click can update the address before this page hears hashchange.
+    if (!handle || pending.current || readEntry(slug)?.id !== entryRef.current.id) return;
     const cur = snapshot();
     entryRef.current = cur;
     const href = !cur.pin && cur.tab === "step" ? routeHref({ paper: slug, record: hereRecord() }) : undefined;
@@ -700,7 +704,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     <p className="proof__key">
       Square cards are definitions, round cards theorems{edition.analytics.axioms.length ? " and the violet box an axiom" : ""}.
       {" "}A line runs down from a declaration to one it uses: dashed when only its statement uses it, solid when its proof or definition body does.
-      {!fromLean(edition) && <> <strong>Read from the source with AI; Lean not yet run here.</strong></>}
+      {edition.declarations.some((d) => declEvidence(edition, d) !== "lean") && <> <strong>Open a card to see what was extracted for that declaration.</strong></>}
     </p>
   );
 
@@ -802,6 +806,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
           {edition.reading && (html ? (
             <ReadingPane
               ref={reading}
+              slug={slug}
               html={html}
               passages={edition.passages}
               hidden={copy !== "reading"}
@@ -814,6 +819,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
               onName={(id) => walk(id, "paper")}
               onPage={(page) => switchCopy("pdf", page)}
               onJump={jumpTo}
+              onLeave={saveNow}
               onOpenInset={openInset}
               onInsetClosed={saveNow}
               onPoint={onPoint}

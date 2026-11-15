@@ -18,6 +18,7 @@
     "PCP.Complexity.Machine",
     "PCP.Complexity.NP",
     "PCP.Complexity.ThreeColorRuntime",
+    "PCP.Reduction.FiniteBooleanConstraints",
     "PCP.ReverseConcrete",
     "PCP.Theorem",
     "PCP.Verifier.Definition"
@@ -25,7 +26,7 @@
   "lean_version": "4.35.0-rc2",
   "provenance": {
     "kind": "source-read",
-    "text": "The guide’s interface was extracted from matching pinned source; other selected declarations were read from source. Proof dependencies remain unextracted."
+    "text": "The reading-guide interface retains extracted records from matching pinned source. The forward theorem retains statement compilation. Other selected declarations are source excerpts. Proof dependencies and axiom reports depend on the record's provenance."
   },
   "declarations": [
     {
@@ -7437,6 +7438,66 @@
       "value_dependencies": [],
       "structural_dependencies": [],
       "provenance": "source-read"
+    },
+    {
+      "axioms": [],
+      "doc": null,
+      "end_line": 139,
+      "is_class": false,
+      "kind": "def",
+      "line": 137,
+      "module": "PCP.Algebraic.Hadamard",
+      "name": "PCP.Algebraic.Hadamard.linearEncode",
+      "provenance": "source-read",
+      "structural_dependencies": [],
+      "type": "SOURCE EXCERPT, NOT ELABORATED:\nnoncomputable def linearEncode (x : Fin t → ZMod 2) :\n    (Fin t → ZMod 2) →ₗ[ZMod 2] ZMod 2 :=\n  ∑ i, x i • LinearMap.proj i",
+      "type_dependencies": [],
+      "value_dependencies": []
+    },
+    {
+      "axioms": [],
+      "doc": null,
+      "end_line": 180,
+      "is_class": false,
+      "kind": "theorem",
+      "line": 173,
+      "module": "PCP.Algebraic.Hadamard",
+      "name": "PCP.Algebraic.Hadamard.relativeDistance_linearEncode",
+      "provenance": "source-read",
+      "structural_dependencies": [],
+      "type": "SOURCE EXCERPT, NOT ELABORATED:\ntheorem relativeDistance_linearEncode (x y : Fin t → ZMod 2) (hxy : x ≠ y) :\n    relativeDistance (linearEncode x) (linearEncode y) = (1 : ℚ) / 2",
+      "type_dependencies": [],
+      "value_dependencies": []
+    },
+    {
+      "axioms": [],
+      "doc": null,
+      "end_line": 88,
+      "is_class": false,
+      "kind": "def",
+      "line": 82,
+      "module": "PCP.Reduction.FiniteBooleanConstraints",
+      "name": "PCP.Reduction.FiniteBooleanConstraints.clauses",
+      "provenance": "source-read",
+      "structural_dependencies": [],
+      "type": "SOURCE EXCERPT, NOT ELABORATED:\ndef clauses (relation : C → Pattern k → Bool) (scope : C → Fin k → V) :\n    Clause C k → Fin 3 → Literal (Variable V C k)\n  | (e, p, .inl (i, j)) => orGate (flagLiteral e p i.succ)\n      (flagLiteral e p i.castSucc) (differenceLiteral scope e p i) j\n  | (e, p, .inr j) => if j.val = 0 then\n      ![negate (flagLiteral e p 0), .const false, .const false]\n    else ![.const (relation e p), flagLiteral e p (Fin.last k), .const false]",
+      "type_dependencies": [],
+      "value_dependencies": []
+    },
+    {
+      "axioms": [],
+      "doc": null,
+      "end_line": 62,
+      "is_class": false,
+      "kind": "theorem",
+      "line": 47,
+      "module": "PCP.Reduction.FiniteBooleanConstraints",
+      "name": "PCP.Reduction.FiniteBooleanConstraints.orGate_iff",
+      "provenance": "source-read",
+      "structural_dependencies": [],
+      "type": "SOURCE EXCERPT, NOT ELABORATED:\ntheorem orGate_iff (z x y : Literal W) (a : W → Bool) :\n    (∀ j, ClauseHolds (orGate z x y j) a) ↔ z.eval a = (x.eval a || y.eval a)",
+      "type_dependencies": [],
+      "value_dependencies": []
     }
   ]
 }

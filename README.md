@@ -110,7 +110,11 @@ person or an AI assistant. For a Markdown source, set `[paper] markdown` in
 `paper.toml`; `links.json` identifies exact unique quotations with a heading and
 block anchor. Source-read declarations must be labelled as such. Comparisons may
 be held with `fidelity_held`, in which case the page does not present them. The
-PDF commands are:
+`[reading.companions]` table maps relative Markdown paths to other reader editions,
+for example `"../companion/paper.md" = "companion"`. Links to those paths open the
+companion, and a heading fragment opens the corresponding section.
+
+The PDF commands are:
 
 ```sh
 python3 tools/paper.py new my-paper       # then add the PDF, Lean and paper.toml

@@ -66,10 +66,12 @@
     },
     {
       "id": "claim-11",
-      "title": "Evaluation after digit encoding",
+      "title": "Recovery after digit encoding",
       "section": "A high-degree univariate polynomial as a low-degree multivariate polynomial",
       "passage": "pcp-long-set-multilinear",
       "lean": [
+        "PCP.Algebraic.SetMultilinear.decode_encode",
+        "PCP.Algebraic.SetMultilinear.encode_injective_on",
         "PCP.Algebraic.SetMultilinear.eval_encode"
       ]
     },
@@ -131,7 +133,7 @@
       "id": "claim-18",
       "title": "Local correction error bound",
       "section": "Correcting an outer value at a prescribed point",
-      "passage": "pcp-long-outer-local-corrector",
+      "passage": "pcp-long-outer-correction-soundness",
       "lean": [
         "PCP.Algebraic.BinaryLocalCorrection.failure_le"
       ]
@@ -229,7 +231,7 @@
       ],
       "anchor": {
         "heading": "The algebraic PCP theorem: a detailed account of the Lean proof",
-        "block": 2
+        "block": 3
       }
     },
     {
@@ -405,13 +407,14 @@
       "id": "pcp-long-algebra-crossing",
       "section": "5",
       "role": "explains",
-      "quote": "We need a consequence of bivariate agreement at one crossing. Assume $d>0$ and $q\\ge1000d^3$. Suppose a received grid has degree-$d$ approximating rows and columns with global errors at most $\\varepsilon\\le1/100$. Suppose also that, at the selected crossing $(x_0,y_0)$, its received row is within $\\varepsilon$ of the transverse column values, and its received column is within $\\varepsilon$ of the transverse row values. Assume",
+      "quote": "If the selected row and column polynomials are nearest approximations, their values at the crossing agree.",
       "lean": [
+        "PCP.Algebraic.PointLineCrossing.crossing_eq_of_nearby_polynomial",
         "PCP.Algebraic.BivariateCrossingSoundness.crossing_bestApproximation_eq"
       ],
       "anchor": {
         "heading": "5. Point-versus-line soundness",
-        "block": 25
+        "block": 27
       }
     },
     {
@@ -424,7 +427,7 @@
       ],
       "anchor": {
         "heading": "5. Point-versus-line soundness",
-        "block": 41
+        "block": 45
       }
     },
     {
@@ -437,7 +440,7 @@
       ],
       "anchor": {
         "heading": "5. Point-versus-line soundness",
-        "block": 58
+        "block": 62
       }
     },
     {
@@ -450,20 +453,20 @@
       ],
       "anchor": {
         "heading": "5. Point-versus-line soundness",
-        "block": 65
+        "block": 69
       }
     },
     {
       "id": "pcp-long-set-multilinear",
       "section": "A high-degree univariate polynomial as a low-degree multivariate polynomial",
       "role": "explains",
-      "quote": "Linearity now proves $\\operatorname{Enc}(p)(\\Phi(z))=p(z)$. This establishes both recovery of evaluations and injectivity on polynomials of degree strictly below $b^c$. The strict bound matters: the encoding retains only $c$ digits.",
+      "quote": "$$\n\\operatorname{Dec}(\\operatorname{Enc}(p))=p\\qquad\\text{in }F[Y].\n$$",
       "lean": [
-        "PCP.Algebraic.SetMultilinear.eval_encode"
+        "PCP.Algebraic.SetMultilinear.decode_encode"
       ],
       "anchor": {
         "heading": "A high-degree univariate polynomial as a low-degree multivariate polynomial",
-        "block": 10
+        "block": 9
       }
     },
     {
@@ -574,7 +577,7 @@
       "id": "pcp-long-encoded-line-test",
       "section": "Testing a high-degree outer polynomial",
       "role": "explains",
-      "quote": "All three checks must pass. In particular, $z$ ranges over the whole field. Honest polynomials of degree strictly below $b^c$, with their actual encoded line restrictions, pass for every seed. The query list has length at most $2r+2c+12$, as proved by [the actual tester's query bound](https://github.com/troyjlee/tcs-formalizations/blob/a0ce13ed0fa264f051c1278e039596ce65557fa4/PCP/Algebraic/EncodedLineLowDegreeTest.lean).",
+      "quote": "The query list has length at most $2r+2c+12$",
       "lean": [
         "PCP.Algebraic.EncodedLineLowDegreeTest.queries_length_le"
       ],
@@ -587,7 +590,7 @@
       "id": "pcp-long-encoded-line-soundness",
       "section": "Testing a high-degree outer polynomial",
       "role": "explains",
-      "quote": "It supplies a polynomial $P:F^k\\to F$ of total degree at most $D$ for which $\\Delta(g,P)\\leq2E(c)\\kappa$. Encoding halves this distance. A final triangle inequality proves",
+      "quote": "It supplies a formal polynomial $P\\in F[X_1,\\ldots,X_k]$ of total degree at most $D$ for which $\\Delta(g,P)\\leq2E(c)\\kappa$. Encoding halves this distance.",
       "lean": [
         "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close"
       ],
@@ -602,7 +605,8 @@
       "role": "explains",
       "quote": "Fix a target $a\\in F^k$. A point oracle $f$ has degree-one labels, and an auxiliary table is supplied for each line through $a$. Choose a uniform direction $v\\in F^k$, a nonzero uniform parameter $z\\in F^\\times$, a uniform homogeneous label $L$, an inner correction direction, and an independent inner-test seed. Run the inner test on the line's auxiliary row. If it fails, reject. Otherwise correct that row at $\\Phi(z)$ and compare with $f(a+zv,L)$. If the comparison fails, reject. If both checks pass, return the correction at $\\Phi(0)$, with the same inner correction direction and label.",
       "lean": [
-        "PCP.Algebraic.BinaryLocalCorrection.failure_le"
+        "PCP.Algebraic.BinaryLocalCorrection.run",
+        "PCP.Algebraic.BinaryLocalCorrection.sample"
       ],
       "anchor": {
         "heading": "Correcting an outer value at a prescribed point",
@@ -665,7 +669,7 @@
       "id": "pcp-long-query-budget",
       "section": "The eight tables and seven checks",
       "role": "explains",
-      "quote": "Their sum is $20c+107$, independent of the graph size. Taking $c=4$ gives $26+22+26+22+44+44+3=187$ physical bit reads.",
+      "quote": "Taking $c=4$ bounds one unamplified run by at most $26+22+26+22+44+44+3=187$ physical bit reads.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.queries_length_le"
       ],
@@ -693,12 +697,17 @@
       "role": "explains",
       "quote": "the four outer tests supply four actual polynomials $P,Q_*,M_A,M_B$, each of total degree at most $D$.",
       "lean": [
+        "PCP.Algebraic.ThreeColorVerifier.colorable_of_rejection_lt",
         "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close"
       ],
       "anchor": {
         "heading": "Soundness of the seven-check verifier",
         "block": 7
-      }
+      },
+      "lines": [
+        90,
+        97
+      ]
     },
     {
       "id": "pcp-long-difference-soundness",
@@ -723,7 +732,7 @@
       ],
       "anchor": {
         "heading": "Soundness of the seven-check verifier",
-        "block": 31
+        "block": 33
       }
     },
     {
@@ -743,7 +752,7 @@
       "id": "pcp-long-runtime",
       "section": "The polynomial-time implementation",
       "role": "explains",
-      "quote": "The information-theoretic verifier must be implemented by a polynomial-time machine; a bounded number of oracle queries alone does not provide this. The formal implementation computes the parameters, field arithmetic, seed codecs, query addresses and verdict in a fixed program language and compiles that language to Mathlib's `FinTM2` machine model.",
+      "quote": "The formal implementation computes the parameters, field arithmetic, seed codecs, query addresses and verdict in a fixed program language and compiles that language to Mathlib's finite multi-stack `FinTM2` machine model.",
       "lean": [
         "PCP.Lang.ThreeColorRuntime.polyTimeAlg"
       ],
@@ -816,6 +825,110 @@
         "heading": "The reverse inclusion",
         "block": 2
       }
+    },
+    {
+      "id": "pcp-long-algebra-crossing-candidate",
+      "role": "explains",
+      "quote": "One variant will be needed: the selected row may be a candidate rather than a nearest approximation, provided its own received-row error is at most $\\varepsilon$.",
+      "lean": [
+        "PCP.Algebraic.CandidateCrossing.crossing_eq"
+      ],
+      "anchor": {
+        "heading": "5. Point-versus-line soundness",
+        "block": 28
+      },
+      "section": "5. Point-versus-line soundness"
+    },
+    {
+      "id": "pcp-long-rigidity-budget",
+      "role": "explains",
+      "quote": "$$\nB/\\varepsilon+\\gamma\\le0.482025<1.\n$$",
+      "lean": [
+        "PCP.Algebraic.PointLineConstants.rigidity_budget"
+      ],
+      "anchor": {
+        "heading": "5. Point-versus-line soundness",
+        "block": 65
+      },
+      "section": "5. Point-versus-line soundness"
+    },
+    {
+      "id": "pcp-long-encoded-line-completeness",
+      "role": "explains",
+      "quote": "Honest polynomials of degree strictly below $b^c$, with their actual encoded line restrictions, pass for every seed.",
+      "lean": [
+        "PCP.Algebraic.EncodedLineLowDegreeTest.test_eval"
+      ],
+      "anchor": {
+        "heading": "Testing a high-degree outer polynomial",
+        "block": 4
+      },
+      "section": "Testing a high-degree outer polynomial"
+    },
+    {
+      "id": "pcp-long-outer-correction-soundness",
+      "role": "explains",
+      "quote": "$$\nC(c)R_a+\\delta+\\frac{D}{2(q-1)}.\n\\tag{B16}\n$$",
+      "lean": [
+        "PCP.Algebraic.BinaryLocalCorrection.failure_le"
+      ],
+      "anchor": {
+        "heading": "Correcting an outer value at a prescribed point",
+        "block": 9
+      },
+      "section": "Correcting an outer value at a prescribed point"
+    },
+    {
+      "id": "pcp-long-digit-decoder",
+      "role": "defines",
+      "quote": "$$\n\\operatorname{Dec}(Q)(Y)=Q\\bigl((Y^{k b^i})_{i,k}\\bigr).\n$$",
+      "lean": [
+        "PCP.Algebraic.SetMultilinear.decode"
+      ],
+      "anchor": {
+        "heading": "A high-degree univariate polynomial as a low-degree multivariate polynomial",
+        "block": 7
+      },
+      "section": "A high-degree univariate polynomial as a low-degree multivariate polynomial"
+    },
+    {
+      "id": "pcp-long-digit-injectivity",
+      "role": "explains",
+      "quote": "Applying $\\operatorname{Dec}$ to equal encodings proves injectivity on polynomials of degree strictly below $b^c$.",
+      "lean": [
+        "PCP.Algebraic.SetMultilinear.encode_injective_on"
+      ],
+      "anchor": {
+        "heading": "A high-degree univariate polynomial as a low-degree multivariate polynomial",
+        "block": 10
+      },
+      "section": "A high-degree univariate polynomial as a low-degree multivariate polynomial"
+    },
+    {
+      "id": "pcp-long-digit-evaluation",
+      "role": "explains",
+      "quote": "$$\n\\operatorname{Enc}(p)(\\Phi(z))=p(z),\n\\qquad \\Phi(z)_{i,k}=z^{k b^i}.\n$$",
+      "lean": [
+        "PCP.Algebraic.SetMultilinear.eval_encode"
+      ],
+      "anchor": {
+        "heading": "A high-degree univariate polynomial as a low-degree multivariate polynomial",
+        "block": 11
+      },
+      "section": "A high-degree univariate polynomial as a low-degree multivariate polynomial"
+    },
+    {
+      "id": "pcp-long-reference-np",
+      "role": "explains",
+      "quote": "The [reference-NP equivalence][lean-reference-np] uses two concrete simulations.",
+      "lean": [
+        "PCP.ReferenceNP.inNP_iff_mem"
+      ],
+      "anchor": {
+        "heading": "The reverse inclusion",
+        "block": 7
+      },
+      "section": "The reverse inclusion"
     }
   ],
   "plain": {
@@ -824,7 +937,7 @@
     "PCP.Algebraic.eval_distance_ge": "Distance between polynomials",
     "PCP.Algebraic.GridInterpolation.existsUnique_extension": "Interpolation from a grid",
     "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_decomposition": "Grid vanishing decomposition",
-    "PCP.Algebraic.GeneratorLowDegreeTest.exists_close": "Decoding a low-degree polynomial",
+    "PCP.Algebraic.GeneratorLowDegreeTest.exists_close": "Decoding the inner weighted test",
     "PCP.Algebraic.StandardLocalCorrection.failure_le": "Local correction error bound",
     "PCP.Algebraic.LineTableLocalCorrection.correct_wrong_le": "Correcting a line table",
     "PCP.Algebraic.BivariateAgreement.exists_polynomial_of_row_column_agreement": "Agreement on rows and columns",
@@ -835,7 +948,7 @@
     "PCP.Algebraic.BLR.exists_linearMap_distance_le_of_rejection_le": "Linearity from the BLR test",
     "PCP.Algebraic.Hadamard.test_soundness": "Soundness of the Hadamard test",
     "PCP.Algebraic.BinaryLocalRowDecoding.exists_polynomial_distance_le": "Decoding the inner polynomial test",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close": "Decoding a low-degree polynomial",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close": "Decoding the outer encoded-line test",
     "PCP.Algebraic.BinaryLocalCorrection.failure_le": "Local correction error bound",
     "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_certificate": "A certificate for grid vanishing",
     "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_ge": "Soundness of the grid test",
@@ -912,7 +1025,18 @@
     "PCP.Algebraic.ThreeColorParameterChoice.volume_le_log_add_one": "Logarithmic parameter volume",
     "PCP.Algebraic.ThreeColorFullFieldSampling.rejectionRate_eq": "Whole-field sampling rejection",
     "PCP.Algebraic.ThreeColorBinaryVerifier.verification_guarantees": "Binary verifier resource bounds",
-    "PCP.Algebraic.ThreeColorGrid.colorable_iff_exists_certificates": "Colouring and grid certificates"
+    "PCP.Algebraic.ThreeColorGrid.colorable_iff_exists_certificates": "Colouring and grid certificates",
+    "PCP.Algebraic.SetMultilinear.decode": "The digit-substitution map",
+    "PCP.Algebraic.SetMultilinear.decode_encode": "Recover the original polynomial",
+    "PCP.Algebraic.SetMultilinear.encode_injective_on": "Digit encoding is injective",
+    "PCP.Algebraic.PointLineConstants.rigidity_budget": "Ruled-surface error budget",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.test_eval": "Honest encoded lines always pass",
+    "PCP.Algebraic.BinaryLocalCorrection.run": "Run outer local correction",
+    "PCP.Algebraic.BinaryLocalCorrection.sample": "Sample outer local correction",
+    "PCP.Algebraic.ThreeColorVerifier.colorable_of_rejection_lt": "Small rejection implies colourability",
+    "PCP.ReferenceNP.inNP_iff_mem": "Equivalence with reference NP",
+    "PCP.Algebraic.PointLineCrossing.crossing_eq_of_nearby_polynomial": "Crossing agreement near a polynomial",
+    "PCP.Algebraic.CandidateCrossing.crossing_eq": "Crossing agreement with a candidate"
   },
   "fidelity_held": "The selected source has not yet been compared against elaborated Lean statements for this page."
 }

@@ -140,6 +140,23 @@ class MarkdownAnchors(unittest.TestCase):
         self.assertIn('href="./#/test/@s-4"', built["html"])
         self.assertEqual([e["id"] for e in built["outline"]], ["s-3", "s-4"])
 
+    def test_companion_routes_stay_on_the_reader_with_a_remote_markdown_source(self):
+        source = ("## Section\n\n[Companion](#/other), [Its section](#/other#2-the-test), "
+                  "[Its declaration](#/other/Thing.name), [a mapped source](../other/main.md#3-its-result), "
+                  "and [external](https://example.org/#/other).\n")
+        done, passages = self.resolve(source, "Companion")
+        built = reading.build_markdown(done, "test", passages, [], "https://example.org/guide.md", companions={"../other/main.md": "other"})
+        for target in ("./#/other", "./#/other/@2-the-test", "./#/other/Thing.name", "./#/other/@3-its-result", "https://example.org/#/other"):
+            self.assertIn(f'href="{target}"', built["html"])
+
+    def test_an_indefinite_article_is_not_an_appendix_number(self):
+        source = "## 2. Example\n\n### A first case\n\nIt holds.\n\n### A second case\n\nIt fails.\n\n## A. Appendix\n\nDetails.\n"
+        done, passages = self.resolve(source, "It holds.", heading="A first case")
+        built = reading.build_markdown(done, "test", passages, [], "")
+        self.assertEqual([(e["id"], e["number"], e["title"]) for e in built["outline"][1:]], [
+            ("s-a-first-case", "", "A first case"), ("s-a-second-case", "", "A second case"), ("s-A", "A", "Appendix")])
+        self.assertEqual(built["heading_aliases"]["a-first-case"], "s-a-first-case")
+
     def test_active_html_after_a_code_fence_is_rejected(self):
         source = "## Section\n\n```lean\ndef x := 0\n```\n\nSafe words.\n\n<script>alert(1)</script>\n"
         done, passages = self.resolve(source, "Safe words.", block=2)
@@ -239,6 +256,30 @@ class MarkdownEdition(unittest.TestCase):
 
     def test_extracted_lean_data_defaults_to_lean_provenance(self):
         self.assertEqual(paper.edition("example")["lean"]["provenance"], {"kind": "lean"})
+
+    def test_passage_only_declarations_and_axiom_reports_in_a_mixed_edition(self):
+        path = self.folder / "generated" / "lean.json"
+        report = json.loads(path.read_text())
+        report["provenance"] = {"kind": "source-read"}
+        cases = {"statement": ("statement-compiled", []), "unextracted": (None, []),
+                 "built": ("lean", []), "standard": ("lean", ["propext"]), "admitted": ("lean", ["sorryAx"])}
+        template = report["declarations"][0]
+        report["declarations"] = [
+            {**template, "name": f"Demo.{name}", "kind": "theorem", "line": line,
+             "end_line": line, "provenance": provenance, "axioms": axioms}
+            for line, (name, (provenance, axioms)) in enumerate(cases.items(), start=1)]
+        path.write_text(json.dumps(report))
+        (self.folder / "lean" / "Demo.lean").write_text("".join(f"theorem {name} : True := by trivial\n" for name in cases))
+        links_path = self.folder / "links.json"
+        links = json.loads(links_path.read_text())
+        links["passages"][0]["lean"] = [f"Demo.{name}" for name in cases]
+        links["plain"].update({f"Demo.{name}": f"The {name} result" for name in cases})
+        links_path.write_text(json.dumps(links))
+        built = paper.edition("example")
+        self.assertEqual({d["id"]: d["passages"] for d in built["declarations"]}, {f"Demo.{name}": ["statement"] for name in cases})
+        self.assertEqual(built["analytics"]["free_of_axioms"], ["Demo.built"])
+        self.assertEqual(built["analytics"]["standard_axioms"]["propext"], ["Demo.standard"])
+        self.assertEqual(built["analytics"]["sorry"], ["Demo.admitted"])
 
     def test_companion_can_read_a_shared_lean_project(self):
         shared = self.root / "papers" / "shared" / "lean"

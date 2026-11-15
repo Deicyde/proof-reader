@@ -19,10 +19,16 @@ function decoded(part: string): string {
   }
 }
 
-export function readRoute(): Route {
-  const [paper, record, ...rest] = window.location.hash.replace(/^#\/?/, "").split("/").map(decoded);
+export function parseRoute(hash: string): Route {
+  const address = hash.replace(/^#\/?/, "");
+  // Older companion links used the source Markdown heading after a second #.
+  const section = /^([^/#]+)#([^#]+)$/.exec(address);
+  if (section) return { paper: decoded(section[1]), record: `@${decoded(section[2])}` };
+  const [paper, record, ...rest] = address.split("/").map(decoded);
   return { paper: paper || undefined, record: record || undefined, extra: rest.length ? rest.join("/") : undefined };
 }
+
+export const readRoute = () => parseRoute(window.location.hash);
 
 export function routeHref(route: Route): string {
   if (!route.paper) return "./";
