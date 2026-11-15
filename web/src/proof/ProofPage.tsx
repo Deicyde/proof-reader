@@ -1,12 +1,13 @@
-// The right-hand page has two modes behind one toggle. In Graph mode the graph follows the
-// reader. In Lean mode the Lean has the whole page; anyone who wants both pulls the handle down
+// The right-hand page has two modes behind one toggle. It opens in Lean mode, where the Lean of
+// the statement being read follows the reader. In Graph mode the graph follows the reader. In Lean mode the Lean has the whole page; anyone who wants both pulls the handle down
 // for a band of graph, or a column of it where the page is wide. The split is remembered. A
 // caption says what the page is following. Adapted from Lean Exposition's docked record sheet.
 
 import { ModeToggle, type PaneMode } from "./ModeToggle";
 import { memo, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
-const KEY = "proof-reader-pane";
+// The key changed when Lean became the opening mode, so an old saved Graph choice does not hide it.
+const KEY = "proof-reader-pane-2";
 const SIDE_BY_SIDE = 860;
 const MAX = 0.78;
 /** A pull shorter than this leaves the Lean the whole page. */
@@ -16,7 +17,7 @@ const BAND = 0.3;
 
 export interface Layout {
   graph: boolean;
-  /** Whether the reader chose Lean mode. It starts as Graph. */
+  /** Whether the page is in Lean mode. It starts there: the Lean of the statement being read follows the reader. */
   lean: boolean;
   /** The graph's share of the page in Lean mode, stacked and side by side. None until pulled. */
   share: number;
@@ -26,12 +27,12 @@ export interface Layout {
 const pull = (value: number) => (value < SHUT ? 0 : Math.min(MAX, value));
 
 export function readLayout(): Layout {
-  const fallback = { graph: true, lean: false, share: 0, sideShare: 0 };
+  const fallback = { graph: true, lean: true, share: 0, sideShare: 0 };
   try {
     const stored = JSON.parse(localStorage.getItem(KEY) ?? "null") as Partial<Layout> | null;
     if (!stored) return fallback;
     const clamp = pull;
-    return { graph: stored.graph ?? true, lean: stored.lean ?? false, share: clamp(stored.share ?? fallback.share), sideShare: clamp(stored.sideShare ?? fallback.sideShare) };
+    return { graph: stored.graph ?? true, lean: stored.lean ?? true, share: clamp(stored.share ?? fallback.share), sideShare: clamp(stored.sideShare ?? fallback.sideShare) };
   } catch {
     return fallback;
   }
