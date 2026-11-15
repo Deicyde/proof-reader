@@ -104,6 +104,48 @@ def lean_open(page: Page) -> bool:
     return page.locator(".proof__lean").is_visible()
 
 
+GRAPH_FIRST = """
+try {
+  if (!localStorage.getItem('proof-reader-pane-2'))
+    localStorage.setItem('proof-reader-pane-2', JSON.stringify({graph: true, lean: false, share: 0, sideShare: 0}));
+} catch { /* a frame with no storage, such as the PDF's: nothing to set there */ }
+"""
+
+
+def graph_first(context):
+    """The visits below were written from Graph mode, so each starts as a reader who chose it."""
+    context.add_init_script(GRAPH_FIRST)
+    return context
+
+
+def opening(page: Page, url: str) -> None:
+    """A first visit with nothing saved: the Lean follows the reading, and a typed address is obeyed."""
+    print("A first visit")
+    page.goto(f"{url}#/{SLUG}", wait_until="load")
+    page.wait_for_selector(".sheet__text .q", state="attached")
+    page.wait_for_timeout(700)
+    check(lean_open(page), "with nothing saved the right page opens on the Lean")
+    tops = page.evaluate(
+        """() => { const el = document.querySelector('[data-paper-pane]');
+        const origin = el.getBoundingClientRect().top - el.scrollTop;
+        return [...el.querySelectorAll('.tie[data-passage]')].map((t) => Math.round(t.getBoundingClientRect().top - origin)); }"""
+    )
+    check(len(tops) >= 3, f"the paper has statements to read past: {len(tops)}")
+    seen: list[str] = []
+    hashes: list[str] = []
+    for top in (tops[0], tops[len(tops) // 2], tops[-1]):
+        page.evaluate("(y) => { const el = document.querySelector('[data-paper-pane]'); el.scrollTop = Math.max(0, y - el.clientHeight * 0.3); }", top)
+        page.wait_for_timeout(900)
+        seen.append(page.locator(".proof__lean .decl__name").first.inner_text() if page.locator(".proof__lean .decl__name").count() else "")
+        hashes.append(page.evaluate("location.hash"))
+    check(len({name for name in seen if name}) >= 2, f"scrolling the paper changes the declaration shown: {seen}")
+    check(len(set(hashes)) == 3, "and the address follows the reading")
+    before = page.evaluate("document.querySelector('[data-paper-pane]').scrollTop")
+    page.evaluate("(hash) => { location.hash = hash; }", hashes[0])
+    wait_until(page, lambda: page.evaluate("document.querySelector('[data-paper-pane]').scrollTop") < before - 200, "an address this tab already passed, typed again, takes the reader back to it")
+    check(page.evaluate("location.hash") == hashes[0], "and stays in the address bar")
+
+
 def active(page: Page) -> str:
     return page.evaluate("document.querySelector('[data-paper-pane] .q.is-active')?.dataset.p ?? ''")
 
@@ -1200,22 +1242,25 @@ def main() -> int:
             browser = getattr(playwright, args.browser).launch()
             if args.only in (None, "journey"):
                 context = browser.new_context(viewport={"width": 1440, "height": 790})
+                opening(context.new_page(), url)
+                context.close()
+                context = graph_first(browser.new_context(viewport={"width": 1440, "height": 790}))
                 journey(context.new_page(), url, args.shots)
                 context.close()
             if args.only in (None, "journey", "fidelity"):
                 for w, h in ((1440, 900), (1280, 800)):
-                    context = browser.new_context(viewport={"width": w, "height": h})
+                    context = graph_first(browser.new_context(viewport={"width": w, "height": h}))
                     fidelity(context.new_page(), url, args.shots / f"{w}" if args.shots else None)
                     context.close()
             if args.only in (None, "sizes"):
                 for size in PAIRS:
-                    context = browser.new_context(viewport={"width": size[0], "height": size[1]})
+                    context = graph_first(browser.new_context(viewport={"width": size[0], "height": size[1]}))
                     monitors(context.new_page(), url, args.shots, size)
                     context.close()
-                context = browser.new_context(viewport={"width": 1024, "height": 768})
+                context = graph_first(browser.new_context(viewport={"width": 1024, "height": 768}))
                 tablet(context.new_page(), url, args.shots)
                 context.close()
-                context = browser.new_context(viewport={"width": PHONE[0], "height": PHONE[1]}, has_touch=True, is_mobile=args.browser != "firefox")
+                context = graph_first(browser.new_context(viewport={"width": PHONE[0], "height": PHONE[1]}, has_touch=True, is_mobile=args.browser != "firefox"))
                 phone(context.new_page(), url, args.shots)
                 context.close()
                 if server:

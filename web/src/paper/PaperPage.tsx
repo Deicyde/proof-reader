@@ -315,7 +315,10 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const sync = useCallback(() => {
     const route = readRoute();
     if (route.paper !== slug) return;
-    const retained = readEntry(slug, true);
+    // Only the entry the browser itself holds counts here. The copy kept per address is for a
+    // reload: used here, an address typed, pasted or linked to that this tab has already passed
+    // through would find the page's own entry and go nowhere.
+    const retained = readEntry(slug);
     const saved = retained && { ...retained, copy: hasPdf ? retained.copy : "reading" as const };
     const cur = entryRef.current;
     if (saved?.id === cur.id) return;
