@@ -687,7 +687,10 @@ def edition(slug: str) -> dict:
     for passage in data["passages"]:
         for name in passage.get("lean", []):
             linked.setdefault(name, []).append(passage["id"])
-    project_root = config["lean"].get("project", "lean")
+    # Published source keys are independent of where a paper keeps its project.
+    # In particular, sibling papers can share a project without exposing `..`
+    # in source links or asking a browser to resolve a filesystem path.
+    project_root = "lean"
     declarations = []
     for name in sorted(keep, key=lambda n: (written[n]["module"], written[n]["line"])):
         row = written[name]
@@ -825,7 +828,7 @@ def shelf_examples(config: dict, passages: list[dict], paragraphs: dict, written
     if problem:
         raise PaperError(problem)
     label = config.get("reading", {}).get("page_label")
-    project_root = config["lean"].get("project", "lean")
+    project_root = "lean"
     examples = []
     for pid in wanted:
         passage = next(p for p in passages if p["id"] == pid)

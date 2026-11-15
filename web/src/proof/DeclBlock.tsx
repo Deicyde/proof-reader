@@ -55,7 +55,7 @@ function Names({ edition, names, act }: { edition: Edition; names: string[]; act
 function Axioms({ edition, d, act }: { edition: Edition; d: Declaration; act: LeanActions }) {
   if (d.keyword === "axiom") return <p className="decl__axiom">Assumed, not proved. Lean accepts this without a proof.</p>;
   if (d.keyword !== "theorem" && d.keyword !== "lemma") return null;
-  if (d.provenance === "statement-compiled") return <p className="decl__facts">No axiom report: Lean compiled this statement here, and its proof was not built for this page.</p>;
+  if (d.provenance === "statement-compiled") return <p className="decl__facts">No axiom report: Lean compiled this statement in the retained extraction, but its proof was not built there.</p>;
   if (!fromLean(edition) || d.provenance === "source-read") return <p className="decl__facts">No axiom report: Lean has not been run on this file for this page.</p>;
   const sorry = edition.analytics.sorry.includes(d.id);
   return (
@@ -113,7 +113,7 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
   const path = d.file.replace(/^lean\//, "");
   const source = edition.lean.source_lines?.replace("{path}", path).replace("{line}", String(d.line)).replace("{end}", String(d.end_line)) ?? edition.lean.source;
   return (
-    <article className="decl" data-shape={shapeOf(d)} data-decl={d.id}>
+    <article className="decl" data-shape={shapeOf(d)} data-decl={d.id} data-source-read={!fromLean(edition) || undefined}>
       <header className="decl__head">
         <h3 className="decl__name"><a href={routeHref({ paper: edition.slug, record: d.id })}>{d.plain}</a></h3>
         <code className="decl__raw">{d.id}</code>
@@ -150,13 +150,13 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
           <p className="decl__label">Names in this statement</p>
           {statementUses.length > 0 && <Names edition={edition} names={statementUses} act={act} />}
           {bodyUses.length > 0 && <><p className="decl__label">Only in its {word.toLowerCase()}</p><Names edition={edition} names={bodyUses} act={act} /></>}
-          {!statementUses.length && !bodyUses.length && <p>Nothing else on this page.</p>}
+          {!statementUses.length && !bodyUses.length && <p>{fromLean(edition) ? "Nothing else on this page." : d.provenance === "source-read" ? "Dependencies have not been extracted for this declaration." : "No further dependencies recorded on this page."}</p>}
         </div>
         <div>
           <p className="decl__label">Used by</p>
           {d.used_by_statement.length > 0 && <p>In the statement of: <Names edition={edition} names={d.used_by_statement} act={act} /></p>}
           {d.used_by_proof.length > 0 && <p>Only in the {isType(d) ? "definition or proof" : "proof or body"} of: <Names edition={edition} names={d.used_by_proof} act={act} /></p>}
-          {!d.used_by.length && <p>Nothing else on this page.</p>}
+          {!d.used_by.length && <p>{fromLean(edition) ? "Nothing else on this page." : "No further uses recorded on this page."}</p>}
         </div>
       </div>
       {passages.length > 0 && (

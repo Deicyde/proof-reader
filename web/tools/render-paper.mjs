@@ -204,6 +204,14 @@ md.core.ruler.push("section_ids", (state) => {
 });
 
 let text = readFileSync(source, "utf8");
+// Frontmatter is source metadata, not a paragraph in the reading copy. Keep
+// every newline in place so source anchors still point to the original file.
+if (guide) text = text.replace(/^---\r?\n([\s\S]*?)\r?\n---(?=\r?\n|$)/, (header, body) => {
+  const lines = body.split(/\r?\n/);
+  const metadata = lines.some((line) => /^title:\s*\S/.test(line)) &&
+    lines.every((line) => /^(?:[A-Za-z_][\w-]*:\s*.*|\s{2,}-\s+\S.*|\s*)$/.test(line));
+  return metadata ? header.replace(/[^\r\n]/g, " ") : header;
+});
 const sourceBlocks = [];
 if (guide) {
   // Use the parser's top-level source maps. A table or list is one block;
