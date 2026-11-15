@@ -8,6 +8,7 @@
     "PCP.Algebraic.GridVanishing",
     "PCP.Algebraic.Hadamard",
     "PCP.Algebraic.HadamardSoundness",
+    "PCP.Algebraic.HadamardTest",
     "PCP.Algebraic.PointLineSoundness",
     "PCP.Algebraic.ThreeColorAmplifiedVerifier",
     "PCP.Algebraic.ThreeColorGrid",
@@ -7423,6 +7424,19 @@
       "type": "Type",
       "type_dependencies": [],
       "value_dependencies": []
+    },
+    {
+      "name": "PCP.Algebraic.Hadamard.testQueries_length",
+      "module": "PCP.Algebraic.HadamardTest",
+      "kind": "theorem",
+      "type": "SOURCE-LEVEL SIGNATURE (not elaborated; section variables below):\ntheorem testQueries_length (hr : 1 ≤ r) (s : TestRandomness t r) :\n    (testQueries hr s).length = 2 * r + 4\nSECTION VARIABLE DECLARATIONS (source order; some may be out of scope):\nvariable {t r : ℕ}",
+      "line": 89,
+      "end_line": 92,
+      "axioms": [],
+      "type_dependencies": [],
+      "value_dependencies": [],
+      "structural_dependencies": [],
+      "provenance": "source-read"
     }
   ]
 }

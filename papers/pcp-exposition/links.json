@@ -57,11 +57,11 @@
     },
     {
       "id": "claim-7",
-      "title": "Soundness of the Hadamard test",
+      "title": "Hadamard test query count",
       "section": "Why the construction needs more than linear questions",
       "passage": "pcp-expository-cubic-labels",
       "lean": [
-        "PCP.Algebraic.Hadamard.test_soundness"
+        "PCP.Algebraic.Hadamard.testQueries_length"
       ]
     },
     {
@@ -98,15 +98,6 @@
       "passage": "linked-source-14",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.exists_proof_rejectionRate_eq_zero"
-      ]
-    },
-    {
-      "id": "claim-12",
-      "title": "Local correction error bound",
-      "section": "8. Combining the encodings and returning to the grid",
-      "passage": "linked-source-15",
-      "lean": [
-        "PCP.Algebraic.BinaryLocalCorrection.failure_le"
       ]
     },
     {
@@ -151,7 +142,7 @@
       "id": "pcp-expository-opening",
       "section": "An algebraic proof of the PCP theorem, through worked examples",
       "role": "explains",
-      "quote": "The same promise applies to every problem whose proposed solutions can be\nchecked in polynomial time. The encoded certificate still has polynomial\nlength. PCP stands for *probabilistically checkable proof*.",
+      "quote": "The same statement holds for every problem whose proposed solutions can be\nchecked in polynomial time. The encoded certificate still has polynomial\nlength. PCP stands for *probabilistically checkable proof*.",
       "lean": [
         "PCP.np_subset_pcp"
       ],
@@ -190,7 +181,7 @@
       "id": "pcp-expository-grid-certificate",
       "section": "5",
       "role": "explains",
-      "quote": "The displayed decomposition is a certificate for the grid condition.\nIt tells us *why* every grid point gives zero without listing the four\nevaluations separately. In more variables, the analogous theorem says\nthat a polynomial vanishing on $H^m$ can be written",
+      "quote": "The displayed decomposition certifies the grid condition: each term\ncontains a factor that vanishes on the grid. In more variables, the\ncorresponding statement is Lemma 2.9 of the [corrected paper][paper-v2]:\na polynomial vanishing on $H^m$ can be written",
       "lean": [
         "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_decomposition"
       ],
@@ -203,7 +194,7 @@
       "id": "pcp-expository-digit-encoding",
       "section": "6",
       "role": "explains",
-      "quote": "The point-versus-line theorem gives the converse needed for soundness.\nSuppose each supplied line polynomial has degree at most $d$, and sample\n$u,v$ and the line parameter $\\lambda$ uniformly, with $\\lambda$ allowed\nto be zero. Let $\\delta$ be the fraction of comparisons\n$f(u+\\lambda v)=T_{u,v}(\\lambda)$ that fail. The formal theorem says\nthat if $Q\\geq10^6d^3$ and $\\delta\\leq1/(4\\cdot10^6)$, then the point\ntable is within distance $2\\delta$ of one multivariate polynomial of\ntotal degree at most $d$. The supplied line polynomials may be mutually\ninconsistent; the test is responsible for detecting that problem.",
+      "quote": "The point-versus-line theorem gives the converse needed for soundness.\nSuppose each supplied line polynomial has degree at most $d$, and sample\n$u,v$ and the line parameter $\\lambda$ uniformly, with $\\lambda$ allowed\nto be zero. Let $\\delta$ be the fraction of comparisons\n$f(u+\\lambda v)=T_{u,v}(\\lambda)$ that fail. The formal theorem says\nthat if $Q\\geq10^6d^3$ and $\\delta\\leq1/(4\\cdot10^6)$, then the point\ntable is within distance $2\\delta$ of one multivariate polynomial of\ntotal degree at most $d$. This conclusion requires no assumption that\nthe supplied line polynomials agree with one another.",
       "lean": [
         "PCP.Algebraic.PointLineTest.exists_close_of_small_rejection"
       ],
@@ -216,7 +207,7 @@
       "id": "pcp-expository-weighted-test",
       "section": "Testing and correcting a polynomial of fixed degree",
       "role": "explains",
-      "quote": "The converse is the important theorem. With the stated generator\nnodes and $|F|>2c$, if the rejection rate is\n$\\delta<1/[2(c+2)^2]$, the function is within distance $2\\delta$\nof some polynomial of total degree at most $c$. Here distance means\nthe fraction of table entries that differ. Passing the relation\nrarely or at a few selected lines would not give this conclusion.",
+      "quote": "For the converse, use the stated generator nodes and $|F|>2c$.\nIf the rejection rate is $\\delta<1/[2(c+2)^2]$, the function is within\ndistance $2\\delta$ of some polynomial of total degree at most $c$.\nHere distance means the fraction of table entries that differ.\nPassing the relation rarely or at a few selected lines would not give\nthis conclusion. The [corrected paper][paper-v2], Section 3.2, develops\nthis weighted test and its correction procedure; the bounds stated here\nare those of the formal development.",
       "lean": [
         "PCP.Algebraic.GeneratorLowDegreeTest.exists_close"
       ],
@@ -229,7 +220,7 @@
       "id": "pcp-expository-hadamard",
       "section": "7",
       "role": "explains",
-      "quote": "The general BLR linearity theorem says that a function which fails\nthis test with probability $\\varepsilon$ is within distance\n$\\varepsilon$ of a linear functional. Its proof, included in the\nformal development, uses Fourier analysis on a finite binary vector\nspace. The example demonstrates the test; the theorem supplies its\nconverse for arbitrary received words.",
+      "quote": "Bellare, Coppersmith, Håstad, Kiwi and Sudan proved the sharp bound\n([Theorem 1.2][bchks]): a function which fails this test with probability\n$\\varepsilon$ is within distance $\\varepsilon$ of a linear functional.\nIts proof, included in the formal development, uses Fourier analysis on\na finite binary vector space. Appendix B, Theorem B.1 of the\n[corrected paper][paper-v2] states this bound and cites both works.\nThe eight-point example demonstrates the test; the theorem applies to\narbitrary received words.",
       "lean": [
         "PCP.Algebraic.BLR.exists_linearMap_distance_le_of_rejection_le"
       ],
@@ -244,7 +235,7 @@
       "role": "explains",
       "quote": "The formal Hadamard test checks these properties using corrected\nanswers. Its degree-three version makes ten bit queries. The current\npaper gives an eight-query version which retains only the top-degree\nproduct check; the pinned Lean verifier also performs lower-degree\nchecks. We use the formal version's count when discussing its\nresources. The linearity example above explains one component, not\nthe whole degree-three test.",
       "lean": [
-        "PCP.Algebraic.Hadamard.test_soundness"
+        "PCP.Algebraic.Hadamard.testQueries_length"
       ],
       "anchor": {
         "heading": "Why the construction needs more than linear questions",
@@ -255,7 +246,7 @@
       "id": "pcp-expository-binary-tests",
       "section": "8",
       "role": "explains",
-      "quote": "The combined low-degree theorem supplies **one** polynomial close to\nthe primary oracle on the label sets used later. It is not enough to\nobtain one polynomial for the cubic questions and an unrelated one\nfor the linear questions. Their common interpretation is what makes\nthe checks cooperate. In the formal version, the additional\ndegree-one guarantee concerns homogeneous linear labels; this is\nthe label family used for the final difference check. A certificate\ntable whose entire label space has degree one also receives the\nfull affine-label guarantee.",
+      "quote": "The combined low-degree theorem supplies **one** polynomial close to\nthe primary oracle on the label sets used later. It is not enough to\nobtain one polynomial for the cubic questions and an unrelated one for\nthe linear questions: both checks must refer to the same decoded\npolynomial. In the formal version, the additional degree-one guarantee\nconcerns homogeneous linear labels; this is the label family used for\nthe final difference check. A certificate table whose entire label\nspace has degree one also receives the full affine-label guarantee.",
       "lean": [
         "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close"
       ],
@@ -268,7 +259,7 @@
       "id": "pcp-expository-assembly",
       "section": "9",
       "role": "explains",
-      "quote": "For soundness, reason in the opposite direction. Suppose an\narbitrary proof string is accepted with probability very close\nto one. Each of the seven checks must then reject rarely, because\nfailure of any one makes the whole verifier reject.",
+      "quote": "For soundness, suppose an arbitrary proof string is accepted with\nprobability very close to one. Each of the seven checks must then\nreject rarely, because failure of any one makes the whole verifier reject.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.rejectionRate_ge_of_not_colorable"
       ],
@@ -294,26 +285,13 @@
       "id": "linked-source-14",
       "section": "9. From the seven checks to a colouring",
       "role": "explains",
-      "quote": "Perfect completeness follows the construction forward. Start\nwith a proper colouring, interpolate it, form its difference\npolynomial, and construct the two vanishing certificates. Supply\ntheir honest encodings and line tables. Interpolation identities,\nbinary encoding identities and the two grid certificates then\nmake every check accept for every seed, provided the honest\ndegrees fit the encoding capacity. Section 10 checks the\nsufficient condition $5m(h-1)<b^c$ for the chosen parameters.",
+      "quote": "For perfect completeness, start with a proper colouring, interpolate it,\nform its difference polynomial, and construct the two vanishing\ncertificates. Supply their honest encodings and line tables.\nInterpolation identities, binary encoding identities and the two grid\ncertificates then make every check accept for every seed, provided the\nhonest degrees fit the encoding capacity. Section 10 checks the\nsufficient condition $5m(h-1)<b^c$ for the chosen parameters.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.exists_proof_rejectionRate_eq_zero"
       ],
       "anchor": {
         "heading": "9. From the seven checks to a colouring",
         "block": 5
-      }
-    },
-    {
-      "id": "linked-source-15",
-      "section": "8. Combining the encodings and returning to the grid",
-      "role": "explains",
-      "quote": "The outer local corrector uses a random line through a prescribed\npoint. It checks the encoded line information and compares at a\nrandom nonzero point of that line before returning the requested\nbinary value at its origin. It may reject. The soundness theorem\ncontrols incorrect returned answers in terms of the actual\nrejection probability, the distance of the primary table from its\npolynomial, and a polynomial root bound. More precisely, fix a target\npoint $a$. If the primary table is within homogeneous distance $\\delta$\nof a polynomial of degree at most $D$, and the corrector rejects with probability\n$R_a$, then",
-      "lean": [
-        "PCP.Algebraic.BinaryLocalCorrection.failure_le"
-      ],
-      "anchor": {
-        "heading": "8. Combining the encodings and returning to the grid",
-        "block": 11
       }
     },
     {
@@ -333,7 +311,7 @@
       "id": "linked-source-17",
       "section": "2. What the theorem promises",
       "role": "explains",
-      "quote": "The converse is useful and short. Suppose a problem has a verifier with\nthese properties. Guess the first $p(n)$ certificate bits, and run the\nverifier on **all** its random strings. There are",
+      "quote": "Conversely, suppose a problem has a verifier with these properties. Guess\nthe first $p(n)$ certificate bits, and run the verifier on **all** its\nrandom strings. There are",
       "lean": [
         "PCP.pcp_subset_np_concrete"
       ],
@@ -346,7 +324,7 @@
       "id": "linked-source-18",
       "section": "7. A field value represented by many one-bit questions",
       "role": "explains",
-      "quote": "This is the homogeneous linear part of a Hadamard encoding. It stores\neight answers about a message with only three bits. The redundancy\nhas a useful property: any two different messages give words differing\nin exactly half their positions. Indeed, their difference is a nonzero\nlinear functional. Choose a vector on which it is one; adding that\nvector pairs every zero value with a one value.",
+      "quote": "This is the homogeneous linear part of a Hadamard encoding. It stores\neight answers about a message with only three bits. Any two different\nmessages give words differing in exactly half their positions. Indeed,\ntheir difference is a nonzero linear functional. Choose a vector on\nwhich it is one; adding that vector pairs every zero value with a one value.",
       "lean": [
         "PCP.Algebraic.Hadamard.relativeDistance_encodeFunction_map"
       ],
@@ -359,7 +337,7 @@
       "id": "linked-source-19",
       "section": "10. Randomness, proof length and repetition",
       "role": "explains",
-      "quote": "The purpose of these bounds is to prove independence from\nthe input size, not to give a practical verification\nprotocol. The formal construction repeats the verifier\n$R=1137847282503168$ times with independent random seeds,\naccepting only when every run accepts.",
+      "quote": "These bounds establish independence from the input size; they do\nnot give a practical verification protocol. The formal construction\nrepeats the verifier $R=1137847282503168$ times with independent\nrandom seeds, accepting only when every run accepts.",
       "lean": [
         "PCP.Algebraic.ThreeColorAmplifiedVerifier.verification_guarantees"
       ],
@@ -411,7 +389,8 @@
     "PCP.Machine.encodeAnswer": "Encode a verifier response",
     "PCP.Machine.encodeBool": "Encode a Boolean result",
     "PCP.Machine.PolyTimeRel": "Polynomial time for a relation",
-    "PCP.Machine.PolyTimeAlg": "Polynomial time for one step"
+    "PCP.Machine.PolyTimeAlg": "Polynomial time for one step",
+    "PCP.Algebraic.Hadamard.testQueries_length": "Hadamard test query count"
   },
   "fidelity_held": "The selected source has not yet been compared against elaborated Lean statements for this page."
 }
