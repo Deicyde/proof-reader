@@ -256,7 +256,7 @@ export const leanOrigin = (edition: Edition) => fromLean(edition)
 export const declOrigin = (edition: Edition, d: Declaration) => {
   const kind = d.provenance ?? (fromLean(edition) ? "lean" : "source-read");
   return kind === "lean" ? `read by Lean ${edition.lean.version}`
-    : kind === "statement-compiled" ? `statement compiled by Lean ${edition.lean.version} here; proof not built here`
+    : kind === "statement-compiled" ? `statement compiled by Lean ${edition.lean.version}; proof not built in that extraction`
       : "read from the source by hand, with AI";
 };
 

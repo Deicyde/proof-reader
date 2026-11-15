@@ -5,7 +5,7 @@
 // Each entry links back into the two-pane reader; the page prints as it reads.
 
 import { useEffect, useMemo, useState } from "react";
-import { leanOrigin, loadSource, noun, passageLocation, type Edition, type SheetEntry } from "../app/edition";
+import { fromLean, leanOrigin, loadSource, noun, passageLocation, type Edition, type SheetEntry } from "../app/edition";
 import { Lockup } from "../app/Family";
 import { routeHref } from "../app/router";
 import { LeanCode, useFileLines, type LeanActions } from "../lean/code";
@@ -47,9 +47,9 @@ export function StatementSheet({ edition }: { edition: Edition }) {
         <h1>{edition.paper.title}</h1>
         <p className="sheetpage__by">{edition.paper.authors.join(", ")}</p>
         <p className="sheetpage__about">
-          The main theorem, then every definition its statement depends on, simplest first, each with its exact Lean.
+          {fromLean(edition) ? <>The main theorem, then every definition its statement depends on, simplest first, each with its exact Lean.
           Beside each is the {word}’s own explanation where it has one; otherwise a note added for this page, marked as such.
-          Where the definitions reach Lean’s own library the sheet names those declarations and stops.
+          Where the definitions reach Lean’s own library the sheet names those declarations and stops.</> : <>Selected source declarations and their linked passages. Dependencies have not been extracted, so this sheet does not list every definition a statement needs.</>}
         </p>
         <p className="sheetpage__prov">{leanOrigin(edition)} Links and notes were made with AI and have not been reviewed by the authors.</p>
         {sheets.map((sheet) => (

@@ -15,6 +15,14 @@ the proof steps and the connections between them.
 For a specific example, [open a paragraph and its five linked lines of Lean](https://wcook04.github.io/proof-reader/#/contextual-embeddings/@isoR-clam),
 linked to Lean lines 217 to 221.
 
+The PCP collection contains a [detailed argument](papers/pcp-full-argument/paper.md),
+a [specialist paper](papers/pcp-specialist/paper.md), and a [worked exposition](papers/pcp-exposition/paper.md).
+In the reader these use the routes `#/pcp-full-argument`, `#/pcp-specialist`,
+and `#/pcp-exposition`; Troy Lee's [original reading guide](papers/pcp-reading-guide/guide.md)
+remains at `#/pcp-reading-guide`. The algebraic proof is due to Amireddy,
+Behera, Srinivasan, Sudan and Willumsgaard; Lee wrote the Lean formalization.
+AI agents wrote the three explanations under Will Cook's direction.
+
 On a desktop, the paper is on the left and the proof diagram is on the right.
 As you scroll, the diagram highlights the step linked to the passage you are
 reading. Click a statement or diagram card to see its Lean code. Use **Back**
@@ -26,14 +34,19 @@ linked statement has its own address, so you can send someone directly to it.
 The contents also include an index of named Lean definitions and theorems
 (called **declarations**), with the assumptions each proof uses (**axioms**).
 
-The site adds no explanation of the mathematics. A program checks the reading copy against
-text extracted from the PDF, and the original PDF is one click away. The graph's edges and the
-axiom lists come from Lean's own report on the authors' files, read from the compiled project.
-The only added words are a short plain title for each declaration, short notes where the paper
-and the Lean differ, and a comparison of each stated result with its Lean statement, each linked
-to the sentence it is about. These links, titles, notes and comparisons were made with AI and
-have not been reviewed by the authors. Where a comparison cites a Lean proof written for the page,
-the proof is shown with it, and Lean accepted it against the authors' code.
+For PDF papers, a program checks the reading copy against extracted text, and the original PDF
+is one click away. Markdown-source pages render their supplied text directly and check each
+linked quote against its exact source heading and block. Declaration titles, links, notes and
+comparisons are marked as AI-made and not reviewed by the authors. Comparisons can be held;
+where one cites a Lean check written for the page, the check and its reported axioms are shown.
+
+Evidence differs by page. Some declaration data comes from Lean's report on compiled modules.
+The PCP companions reuse the original guide's retained interface extraction, including a
+statement-only compilation of the headline theorem. Their other selected declarations are
+source-read: proof-use dependencies and axiom reports have not been extracted for those
+declarations, and comparisons are held. The [source review](papers/pcp-full-argument/source-review.md)
+records the source pin and hashes. Neither a source link nor a correspondence check establishes
+that the prose and Lean have the same meaning.
 
 ## Run the site
 
@@ -52,9 +65,9 @@ cd web
 npm run dev
 ```
 
-Open the address it prints and choose *Contextual Embeddings*. The paper build creates
-the data the site needs; it uses the checked-in Lean extraction, so running the existing
-paper does not require Lean. After changing a paper's files, run `python3 tools/paper.py build`
+Open the address it prints and choose a paper. The paper build creates the data the site needs
+from checked-in declaration records, so reading the existing papers does not require Lean.
+After changing a paper's files, run `python3 tools/paper.py build`
 again from the repository root.
 
 From `web/`, `npm run build` writes a static site to `web/dist`.
@@ -77,23 +90,27 @@ python3 tests/journey.py --shots /tmp/journey
 
 ## Add a paper
 
-To add a paper, create a folder containing the original PDF and Lean project,
-a reading copy of the text, and links between passages and Lean statements.
+To add a paper, create a folder containing its PDF or Markdown source, the Lean project,
+and links between passages and Lean statements. For a PDF, provide a reading copy as well.
 The build command turns those files into pages for the website.
 
 ```
 papers/<slug>/
-  paper.pdf      the authors' PDF, unchanged
-  paper.md       a reading copy of the paper, checked against text from the PDF
+  paper.pdf      the authors' PDF, unchanged, for a PDF source
+  paper.md       a PDF reading copy, or the supplied Markdown source
   paper.toml     title, authors, licences and the Lean modules to read
   lean/          the authors' Lean project, unchanged
   links.json     which passage goes with which declaration, plain titles, notes and comparisons
   checks/        optional Lean files of ours that test a statement against the authors' Lean
-  generated/     what Lean reports about the project and the checks
+  generated/     recorded declaration data and its provenance, plus any compiled checks
 ```
 
-The [add-paper guide](skills/add-paper/SKILL.md) gives the full procedure for a
-person or an AI assistant. The commands are:
+The [add-paper guide](skills/add-paper/SKILL.md) gives the PDF procedure for a
+person or an AI assistant. For a Markdown source, set `[paper] markdown` in
+`paper.toml`; `links.json` identifies exact unique quotations with a heading and
+block anchor. Source-read declarations must be labelled as such. Comparisons may
+be held with `fidelity_held`, in which case the page does not present them. The
+PDF commands are:
 
 ```sh
 python3 tools/paper.py new my-paper       # then add the PDF, Lean and paper.toml
@@ -112,7 +129,7 @@ trust before extracting it.
 
 ## What `paper.py check` establishes
 
-The command compares the reading copy with text extracted from the PDF. It skips the top
+For a PDF, the command compares the reading copy with extracted text. It skips the top
 7.5% and bottom 5.5% of each page, repeated headers and footers, bullet marks, and words
 inside figure crops. The figures themselves are copied from the PDF.
 
@@ -121,14 +138,16 @@ hyphens, and allows text blocks to move. These allowances can also let changes i
 or character order pass. The check helps find transcription errors; a pass does not
 certify an exact copy. Review the reading copy alongside the original PDF.
 
-The command also confirms that every quotation appears exactly once, that exact Lean lines lie
+For Markdown, it checks exact source quotations and heading/block anchors; it does not compare
+against a PDF. For both source types, it confirms that every quotation appears exactly once, that exact Lean lines lie
 inside their declaration and that every Lean name exists. No program confirms that a sentence is
 about the code it is linked to: a person has to read both. Names printed in the paper are linked
 by matching the name alone, so `STLC` in the paper's Haskell opens the Lean `STLC`. Lean reports
 what a proof depends on, and does not report whether a Lean statement means what the paper says.
 
-So every result the paper states, and every axiom of the authors, carries a comparison: the Lean
-says the same as the paper, more, less, or something different. `check` stops if one is missing.
+When comparisons are provided, each claimed result and relevant author axiom carries a comparison:
+the Lean says the same as the paper, more, less, or something different. `check` stops if one is
+missing unless comparisons are explicitly held for the page.
 A comparison is AI judgement. Where it cites a check, the check is a Lean file of ours under
 `papers/<slug>/checks/`, compiled by `extract` against the authors' Lean, with the axioms Lean
 reports for it. `check` stops if a check file has changed since `extract` compiled it. Each page
@@ -137,7 +156,7 @@ has reviewed them.
 
 ## Repository map
 
-Authored paper files and the checked-in Lean extraction live under `papers/`.
+Authored paper files and checked-in declaration records live under `papers/`.
 `tools/paper.py build` turns them into `web/public/papers/`. The website build
 command then packages them with the application in `web/dist/`. Both output directories are ignored by Git:
 change their sources and rebuild them.
@@ -168,7 +187,7 @@ change their sources and rebuild them.
 with different levels of detail. Its
 [reading website](https://wcook04.github.io/lean-exposition-site/) presents those draft
 explanations beside the graph; [this video walks through that site](https://www.youtube.com/watch?v=sYMDcT7vyng).
-Proof Reader's reading copy keeps the original paper's wording.
+For PDF papers, Proof Reader's reading copy keeps the original paper's wording.
 
 ## Licence
 

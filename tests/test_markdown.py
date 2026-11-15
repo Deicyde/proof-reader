@@ -44,6 +44,20 @@ class MarkdownAnchors(unittest.TestCase):
         self.assertIn('https://example.org/docs/code.lean', built["html"])
         self.assertIn('data-p="p"', built["html"])
 
+    def test_frontmatter_is_hidden_but_source_lines_are_preserved(self):
+        source = '---\ntitle: "Private metadata"\nauthors:\n  - "Author"\n---\n\n## Section\n\nA linked sentence.\n'
+        done, passages = self.resolve(source, "A linked sentence.")
+        built = reading.build_markdown(done, "test", passages, [], "")
+        self.assertNotIn("Private metadata", built["html"])
+        self.assertEqual(passages[0]["source_lines"], [9, 9])
+
+    def test_opening_horizontal_rules_do_not_hide_ordinary_prose(self):
+        source = '---\n\nAn ordinary opening paragraph.\n\n---\n\n## Section\n\nA linked sentence.\n'
+        done, passages = self.resolve(source, "A linked sentence.")
+        built = reading.build_markdown(done, "test", passages, [], "")
+        self.assertIn("An ordinary opening paragraph.", built["html"])
+        self.assertEqual(passages[0]["source_lines"], [9, 9])
+
     def test_exact_raw_quote_is_unique_globally_before_anchor(self):
         with self.assertRaisesRegex(reading.ReadingError, "found 2 times"):
             self.resolve("## Section\n\nSame text.\n\n## Other\n\nSame text.\n", "Same text.")
@@ -225,6 +239,20 @@ class MarkdownEdition(unittest.TestCase):
 
     def test_extracted_lean_data_defaults_to_lean_provenance(self):
         self.assertEqual(paper.edition("example")["lean"]["provenance"], {"kind": "lean"})
+
+    def test_companion_can_read_a_shared_lean_project(self):
+        shared = self.root / "papers" / "shared" / "lean"
+        shared.parent.mkdir()
+        (self.folder / "lean").rename(shared)
+        config = (self.folder / "paper.toml").read_text()
+        (self.folder / "paper.toml").write_text(config.replace(
+            '[lean]\nmodules=', '[lean]\nproject="../shared/lean"\nmodules='))
+        built = paper.edition("example")
+        declaration = built["declarations"][0]
+        self.assertEqual(declaration["file"], "lean/Demo.lean")
+        self.assertEqual(built["lean"]["files"][declaration["file"]],
+                         "def statement : Prop := True\n")
+        self.assertEqual(built["lean"]["toolchain"], "fixture-only")
 
     def test_source_config_is_explicit_and_exclusive(self):
         for config in ({"paper": {}}, {"paper": {"pdf": "paper.pdf", "markdown": "guide.md"}}):

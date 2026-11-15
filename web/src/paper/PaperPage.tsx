@@ -90,6 +90,7 @@ function resolve(edition: Edition, record: string | undefined, extra: string | u
 export function PaperPage({ edition }: { edition: Edition }) {
   const slug = edition.slug;
   const { paper, lean } = edition;
+  const sourceUrl = paper.url || paperFile(slug, "source.md");
   const hasPdf = !!paper.pdf;
   const markdown = edition.source?.kind === "markdown";
   const graph = useMemo(() => editionGraph(edition), [edition]);
@@ -710,7 +711,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const credit = markdown ? (
     <p>
       {edition.credit?.text ?? `Text: ${paper.authors.join(", ")}, ${paper.licence}`}.
-      {" "}We rendered the authors’ Markdown directly and checked each quotation against its source heading and block. <a href={paper.url}>Read the source Markdown</a>.
+      {" "}We rendered the authors’ Markdown directly and checked each quotation against its source heading and block. <a href={sourceUrl}>Read the source Markdown</a>.
       {" "}{leanOrigin(edition)} Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.
     </p>
   ) : (
@@ -763,8 +764,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
           {paper.films && <a className="bar__film" href={SHORT_FILM.youtube} target="_blank" rel="noopener noreferrer" title={`${SHORT_FILM.title}, video on YouTube`}>
             <span className="bar__film-mark" aria-hidden="true" />Video, {clockTime(SHORT_FILM.seconds)}<span className="sr-only"> on YouTube</span>
           </a>}
-          {!!edition.sheets?.length && <a className="bar__link" href={routeHref({ paper: slug, record: "@sheet" })} title="The theorem and every definition it needs, on one page">Statement sheet</a>}
-          <a className="bar__link" href={paper.url}>{markdown ? "Source Markdown" : "Published paper"}</a>
+          {!!edition.sheets?.length && <a className="bar__link" href={routeHref({ paper: slug, record: "@sheet" })} title={fromLean(edition) ? "The theorem and every definition it needs, on one page" : "Selected source declarations and linked passages"}>Statement sheet</a>}
+          <a className="bar__link" href={sourceUrl}>{markdown ? "Source Markdown" : "Published paper"}</a>
           <a className="bar__link" href={lean.source}>Lean artifact</a>
         </div>
       </header>
@@ -828,7 +829,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
                     <span className="start__go">
                       {firstSection && <button type="button" onClick={() => jumpTo(firstSection.id)}>{firstSection.number ? sectionLabel(firstSection.number) : firstSection.title}: the first linked statement</button>}
                       {claimSection && <button type="button" onClick={() => jumpTo(claimSection.id)}>{sectionLabel(claimSection.number)}: the main claim</button>}
-                      {!!edition.sheets?.length && <a className="start__sheet" data-leave href={routeHref({ paper: slug, record: "@sheet" })}>Statement sheet: the theorem and every definition it needs</a>}
+                      {!!edition.sheets?.length && <a className="start__sheet" data-leave href={routeHref({ paper: slug, record: "@sheet" })}>{fromLean(edition) ? "Statement sheet: the theorem and every definition it needs" : "Statement sheet: selected source declarations"}</a>}
                     </span>
                   )}
                 </p>
@@ -841,7 +842,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
               foot={<footer className="foot">{credit}<SisterSites /></footer>}
             />
           ) : (
-            copy === "reading" && <p className="status" data-paper-pane role={readingFailed ? "alert" : undefined}>{readingFailed ? <>Could not open the {noun(edition)}. <a href={paper.url}>Read the source Markdown</a>.</> : `Opening the ${noun(edition)}…`}</p>
+            copy === "reading" && <p className="status" data-paper-pane role={readingFailed ? "alert" : undefined}>{readingFailed ? <>Could not open the {noun(edition)}. <a href={sourceUrl}>Read the source Markdown</a>.</> : `Opening the ${noun(edition)}…`}</p>
           ))}
           {hasPdf && paper.crop && pdfSeen && (
             <Suspense fallback={<p className="status" data-paper-pane>Opening the PDF…</p>}>
