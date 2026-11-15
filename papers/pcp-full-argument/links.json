@@ -225,7 +225,7 @@
       "id": "pcp-long-intro-theorem",
       "section": "The algebraic PCP theorem: a detailed account of the Lean proof",
       "role": "explains",
-      "quote": "A polynomial-time verifier can check membership in any NP language by reading a constant number of bits from a suitably encoded proof. It uses only logarithmically many random bits, accepts a correct proof with certainty, and rejects every purported proof of a false statement with probability at least one half. This account explains the algebraic construction and the machine-level steps that establish this statement in Troy Lee's Lean formalization.",
+      "quote": "A polynomial-time verifier can check membership in any NP language by reading a constant number of bits from a suitably encoded proof. It uses only logarithmically many random bits, accepts a correct proof with certainty, and rejects every purported proof of a false statement with probability at least one half. We reconstruct the algebraic argument in Troy Lee's Lean formalization and explain how its implementation and machine-simulation theorems establish these resource bounds.",
       "lean": [
         "PCP.np_subset_pcp"
       ],
@@ -236,15 +236,15 @@
     },
     {
       "id": "pcp-long-intro-roadmap",
-      "section": "How the proof is organized",
+      "section": "From the algebraic tests to the PCP theorem",
       "role": "explains",
-      "quote": "A polynomial vanishing on the whole grid has a certificate built from the grid's coordinate vanishing polynomials.",
+      "quote": "Put $Z_H(T)=\\prod_{u\\in H}(T-u)$. The grid-vanishing theorem, proved in the algebraic chapter, writes any polynomial $A$ vanishing on $H^k$ as $\\sum_i Z_H(X_i)U_i(X)$. Its certificate $M(X,Y)=\\sum_iY_iU_i(X)$ satisfies $M(X,0)=0$ and $M(X,Z_H(X))=A(X)$, with $\\deg M\\le\\deg A$.",
       "lean": [
         "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_certificate"
       ],
       "anchor": {
-        "heading": "How the proof is organized",
-        "block": 2
+        "heading": "Three colours as polynomial equations",
+        "block": 19
       }
     },
     {
@@ -290,7 +290,7 @@
       "id": "pcp-long-algebra-generator-soundness",
       "section": "2",
       "role": "explains",
-      "quote": "Apply this result to (A6), with $n=c+1$. If",
+      "quote": "Suppose $q>2c$. If the test using a generator of $F^\\times$ and its Lagrange weights rejects with probability $\\delta<1/[2(c+2)^2]$, then a formal polynomial of total degree at most $c$ agrees with $f$ outside a set of relative size at most $2\\delta$.",
       "lean": [
         "PCP.Algebraic.GeneratorLowDegreeTest.exists_close"
       ],
@@ -348,7 +348,7 @@
       ],
       "anchor": {
         "heading": "4. Bivariate agreement",
-        "block": 13
+        "block": 14
       }
     },
     {
@@ -361,7 +361,7 @@
       ],
       "anchor": {
         "heading": "4. Bivariate agreement",
-        "block": 25
+        "block": 26
       }
     },
     {
@@ -374,7 +374,7 @@
       ],
       "anchor": {
         "heading": "4. Bivariate agreement",
-        "block": 46
+        "block": 47
       }
     },
     {
@@ -615,15 +615,15 @@
     },
     {
       "id": "pcp-long-final-target",
-      "section": "From the algebraic tests to the PCP theorem",
+      "section": "The algebraic PCP theorem: a detailed account of the Lean proof",
       "role": "explains",
-      "quote": "The constants, polynomial, verifier and implementation are chosen before the input. The proof may depend on the input but is fixed before the random seed.",
+      "quote": "The verifier may choose its next proof address using the bits already read. The proof is fixed before the seed is drawn; the statement does not allow the prover to choose a new proof after seeing the verifier's randomness. The verifier, its implementation, the constants, and the proof-length polynomial are chosen for the language, before the input. Proofs may depend on the input.",
       "lean": [
         "PCP.np_subset_pcp"
       ],
       "anchor": {
-        "heading": "From the algebraic tests to the PCP theorem",
-        "block": 4
+        "heading": "The algebraic PCP theorem: a detailed account of the Lean proof",
+        "block": 8
       }
     },
     {
@@ -662,7 +662,7 @@
       ],
       "anchor": {
         "heading": "The eight tables and seven checks",
-        "block": 11
+        "block": 12
       }
     },
     {
@@ -675,7 +675,7 @@
       ],
       "anchor": {
         "heading": "The eight tables and seven checks",
-        "block": 17
+        "block": 18
       }
     },
     {
@@ -702,7 +702,7 @@
       ],
       "anchor": {
         "heading": "Soundness of the seven-check verifier",
-        "block": 7
+        "block": 11
       },
       "lines": [
         90,
@@ -719,7 +719,7 @@
       ],
       "anchor": {
         "heading": "Soundness of the seven-check verifier",
-        "block": 12
+        "block": 16
       }
     },
     {
@@ -732,7 +732,7 @@
       ],
       "anchor": {
         "heading": "Soundness of the seven-check verifier",
-        "block": 33
+        "block": 37
       }
     },
     {
@@ -929,6 +929,20 @@
         "block": 7
       },
       "section": "The reverse inclusion"
+    },
+    {
+      "id": "pcp-long-implementation-contracts",
+      "section": "Implementation results used in the argument",
+      "role": "uses",
+      "quote": "Its implementation condition identifies the verifier with the query tree obtained by unfolding this step for a bounded number of queries, on both possible answers at every branch. A further query at depth zero becomes rejection.",
+      "lean": [
+        "PCP.Verifier.ImplementedBy",
+        "PCP.QueryTree.ofStep"
+      ],
+      "anchor": {
+        "heading": "Implementation results used in the argument",
+        "block": 2
+      }
     }
   ],
   "plain": {

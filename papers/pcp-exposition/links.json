@@ -181,13 +181,13 @@
       "id": "pcp-expository-grid-certificate",
       "section": "5",
       "role": "explains",
-      "quote": "The displayed decomposition certifies the grid condition: each term\ncontains a factor that vanishes on the grid. In more variables, the\ncorresponding statement is Lemma 2.9 of the [corrected paper][paper-v2]:\na polynomial vanishing on $H^m$ can be written",
+      "quote": "Each summand vanishes on the grid because it contains one of its\ncoordinate vanishing polynomials. Polynomial division in each\nvariable proves this result. After removing all multiples of the\n$Z_H(X_j)$, the remainder has degree less than $|H|$ in every variable;\nif it is zero on the whole grid, repeated univariate interpolation makes\nthe remainder zero. Write $h=|H|\\geq1$. Division can choose each nonzero\nquotient with $\\deg Q_j+h\\leq\\deg P$: removing a multiple of the monic\ndegree-$h$ polynomial loses $h$ from its total degree.",
       "lean": [
         "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_decomposition"
       ],
       "anchor": {
         "heading": "5. A certificate for vanishing on a grid",
-        "block": 5
+        "block": 3
       }
     },
     {
@@ -239,7 +239,7 @@
       ],
       "anchor": {
         "heading": "Why the construction needs more than linear questions",
-        "block": 12
+        "block": 13
       }
     },
     {
@@ -252,7 +252,7 @@
       ],
       "anchor": {
         "heading": "8. Combining the encodings and returning to the grid",
-        "block": 11
+        "block": 8
       }
     },
     {
@@ -278,14 +278,14 @@
       ],
       "anchor": {
         "heading": "10. Randomness, proof length and repetition",
-        "block": 11
+        "block": 5
       }
     },
     {
       "id": "linked-source-14",
       "section": "9. From the seven checks to a colouring",
       "role": "explains",
-      "quote": "For perfect completeness, start with a proper colouring, interpolate it,\nform its difference polynomial, and construct the two vanishing\ncertificates. Supply their honest encodings and line tables.\nInterpolation identities, binary encoding identities and the two grid\ncertificates then make every check accept for every seed, provided the\nhonest degrees fit the encoding capacity. Section 10 checks the\nsufficient condition $5m(h-1)<b^c$ for the chosen parameters.",
+      "quote": "For perfect completeness, start with a proper colouring, interpolate it,\nform its difference polynomial, and construct the two vanishing\ncertificates. Supply their honest encodings and line tables.\nInterpolation identities, binary encoding identities and the two grid\ncertificates then make every check accept for every seed, provided the\nhonest degrees fit the encoding capacity.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.exists_proof_rejectionRate_eq_zero"
       ],
@@ -304,7 +304,7 @@
       ],
       "anchor": {
         "heading": "8. Combining the encodings and returning to the grid",
-        "block": 28
+        "block": 26
       }
     },
     {
@@ -337,13 +337,13 @@
       "id": "linked-source-19",
       "section": "10. Randomness, proof length and repetition",
       "role": "explains",
-      "quote": "These bounds establish independence from the input size; they do\nnot give a practical verification protocol. The formal construction\nrepeats the verifier $R=1137847282503168$ times with independent\nrandom seeds, accepting only when every run accepts.",
+      "quote": "For the implemented verifier the retained arithmetic gives\n$\\gamma=1/1137847282503168$ after fair-bit sampling. The fixed repetition\ncount $R=1137847282503168$ satisfies $R\\gamma=1$. These are existence\nbounds, not practical estimates.",
       "lean": [
         "PCP.Algebraic.ThreeColorAmplifiedVerifier.verification_guarantees"
       ],
       "anchor": {
-        "heading": "10. Randomness, proof length and repetition",
-        "block": 14
+        "heading": "Parameter calculation",
+        "block": 9
       }
     },
     {
@@ -384,6 +384,59 @@
         "block": 4
       },
       "section": "Optional calculation: converting a finite relation to clauses"
+    },
+    {
+      "id": "pcp-expository-proof-table-type",
+      "section": "The stored proof",
+      "role": "explains",
+      "quote": "The prover supplies four primary tables and four auxiliary line tables.",
+      "lean": [
+        "PCP.Algebraic.ThreeColorVerifier.Proof"
+      ],
+      "anchor": {
+        "heading": "The stored proof",
+        "block": 1
+      }
+    },
+    {
+      "id": "pcp-expository-digit-substitution",
+      "section": "6",
+      "role": "explains",
+      "quote": "Every coordinate with $j=0$ is one, including at $z=0$.",
+      "lean": [
+        "PCP.Algebraic.SetMultilinear.evaluationPoint"
+      ],
+      "anchor": {
+        "heading": "6. Keeping the number of queries constant",
+        "block": 14
+      }
+    },
+    {
+      "id": "pcp-expository-digit-evaluation",
+      "section": "6",
+      "role": "explains",
+      "quote": "In general, write an exponent $j<b^c$ with $c$ base-$b$ digits and\nreplace $Y^j$ by the product of the corresponding $c$ variables.\nThe resulting polynomial has degree at most $c$, and the same\nsubstitution recovers every evaluation of the original polynomial.",
+      "lean": [
+        "PCP.Algebraic.SetMultilinear.totalDegree_encode_le",
+        "PCP.Algebraic.SetMultilinear.eval_encode"
+      ],
+      "anchor": {
+        "heading": "6. Keeping the number of queries constant",
+        "block": 12
+      }
+    },
+    {
+      "id": "pcp-expository-worked-correction-source",
+      "section": "Following the one-edge certificate to bits",
+      "role": "uses",
+      "quote": "Within each call, comparison and return reuse its inner direction.",
+      "lean": [
+        "PCP.Algebraic.BinaryLocalCorrection.run"
+      ],
+      "anchor": {
+        "heading": "Following the one-edge certificate to bits",
+        "block": 12
+      }
     }
   ],
   "plain": {
@@ -433,7 +486,15 @@
     "PCP.Algebraic.Hadamard.linearEncode": "Homogeneous linear encoding",
     "PCP.Algebraic.Hadamard.relativeDistance_linearEncode": "Homogeneous words differ by half",
     "PCP.Reduction.FiniteBooleanConstraints.clauses": "Clauses for a finite relation",
-    "PCP.Reduction.FiniteBooleanConstraints.orGate_iff": "Three clauses enforce one OR gate"
+    "PCP.Reduction.FiniteBooleanConstraints.orGate_iff": "Three clauses enforce one OR gate",
+    "PCP.Algebraic.SetMultilinear.evaluationPoint": "Digit-substitution point",
+    "PCP.Algebraic.SetMultilinear.eval_encode": "Evaluation after digit encoding",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.Auxiliary": "Encoded line-table type",
+    "PCP.Algebraic.ThreeColorVerifier.Proof": "The eight proof tables",
+    "PCP.Algebraic.ThreeColorVerifier.Query": "Eight physical query tags",
+    "PCP.Algebraic.ThreeColorVerifier.read": "Read a tagged proof bit",
+    "PCP.Algebraic.BinaryLocalCorrection.run": "Run outer local correction",
+    "PCP.Algebraic.SetMultilinear.totalDegree_encode_le": "Constant digit-encoding degree"
   },
   "fidelity_held": "The selected source has not yet been compared against elaborated Lean statements for this page."
 }
