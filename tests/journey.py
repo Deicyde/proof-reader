@@ -1217,12 +1217,91 @@ def static_files(page: Page, url: str) -> None:
     check("/proof-reader/" in response.text(), "whose links keep the base path")
 
 
+def companions(page: Page, url: str, shots: Path | None) -> None:
+    width = page.viewport_size["width"]
+    print(f"Companion navigation and reading layout at {width}px")
+    exposition = f"{url}#/pcp-exposition"
+    specialist = f"{url}#/pcp-specialist"
+    full = f"{url}#/pcp-full-argument"
+    page.goto(exposition, wait_until="load")
+    page.locator(".sheet__text h1").wait_for()
+    page.locator(".proof").get_by_role("button", name="Close", exact=True).click()
+    page.locator(".proof").wait_for(state="hidden")
+
+    def check_columns() -> None:
+        rail = page.locator(".rail").bounding_box()
+        paper = page.locator(".left").bounding_box()
+        check(rail is not None and paper is not None and abs(paper["y"] - rail["y"]) <= 1
+              and abs(paper["x"] - rail["x"] - rail["width"]) <= 1 and rail["width"] < width / 4,
+              "with Graph closed, Contents and the article share a row")
+
+    check_columns()
+    column = page.locator(".sheet__text > p").first.bounding_box()["x"]
+    check(all(abs(page.locator(f".sheet__text > {tag}").first.bounding_box()["x"] - column) < 2 for tag in ("h1", "h2")),
+          "the title and first heading line up with the prose")
+    shot(page, shots, f"pcp-reading-{width}")
+    page.locator('.sheet__text a[href="./#/pcp-specialist"]').first.click()
+    page.wait_for_url(f"{specialist}*")
+    page.locator(".sheet__text h1").wait_for()
+    check_columns()
+    section = "2-the-corrected-short-low-degree-test"
+    link = page.locator(f'.sheet__text a[href="./#/pcp-full-argument/@{section}"]')
+    # Clicking can scroll the link into view. Measure the origin at the click itself.
+    link.evaluate("el => el.addEventListener('click', () => { window.companionSourceTop = el.closest('[data-paper-pane]').scrollTop; }, { once: true })")
+    link.click()
+    origin = page.evaluate("window.companionSourceTop")
+
+    def at_heading() -> bool:
+        if not page.url.startswith(full):
+            return False
+        box = page.locator(".sheet__text #s-2").bounding_box(timeout=500) if page.locator(".sheet__text #s-2").count() else None
+        pane = page.locator("[data-paper-pane]").bounding_box()
+        return box is not None and pane is not None and pane["y"] <= box["y"] < pane["y"] + 150
+
+    wait_until(page, at_heading, "the anchored companion opens at the corrected short low-degree test")
+    page.go_back()
+    page.wait_for_url(f"{specialist}*")
+    page.locator(".sheet__text h1").wait_for()
+    wait_until(page, lambda: abs(top(page) - origin) < 5, "Back restores the reading position in the specialist paper")
+    page.go_back()
+    page.wait_for_url(f"{exposition}*")
+    page.locator(".sheet__text h1").wait_for()
+    check_columns()
+    page.goto(f"{full}#{section}", wait_until="load")
+    wait_until(page, at_heading, "a previously shared double-hash link still opens the right section")
+
+    page.goto(f"{full}/@declarations", wait_until="load")
+    made = page.get_by_role("heading", name="How this page was made").locator("..").inner_text()
+    check("compiled only the statement" in made and "did not build" in made and "were read from source" in made,
+          "the index names the scope of retained compilation and source-read evidence")
+    check("Proofs whose Lean reports list no axioms" not in page.locator(".index").inner_text(),
+          "this mixed edition does not present unextracted proofs as free of axioms")
+    table = page.locator(".index table").bounding_box()
+    lean_pane = page.locator(".proof__lean .leaf__body").bounding_box()
+    check(table["x"] + table["width"] <= lean_pane["x"] + lean_pane["width"],
+          "the declaration index fits in the Lean pane with every column visible")
+
+    page.goto(f"{full}/@file", wait_until="load")
+    page.locator(".wholefile").wait_for()
+    page.locator('.sheet__text a[href="./#/pcp-specialist"]').first.click()
+    page.wait_for_url(f"{specialist}*")
+    page.locator(".sheet__text h1").wait_for()
+    page.go_back()
+    page.wait_for_url(f"{full}/@file")
+    check(page.locator(".proof").get_by_role("button", name="Whole file").get_attribute("aria-pressed") == "true",
+          "the whole-paper link leaves the full argument, and Back restores the open Lean tab")
+
+    page.goto(f"{full}/PCP.np_subset_pcp", wait_until="load")
+    section_link = page.locator(".proof__lean a", has_text="The algebraic PCP theorem").first.inner_text()
+    check(section_link.startswith("The algebraic PCP theorem"), "an unnumbered heading is displayed by title, without a section mark")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--url", help="a running site, ending in /")
     parser.add_argument("--dist", type=Path, default=ROOT / "web" / "dist")
     parser.add_argument("--shots", type=Path)
-    parser.add_argument("--only", choices=("journey", "fidelity", "sizes"))
+    parser.add_argument("--only", choices=("journey", "fidelity", "sizes", "companions"))
     parser.add_argument("--browser", choices=("chromium", "firefox", "webkit"), default="chromium")
     parser.add_argument("--serve", type=Path, help=argparse.SUPPRESS)
     parser.add_argument("--port", type=int, help=argparse.SUPPRESS)
@@ -1266,6 +1345,11 @@ def main() -> int:
                 if server:
                     context = browser.new_context()
                     static_files(context.new_page(), url)
+                    context.close()
+            if args.only in (None, "companions"):
+                for w, h in ((1440, 790), (1920, 953)):
+                    context = graph_first(browser.new_context(viewport={"width": w, "height": h}, reduced_motion="reduce"))
+                    companions(context.new_page(), url, args.shots)
                     context.close()
             browser.close()
     except Stop as failure:

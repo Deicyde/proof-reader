@@ -9,9 +9,11 @@
 import { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import type { Pin } from "../app/history";
 import type { Passage } from "../app/edition";
+import { parseRoute } from "../app/router";
 import { DWELL_MS, FOLLOW_MS, READING_LINE, type Follow, type PaperHandle, type Pointed, type Target, type Where, type Zone } from "./reading-line";
 
 interface Props {
+  slug: string;
   html: string;
   passages: Passage[];
   hidden: boolean;
@@ -28,6 +30,8 @@ interface Props {
   onPage(page: number): void;
   /** A reference to somewhere else in the paper. */
   onJump(place: string): void;
+  /** Keep the current reading position before the browser follows a companion link. */
+  onLeave(): void;
   /** A reference opens in place: one history entry, so Back closes it. */
   onOpenInset(open: () => void): void;
   /** The references open in place have changed without a new entry. */
@@ -59,7 +63,14 @@ const Sheet = memo(function Sheet({ html }: { html: string }) {
 });
 
 /** The place a link in the paper names, as `@place` in its address. */
-const goalOf = (link: Element | null) => /@(.+)$/.exec(link?.getAttribute("href") ?? "")?.[1] ?? null;
+const readerRoute = (link: Element | null) => {
+  const href = link?.getAttribute("href")?.replace(/^\.\//, "");
+  return href?.startsWith("#/") ? parseRoute(href) : null;
+};
+const goalOf = (link: Element | null, slug: string) => {
+  const route = readerRoute(link);
+  return route?.paper === slug && !route.extra && route.record?.startsWith("@") ? route.record.slice(1) : null;
+};
 
 export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(props, ref) {
   const { html, hidden, pin, lit, hint, foot } = props;
@@ -572,8 +583,13 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
       return;
     }
     const link = target.closest<HTMLAnchorElement>("a");
-    // A link to another page of the site (the statement sheet) is the browser's to follow.
-    if (link?.dataset.leave !== undefined) return;
+    // The browser handles new-tab requests and links to other pages of the site.
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link?.target) return;
+    const destination = readerRoute(link)?.paper;
+    if (link?.dataset.leave !== undefined || (destination && destination !== latest.current.slug)) {
+      latest.current.onLeave();
+      return;
+    }
     if (link) {
       if (link.classList.contains("nm")) {
         event.preventDefault();
@@ -588,7 +604,7 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
         latest.current.onPage(Number(link.dataset.page));
         return;
       }
-      const id = goalOf(link);
+      const id = goalOf(link, latest.current.slug);
       if (!id) return;
       event.preventDefault();
       const source = elementFor(id);
@@ -625,7 +641,7 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
     const name = element?.closest<HTMLElement>("a.nm");
     if (name?.dataset.name) return { el: name, pointed: { kind: "name", id: name.dataset.name, passage: name.closest<HTMLElement>(".q")?.dataset.p?.split(" ")[0] } };
     const link = element?.closest<HTMLAnchorElement>(".sheet__text a");
-    const id = link && !link.classList.contains("pg") ? goalOf(link) : null;
+    const id = link && !link.classList.contains("pg") ? goalOf(link, latest.current.slug) : null;
     if (link && id) {
       const source = elementFor(id);
       const words = (source?.querySelector("figcaption") ?? source)?.textContent?.replace(/\s+/g, " ").trim();

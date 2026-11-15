@@ -2,7 +2,7 @@
 // every declaration, or the authors' whole file. The tab is part of the address.
 
 import { memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type Ref } from "react";
-import { fromLean, hasComparisons, noun, passageLocation, type Edition, type Passage } from "../app/edition";
+import { declEvidence, hasComparisons, noun, passageLocation, type Edition, type Passage } from "../app/edition";
 import type { Tab } from "../app/history";
 import { routeHref } from "../app/router";
 import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code";
@@ -247,23 +247,25 @@ function Untied({ edition, untied, onPassage }: { edition: Edition; untied: NonN
 function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions }) {
   const { analytics, declarations, slug } = edition;
   const standard = Object.entries(analytics.standard_axioms);
+  const extracted = declarations.some((d) => declEvidence(edition, d) === "lean");
+  const unreportedProofs = declarations.filter((d) => shapeOf(d) === "theorem" && declEvidence(edition, d) !== "lean").length;
   const plain = (names: string[]) => list(names.map((name) => declarations.find((d) => d.id === name)?.plain ?? name));
   return (
     <div className="index">
       <HowMade edition={edition} />
       <h3>Axioms, as Lean reports them</h3>
-      {!fromLean(edition) && <p>Not reported. Lean has not been run on the authors’ files for this page.</p>}
-      {fromLean(edition) && analytics.axioms.length === 0 && <p>The authors state no axioms.</p>}
+      {!extracted && <p>This edition has no Lean axiom reports.</p>}
+      {unreportedProofs > 0 && <p>This edition has no axiom report for {unreportedProofs === 1 ? "one proof" : `${unreportedProofs} proofs`} in the index.</p>}
       {analytics.axioms.map((name) => (
         <p key={name}>
-          <DeclLink paper={slug} name={name} act={act} className="declname declname--axiom" /> is the authors’ axiom, assumed and not proved.{" "}
-          {(analytics.resting_on_axioms[name] ?? []).length > 0 ? <>Proofs that depend on it: {plain(analytics.resting_on_axioms[name])}.</> : <>No proof here depends on it.</>}
-          {analytics.free_of_axioms.length > 0 && <> Proofs that do not: {plain(analytics.free_of_axioms)}.</>}
+          <DeclLink paper={slug} name={name} act={act} className="declname declname--axiom" /> is an assumption declared by the authors.{" "}
+          {(analytics.resting_on_axioms[name] ?? []).length > 0 && <>Lean reports that {plain(analytics.resting_on_axioms[name])} depend on it.</>}
         </p>
       ))}
-      {fromLean(edition) && <p>
-        Lean’s own standard axioms: {list(standard.map(([name, users]) => `${name} (${users.length ? plain(users) : "not used"})`))}.
-        {" "}{analytics.sorry.length ? <strong>sorry appears in {plain(analytics.sorry)}.</strong> : <>No declaration here uses sorry.</>}
+      {analytics.free_of_axioms.length > 0 && <p>Proofs whose Lean reports list no axioms: {plain(analytics.free_of_axioms)}.</p>}
+      {extracted && <p>
+        Lean’s standard axioms in the extracted reports: {list(standard.map(([name, users]) => `${name} (${users.length ? plain(users) : "not reported as used"})`))}.
+        {" "}{analytics.sorry.length > 0 ? <strong>Lean reports that {plain(analytics.sorry)} use sorry.</strong> : <>The extracted reports list no use of sorry.</>}
       </p>}
       <AllChecks edition={edition} act={act} />
       <h3>All {declarations.length} declarations</h3>
@@ -285,9 +287,6 @@ function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions 
           })}
         </tbody>
       </table>
-      <p className="index__source">{fromLean(edition)
-        ? <>These names, kinds, line numbers, uses and axioms are the output of Lean {edition.lean.version} on the authors’ file.{edition.declarations.some((d) => d.provenance === "statement-compiled") && <> For {edition.declarations.filter((d) => d.provenance === "statement-compiled").map((d) => d.plain).join(", ")}, Lean compiled the statement here; the proof was not built for this page, so it has no axiom report.</>}</>
-        : <>These names, kinds, line numbers and uses were read from the authors’ source with AI. Lean has not been run on it for this page.</>}</p>
     </div>
   );
 }

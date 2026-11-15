@@ -11,12 +11,16 @@ text = "Original algebraic proof: Amireddy, Behera, Srinivasan, Sudan and Willum
 
 [lean]
 project = "../pcp-full-argument/lean"
-modules = ["PCP.Algebraic.BLR", "PCP.Algebraic.BinaryLocalCorrectionSoundness", "PCP.Algebraic.BinaryZeroOnGridSoundness", "PCP.Algebraic.EncodedLineLowDegreeSoundness", "PCP.Algebraic.GeneratorLowDegreeTest", "PCP.Algebraic.GridVanishing", "PCP.Algebraic.Hadamard", "PCP.Algebraic.HadamardSoundness", "PCP.Algebraic.HadamardTest", "PCP.Algebraic.PointLineSoundness", "PCP.Algebraic.ThreeColorAmplifiedVerifier", "PCP.Algebraic.ThreeColorGrid", "PCP.Algebraic.ThreeColorVerifierCompleteness", "PCP.Algebraic.ThreeColorVerifierSoundness", "PCP.Complexity.CostModel", "PCP.Complexity.Machine", "PCP.Complexity.NP", "PCP.Complexity.ThreeColorRuntime", "PCP.ReverseConcrete", "PCP.Theorem", "PCP.Verifier.Definition"]
+modules = ["PCP.Algebraic.BLR", "PCP.Algebraic.BinaryLocalCorrectionSoundness", "PCP.Algebraic.BinaryZeroOnGridSoundness", "PCP.Algebraic.EncodedLineLowDegreeSoundness", "PCP.Algebraic.GeneratorLowDegreeTest", "PCP.Algebraic.GridVanishing", "PCP.Algebraic.Hadamard", "PCP.Algebraic.HadamardSoundness", "PCP.Algebraic.HadamardTest", "PCP.Algebraic.PointLineSoundness", "PCP.Algebraic.ThreeColorAmplifiedVerifier", "PCP.Algebraic.ThreeColorGrid", "PCP.Algebraic.ThreeColorVerifierCompleteness", "PCP.Algebraic.ThreeColorVerifierSoundness", "PCP.Complexity.CostModel", "PCP.Complexity.Machine", "PCP.Complexity.NP", "PCP.Complexity.ThreeColorRuntime", "PCP.Reduction.FiniteBooleanConstraints", "PCP.ReverseConcrete", "PCP.Theorem", "PCP.Verifier.Definition"]
 source = "https://github.com/troyjlee/tcs-formalizations/tree/a0ce13ed0fa264f051c1278e039596ce65557fa4"
 source_name = "tcs-formalizations at a0ce13e"
 source_lines = "https://github.com/troyjlee/tcs-formalizations/blob/a0ce13ed0fa264f051c1278e039596ce65557fa4/{path}#L{line}-L{end}"
 licence = "Apache-2.0"
-scope = "Selected source declarations, read by hand. Their signatures are source excerpts, not elaborated Lean output. The proof dependencies and axiom reports have not been extracted for this page."
+scope = "Selected source excerpts appear alongside retained Lean statements and the extracted reading-guide interface. Each declaration shows its source status. Proof dependencies and axiom reports are available only for records with the relevant extraction."
 
 [reading]
 language = "lean"
+
+[reading.companions]
+"../long/reasoning-record.md" = "pcp-full-argument"
+"../short/paper.md" = "pcp-specialist"

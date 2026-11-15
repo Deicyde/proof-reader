@@ -194,12 +194,13 @@ md.core.ruler.push("section_ids", (state) => {
   state.tokens.forEach((token, index) => {
     if (token.type !== "heading_open" || token.tag === "h1") return;
     const inline = state.tokens[index + 1];
-    const number = (guide ? /^([A-Z]|\d+(?:\.\d+)*)(?:\.\s+|\s+)/ : /^([A-Z]|\d+(?:\.\d+)*)\s+/).exec(inline.content);
-    const title = number ? inline.content.slice(number[0].length) : inline.content;
-    const id = `s-${number ? number[1] : title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-$/, "")}`;
+    const prefix = (guide ? /^(?:([A-Z])\.\s+|(\d+(?:\.\d+)*)(?:\.\s+|\s+))/ : /^([A-Z]|\d+(?:\.\d+)*)\s+/).exec(inline.content);
+    const number = prefix?.[1] ?? prefix?.[2] ?? "";
+    const title = prefix ? inline.content.slice(prefix[0].length) : inline.content;
+    const id = `s-${number || title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/-$/, "")}`;
     token.attrSet("id", id);
     if (guide) headingAliases[inline.content.toLowerCase().replace(/[^\p{L}\p{N}_\-\s]/gu, "").replace(/\s/g, "-")] = id;
-    outline.push({ id, number: number ? number[1] : "", title, level: Number(token.tag[1]) });
+    outline.push({ id, number, title, level: Number(token.tag[1]) });
   });
 });
 

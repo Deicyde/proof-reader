@@ -3,7 +3,7 @@
 // says how the page was made.
 
 import { useState, type ReactNode } from "react";
-import { fromLean, hasComparisons, noun, passageLocation, type Check, type Declaration, type Edition, type Verdict } from "../app/edition";
+import { hasComparisons, leanOrigin, noun, passageLocation, type Check, type Declaration, type Edition, type Verdict } from "../app/edition";
 import { routeHref } from "../app/router";
 import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code";
 import { sectionLabel } from "../model/fromEdition";
@@ -186,9 +186,7 @@ export function HowMade({ edition }: { edition: Edition }) {
           ? <>A program compares the reading copy with text extracted from the authors’ PDF. The comparison leaves out margins and figures, and the original PDF is one click away.</>
           : <>Each linked quotation was found in text extracted from the authors’ PDF.</>}
       </p>
-      {fromLean(edition)
-        ? <p>The graph’s arrows, and each declaration’s kind, lines and axioms, are Lean’s own output on the authors’ file, from Lean {edition.lean.version}.{edition.declarations.some((d) => d.provenance === "statement-compiled") && <> {edition.declarations.filter((d) => d.provenance === "statement-compiled").map((d) => d.plain).join(", ")}: Lean compiled the statement here and the proof was not built, so it has no axiom report.</>}</p>
-        : <p>The graph’s arrows, and each declaration’s kind and lines, were read from the authors’ source with AI. Lean has not been run on the files for this page, so no axioms are reported. A run of Lean will replace them.</p>}
+      <p>{leanOrigin(edition)}</p>
       {hasComparisons(edition)
         ? <>
             <p>The links from sentences to Lean, the plain titles, the notes and the comparisons between the {noun(edition)} and the Lean were made with AI. The authors have not reviewed them.</p>

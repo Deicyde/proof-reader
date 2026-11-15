@@ -39,7 +39,7 @@
     },
     {
       "id": "claim-5",
-      "title": "Decoding a low-degree polynomial",
+      "title": "Decoding the inner weighted test",
       "section": "Testing and correcting a polynomial of fixed degree",
       "passage": "pcp-expository-weighted-test",
       "lean": [
@@ -66,7 +66,7 @@
     },
     {
       "id": "claim-8",
-      "title": "Decoding a low-degree polynomial",
+      "title": "Decoding the outer encoded-line test",
       "section": "8",
       "passage": "pcp-expository-binary-tests",
       "lean": [
@@ -120,11 +120,11 @@
     },
     {
       "id": "claim-15",
-      "title": "Distance between encoded values",
+      "title": "Homogeneous words differ by half",
       "section": "7. A field value represented by many one-bit questions",
       "passage": "linked-source-18",
       "lean": [
-        "PCP.Algebraic.Hadamard.relativeDistance_encodeFunction_map"
+        "PCP.Algebraic.Hadamard.relativeDistance_linearEncode"
       ]
     },
     {
@@ -142,7 +142,7 @@
       "id": "pcp-expository-opening",
       "section": "An algebraic proof of the PCP theorem, through worked examples",
       "role": "explains",
-      "quote": "The same statement holds for every problem whose proposed solutions can be\nchecked in polynomial time. The encoded certificate still has polynomial\nlength. PCP stands for *probabilistically checkable proof*.",
+      "quote": "The same statement holds for every problem whose proposed solutions can be\nchecked in polynomial time.",
       "lean": [
         "PCP.np_subset_pcp"
       ],
@@ -174,7 +174,7 @@
       ],
       "anchor": {
         "heading": "4. Turning three colours into polynomial equations",
-        "block": 8
+        "block": 12
       }
     },
     {
@@ -239,7 +239,7 @@
       ],
       "anchor": {
         "heading": "Why the construction needs more than linear questions",
-        "block": 7
+        "block": 12
       }
     },
     {
@@ -252,7 +252,7 @@
       ],
       "anchor": {
         "heading": "8. Combining the encodings and returning to the grid",
-        "block": 5
+        "block": 11
       }
     },
     {
@@ -265,7 +265,7 @@
       ],
       "anchor": {
         "heading": "9. From the seven checks to a colouring",
-        "block": 6
+        "block": 4
       }
     },
     {
@@ -278,7 +278,7 @@
       ],
       "anchor": {
         "heading": "10. Randomness, proof length and repetition",
-        "block": 10
+        "block": 11
       }
     },
     {
@@ -291,7 +291,7 @@
       ],
       "anchor": {
         "heading": "9. From the seven checks to a colouring",
-        "block": 5
+        "block": 3
       }
     },
     {
@@ -304,7 +304,7 @@
       ],
       "anchor": {
         "heading": "8. Combining the encodings and returning to the grid",
-        "block": 18
+        "block": 28
       }
     },
     {
@@ -324,9 +324,9 @@
       "id": "linked-source-18",
       "section": "7. A field value represented by many one-bit questions",
       "role": "explains",
-      "quote": "This is the homogeneous linear part of a Hadamard encoding. It stores\neight answers about a message with only three bits. Any two different\nmessages give words differing in exactly half their positions. Indeed,\ntheir difference is a nonzero linear functional. Choose a vector on\nwhich it is one; adding that vector pairs every zero value with a one value.",
+      "quote": "Any two different\nmessages give words differing in exactly half their positions. Indeed,\ntheir difference is a nonzero linear functional.",
       "lean": [
-        "PCP.Algebraic.Hadamard.relativeDistance_encodeFunction_map"
+        "PCP.Algebraic.Hadamard.relativeDistance_linearEncode"
       ],
       "anchor": {
         "heading": "7. A field value represented by many one-bit questions",
@@ -343,8 +343,47 @@
       ],
       "anchor": {
         "heading": "10. Randomness, proof length and repetition",
-        "block": 13
+        "block": 14
       }
+    },
+    {
+      "id": "pcp-expository-homogeneous-encoding",
+      "role": "defines",
+      "quote": "$$\nh_s(x)=s\\cdot x\\pmod2.\n$$",
+      "lean": [
+        "PCP.Algebraic.Hadamard.linearEncode"
+      ],
+      "anchor": {
+        "heading": "7. A field value represented by many one-bit questions",
+        "block": 2
+      },
+      "section": "7. A field value represented by many one-bit questions"
+    },
+    {
+      "id": "pcp-expository-clause-flags",
+      "role": "defines",
+      "quote": "$$\nz_0=0,\\qquad z_{i+1}=z_i\\lor(x_i\\mathbin{\\mathrm{xor}}p_i),\n\\qquad R(p)\\lor z_k=1.\n$$",
+      "lean": [
+        "PCP.Reduction.FiniteBooleanConstraints.clauses"
+      ],
+      "anchor": {
+        "heading": "Optional calculation: converting a finite relation to clauses",
+        "block": 2
+      },
+      "section": "Optional calculation: converting a finite relation to clauses"
+    },
+    {
+      "id": "pcp-expository-or-gate",
+      "role": "explains",
+      "quote": "$$\n(z\\lor\\neg u),\\qquad(z\\lor\\neg v),\\qquad\n(\\neg z\\lor u\\lor v).\n$$",
+      "lean": [
+        "PCP.Reduction.FiniteBooleanConstraints.orGate_iff"
+      ],
+      "anchor": {
+        "heading": "Optional calculation: converting a finite relation to clauses",
+        "block": 4
+      },
+      "section": "Optional calculation: converting a finite relation to clauses"
     }
   ],
   "plain": {
@@ -352,10 +391,10 @@
     "PCP.Algebraic.ThreeColorGrid.constraints_iff_satisfies": "Colouring constraints on the grid",
     "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_decomposition": "Grid vanishing decomposition",
     "PCP.Algebraic.PointLineTest.exists_close_of_small_rejection": "Point and line agreement",
-    "PCP.Algebraic.GeneratorLowDegreeTest.exists_close": "Decoding a low-degree polynomial",
+    "PCP.Algebraic.GeneratorLowDegreeTest.exists_close": "Decoding the inner weighted test",
     "PCP.Algebraic.BLR.exists_linearMap_distance_le_of_rejection_le": "Linearity from the BLR test",
     "PCP.Algebraic.Hadamard.test_soundness": "Soundness of the Hadamard test",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close": "Decoding a low-degree polynomial",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close": "Decoding the outer encoded-line test",
     "PCP.Algebraic.ThreeColorVerifier.rejectionRate_ge_of_not_colorable": "Soundness for noncolourable graphs",
     "PCP.Lang.ThreeColorRuntime.polyTimeAlg": "The verifier runs in polynomial time",
     "PCP.Algebraic.ThreeColorVerifier.exists_proof_rejectionRate_eq_zero": "A proof for a proper colouring",
@@ -390,7 +429,11 @@
     "PCP.Machine.encodeBool": "Encode a Boolean result",
     "PCP.Machine.PolyTimeRel": "Polynomial time for a relation",
     "PCP.Machine.PolyTimeAlg": "Polynomial time for one step",
-    "PCP.Algebraic.Hadamard.testQueries_length": "Hadamard test query count"
+    "PCP.Algebraic.Hadamard.testQueries_length": "Hadamard test query count",
+    "PCP.Algebraic.Hadamard.linearEncode": "Homogeneous linear encoding",
+    "PCP.Algebraic.Hadamard.relativeDistance_linearEncode": "Homogeneous words differ by half",
+    "PCP.Reduction.FiniteBooleanConstraints.clauses": "Clauses for a finite relation",
+    "PCP.Reduction.FiniteBooleanConstraints.orGate_iff": "Three clauses enforce one OR gate"
   },
   "fidelity_held": "The selected source has not yet been compared against elaborated Lean statements for this page."
 }

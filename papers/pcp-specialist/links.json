@@ -21,7 +21,7 @@
     },
     {
       "id": "claim-4",
-      "title": "Decoding a low-degree polynomial",
+      "title": "Decoding the inner weighted test",
       "section": "4",
       "passage": "pcp-short-weighted-test",
       "lean": [
@@ -39,7 +39,7 @@
     },
     {
       "id": "claim-6",
-      "title": "Decoding a low-degree polynomial",
+      "title": "Decoding the outer encoded-line test",
       "section": "4",
       "passage": "pcp-short-outer-decoding",
       "lean": [
@@ -98,6 +98,15 @@
       "passage": "linked-source-14",
       "lean": [
         "PCP.pcp_subset_np_concrete"
+      ]
+    },
+    {
+      "id": "derived-zero",
+      "title": "Derived ZERO rejection bound",
+      "section": "5",
+      "passage": "pcp-short-derived-zero",
+      "lean": [
+        "PCP.Algebraic.DerivedZeroOnGrid.rejectionRate_lower_bound"
       ]
     }
   ],
@@ -164,7 +173,7 @@
       ],
       "anchor": {
         "heading": "4. The local tests and their decoding guarantee",
-        "block": 21
+        "block": 23
       }
     },
     {
@@ -177,7 +186,7 @@
       ],
       "anchor": {
         "heading": "4. The local tests and their decoding guarantee",
-        "block": 34
+        "block": 38
       }
     },
     {
@@ -190,7 +199,7 @@
       ],
       "anchor": {
         "heading": "5. Correcting the nonuniform certificate queries",
-        "block": 7
+        "block": 10
       }
     },
     {
@@ -203,7 +212,7 @@
       ],
       "anchor": {
         "heading": "5. Correcting the nonuniform certificate queries",
-        "block": 14
+        "block": 17
       }
     },
     {
@@ -216,20 +225,20 @@
       ],
       "anchor": {
         "heading": "6. One decoding for all seven checks",
-        "block": 13
+        "block": 15
       }
     },
     {
       "id": "linked-source-13",
       "section": "7. Resources, implementation and the reverse inclusion",
       "role": "explains",
-      "quote": "Repetition multiplies randomness and queries by a fixed constant and preserves the proof bound and perfect completeness.",
+      "quote": "Repeating independently a constant number of times against the same fixed proof reduces soundness error to at most $1/2$, preserving logarithmic randomness and constant query complexity.",
       "lean": [
         "PCP.Algebraic.ThreeColorAmplifiedVerifier.verification_guarantees"
       ],
       "anchor": {
         "heading": "7. Resources, implementation and the reverse inclusion",
-        "block": 16
+        "block": 12
       }
     },
     {
@@ -242,7 +251,7 @@
       ],
       "anchor": {
         "heading": "7. Resources, implementation and the reverse inclusion",
-        "block": 19
+        "block": 15
       }
     },
     {
@@ -255,17 +264,60 @@
       ],
       "anchor": {
         "heading": "7. Resources, implementation and the reverse inclusion",
-        "block": 23
+        "block": 19
       }
+    },
+    {
+      "id": "pcp-short-derived-zero",
+      "role": "explains",
+      "quote": "$$\n\\frac{1-Dh/q}{2}\n\\le(1+2C)(\\kappa+2\\epsilon)+2\\delta_M+\\frac{D}{q-1}.\n\\tag{16}\n$$",
+      "lean": [
+        "PCP.Algebraic.DerivedZeroOnGrid.rejectionRate_lower_bound"
+      ],
+      "lines": [
+        261,
+        264
+      ],
+      "anchor": {
+        "heading": "5. Correcting the nonuniform certificate queries",
+        "block": 19
+      },
+      "section": "5. Correcting the nonuniform certificate queries"
+    },
+    {
+      "id": "pcp-short-reference-np",
+      "role": "explains",
+      "quote": "Explicit machine simulations identify the concrete witness class with [the NP class in the unchanged vendored ComplexityLib][lean-reference-np].",
+      "lean": [
+        "PCP.ReferenceNP.inNP_iff_mem"
+      ],
+      "anchor": {
+        "heading": "Formal correspondence and credits",
+        "block": 2
+      },
+      "section": "Formal correspondence and credits"
+    },
+    {
+      "id": "pcp-short-reference-np-context",
+      "role": "uses",
+      "quote": "For every language $L\\subseteq\\{0,1\\}^{*}$ in NP",
+      "lean": [
+        "PCP.ReferenceNP.inNP_iff_mem"
+      ],
+      "anchor": {
+        "heading": "1. The theorem and the encoding problem",
+        "block": 2
+      },
+      "section": "1. The theorem and the encoding problem"
     }
   ],
   "plain": {
     "PCP.np_subset_pcp": "The forward PCP theorem",
     "PCP.Algebraic.ThreeColorGrid.constraints_iff_satisfies": "Colouring constraints on the grid",
     "PCP.Algebraic.SetMultilinear.eval_encode": "Evaluation after digit encoding",
-    "PCP.Algebraic.GeneratorLowDegreeTest.exists_close": "Decoding a low-degree polynomial",
+    "PCP.Algebraic.GeneratorLowDegreeTest.exists_close": "Decoding the inner weighted test",
     "PCP.Algebraic.BinaryLocalRowDecoding.exists_polynomial_distance_le": "Decoding the inner polynomial test",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close": "Decoding a low-degree polynomial",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close": "Decoding the outer encoded-line test",
     "PCP.Algebraic.BinaryLocalCorrection.failure_le": "Local correction error bound",
     "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_ge": "Soundness of the grid test",
     "PCP.Algebraic.ThreeColorFields.chosen_parameters": "Choosing field parameters",
@@ -306,7 +358,9 @@
     "PCP.Lang.ThreeColorRuntime.polyTimeAlg": "Polynomial-time graph verifier",
     "PCP.Algebraic.ThreeColorVerifier.exists_proof_test_eq_true": "The honest verifier always accepts",
     "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_lower_bound": "ZERO rejection lower bound",
-    "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_decomposition": "Grid vanishing decomposition"
+    "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_decomposition": "Grid vanishing decomposition",
+    "PCP.Algebraic.DerivedZeroOnGrid.rejectionRate_lower_bound": "Derived ZERO rejection bound",
+    "PCP.ReferenceNP.inNP_iff_mem": "Equivalence with reference NP"
   },
   "fidelity_held": "The selected source has not yet been compared against elaborated Lean statements for this page."
 }

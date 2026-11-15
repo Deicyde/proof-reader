@@ -24,6 +24,7 @@ import sys
 import tempfile
 import tomllib
 import unicodedata
+from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -274,8 +275,8 @@ def shards(folder: Path, config: dict) -> tuple[dict, dict]:
                         uses[home][target] = "statement"
                     else:
                         uses[home].setdefault(target, "proof")
-    # A lean.json without `provenance` is the output of `extract`. One marked "source-read"
-    # was read from the authors' source by hand and must never be labelled as Lean's output.
+    # An extracted report defaults to lean; a mixed edition can set source-read as
+    # its default, then identify retained extraction per declaration.
     provenance = report.get("provenance") or {"kind": "lean"}
     if provenance["kind"] not in ("lean", "source-read"):
         raise PaperError(f"generated/lean.json: unknown provenance {provenance['kind']!r}")
@@ -670,7 +671,8 @@ def edition(slug: str) -> dict:
     data = resolve(slug)
     config, shard_info, links = data["config"], data["shards"], data["links"]
     written, uses, texts = shard_info["written"], shard_info["uses"], shard_info["texts"]
-    keep = reachable([name for claim in links["claims"] for name in claim.get("lean", [])], uses)
+    roots = [name for item in (*links["claims"], *data["passages"]) for name in item.get("lean", [])]
+    keep = reachable(roots, uses)
     used_by: dict[str, list[str]] = {name: [] for name in keep}
     for name in keep:
         for target in uses[name]:
@@ -723,7 +725,7 @@ def edition(slug: str) -> dict:
     setting = None
     if data["source"]["kind"] == "markdown":
         setting = reading_copy.build_markdown(data["markdown_render"], slug, data["passages"], names, config["paper"].get("url", ""),
-                                              links.get("name_sections"))
+                                              links.get("name_sections"), config.get("reading", {}).get("companions"))
         display_quotes = setting.pop("display_quotes")
         for passage in data["passages"]:
             passage["quote"] = display_quotes[passage["id"]]
@@ -741,6 +743,8 @@ def edition(slug: str) -> dict:
     examples = shelf_examples(config, data["passages"], paragraphs, written, texts, links.get("plain", {}))
     named_in_paper = [d["id"] for d in declarations if d["passages"]]
     custom = sorted(d["id"] for d in declarations if d["keyword"] == "axiom")
+    # An empty list is an axiom report only for a declaration read from a compiled module.
+    reported = [d for d in declarations if d["provenance"] == "lean"]
     fidelity = links.get("fidelity", {})
     paper = config["paper"]
     # In reading order, so a page can say plainly where the ties begin and stop.
@@ -771,10 +775,10 @@ def edition(slug: str) -> dict:
             "linked_to_paper": len(named_in_paper),
             "not_linked": sorted(set(keep) - set(named_in_paper)),
             "axioms": custom,
-            "resting_on_axioms": {a: sorted(d["id"] for d in declarations if a in d["axioms"]) for a in custom},
-            "free_of_axioms": sorted(d["id"] for d in declarations if d["keyword"] in ("theorem", "lemma") and not d["axioms"]),
-            "standard_axioms": {a: sorted(d["id"] for d in declarations if a in d["standard_axioms"]) for a in sorted(STANDARD_AXIOMS)},
-            "sorry": sorted(name for name in keep if "sorryAx" in written[name]["axioms"]),
+            "resting_on_axioms": {a: sorted(d["id"] for d in reported if a in d["axioms"]) for a in custom},
+            "free_of_axioms": sorted(d["id"] for d in reported if d["keyword"] in ("theorem", "lemma") and not written[d["id"]]["axioms"]),
+            "standard_axioms": {a: sorted(d["id"] for d in reported if a in d["standard_axioms"]) for a in sorted(STANDARD_AXIOMS)},
+            "sorry": sorted(d["id"] for d in reported if "sorryAx" in written[d["id"]]["axioms"]),
             "proof_lines": sum(d["lines"] for d in declarations if d["keyword"] in ("theorem", "lemma")),
             "pages_with_links": sorted({p["page"] for p in data["passages"] if p["page"] is not None}),
             "fidelity": {
@@ -878,8 +882,10 @@ def check(slug: str) -> None:
         print(f"  reading copy: {built['reading']['words']} words and {built['reading']['formulas']} formulas, {origin}")
     where = f", on pages {stats['pages_with_links']}" if built["source"]["kind"] == "pdf" else ""
     print(f"  {stats['linked_to_paper']} of {stats['declarations']} declarations tied to the paper{where}")
-    if built["lean"]["provenance"]["kind"] != "lean":
-        print(f"  Lean data is {built['lean']['provenance']['kind']}, not Lean output: {built['lean']['provenance'].get('text', '')}")
+    evidence = Counter(d["provenance"] for d in built["declarations"])
+    if evidence.keys() - {"lean"}:
+        labels = {"lean": "from compiled modules", "statement-compiled": "statement only (proof not built)", "source-read": "read from source"}
+        print("  declaration evidence: " + "; ".join(f"{evidence[kind]} {label}" for kind, label in labels.items() if evidence[kind]))
     if stats["not_linked"]:
         print(f"  not tied yet: {', '.join(stats['not_linked'])}")
     for axiom, names in stats["resting_on_axioms"].items():

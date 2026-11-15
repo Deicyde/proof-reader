@@ -153,7 +153,7 @@ export interface Edition {
   /** Which sections hold ties, in reading order. */
   coverage: { sections: string[]; ties: number };
   /** Present when the paper has a reading copy, which reading.html holds. */
-  reading: { outline: OutlineEntry[]; words: number; formulas: number; pages: number } | null;
+  reading: { outline: OutlineEntry[]; heading_aliases?: Record<string, string>; words: number; formulas: number; pages: number } | null;
   analytics: {
     declarations: number;
     linked_to_paper: number;
@@ -243,18 +243,29 @@ export async function loadEdition(slug: string): Promise<Edition> {
 export const loadSource = (slug: string) => json<{ files: Record<string, string>; mentions: Mention[] }>(paperFile(slug, "source.json"));
 export const loadShelf = () => json<{ papers: ShelfItem[] }>(`${base}papers/index.json`);
 
-/** True when the page carries comparisons of the paper's statements with the Lean. */
-/** True when the page's declarations, lines, uses and axioms are Lean's own output on the authors' files. */
+/** Whether Lean extraction is the default provenance for this edition's declaration records. */
 export const fromLean = (edition: Edition) => (edition.lean.provenance?.kind ?? "lean") === "lean";
 
-/** One sentence on where the Lean facts came from, for credits and the account of how the page was made. */
-export const leanOrigin = (edition: Edition) => fromLean(edition)
-  ? `Lean from the authors’ artifact, built here on Lean ${edition.lean.version}.`
-  : "Lean files from the authors’ repository, unchanged. Lean has not been run on them for this page: the declarations, lines and uses shown were read from the source with AI, and no axioms are reported.";
+export const declEvidence = (edition: Edition, d: Declaration) => d.provenance ?? (fromLean(edition) ? "lean" : "source-read");
+
+/** Describe each kind of evidence present, even when edition-level provenance is mixed. */
+export function leanOrigin(edition: Edition): string {
+  const built = edition.declarations.some((d) => declEvidence(edition, d) === "lean");
+  const statements = edition.declarations.filter((d) => declEvidence(edition, d) === "statement-compiled");
+  const source = edition.declarations.some((d) => declEvidence(edition, d) === "source-read");
+  const version = edition.lean.version ? ` ${edition.lean.version}` : "";
+  return [
+    built && (source || statements.length
+      ? `Some declaration data is Lean’s own output from modules compiled with Lean${version}.`
+      : `The declaration data is Lean’s own output from modules compiled with Lean${version}.`),
+    statements.length > 0 && `Lean${version} compiled only the ${statements.length === 1 ? "statement" : "statements"} for ${statements.map((d) => d.plain).join(", ")}. The extraction did not build or report axioms for ${statements.length === 1 ? "its proof" : "those proofs"}.`,
+    source && `${built || statements.length ? "Other declarations" : "The declarations shown here"} were read from source with AI. Proof dependencies and axiom reports were not extracted for them.`,
+  ].filter(Boolean).join(" ");
+}
 
 /** One plain phrase for where a declaration's facts come from. */
 export const declOrigin = (edition: Edition, d: Declaration) => {
-  const kind = d.provenance ?? (fromLean(edition) ? "lean" : "source-read");
+  const kind = declEvidence(edition, d);
   return kind === "lean" ? `read by Lean ${edition.lean.version}`
     : kind === "statement-compiled" ? `statement compiled by Lean ${edition.lean.version}; proof not built in that extraction`
       : "read from the source by hand, with AI";

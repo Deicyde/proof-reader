@@ -30,7 +30,7 @@ export function shapeOf(d: Declaration): "definition" | "theorem" | "axiom" {
 }
 
 /** A section as a reader names it: "§3.3". */
-export const sectionLabel = (number: string) => (/^[0-9A-Z]/.test(number) ? `§${number}` : number);
+export const sectionLabel = (label: string) => (/^(?:\d+|[A-Z])(?:\.\d+)*$/.test(label) ? `§${label}` : label);
 
 /** One declaration as a map card. Types use it too where a view draws them (the neighbourhood). */
 export function declarationNode(edition: Edition, d: Declaration, region: string): ArgNode {
