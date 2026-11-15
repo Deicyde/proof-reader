@@ -11,9 +11,14 @@ export interface Passage {
   code?: boolean;
   quote: string;
   lean: string[];
-  page: number;
-  last_page: number;
+  /** Null for Markdown; source_lines give its location. */
+  page: number | null;
+  last_page: number | null;
   rects: number[][];
+  source_quote?: string;
+  source_lines?: [number, number];
+  source_block?: string;
+  anchor?: { heading: string; block: number };
   /** The exact Lean lines this passage describes, when it is narrower than the declaration. */
   lines?: [number, number];
 }
@@ -25,7 +30,7 @@ export interface OutlineEntry {
   level: number;
   ties: number;
   /** The PDF page the section starts on. */
-  page: number;
+  page: number | null;
 }
 
 /** A Lean name printed in the paper, found by matching words at build time. */
@@ -66,6 +71,10 @@ export interface Declaration {
   used_by_proof: string[];
   axioms: string[];
   standard_axioms: string[];
+  /** Where this declaration's facts come from. */
+  provenance?: "lean" | "statement-compiled" | "source-read";
+  /** The declaration's doc comment, as Lean records it. */
+  doc?: string | null;
   passages: string[];
   note: { text: string; because: string[] } | null;
   /** How the paper's statement stands to this Lean, compared with AI; absent before it was run. */
@@ -98,6 +107,8 @@ export interface Check {
 export interface Edition {
   schema: 1;
   slug: string;
+  source?: { kind: "pdf" | "markdown"; file: string; sha256: string };
+  credit?: { text?: string };
   paper: {
     title: string;
     short_title: string;
@@ -105,12 +116,17 @@ export interface Edition {
     venue: string;
     doi: string;
     url: string;
-    pdf: string;
+    pdf?: string;
+    markdown?: string;
     licence: string;
     licence_url: string;
+    /** What the page calls the authors' text: "paper" unless paper.toml says otherwise, as "guide". */
+    noun?: string;
+    /** Whether the page shows Proof Reader's own films; off unless paper.toml says films = true. */
+    films?: boolean;
     pages: number;
     sizes: [number, number][];
-    crop: [number, number, number, number];
+    crop: [number, number, number, number] | null;
   };
   lean: {
     modules: string[];
@@ -121,10 +137,14 @@ export interface Edition {
     /** Where one declaration's lines can be read: {path}, {line} and {end} are filled in. */
     source_lines?: string;
     toolchain: string;
-    version: string;
+    /** Null when the Lean facts were read from the source instead of produced by Lean. */
+    version: string | null;
+    /** Absent or "lean": names, lines and uses are the output of `paper.py extract`. "source-read": read from the authors' source by hand, pending extraction. */
+    provenance?: { kind: "lean" | "source-read"; text?: string };
     files: Record<string, string>;
   };
   claims: Claim[];
+  sheets?: Sheet[];
   passages: Passage[];
   mentions: Mention[];
   declarations: Declaration[];
@@ -150,12 +170,31 @@ export interface Edition {
 }
 
 /** One linked sentence and its Lean lines, chosen in paper.toml and cut out by the build. */
+/** One entry of a statement sheet: a declaration and the authors' sentences that read it. */
+export interface SheetEntry {
+  id: string;
+  prose: string[];
+  reading: "authors" | "note" | "none";
+}
+
+/** A claim's statement sheet, computed by the build from the Lean dependencies and the links. */
+export interface Sheet {
+  claim: string;
+  title: string;
+  heads: SheetEntry[];
+  entries: SheetEntry[];
+  explained: number;
+  total: number;
+  boundary: { name: string; used_by: string[] }[];
+}
+
 export interface ShelfExample {
   id: string;
   /** The passage's role in links.json: "proves", "states" and so on. */
   role?: string;
   section: string;
   page_label: string;
+  source_lines?: [number, number] | null;
   before: string;
   quote: string;
   after: string;
@@ -176,6 +215,8 @@ export interface ShelfItem {
   short_title?: string;
   authors: string[];
   venue: string;
+  source_kind?: "pdf" | "markdown";
+  noun?: string;
   declarations: number;
   lean?: { files: number; lines: number; version: string; axioms: number; sorry: number };
   linked?: number;
@@ -203,4 +244,28 @@ export const loadSource = (slug: string) => json<{ files: Record<string, string>
 export const loadShelf = () => json<{ papers: ShelfItem[] }>(`${base}papers/index.json`);
 
 /** True when the page carries comparisons of the paper's statements with the Lean. */
+/** True when the page's declarations, lines, uses and axioms are Lean's own output on the authors' files. */
+export const fromLean = (edition: Edition) => (edition.lean.provenance?.kind ?? "lean") === "lean";
+
+/** One sentence on where the Lean facts came from, for credits and the account of how the page was made. */
+export const leanOrigin = (edition: Edition) => fromLean(edition)
+  ? `Lean from the authors’ artifact, built here on Lean ${edition.lean.version}.`
+  : "Lean files from the authors’ repository, unchanged. Lean has not been run on them for this page: the declarations, lines and uses shown were read from the source with AI, and no axioms are reported.";
+
+/** One plain phrase for where a declaration's facts come from. */
+export const declOrigin = (edition: Edition, d: Declaration) => {
+  const kind = d.provenance ?? (fromLean(edition) ? "lean" : "source-read");
+  return kind === "lean" ? `read by Lean ${edition.lean.version}`
+    : kind === "statement-compiled" ? `statement compiled by Lean ${edition.lean.version} here; proof not built here`
+      : "read from the source by hand, with AI";
+};
+
+/** The word for the authors' text, as in "In the guide". */
+export const noun = (edition: Edition) => edition.paper.noun || "paper";
+
 export const hasComparisons = (edition: Edition) => edition.declarations.some((d) => !!d.fidelity);
+
+/** Source coordinates stay separate from the Lean lines a passage describes. */
+export const passageLocation = (passage: Passage) => passage.source_lines
+  ? passage.source_lines[0] === passage.source_lines[1] ? `source line ${passage.source_lines[0]}` : `source lines ${passage.source_lines[0]} to ${passage.source_lines[1]}`
+  : `page ${passage.page}`;

@@ -1,4 +1,4 @@
-"""Render a paper's reading text and compare it with extracted PDF text.
+"""Render an author's Markdown directly, or compare a reading copy with PDF text.
 
 The comparison uses PDF text after margin and figure filtering. It normalizes
 some characters and allows moved text, which can also hide changes in word or
@@ -19,20 +19,22 @@ from collections import Counter
 from dataclasses import dataclass, field
 from difflib import SequenceMatcher
 from pathlib import Path
+from urllib.parse import urljoin
 
 ROOT = Path(__file__).resolve().parent.parent
 RENDER = ROOT / "web" / "tools" / "render-paper.mjs"
 
 # Formulas first, so each one is a single piece of the page.
 PART = re.compile(r'<span class="m" data-m="(\d+)">(.*?)</span>|<[^>]+>|[^<]+', re.S)
-BLOCK = re.compile(r"</?(?:p|div|li|ul|ol|pre|figure|figcaption|h[1-4]|aside|header|section|blockquote)\b|<span class=\"cl\"")
+BLOCK = re.compile(r"</?(?:p|div|li|ul|ol|pre|figure|figcaption|h[1-6]|aside|header|section|blockquote|table|thead|tbody|tr|th|td)\b|<span class=\"cl\"")
 # The blocks a reader sees as a paragraph: a code line inside a listing is not one.
-PARAGRAPH = re.compile(r"</?(?:p|div|li|ul|ol|pre|figure|figcaption|h[1-4]|aside|header|section|blockquote)\b")
+PARAGRAPH = re.compile(r"</?(?:p|div|li|ul|ol|pre|figure|figcaption|h[1-6]|aside|header|section|blockquote|table|thead|tbody|tr|th|td)\b")
 TAG_NAME = re.compile(r"</?([a-zA-Z0-9]+)")
 BULLETS = {"•", "∙", "◦"}
 ALLOWED_TAGS = {
     "a", "aside", "blockquote", "br", "code", "div", "em", "figcaption", "figure", "h1", "h2", "h3", "h4", "header", "hr",
-    "img", "li", "ol", "p", "pre", "section", "span", "strong", "sub", "sup", "ul",
+    "img", "li", "ol", "p", "pre", "section", "span", "strong", "sub", "sup", "ul", "h5", "h6",
+    "table", "thead", "tbody", "tr", "th", "td",
 }
 
 
@@ -58,20 +60,135 @@ class Page:
     visible: str = ""
 
 
-def render(markdown: Path, slug: str) -> dict:
-    done = subprocess.run(["node", str(RENDER), str(markdown), slug], capture_output=True, text=True, cwd=ROOT / "web")
+def render(markdown: Path, slug: str, *, guide: bool = False, passages: list[dict] | None = None,
+           language: str = "haskell") -> dict:
+    args = ["node", str(RENDER), str(markdown), slug]
+    if guide:
+        args += [language, "--markdown-source"]
+    done = subprocess.run(args, input=json.dumps({"passages": passages or []}) if guide else None,
+                          capture_output=True, text=True, cwd=ROOT / "web")
     if done.returncode != 0:
         raise ReadingError(f"could not set {markdown.name}:\n{done.stderr[-1500:]}")
     return json.loads(done.stdout)
 
 
+def resolve_markdown(markdown: Path, slug: str, passages: list[dict], language: str = "lean") -> tuple[dict, list[dict]]:
+    """Resolve exact raw quotes before rendering. An anchor never excuses a duplicate."""
+    source = markdown.read_bytes().decode("utf-8")
+    done = render(markdown, slug, guide=True, passages=passages, language=language)
+    lines = source.splitlines(keepends=True)
+    offsets = [0]
+    for line in lines:
+        offsets.append(offsets[-1] + len(line))
+    resolved, errors = [], []
+    for item in passages:
+        pid, quote = item["id"], item["quote"]
+        if item.get("nth") is not None or item.get("page") is not None:
+            errors.append(f"passage {pid}: Markdown uses anchor, not nth or page")
+        hits = spot(source, quote) if quote else []
+        if len(hits) != 1:
+            errors.append(f"passage {pid}: exact quote found {len(hits)} times in {markdown.name}, needs exactly one")
+            continue
+        anchor = item.get("anchor", {})
+        if not isinstance(anchor, dict) or not isinstance(anchor.get("heading"), str) or type(anchor.get("block")) is not int or anchor["block"] < 1:
+            errors.append(f"passage {pid}: anchor needs exact heading and positive integer block")
+            continue
+        blocks = [b for b in done["source_blocks"] if b["heading"] == anchor["heading"] and b["block"] == anchor["block"]]
+        if len(blocks) != 1:
+            errors.append(f"passage {pid}: heading/block resolves to {len(blocks)} source blocks, needs exactly one")
+            continue
+        block = blocks[0]
+        start, stop = hits[0], hits[0] + len(quote)
+        if not offsets[block["line"] - 1] <= start < stop <= offsets[block["end_line"]]:
+            errors.append(f"passage {pid}: quote is outside its heading/block anchor")
+            continue
+        resolved.append({**item, "page": None, "last_page": None, "rects": [], "order": start,
+                         "source_quote": quote, "source_block": block["id"],
+                         "source_lines": [source.count("\n", 0, start) + 1, source.count("\n", 0, stop - 1) + 1]})
+    if errors:
+        raise ReadingError("\n".join(errors))
+    return done, resolved
+
+
+def locate_markdown(page: Page, done: dict, passages: list[dict]) -> tuple[dict, dict]:
+    """Locate each rendered quote inside its already checked source block."""
+    bounds, position = {}, 0
+    for part in page.parts:
+        if part.kind == "tag":
+            marker = re.search(r'data-source-(start|end)="([^"]+)"', part.raw)
+            if marker:
+                bounds.setdefault(marker[2], {})[marker[1]] = position
+        else:
+            position = part.start + len(part.text)
+    spans, visible_quotes, errors = {}, {}, []
+    for passage in passages:
+        pid = passage["id"]
+        bound = bounds.get(passage["source_block"], {})
+        if set(bound) != {"start", "end"}:
+            errors.append(f"passage {pid}: rendered source block markers are missing")
+            continue
+        quote = parse(done["quote_html"][pid]).visible
+        target, _ = squeeze(quote)
+        squeezed, back = squeeze(page.visible[bound["start"]:bound["end"]])
+        hits = spot(squeezed, target) if target else []
+        if len(hits) != 1:
+            errors.append(f"passage {pid}: rendered quote found {len(hits)} times in its source block, needs exactly one")
+            continue
+        spans[pid] = (bound["start"] + back[hits[0]], bound["start"] + back[hits[0] + len(target) - 1] + 1)
+        visible_quotes[pid] = quote
+    if errors:
+        raise ReadingError("\n".join(errors))
+    return spans, visible_quotes
+
+
+def numbered_ranges(ranges: list[tuple[str, int]], outline: list[dict]) -> list[tuple[str, int]]:
+    """An unnumbered subheading belongs to the numbered section above it, so that
+    `name_sections` can name section 3 and cover its subheadings too."""
+    owner, stack = {}, []
+    for entry in outline:
+        while stack and stack[-1]["level"] >= entry["level"]:
+            stack.pop()
+        owner[entry["id"]] = entry["id"] if entry["number"] else next((s["id"] for s in reversed(stack) if s["number"]), entry["id"])
+        stack.append(entry)
+    return [(owner.get(name, name), start) for name, start in ranges]
+
+
+def build_markdown(done: dict, slug: str, passages: list[dict], names: list[str], source_url: str,
+                   name_sections: list[str] | None = None) -> dict:
+    """Render the author's Markdown directly, with source lines instead of PDF pages."""
+    route = f"./#/{slug}"
+
+    def link(match):
+        url = html.unescape(match[1])
+        if url.startswith("#") and url[1:] in done["heading_aliases"]:
+            return f'href="{route}/@{done["heading_aliases"][url[1:]]}"'
+        return f'href="{html.escape(urljoin(source_url, url), quote=True)}"'
+
+    source = re.sub(r'href="([^"]+)"', link, done["html"])
+    check_tags(source)
+    source = re.sub(r'<a href="(https?://[^"]+)"', r'<a class="ext" href="\1" target="_blank" rel="noopener noreferrer"', source)
+    page = parse(source)
+    spans, quotes = locate_markdown(page, done, passages)
+    ranges = section_ranges(page, done["outline"])
+    mentions = names_in(page, names, numbered_ranges(ranges, done["outline"]), name_sections)
+    body = weave(page, spans, mentions, {}, done["math"], route)
+    counts = Counter(section_at(ranges, start) for start, _ in spans.values())
+    code_blocks = {b["id"] for b in done["source_blocks"] if b["kind"] in ("fence", "code_block")}
+    code = {p["id"] for p in passages if p["source_block"] in code_blocks}
+    return {"html": body, "outline": [{**entry, "ties": counts[entry["id"]], "page": None} for entry in done["outline"]],
+            "words": len(page.visible.split()), "formulas": len(done["math"]), "pages": 0,
+            "order": sorted(spans, key=lambda pid: spans[pid][0]), "code": code, "display_quotes": quotes,
+            "paragraphs": {pid: paragraph(page, start, stop, quotes[pid]) for pid, (start, stop) in spans.items()}}
+
+
 def check_tags(source: str) -> None:
     """paper.md may hold a little HTML, and nothing that runs."""
     for tag in re.findall(r"<[^>]+>", source):
+        tag = html.unescape(tag)
         name = TAG_NAME.match(tag)
         if name and name[1].lower() not in ALLOWED_TAGS:
             raise ReadingError(f"paper.md may not use <{name[1]}>")
-        if re.search(r"\son\w+\s*=|javascript:", tag, re.I):
+        if re.search(r"\son\w+\s*=", tag, re.I) or re.search(r"javascript:|vbscript:", re.sub(r"[\x00-\x20]", "", tag), re.I):
             raise ReadingError(f"paper.md may not use this tag: {tag[:80]}")
 
 
@@ -255,14 +372,28 @@ def names_in(page: Page, names: list[str], ranges: list[tuple[str, int]], sectio
     pattern = re.compile(r"(?<![A-Za-z0-9_'])(" + "|".join(re.escape(n) for n in sorted(names, key=len, reverse=True)) + r")(?![A-Za-z0-9_'])")
     found = []
     allowed = None if sections is None else {f"s-{s}" for s in sections}
+    # Syntax highlighting splits `Namespace.name` across spans. Read each code
+    # run as one string, while keeping separate code elements and links apart.
+    runs: list[tuple[int, str]] = []
+    joining = False
     for part in page.parts:
-        if part.kind != "text" or not part.code or part.link:
-            continue
-        for match in pattern.finditer(part.text):
-            start = part.start + match.start()
+        if part.kind == "tag":
+            if re.match(r"</?(?:code|a)\b", part.raw):
+                joining = False
+        elif part.kind == "text" and part.code and not part.link:
+            if joining and runs[-1][0] + len(runs[-1][1]) == part.start:
+                runs[-1] = (runs[-1][0], runs[-1][1] + part.text)
+            else:
+                runs.append((part.start, part.text))
+            joining = True
+        else:
+            joining = False
+    for offset, text in runs:
+        for match in pattern.finditer(text):
+            start = offset + match.start()
             place = section_at(ranges, start)
             if allowed is None or (place in allowed or (place or "").split(".")[0] in allowed):
-                found.append((start, part.start + match.end(), match[1]))
+                found.append((start, offset + match.end(), match[1]))
     return found
 
 

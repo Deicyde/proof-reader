@@ -1,0 +1,79 @@
+/-
+Lists the declarations of already compiled modules, read from their .olean files:
+kind, source lines, doc comment, what the statement and the body use, and the axioms
+each rests on. The template of `paper.py extract` (tools/extract.lean.template,
+adapted from lean-exposition's Extract.lean, Apache-2.0), run the way the Plectis maths
+site's declaration-graph extractor runs it: with the project's own toolchain and
+LEAN_PATH, so nothing is written into the project.
+
+Declarations written in this file after the imports (a statement surrogate for a
+theorem whose proof is not built here) are reported too when their names start with
+one of __SURROGATE_ROOTS__.
+-/
+import Lean
+__IMPORTS__
+
+open Lean
+
+namespace ProofReaderBuilt
+
+private def kindOf : ConstantInfo → String
+  | .axiomInfo _ => "axiom"
+  | .defnInfo _ => "definition"
+  | .thmInfo _ => "theorem"
+  | .opaqueInfo _ => "opaque"
+  | .quotInfo _ => "quotient_primitive"
+  | .inductInfo _ => "inductive"
+  | .ctorInfo _ => "constructor"
+  | .recInfo _ => "recursor"
+
+private def namesJson (ns : Array Name) : Json :=
+  toJson (ns.map Name.toString)
+
+private def structural : ConstantInfo → Array Name
+  | .inductInfo v => v.ctors.toArray ++ v.all.toArray
+  | .ctorInfo v => #[v.induct]
+  | _ => #[]
+
+def report (mods : Array Name) (roots : Array Name) : Meta.MetaM Json := do
+  let env ← getEnv
+  let pick := env.constants.fold (init := (#[] : Array (Name × String × ConstantInfo))) fun acc n ci =>
+    match env.getModuleIdxFor? n with
+    | some idx =>
+        let m := env.header.moduleNames[idx.toNat]!
+        if mods.contains m then acc.push (n, m.toString, ci) else acc
+    | none => if roots.any (·.isPrefixOf n) then acc.push (n, "", ci) else acc
+  let mut out : Array Json := #[]
+  for (n, m, ci) in pick do
+    let typeDeps := ci.type.getUsedConstants
+    let valueDeps := (ci.value?.map Expr.getUsedConstants).getD #[]
+    let axioms ← collectAxioms n
+    let ranges? ← findDeclarationRanges? n
+    let doc ← findDocString? env n
+    let shown ← try pure (toString (← Meta.ppExpr ci.type)) catch _ => pure ""
+    out := out.push <| Json.mkObj [
+      ("name", toJson n.toString),
+      ("kind", toJson (kindOf ci)),
+      ("module", toJson m),
+      ("surrogate", toJson m.isEmpty),
+      ("type", toJson shown),
+      ("doc", toJson doc),
+      ("type_dependencies", namesJson typeDeps),
+      ("value_dependencies", namesJson valueDeps),
+      ("structural_dependencies", namesJson (structural ci)),
+      ("axioms", namesJson axioms),
+      ("is_class", toJson (isClass env n)),
+      ("line", ranges?.map (fun r => toJson r.range.pos.line) |>.getD Json.null),
+      ("end_line", ranges?.map (fun r => toJson r.range.endPos.line) |>.getD Json.null)]
+  return Json.mkObj [
+    ("lean_version", toJson Lean.versionString),
+    ("modules", namesJson mods),
+    ("declarations", toJson out)]
+
+end ProofReaderBuilt
+
+__SURROGATE__
+
+#eval show Meta.MetaM Unit from do
+  let j ← ProofReaderBuilt.report #[__MODULES__] #[__ROOTS__]
+  IO.println ("PROOF_READER_JSON:" ++ j.compress)

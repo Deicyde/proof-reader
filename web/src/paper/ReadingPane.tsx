@@ -49,7 +49,7 @@ interface Bar {
 }
 
 /** The blocks of the paper, in reading order: an address can name any of them. */
-const BLOCKS = ".sheet__text p, .sheet__text li, .sheet__text pre, .sheet__text figure, .sheet__text h2, .sheet__text h3, .sheet__text .ref";
+const BLOCKS = ".sheet__text p, .sheet__text li, .sheet__text pre, .sheet__text figure, .sheet__text h2, .sheet__text h3, .sheet__text tr, .sheet__text .ref";
 
 const prefersReduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -572,6 +572,8 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
       return;
     }
     const link = target.closest<HTMLAnchorElement>("a");
+    // A link to another page of the site (the statement sheet) is the browser's to follow.
+    if (link?.dataset.leave !== undefined) return;
     if (link) {
       if (link.classList.contains("nm")) {
         event.preventDefault();

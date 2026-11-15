@@ -1,0 +1,1008 @@
+{
+ "schema": 1,
+ "claims": [
+  {
+   "id": "pcp-theorem",
+   "title": "NP ⊆ PCP(O(log n), O(1))",
+   "section": "4",
+   "passage": "headline-statement",
+   "lean": [
+    "PCP.np_subset_pcp"
+   ]
+  }
+ ],
+ "passages": [
+  {
+   "id": "language-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Language"
+   ],
+   "quote": "def Language : Type := List Bool → Prop",
+   "anchor": {
+    "heading": "Languages and NP",
+    "block": 2
+   },
+   "lines": [
+    15,
+    15
+   ]
+  },
+  {
+   "id": "np-certificate-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.NPCertificate"
+   ],
+   "quote": "structure NPCertificate (P : (List Bool → List Bool → Bool) → Prop) (L : Language) where\n  witnessBound : Polynomial ℕ\n  check : List Bool → List Bool → Bool\n  check_polyTime : P check\n  spec : ∀ x : List Bool, L x ↔\n    ∃ w : List Bool, w.length ≤ witnessBound.eval x.length ∧ check x w = true",
+   "anchor": {
+    "heading": "Languages and NP",
+    "block": 2
+   },
+   "lines": [
+    30,
+    39
+   ]
+  },
+  {
+   "id": "in-np-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.InNP"
+   ],
+   "quote": "def InNP (P : (List Bool → List Bool → Bool) → Prop) (L : Language) : Prop :=\n  Nonempty (NPCertificate P L)",
+   "anchor": {
+    "heading": "Languages and NP",
+    "block": 2
+   },
+   "lines": [
+    42,
+    43
+   ]
+  },
+  {
+   "id": "polytime-relation-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Machine.PolyTimeRel"
+   ],
+   "quote": "def PolyTimeRel (R : List Bool → List Bool → Bool) : Prop :=\n  Nonempty (Turing.TM2ComputableInPolyTime encodePair encodeBool (fun p => R p.1 p.2))",
+   "anchor": {
+    "heading": "Polynomial time",
+    "block": 2
+   },
+   "lines": [
+    66,
+    67
+   ]
+  },
+  {
+   "id": "proof-oracle-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.ProofOracle"
+   ],
+   "quote": "abbrev ProofOracle : Type := ℕ → Bool",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 2
+   },
+   "lines": [
+    28,
+    28
+   ]
+  },
+  {
+   "id": "query-tree-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.QueryTree"
+   ],
+   "quote": "inductive QueryTree : ℕ → Type\n  | leaf {d : ℕ} (accept : Bool) : QueryTree d\n  | query {d : ℕ} (addr : ℕ) (onFalse onTrue : QueryTree d) : QueryTree (d + 1)",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 2
+   },
+   "lines": [
+    33,
+    37
+   ]
+  },
+  {
+   "id": "tree-evaluation-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.QueryTree.eval"
+   ],
+   "quote": "def eval : {d : ℕ} → QueryTree d → ProofOracle → Bool\n  | _, .leaf b, _ => b\n  | _, .query a f t, π => if π a then (t.eval π) else (f.eval π)",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 2
+   },
+   "lines": [
+    42,
+    44
+   ]
+  },
+  {
+   "id": "tree-addresses-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.QueryTree.addresses"
+   ],
+   "quote": "def addresses : {d : ℕ} → QueryTree d → Finset ℕ\n  | _, .leaf _ => ∅\n  | _, .query a f t => insert a (f.addresses ∪ t.addresses)",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 2
+   },
+   "lines": [
+    47,
+    49
+   ]
+  },
+  {
+   "id": "verifier-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Verifier"
+   ],
+   "quote": "structure Verifier where\n  randomness : ℕ → ℕ\n  queries : ℕ\n  run : (x : List Bool) → Fin (2 ^ randomness x.length) → QueryTree queries",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 2
+   },
+   "lines": [
+    85,
+    91
+   ]
+  },
+  {
+   "id": "accepting-randomness-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Verifier.acceptingRandomness"
+   ],
+   "quote": "def acceptingRandomness : Finset (Fin (2 ^ V.randomness x.length)) :=\n  Finset.univ.filter (fun r => (V.run x r).eval π = true)",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 4
+   },
+   "lines": [
+    98,
+    99
+   ]
+  },
+  {
+   "id": "acceptance-probability-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Verifier.accProb"
+   ],
+   "quote": "def accProb : ℚ :=\n  ((V.acceptingRandomness x π).card : ℚ) / ((2 : ℚ) ^ V.randomness x.length)",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 4
+   },
+   "lines": [
+    103,
+    104
+   ]
+  },
+  {
+   "id": "complete-at-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Verifier.CompleteAt"
+   ],
+   "quote": "def CompleteAt : Prop := ∃ π : ProofOracle, V.accProb x π = 1",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 4
+   },
+   "lines": [
+    131,
+    131
+   ]
+  },
+  {
+   "id": "sound-at-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Verifier.SoundAt"
+   ],
+   "quote": "def SoundAt (s : ℚ) : Prop := ∀ π : ProofOracle, V.accProb x π ≤ s",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 4
+   },
+   "lines": [
+    134,
+    134
+   ]
+  },
+  {
+   "id": "reads-below-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Verifier.ReadsBelow"
+   ],
+   "quote": "def ReadsBelow (N : ℕ) : Prop :=\n  ∀ r, ∀ a ∈ (V.run x r).addresses, a < N",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 4
+   },
+   "lines": [
+    118,
+    119
+   ]
+  },
+  {
+   "id": "canonical-randomness-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Verifier.CanonicalRandomness"
+   ],
+   "quote": "def CanonicalRandomness (a b : ℕ) : Prop :=\n  ∀ n : ℕ, V.randomness n = a * Nat.clog 2 (n + 2) + b",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 4
+   },
+   "lines": [
+    154,
+    155
+   ]
+  },
+  {
+   "id": "verifier-algorithm-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.VerifierAlg"
+   ],
+   "quote": "abbrev VerifierAlg : Type := List Bool → List Bool → List Bool → Bool ⊕ ℕ",
+   "anchor": {
+    "heading": "Efficient verifiers",
+    "block": 2
+   },
+   "lines": [
+    24,
+    24
+   ]
+  },
+  {
+   "id": "implementation-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Verifier.ImplementedBy"
+   ],
+   "quote": "def ImplementedBy (V : Verifier) (alg : VerifierAlg) : Prop :=\n  ∀ (x : List Bool) (r : Fin (2 ^ V.randomness x.length)),\n    QueryTree.ofStep (alg x (bitsOfFin (V.randomness x.length) r)) V.queries [] = V.run x r",
+   "anchor": {
+    "heading": "Efficient verifiers",
+    "block": 2
+   },
+   "lines": [
+    62,
+    64
+   ]
+  },
+  {
+   "id": "polytime-algorithm-code",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Machine.PolyTimeAlg"
+   ],
+   "quote": "def PolyTimeAlg (alg : VerifierAlg) : Prop :=\n  Nonempty (Turing.TM2ComputableInPolyTime encodeTriple encodeAnswer\n    (fun t => alg t.1 t.2.1 t.2.2))",
+   "anchor": {
+    "heading": "Efficient verifiers",
+    "block": 2
+   },
+   "lines": [
+    71,
+    73
+   ]
+  },
+  {
+   "id": "headline-statement",
+   "section": "4",
+   "role": "states",
+   "lean": [
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "theorem np_subset_pcp (L : Language) (hL : InNP Machine.PolyTimeRel L) :\n    ∃ (V : Verifier) (alg : VerifierAlg) (a b q : ℕ) (p : Polynomial ℕ),\n      Machine.PolyTimeAlg alg ∧\n      V.ImplementedBy alg ∧\n      V.queries = q ∧\n      V.CanonicalRandomness a b ∧\n      (∀ x : List Bool, V.ReadsBelow x (p.eval x.length)) ∧\n      (∀ x : List Bool, L x → V.CompleteAt x) ∧\n      (∀ x : List Bool, ¬ L x → V.SoundAt x (1 / 2))",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 2
+   },
+   "lines": [
+    25,
+    33
+   ]
+  },
+  {
+   "id": "language-prose",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.Language"
+   ],
+   "quote": "A language is a predicate on bit strings.",
+   "anchor": {
+    "heading": "Languages and NP",
+    "block": 3
+   },
+   "lines": [
+    15,
+    15
+   ]
+  },
+  {
+   "id": "np-certificate-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.NPCertificate",
+    "PCP.InNP"
+   ],
+   "quote": "A certificate that L is in NP consists\nof a polynomial bound p, a checking relation `check` that is polynomial-time in\nthe sense `P`, and a proof of the usual equivalence: x ∈ L if and only if some\nwitness w with |w| ≤ p(|x|) is accepted.",
+   "anchor": {
+    "heading": "Languages and NP",
+    "block": 3
+   }
+  },
+  {
+   "id": "np-parameter-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.InNP",
+    "PCP.NPCertificate",
+    "PCP.Machine.PolyTimeRel"
+   ],
+   "quote": "The notion of polynomial time is a\nparameter here. The main theorem fixes it to the concrete machine model below.",
+   "anchor": {
+    "heading": "Languages and NP",
+    "block": 3
+   }
+  },
+  {
+   "id": "polynomial-time-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Machine.PolyTimeRel"
+   ],
+   "quote": "`Turing.TM2ComputableInPolyTime` is Mathlib's definition: a finite multi-stack\nTuring machine computes the function, and halts within q(n) steps for a fixed\npolynomial q, where n is the length of the encoded input.",
+   "anchor": {
+    "heading": "Polynomial time",
+    "block": 3
+   }
+  },
+  {
+   "id": "pair-encoding-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Machine.encodePair"
+   ],
+   "quote": "The input pair (x, w)\nis written on the tape as x, a separator symbol, then w.",
+   "anchor": {
+    "heading": "Polynomial time",
+    "block": 3
+   }
+  },
+  {
+   "id": "proof-oracle-prose",
+   "section": "3",
+   "role": "defines",
+   "lean": [
+    "PCP.ProofOracle"
+   ],
+   "quote": "A proof is an infinite bit string π : ℕ → {0,1}.",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 3
+   },
+   "lines": [
+    28,
+    28
+   ]
+  },
+  {
+   "id": "query-tree-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.QueryTree",
+    "PCP.QueryTree.eval"
+   ],
+   "quote": "A `QueryTree d` is an adaptive\ndecision tree of depth at most d: each internal node reads one proof bit and\nbranches on it, and each leaf accepts or rejects.",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 3
+   }
+  },
+  {
+   "id": "verifier-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier"
+   ],
+   "quote": "A verifier specifies how many\nrandom bits it uses on inputs of length n, a bound on the number of queries, and\nfor each input x and each random string r ∈ {0, …, 2<sup>randomness(|x|)</sup> − 1}\nthe tree it runs.",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 3
+   }
+  },
+  {
+   "id": "acceptance-probability-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.accProb",
+    "PCP.Verifier.acceptingRandomness"
+   ],
+   "quote": "`accProb` is the exact fraction of random strings on which V accepts x with\n  proof π.",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 5
+   }
+  },
+  {
+   "id": "completeness-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.CompleteAt"
+   ],
+   "quote": "`CompleteAt x`: some proof is accepted with probability 1.",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 5
+   },
+   "lines": [
+    131,
+    131
+   ]
+  },
+  {
+   "id": "soundness-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.SoundAt"
+   ],
+   "quote": "`SoundAt x s`:\n  every proof is accepted with probability at most s.",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 5
+   },
+   "lines": [
+    134,
+    134
+   ]
+  },
+  {
+   "id": "proof-bound-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.ReadsBelow",
+    "PCP.QueryTree.addresses"
+   ],
+   "quote": "`ReadsBelow x N`: on input x, no tree ever queries an address ≥ N, whatever\n  the random string and the answers. This is how \"a proof of length N\" is\n  expressed.",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 5
+   }
+  },
+  {
+   "id": "randomness-budget-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.CanonicalRandomness"
+   ],
+   "quote": "`CanonicalRandomness a b`: the verifier uses *exactly* a⌈log₂(n+2)⌉ + b random\n  bits. An upper bound would be too weak: the randomness function is an\n  arbitrary function of n, and an upper bound would let it encode an arbitrary\n  (even uncomputable) predicate of the input length, which the verifier could\n  read off from how many random bits it receives.",
+   "anchor": {
+    "heading": "Verifiers",
+    "block": 5
+   },
+   "lines": [
+    154,
+    155
+   ]
+  },
+  {
+   "id": "efficiency-separate-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier",
+    "PCP.VerifierAlg",
+    "PCP.Verifier.ImplementedBy"
+   ],
+   "quote": "A `Verifier` is a mathematical object: a family of decision trees. Its\nefficiency is certified separately, by an algorithm.",
+   "anchor": {
+    "heading": "Efficient verifiers",
+    "block": 3
+   }
+  },
+  {
+   "id": "algorithm-step-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.VerifierAlg"
+   ],
+   "quote": "Given the input x, the\nrandom string r as bits, and the answers received so far, `alg` either halts\nwith a decision (`Bool`) or names the next proof address to query (`ℕ`).",
+   "anchor": {
+    "heading": "Efficient verifiers",
+    "block": 3
+   },
+   "lines": [
+    24,
+    24
+   ]
+  },
+  {
+   "id": "implementation-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.ImplementedBy",
+    "PCP.QueryTree.ofStep"
+   ],
+   "quote": "`ImplementedBy` says that unfolding `alg` reproduces exactly the tree\n`V.run x r`, for every x and r.",
+   "anchor": {
+    "heading": "Efficient verifiers",
+    "block": 3
+   }
+  },
+  {
+   "id": "algorithm-time-prose",
+   "section": "3",
+   "role": "explains",
+   "lean": [
+    "PCP.Machine.PolyTimeAlg"
+   ],
+   "quote": "`PolyTimeAlg` says `alg` runs in polynomial time\non Mathlib's Turing machines.",
+   "anchor": {
+    "heading": "Efficient verifiers",
+    "block": 3
+   },
+   "lines": [
+    71,
+    73
+   ]
+  },
+  {
+   "id": "clause-hypothesis",
+   "section": "4",
+   "role": "explains",
+   "lean": [
+    "PCP.Language",
+    "PCP.InNP",
+    "PCP.Machine.PolyTimeRel",
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "Let L ⊆ {0,1}* be a language in NP.",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "clause-witnesses",
+   "section": "4",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier",
+    "PCP.VerifierAlg",
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "Then there are a verifier V, an algorithm, constants a, b, q and a polynomial p, all chosen before any input x, such that:",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "clause-algorithm-time",
+   "section": "4",
+   "role": "explains",
+   "lean": [
+    "PCP.Machine.PolyTimeAlg",
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "the algorithm runs in polynomial time,",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "clause-implementation",
+   "section": "4",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.ImplementedBy",
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "and it computes exactly V;",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "clause-query-bound",
+   "section": "4",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier",
+    "PCP.QueryTree",
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "V reads at most q proof bits;",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "clause-randomness",
+   "section": "4",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.CanonicalRandomness",
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "on inputs of length n, V uses exactly a⌈log₂(n+2)⌉ + b random bits;",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "clause-proof-bound",
+   "section": "4",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.ReadsBelow",
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "on input x, V reads only the first p(\\|x\\|) bits of the proof;",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "clause-completeness",
+   "section": "4",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.CompleteAt",
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "if x ∈ L, some proof is accepted with probability 1;",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "clause-soundness",
+   "section": "4",
+   "role": "explains",
+   "lean": [
+    "PCP.Verifier.SoundAt",
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "if x ∉ L, every proof is accepted with probability at most 1/2.",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "pcp-summary",
+   "section": "4",
+   "role": "states",
+   "lean": [
+    "PCP.np_subset_pcp"
+   ],
+   "quote": "That is NP ⊆ PCP(O(log n), O(1)), with perfect completeness and a\npolynomial-time verifier.",
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 5
+   },
+   "lines": [
+    25,
+    33
+   ]
+  },
+  {
+   "id": "lean-hypothesis",
+   "section": "4",
+   "role": "uses",
+   "lean": [
+    "PCP.np_subset_pcp",
+    "PCP.InNP",
+    "PCP.Machine.PolyTimeRel"
+   ],
+   "lines": [
+    25,
+    25
+   ],
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   },
+   "quote": "`(L : Language) (hL : InNP Machine.PolyTimeRel L)`"
+  },
+  {
+   "id": "lean-witnesses",
+   "section": "4",
+   "role": "uses",
+   "lean": [
+    "PCP.np_subset_pcp",
+    "PCP.Verifier",
+    "PCP.VerifierAlg"
+   ],
+   "lines": [
+    26,
+    26
+   ],
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   },
+   "quote": "`∃ (V : Verifier) (alg : VerifierAlg) (a b q : ℕ) (p : Polynomial ℕ),`"
+  },
+  {
+   "id": "lean-algorithm-time",
+   "section": "4",
+   "role": "uses",
+   "lean": [
+    "PCP.np_subset_pcp",
+    "PCP.Machine.PolyTimeAlg"
+   ],
+   "lines": [
+    27,
+    27
+   ],
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   },
+   "quote": "`Machine.PolyTimeAlg alg ∧`"
+  },
+  {
+   "id": "lean-implementation",
+   "section": "4",
+   "role": "uses",
+   "lean": [
+    "PCP.np_subset_pcp",
+    "PCP.Verifier.ImplementedBy"
+   ],
+   "lines": [
+    28,
+    28
+   ],
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   },
+   "quote": "`V.ImplementedBy alg ∧`"
+  },
+  {
+   "id": "lean-query-bound",
+   "section": "4",
+   "role": "uses",
+   "lean": [
+    "PCP.np_subset_pcp",
+    "PCP.Verifier"
+   ],
+   "lines": [
+    29,
+    29
+   ],
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   },
+   "quote": "`V.queries = q ∧`"
+  },
+  {
+   "id": "lean-randomness",
+   "section": "4",
+   "role": "uses",
+   "lean": [
+    "PCP.np_subset_pcp",
+    "PCP.Verifier.CanonicalRandomness"
+   ],
+   "lines": [
+    30,
+    30
+   ],
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   },
+   "quote": "`V.CanonicalRandomness a b ∧`"
+  },
+  {
+   "id": "lean-proof-bound",
+   "section": "4",
+   "role": "uses",
+   "lean": [
+    "PCP.np_subset_pcp",
+    "PCP.Verifier.ReadsBelow"
+   ],
+   "lines": [
+    31,
+    31
+   ],
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   },
+   "quote": "`(∀ x : List Bool, V.ReadsBelow x (p.eval x.length)) ∧`"
+  },
+  {
+   "id": "lean-completeness",
+   "section": "4",
+   "role": "uses",
+   "lean": [
+    "PCP.np_subset_pcp",
+    "PCP.Verifier.CompleteAt"
+   ],
+   "lines": [
+    32,
+    32
+   ],
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   },
+   "quote": "`(∀ x : List Bool, L x → V.CompleteAt x) ∧`"
+  },
+  {
+   "id": "lean-soundness",
+   "section": "4",
+   "role": "uses",
+   "lean": [
+    "PCP.np_subset_pcp",
+    "PCP.Verifier.SoundAt"
+   ],
+   "lines": [
+    33,
+    33
+   ],
+   "anchor": {
+    "heading": "4. The PCP theorem",
+    "block": 4
+   },
+   "quote": "`(∀ x : List Bool, ¬ L x → V.SoundAt x (1 / 2))`"
+  }
+ ],
+ "plain": {
+  "PCP.np_subset_pcp": "The PCP theorem",
+  "PCP.Language": "Binary languages",
+  "PCP.NPCertificate": "NP certificates",
+  "PCP.InNP": "Membership of NP",
+  "PCP.ProofOracle": "Proof bits",
+  "PCP.QueryTree": "Bounded query trees",
+  "PCP.QueryTree.eval": "Run a query tree",
+  "PCP.QueryTree.addresses": "Addresses in a query tree",
+  "PCP.Verifier": "Oracle verifiers",
+  "PCP.Verifier.acceptingRandomness": "Accepting random strings",
+  "PCP.Verifier.accProb": "Acceptance probability",
+  "PCP.Verifier.ReadsBelow": "Bound the proof addresses",
+  "PCP.Verifier.CompleteAt": "Perfect completeness at an input",
+  "PCP.Verifier.SoundAt": "Soundness at an input",
+  "PCP.Verifier.CanonicalRandomness": "Exact logarithmic randomness",
+  "PCP.VerifierAlg": "The next verifier step",
+  "PCP.bitsOfFin": "A random index as bits",
+  "PCP.QueryTree.ofStep": "Build a bounded query tree",
+  "PCP.Verifier.ImplementedBy": "Match the algorithm to the tree",
+  "PCP.Machine.Sym": "Tape symbols",
+  "PCP.Machine.ofBits": "Write bits as tape symbols",
+  "PCP.Machine.encodePair": "Encode two bit strings",
+  "PCP.Machine.encodeTriple": "Encode three bit strings",
+  "PCP.Machine.encodeAnswer": "Encode a verifier response",
+  "PCP.Machine.encodeBool": "Encode a Boolean result",
+  "PCP.Machine.PolyTimeRel": "Polynomial time for a relation",
+  "PCP.Machine.PolyTimeAlg": "Polynomial time for one step"
+ },
+ "notes": {
+  "PCP.Verifier.ImplementedBy": {
+   "text": "The left side unfolds alg with budget V.queries. At budget zero, a request for a further query becomes a rejecting leaf (CostModel.lean, lines 42 to 44, as the comment above ofStep says), so the equation compares V.run x r with this capped unfolding.",
+   "because": [
+    "implementation-prose",
+    "implementation-code"
+   ]
+  },
+  "PCP.Verifier.ReadsBelow": {
+   "text": "QueryTree.addresses (Definition.lean, lines 47 to 49) collects the address of every query node on both branches, so ReadsBelow bounds the addresses on every branch of every tree, whatever the answers along the way.",
+   "because": [
+    "proof-bound-prose",
+    "reads-below-code"
+   ]
+  },
+  "PCP.QueryTree.ofStep": {
+   "text": "Builds the tree by running the step function on the answers so far. While budget remains, a decision gives a leaf and a request for address a gives a query node at a, whose two branches continue with that answer appended and one less query. At budget zero a request gives a rejecting leaf.",
+   "because": [
+    "implementation-prose"
+   ]
+  },
+  "PCP.bitsOfFin": {
+   "text": "Writes the random string's index r as exactly k bits, least significant bit first, so alg always receives k random bits.",
+   "because": [
+    "algorithm-step-prose"
+   ]
+  },
+  "PCP.Machine.encodeTriple": {
+   "text": "The tape a verifier step reads: the input x, a separator, the random bits, a separator, then the answers so far.",
+   "because": [
+    "polytime-algorithm-code"
+   ]
+  },
+  "PCP.Machine.encodeAnswer": {
+   "text": "How a step's result is written: a decision is one bit, and a query is a separator followed by the address in binary (Nat.bits).",
+   "because": [
+    "polytime-algorithm-code"
+   ]
+  },
+  "PCP.Machine.encodeBool": {
+   "text": "How the witness checker's answer is written: a single bit.",
+   "because": [
+    "polytime-relation-code"
+   ]
+  },
+  "PCP.Machine.ofBits": {
+   "text": "Writes a bit string on the tape, one bit symbol per bit, in order.",
+   "because": [
+    "pair-encoding-prose"
+   ]
+  },
+  "PCP.Machine.Sym": {
+   "text": "The tape alphabet: a bit, or a separator that marks where one argument ends and the next begins.",
+   "because": [
+    "pair-encoding-prose"
+   ]
+  }
+ },
+ "fidelity": {
+  "PCP.np_subset_pcp": {
+   "verdict": "same",
+   "text": "The guide's line-by-line table gives one row for each part of the Lean statement, in order, and each row says what that part says. The notes on ImplementedBy and ReadsBelow spell out the definitions behind two of the rows.",
+   "because": [
+    "headline-statement",
+    "pcp-summary",
+    "clause-implementation",
+    "clause-proof-bound"
+   ],
+   "checks": []
+  }
+ }
+}

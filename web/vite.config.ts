@@ -26,7 +26,7 @@ function llmsText(papers: ShelfItem[]): string {
 
 > A website for reading a research paper beside its proof in Lean, a programming language whose compiler rejects a proof with a wrong step. The paper is on the left page. The right page holds a graph of the Lean declarations and the authors' Lean lines, linked to the paper statement by statement.
 
-The papers and their Lean are their authors'. A program checks each reading copy against text extracted from its PDF. The check skips some page regions and can miss changes in text order; it does not certify an exact copy. The links between statements and Lean, and any notes and plain titles, were made with AI and have not been reviewed by the authors unless a paper says otherwise. Facts about Lean (kinds, lines, uses, axioms) come from Lean itself, run on the authors' project.
+The papers, guides and their Lean are their authors'. A program checks each PDF reading copy against text extracted from its PDF. An author's Markdown guide is rendered directly; every raw quotation must occur once in that source and inside its recorded heading and block. The check skips some page regions and can miss changes in text order; it does not certify an exact copy. The links between statements and Lean, and any notes and plain titles, were made with AI and have not been reviewed by the authors unless a paper says otherwise. Facts about Lean (kinds, lines, uses, axioms) come from Lean itself, run on the authors' project.
 
 ## Papers
 
@@ -37,10 +37,11 @@ ${papers.map((p) => `- [${p.title}](${SITE_URL}${p.slug}/): ${p.authors.join(", 
 All data is static under ${SITE_URL}papers/.
 
 - [papers/index.json](${SITE_URL}papers/index.json): every paper, with its title, authors and venue
-- papers/<slug>/edition.json: one paper's data. \`paper\` holds its metadata and licence; \`lean\` holds the toolchain and the authors' source files; \`claims\` the results the paper says the Lean establishes; \`passages\` each linked statement, with its verbatim \`quote\`, its \`role\`, the Lean names it is linked to and, where given, the exact \`lines\`; \`declarations\` each Lean declaration with its kind, lines, \`uses_statement\`, \`uses_proof\`, \`used_by_statement\`, \`used_by_proof\` and axioms; \`coverage\` the sections with linked statements; \`analytics\` the axiom summary
+- papers/<slug>/edition.json: one paper's data. \`paper\` holds its metadata and licence; \`lean\` holds the toolchain and the authors' source files; \`claims\` the results the paper says the Lean establishes; \`passages\` each linked statement, with its displayed \`quote\` (and exact raw \`source_quote\` for Markdown), its \`role\`, the Lean names it is linked to and, where given, the exact \`lines\`; \`declarations\` each Lean declaration with its kind, lines, \`uses_statement\`, \`uses_proof\`, \`used_by_statement\`, \`used_by_proof\` and axioms; \`coverage\` the sections with linked statements; \`analytics\` the axiom summary
 - papers/<slug>/source.json: the authors' Lean files, and where each Lean name is printed in the PDF
 - papers/<slug>/reading.html: the paper's reading copy as HTML, with its statements, Lean names and page marks marked up
-- papers/<slug>/paper.pdf: the authors' PDF, unchanged
+- papers/<slug>/paper.pdf: the authors' PDF, unchanged, for a PDF source
+- papers/<slug>/source.md: the authors' Markdown, unchanged, for a Markdown source
 
 ## Addresses
 

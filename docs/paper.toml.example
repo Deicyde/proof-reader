@@ -6,9 +6,20 @@ venue = ""
 doi = ""
 url = ""
 pdf = "paper.pdf"
+# Show Proof Reader's own explainer films in the header and on the first screen.
+# films = true
+# For an author's Markdown guide, replace pdf above with:
+# markdown = "guide.md"
+# Set url to the source file so its relative links keep their destination.
+# What the page calls the authors' text, when it is not a paper:
+# noun = "guide"
 pdf_source = ""
 licence = ""
 licence_url = ""
+
+# Optional exact credit for a Markdown source.
+# [credit]
+# text = "Text: Author, repository at COMMIT, Apache-2.0"
 
 [lean]
 project = "lean"
