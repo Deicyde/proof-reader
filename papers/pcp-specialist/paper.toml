@@ -1,13 +1,13 @@
 [paper]
 title = "Constant-query verification by algebraic encoding"
 short_title = "Constant-query verification by algebraic encoding"
-authors = ["AI agents directed by Will Cook"]
+authors = ["Explanatory reconstruction prepared by Will Cook with AI assistance"]
 venue = "Explanatory reconstruction of Troy Lee's pinned formalization"
 markdown = "paper.md"
 noun = "paper"
 
 [credit]
-text = "Original algebraic proof: Amireddy, Behera, Srinivasan, Sudan and Willumsgaard. Lean formalization: Troy Lee. Exposition: AI agents directed by Will Cook"
+text = "Original algebraic proof: Amireddy, Behera, Srinivasan, Sudan and Willumsgaard. Lean formalization: Troy Lee. Explanatory reconstruction prepared by Will Cook with AI assistance"
 
 [lean]
 project = "../pcp-full-argument/lean"

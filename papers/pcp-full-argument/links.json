@@ -231,7 +231,7 @@
       ],
       "anchor": {
         "heading": "The algebraic PCP theorem: a detailed account of the Lean proof",
-        "block": 3
+        "block": 4
       }
     },
     {
@@ -623,7 +623,7 @@
       ],
       "anchor": {
         "heading": "The algebraic PCP theorem: a detailed account of the Lean proof",
-        "block": 8
+        "block": 9
       }
     },
     {
@@ -942,6 +942,75 @@
       "anchor": {
         "heading": "Implementation results used in the argument",
         "block": 2
+      }
+    },
+    {
+      "id": "pcp-long-proof-map-witnesses",
+      "section": "How the proof is organized",
+      "role": "uses",
+      "quote": "The encoded-line theorem supplies the four polynomial witnesses.",
+      "lean": [
+        "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close"
+      ],
+      "anchor": {
+        "heading": "How the proof is organized",
+        "block": 6
+      }
+    },
+    {
+      "id": "pcp-long-proof-map-correction",
+      "section": "How the proof is organized",
+      "role": "uses",
+      "quote": "Correction and the derived grid tests constrain these same witnesses at the certificate points; the difference check connects the colour and difference witnesses.",
+      "lean": [
+        "PCP.Algebraic.BinaryLocalCorrection.failure_le",
+        "PCP.Algebraic.DerivedZeroOnGrid.rejectionRate_lower_bound",
+        "PCP.Algebraic.ThreeColorVerifier.rejectionRate_ge_of_not_colorable"
+      ],
+      "anchor": {
+        "heading": "How the proof is organized",
+        "block": 6
+      }
+    },
+    {
+      "id": "pcp-long-proof-map-forward",
+      "section": "How the proof is organized",
+      "role": "explains",
+      "quote": "The resource and reduction arguments then give the forward PCP inclusion.",
+      "lean": [
+        "PCP.Algebraic.ThreeColorFinalAssembly.of_runtime",
+        "PCP.np_subset_pcp"
+      ],
+      "anchor": {
+        "heading": "How the proof is organized",
+        "block": 6
+      }
+    },
+    {
+      "id": "pcp-long-proof-map-reverse",
+      "section": "How the proof is organized",
+      "role": "explains",
+      "quote": "For the reverse inclusion, a nondeterministic machine guesses the finite proof prefix and checks every random seed.",
+      "lean": [
+        "PCP.pcp_subset_np_concrete"
+      ],
+      "anchor": {
+        "heading": "How the proof is organized",
+        "block": 6
+      }
+    },
+    {
+      "id": "pcp-long-proof-map-contracts",
+      "section": "How the proof is organized",
+      "role": "uses",
+      "quote": "The implementation results in the next table supply the machine-level contracts.",
+      "lean": [
+        "PCP.Verifier.ImplementedBy",
+        "PCP.QueryTree.ofStep"
+      ],
+      "anchor": {
+        "heading": "How the proof is organized",
+        "block": 6
       }
     }
   ],

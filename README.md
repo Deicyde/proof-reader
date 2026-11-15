@@ -114,6 +114,15 @@ be held with `fidelity_held`, in which case the page does not present them. The
 for example `"../companion/paper.md" = "companion"`. Links to those paths open the
 companion, and a heading fragment opens the corresponding section.
 
+For a Markdown-source figure, put the image in the same paper folder (or a child
+folder) and refer to it with a relative Markdown image such as
+`![A proof map](proof-map.png)`. `paper.py check` rejects missing images and paths
+that leave the paper folder. `paper.py build` copies referenced images into
+`web/public/papers/<slug>/` beside the reading HTML and records each image's
+SHA-256 in `edition.json` under `source.images`. Rebuild the paper and then the
+website after changing an image. An editable SVG can remain beside a PNG used
+by the Markdown and PDF renderer.
+
 The PDF commands are:
 
 ```sh

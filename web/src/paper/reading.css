@@ -141,6 +141,11 @@ dialog.plot { width: min(1280px, 94vw); max-height: 94vh; padding: 14px 18px 12p
 dialog.plot::backdrop { background: rgb(40 30 15 / 0.5); }
 dialog.plot img { display: block; width: 100%; height: auto; max-height: 82vh; object-fit: contain; }
 dialog.plot p { margin: 8px 0 0; font-family: var(--font-sans); font-size: var(--fs-ui); color: var(--ink-2); text-align: center; }
+@media (max-width: 600px) {
+  dialog.plot { overflow: auto; }
+  dialog.plot img { width: 760px; max-width: none; max-height: none; }
+  dialog.plot p { width: 760px; text-align: left; }
+}
 .rules { margin: 0.9em auto 1.1em; }
 .rule-name { font-size: 0.86em; font-variant-caps: small-caps; letter-spacing: 0.01em; }
 

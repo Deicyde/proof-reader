@@ -7622,6 +7622,51 @@
       "type": "SOURCE EXCERPT, NOT ELABORATED:\ntheorem totalDegree_encode_le (P : Polynomial R) :\n    (encode m c P).totalDegree ≤ c",
       "type_dependencies": [],
       "value_dependencies": []
+    },
+    {
+      "axioms": [],
+      "doc": null,
+      "end_line": 91,
+      "is_class": false,
+      "kind": "def",
+      "line": 84,
+      "module": "PCP.Algebraic.ThreeColorVerifier",
+      "name": "PCP.Algebraic.ThreeColorVerifier.BranchSeed",
+      "provenance": "source-read",
+      "structural_dependencies": [],
+      "type": "SOURCE EXCERPT, NOT ELABORATED:\ndef BranchSeed (F : Type*) [Monoid F] (n m c t : ℕ) : Fin 7 → Type _ :=\n  ![EncodedLineLowDegreeTest.Sample F (Fin n) m c t 3,\n    EncodedLineLowDegreeTest.Sample F (Fin n ⊕ Fin n) m c t 1,\n    EncodedLineLowDegreeTest.Sample F (Fin n ⊕ Fin n) m c t 3,\n    EncodedLineLowDegreeTest.Sample F (Fin (n + n) ⊕ Fin (n + n)) m c t 1,\n    DerivedZeroOnGrid.TestSample F n m c t 3,\n    DerivedZeroOnGrid.TestSample F (n + n) m c t 3,\n    ((Vertex F n × Vertex F n) × (Fin t → ZMod 2))]",
+      "type_dependencies": [],
+      "value_dependencies": []
+    },
+    {
+      "axioms": [],
+      "doc": null,
+      "end_line": 115,
+      "is_class": false,
+      "kind": "def",
+      "line": 97,
+      "module": "PCP.Algebraic.ThreeColorVerifier",
+      "name": "PCP.Algebraic.ThreeColorVerifier.branchTest",
+      "provenance": "source-read",
+      "structural_dependencies": [],
+      "type": "SOURCE EXCERPT, NOT ELABORATED:\nnoncomputable def branchTest (ρ : F ≃ₗ[ZMod 2] (Fin t → ZMod 2))\n    (nodes : Fin (c + 1) → F) (ζ : F) (H : Finset F) (G : SimpleGraph (Fin n → H))\n    (π : Proof F n m c t) (i : Fin 7) : BranchSeed F n m c t i → Bool := by",
+      "type_dependencies": [],
+      "value_dependencies": []
+    },
+    {
+      "axioms": [],
+      "doc": null,
+      "end_line": 121,
+      "is_class": false,
+      "kind": "def",
+      "line": 118,
+      "module": "PCP.Algebraic.ThreeColorVerifier",
+      "name": "PCP.Algebraic.ThreeColorVerifier.test",
+      "provenance": "source-read",
+      "structural_dependencies": [],
+      "type": "SOURCE EXCERPT, NOT ELABORATED:\nnoncomputable def test (ρ : F ≃ₗ[ZMod 2] (Fin t → ZMod 2))\n    (nodes : Fin (c + 1) → F) (ζ : F) (H : Finset F) (G : SimpleGraph (Fin n → H))\n    (π : Proof F n m c t) : Sample F n m c t → Bool :=\n  FiniteConjunction.test (branchTest ρ nodes ζ H G π)",
+      "type_dependencies": [],
+      "value_dependencies": []
     }
   ]
 }

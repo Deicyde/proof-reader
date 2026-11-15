@@ -69,6 +69,11 @@ Review and repair `paper.md` by hand:
 - **Plots.** Find each plot's box in PDF points, add a `[[reading.figure]]` to
   `paper.toml`, and describe the plot in the image's alternative text.
 
+For a Markdown source, keep each referenced local image inside the paper folder.
+The [Markdown image route](../../README.md#add-a-paper) checks the relative path,
+records its hash and copies it into the built site; PDF figure crops above apply
+only when the paper source is a PDF.
+
 Never correct the authors. A typo in the PDF stays in `paper.md`: it is their paper.
 
 ```sh
