@@ -12,20 +12,11 @@
     },
     {
       "id": "claim-2",
-      "title": "Colouring constraints on the grid",
+      "title": "Grid constraints and colouring",
       "section": "2",
       "passage": "pcp-short-colour-constraints",
       "lean": [
-        "PCP.Algebraic.ThreeColorGrid.constraints_iff_satisfies"
-      ]
-    },
-    {
-      "id": "claim-3",
-      "title": "Evaluation after digit encoding",
-      "section": "3",
-      "passage": "pcp-short-digit-encoding",
-      "lean": [
-        "PCP.Algebraic.SetMultilinear.eval_encode"
+        "PCP.Algebraic.ThreeColorGrid.colorable_iff_exists_constraints"
       ]
     },
     {
@@ -39,7 +30,7 @@
     },
     {
       "id": "claim-5",
-      "title": "Decoding binary rows",
+      "title": "Decoding the inner binary polynomial test",
       "section": "4",
       "passage": "pcp-short-binary-decoding",
       "lean": [
@@ -66,38 +57,20 @@
     },
     {
       "id": "claim-8",
-      "title": "Soundness of the grid test",
+      "title": "ZERO rejection lower bound",
       "section": "5",
       "passage": "pcp-short-zero",
       "lean": [
-        "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_ge"
-      ]
-    },
-    {
-      "id": "claim-9",
-      "title": "Choosing field parameters",
-      "section": "7",
-      "passage": "pcp-short-resources",
-      "lean": [
-        "PCP.Algebraic.ThreeColorFields.chosen_parameters"
-      ]
-    },
-    {
-      "id": "claim-10",
-      "title": "Reducing NP to three-colouring",
-      "section": "7",
-      "passage": "pcp-short-complexity",
-      "lean": [
-        "PCP.Reduction.NPThreeColorRuntime.of_inNP_program"
+        "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_lower_bound"
       ]
     },
     {
       "id": "source-11",
-      "title": "A proof for a proper colouring",
+      "title": "The honest verifier always accepts",
       "section": "6. One decoding for all seven checks",
       "passage": "linked-source-12",
       "lean": [
-        "PCP.Algebraic.ThreeColorVerifier.exists_proof_rejectionRate_eq_zero"
+        "PCP.Algebraic.ThreeColorVerifier.exists_proof_test_eq_true"
       ]
     },
     {
@@ -110,30 +83,21 @@
       ]
     },
     {
+      "id": "claim-10",
+      "title": "Polynomial-time graph verifier",
+      "section": "7",
+      "passage": "pcp-short-complexity",
+      "lean": [
+        "PCP.Lang.ThreeColorRuntime.polyTimeAlg"
+      ]
+    },
+    {
       "id": "source-13",
       "title": "The converse PCP theorem",
       "section": "7. Resources, implementation and the reverse inclusion",
       "passage": "linked-source-14",
       "lean": [
         "PCP.pcp_subset_np_concrete"
-      ]
-    },
-    {
-      "id": "source-14",
-      "title": "A certificate for grid vanishing",
-      "section": "2. Three-colouring as two vanishing conditions",
-      "passage": "linked-source-15",
-      "lean": [
-        "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_certificate"
-      ]
-    },
-    {
-      "id": "source-15",
-      "title": "Point and line agreement",
-      "section": "4. The local tests and their decoding guarantee",
-      "passage": "linked-source-16",
-      "lean": [
-        "PCP.Algebraic.PointLineTest.exists_close_of_small_rejection"
       ]
     }
   ],
@@ -142,7 +106,7 @@
       "id": "pcp-short-abstract",
       "section": "Abstract",
       "role": "explains",
-      "quote": "The PCP theorem states that every language in NP has a polynomial-time verifier with logarithmic randomness, constantly many proof-bit queries, perfect completeness and constant soundness error. The algebraic proof of Amireddy, Behera, Srinivasan, Sudan and Willumsgaard obtains these resources by encoding line polynomials as constant-degree multivariate polynomials and encoding field values by low-degree Hadamard words. This permits a point-versus-line test and a correction procedure to operate through constantly many bits. We explain the resulting construction for three-colourability, including the Lagrange-weighted test in the corrected paper, correction at the nonuniform points used by vanishing certificates, and the common decoding argument that makes the seven verifier checks sound. The quantitative statements follow Lee's formal implementation; its sampling conventions and query counts differ in several places from the paper. The contribution of this account is an explanatory reconstruction of that proof.",
+      "quote": "The PCP theorem states that every language in NP has a polynomial-time verifier with logarithmic randomness, constantly many proof-bit queries, perfect completeness and constant soundness error.",
       "lean": [
         "PCP.np_subset_pcp"
       ],
@@ -155,22 +119,22 @@
       "id": "pcp-short-theorem",
       "section": "1",
       "role": "explains",
-      "quote": "**Theorem (PCP).** For every language $L\\subseteq\\{0,1\\}^{*}$ in NP, there are a polynomial-time verifier $V$, natural numbers $a,b,q_0$, and a polynomial $p\\in\\mathbb N[X]$ with the following properties. On an input $x$ of length $n$, the verifier uses exactly",
+      "quote": "If $x\\in L$, there is one proof accepted for every random seed. If $x\\notin L$, every proof is accepted with probability at most $1/2$.",
       "lean": [
         "PCP.np_subset_pcp"
       ],
       "anchor": {
         "heading": "1. The theorem and the encoding problem",
-        "block": 2
+        "block": 4
       }
     },
     {
       "id": "pcp-short-colour-constraints",
       "section": "2",
       "role": "explains",
-      "quote": "An honest colouring makes $A_P$ vanish on $H^m$ and $B_P$ vanish on $H^{2m}$. Conversely, these vanishing conditions recover a proper colouring: the first restricts every vertex to the three allowed values, and the second separates the values across each edge. Both are needed. For example, assigning the four elements of $\\mathbb F_4$ to $K_4$ satisfies every edge equation, since every nonzero field element has cube one; the vertex assigned zero fails the vertex equation. The degree bounds in (1) are $d_0,3d_0,5d_0$.",
+      "quote": "An honest colouring makes $A_P$ vanish on $H^m$ and $B_P$ vanish on $H^{2m}$. Conversely, these vanishing conditions recover a proper colouring: the first restricts every vertex to the three allowed values, and the second separates the values across each edge.",
       "lean": [
-        "PCP.Algebraic.ThreeColorGrid.constraints_iff_satisfies"
+        "PCP.Algebraic.ThreeColorGrid.colorable_iff_exists_constraints"
       ],
       "anchor": {
         "heading": "2. Three-colouring as two vanishing conditions",
@@ -178,116 +142,77 @@
       }
     },
     {
-      "id": "pcp-short-digit-encoding",
-      "section": "3",
-      "role": "explains",
-      "quote": "Fix positive integers $b,c$, and consider a univariate polynomial $T(Y)=\\sum_{j<b^c}t_jY^j$. Write $j=\\sum_{i=0}^{c-1}j_ib^i$, where $0\\le j_i<b$, and introduce $cb$ variables $X_{i,s}$. Define",
-      "lean": [
-        "PCP.Algebraic.SetMultilinear.eval_encode"
-      ],
-      "anchor": {
-        "heading": "3. Encoding the values that the verifier needs",
-        "block": 2
-      }
-    },
-    {
       "id": "pcp-short-weighted-test",
       "section": "4",
       "role": "explains",
-      "quote": "The constant-degree inner polynomial is tested by a weighted interpolation identity. Assume $q>2c$, choose a generator $\\zeta$ of the full group $F^\\times$, and set",
+      "quote": "If (10) rejects with probability $\\delta<1/[2(c+2)^2]$, then $f$ is within $2\\delta$ of a degree-$c$ polynomial.",
       "lean": [
         "PCP.Algebraic.GeneratorLowDegreeTest.exists_close"
       ],
       "anchor": {
         "heading": "4. The local tests and their decoding guarantee",
-        "block": 2
+        "block": 7
       }
     },
     {
       "id": "pcp-short-binary-decoding",
       "section": "4",
       "role": "explains",
-      "quote": "To test a received row $w:\\mathcal B_r\\to\\mathbb F_2$, combine the BLR additivity test [4] with unit preservation, multiplicativity and consistency on affine degree-one labels. Suppose this combined test rejects with probability at most $\\epsilon$. Its additivity check supplies a linear functional $\\ell$ within $\\epsilon$ of $w$. The remaining laws distinguish evaluation functionals from arbitrary linear functionals. They are checked using (9); replacing the three corrected values in a product check by their $\\ell$-values costs at most $6\\epsilon$, and the check itself costs another $\\epsilon$. The defect",
+      "quote": "There is no small-rejection premise in (11), and both bounds concern the same decoded polynomial.",
       "lean": [
         "PCP.Algebraic.BinaryLocalRowDecoding.exists_polynomial_distance_le"
       ],
       "anchor": {
         "heading": "4. The local tests and their decoding guarantee",
-        "block": 15
+        "block": 21
       }
     },
     {
       "id": "pcp-short-outer-decoding",
       "section": "4",
       "role": "explains",
-      "quote": "The outer test has a primary table $f(x,R)$ and an auxiliary encoded-line table. It tests a primary Hadamard row, tests a uniformly selected auxiliary row by the inner test, and compares the primary answer at $u+zv$ with a locally corrected auxiliary answer at $\\Phi(z)$. Here $u,v,z$ are uniform, including $z=0$.",
+      "quote": "The restricted conclusion is for homogeneous linear labels.",
       "lean": [
         "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close"
       ],
       "anchor": {
         "heading": "4. The local tests and their decoding guarantee",
-        "block": 24
+        "block": 34
       }
     },
     {
       "id": "pcp-short-outer-correction",
       "section": "5",
       "role": "explains",
-      "quote": "The points $(x,0)$ and $(x,Z_H(x))$ in (2) occupy special subsets of the certificate's domain. Even a table with tiny average error could be wrong at all these points. The verifier must correct each requested value before using the certificate identities.",
+      "quote": "This statement allows an arbitrary auxiliary table. Such a table may cause frequent rejection; (14) says that a corrector which seldom rejects cannot often return the wrong bit.",
       "lean": [
         "PCP.Algebraic.BinaryLocalCorrection.failure_le"
       ],
       "anchor": {
         "heading": "5. Correcting the nonuniform certificate queries",
-        "block": 2
+        "block": 7
       }
     },
     {
       "id": "pcp-short-zero",
       "section": "5",
       "role": "explains",
-      "quote": "Now suppose $A$ and a proposed certificate $M$ have degree at most $D$, but $A$ fails to vanish on $H^k$. At least one residual in (2) is a nonzero polynomial; after substituting $Z_H$, its degree is at most $Dh$. The polynomial root bound shows that a uniform $x$ violates at least one field identity with probability at least $1-Dh/q$. A random homogeneous label detects a nonzero residual with probability $1/2$, so the ideal binary check rejects with probability at least",
+      "quote": "Thus small observed rejection forces the decoded polynomial to vanish on the grid, once the error terms are below the left side.",
       "lean": [
-        "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_ge"
+        "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_lower_bound"
       ],
       "anchor": {
         "heading": "5. Correcting the nonuniform certificate queries",
-        "block": 10
-      }
-    },
-    {
-      "id": "pcp-short-resources",
-      "section": "7",
-      "role": "explains",
-      "quote": "Take $c=4$. For a graph on $N$ vertices, let $a\\ge2$ be least with $\\lceil\\log_2N\\rceil\\le a2^a$, using the natural ceiling-log convention at $N=0,1$. Set",
-      "lean": [
-        "PCP.Algebraic.ThreeColorFields.chosen_parameters"
-      ],
-      "anchor": {
-        "heading": "7. Resources, implementation and the reverse inclusion",
-        "block": 2
-      }
-    },
-    {
-      "id": "pcp-short-complexity",
-      "section": "7",
-      "role": "explains",
-      "quote": "The operations behind these queries are polynomial-time computations. The formal implementation constructs the field through a computed irreducible polynomial and obtains generators and cube roots by bounded search. These searches are polynomial in $q$, which is polynomially bounded in the input length. The public adjacency extension, label substitutions, seed codecs and packed proof addresses are computed explicitly. The program producing the queries and verdict is compiled into a finite multi-tape machine with a polynomial cost bound; constant query complexity alone would not establish this runtime statement.",
-      "lean": [
-        "PCP.Reduction.NPThreeColorRuntime.of_inNP_program"
-      ],
-      "anchor": {
-        "heading": "7. Resources, implementation and the reverse inclusion",
-        "block": 19
+        "block": 14
       }
     },
     {
       "id": "linked-source-12",
       "section": "6. One decoding for all seven checks",
       "role": "explains",
-      "quote": "For completeness, start with a proper colouring, its exact interpolants and exact certificates, and the honest encoded line restrictions. If their degrees are below $b^c$, every component test accepts for every seed. This supplies one fixed eight-table proof with perfect completeness. The soundness argument used the same four decoded polynomials throughout; separate existential decodings for each later check would not suffice.",
+      "quote": "For completeness, start with a proper colouring, its exact interpolants and exact certificates, and the honest encoded line restrictions. If their degrees are below $b^c$, every component test accepts for every seed. This supplies one fixed eight-table proof with perfect completeness.",
       "lean": [
-        "PCP.Algebraic.ThreeColorVerifier.exists_proof_rejectionRate_eq_zero"
+        "PCP.Algebraic.ThreeColorVerifier.exists_proof_test_eq_true"
       ],
       "anchor": {
         "heading": "6. One decoding for all seven checks",
@@ -298,13 +223,26 @@
       "id": "linked-source-13",
       "section": "7. Resources, implementation and the reverse inclusion",
       "role": "explains",
-      "quote": "Repeat independently $R=1/\\delta$ times on the same proof and accept only if all runs accept. A no-instance has acceptance at most $(1-\\delta)^R\\le1/(1+R\\delta)\\le1/2$. Repetition multiplies randomness and queries by a fixed constant and preserves the proof bound and perfect completeness.",
+      "quote": "Repetition multiplies randomness and queries by a fixed constant and preserves the proof bound and perfect completeness.",
       "lean": [
         "PCP.Algebraic.ThreeColorAmplifiedVerifier.verification_guarantees"
       ],
       "anchor": {
         "heading": "7. Resources, implementation and the reverse inclusion",
         "block": 16
+      }
+    },
+    {
+      "id": "pcp-short-complexity",
+      "section": "7",
+      "role": "explains",
+      "quote": "The operations behind these queries are polynomial-time computations.",
+      "lean": [
+        "PCP.Lang.ThreeColorRuntime.polyTimeAlg"
+      ],
+      "anchor": {
+        "heading": "7. Resources, implementation and the reverse inclusion",
+        "block": 19
       }
     },
     {
@@ -319,32 +257,6 @@
         "heading": "7. Resources, implementation and the reverse inclusion",
         "block": 23
       }
-    },
-    {
-      "id": "linked-source-15",
-      "section": "2. Three-colouring as two vanishing conditions",
-      "role": "explains",
-      "quote": "There is a convenient certificate for vanishing on a grid. Put $Z_H(T)=\\prod_{u\\in H}(T-u)$. Repeated monic division in the separate coordinates shows that a polynomial $A$ vanishes on $H^k$ precisely when",
-      "lean": [
-        "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_certificate"
-      ],
-      "anchor": {
-        "heading": "2. Three-colouring as two vanishing conditions",
-        "block": 8
-      }
-    },
-    {
-      "id": "linked-source-16",
-      "section": "4. The local tests and their decoding guarantee",
-      "role": "explains",
-      "quote": "The point-versus-line theorem used here states that if",
-      "lean": [
-        "PCP.Algebraic.PointLineTest.exists_close_of_small_rejection"
-      ],
-      "anchor": {
-        "heading": "4. The local tests and their decoding guarantee",
-        "block": 29
-      }
     }
   ],
   "plain": {
@@ -352,7 +264,7 @@
     "PCP.Algebraic.ThreeColorGrid.constraints_iff_satisfies": "Colouring constraints on the grid",
     "PCP.Algebraic.SetMultilinear.eval_encode": "Evaluation after digit encoding",
     "PCP.Algebraic.GeneratorLowDegreeTest.exists_close": "Decoding a low-degree polynomial",
-    "PCP.Algebraic.BinaryLocalRowDecoding.exists_polynomial_distance_le": "Decoding binary rows",
+    "PCP.Algebraic.BinaryLocalRowDecoding.exists_polynomial_distance_le": "Decoding the inner polynomial test",
     "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close": "Decoding a low-degree polynomial",
     "PCP.Algebraic.BinaryLocalCorrection.failure_le": "Local correction error bound",
     "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_ge": "Soundness of the grid test",
@@ -388,7 +300,13 @@
     "PCP.Machine.encodeAnswer": "Encode a verifier response",
     "PCP.Machine.encodeBool": "Encode a Boolean result",
     "PCP.Machine.PolyTimeRel": "Polynomial time for a relation",
-    "PCP.Machine.PolyTimeAlg": "Polynomial time for one step"
+    "PCP.Machine.PolyTimeAlg": "Polynomial time for one step",
+    "PCP.Algebraic.ThreeColorGrid.colorable_iff_exists_constraints": "Grid constraints and colouring",
+    "PCP.Algebraic.ThreeColorParameterChoice.volume_le_log_add_one": "Logarithmic parameter volume",
+    "PCP.Lang.ThreeColorRuntime.polyTimeAlg": "Polynomial-time graph verifier",
+    "PCP.Algebraic.ThreeColorVerifier.exists_proof_test_eq_true": "The honest verifier always accepts",
+    "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_lower_bound": "ZERO rejection lower bound",
+    "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_decomposition": "Grid vanishing decomposition"
   },
   "fidelity_held": "The selected source has not yet been compared against elaborated Lean statements for this page."
 }
