@@ -124,6 +124,8 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
     if (el.querySelector(".stepline__fid li[data-flagged]") && fits(0)) target = 0;
     // So is any note or comparison on the card, so that its label stays in view with it.
     else if (first?.querySelector('.fid, .decl__note') && fits(top)) target = Math.min(target, top);
+    // The quoted sentence above the card is shown whole or not at all, never cut by the page's top edge.
+    if (target > 0 && target < top) target = fits(0) ? 0 : top;
     el.scrollTop = Math.max(0, target);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, step]);
@@ -152,7 +154,6 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
               <header className="stepline">
                 {step.title && <p className="stepline__title">{step.title}</p>}
                 <blockquote>{step.passage.quote}</blockquote>
-                <p className="stepline__caveat">{hasComparisons(edition) ? LINK_CAVEAT : LINK_CAVEAT_PLAIN} <MadeLink onOpen={() => onTab("index")} /></p>
                 <FidelityLines edition={edition} ids={step.decls} act={act} onGo={goTo} />
                 {step.decls.length > 1 && (
                   <nav className="crumbs" aria-label="The declarations of this statement">
@@ -186,6 +187,9 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
                 />
               );
             })}
+            {step.passage && (
+              <p className="stepline__caveat stepline__caveat--foot">{hasComparisons(edition) ? LINK_CAVEAT : LINK_CAVEAT_PLAIN} <MadeLink onOpen={() => onTab("index")} /></p>
+            )}
           </>
         )}
       </div>
