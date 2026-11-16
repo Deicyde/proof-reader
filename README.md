@@ -23,9 +23,16 @@ remains at `#/pcp-reading-guide`. The algebraic proof is due to Amireddy,
 Behera, Srinivasan, Sudan and Willumsgaard; Lee wrote the Lean formalization.
 AI agents wrote the three explanations under Will Cook's direction.
 
-On a desktop, the paper is on the left and the proof diagram is on the right.
-As you scroll, the diagram highlights the step linked to the passage you are
-reading. Click a statement or diagram card to see its Lean code. Use **Back**
+On a desktop, each visit opens with the paper on the left and the proof pane on
+the right: the graph above the Lean, or beside it on a very wide screen. Drag
+the divider between the paper and the proof to give either side more room, and
+the handle between the graph and the Lean to share the pane; both are
+remembered. Closing the proof pane lasts for that visit.
+As you scroll, the proof pane follows the linked passage you are reading: the
+Lean shows its declaration, and the graph shows that declaration with what it
+uses. Choosing another card or result holds the graph there until you choose
+**Follow the paper again**. Click a statement or diagram
+card to see its Lean code. Use **Back**
 to return to the diagram without losing your place, or the **Graph / Lean**
 toggle to choose what stays beside the paper.
 

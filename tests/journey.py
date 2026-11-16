@@ -106,8 +106,8 @@ def lean_open(page: Page) -> bool:
 
 GRAPH_FIRST = """
 try {
-  if (!localStorage.getItem('proof-reader-pane-2'))
-    localStorage.setItem('proof-reader-pane-2', JSON.stringify({graph: true, lean: false, share: 0, sideShare: 0}));
+  if (!localStorage.getItem('proof-reader-pane-3'))
+    localStorage.setItem('proof-reader-pane-3', JSON.stringify({graph: true, lean: false, share: 0, sideShare: 0}));
 } catch { /* a frame with no storage, such as the PDF's: nothing to set there */ }
 """
 
@@ -144,6 +144,93 @@ def opening(page: Page, url: str) -> None:
     page.evaluate("(hash) => { location.hash = hash; }", hashes[0])
     wait_until(page, lambda: page.evaluate("document.querySelector('[data-paper-pane]').scrollTop") < before - 200, "an address this tab already passed, typed again, takes the reader back to it")
     check(page.evaluate("location.hash") == hashes[0], "and stays in the address bar")
+
+
+def reopen_proof(page: Page, url: str) -> None:
+    """A previously closed proof pane must not hide the split on later visits."""
+    print("Reopening the proof pane")
+    page.goto(f"{url}#/{SLUG}", wait_until="load")
+    page.locator(".proof").wait_for()
+    page.evaluate("""localStorage.setItem('proof-reader-pane-3', JSON.stringify({
+        graph: false, lean: false, share: 0.3, sideShare: 0.4
+    }))""")
+    for slug in ("pcp-exposition", "pcp-specialist", "pcp-full-argument", "pcp-reading-guide", SLUG):
+        page.goto(f"{url}#/{slug}", wait_until="load")
+        page.locator(".proof").wait_for()
+        paper = page.locator(".left").bounding_box()
+        proof = page.locator(".proof").bounding_box()
+        check(paper is not None and proof is not None
+              and proof["x"] >= paper["x"] + paper["width"] - 1
+              and abs(proof["y"] - paper["y"]) <= 1,
+              f"{slug} opens beside its proof despite a saved closed pane")
+        check(not lean_open(page), "the saved Graph mode is preserved")
+    page.locator(".proof").get_by_role("button", name="Close", exact=True).click()
+    page.locator(".proof").wait_for(state="hidden")
+    check(True, "Close still hides the proof for the current visit")
+    page.reload(wait_until="load")
+    page.locator(".proof").wait_for()
+    check(True, "reloading opens the proof pane again")
+    check(page.evaluate("""() => {
+        const layout = JSON.parse(localStorage.getItem('proof-reader-pane-3'));
+        return layout.share === 0.3 && layout.sideShare === 0.4 && layout.lean === false
+            && !Object.hasOwn(layout, 'graph');
+    }"""), "mode and split sizes persist without a saved closed pane")
+
+
+def graph_follows(page: Page, url: str, shots: Path | None) -> None:
+    """A paper with many results: the graph shows the statement being read, and the
+    divider between paper and proof moves, is remembered and can be put back."""
+    print("The graph follows the reading")
+    page.goto(f"{url}#/pcp-exposition", wait_until="load")
+    page.locator(".nearmap__card.is-head").first.wait_for()
+    head = lambda: page.eval_on_selector_all(".nearmap__card.is-head .nearmap__title", "els => els.map(e => e.textContent)")
+    check(page.locator(".proof__graph").bounding_box()["height"] > 150 and lean_open(page),
+          "a fresh visit opens with the graph above the Lean")
+    check(page.locator(".claims--many select").count() == 1, "many results share one line with a menu")
+    seen = set()
+    for _ in range(8):
+        page.mouse.move(400, 500)
+        page.mouse.wheel(0, 2200)
+        page.wait_for_timeout(700)
+        heads = head()
+        seen.add(tuple(heads))
+        if "Following" in caption(page) and heads:
+            check(any(title in caption(page) for title in heads), f"the graph shows the statement being read: {heads[0]}")
+    check(len(seen) >= 4, f"the graph changed {len(seen)} times as the paper scrolled")
+    page.get_by_role("button", name="Next result").click()
+    page.wait_for_timeout(300)
+    held = head()
+    check(page.locator(".graph__paused").count() == 1, "choosing a result holds the graph there")
+    page.mouse.move(400, 500)
+    page.mouse.wheel(0, -4000)
+    page.wait_for_timeout(900)
+    check(head() == held, "a held graph stays put while the paper scrolls")
+    page.get_by_role("button", name="Follow the paper again").click()
+    wait_until(page, lambda: head() != held and page.locator(".graph__paused").count() == 0, "following again returns to the statement being read")
+    shot(page, shots, "05-graph-follows")
+    width = lambda: page.locator(".left").bounding_box()["width"]
+    start = width()
+    grip = page.locator(".papersplit").bounding_box()
+    page.mouse.move(grip["x"] + 13, 400)
+    page.mouse.down()
+    page.mouse.move(grip["x"] - 107, 400, steps=6)
+    page.mouse.up()
+    page.wait_for_timeout(300)
+    moved = width()
+    check(abs((start - moved) - 120) < 4, f"dragging the divider narrows the paper by the drag ({start:.0f} to {moved:.0f})")
+    page.reload(wait_until="load")
+    page.locator(".papersplit").wait_for()
+    page.wait_for_timeout(600)
+    check(abs(width() - moved) < 2, "the divider's place survives a reload")
+    page.locator(".papersplit").dblclick()
+    page.wait_for_timeout(300)
+    check(abs(width() - start) < 2, "a double click puts the divider back")
+    page.locator(".papersplit").focus()
+    page.keyboard.press("ArrowRight")
+    page.wait_for_timeout(200)
+    check(width() > start + 20, "the arrow keys move the divider")
+    page.keyboard.press("Home")
+    check(page.evaluate("document.documentElement.scrollWidth <= innerWidth"), "no sideways scroll after resizing")
 
 
 def active(page: Page) -> str:
@@ -931,7 +1018,9 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     reload(page)
     page.wait_for_selector(".sheet__text .q", state="attached")
     page.wait_for_timeout(400)
-    check(page.locator(".proof").count() == 0, "and stays closed")
+    check(page.locator(".proof__graph").is_visible(), "a reload restores the side-by-side view")
+    page.locator(".proof__close").click()
+    page.locator(".proof").wait_for(state="hidden")
     page.locator(".bar__open").click()
     wait_until(page, lambda: page.locator(".proof__graph").is_visible(), "and opens again")
 
@@ -1149,7 +1238,7 @@ def monitors(page: Page, url: str, shots: Path | None, size: tuple[int, int]) ->
     page.wait_for_selector(".decl")
     page.wait_for_timeout(1400)
     check(page.evaluate("document.documentElement.scrollWidth <= innerWidth"), "no sideways scroll")
-    check(page.locator(".proof[data-side]").count() == (1 if w >= 1920 else 0), "stacked or side by side by the room on the right page")
+    check(page.locator(".proof[data-side]").count() == (1 if w >= 2560 else 0), "stacked or side by side by the room on the right page")
     box = page.locator(".proof").bounding_box()
     check(box["width"] >= 500, f"the right page is {box['width']:.0f}px wide")
     shot(page, shots, f"30-{w}")
@@ -1378,6 +1467,12 @@ def main() -> int:
             if args.only in (None, "journey"):
                 context = browser.new_context(viewport={"width": 1440, "height": 790})
                 opening(context.new_page(), url)
+                context.close()
+                context = browser.new_context(viewport={"width": 1440, "height": 790})
+                reopen_proof(context.new_page(), url)
+                context.close()
+                context = browser.new_context(viewport={"width": 1440, "height": 790})
+                graph_follows(context.new_page(), url, args.shots)
                 context.close()
                 context = graph_first(browser.new_context(viewport={"width": 1440, "height": 790}))
                 journey(context.new_page(), url, args.shots)

@@ -99,7 +99,16 @@ button:disabled { cursor: default; }
 /* The open book */
 .spread { --rail-width: 212px; position: relative; flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr); justify-content: center; background: var(--desk); }
 .spread.has-right { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-.spread--reading.has-right { grid-template-columns: var(--rail-width) minmax(0, clamp(480px, calc(44vw - 26px), 1000px)) minmax(0, 1fr); column-gap: 0; }
+.spread--reading { --paper-w: clamp(480px, calc(44vw - 26px), 1000px); }
+.spread--reading.has-right { grid-template-columns: var(--rail-width) minmax(0, var(--paper-w)) minmax(0, 1fr); column-gap: 0; }
+/* The divider stands in the gutter between the paper and the proof (after the Quartic Reader). */
+.papersplit { position: absolute; z-index: 13; top: 0; bottom: 0; left: calc(var(--rail-width) + var(--paper-w)); width: 26px; display: grid; place-items: center; cursor: col-resize; touch-action: none; }
+.papersplit span { width: 3px; height: 44px; border-radius: 2px; background: var(--rule-strong); opacity: 0; transition: opacity var(--t-hover) var(--ease-out), background-color var(--t-hover) var(--ease-out); }
+.spread:hover .papersplit span { opacity: 1; }
+.papersplit:hover span, .papersplit:focus-visible span, .spread.is-resizing .papersplit span { opacity: 1; background: var(--thread); }
+.papersplit:focus-visible { outline: 2px solid var(--thread); outline-offset: -4px; }
+.spread.is-resizing { user-select: none; cursor: col-resize; }
+.spread.is-resizing .threads { visibility: hidden; }
 .spread--reading.has-right .proof { margin-left: 26px; }
 .left { position: relative; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
 .left > * { flex: 1; min-height: 0; }
@@ -392,7 +401,7 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
 }
 @media (min-width: 2100px) {
   .spread { --rail-width: 260px; }
-  .spread--reading.has-right { grid-template-columns: var(--rail-width) minmax(0, 1000px) minmax(0, 1fr); }
+  .spread--reading { --paper-w: 1000px; }
   .lean-code { font-size: 0.875rem; }
   .rail { font-size: var(--fs-ui); }
 }
@@ -457,3 +466,26 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
 .nearmap__key { margin: 0; padding: 6px 16px 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: var(--fs-sm); color: var(--ink-2); }
 .proof:has(.graph--near) .proof__key { display: none; }
 @media (prefers-reduced-motion: no-preference) { .nearmap__card, .nearmap__line { transition: opacity 120ms; } }
+
+/* Many results: one line names the result on show, with a menu and a step either way. */
+.claims--many { flex-wrap: nowrap; align-items: center; gap: 6px; padding: 5px 12px 5px 16px; border-bottom: 1px solid var(--rule); }
+.claims__pick { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; }
+.claims__count { flex: none; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.claims__pick select { flex: 1; min-width: 0; min-height: 28px; padding: 0 28px 0 8px; font: inherit; font-weight: 600; color: var(--ink); text-overflow: ellipsis; background-color: var(--sheet); border: 1px solid var(--rule-control); border-radius: var(--radius-s); cursor: pointer; }
+.claims__pick select:hover { border-color: var(--ink-3); }
+.claims--many .claims__step { flex: none; min-width: 28px; padding: 0; font-size: var(--fs-base); line-height: 1; color: var(--ink); border: 1px solid var(--rule-control); }
+.claims--many .claims__step:hover:not(:disabled) { border-color: var(--ink-3); }
+.claims--many .claims__step:disabled { color: var(--ink-3); opacity: 0.5; cursor: default; }
+.claims__pick select:focus-visible, .claims__step:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+/* The drawing changes with the statement being read: a short dissolve says it is a new drawing. */
+@media (prefers-reduced-motion: no-preference) {
+  .nearmap__world { animation: nearmap-arrive 180ms cubic-bezier(0.16, 1, 0.3, 1) backwards; }
+  @keyframes nearmap-arrive { from { opacity: 0; } }
+}
+/* A Lean name stays on one line inside its card; the whole name is in its tooltip and in the Lean. */
+.nearmap__raw { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nearmap__key { display: flex; flex-wrap: wrap; gap: 2px 18px; white-space: normal; }
+.nearmap__shapes { color: var(--ink-3); }
+.nearmap__shapes .key-shape { margin-left: 10px; }
+.nearmap__shapes .key-shape:first-child { margin-left: 0; }
+.nearmap__alone { max-width: 46ch; margin: 4px auto 0; padding: 0 16px; text-align: center; font-size: var(--fs-sm); line-height: 1.45; color: var(--ink-2); text-wrap: pretty; }
