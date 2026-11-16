@@ -24,6 +24,7 @@ import { ProofPage, readLayout, saveLayout, type Layout } from "../proof/ProofPa
 import { Contents } from "./Contents";
 import { ReadingPane } from "./ReadingPane";
 import { Threads } from "./Threads";
+import { PaperSplit } from "./PaperSplit";
 import { DWELL_MS, type Follow, type PaperHandle, type Pointed, type Target, type Zone } from "./reading-line";
 
 // The paper comes first. The PDF, the map and the Lean page each load when they are wanted.
@@ -684,7 +685,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (shown.mode === "after") return <><b>{hereLabel ? `No statement in ${hereLabel} is linked to this Lean.` : "No statement here is linked to this Lean."}</b> The linked statements are in {sectionLabel(firstTie)} to {sectionLabel(lastSection)}.</>;
     if (shown.mode === "between") return <><b>No statement at this line.</b> The last was {name}.</>;
     if (shown.mode === "start") return <><b>Before the first statement,</b> in {sectionLabel(firstTie)}. Showing the main claim.</>;
-    return <><b>Following the {noun(edition)}:</b> {stepView.title}</>;
+    // The statement by its plain name and section; its exact place is under "In the paper".
+    return <><b>Following the {noun(edition)}:</b> {name && stepView.passage ? `${name}, ${sectionLabel(stepView.passage.section)}` : stepView.title}</>;
   })();
 
   const backButton = entry.back && <button type="button" className="back" onClick={back} title="Your browser’s Back ( [ or Alt + Left )">Back to {entry.back}</button>;
@@ -908,6 +910,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
             )}
           />
         )}
+        {wide && showRight && edition.reading && <PaperSplit />}
         {wide && showRight && <Threads root={spread} target={{ passage: pin?.passage ?? line.id, line: threadLine }} />}
       </main>
     </div>

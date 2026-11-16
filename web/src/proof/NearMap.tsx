@@ -94,12 +94,16 @@ export function reduce(ids: string[], edges: { from: string; to: string }[]): Se
   return new Set(edges.filter((e) => !reaches(e.from, e.to, e.to)).map((e) => `${e.from}→${e.to}`));
 }
 
-export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }: {
+export function NearMap({ graph, heads, plate, kicker = "Main result", alone, lit, selected, onCard, onHover }: {
   graph: ArgGraph;
   /** The card or cards in view, drawn at the top. */
   heads: string[];
   /** The claim's title above the theorem, at the main result. */
   plate: string | null;
+  /** Said under a card that stands alone: why nothing is drawn beneath it. */
+  alone?: string;
+  /** The small line over the claim's title: which of the paper's results this is. */
+  kicker?: string;
   lit: readonly string[];
   selected: string | null;
   onCard(id: string): void;
@@ -123,6 +127,11 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
   const [hot, setHot] = useState<string | null>(null);
   // A new card in view starts with nothing pointed at, whatever lies under the pointer now.
   useEffect(() => setHot(null), [graph]);
+  // A new card in view is read from its top.
+  const headKey = heads.join("|");
+  useEffect(() => {
+    if (frame.current) frame.current.scrollTop = 0;
+  }, [headKey]);
 
   const drawing = useMemo(() => {
     if (!width) return null;
@@ -316,10 +325,10 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
     <div className="nearmap" ref={frame} data-hot={hot ?? undefined}>
       {drawing && (
         <div className="nearmap__fit" style={{ height: drawing.height * fit }}>
-        <div className="nearmap__world" style={{ height: drawing.height, transform: fit < 1 ? `scale(${fit})` : undefined }} data-crossings={drawing.crossings} data-behind={drawing.behind} data-scale={fit.toFixed(2)}>
+        <div key={headKey} className="nearmap__world" style={{ height: drawing.height, transform: fit < 1 ? `scale(${fit})` : undefined }} data-crossings={drawing.crossings} data-behind={drawing.behind} data-scale={fit.toFixed(2)}>
           {plate && (
             <div className="nearmap__plate">
-              <span className="nearmap__kicker">Main result</span>
+              <span className="nearmap__kicker">{kicker}</span>
               <span className="nearmap__claim">{plate}</span>
             </div>
           )}
@@ -361,11 +370,15 @@ export function NearMap({ graph, heads, plate, lit, selected, onCard, onHover }:
         </div>
         </div>
       )}
-      {drawing && (
+      {drawing && drawing.edges.length === 0 && alone && <p className="nearmap__alone">{alone}</p>}
+      {drawing && drawing.edges.length > 0 && (
         <p className="nearmap__key">
-          {drawing.kinds.size > 1
-            ? "Lines run down to what a card uses; dashed: its statement only."
-            : "Each line runs down from a card to a declaration it uses."}
+          <span>
+            {drawing.kinds.size > 1
+              ? "Lines run down to what a card uses; dashed: its statement only."
+              : "Each line runs down from a card to a declaration it uses."}
+          </span>
+          <span className="nearmap__shapes"><i className="key-shape key-shape--theorem" aria-hidden="true" />theorem<i className="key-shape" aria-hidden="true" />definition</span>
         </p>
       )}
     </div>

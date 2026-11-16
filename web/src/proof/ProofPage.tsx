@@ -6,9 +6,12 @@
 import { ModeToggle, type PaneMode } from "./ModeToggle";
 import { memo, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
-// The key changed when Lean became the opening mode, so an old saved Graph choice does not hide it.
-const KEY = "proof-reader-pane-2";
-const SIDE_BY_SIDE = 860;
+// The key changes when the opening layout does, so a layout saved under the old one does not hide the new.
+const KEY = "proof-reader-pane-3";
+/** Narrower than this, the graph sits above the Lean; from here they stand side by side. */
+const SIDE_BY_SIDE = 1040;
+/** What the graph has before the reader pulls the handle: the statement's place in the proof, above or beside its Lean. */
+const OPENING = { share: 0.4, sideShare: 0.46 };
 const MAX = 0.78;
 /** A pull shorter than this leaves the Lean the whole page. */
 const SHUT = 0.08;
@@ -27,12 +30,14 @@ export interface Layout {
 const pull = (value: number) => (value < SHUT ? 0 : Math.min(MAX, value));
 
 export function readLayout(): Layout {
-  const fallback = { graph: true, lean: true, share: 0, sideShare: 0 };
+  const fallback = { graph: true, lean: true, ...OPENING };
   try {
     const stored = JSON.parse(localStorage.getItem(KEY) ?? "null") as Partial<Layout> | null;
     if (!stored) return fallback;
     const clamp = pull;
-    return { graph: stored.graph ?? true, lean: stored.lean ?? true, share: clamp(stored.share ?? fallback.share), sideShare: clamp(stored.sideShare ?? fallback.sideShare) };
+    // Closing the right page lasts only for this visit. Older saved layouts may
+    // contain graph: false; opening a paper must still start side by side.
+    return { graph: true, lean: stored.lean ?? true, share: clamp(stored.share ?? fallback.share), sideShare: clamp(stored.sideShare ?? fallback.sideShare) };
   } catch {
     return fallback;
   }
@@ -40,7 +45,8 @@ export function readLayout(): Layout {
 
 export function saveLayout(layout: Layout) {
   try {
-    localStorage.setItem(KEY, JSON.stringify(layout));
+    const { lean, share, sideShare } = layout;
+    localStorage.setItem(KEY, JSON.stringify({ lean, share, sideShare }));
   } catch {
     /* storage unavailable: the choice lasts until the page closes */
   }

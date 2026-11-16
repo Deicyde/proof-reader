@@ -8,6 +8,7 @@ import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code
 import { isType, sectionLabel, shapeOf } from "../model/fromEdition";
 import { routeHref } from "../app/router";
 import { FidelityBlock } from "./Fidelity";
+import { Quote } from "../paper/Quote";
 
 export const KIND_WORDS: Record<string, string> = {
   theorem: "Theorem",
@@ -176,7 +177,7 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
                     onPassage(p.id);
                   }}
                 >
-                  <span className="decl__at">{sectionLabel(p.section)}, {passageLocation(p)}</span> {p.quote}
+                  <span className="decl__at">{sectionLabel(p.section)}, {passageLocation(p)}</span> <Quote passage={p} />
                 </a>
               </li>
             ))}

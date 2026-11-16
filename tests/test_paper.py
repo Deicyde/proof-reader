@@ -490,6 +490,11 @@ class RealShelfExamples(unittest.TestCase):
         roles = {p["id"]: p["role"] for p in links["passages"]}
         self.assertEqual([e["role"] for e in examples], [roles[e["id"]] for e in examples])
 
+    def test_a_pdf_sourced_paper_has_no_set_quotes(self):
+        passages = self.built["passages"]
+        self.assertTrue(passages)
+        self.assertFalse([p["id"] for p in passages if "quote_html" in p or p.get("source_quote")])
+
     def test_each_example_is_its_paragraph(self):
         page = reading.parse(self.built["reading_html"])
         for example in self.built["shelf"]["examples"]:

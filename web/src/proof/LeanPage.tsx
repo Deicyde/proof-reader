@@ -11,6 +11,7 @@ import { READING_LINE } from "../paper/reading-line";
 import { DeclBlock, KIND_WORDS, list } from "./DeclBlock";
 import { AllChecks, FidelityLines, HowMade } from "./Fidelity";
 import { MadeLink } from "./MadeLink";
+import { Quote } from "../paper/Quote";
 
 export interface Step {
   /** Names the view, so its scroll can be kept while something else is previewed. */
@@ -153,7 +154,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
             {step.passage && (
               <header className="stepline">
                 {step.title && <p className="stepline__title">{step.title}</p>}
-                <blockquote>{step.passage.quote}</blockquote>
+                <blockquote><Quote passage={step.passage} /></blockquote>
                 <FidelityLines edition={edition} ids={step.decls} act={act} onGo={goTo} />
                 {step.decls.length > 1 && (
                   <nav className="crumbs" aria-label="The declarations of this statement">

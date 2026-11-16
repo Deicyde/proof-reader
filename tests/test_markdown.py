@@ -102,6 +102,42 @@ class MarkdownAnchors(unittest.TestCase):
         self.assertNotIn("p", built["code"])
         self.assertEqual(self.path.read_text(), source)
 
+    def test_quote_html_sets_formulas_as_the_reading_copy_does(self):
+        source = ("## Section\n\nThen $\\operatorname{Val}$ vanishes on $H^m$ for **every** `x`:\n"
+                  "$$\\sum_i Z_H(X_i) = 0.$$\n")
+        quote = source.split("\n\n", 1)[1].rstrip("\n")
+        done, passages = self.resolve(source, quote)
+        built = reading.build_markdown(done, "test", passages, [], "https://example.org/guide.md")
+        markup = built["quote_html"]["p"]
+        self.assertIn('class="katex"', markup)
+        self.assertIn('class="katex-display"', markup)
+        self.assertIn("<strong>every</strong>", markup)
+        self.assertIn("<code>", markup)
+        # Inline: no paragraph, no reading-copy display block, no placeholder left.
+        self.assertNotRegex(markup, r"<(?:p|div)\b")
+        self.assertNotIn('data-m="', markup)
+        # Each formula is exactly the one the reading copy shows.
+        for formula in done["math"]:
+            self.assertIn(formula, markup)
+            self.assertIn(formula, built["html"])
+        # The plain text is unchanged: labels, search and the text checks read it.
+        self.assertTrue(built["display_quotes"]["p"].startswith("Then Val"))
+        self.assertNotIn("<", built["display_quotes"]["p"])
+
+    def test_quote_html_keeps_no_link_inside_it(self):
+        done, passages = self.resolve("## Section\n\nSee [the source](code.lean) for $x$.\n", "See [the source](code.lean) for $x$.")
+        built = reading.build_markdown(done, "test", passages, [], "https://example.org/guide.md")
+        self.assertNotRegex(built["quote_html"]["p"], r"</?a\b")
+        self.assertIn("the source", built["quote_html"]["p"])
+
+    def test_a_formula_that_cannot_be_set_stops_the_build(self):
+        with self.assertRaisesRegex(reading.ReadingError, "could not set"):
+            self.resolve("## Section\n\nBroken $\\frac{1}{$ here.\n", "Broken $\\frac{1}{$ here.")
+
+    def test_a_quote_whose_formula_was_not_typeset_stops_the_build(self):
+        with self.assertRaisesRegex(reading.ReadingError, "formula 3 in the quote was not typeset"):
+            reading.quote_markup("p", 'x <span class="m" data-m="3">x</span>', ["<span class=\"katex\">x</span>"])
+
     def test_rendered_collision_inside_one_block_fails(self):
         done, passages = self.resolve("## Section\n\nA **word** and a `word`.\n", "**word**")
         with self.assertRaisesRegex(reading.ReadingError, "rendered quote found 2 times"):
@@ -132,6 +168,7 @@ class MarkdownAnchors(unittest.TestCase):
         self.assertEqual(passages[0]["rects"], [])
         self.assertEqual(built["pages"], 0)
         self.assertNotIn('class="pg"', built["html"])
+        self.assertEqual(built["quote_html"]["p"], "def x_y : Nat := 0")
 
     def test_dotted_heading_links_use_reader_routes(self):
         source = "## 3. The definitions\n\n[Continue](#4-the-pcp-theorem).\n\n## 4. The PCP theorem\n\nIt holds.\n"
@@ -240,6 +277,8 @@ class MarkdownEdition(unittest.TestCase):
         self.assertEqual(edition["paper"]["sizes"], [])
         self.assertEqual(edition["passages"][0]["quote"], "Here is Demo.statement.")
         self.assertEqual(edition["passages"][0]["source_quote"], "Here is `Demo.statement`.")
+        self.assertEqual(edition["passages"][0]["quote_html"],
+                         'Here is <code><span class="lk lk--type">Demo</span><span class="lk lk--arrow">.</span>statement</code>.')
         self.assertEqual(edition["shelf"]["example"]["page_label"], "")
         self.assertEqual(json.loads((paper.PUBLIC / "index.json").read_text())["papers"][0]["source_kind"], "markdown")
 

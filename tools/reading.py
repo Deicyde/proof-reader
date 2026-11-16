@@ -141,6 +141,33 @@ def locate_markdown(page: Page, done: dict, passages: list[dict]) -> tuple[dict,
     return spans, visible_quotes
 
 
+MATH_SPAN = re.compile(r'<span class="m" data-m="(\d+)">.*?</span>', re.S)
+DISPLAY_WRAP = re.compile(r'<div class="math-display">(<span class="m" data-m="\d+">.*?</span>)</div>', re.S)
+INLINE_ONLY = re.compile(r"</?(?:p|div|li|ul|ol|pre|figure|figcaption|h[1-6]|aside|header|section|blockquote|table|thead|tbody|tr|th|td|hr|img)\b")
+
+
+def quote_markup(pid: str, raw: str, math: list[str]) -> str:
+    """A quoted passage as the reading copy sets it: the same inline Markdown and
+    the same KaTeX output, with no block around it and no link inside it, since
+    it is printed inside a blockquote or a link on the Lean page."""
+    check_tags(raw)
+    raw = DISPLAY_WRAP.sub(r"\1", raw)
+    raw = re.sub(r"</?a\b[^>]*>", "", raw)
+    if INLINE_ONLY.search(raw):
+        raise ReadingError(f"passage {pid}: quoted words hold a block, which a quotation cannot show inline")
+
+    def formula(match: re.Match) -> str:
+        index = int(match[1])
+        if index >= len(math) or 'class="katex' not in math[index]:
+            raise ReadingError(f"passage {pid}: formula {index} in the quote was not typeset")
+        return math[index]
+
+    out = MATH_SPAN.sub(formula, raw)
+    if re.search(r"[\ue000-\ue003]", out) or 'data-m="' in out:
+        raise ReadingError(f"passage {pid}: a formula in the quote was left unset")
+    return out
+
+
 def numbered_ranges(ranges: list[tuple[str, int]], outline: list[dict]) -> list[tuple[str, int]]:
     """An unnumbered subheading belongs to the numbered section above it, so that
     `name_sections` can name section 3 and cover its subheadings too."""
@@ -195,6 +222,7 @@ def build_markdown(done: dict, slug: str, passages: list[dict], names: list[str]
             "heading_aliases": done["heading_aliases"],
             "words": len(page.visible.split()), "formulas": len(done["math"]), "pages": 0,
             "order": sorted(spans, key=lambda pid: spans[pid][0]), "code": code, "display_quotes": quotes,
+            "quote_html": {p["id"]: quote_markup(p["id"], done["quote_html"][p["id"]], done["math"]) for p in passages},
             "paragraphs": {pid: paragraph(page, start, stop, quotes[pid]) for pid, (start, stop) in spans.items()}}
 
 
