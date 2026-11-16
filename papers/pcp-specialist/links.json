@@ -4,8 +4,8 @@
     {
       "id": "claim-1",
       "title": "The forward PCP theorem",
-      "section": "Abstract",
-      "passage": "pcp-short-abstract",
+      "section": "1. The theorem and the encoding problem",
+      "passage": "pcp-short-forward-statement",
       "lean": [
         "PCP.np_subset_pcp"
       ]
@@ -98,6 +98,15 @@
       "passage": "linked-source-14",
       "lean": [
         "PCP.pcp_subset_np_concrete"
+      ]
+    },
+    {
+      "id": "reference-np-equivalence",
+      "title": "Equivalence with the reference NP class",
+      "section": "Formal correspondence and credits",
+      "passage": "pcp-short-concrete-reference-np",
+      "lean": [
+        "PCP.ReferenceNP.inNP_iff_mem"
       ]
     },
     {
@@ -335,6 +344,32 @@
       "anchor": {
         "heading": "2. Four polynomials and seven checks",
         "block": 21
+      }
+    },
+    {
+      "id": "pcp-short-forward-statement",
+      "section": "1. The theorem and the encoding problem",
+      "role": "explains",
+      "quote": "**Theorem (PCP).** For every language $L\\subseteq\\{0,1\\}^{*}$ in NP, there are a polynomial-time verifier $V$, natural numbers $a,b,q_0$, and a polynomial $p\\in\\mathbb N[X]$ with the following properties.",
+      "lean": [
+        "PCP.np_subset_pcp"
+      ],
+      "anchor": {
+        "heading": "1. The theorem and the encoding problem",
+        "block": 2
+      }
+    },
+    {
+      "id": "pcp-short-concrete-reference-np",
+      "section": "Formal correspondence and credits",
+      "role": "states",
+      "quote": "Explicit machine simulations identify the concrete witness class with [the NP class in the unchanged vendored ComplexityLib][lean-reference-np].",
+      "lean": [
+        "PCP.ReferenceNP.inNP_iff_mem"
+      ],
+      "anchor": {
+        "heading": "Formal correspondence and credits",
+        "block": 2
       }
     }
   ],

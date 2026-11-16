@@ -5,7 +5,7 @@
       "id": "claim-1",
       "title": "The forward PCP theorem",
       "section": "The algebraic PCP theorem: a detailed account of the Lean proof",
-      "passage": "pcp-long-intro-theorem",
+      "passage": "pcp-long-forward-statement",
       "lean": [
         "PCP.np_subset_pcp"
       ]
@@ -70,8 +70,24 @@
       "section": "A high-degree univariate polynomial as a low-degree multivariate polynomial",
       "passage": "pcp-long-set-multilinear",
       "lean": [
-        "PCP.Algebraic.SetMultilinear.decode_encode",
-        "PCP.Algebraic.SetMultilinear.encode_injective_on",
+        "PCP.Algebraic.SetMultilinear.decode_encode"
+      ]
+    },
+    {
+      "id": "digit-injectivity",
+      "title": "Digit encoding is injective",
+      "section": "A high-degree univariate polynomial as a low-degree multivariate polynomial",
+      "passage": "pcp-long-digit-injectivity",
+      "lean": [
+        "PCP.Algebraic.SetMultilinear.encode_injective_on"
+      ]
+    },
+    {
+      "id": "digit-evaluation",
+      "title": "Evaluation after digit encoding",
+      "section": "A high-degree univariate polynomial as a low-degree multivariate polynomial",
+      "passage": "pcp-long-digit-evaluation",
+      "lean": [
         "PCP.Algebraic.SetMultilinear.eval_encode"
       ]
     },
@@ -175,6 +191,15 @@
       ]
     },
     {
+      "id": "query-verdict-congruence",
+      "title": "Listed answers determine the verdict",
+      "section": "The eight tables and seven checks",
+      "passage": "pcp-long-query-congruence",
+      "lean": [
+        "PCP.Algebraic.ThreeColorVerifier.test_congr"
+      ]
+    },
+    {
       "id": "claim-27",
       "title": "The honest verifier always accepts",
       "section": "Perfect completeness",
@@ -217,6 +242,15 @@
       "passage": "pcp-long-converse",
       "lean": [
         "PCP.pcp_subset_np_concrete"
+      ]
+    },
+    {
+      "id": "reference-np-equivalence",
+      "title": "Equivalence with the reference NP class",
+      "section": "The reverse inclusion",
+      "passage": "pcp-long-reference-np",
+      "lean": [
+        "PCP.ReferenceNP.inNP_iff_mem"
       ]
     }
   ],
@@ -459,7 +493,7 @@
     {
       "id": "pcp-long-set-multilinear",
       "section": "A high-degree univariate polynomial as a low-degree multivariate polynomial",
-      "role": "explains",
+      "role": "states",
       "quote": "$$\n\\operatorname{Dec}(\\operatorname{Enc}(p))=p\\qquad\\text{in }F[Y].\n$$",
       "lean": [
         "PCP.Algebraic.SetMultilinear.decode_encode"
@@ -668,8 +702,8 @@
     {
       "id": "pcp-long-query-budget",
       "section": "The eight tables and seven checks",
-      "role": "explains",
-      "quote": "Taking $c=4$ bounds one unamplified run by at most $26+22+26+22+44+44+3=187$ physical bit reads.",
+      "role": "states",
+      "quote": "Their sum is $20c+107$, independent of the graph size. Taking $c=4$ bounds one unamplified run by at most $26+22+26+22+44+44+3=187$ physical bit reads.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.queries_length_le"
       ],
@@ -817,13 +851,13 @@
       "id": "pcp-long-converse",
       "section": "The reverse inclusion",
       "role": "explains",
-      "quote": "Suppose a language has a verifier satisfying the target conditions. An NP witness can be the first $p(n)$ proof bits. The deterministic witness checker runs the verifier for every random seed and accepts exactly if all runs accept.",
+      "quote": "Thus the finite witness relation characterizes $L$, proving the reverse inclusion.",
       "lean": [
         "PCP.pcp_subset_np_concrete"
       ],
       "anchor": {
         "heading": "The reverse inclusion",
-        "block": 2
+        "block": 6
       }
     },
     {
@@ -893,7 +927,7 @@
     },
     {
       "id": "pcp-long-digit-injectivity",
-      "role": "explains",
+      "role": "states",
       "quote": "Applying $\\operatorname{Dec}$ to equal encodings proves injectivity on polynomials of degree strictly below $b^c$.",
       "lean": [
         "PCP.Algebraic.SetMultilinear.encode_injective_on"
@@ -906,7 +940,7 @@
     },
     {
       "id": "pcp-long-digit-evaluation",
-      "role": "explains",
+      "role": "states",
       "quote": "$$\n\\operatorname{Enc}(p)(\\Phi(z))=p(z),\n\\qquad \\Phi(z)_{i,k}=z^{k b^i}.\n$$",
       "lean": [
         "PCP.Algebraic.SetMultilinear.eval_encode"
@@ -919,16 +953,16 @@
     },
     {
       "id": "pcp-long-reference-np",
-      "role": "explains",
-      "quote": "The [reference-NP equivalence][lean-reference-np] uses two concrete simulations.",
+      "section": "The reverse inclusion",
+      "role": "states",
+      "quote": "Together these directions identify the certificate class in the PCP theorem with the intended reference NP class.",
       "lean": [
         "PCP.ReferenceNP.inNP_iff_mem"
       ],
       "anchor": {
         "heading": "The reverse inclusion",
-        "block": 7
-      },
-      "section": "The reverse inclusion"
+        "block": 9
+      }
     },
     {
       "id": "pcp-long-implementation-contracts",
@@ -1011,6 +1045,32 @@
       "anchor": {
         "heading": "How the proof is organized",
         "block": 6
+      }
+    },
+    {
+      "id": "pcp-long-forward-statement",
+      "section": "The algebraic PCP theorem: a detailed account of the Lean proof",
+      "role": "states",
+      "quote": "$$\n\\mathrm{NP}\\subseteq\\mathrm{PCP}(O(\\log n),O(1)).\n$$",
+      "lean": [
+        "PCP.np_subset_pcp"
+      ],
+      "anchor": {
+        "heading": "The algebraic PCP theorem: a detailed account of the Lean proof",
+        "block": 10
+      }
+    },
+    {
+      "id": "pcp-long-query-congruence",
+      "section": "The eight tables and seven checks",
+      "role": "states",
+      "quote": "two proof oracles agreeing on the listed addresses give the same verdict",
+      "lean": [
+        "PCP.Algebraic.ThreeColorVerifier.test_congr"
+      ],
+      "anchor": {
+        "heading": "The eight tables and seven checks",
+        "block": 18
       }
     }
   ],
@@ -1310,7 +1370,18 @@
     "PCP.Reduction.NAEThreeColor.variableVertex": "Vertex for a variable and sign",
     "PCP.Reduction.NAEThreeColor.literalVertex": "Vertex for a literal",
     "PCP.Reduction.NAEThreeColor.direct": "Edges in one orientation",
-    "PCP.Reduction.NAEThreeColor.graph": "The graph of an NAE instance"
+    "PCP.Reduction.NAEThreeColor.graph": "The graph of an NAE instance",
+    "PCP.Algebraic.ThreeColorVerifier.test_congr": "Listed answers determine the verdict",
+    "PCP.Algebraic.ThreeColorVerifier.read": "Read a bit from the proof"
   },
-  "fidelity_held": "Sentence-by-sentence comparisons of this page's statements with their Lean have not been written yet. Comparator has judged the three headline statements; papers/pcp-full-argument/source-review.md records that run."
+  "fidelity_held": "Sentence-by-sentence comparisons of this page's statements with their Lean have not been written yet. Comparator has judged the three headline statements; papers/pcp-full-argument/source-review.md records that run.",
+  "notes": {
+    "PCP.Algebraic.ThreeColorVerifier.queries_length_le": {
+      "text": "This theorem bounds the query list. The next assertion, that agreeing on the listed answers preserves the verdict, is a separate theorem called test_congr.",
+      "because": [
+        "pcp-long-query-budget",
+        "pcp-long-query-congruence"
+      ]
+    }
+  }
 }

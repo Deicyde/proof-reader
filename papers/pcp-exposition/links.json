@@ -4,8 +4,8 @@
     {
       "id": "claim-1",
       "title": "The forward PCP theorem",
-      "section": "An algebraic proof of the PCP theorem, through worked examples",
-      "passage": "pcp-expository-opening",
+      "section": "2. What the theorem promises",
+      "passage": "pcp-expository-forward-statement",
       "lean": [
         "PCP.np_subset_pcp"
       ]
@@ -76,8 +76,8 @@
     {
       "id": "claim-9",
       "title": "Soundness for noncolourable graphs",
-      "section": "9",
-      "passage": "pcp-expository-assembly",
+      "section": "9. From the seven checks to a colouring",
+      "passage": "pcp-expository-soundness",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.rejectionRate_ge_of_not_colorable"
       ]
@@ -311,13 +311,13 @@
       "id": "linked-source-17",
       "section": "2. What the theorem promises",
       "role": "explains",
-      "quote": "Conversely, suppose a problem has a verifier with these properties. Guess\nthe first $p(n)$ certificate bits, and run the verifier on **all** its\nrandom strings. There are",
+      "quote": "Thus the problem is in NP.",
       "lean": [
         "PCP.pcp_subset_np_concrete"
       ],
       "anchor": {
         "heading": "2. What the theorem promises",
-        "block": 7
+        "block": 9
       }
     },
     {
@@ -466,6 +466,32 @@
       "anchor": {
         "heading": "9. From the seven checks to a colouring",
         "block": 3
+      }
+    },
+    {
+      "id": "pcp-expository-forward-statement",
+      "section": "2. What the theorem promises",
+      "role": "explains",
+      "quote": "**PCP theorem.** For every $L\\in\\mathrm{NP}$, there are a polynomial-time\nverifier $V$, natural-number constants $a,b,q$, and a polynomial $p$, such\nthat on every input $x$ of length $n$:",
+      "lean": [
+        "PCP.np_subset_pcp"
+      ],
+      "anchor": {
+        "heading": "2. What the theorem promises",
+        "block": 3
+      }
+    },
+    {
+      "id": "pcp-expository-soundness",
+      "section": "9. From the seven checks to a colouring",
+      "role": "explains",
+      "quote": "Taking the contrapositive, every proof for a\nnon-three-colourable graph is rejected with a fixed positive\nprobability.",
+      "lean": [
+        "PCP.Algebraic.ThreeColorVerifier.rejectionRate_ge_of_not_colorable"
+      ],
+      "anchor": {
+        "heading": "9. From the seven checks to a colouring",
+        "block": 9
       }
     }
   ],
