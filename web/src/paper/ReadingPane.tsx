@@ -184,7 +184,7 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
 
   const followSoon = useCallback((id: string | null, kind: Zone, above: string | null) => {
     window.clearTimeout(followTimer.current);
-    followTimer.current = window.setTimeout(() => latest.current.onFollow(id, kind, above), FOLLOW_MS);
+    followTimer.current = window.setTimeout(() => latest.current.onFollow(id, kind, above, userMoved.current), FOLLOW_MS);
   }, []);
 
   /** What the reading line shows now. */

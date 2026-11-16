@@ -24,8 +24,10 @@ Keep these true:
   and in the code.
 - Opening something, a reference in place included, pushes one history entry that holds the
   paper's pixel, the pin, the tab and the map's camera. Following and pointing never push.
-- A statement opened by a click stays until Unpin, Escape, Back or a new click. Scrolling never
-  lets it go.
+- A statement opened by a click stays until Unpin, Escape, Back, a new click, or until the
+  reader scrolls on to another statement. Nobody should have to click for the Lean and the
+  graph to follow the reading.
+  graph to follow the reading.
 - The address names the statement carrying the highlighter, and the counter reads the same.
 - Failing to find a quote or a name stops the build.
 - `web/src/map/` is copied from lean-exposition. Keep it close to that source so fixes
