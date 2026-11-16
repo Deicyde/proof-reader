@@ -10,6 +10,8 @@ export interface Passage {
   /** It is a line of code in the paper, not a sentence. */
   code?: boolean;
   quote: string;
+  /** The same words set as the reading copy sets them, formulas typeset. Markdown papers only. */
+  quote_html?: string;
   lean: string[];
   /** Null for Markdown; source_lines give its location. */
   page: number | null;

@@ -749,8 +749,11 @@ def edition(slug: str) -> dict:
         setting = reading_copy.build_markdown(data["markdown_render"], slug, data["passages"], names, config["paper"].get("url", ""),
                                               links.get("name_sections"), config.get("reading", {}).get("companions"))
         display_quotes = setting.pop("display_quotes")
+        quote_html = setting.pop("quote_html")
         for passage in data["passages"]:
             passage["quote"] = display_quotes[passage["id"]]
+            # The same words set as the reading copy sets them; `quote` stays the plain text.
+            passage["quote_html"] = quote_html[passage["id"]]
     elif (data["folder"] / "paper.md").is_file():
         setting = reading_copy.build(data["folder"], slug, data["passages"], names, data["words"],
                                      config.get("reading", {}), links)

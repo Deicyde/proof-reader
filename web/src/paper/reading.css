@@ -238,3 +238,7 @@ dialog.plot p { margin: 8px 0 0; font-family: var(--font-sans); font-size: var(-
   border-bottom: 1px solid var(--rule);
 }
 .sheet__text th { font-weight: 600; }
+
+/* A passage quoted on the Lean page or a statement sheet, set as the reading copy sets it. */
+.quote-set .katex { font-size: 1.02em; text-rendering: auto; }
+.quote-set .katex-display { display: block; margin: 0.3em 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; }

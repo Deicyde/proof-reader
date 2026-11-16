@@ -12,6 +12,7 @@ import { LeanCode, useFileLines, type LeanActions } from "../lean/code";
 import { sectionLabel } from "../model/fromEdition";
 import { verdictWords } from "../proof/Fidelity";
 import "./sheet.css";
+import { Quote } from "./Quote";
 
 export function StatementSheet({ edition }: { edition: Edition }) {
   const [files, setFiles] = useState<Record<string, string> | null>(null);
@@ -103,7 +104,7 @@ function Entry({ edition, entry, files, names, act, head = false }: { edition: E
               <p className="decl__label">In the {word}</p>
               {passages.map((p) => (
                 <blockquote key={p.id}>
-                  <p>{p.quote}</p>
+                  <p><Quote passage={p} /></p>
                   <a href={routeHref({ paper: edition.slug, record: `@${p.id}` })}>{sectionLabel(p.section)}, {passageLocation(p)}</a>
                 </blockquote>
               ))}
