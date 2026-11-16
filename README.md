@@ -51,7 +51,8 @@ Evidence differs by page. Some declaration data comes from Lean's report on comp
 For the three PCP companions, Lean compiled the listed modules of the authors' project in a
 GitHub Actions run, and every declaration's dependencies and axiom report is Lean's output from
 that run. The original guide's page keeps its earlier extraction, with a statement-only
-compilation of the headline theorem. Comparisons of statements with their Lean are held. The [source review](papers/pcp-full-argument/source-review.md)
+compilation of the headline theorem. Comparator accepted the authors' proofs of the three headline statements in a second run.
+Sentence-by-sentence comparisons of statements with their Lean have not been written. The [source review](papers/pcp-full-argument/source-review.md)
 records the source pin and hashes. Neither a source link nor a correspondence check establishes
 that the prose and Lean have the same meaning.
 

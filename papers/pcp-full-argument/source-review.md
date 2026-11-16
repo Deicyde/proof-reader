@@ -12,6 +12,20 @@ Each companion's `generated/lean.json` is Lean's report on compiled modules. On 
 
 The original guide's page (`papers/pcp-reading-guide`) keeps its earlier extraction: 206 rows with `lean` provenance and a statement-only compilation of `PCP.np_subset_pcp`.
 
+## Comparator on the headline statements
+
+On 16 November 2026 a second GitHub Actions run ([run 43868208176](https://github.com/wcook04/proof-reader/actions/runs/43868208176), commit `027be095d4715b0d9bbd243debf08b8d5ad6907c`, workflow `.github/workflows/pcp-comparator.yml`) ran `lake comparator`, the judge shipped with the project's toolchain, inside its `bubblewrap` sandbox. The challenge is `comparator/Challenge.lean`: it imports `PCP.Complexity.NP`, `PCP.Complexity.Machine` and `Complexitylib.Classes.NP`, which define the words the statements use, and no proof. It states three theorems under the authors' own names, each copied from their source, with `sorry` for a proof:
+
+| Statement | Authors' source |
+| --- | --- |
+| `PCP.np_subset_pcp` | `PCP/Theorem.lean`, lines 25 to 33 |
+| `PCP.pcp_subset_np_concrete` | `PCP/ReverseConcrete.lean` |
+| `PCP.ReferenceNP.inNP_iff_mem` | `PCP/Complexity/ReferenceNPConverse.lean` |
+
+The solution, `comparator/Solution.lean`, only imports the authors' modules, so the declarations compared are the authors' own. Comparator reported "Lean default kernel accepts the solution" and "Your solution is okay!", with `propext`, `Quot.sound` and `Classical.choice` as the permitted axioms. A control, `comparator/negative/Challenge.lean`, restates the forward theorem with soundness 1/3 in place of 1/2; Comparator refused it with "Challenge and solution theorem statement do not match: 'PCP.np_subset_pcp'". `comparator/receipt.json` keeps the outputs and file hashes.
+
+This was Comparator's standard mode. An earlier attempt in `--paranoid` mode, which adds further independent checkers, was stopped after 44 minutes without a verdict and is not claimed. Comparator establishes that the authors' proofs prove exactly these statements from the permitted axioms. The definitions the statements use are the authors' own, imported and not restated, and nothing here says the statements mean what the papers say.
+
 This record says that Lean compiled these modules in that run and what it reported. It is not a review of the mathematics, and it does not establish that the papers' prose and the Lean have the same meaning. The links, plain titles and notes were made with AI and have not been reviewed by the authors; comparisons of statements with their Lean remain held.
 
 The five guide files are byte-identical to their files in the shared source tree. Their SHA-256 hashes are:
