@@ -1,0 +1,66 @@
+# One-off: compile the PCP modules the three explanatory papers use, at the authors'
+# toolchain, and read each declaration's dependencies and axioms from the compiled files.
+# Runs only on its own branch; the generated reports are uploaded for review, not published.
+name: Extract PCP dependencies from Lean
+on:
+  push:
+    branches: [claude/pcp-lean-extraction-20261116]
+    paths: ['.github/workflows/pcp-extract.yml']
+permissions:
+  contents: read
+jobs:
+  extract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    env:
+      PROJECT: papers/pcp-full-argument/lean
+      MODULES: "PCP.Algebraic.BLR PCP.Algebraic.BerlekampWelchCertificate PCP.Algebraic.BinaryDifferenceConsistency PCP.Algebraic.BinaryLocalCorrection PCP.Algebraic.BinaryLocalCorrectionSoundness PCP.Algebraic.BinaryLocalRowDecoding PCP.Algebraic.BinaryStandardLocalCorrection PCP.Algebraic.BinaryZeroOnGridCorrection PCP.Algebraic.BinaryZeroOnGridSoundness PCP.Algebraic.BivariateAgreement PCP.Algebraic.BivariateAgreementBoost PCP.Algebraic.BivariateAgreementFromRectangle PCP.Algebraic.BivariateCleanRectangle PCP.Algebraic.BivariateColumnSelection PCP.Algebraic.BivariateCrossingSoundness PCP.Algebraic.CandidateCrossing PCP.Algebraic.DerivedZeroOnGridSoundness PCP.Algebraic.EncodedLineLowDegreeSoundness PCP.Algebraic.EncodedLineLowDegreeTest PCP.Algebraic.GeneratorLowDegreeTest PCP.Algebraic.GridInterpolation PCP.Algebraic.GridVanishing PCP.Algebraic.Hadamard PCP.Algebraic.HadamardComposition PCP.Algebraic.HadamardCorrection PCP.Algebraic.HadamardDerivedOracle PCP.Algebraic.HadamardRowDecoding PCP.Algebraic.HadamardSoundness PCP.Algebraic.HadamardTest PCP.Algebraic.LineTableLocalCorrection PCP.Algebraic.PointLineConstant PCP.Algebraic.PointLineConstants PCP.Algebraic.PointLineCorrection PCP.Algebraic.PointLineCrossing PCP.Algebraic.PointLineEndpointConsistency PCP.Algebraic.PointLineParameterError PCP.Algebraic.PointLineSoundness PCP.Algebraic.PolynomialDistance PCP.Algebraic.PolynomialLineCharacterization PCP.Algebraic.RuledSurfaceRigidity PCP.Algebraic.SetMultilinear PCP.Algebraic.StandardLocalCorrection PCP.Algebraic.ThreeColorAlgebra PCP.Algebraic.ThreeColorAmplifiedVerifier PCP.Algebraic.ThreeColorBinaryVerifier PCP.Algebraic.ThreeColorCanonicalVerifier PCP.Algebraic.ThreeColorFields PCP.Algebraic.ThreeColorFinalAssembly PCP.Algebraic.ThreeColorFullFieldSampling PCP.Algebraic.ThreeColorGrid PCP.Algebraic.ThreeColorParameterChoice PCP.Algebraic.ThreeColorVerifier PCP.Algebraic.ThreeColorVerifierCompleteness PCP.Algebraic.ThreeColorVerifierSoundness PCP.Algebraic.VanishingCertificate PCP.Algebraic.WeightedConstraintSoundness PCP.Complexity.CostModel PCP.Complexity.Machine PCP.Complexity.NP PCP.Complexity.NPTableau PCP.Complexity.ReferenceNPConverse PCP.Complexity.TableauCells PCP.Complexity.ThreeColorRuntime PCP.Reduction.FiniteBooleanConstraints PCP.Reduction.FiniteDomainConstraints PCP.Reduction.NAEThreeColor PCP.Reduction.NPThreeColorRuntime PCP.ReverseConcrete PCP.Theorem PCP.Verifier.Definition PCP.Verifier.ReductionResources"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Install elan and the project's Lean toolchain
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore an earlier build of this project, if one was saved
+        uses: actions/cache/restore@v4
+        with:
+          path: papers/pcp-full-argument/lean/.lake
+          key: pcp-lake-${{ hashFiles('papers/pcp-full-argument/lean/lake-manifest.json', 'papers/pcp-full-argument/lean/lean-toolchain') }}-${{ github.run_id }}
+          restore-keys: pcp-lake-${{ hashFiles('papers/pcp-full-argument/lean/lake-manifest.json', 'papers/pcp-full-argument/lean/lean-toolchain') }}-
+      - name: Fetch Mathlib's compiled files (never built from source here)
+        working-directory: papers/pcp-full-argument/lean
+        run: lake exe cache get
+      - name: Compile the PCP modules
+        working-directory: papers/pcp-full-argument/lean
+        run: |
+          set -o pipefail
+          lake build $MODULES 2>&1 | tee "$RUNNER_TEMP/build.log" | { grep -v '^✔' || true; }
+      - name: Save the build so a rerun does not repeat it
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: papers/pcp-full-argument/lean/.lake
+          key: pcp-lake-${{ hashFiles('papers/pcp-full-argument/lean/lake-manifest.json', 'papers/pcp-full-argument/lean/lean-toolchain') }}-${{ github.run_id }}
+      - name: The paper's Lean copy is unchanged by the build
+        run: git status --short papers/ && (git diff --quiet -- papers/ || echo "::warning::tracked files under papers/ changed during the build")
+      - name: Read dependencies and axioms from the compiled modules
+        run: |
+          for slug in pcp-exposition pcp-full-argument pcp-specialist; do
+            echo "== $slug"
+            python3 tools/extract_built.py "$slug" --project "$PROJECT" 2>&1 | tee "$RUNNER_TEMP/extract-$slug.log" || echo "extract $slug failed" >> "$RUNNER_TEMP/failed"
+          done
+          mkdir -p "$RUNNER_TEMP/out"
+          for slug in pcp-exposition pcp-full-argument pcp-specialist; do
+            mkdir -p "$RUNNER_TEMP/out/$slug" && cp "papers/$slug/generated/lean.json" "$RUNNER_TEMP/out/$slug/" && cp "$RUNNER_TEMP/extract-$slug.log" "$RUNNER_TEMP/out/$slug/"
+          done
+          cp "$RUNNER_TEMP/build.log" "$RUNNER_TEMP/out/"
+          git diff --stat -- papers/ | tail -5
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pcp-lean-reports
+          path: ${{ runner.temp }}/out
+      - run: test ! -e "$RUNNER_TEMP/failed"
