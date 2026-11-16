@@ -7,11 +7,11 @@ import { ModeToggle, type PaneMode } from "./ModeToggle";
 import { memo, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
 // The key changes when the opening layout does, so a layout saved under the old one does not hide the new.
-const KEY = "proof-reader-pane-3";
+const KEY = "proof-reader-pane-4";
 /** Narrower than this, the graph sits above the Lean; from here they stand side by side. */
 const SIDE_BY_SIDE = 1040;
 /** What the graph has before the reader pulls the handle: the statement's place in the proof, above or beside its Lean. */
-const OPENING = { share: 0.6, sideShare: 0.46 };
+const OPENING = { share: 0.5, sideShare: 0.5 };
 const MAX = 0.78;
 /** A pull shorter than this leaves the Lean the whole page. */
 const SHUT = 0.08;

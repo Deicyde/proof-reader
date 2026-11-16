@@ -106,8 +106,8 @@ def lean_open(page: Page) -> bool:
 
 GRAPH_FIRST = """
 try {
-  if (!localStorage.getItem('proof-reader-pane-3'))
-    localStorage.setItem('proof-reader-pane-3', JSON.stringify({graph: true, lean: false, share: 0, sideShare: 0}));
+  if (!localStorage.getItem('proof-reader-pane-4'))
+    localStorage.setItem('proof-reader-pane-4', JSON.stringify({graph: true, lean: false, share: 0, sideShare: 0}));
 } catch { /* a frame with no storage, such as the PDF's: nothing to set there */ }
 """
 
@@ -151,7 +151,7 @@ def reopen_proof(page: Page, url: str) -> None:
     print("Reopening the proof pane")
     page.goto(f"{url}#/{SLUG}", wait_until="load")
     page.locator(".proof").wait_for()
-    page.evaluate("""localStorage.setItem('proof-reader-pane-3', JSON.stringify({
+    page.evaluate("""localStorage.setItem('proof-reader-pane-4', JSON.stringify({
         graph: false, lean: false, share: 0.3, sideShare: 0.4
     }))""")
     for slug in ("pcp-exposition", "pcp-specialist", "pcp-full-argument", "pcp-reading-guide", SLUG):
@@ -171,7 +171,7 @@ def reopen_proof(page: Page, url: str) -> None:
     page.locator(".proof").wait_for()
     check(True, "reloading opens the proof pane again")
     check(page.evaluate("""() => {
-        const layout = JSON.parse(localStorage.getItem('proof-reader-pane-3'));
+        const layout = JSON.parse(localStorage.getItem('proof-reader-pane-4'));
         return layout.share === 0.3 && layout.sideShare === 0.4 && layout.lean === false
             && !Object.hasOwn(layout, 'graph');
     }"""), "mode and split sizes persist without a saved closed pane")
