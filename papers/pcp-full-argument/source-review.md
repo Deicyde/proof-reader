@@ -2,7 +2,17 @@
 
 The shared `lean/` tree contains the PCP and `vendor/` paths, `PCP.lean`, project configuration, citation, README and licence files from `troyjlee/tcs-formalizations` at `a0ce13ed0fa264f051c1278e039596ce65557fa4`. A Git-blob comparison against that revision checked all 1,063 copied files, with no differing or extra files. The selected upstream paths contain `LICENSE`, `vendor/LICENSE`, and `vendor/LICENSE-CSLib`; no file named NOTICE occurs in those paths. See `vendor/UPSTREAM.json` for vendor provenance.
 
-Each companion's `generated/lean.json` retains the 207 rows from `papers/pcp-reading-guide/generated/lean.json` (SHA-256 `c11f9771516b06f5486191d4ef2fbc1cbf9283291ae756e4f97b1ffeb93fc2f4`): 206 rows have `lean` provenance and the `PCP.np_subset_pcp` statement has `statement-compiled` provenance. Its statement was compiled as a surrogate in the guide's retained extraction; its proof was not built by that extraction and no proof-use edges or axiom report are supplied for it. The other selected proof declarations are source-read, with no extracted proof-use edges or axiom reports. The top-level provenance is deliberately `source-read` because the combined edition is not a fresh extraction. Per-row provenance remains in each JSON file. This record does not assert a new Lean build or independent review.
+Each companion's `generated/lean.json` is Lean's report on compiled modules. On 16 November 2026 a GitHub Actions run in this repository ([run 43790700983](https://github.com/wcook04/proof-reader/actions/runs/43790700983), commit `b50cf8b632b4c0bf55060af8c2294823ee074ba0`, workflow `.github/workflows/pcp-extract.yml`) fetched Mathlib's compiled files with `lake exe cache get`, compiled the 71 PCP modules the three companions list with `lake build` at the project's toolchain (Lean 4.35.0-rc2; the log ends "Build completed successfully (4041 jobs)"), and ran `tools/extract_built.py` for each companion. That tool uses a module only when the compiled project's source is byte-identical to the copy under `papers/pcp-full-argument/lean/`. Every row has `lean` provenance, including `PCP.np_subset_pcp`, whose proof was built in this run. Dependencies, the split between statement and proof uses, and axiom reports come from those compiled modules. Across the three companions Lean reports no axioms beyond `propext`, `Classical.choice` and `Quot.sound`.
+
+| Report | Modules | Rows | SHA-256 |
+| --- | --- | --- | --- |
+| `papers/pcp-exposition/generated/lean.json` | 26 | 890 | `598e8a5d5c59924a3818838f4831d1232f138ee19cc49ccfef56ac95dd879440` |
+| `papers/pcp-full-argument/generated/lean.json` | 69 | 1792 | `a0d304ad2df6105e9eae6bf40129f934b80a8586126ac759616ba1967a5a0bb5` |
+| `papers/pcp-specialist/generated/lean.json` | 26 | 815 | `e30848ba23623b6db744829751234c9aee1d865fe522ea2b807a82b863bcc2af` |
+
+The original guide's page (`papers/pcp-reading-guide`) keeps its earlier extraction: 206 rows with `lean` provenance and a statement-only compilation of `PCP.np_subset_pcp`.
+
+This record says that Lean compiled these modules in that run and what it reported. It is not a review of the mathematics, and it does not establish that the papers' prose and the Lean have the same meaning. The links, plain titles and notes were made with AI and have not been reviewed by the authors; comparisons of statements with their Lean remain held.
 
 The five guide files are byte-identical to their files in the shared source tree. Their SHA-256 hashes are:
 

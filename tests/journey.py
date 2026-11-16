@@ -1361,8 +1361,8 @@ def companions(page: Page, url: str, shots: Path | None) -> None:
 
     page.goto(f"{full}/@declarations", wait_until="load")
     made = page.get_by_role("heading", name="How this page was made").locator("..").inner_text()
-    check("compiled only the statement" in made and "did not build" in made and "were read from source" in made,
-          "the index names the scope of retained compilation and source-read evidence")
+    check("Lean’s own output from modules compiled" in made and "were read from source" not in made,
+          "the index says the declaration data is Lean's output from compiled modules")
     check("Proofs whose Lean reports list no axioms" not in page.locator(".index").inner_text(),
           "this mixed edition does not present unextracted proofs as free of axioms")
     table = page.locator(".index table").bounding_box()
