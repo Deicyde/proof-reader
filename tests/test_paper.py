@@ -1,5 +1,7 @@
 """The parts of the pipeline that decide whether a link is real."""
 
+import hashlib
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -513,3 +515,105 @@ class RealShelfExamples(unittest.TestCase):
                 for line in example["code"]:
                     self.assertEqual(line["text"], lines[line["n"] - 1])
                 self.assertEqual(example["code"][-1]["n"], min(example["last"], example["decl_last"]))
+
+
+class ComparatorEvidence(unittest.TestCase):
+    """Comparator's run files become data for the page only when they match its receipt."""
+
+    challenge = ("import X\n\nnamespace PCP\n\ntheorem first (n : Nat) :\n    n = n := by\n  sorry\n\nend PCP\n\n"
+                 "namespace PCP.Inner\n\ntheorem second : True := by\n  sorry\n\nend PCP.Inner\n")
+
+    def setUp(self):
+        import tempfile
+        self.scratch = tempfile.TemporaryDirectory()
+        self.addCleanup(self.scratch.cleanup)
+        root = Path(self.scratch.name)
+        self.saved = paper.ROOT, paper.PAPERS
+        paper.ROOT, paper.PAPERS = root, root / "papers"
+        self.addCleanup(lambda: setattr(paper, "ROOT", self.saved[0]) or setattr(paper, "PAPERS", self.saved[1]))
+        self.folder = root / "papers" / "one"
+        self.runs = self.folder / "comparator"
+        (self.runs / "negative").mkdir(parents=True)
+        names = ["PCP.first", "PCP.Inner.second"]
+        files = {"Challenge.lean": self.challenge, "Solution.lean": "import Y\n",
+                 "comparator.json": json.dumps({"theorem_names": names, "permitted_axioms": ["propext"]}),
+                 "negative/Challenge.lean": self.challenge.replace("n = n", "n = n + 0"),
+                 "negative/comparator.json": "{}"}
+        for name, text in files.items():
+            (self.runs / name).write_text(text, encoding="utf-8")
+        self.receipt = {
+            "run": "https://github.com/o/r/actions/runs/1", "date": "2026-11-16", "toolchain": "leanprover/lean4:v4.35.0",
+            "sandbox": "bubblewrap 0.9.0", "mode": "standard; sandboxed; --paranoid was not completed",
+            "permitted_axioms": ["propext"],
+            "accepted": {"config": "comparator.json", "theorem_names": names, "exit": 0,
+                         "output": ["Lean default kernel accepts the solution", "Your solution is okay!"]},
+            "rejected_control": {"config": "negative/comparator.json", "change": "n + 0 in place of n", "exit": 1,
+                                 "output": ["error: Challenge and solution theorem statement do not match: 'PCP.first'"]},
+            "sha256": {name: hashlib.sha256((self.runs / name).read_bytes()).hexdigest()
+                       for name in ("Challenge.lean", "Solution.lean", "comparator.json", "negative/Challenge.lean")},
+            "limits": "Comparator does not compare the statements with the paper.",
+        }
+        self.write_receipt()
+        self.config = {"comparator": {"evidence": "comparator"}}
+
+    def write_receipt(self):
+        (self.runs / "receipt.json").write_text(json.dumps(self.receipt), encoding="utf-8")
+
+    def evidence(self, config=None):
+        import os
+        old = os.environ.get("PROOF_READER_COMMIT")
+        os.environ["PROOF_READER_COMMIT"] = "a" * 40
+        try:
+            return paper.comparator_evidence(self.folder, config or self.config)
+        finally:
+            if old is None:
+                del os.environ["PROOF_READER_COMMIT"]
+            else:
+                os.environ["PROOF_READER_COMMIT"] = old
+
+    def test_reads_each_statement_under_its_full_name(self):
+        found = paper.challenge_statements(self.challenge)
+        self.assertEqual(found, {"PCP.first": [5, 6], "PCP.Inner.second": [13, 13]})
+
+    def test_builds_the_statement_and_fixed_links(self):
+        built = self.evidence()
+        first = built["theorems"]["PCP.first"]
+        self.assertEqual(first["statement"], "theorem first (n : Nat) :\n    n = n := by")
+        self.assertTrue(first["url"].endswith(f"/blob/{'a' * 40}/papers/one/comparator/Challenge.lean#L5-L6"))
+        self.assertTrue(built["links"]["receipt"].endswith("/papers/one/comparator/receipt.json"))
+        self.assertTrue(built["links"]["control"].endswith("/papers/one/comparator/negative/Challenge.lean"))
+        self.assertEqual((built["kernel"], built["paranoid"], built["control"]["theorem"]),
+                         ("Lean default kernel", "not completed", "PCP.first"))
+
+    def test_another_paper_shares_the_folder(self):
+        other = paper.PAPERS / "two"
+        other.mkdir()
+        built = paper.comparator_evidence(other, {"comparator": {"evidence": "../one/comparator"}})
+        self.assertEqual(built["folder"], "papers/one/comparator")
+
+    def test_no_key_means_no_evidence(self):
+        self.assertIsNone(paper.comparator_evidence(self.folder, {}))
+
+    def test_a_file_that_does_not_match_its_hash_stops_the_build(self):
+        (self.runs / "Challenge.lean").write_text(self.challenge.replace("n = n", "n = 0"), encoding="utf-8")
+        with self.assertRaisesRegex(paper.PaperError, "Challenge.lean does not match the sha256"):
+            self.evidence()
+
+    def test_a_theorem_the_challenge_does_not_state_stops_the_build(self):
+        names = ["PCP.first", "PCP.third"]
+        (self.runs / "comparator.json").write_text(json.dumps({"theorem_names": names, "permitted_axioms": ["propext"]}))
+        self.receipt["accepted"]["theorem_names"] = names
+        self.receipt["sha256"]["comparator.json"] = hashlib.sha256((self.runs / "comparator.json").read_bytes()).hexdigest()
+        self.write_receipt()
+        with self.assertRaisesRegex(paper.PaperError, "states no theorem called PCP.third"):
+            self.evidence()
+
+    def test_a_run_that_did_not_pass_stops_the_build(self):
+        self.receipt["accepted"]["exit"] = 1
+        self.write_receipt()
+        with self.assertRaisesRegex(paper.PaperError, "accepted run"):
+            self.evidence()
+
+    def test_a_folder_outside_papers_is_refused(self):
+        with self.assertRaisesRegex(paper.PaperError, "folder under papers/"):
+            self.evidence({"comparator": {"evidence": "../../.."}})

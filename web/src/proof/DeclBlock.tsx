@@ -1,6 +1,7 @@
 // One Lean declaration: what it is, how the sentence relates to it, its signature,
 // the rest behind Proof ▶ where that helps, what it uses and what uses it, what Lean
-// reports about its axioms, where the paper states it and the authors' source.
+// reports about its axioms, what Comparator checked, where the paper states it and the
+// authors' source.
 
 import { useEffect, useState } from "react";
 import { declEvidence, declOrigin, noun, passageLocation, type Declaration, type Edition, type Passage } from "../app/edition";
@@ -8,6 +9,7 @@ import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code
 import { isType, sectionLabel, shapeOf } from "../model/fromEdition";
 import { routeHref } from "../app/router";
 import { FidelityBlock } from "./Fidelity";
+import { ComparatorFold } from "./Comparator";
 import { Quote } from "../paper/Quote";
 
 export const KIND_WORDS: Record<string, string> = {
@@ -127,6 +129,7 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
       {d.note && <p className="decl__note"><span className="decl__note-by">Note added for this page</span>{d.note.text}</p>}
       <FidelityBlock edition={edition} d={d} act={act} onPassage={onPassage} />
       <Axioms edition={edition} d={d} act={act} />
+      <ComparatorFold edition={edition} d={d} names={names} act={act} />
       <div className="decl__code" tabIndex={0} aria-label={`Statement of ${d.id}`}>
         <LeanCode paper={edition.slug} lines={lines} from={d.line} to={d.statement_end} names={names} self={d.id} exact={exact} act={act} />
       </div>

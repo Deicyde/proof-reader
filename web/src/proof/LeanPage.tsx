@@ -10,6 +10,7 @@ import { sectionLabel, shapeOf } from "../model/fromEdition";
 import { READING_LINE } from "../paper/reading-line";
 import { DeclBlock, KIND_WORDS, list } from "./DeclBlock";
 import { AllChecks, FidelityLines, HowMade } from "./Fidelity";
+import { ComparatorIndex } from "./Comparator";
 import { MadeLink } from "./MadeLink";
 import { Quote } from "../paper/Quote";
 
@@ -115,7 +116,8 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
       return;
     }
     el.scrollTop = 0;
-    const row = el.querySelector<HTMLElement>(step.exact ? `.decl .source__line[data-line="${step.exact[0]}"]` : ".decl .source__line");
+    // Comparator's challenge numbers its own file's lines, so its rows are never the authors'.
+    const row = el.querySelector<HTMLElement>(step.exact ? `.decl .source__line[data-line="${step.exact[0]}"]:not(.cmp__code *)` : ".decl .source__line:not(.cmp__code *)");
     const paper = document.querySelector<HTMLElement>("[data-paper-pane]");
     if (!row || !paper) return;
     const box = el.getBoundingClientRect();
@@ -275,6 +277,7 @@ function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions 
         {" "}{analytics.sorry.length > 0 ? <strong>Lean reports that {plain(analytics.sorry)} use sorry.</strong> : <>The extracted reports list no use of sorry.</>}
       </p>}
       <AllChecks edition={edition} act={act} />
+      <ComparatorIndex edition={edition} act={act} />
       <h3>All {declarations.length} declarations</h3>
       <table>
         <thead>

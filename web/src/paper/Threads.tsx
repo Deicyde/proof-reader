@@ -74,7 +74,7 @@ export function Threads({ root, target }: { root: RefObject<HTMLElement | null>;
         });
         const page = el.querySelector<HTMLElement>(".proof");
         const leanBody = el.querySelector<HTMLElement>(".proof__lean:not([hidden]) .leaf__body");
-        const row = line && leanBody ? leanBody.querySelector<HTMLElement>(`.source__line[data-line="${line}"]`) : null;
+        const row = line && leanBody ? leanBody.querySelector<HTMLElement>(`.source__line[data-line="${line}"]:not(.cmp__code *)`) : null;
         const canvas = el.querySelector<HTMLElement>(".proof__graph:not([hidden]) .graph__canvas");
         const card = canvas?.querySelector<HTMLElement>('.card[data-trail="here"]') ?? null;
         const within = row && leanBody ? leanBody : canvas;

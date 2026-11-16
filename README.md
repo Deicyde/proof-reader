@@ -111,6 +111,7 @@ papers/<slug>/
   lean/          the authors' Lean project, unchanged
   links.json     which passage goes with which declaration, plain titles, notes and comparisons
   checks/        optional Lean files of ours that test a statement against the authors' Lean
+  comparator/    optional files of a Comparator run: challenge, solution, configuration, receipt
   generated/     recorded declaration data and its provenance, plus any compiled checks
 ```
 
@@ -175,6 +176,17 @@ A comparison is AI judgement. Where it cites a check, the check is a Lean file o
 reports for it. `check` stops if a check file has changed since `extract` compiled it. Each page
 says that the links, notes and comparisons have not been reviewed by the authors, until an author
 has reviewed them.
+
+A paper can show a [Comparator](https://github.com/leanprover/comparator) run. Name the folder
+holding the run's files under `[comparator] evidence` in `paper.toml`; pages that show the same
+Lean name one shared folder, such as `"../pcp-full-argument/comparator"`. The folder holds
+`Challenge.lean`, `Solution.lean`, the configuration, the rejected control and a `receipt.json`
+recording the run. The build reads each configured theorem's statement from `Challenge.lean`,
+with its lines, and links the files at the commit it builds. It stops if a file's SHA-256 differs
+from the receipt, if the challenge states no theorem of a configured name, or if the receipt does
+not record an accepted run and a rejected control. Each checked declaration then has a closed
+"Comparator evidence" fold beneath its axiom report. Comparator tests a proof against the
+challenge statement; it does not test whether that statement means what the paper says.
 
 ## Repository map
 

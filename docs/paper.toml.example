@@ -51,3 +51,10 @@ page_label = "{page}"         # how the paper numbers its pages, such as "191:{p
 # example = "isoR-clam"
 # or
 # example = ["isoR-clam", "closed-world", "indexIsoL"]
+
+# A Comparator run on some of the Lean's theorems. Name the folder of the run's files:
+# Challenge.lean, Solution.lean, the configuration, the rejected control and receipt.json.
+# Papers that show the same Lean can name one shared folder. The build stops if a file
+# does not match the receipt's SHA-256 or the challenge states no configured theorem.
+# [comparator]
+# evidence = "comparator"

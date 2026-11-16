@@ -320,6 +320,22 @@ button:disabled { cursor: default; }
 .fid .fid__code { margin: 4px -16px 0 -28px; }
 .fid__file { margin-top: 2px !important; font-size: var(--fs-xs); }
 .fid__back, .made__link { min-height: 24px; color: inherit; text-decoration: underline; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
+/* Comparator's run on a declaration: a closed fold under the axiom report. */
+.cmp { margin-top: 2px; }
+.cmp__body { margin: 2px 0 6px; padding-left: 10px; border-left: 2px solid var(--rule-strong); font-size: var(--fs-sm); line-height: 1.42; color: var(--ink-2); }
+.cmp__body p { margin: 0; text-wrap: pretty; }
+.cmp__body p + p { margin-top: 4px; }
+.cmp__body code { font-family: var(--font-mono); font-size: 0.8em; overflow-wrap: anywhere; }
+.cmp__result b { font-weight: 600; color: var(--ink); }
+.cmp__body .cmp__flag { white-space: nowrap; overflow-wrap: normal; }
+.cmp__what { color: var(--ink); }
+.cmp .cmp__code { margin: 5px -16px 0 -28px; }
+.cmp__body .cmp__file { margin-top: 2px; font-size: var(--fs-xs); }
+.cmp__links { display: flex; flex-wrap: wrap; gap: 0 16px; }
+.cmp__body a { min-height: 24px; color: inherit; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule-strong); }
+.cmp__links a { display: inline-flex; align-items: center; color: var(--ink); }
+.cmp__body a:hover { color: var(--lit); }
+.cmp__scope { font-size: var(--fs-xs); }
 .stepline__fid { list-style: none; margin: 5px 0 0; padding: 0; font-size: var(--fs-sm); line-height: 1.4; color: var(--ink-2); }
 .stepline__fid li { padding: 1px 0 1px 8px; border-left: 2px solid var(--rule-strong); text-wrap: pretty; }
 .stepline__fid li + li { margin-top: 3px; }

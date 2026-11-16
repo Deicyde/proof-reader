@@ -17,6 +17,7 @@ import argparse
 import hashlib
 import html
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -60,6 +61,8 @@ VERDICTS = ("same", "stronger", "weaker", "different")
 CHECK_KEYWORDS = ("theorem", "lemma", "def")
 AXIOMS_PRINTED = re.compile(
     r"^'(.+?)' (?:depends on axioms: \[([^\]]*)\]|does not depend on any axioms)", re.M)
+# Where this repository's files can be read at one commit, for links to Comparator's files.
+REPOSITORY = "https://github.com/wcook04/proof-reader"
 
 
 class PaperError(Exception):
@@ -689,6 +692,122 @@ def reachable(goals: list[str], uses: dict) -> set[str]:
     return seen
 
 
+def challenge_statements(text: str) -> dict[str, list[int]]:
+    """Each theorem a Comparator challenge states, by its full name: the lines from its
+    keyword to the line that opens its proof."""
+    lines = text.splitlines()
+    spaces: list[str] = []
+    found: dict[str, list[int]] = {}
+    for number, line in enumerate(lines, 1):
+        opened = re.match(r"namespace\s+(\S+)\s*$", line)
+        closed = re.match(r"end\s+(\S+)\s*$", line)
+        if opened:
+            spaces.append(opened[1])
+        elif closed and spaces and spaces[-1] == closed[1]:
+            spaces.pop()
+        match = WRITTEN.match(line)
+        if match and not line[:1].isspace() and match.group(1).split()[0] in ("theorem", "lemma"):
+            name = ".".join([*spaces, match.group(2)])
+            if name in found:
+                raise PaperError(f"the challenge states {name} twice")
+            found[name] = [number, statement_end(lines, number, len(lines), "theorem")]
+    return found
+
+
+def built_commit() -> str | None:
+    """The commit this build reads, so links to the repository's files stay fixed."""
+    for key in ("PROOF_READER_COMMIT", "GITHUB_SHA"):
+        if os.environ.get(key, "").strip():
+            return os.environ[key].strip()
+    if (ROOT / ".git").exists():
+        run = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True)
+        if run.returncode == 0 and re.fullmatch(r"[0-9a-f]{40}", run.stdout.strip()):
+            return run.stdout.strip()
+    return None
+
+
+def comparator_evidence(folder: Path, config: dict) -> dict | None:
+    """What Comparator checked for this paper, read from its run's files.
+
+    `[comparator] evidence` in paper.toml names a folder holding the challenge, the
+    solution, the configuration, the run's receipt and the rejected control; papers that
+    show the same Lean name one shared folder. A file that does not match the receipt's
+    hash, or a theorem name the challenge does not state, stops the build."""
+    wanted = config.get("comparator", {}).get("evidence")
+    if not wanted:
+        return None
+    where = (folder / wanted).resolve()
+    if not where.is_relative_to(PAPERS.resolve()) or not where.is_dir():
+        raise PaperError(f"[comparator] evidence must be a folder under papers/: {wanted}")
+    try:
+        receipt = json.loads((where / "receipt.json").read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        raise PaperError(f"[comparator] {wanted} has no receipt.json") from None
+    accepted, control = receipt.get("accepted", {}), receipt.get("rejected_control", {})
+    hashes = receipt.get("sha256", {})
+    files = {"challenge": "Challenge.lean", "solution": "Solution.lean", "config": accepted.get("config", "")}
+    for name in (*files.values(), control.get("config", "")):
+        if not name or not (where / name).is_file():
+            raise PaperError(f"[comparator] {wanted}: {name or 'a configuration'} named by receipt.json is missing")
+    for name in files.values():
+        if name not in hashes:
+            raise PaperError(f"[comparator] {wanted}: receipt.json records no sha256 for {name}")
+    for name, digest in hashes.items():
+        path = where / name
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != digest:
+            raise PaperError(f"[comparator] {wanted}: {name} does not match the sha256 in receipt.json")
+    setup = json.loads((where / files["config"]).read_text(encoding="utf-8"))
+    names = setup.get("theorem_names", [])
+    if not names or names != accepted.get("theorem_names"):
+        raise PaperError(f"[comparator] {wanted}: receipt.json and {files['config']} name different theorems")
+    if setup.get("permitted_axioms") != receipt.get("permitted_axioms"):
+        raise PaperError(f"[comparator] {wanted}: receipt.json and {files['config']} permit different axioms")
+    output = accepted.get("output", [])
+    if accepted.get("exit") != 0 or "Your solution is okay!" not in output:
+        raise PaperError(f"[comparator] {wanted}: receipt.json does not record an accepted run")
+    kernel = next((line[: -len(" accepts the solution")] for line in output if line.endswith(" accepts the solution")), None)
+    if not kernel:
+        raise PaperError(f"[comparator] {wanted}: receipt.json does not record which kernel accepted the solution")
+    mode = receipt.get("mode", "")
+    # Only the one reading the page can state is accepted; a receipt saying anything else
+    # about --paranoid needs the page's wording extended first.
+    if "--paranoid was not completed" not in mode:
+        raise PaperError(f"[comparator] {wanted}: receipt.json mode must record that --paranoid was not completed")
+    rejected = next((m for line in control.get("output", [])
+                     for m in [re.search(r"statement do not match: '([^']+)'", line)] if m), None)
+    if not control.get("exit") or not rejected or not control.get("change"):
+        raise PaperError(f"[comparator] {wanted}: receipt.json does not record a rejected control")
+    control_challenge = (Path(control["config"]).parent / "Challenge.lean").as_posix()
+    challenge = (where / "Challenge.lean").read_text(encoding="utf-8")
+    stated = challenge_statements(challenge)
+    missing = [n for n in names if n not in stated]
+    if missing:
+        raise PaperError(f"[comparator] {wanted}: Challenge.lean states no theorem called {', '.join(missing)}")
+    commit = built_commit()
+    if not commit:
+        print("  no commit known (set PROOF_READER_COMMIT): Comparator links point at main", file=sys.stderr)
+    base = f"{REPOSITORY}/blob/{commit or 'main'}/{where.relative_to(ROOT.resolve()).as_posix()}"
+    lines = challenge.splitlines()
+    theorems = {}
+    for name in names:
+        first, last = stated[name]
+        theorems[name] = {"first": first, "last": last, "statement": "\n".join(lines[first - 1:last]),
+                          "url": f"{base}/Challenge.lean#L{first}-L{last}"}
+    return {
+        "folder": where.relative_to(ROOT.resolve()).as_posix(), "commit": commit,
+        "run": receipt["run"], "date": receipt["date"], "run_commit": receipt.get("commit"),
+        "toolchain": receipt["toolchain"], "sandbox": receipt["sandbox"], "kernel": kernel,
+        "paranoid": "not completed",
+        "permitted_axioms": receipt["permitted_axioms"],
+        "links": {"challenge": f"{base}/Challenge.lean", "solution": f"{base}/{files['solution']}",
+                  "config": f"{base}/{files['config']}", "receipt": f"{base}/receipt.json",
+                  "control": f"{base}/{control_challenge}"},
+        "control": {"change": control["change"], "theorem": rejected[1]},
+        "limits": receipt.get("limits", ""),
+        "theorems": theorems,
+    }
+
+
 def edition(slug: str) -> dict:
     data = resolve(slug)
     config, shard_info, links = data["config"], data["shards"], data["links"]
@@ -790,6 +909,7 @@ def edition(slug: str) -> dict:
         "mentions": find_mentions(data["words"], names),
         "declarations": declarations,
         "checks": data["checks"],
+        "comparator": comparator_evidence(data["folder"], config),
         "shelf": {"example": examples[0] if examples else None, "examples": examples},
         "sheets": statement_sheets(links.get("claims", []), declarations, data["passages"], shard_info),
         "coverage": {"sections": tied_sections, "ties": len(data["passages"])},
@@ -924,6 +1044,12 @@ def check(slug: str) -> None:
         print(f"  compared as {verdict}: {len(names)}" + (f" ({', '.join(names)})" if names else ""))
     for item in built["checks"]:
         print(f"  check {item['name']} rests on: {', '.join(item['axioms']) or 'no axioms'}")
+    evidence = built["comparator"]
+    if evidence:
+        shown = {d["id"] for d in built["declarations"]}
+        on_page = [name for name in evidence["theorems"] if name in shown]
+        print(f"  Comparator evidence from {evidence['folder']}: {len(on_page)} of {len(evidence['theorems'])} "
+              f"checked theorems on this page" + (f" ({', '.join(on_page)})" if on_page else ""))
 
 
 def build(slugs: list[str]) -> None:
