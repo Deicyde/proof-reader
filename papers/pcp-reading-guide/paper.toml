@@ -24,3 +24,6 @@ scope = "This page links Sections 3 and 4 of the guide to the five Lean files be
 
 [reading]
 language = "lean"
+
+[comparator]
+evidence = "../pcp-full-argument/comparator"

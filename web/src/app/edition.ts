@@ -106,6 +106,29 @@ export interface Check {
   status: "checked";
 }
 
+/** What Comparator checked, read by the build from the run's files (`[comparator]` in paper.toml). */
+export interface ComparatorEvidence {
+  /** The folder of run files, from the repository root. */
+  folder: string;
+  /** The commit the links below are fixed at; null when the build knew none. */
+  commit: string | null;
+  run: string;
+  date: string;
+  /** The commit the run checked out. */
+  run_commit?: string;
+  toolchain: string;
+  sandbox: string;
+  /** The kernel the run's output names as accepting the solution. */
+  kernel: string;
+  paranoid: "not completed";
+  permitted_axioms: string[];
+  links: { challenge: string; solution: string; config: string; receipt: string; control: string };
+  control: { change: string; theorem: string };
+  limits: string;
+  /** Each theorem name the run checked: its statement in the challenge and the lines it fills. */
+  theorems: Record<string, { first: number; last: number; statement: string; url: string }>;
+}
+
 export interface Edition {
   schema: 1;
   slug: string;
@@ -152,6 +175,8 @@ export interface Edition {
   declarations: Declaration[];
   /** Lean proofs written for this page, which Lean accepted against the authors' file. */
   checks?: Check[];
+  /** Comparator's run on some of these declarations, when paper.toml names its files. */
+  comparator?: ComparatorEvidence | null;
   /** Which sections hold ties, in reading order. */
   coverage: { sections: string[]; ties: number };
   /** Present when the paper has a reading copy, which reading.html holds. */

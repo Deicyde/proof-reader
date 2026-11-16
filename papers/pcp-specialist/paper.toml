@@ -24,3 +24,6 @@ language = "lean"
 [reading.companions]
 "../long/reasoning-record.md" = "pcp-full-argument"
 "../expository/main.md" = "pcp-exposition"
+
+[comparator]
+evidence = "../pcp-full-argument/comparator"

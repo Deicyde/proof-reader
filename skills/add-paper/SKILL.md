@@ -203,6 +203,13 @@ local branch and put `"fidelity_held": "<reason>"` in `links.json` in place of `
 `check` then skips the comparison step for that paper, and the page says nothing about
 comparisons.
 
+If Comparator has judged some of the authors' theorems against a challenge file, put the
+run's files in one folder (`Challenge.lean`, `Solution.lean`, the configuration, the rejected
+control and `receipt.json`) and name it under `[comparator] evidence` in `paper.toml`; see the
+[README](../../README.md#what-paperpy-check-establishes). The build checks the files against
+the receipt's hashes and shows the evidence under each checked declaration. Comparator does not test
+whether the challenge matches the paper, so its result never replaces a comparison.
+
 ## 6. Run the comparison
 
 ```sh

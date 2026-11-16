@@ -24,3 +24,6 @@ language = "lean"
 [reading.companions]
 "../short/paper.md" = "pcp-specialist"
 "../expository/main.md" = "pcp-exposition"
+
+[comparator]
+evidence = "comparator"
