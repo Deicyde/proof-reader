@@ -1353,7 +1353,7 @@ def companions(page: Page, url: str, shots: Path | None) -> None:
     page.wait_for_url(f"{specialist}*")
     page.locator(".sheet__text h1").wait_for()
     check_columns()
-    section = "2-the-corrected-short-low-degree-test"
+    section = "42-the-standard-low-degree-test"
     link = page.locator(f'.sheet__text a[href="./#/pcp-full-argument/@{section}"]')
     # Clicking can scroll the link into view. Measure the origin at the click itself.
     link.evaluate("el => el.addEventListener('click', () => { window.companionSourceTop = el.closest('[data-paper-pane]').scrollTop; }, { once: true })")
@@ -1363,11 +1363,12 @@ def companions(page: Page, url: str, shots: Path | None) -> None:
     def at_heading() -> bool:
         if not page.url.startswith(full):
             return False
-        box = page.locator(".sheet__text #s-2").bounding_box(timeout=500) if page.locator(".sheet__text #s-2").count() else None
+        heading = page.locator('.sheet__text [id="s-4.2"]')
+        box = heading.bounding_box(timeout=500) if heading.count() else None
         pane = page.locator("[data-paper-pane]").bounding_box()
         return box is not None and pane is not None and pane["y"] <= box["y"] < pane["y"] + 150
 
-    wait_until(page, at_heading, "the anchored companion opens at the corrected short low-degree test")
+    wait_until(page, at_heading, "the anchored companion opens at the standard low-degree test")
     page.go_back()
     page.wait_for_url(f"{specialist}*")
     page.locator(".sheet__text h1").wait_for()
@@ -1423,14 +1424,14 @@ def companions(page: Page, url: str, shots: Path | None) -> None:
 
     page.goto(specialist, wait_until="load")
     page.locator(".sheet__text h1").wait_for()
-    link = page.locator('.sheet__text a[href="./#/pcp-full-argument/@4-bivariate-agreement"]')
+    link = page.locator('.sheet__text a[href="./#/pcp-full-argument/@45-bivariate-agreement"]')
     link.evaluate("el => el.addEventListener('click', () => { window.companionSourceTop = el.closest('[data-paper-pane]').scrollTop; }, { once: true })")
     before = entries(page)
     link.click()
     origin = page.evaluate("window.companionSourceTop")
     wait_until(page, lambda: page.url.startswith(full), "the bivariate link changes to the full-argument route")
     wait_until(page, lambda: (
-        (box := page.locator(".sheet__text #s-4").bounding_box()) is not None
+        (box := page.locator('.sheet__text [id="s-4.5"]').bounding_box()) is not None
         and (pane := page.locator("[data-paper-pane]").bounding_box()) is not None
         and pane["y"] <= box["y"] < pane["y"] + 150
     ), "the specialist's bivariate link opens at the full argument's heading")
@@ -1444,15 +1445,15 @@ def companions(page: Page, url: str, shots: Path | None) -> None:
 def narrow_header(page: Page, url: str, shots: Path | None) -> None:
     """A long history label stays in its column when Graph is closed."""
     print("Narrow reader header at 1363px")
-    page.goto(f"{url}#/pcp-full-argument", wait_until="load")
+    page.goto(f"{url}#/pcp-exposition", wait_until="load")
     page.locator(".sheet__text h1").wait_for()
     items = page.locator(".rail__item")
-    items.filter(has_text="A high-degree univariate polynomial as a low-degree multivariate polynomial").click()
-    items.filter(has_text="Binary labels for field elements").click()
+    items.filter(has_text="The standard low-degree test and local correction").click()
+    items.filter(has_text="The one-edge vanishing certificate in bits").click()
     page.locator(".proof__close").click()
     page.locator(".proof").wait_for(state="hidden")
     back = page.locator(".bar .back")
-    check("A high-degree univariate polynomial" in back.inner_text(), "history keeps the full source-section Back label")
+    check("The standard low-degree test and local correction" in back.inner_text(), "history keeps the full source-section Back label")
     back_box = back.bounding_box()
     title_box = page.locator(".bar__paper").bounding_box()
     check(back_box is not None and title_box is not None and back_box["x"] + back_box["width"] + 8 <= title_box["x"],

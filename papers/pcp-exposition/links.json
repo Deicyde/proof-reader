@@ -3,8 +3,8 @@
   "claims": [
     {
       "id": "claim-1",
-      "title": "The forward PCP theorem",
-      "section": "2. What the theorem promises",
+      "title": "The PCP theorem",
+      "section": "2",
       "passage": "pcp-expository-forward-statement",
       "lean": [
         "PCP.np_subset_pcp"
@@ -12,7 +12,7 @@
     },
     {
       "id": "claim-2",
-      "title": "Colouring constraints on the grid",
+      "title": "Colourings as polynomial equations",
       "section": "4",
       "passage": "pcp-expository-colour-polynomials",
       "lean": [
@@ -21,7 +21,7 @@
     },
     {
       "id": "claim-3",
-      "title": "Grid vanishing decomposition",
+      "title": "Vanishing on a grid",
       "section": "5",
       "passage": "pcp-expository-grid-certificate",
       "lean": [
@@ -30,7 +30,7 @@
     },
     {
       "id": "claim-4",
-      "title": "Point and line agreement",
+      "title": "Point-versus-line test",
       "section": "6",
       "passage": "pcp-expository-digit-encoding",
       "lean": [
@@ -39,8 +39,8 @@
     },
     {
       "id": "claim-5",
-      "title": "Decoding the inner weighted test",
-      "section": "Testing and correcting a polynomial of fixed degree",
+      "title": "Standard low-degree test",
+      "section": "6",
       "passage": "pcp-expository-weighted-test",
       "lean": [
         "PCP.Algebraic.GeneratorLowDegreeTest.exists_close"
@@ -48,7 +48,7 @@
     },
     {
       "id": "claim-6",
-      "title": "Linearity from the BLR test",
+      "title": "BLR linearity test",
       "section": "7",
       "passage": "pcp-expository-hadamard",
       "lean": [
@@ -58,7 +58,7 @@
     {
       "id": "claim-7",
       "title": "Hadamard test query count",
-      "section": "Why the construction needs more than linear questions",
+      "section": "7",
       "passage": "pcp-expository-cubic-labels",
       "lean": [
         "PCP.Algebraic.Hadamard.testQueries_length"
@@ -66,7 +66,7 @@
     },
     {
       "id": "claim-8",
-      "title": "Decoding the outer encoded-line test",
+      "title": "Binary low-degree test",
       "section": "8",
       "passage": "pcp-expository-binary-tests",
       "lean": [
@@ -76,7 +76,7 @@
     {
       "id": "claim-9",
       "title": "Soundness for noncolourable graphs",
-      "section": "9. From the seven checks to a colouring",
+      "section": "9",
       "passage": "pcp-expository-soundness",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.rejectionRate_ge_of_not_colorable"
@@ -93,8 +93,8 @@
     },
     {
       "id": "claim-11",
-      "title": "A proof for a proper colouring",
-      "section": "9. From the seven checks to a colouring",
+      "title": "Perfect completeness",
+      "section": "9",
       "passage": "linked-source-14",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.exists_proof_rejectionRate_eq_zero"
@@ -102,8 +102,8 @@
     },
     {
       "id": "claim-13",
-      "title": "Soundness of the grid test",
-      "section": "8. Combining the encodings and returning to the grid",
+      "title": "Zero-on-grid test soundness",
+      "section": "8",
       "passage": "linked-source-16",
       "lean": [
         "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_ge"
@@ -111,8 +111,8 @@
     },
     {
       "id": "claim-14",
-      "title": "The converse PCP theorem",
-      "section": "2. What the theorem promises",
+      "title": "The reverse inclusion",
+      "section": "2",
       "passage": "linked-source-17",
       "lean": [
         "PCP.pcp_subset_np_concrete"
@@ -120,8 +120,8 @@
     },
     {
       "id": "claim-15",
-      "title": "Homogeneous words differ by half",
-      "section": "7. A field value represented by many one-bit questions",
+      "title": "Encodings differ at half the positions",
+      "section": "7",
       "passage": "linked-source-18",
       "lean": [
         "PCP.Algebraic.Hadamard.relativeDistance_linearEncode"
@@ -129,39 +129,57 @@
     },
     {
       "id": "claim-16",
-      "title": "Verifier resource and soundness bounds",
-      "section": "10. Randomness, proof length and repetition",
+      "title": "Rejection gap and repetition count",
+      "section": "Appendix A. Parameters and error bounds",
       "passage": "linked-source-19",
       "lean": [
         "PCP.Algebraic.ThreeColorAmplifiedVerifier.verification_guarantees"
       ]
+    },
+    {
+      "id": "hadamard-test",
+      "title": "Hadamard test",
+      "passage": "pcp-expository-hadamard-test",
+      "lean": [
+        "PCP.Algebraic.Hadamard.test_soundness"
+      ],
+      "section": "7"
+    },
+    {
+      "id": "local-correction",
+      "title": "Local correction",
+      "passage": "pcp-expository-local-correction",
+      "lean": [
+        "PCP.Algebraic.BinaryLocalCorrection.failure_le"
+      ],
+      "section": "8"
     }
   ],
   "passages": [
     {
       "id": "pcp-expository-opening",
-      "section": "An algebraic proof of the PCP theorem, through worked examples",
+      "section": "Introduction",
       "role": "explains",
-      "quote": "The same statement holds for every problem whose proposed solutions can be\nchecked in polynomial time.",
+      "quote": "The same holds for every decision problem whose answer is yes exactly\nwhen some polynomial-length **witness** is accepted by a deterministic\npolynomial-time algorithm.",
       "lean": [
         "PCP.np_subset_pcp"
       ],
       "anchor": {
-        "heading": "An algebraic proof of the PCP theorem, through worked examples",
-        "block": 5
+        "heading": "Introduction",
+        "block": 2
       }
     },
     {
       "id": "pcp-expository-theorem",
       "section": "2",
       "role": "explains",
-      "quote": "**PCP theorem.** For every $L\\in\\mathrm{NP}$, there are a polynomial-time\nverifier $V$, natural-number constants $a,b,q$, and a polynomial $p$, such\nthat on every input $x$ of length $n$:",
+      "quote": "**Theorem 2.1 (PCP theorem; [ALMSS98], [AS98]).** For every\n$\\mathcal L\\in\\mathrm{NP}$, there are a polynomial-time verifier $V$,\nnatural-number constants $\\alpha,\\beta,\\ell$, and a polynomial $p$, such\nthat on every input $x$ of length $n$:",
       "lean": [
         "PCP.np_subset_pcp"
       ],
       "anchor": {
-        "heading": "2. What the theorem promises",
-        "block": 3
+        "heading": "2. The PCP theorem",
+        "block": 2
       }
     },
     {
@@ -173,7 +191,7 @@
         "PCP.Algebraic.ThreeColorGrid.constraints_iff_satisfies"
       ],
       "anchor": {
-        "heading": "4. Turning three colours into polynomial equations",
+        "heading": "4. Colourings as polynomial equations",
         "block": 12
       }
     },
@@ -181,38 +199,38 @@
       "id": "pcp-expository-grid-certificate",
       "section": "5",
       "role": "explains",
-      "quote": "Each summand vanishes on the grid because it contains one of its\ncoordinate vanishing polynomials. Polynomial division in each\nvariable proves this result. After removing all multiples of the\n$Z_H(X_j)$, the remainder has degree less than $|H|$ in every variable;\nif it is zero on the whole grid, repeated univariate interpolation makes\nthe remainder zero. Write $h=|H|\\geq1$. Division can choose each nonzero\nquotient with $\\deg Q_j+h\\leq\\deg P$: removing a multiple of the monic\ndegree-$h$ polynomial loses $h$ from its total degree.",
+      "quote": "More generally, by the\nCombinatorial Nullstellensatz in the form of [ABSSW26, Lemma 2.9], every\npolynomial vanishing on $H^m$ has a representation",
       "lean": [
         "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_decomposition"
       ],
       "anchor": {
-        "heading": "5. A certificate for vanishing on a grid",
-        "block": 3
+        "heading": "5. Vanishing certificates",
+        "block": 1
       }
     },
     {
       "id": "pcp-expository-digit-encoding",
       "section": "6",
       "role": "explains",
-      "quote": "The point-versus-line theorem gives the converse needed for soundness.\nSuppose each supplied line polynomial has degree at most $d$, and sample\n$u,v$ and the line parameter $\\lambda$ uniformly, with $\\lambda$ allowed\nto be zero. Let $\\delta$ be the fraction of comparisons\n$f(u+\\lambda v)=T_{u,v}(\\lambda)$ that fail. The formal theorem says\nthat if $Q\\geq10^6d^3$ and $\\delta\\leq1/(4\\cdot10^6)$, then the point\ntable is within distance $2\\delta$ of one multivariate polynomial of\ntotal degree at most $d$. This conclusion requires no assumption that\nthe supplied line polynomials agree with one another.",
+      "quote": "If $q\\geq10^6d^3$\nand $\\delta\\leq1/(4\\cdot10^6)$, then $f$ is $2\\delta$-close to a\npolynomial of total degree at most $d$.",
       "lean": [
         "PCP.Algebraic.PointLineTest.exists_close_of_small_rejection"
       ],
       "anchor": {
-        "heading": "6. Keeping the number of queries constant",
+        "heading": "6. Low-degree tests and the set-multilinear encoding",
         "block": 2
       }
     },
     {
       "id": "pcp-expository-weighted-test",
-      "section": "Testing and correcting a polynomial of fixed degree",
+      "section": "6",
       "role": "explains",
-      "quote": "For the converse, use the stated generator nodes and $|F|>2c$.\nIf the rejection rate is $\\delta<1/[2(c+2)^2]$, the function is within\ndistance $2\\delta$ of some polynomial of total degree at most $c$.\nHere distance means the fraction of table entries that differ.\nPassing the relation rarely or at a few selected lines would not give\nthis conclusion. The [corrected paper][paper-v2], Section 3.2, develops\nthis weighted test and its correction procedure; the bounds stated here\nare those of the formal development.",
+      "quote": "**Theorem 6.2 (standard low-degree test; cf. [ABSSW26, Lemma 3.3]).** With\nthese generator nodes and $q>2c$, if the test rejects with probability\n$\\delta<1/[2(c+2)^2]$, then $f$ is $2\\delta$-close to a polynomial of\ntotal degree at most $c$.",
       "lean": [
         "PCP.Algebraic.GeneratorLowDegreeTest.exists_close"
       ],
       "anchor": {
-        "heading": "Testing and correcting a polynomial of fixed degree",
+        "heading": "The standard low-degree test and local correction",
         "block": 4
       }
     },
@@ -220,25 +238,25 @@
       "id": "pcp-expository-hadamard",
       "section": "7",
       "role": "explains",
-      "quote": "Bellare, Coppersmith, Håstad, Kiwi and Sudan proved the sharp bound\n([Theorem 1.2][bchks]): a function which fails this test with probability\n$\\varepsilon$ is within distance $\\varepsilon$ of a linear functional.\nIts proof, included in the formal development, uses Fourier analysis on\na finite binary vector space. Appendix B, Theorem B.1 of the\n[corrected paper][paper-v2] states this bound and cites both works.\nThe eight-point example demonstrates the test; the theorem applies to\narbitrary received words.",
+      "quote": "If the BLR linearity test rejects a word with\nprobability $\\varepsilon$, the word is $\\varepsilon$-close to a linear\nfunctional.",
       "lean": [
         "PCP.Algebraic.BLR.exists_linearMap_distance_le_of_rejection_le"
       ],
       "anchor": {
-        "heading": "7. A field value represented by many one-bit questions",
-        "block": 10
+        "heading": "7. The Hadamard encoding",
+        "block": 9
       }
     },
     {
       "id": "pcp-expository-cubic-labels",
-      "section": "Why the construction needs more than linear questions",
+      "section": "7",
       "role": "explains",
-      "quote": "The formal Hadamard test checks these properties using corrected\nanswers. Its degree-three version makes ten bit queries. The current\npaper gives an eight-query version which retains only the top-degree\nproduct check; the pinned Lean verifier also performs lower-degree\nchecks. We use the formal version's count when discussing its\nresources. The linearity example above explains one component, not\nthe whole degree-three test.",
+      "quote": "Lee's\ndegree-three Hadamard test reads ten bits; their test HadTest reads\neight, retaining only the top-degree product check.",
       "lean": [
         "PCP.Algebraic.Hadamard.testQueries_length"
       ],
       "anchor": {
-        "heading": "Why the construction needs more than linear questions",
+        "heading": "Labels of degree three",
         "block": 13
       }
     },
@@ -246,25 +264,25 @@
       "id": "pcp-expository-binary-tests",
       "section": "8",
       "role": "explains",
-      "quote": "The combined low-degree theorem supplies **one** polynomial close to\nthe primary oracle on the label sets used later. It is not enough to\nobtain one polynomial for the cubic questions and an unrelated one for\nthe linear questions: both checks must refer to the same decoded\npolynomial. In the formal version, the additional degree-one guarantee\nconcerns homogeneous linear labels; this is the label family used for\nthe final difference check. A certificate table whose entire label\nspace has degree one also receives the full affine-label guarantee.",
+      "quote": "then there is one polynomial of degree at most $D$ whose encoding is\nwithin $\\varepsilon=S\\kappa$ of the received points table on both\nfull and homogeneous labels.",
       "lean": [
         "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close"
       ],
       "anchor": {
-        "heading": "8. Combining the encodings and returning to the grid",
-        "block": 8
+        "heading": "The stored proof",
+        "block": 19
       }
     },
     {
       "id": "pcp-expository-assembly",
       "section": "9",
       "role": "explains",
-      "quote": "For soundness, suppose an arbitrary proof string is accepted with\nprobability very close to one. Each of the seven checks must then\nreject rarely, because failure of any one makes the whole verifier reject.",
+      "quote": "For soundness, fix an arbitrary proof and let $\\kappa$ be the seven-check\nverifier's rejection rate, so that each check rejects with probability at\nmost $\\kappa$.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.rejectionRate_ge_of_not_colorable"
       ],
       "anchor": {
-        "heading": "9. From the seven checks to a colouring",
+        "heading": "9. Soundness of the seven-check verifier",
         "block": 6
       }
     },
@@ -272,72 +290,72 @@
       "id": "pcp-expository-resources",
       "section": "10",
       "role": "explains",
-      "quote": "The running-time claim requires more than short addresses.\nThe formal implementation computes the field, its arithmetic,\nthe public adjacency extension, the queries and their\nacceptance condition in polynomial time, and compiles\nthese operations to a concrete machine model. The [full\nargument][long] separates this implementation proof from\nthe information-theoretic query and randomness bounds.",
+      "quote": "Lee also implements the field, arithmetic,\nadjacency extension, queries and acceptance predicate in polynomial time\non a concrete machine model; this proof is in the [full argument][long].",
       "lean": [
         "PCP.Lang.ThreeColorRuntime.polyTimeAlg"
       ],
       "anchor": {
         "heading": "10. Randomness, proof length and repetition",
-        "block": 5
+        "block": 2
       }
     },
     {
       "id": "linked-source-14",
-      "section": "9. From the seven checks to a colouring",
+      "section": "9",
       "role": "explains",
-      "quote": "For perfect completeness, start with a proper colouring, interpolate it,\nform its difference polynomial, and construct the two vanishing\ncertificates. Supply their honest encodings and line tables.\nInterpolation identities, binary encoding identities and the two grid\ncertificates then make every check accept for every seed, provided the\nhonest degrees fit the encoding capacity.",
+      "quote": "For perfect completeness, interpolate a proper colouring, form its\ndifference polynomial, construct both vanishing certificates, and supply\ntheir encodings and lines tables. All seven checks then pass for every\nseed, given the degree-capacity condition $5m(h-1)<b^c$ verified in\nAppendix A.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.exists_proof_rejectionRate_eq_zero"
       ],
       "anchor": {
-        "heading": "9. From the seven checks to a colouring",
+        "heading": "9. Soundness of the seven-check verifier",
         "block": 5
       }
     },
     {
       "id": "linked-source-16",
-      "section": "8. Combining the encodings and returning to the grid",
+      "section": "8",
       "role": "explains",
-      "quote": "The soundness argument compares this received-data test with the\nideal test on the decoded polynomials. If the two outcomes differ,\none of the few answers used in the comparison must be wrong.\nThe correction bounds control that probability. If $P$ fails to\nvanish on the grid, the ideal test has a positive rejection rate\nby the polynomial distance estimate from Section 5. After deducting\nthe controlled errors, a positive rejection rate remains for the\nactual test. Section 9 gives the exact inequality and the error\nbudget making it positive; the full argument proves the estimates.",
+      "quote": "The **ideal test**\nreads the values of the nearby polynomials in place of the received\nanswers; a failed grid condition forces it to reject through Lemma 3.1,\nand the cost of the replacement is bounded in Section 9.",
       "lean": [
         "PCP.Algebraic.BinaryZeroOnGridCorrection.rejectionRate_ge"
       ],
       "anchor": {
-        "heading": "8. Combining the encodings and returning to the grid",
-        "block": 26
+        "heading": "The stored proof",
+        "block": 33
       }
     },
     {
       "id": "linked-source-17",
-      "section": "2. What the theorem promises",
+      "section": "2",
       "role": "explains",
-      "quote": "Thus the problem is in NP.",
+      "quote": "Perfect completeness\nsupplies such bits on yes-instances and soundness excludes them on\nno-instances, all in polynomial time, so the problem is in NP.",
       "lean": [
         "PCP.pcp_subset_np_concrete"
       ],
       "anchor": {
-        "heading": "2. What the theorem promises",
-        "block": 9
+        "heading": "2. The PCP theorem",
+        "block": 8
       }
     },
     {
       "id": "linked-source-18",
-      "section": "7. A field value represented by many one-bit questions",
+      "section": "7",
       "role": "explains",
-      "quote": "Any two different\nmessages give words differing in exactly half their positions. Indeed,\ntheir difference is a nonzero linear functional.",
+      "quote": "Encodings of\ndistinct messages differ at exactly half the positions: their difference\nis a nonzero **linear functional**, a map $x\\mapsto s'\\cdot x$ with\n$s'\\ne0$, and translation by a vector on which it\nis one pairs each zero with a one.",
       "lean": [
         "PCP.Algebraic.Hadamard.relativeDistance_linearEncode"
       ],
       "anchor": {
-        "heading": "7. A field value represented by many one-bit questions",
+        "heading": "7. The Hadamard encoding",
         "block": 5
       }
     },
     {
       "id": "linked-source-19",
-      "section": "10. Randomness, proof length and repetition",
+      "section": "Appendix A. Parameters and error bounds",
       "role": "explains",
-      "quote": "For the implemented verifier the retained arithmetic gives\n$\\gamma=1/1137847282503168$ after fair-bit sampling. The fixed repetition\ncount $R=1137847282503168$ satisfies $R\\gamma=1$. These are existence\nbounds, not practical estimates.",
+      "quote": "For the implemented verifier, fair-bit\nsampling leaves rejection probability at least\n$\\gamma=1/1137847282503168$ on every proof of a no-instance. The fixed\nrepetition count $R=1137847282503168$ satisfies $R\\gamma=1$.",
       "lean": [
         "PCP.Algebraic.ThreeColorAmplifiedVerifier.verification_guarantees"
       ],
@@ -354,10 +372,10 @@
         "PCP.Algebraic.Hadamard.linearEncode"
       ],
       "anchor": {
-        "heading": "7. A field value represented by many one-bit questions",
+        "heading": "7. The Hadamard encoding",
         "block": 2
       },
-      "section": "7. A field value represented by many one-bit questions"
+      "section": "7"
     },
     {
       "id": "pcp-expository-clause-flags",
@@ -367,10 +385,10 @@
         "PCP.Reduction.FiniteBooleanConstraints.clauses"
       ],
       "anchor": {
-        "heading": "Optional calculation: converting a finite relation to clauses",
+        "heading": "Clauses for a finite relation",
         "block": 2
       },
-      "section": "Optional calculation: converting a finite relation to clauses"
+      "section": "Appendix B. The Boolean-to-colouring gadget"
     },
     {
       "id": "pcp-expository-or-gate",
@@ -380,16 +398,16 @@
         "PCP.Reduction.FiniteBooleanConstraints.orGate_iff"
       ],
       "anchor": {
-        "heading": "Optional calculation: converting a finite relation to clauses",
+        "heading": "Clauses for a finite relation",
         "block": 4
       },
-      "section": "Optional calculation: converting a finite relation to clauses"
+      "section": "Appendix B. The Boolean-to-colouring gadget"
     },
     {
       "id": "pcp-expository-proof-table-type",
-      "section": "The stored proof",
+      "section": "8",
       "role": "explains",
-      "quote": "The prover supplies four primary tables and four auxiliary line tables.",
+      "quote": "The proof consists of eight **tables**, which [ABSSW26] call proof\noracles: four **points tables** and four **lines tables**.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.Proof"
       ],
@@ -401,13 +419,13 @@
     {
       "id": "pcp-expository-digit-substitution",
       "section": "6",
-      "role": "explains",
-      "quote": "Every coordinate with $j=0$ is one, including at $z=0$.",
+      "role": "defines",
+      "quote": "$$\n\\Phi:F\\longrightarrow F^{cb},\\qquad\n\\Phi(z)_{i,j}=z^{jb^i}\\quad(0\\le i<c,\\ 0\\le j<b).\n$$",
       "lean": [
         "PCP.Algebraic.SetMultilinear.evaluationPoint"
       ],
       "anchor": {
-        "heading": "6. Keeping the number of queries constant",
+        "heading": "6. Low-degree tests and the set-multilinear encoding",
         "block": 14
       }
     },
@@ -415,34 +433,33 @@
       "id": "pcp-expository-digit-evaluation",
       "section": "6",
       "role": "explains",
-      "quote": "In general, write an exponent $j<b^c$ with $c$ base-$b$ digits and\nreplace $Y^j$ by the product of the corresponding $c$ variables.\nThe resulting polynomial has degree at most $c$, and the same\nsubstitution recovers every evaluation of the original polynomial.",
+      "quote": "For every $z\\in F$, including $z=0$ (where the coordinates with $j=0$\nequal one), $\\widetilde p(\\Phi(z))=p(z)$.",
       "lean": [
-        "PCP.Algebraic.SetMultilinear.totalDegree_encode_le",
         "PCP.Algebraic.SetMultilinear.eval_encode"
       ],
       "anchor": {
-        "heading": "6. Keeping the number of queries constant",
-        "block": 12
+        "heading": "6. Low-degree tests and the set-multilinear encoding",
+        "block": 15
       }
     },
     {
       "id": "pcp-expository-worked-correction-source",
-      "section": "Following the one-edge certificate to bits",
+      "section": "8",
       "role": "uses",
-      "quote": "Within each call, comparison and return reuse its inner direction.",
+      "quote": "Otherwise return its correction at $\\Phi(0)$, using the same inner\n   slope and label.",
       "lean": [
         "PCP.Algebraic.BinaryLocalCorrection.run"
       ],
       "anchor": {
-        "heading": "Following the one-edge certificate to bits",
-        "block": 12
+        "heading": "The stored proof",
+        "block": 23
       }
     },
     {
       "id": "pcp-expository-check-matrix",
       "section": "9",
       "role": "explains",
-      "quote": "The eight received tables were listed after the grid certificate in Section 5. The verifier runs\nfour low-degree tests, one for each primary table and its line table;\ntwo ZERO tests, one for each colouring condition; and one difference\ncheck connecting $\\chi'$ to $\\chi$. It accepts only if all seven pass.",
+      "quote": "The verifier runs seven checks on the eight tables listed in Section 8:\nfour binary low-degree tests, two zero-on-grid tests for the colouring\nconditions, and a difference check connecting $\\chi'$ to $\\chi$.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.Proof",
         "PCP.Algebraic.ThreeColorVerifier.BranchSeed",
@@ -450,7 +467,7 @@
         "PCP.Algebraic.ThreeColorVerifier.test"
       ],
       "anchor": {
-        "heading": "9. From the seven checks to a colouring",
+        "heading": "9. Soundness of the seven-check verifier",
         "block": 1
       }
     },
@@ -458,41 +475,80 @@
       "id": "pcp-expository-vertex-branch-source",
       "section": "9",
       "role": "uses",
-      "quote": "The line tables used for correction are the same ones used in the low-degree tests. In check 5, the colour table supplies a derived observation of $\\chi(x)^3-1$, while the vertex-certificate tables supply corrected observations at $(x,0)$ and $(x,Z_H(x))$.",
+      "quote": "The local correctors use the lines tables of the low-degree tests.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.branchTest",
         "PCP.Algebraic.BinaryLocalCorrection.run"
       ],
       "anchor": {
-        "heading": "9. From the seven checks to a colouring",
+        "heading": "9. Soundness of the seven-check verifier",
         "block": 3
       }
     },
     {
       "id": "pcp-expository-forward-statement",
-      "section": "2. What the theorem promises",
+      "section": "2",
       "role": "explains",
-      "quote": "**PCP theorem.** For every $L\\in\\mathrm{NP}$, there are a polynomial-time\nverifier $V$, natural-number constants $a,b,q$, and a polynomial $p$, such\nthat on every input $x$ of length $n$:",
+      "quote": "**Theorem 2.1 (PCP theorem; [ALMSS98], [AS98]).** For every\n$\\mathcal L\\in\\mathrm{NP}$, there are a polynomial-time verifier $V$,\nnatural-number constants $\\alpha,\\beta,\\ell$, and a polynomial $p$, such\nthat on every input $x$ of length $n$:",
       "lean": [
         "PCP.np_subset_pcp"
       ],
       "anchor": {
-        "heading": "2. What the theorem promises",
-        "block": 3
+        "heading": "2. The PCP theorem",
+        "block": 2
       }
     },
     {
       "id": "pcp-expository-soundness",
-      "section": "9. From the seven checks to a colouring",
+      "section": "9",
       "role": "explains",
-      "quote": "Taking the contrapositive, every proof for a\nnon-three-colourable graph is rejected with a fixed positive\nprobability.",
+      "quote": "We choose a positive constant $g$, independent of the\ngraph size, such that $\\kappa<g$ implies a proper colouring; every proof\nfor a non-three-colourable graph is then rejected with probability at\nleast $g$.",
       "lean": [
         "PCP.Algebraic.ThreeColorVerifier.rejectionRate_ge_of_not_colorable"
       ],
       "anchor": {
-        "heading": "9. From the seven checks to a colouring",
-        "block": 9
+        "heading": "9. Soundness of the seven-check verifier",
+        "block": 6
       }
+    },
+    {
+      "id": "pcp-expository-digit-degree",
+      "role": "explains",
+      "lean": [
+        "PCP.Algebraic.SetMultilinear.totalDegree_encode_le"
+      ],
+      "quote": "Each product uses\none variable from each digit group, so the encoded polynomial is\n**set-multilinear** and has degree at most $c$",
+      "anchor": {
+        "heading": "6. Low-degree tests and the set-multilinear encoding",
+        "block": 13
+      },
+      "section": "6"
+    },
+    {
+      "id": "pcp-expository-hadamard-test",
+      "role": "states",
+      "lean": [
+        "PCP.Algebraic.Hadamard.test_soundness"
+      ],
+      "quote": "If\nthe test rejects with probability $\\delta<1/28$, there is one message\nwhose encoding is $\\delta$-close to the word on full labels and\n$3\\delta$-close on affine labels.",
+      "anchor": {
+        "heading": "Labels of degree three",
+        "block": 12
+      },
+      "section": "7"
+    },
+    {
+      "id": "pcp-expository-local-correction",
+      "role": "states",
+      "lean": [
+        "PCP.Algebraic.BinaryLocalCorrection.failure_le"
+      ],
+      "quote": "Suppose the points table has homogeneous distance at most $\\delta$ from\na polynomial $P$ of degree at most $D$, and the local corrector at $a$\nrejects with probability $\\kappa_a$. Then",
+      "anchor": {
+        "heading": "The stored proof",
+        "block": 25
+      },
+      "section": "8"
     }
   ],
   "plain": {
@@ -500,10 +556,10 @@
     "PCP.Algebraic.ThreeColorGrid.constraints_iff_satisfies": "Colouring constraints on the grid",
     "PCP.Algebraic.GridVanishing.vanishesOn_iff_exists_decomposition": "Grid vanishing decomposition",
     "PCP.Algebraic.PointLineTest.exists_close_of_small_rejection": "Point and line agreement",
-    "PCP.Algebraic.GeneratorLowDegreeTest.exists_close": "Decoding the inner weighted test",
+    "PCP.Algebraic.GeneratorLowDegreeTest.exists_close": "Standard low-degree test",
     "PCP.Algebraic.BLR.exists_linearMap_distance_le_of_rejection_le": "Linearity from the BLR test",
     "PCP.Algebraic.Hadamard.test_soundness": "Soundness of the Hadamard test",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close": "Decoding the outer encoded-line test",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.exists_close": "Binary low-degree test",
     "PCP.Algebraic.ThreeColorVerifier.rejectionRate_ge_of_not_colorable": "Soundness for noncolourable graphs",
     "PCP.Lang.ThreeColorRuntime.polyTimeAlg": "The verifier runs in polynomial time",
     "PCP.Algebraic.ThreeColorVerifier.exists_proof_rejectionRate_eq_zero": "A proof for a proper colouring",
@@ -543,14 +599,14 @@
     "PCP.Algebraic.Hadamard.relativeDistance_linearEncode": "Homogeneous words differ by half",
     "PCP.Reduction.FiniteBooleanConstraints.clauses": "Clauses for a finite relation",
     "PCP.Reduction.FiniteBooleanConstraints.orGate_iff": "Three clauses enforce one OR gate",
-    "PCP.Algebraic.SetMultilinear.evaluationPoint": "Digit-substitution point",
-    "PCP.Algebraic.SetMultilinear.eval_encode": "Evaluation after digit encoding",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.Auxiliary": "Encoded line-table type",
+    "PCP.Algebraic.SetMultilinear.evaluationPoint": "The substitution point for a parameter",
+    "PCP.Algebraic.SetMultilinear.eval_encode": "Set-multilinear encoding: evaluation",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.Auxiliary": "Lines-table type",
     "PCP.Algebraic.ThreeColorVerifier.Proof": "The eight proof tables",
     "PCP.Algebraic.ThreeColorVerifier.Query": "Eight physical query tags",
     "PCP.Algebraic.ThreeColorVerifier.read": "Read a tagged proof bit",
-    "PCP.Algebraic.BinaryLocalCorrection.run": "Run outer local correction",
-    "PCP.Algebraic.SetMultilinear.totalDegree_encode_le": "Constant digit-encoding degree",
+    "PCP.Algebraic.BinaryLocalCorrection.run": "Run the local corrector",
+    "PCP.Algebraic.SetMultilinear.totalDegree_encode_le": "Degree of the set-multilinear encoding",
     "PCP.Algebraic.ThreeColorVerifier.BranchSeed": "Seven branch seed types",
     "PCP.Algebraic.ThreeColorVerifier.branchTest": "Seven concrete branch tests",
     "PCP.Algebraic.ThreeColorVerifier.test": "Conjunction of the seven checks",
@@ -561,22 +617,22 @@
     "PCP.Algebraic.BinaryLocalCorrection.Query": "Query locations of local correction",
     "PCP.Algebraic.BinaryLocalCorrection.soundnessConstant": "Loss constant of local correction",
     "PCP.Algebraic.EncodedLineLowDegreeTest.lineErrorConstant": "Line error factor of the line test",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.soundnessConstant": "Proximity factor of the line test",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.soundnessConstant": "Distance factor of the binary test",
     "PCP.Algebraic.EncodedLineLowDegreeTest.Lines": "Lines as point and direction",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.Sample": "Randomness of the encoded-line test",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.Query": "Query locations of the encoded-line test",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.Sample": "Randomness of the binary low-degree test",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.Query": "Query locations of the binary test",
     "PCP.Algebraic.EncodedLineLowDegreeTest.corrected": "Corrected comparison bit",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.test": "The encoded-line test",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.queries": "Query list of the encoded-line test",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.test": "The binary low-degree test",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.queries": "Query list of the binary test",
     "PCP.Algebraic.EncodedLineLowDegreeTest.instFintypeInnerPoint": "Finitely many inner points (line test)",
     "PCP.Algebraic.EncodedLineLowDegreeTest.instFintypeInnerSeed": "Finitely many inner seeds (line test)",
     "PCP.Algebraic.EncodedLineLowDegreeTest.instFintypeProdTestRandomnessInnerSeed": "Finitely many seed pairs (line test)",
     "PCP.Algebraic.EncodedLineLowDegreeTest.instFintypeSample": "Finitely many samples (line test)",
-    "PCP.Algebraic.EncodedLineLowDegreeTest.rejectionRate": "Rejection rate of the encoded-line test",
+    "PCP.Algebraic.EncodedLineLowDegreeTest.rejectionRate": "Rejection rate of the binary test",
     "PCP.Algebraic.GeneratorLowDegreeTest.nodes": "Powers of the generator as nodes",
     "PCP.Algebraic.GeneratorLowDegreeTest.weights": "Lagrange weights at zero",
     "PCP.Algebraic.GeneratorLowDegreeTest.IsGeneratorNodes": "Nodes from a primitive root",
-    "PCP.Algebraic.GeneratorLowDegreeTest.rejectionRate": "Inner weighted test rejection rate",
+    "PCP.Algebraic.GeneratorLowDegreeTest.rejectionRate": "Standard low-degree test rejection rate",
     "PCP.Algebraic.GridVanishing.coordinate": "Vanishing polynomial of one coordinate",
     "PCP.Algebraic.GridVanishing.VanishesOn": "Vanishing on the grid",
     "PCP.Algebraic.Hadamard.encode": "The Hadamard encoding",
@@ -595,9 +651,9 @@
     "PCP.Algebraic.Hadamard.testAccepts": "Acceptance of the Hadamard test",
     "PCP.Algebraic.Hadamard.test": "The Hadamard test",
     "PCP.Algebraic.Hadamard.testQueries": "Query list of the Hadamard test",
-    "PCP.Algebraic.SetMultilinear.Variables": "Variables of the digit encoding",
-    "PCP.Algebraic.SetMultilinear.digitMonomial": "Digit monomial for a power",
-    "PCP.Algebraic.SetMultilinear.encode": "The set-multilinear digit encoding",
+    "PCP.Algebraic.SetMultilinear.Variables": "Set-multilinear encoding variables",
+    "PCP.Algebraic.SetMultilinear.digitMonomial": "Monomial for a power of Y",
+    "PCP.Algebraic.SetMultilinear.encode": "The set-multilinear encoding",
     "PCP.Algebraic.ThreeColorAmplifiedVerifier.repetitions": "Fixed repetition count",
     "PCP.Algebraic.ThreeColorAmplifiedVerifier.verifier": "The amplified verifier",
     "PCP.Algebraic.ThreeColorGrid.validPolynomial": "Vertex constraint polynomial",
@@ -609,8 +665,8 @@
     "PCP.Algebraic.ThreeColorVerifier.flatten": "Flattening two vertex blocks",
     "PCP.Algebraic.ThreeColorVerifier.edgeValue": "Adjacency extension at a point",
     "PCP.Algebraic.ThreeColorVerifier.flatDifference": "Difference table on flat coordinates",
-    "PCP.Algebraic.ThreeColorVerifier.validAuxiliary": "Line tables for the vertex certificate",
-    "PCP.Algebraic.ThreeColorVerifier.properAuxiliary": "Line tables for the edge certificate",
+    "PCP.Algebraic.ThreeColorVerifier.validAuxiliary": "Lines tables for the vertex certificate",
+    "PCP.Algebraic.ThreeColorVerifier.properAuxiliary": "Lines tables for the edge certificate",
     "PCP.Algebraic.ThreeColorVerifier.Sample": "Randomness of the graph verifier",
     "PCP.Algebraic.ThreeColorVerifier.colorQuery": "Tagging colour-table queries",
     "PCP.Algebraic.ThreeColorVerifier.validQuery": "Tagging vertex-certificate queries",
@@ -626,7 +682,7 @@
     "PCP.Algebraic.ThreeColorVerifier.instFintypeSampleOfDecidableEq": "Finitely many line samples (verifier)",
     "PCP.Algebraic.ThreeColorVerifier.instFintypeCallSeedOfDecidableEq": "Finitely many call seeds (verifier)",
     "PCP.Algebraic.ThreeColorVerifier.instFintypeGridRandomness": "Finitely many grid seeds (verifier)",
-    "PCP.Algebraic.ThreeColorVerifier.instFintypeTestSample": "Finitely many ZERO samples (verifier)",
+    "PCP.Algebraic.ThreeColorVerifier.instFintypeTestSample": "Finitely many grid-test samples",
     "PCP.Algebraic.ThreeColorVerifier.branchSeedFintype": "Finite seed space of each branch",
     "PCP.Algebraic.ThreeColorVerifier.rejectionRate": "Rejection rate of the graph verifier",
     "PCP.Reduction.FiniteBooleanConstraints.negate": "Negating a literal",
@@ -637,7 +693,11 @@
     "PCP.Reduction.FiniteBooleanConstraints.Variable": "Variables of the clause formula",
     "PCP.Reduction.FiniteBooleanConstraints.Clause": "Clauses of the Boolean reduction",
     "PCP.Reduction.FiniteBooleanConstraints.flagLiteral": "Literal for a prefix flag",
-    "PCP.Reduction.FiniteBooleanConstraints.differenceLiteral": "Literal for a pattern mismatch"
+    "PCP.Reduction.FiniteBooleanConstraints.differenceLiteral": "Literal for a pattern mismatch",
+    "PCP.Algebraic.BinaryLocalCorrection.Sample": "Randomness of the local corrector",
+    "PCP.Algebraic.BinaryLocalCorrection.rejectionRate": "Rejection rate of local correction",
+    "PCP.Algebraic.BinaryLocalCorrection.sample": "Sample the local corrector",
+    "PCP.Algebraic.Hadamard.testRejectionRate": "Rejection rate of the Hadamard test"
   },
   "fidelity_held": "Sentence-by-sentence comparisons of this page's statements with their Lean have not been written yet. Comparator has judged the three headline statements; papers/pcp-full-argument/source-review.md records that run."
 }
