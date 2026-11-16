@@ -1,11 +1,10 @@
-# One-off: compile the PCP modules the three explanatory papers use, at the authors'
-# toolchain, and read each declaration's dependencies and axioms from the compiled files.
-# Runs only on its own branch; the generated reports are uploaded for review, not published.
+# Compile the PCP modules the three explanatory papers use, at the authors' toolchain,
+# and read each declaration's dependencies and axioms from the compiled files. Run by
+# hand; the generated reports are uploaded for review, not published.
+# papers/pcp-full-argument/source-review.md records the run whose reports are committed.
 name: Extract PCP dependencies from Lean
 on:
-  push:
-    branches: [claude/pcp-lean-extraction-20261116]
-    paths: ['.github/workflows/pcp-extract.yml']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
