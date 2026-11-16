@@ -1,0 +1,63 @@
+# Judge the three headline PCP statements with Comparator, at the authors' toolchain.
+# The challenge and solution live in papers/pcp-full-argument/comparator/ and are copied
+# into the Lean project for the run; the paper's copy of the authors' Lean is not changed
+# in the repository. papers/pcp-full-argument/source-review.md records the run that is cited.
+name: Judge the PCP headline statements with Comparator
+on:
+  push:
+    branches: [claude/pcp-lean-extraction-20261116]
+    paths: ['.github/workflows/pcp-comparator.yml', 'papers/pcp-full-argument/comparator/**']
+permissions:
+  contents: read
+jobs:
+  comparator:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    defaults:
+      run:
+        working-directory: papers/pcp-full-argument/lean
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Install elan and the project's Lean toolchain
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore the earlier build of this project
+        uses: actions/cache/restore@v4
+        with:
+          path: papers/pcp-full-argument/lean/.lake
+          key: pcp-lake-${{ hashFiles('papers/pcp-full-argument/lean/lake-manifest.json', 'papers/pcp-full-argument/lean/lean-toolchain') }}-comparator-${{ github.run_id }}
+          restore-keys: pcp-lake-${{ hashFiles('papers/pcp-full-argument/lean/lake-manifest.json', 'papers/pcp-full-argument/lean/lean-toolchain') }}-
+      - name: Fetch Mathlib's compiled files
+        run: lake exe cache get
+      - name: Put the challenge and solution into the project for this run
+        run: |
+          mkdir -p PCP/Checked/Negative
+          cp ../comparator/Challenge.lean ../comparator/Solution.lean ../comparator/comparator.json PCP/Checked/
+          cp ../comparator/negative/Challenge.lean PCP/Checked/Negative/Challenge.lean
+          cp ../comparator/negative/comparator.json PCP/Checked/Negative/comparator.json
+          lake --version && lake comparator --help | head -8
+      - name: Compile the authors' proofs, the challenge and the control
+        run: |
+          set -o pipefail
+          lake build PCP.Checked.Solution PCP.Checked.Challenge PCP.Checked.Negative.Challenge 2>&1 | tee "$RUNNER_TEMP/build.log" | { grep -v '^✔' || true; }
+      - name: Comparator on the three statements
+        run: |
+          mkdir -p "$RUNNER_TEMP/out"
+          run() { # name, config
+            echo "== $1: sandboxed, paranoid"
+            if lake comparator --config "$2" --paranoid > "$RUNNER_TEMP/out/$1.sandboxed.log" 2>&1; then echo 0 > "$RUNNER_TEMP/out/$1.sandboxed.exit"; else echo $? > "$RUNNER_TEMP/out/$1.sandboxed.exit"; fi
+            tail -15 "$RUNNER_TEMP/out/$1.sandboxed.log"; echo "exit $(cat "$RUNNER_TEMP/out/$1.sandboxed.exit")"
+            echo "== $1: without a sandbox, paranoid"
+            if lake comparator --config "$2" --paranoid --inadvisably-no-sandbox > "$RUNNER_TEMP/out/$1.unsandboxed.log" 2>&1; then echo 0 > "$RUNNER_TEMP/out/$1.unsandboxed.exit"; else echo $? > "$RUNNER_TEMP/out/$1.unsandboxed.exit"; fi
+            tail -15 "$RUNNER_TEMP/out/$1.unsandboxed.log"; echo "exit $(cat "$RUNNER_TEMP/out/$1.unsandboxed.exit")"
+          }
+          run headline PCP/Checked/comparator.json
+          run control PCP/Checked/Negative/comparator.json
+          cp "$RUNNER_TEMP/build.log" "$RUNNER_TEMP/out/"
+          { lake --version; cat lean-toolchain; git -C "$GITHUB_WORKSPACE" rev-parse HEAD; sha256sum ../comparator/Challenge.lean ../comparator/Solution.lean ../comparator/comparator.json ../comparator/negative/Challenge.lean; } > "$RUNNER_TEMP/out/context.txt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pcp-comparator
+          path: ${{ runner.temp }}/out
