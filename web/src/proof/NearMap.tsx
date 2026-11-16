@@ -313,6 +313,23 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
     return { placed, lines, height: y + 12, crossings, behind, kinds, edges, bands };
   }, [graph, heads, plate, width]);
 
+  // Above the Lean, the graph takes only the room its drawing needs, up to the share the
+  // reader has given it: a card with two uses leaves the rest of the page to its Lean.
+  const tail = useRef<HTMLParagraphElement>(null);
+  useLayoutEffect(() => {
+    const el = frame.current;
+    const pane = el?.closest<HTMLElement>(".proof__graph");
+    const panes = el?.closest<HTMLElement>(".proof__panes");
+    if (!el || !pane || !panes || !drawing) return;
+    const above = el.getBoundingClientRect().top - pane.getBoundingClientRect().top;
+    panes.style.setProperty("--graph-want", `${Math.ceil(above + drawing.height + (tail.current?.offsetHeight ?? 0) + 14)}px`);
+  }, [drawing, alone]);
+  useEffect(() => {
+    const panes = frame.current?.closest<HTMLElement>(".proof__panes");
+    return () => {
+      panes?.style.removeProperty("--graph-want");
+    };
+  }, []);
   // Shrink to fit the pane with the one-line key under the drawing; past MIN_SCALE it scrolls.
   const KEY_H = 34;
   const fit = drawing && paneH ? Math.max(MIN_SCALE, Math.min(1, (paneH - KEY_H) / drawing.height)) : 1;
@@ -370,9 +387,9 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
         </div>
         </div>
       )}
-      {drawing && drawing.edges.length === 0 && alone && <p className="nearmap__alone">{alone}</p>}
+      {drawing && drawing.edges.length === 0 && alone && <p className="nearmap__alone" ref={tail}>{alone}</p>}
       {drawing && drawing.edges.length > 0 && (
-        <p className="nearmap__key">
+        <p className="nearmap__key" ref={tail}>
           <span>
             {drawing.kinds.size > 1
               ? "Lines run down to what a card uses; dashed: its statement only."

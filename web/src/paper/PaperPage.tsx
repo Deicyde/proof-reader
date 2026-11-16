@@ -452,7 +452,18 @@ export function PaperPage({ edition }: { edition: Edition }) {
     else letGo(layoutRef.current.lean);
   }, [closeSheet, letGo, setMode, wide]);
 
-  const onFollow = useCallback<Follow>((id, zone, above) => {
+  const lineId = useRef<string | null>(null);
+  const onFollow = useCallback<Follow>((id, zone, above, byReader) => {
+    // Reading on lets go of a statement held open: once the reader has scrolled to another
+    // statement, the Lean and the graph follow the reading line again.
+    const cur = entryRef.current;
+    if (byReader && cur.pin && cur.tab === "step" && id && id !== lineId.current && id !== cur.pin.passage) {
+      const unpinned = { ...cur, pin: null, lean: layoutRef.current.lean, opened: null };
+      entryRef.current = unpinned;
+      setEntry(unpinned);
+      setMapStays(false);
+    }
+    lineId.current = id;
     setLine({ id, zone, above });
     if (above) lastPassage.current = above;
     const at = id ?? above;

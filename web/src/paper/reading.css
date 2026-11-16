@@ -225,6 +225,8 @@ dialog.plot p { margin: 8px 0 0; font-family: var(--font-sans); font-size: var(-
 /* Author Markdown tables: the original cells remain one semantic table. */
 .sheet__text table {
   display: block;
+  /* As wide as its cells, centred on the text column; a table wider than the page scrolls. */
+  width: fit-content;
   max-width: 100%;
   overflow-x: auto;
   border-collapse: collapse;

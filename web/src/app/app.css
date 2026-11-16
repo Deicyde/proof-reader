@@ -467,16 +467,14 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
 .proof:has(.graph--near) .proof__key { display: none; }
 @media (prefers-reduced-motion: no-preference) { .nearmap__card, .nearmap__line { transition: opacity 120ms; } }
 
-/* Many results: one line names the result on show, with a menu and a step either way. */
-.claims--many { flex-wrap: nowrap; align-items: center; gap: 6px; padding: 5px 12px 5px 16px; border-bottom: 1px solid var(--rule); }
-.claims__pick { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; }
+/* Many results: one quiet line says which of the paper's results is on show. */
+.claims--many { margin: 0; display: flex; flex-wrap: nowrap; align-items: baseline; gap: 10px; padding: 7px 16px 6px; border-bottom: 1px solid var(--rule); color: var(--ink); }
 .claims__count { flex: none; color: var(--ink-2); font-variant-numeric: tabular-nums; }
-.claims__pick select { flex: 1; min-width: 0; min-height: 28px; padding: 0 28px 0 8px; font: inherit; font-weight: 600; color: var(--ink); text-overflow: ellipsis; background-color: var(--sheet); border: 1px solid var(--rule-control); border-radius: var(--radius-s); cursor: pointer; }
-.claims__pick select:hover { border-color: var(--ink-3); }
-.claims--many .claims__step { flex: none; min-width: 28px; padding: 0; font-size: var(--fs-base); line-height: 1; color: var(--ink); border: 1px solid var(--rule-control); }
-.claims--many .claims__step:hover:not(:disabled) { border-color: var(--ink-3); }
-.claims--many .claims__step:disabled { color: var(--ink-3); opacity: 0.5; cursor: default; }
-.claims__pick select:focus-visible, .claims__step:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.claims--many b { min-width: 0; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.graph__usedby .graph__more { color: var(--ink-2); }
+/* Above the Lean, the graph is as tall as its drawing needs, never more than its share. */
+.proof:not([data-side]) .proof__panes.is-both > .proof__graph { flex: 0 0 auto; height: min(calc(var(--share) * 100%), var(--graph-want, 100%)); }
+.proof:not([data-side]) .proof__panes.is-both > .proof__lean { flex: 1 1 0; }
 /* The drawing changes with the statement being read: a short dissolve says it is a new drawing. */
 @media (prefers-reduced-motion: no-preference) {
   .nearmap__world { animation: nearmap-arrive 180ms cubic-bezier(0.16, 1, 0.3, 1) backwards; }

@@ -85,14 +85,20 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
   // pane; a step come back to keeps its place.
   const shownOpen = useRef(false);
   const arriving = useRef(true);
+  const tabWas = useRef(tab);
   useLayoutEffect(() => {
     const el = body.current;
     if (!el || !open) {
       shownOpen.current = false;
       return;
     }
+    // The whole file and the index scroll this same page. Coming back to the step, place
+    // it afresh: their scroll position means nothing here.
+    const back = tab === "step" && tabWas.current !== "step";
+    tabWas.current = tab;
+    if (tab !== "step") return;
     const was = shownKey.current;
-    if (was === step.key && shownOpen.current) return;
+    if (was === step.key && shownOpen.current && !back) return;
     if (was !== step.key && shownOpen.current) tops.current.set(was, el.scrollTop);
     shownKey.current = step.key;
     shownOpen.current = true;
@@ -103,7 +109,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
         return;
       }
     }
-    const kept = tops.current.get(step.key);
+    const kept = back ? undefined : tops.current.get(step.key);
     if (kept !== undefined) {
       el.scrollTop = kept;
       return;
@@ -129,7 +135,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
     if (target > 0 && target < top) target = fits(0) ? 0 : top;
     el.scrollTop = Math.max(0, target);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, step]);
+  }, [open, step, tab]);
 
   return (
     <section className="leaf" aria-label="Lean">

@@ -30,8 +30,9 @@ the handle between the graph and the Lean to share the pane; both are
 remembered. Closing the proof pane lasts for that visit.
 As you scroll, the proof pane follows the linked passage you are reading: the
 Lean shows its declaration, and the graph shows that declaration with what it
-uses. Choosing another card or result holds the graph there until you choose
-**Follow the paper again**. Click a statement or diagram
+uses, with no click needed. A statement you open by clicking it stays until you
+read on to another statement. Above the Lean, the graph takes only the room its
+drawing needs. Click a statement or diagram
 card to see its Lean code. Use **Back**
 to return to the diagram without losing your place, or the **Graph / Lean**
 toggle to choose what stays beside the paper.

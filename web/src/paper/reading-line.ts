@@ -8,7 +8,8 @@ export const READING_LINE = 0.34;
 export const FOLLOW_MS = 200;
 
 /** What the left page is called on when a statement settles. */
-export type Follow = (id: string | null, zone: Zone, above: string | null) => void;
+/** `byReader`: the reader scrolled here; a jump the page made itself does not count. */
+export type Follow = (id: string | null, zone: Zone, above: string | null, byReader?: boolean) => void;
 
 /** How long a pointer rests before the right page previews. */
 export const DWELL_MS = 150;

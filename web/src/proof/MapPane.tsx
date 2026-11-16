@@ -27,6 +27,8 @@ const BAND = 340;
 const MAP_LIMIT = 16;
 /** More results than this, and the switch between them is one line with a menu. */
 const MANY_CLAIMS = 4;
+/** How many users of a card are named before "and N more". */
+const USERS_SHOWN = 3;
 const LIST_BELOW = 440;
 /** Neighbourhood tiles are wider, and each is as tall as its title needs, up to four lines. */
 const NEAR_W = 140;
@@ -179,6 +181,9 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
     };
   }, [big, edition.slug]);
   const graph = useMemo(() => (near ? neighbourhood(edition, fullGraph, centre, goal, files) : fullGraph), [near, edition, fullGraph, centre, goal, files]);
+  // A much-used definition has dozens of users: name a few, with the rest one press away.
+  const [allUsers, setAllUsers] = useState(false);
+  useEffect(() => setAllUsers(false), [centre]);
   const usedBy = useMemo(() => (near && centre !== goal ? (edition.declarations.find((d) => d.id === centre)?.used_by ?? []) : []), [near, centre, goal, edition]);
   // What the pointer or focus is on, for the "via" line under the controls.
   const [hovered, setHovered] = useState<string | null>(null);
@@ -217,9 +222,14 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
   useEffect(() => {
     if (selected) show(selected);
   }, [selected, show]);
+  // A card the reader chose in the graph stays in view only until they read on: the next
+  // statement to reach the reading line takes the graph back. No button is needed.
+  const [held, setHeld] = useState<string | null>(null);
   useEffect(() => {
-    if (!selected && followed && !paused) show(followed);
-  }, [selected, followed, paused, show]);
+    if (selected || !followed || followed === held) return;
+    setHeld(null);
+    show(followed);
+  }, [selected, followed, held, show]);
   const litIds = useMemo(() => (lit.length ? new Set(lit) : null), [lit]);
   const litKey = lit.join("|");
   const litRef = useRef(lit);
@@ -286,8 +296,8 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
   const browse = useCallback((id: string) => {
     if (claims.some((c) => c.id === id)) setGoal(id);
     setCentre(id);
-    if (litRef.current.length) setPause(true);
-  }, [claims, setPause]);
+    setHeld(litRef.current.find((x) => edition.declarations.some((d) => d.id === x)) ?? "");
+  }, [claims, edition]);
 
   const restoring = useRef(false);
   useImperativeHandle(ref, (): MapPaneHandle => ({
@@ -439,7 +449,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
     <section ref={section} className={`graph${big ? " graph--quiet" : ""}${near ? " graph--near" : ""}`} aria-label="Graph of the Lean proof">
       {paused && (
         <p className="graph__paused" role="status">
-          The graph stays where you put it.
+          Paused while you move the graph.
           <button type="button" onClick={() => setPause(false)}>Follow the paper again</button>
         </p>
       )}
@@ -450,17 +460,11 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
           ))}
         </div>
       )}
-      {claims.length > MANY_CLAIMS && (
-        <div className="claims claims--many" role="group" aria-label="Which result's proof to show">
-          <button type="button" className="claims__step" aria-label="Previous result" disabled={claimAt <= 0} onClick={() => browse(claims[claimAt - 1].id)}>‹</button>
-          <label className="claims__pick">
-            <span className="claims__count">Result {claimAt + 1} of {claims.length}</span>
-            <select value={claim?.id} onChange={(event) => browse(event.target.value)}>
-              {claims.map((c, i) => <option key={c.id} value={c.id}>{i + 1}. {c.title}</option>)}
-            </select>
-          </label>
-          <button type="button" className="claims__step" aria-label="Next result" disabled={claimAt >= claims.length - 1} onClick={() => browse(claims[claimAt + 1].id)}>›</button>
-        </div>
+      {claims.length > MANY_CLAIMS && (!near || centre === goal) && (
+        <p className="claims claims--many">
+          <span className="claims__count">Result {claimAt + 1} of {claims.length}</span>
+          <b>{claim?.title}</b>
+        </p>
       )}
       {types.length > 0 && (
         <div className="vocab" aria-label="Types the proof is written in">
@@ -482,11 +486,16 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
               {whole ? "Show one card and what it uses" : "Whole map"}
             </button>
           )}
-          {near && !narrow && centre !== goal && <button type="button" onClick={() => browse(goal)}>Back to {claims.length > 1 ? "the result" : "the main result"}</button>}
+          {near && !narrow && centre !== goal && claims.length <= MANY_CLAIMS && <button type="button" onClick={() => browse(goal)}>Back to {claims.length > 1 ? "the result" : "the main result"}</button>}
           {near && !narrow && centre !== goal && <button type="button" onClick={() => onSelect(centre)}>Open its Lean</button>}
           {near && !narrow && usedBy.length > 0 && (
             <span className="graph__usedby">Used by{" "}
-              {usedBy.map((id) => <button key={id} type="button" onClick={() => browse(id)}>{edition.declarations.find((d) => d.id === id)?.plain ?? id}</button>)}
+              {(allUsers ? usedBy : usedBy.slice(0, USERS_SHOWN)).map((id) => <button key={id} type="button" onClick={() => browse(id)}>{edition.declarations.find((d) => d.id === id)?.plain ?? id}</button>)}
+              {usedBy.length > USERS_SHOWN && (
+                <button type="button" className="graph__more" aria-expanded={allUsers} onClick={() => setAllUsers((v) => !v)}>
+                  {allUsers ? "show fewer" : `and ${usedBy.length - USERS_SHOWN} more`}
+                </button>
+              )}
             </span>
           )}
           {whole && big && !narrow && <span className="graph__hint">Point at a card to see its lines.</span>}

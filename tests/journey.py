@@ -186,7 +186,7 @@ def graph_follows(page: Page, url: str, shots: Path | None) -> None:
     head = lambda: page.eval_on_selector_all(".nearmap__card.is-head .nearmap__title", "els => els.map(e => e.textContent)")
     check(page.locator(".proof__graph").bounding_box()["height"] > 150 and lean_open(page),
           "a fresh visit opens with the graph above the Lean")
-    check(page.locator(".claims--many select").count() == 1, "many results share one line with a menu")
+    check(page.locator(".claims--many select").count() == 0, "many results have no menu to operate")
     seen = set()
     for _ in range(8):
         page.mouse.move(400, 500)
@@ -197,16 +197,36 @@ def graph_follows(page: Page, url: str, shots: Path | None) -> None:
         if "Following" in caption(page) and heads:
             check(any(title in caption(page) for title in heads), f"the graph shows the statement being read: {heads[0]}")
     check(len(seen) >= 4, f"the graph changed {len(seen)} times as the paper scrolled")
-    page.get_by_role("button", name="Next result").click()
-    page.wait_for_timeout(300)
+    # A statement opened by its address is held; reading on lets it go without a click.
+    page.goto(f"{url}#/pcp-exposition/@pcp-expository-opening", wait_until="load")
+    page.locator(".nearmap__card.is-head").first.wait_for()
+    wait_until(page, lambda: "Pinned" in caption(page), "a statement opened by its address is held open")
+    wait_until(page, lambda: top(page) < 1200, "the paper has arrived at that statement")
+    page.wait_for_timeout(600)
     held = head()
-    check(page.locator(".graph__paused").count() == 1, "choosing a result holds the graph there")
-    page.mouse.move(400, 500)
-    page.mouse.wheel(0, -4000)
-    page.wait_for_timeout(900)
-    check(head() == held, "a held graph stays put while the paper scrolls")
-    page.get_by_role("button", name="Follow the paper again").click()
-    wait_until(page, lambda: head() != held and page.locator(".graph__paused").count() == 0, "following again returns to the statement being read")
+    let_go = False
+    for _ in range(8):
+        page.mouse.move(400, 500)
+        page.mouse.wheel(0, 1100)
+        page.wait_for_timeout(700)
+        if "Following" in caption(page) and head() != held:
+            let_go = True
+            break
+    check(let_go, "reading on lets go of it: the Lean and the graph follow the scroll")
+    check(page.locator(".graph__paused").count() == 0, "and nothing asks to be clicked first")
+    # Whole file and back: the step's Lean is in view again.
+    page.locator(".proof").get_by_role("button", name="Whole file", exact=True).click()
+    page.wait_for_timeout(700)
+    page.locator(".proof").get_by_role("button", name="This step", exact=True).click()
+    page.wait_for_timeout(600)
+    check(page.evaluate("""() => {
+        const body = document.querySelector('.leaf__body'), line = body.querySelector('.decl .source__line');
+        if (!line) return false;
+        const r = line.getBoundingClientRect(), b = body.getBoundingClientRect();
+        return r.top >= b.top - 2 && r.bottom <= b.bottom + 2;
+    }"""), "back from the whole file, the step's Lean is in view")
+    page.goto(f"{url}#/pcp-exposition", wait_until="load")
+    page.locator(".papersplit").wait_for()
     shot(page, shots, "05-graph-follows")
     width = lambda: page.locator(".left").bounding_box()["width"]
     start = width()
