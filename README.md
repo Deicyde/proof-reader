@@ -21,7 +21,7 @@ In the reader these use the routes `#/pcp-full-argument`, `#/pcp-specialist`,
 and `#/pcp-exposition`; Troy Lee's [original reading guide](papers/pcp-reading-guide/guide.md)
 remains at `#/pcp-reading-guide`. The algebraic proof is due to Amireddy,
 Behera, Srinivasan, Sudan and Willumsgaard; Lee wrote the Lean formalization.
-AI agents wrote the three explanations under Will Cook's direction.
+Will Cook prepared the three explanations with AI assistance.
 
 On a desktop, each visit opens with the paper on the left and the proof pane on
 the right: the graph above the Lean, or beside it on a very wide screen. Drag
