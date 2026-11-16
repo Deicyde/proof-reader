@@ -4,9 +4,7 @@
 # in the repository. papers/pcp-full-argument/source-review.md records the run that is cited.
 name: Judge the PCP headline statements with Comparator
 on:
-  push:
-    branches: [claude/pcp-lean-extraction-20261116]
-    paths: ['.github/workflows/pcp-comparator.yml', 'papers/pcp-full-argument/comparator/**']
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:

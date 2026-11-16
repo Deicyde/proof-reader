@@ -1312,5 +1312,5 @@
     "PCP.Reduction.NAEThreeColor.direct": "Edges in one orientation",
     "PCP.Reduction.NAEThreeColor.graph": "The graph of an NAE instance"
   },
-  "fidelity_held": "The selected source has not yet been compared against elaborated Lean statements for this page."
+  "fidelity_held": "Sentence-by-sentence comparisons of this page's statements with their Lean have not been written yet. Comparator has judged the three headline statements; papers/pcp-full-argument/source-review.md records that run."
 }

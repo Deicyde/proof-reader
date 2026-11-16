@@ -16,7 +16,7 @@ source = "https://github.com/troyjlee/tcs-formalizations/tree/a0ce13ed0fa264f051
 source_name = "tcs-formalizations at a0ce13e"
 source_lines = "https://github.com/troyjlee/tcs-formalizations/blob/a0ce13ed0fa264f051c1278e039596ce65557fa4/{path}#L{line}-L{end}"
 licence = "Apache-2.0"
-scope = "Lean 4.35.0-rc2 compiled the listed modules of the authors' project, and each declaration's statement, dependencies and axioms shown here are Lean's own report from those compiled modules. The links from the paper's sentences to the Lean, the plain titles and the notes were made with AI and have not been reviewed by the authors."
+scope = "Lean 4.35.0-rc2 compiled the listed modules of the authors' project, and each declaration's statement, dependencies and axioms shown here are Lean's own report from those compiled modules. Comparator, run in its sandbox, accepted the authors' proofs of the forward theorem, the converse and the equivalence with the reference NP class against statements copied from their source, and refused a control that changed the soundness bound. The links from the paper's sentences to the Lean, the plain titles and the notes were made with AI and have not been reviewed by the authors."
 
 [reading]
 language = "lean"
