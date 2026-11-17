@@ -125,6 +125,8 @@ export interface ComparatorEvidence {
   links: { challenge: string; solution: string; config: string; receipt: string; control: string };
   control: { change: string; theorem: string };
   limits: string;
+  /** What the challenge imports, when the receipt says; empty when it imports the authors' definitions. */
+  imports?: string;
   /** Each theorem name the run checked: its statement in the challenge and the lines it fills. */
   theorems: Record<string, { first: number; last: number; statement: string; url: string }>;
 }
@@ -149,6 +151,8 @@ export interface Edition {
     noun?: string;
     /** Whether the page shows Proof Reader's own films; off unless paper.toml says films = true. */
     films?: boolean;
+    /** False when the proof is one statement: the right page is then the Lean alone. */
+    graph?: boolean;
     pages: number;
     sizes: [number, number][];
     crop: [number, number, number, number] | null;

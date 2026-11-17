@@ -41,7 +41,8 @@ const lean = (toolchain: string) => toolchain.replace(/^.*:v?/, "Lean ");
 
 /** A closed fold under a declaration's axioms, for the theorems Comparator checked. */
 export function ComparatorFold({ edition, d, names, act }: { edition: Edition; d: Declaration; names: ReadonlySet<string>; act: LeanActions }) {
-  const [open, setOpen] = useState(false);
+  // On a page with no graph the right page is the Lean and this evidence, so it starts open.
+  const [open, setOpen] = useState(edition.paper.graph === false);
   const evidence = edition.comparator;
   const target = evidence?.theorems[d.id];
   if (!evidence || !target) return null;
@@ -72,7 +73,7 @@ export function ComparatorFold({ edition, d, names, act }: { edition: Edition; d
             Rejected control: Comparator rejected <a href={evidence.links.control} {...outside}>a challenge</a> with {evidence.control.change}.
           </p>
           <p className="cmp__scope">
-            The challenge imports the definitions its statements use from the authors’ modules. Comparator does not test whether a statement means what the {edition.paper.noun || "paper"} says
+            {evidence.imports || "The challenge imports the definitions its statements use from the authors’ modules."} Comparator does not test whether a statement means what the {edition.paper.noun || "paper"} says
             {d.fidelity ? <>; the comparison of the {edition.paper.noun || "paper"} with the Lean above is that separate question.</> : "."}
           </p>
         </div>

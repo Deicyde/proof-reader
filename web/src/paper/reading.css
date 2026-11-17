@@ -153,6 +153,8 @@ dialog.plot p { margin: 8px 0 0; font-family: var(--font-sans); font-size: var(-
 .sheet__text .katex { font-size: 1.02em; text-rendering: auto; }
 .math-display { margin: 0.8em 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0; scrollbar-width: thin; }
 .sheet__text .katex-display { margin: 0; }
+/* A linked display formula: the link is a box the width of the formula, centred, so no block sits inside an inline box. */
+.math-display > .q { display: block; width: fit-content; max-width: 100%; margin-inline: auto; padding: 1px 0.35em; }
 
 /* Lists */
 .sheet__text ul, .sheet__text ol { padding-left: 1.3em; }

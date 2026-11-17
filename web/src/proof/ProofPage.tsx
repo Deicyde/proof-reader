@@ -59,6 +59,8 @@ interface Props {
   graph: ReactNode;
   lean: ReactNode;
   leanOpen: boolean;
+  /** No graph: the page is the Lean alone, with no toggle and no handle. */
+  plain?: boolean;
   onMode(mode: PaneMode): void;
   layout: Layout;
   onLayout(next: Layout): void;
@@ -66,7 +68,7 @@ interface Props {
   onClose?(): void;
 }
 
-export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean, leanOpen, onMode, layout, onLayout, onClose }: Props) {
+export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean, leanOpen, plain, onMode, layout, onLayout, onClose }: Props) {
   const root = useRef<HTMLDivElement>(null);
   const panes = useRef<HTMLDivElement>(null);
   const [side, setSide] = useState(false);
@@ -82,7 +84,7 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
     return () => observer.disconnect();
   }, []);
 
-  const share = side ? layout.sideShare : layout.share;
+  const share = plain ? 0 : side ? layout.sideShare : layout.share;
   const withShare = (value: number): Layout => (side ? { ...layout, sideShare: value } : { ...layout, share: value });
   useEffect(() => panes.current?.style.setProperty("--share", String(share)), [share]);
 
@@ -145,12 +147,12 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
     <div className="proof" ref={root} data-side={side || undefined} data-lean={leanOpen || undefined} aria-label="The proof" role="region">
       <div className="proof__caption">
         <div className="proof__says">{caption}</div>
-        <ModeToggle mode={leanOpen ? "lean" : "graph"} onMode={onMode} />
+        {!plain && <ModeToggle mode={leanOpen ? "lean" : "graph"} onMode={onMode} />}
         {onClose && <button type="button" className="proof__close" onClick={onClose}>Close</button>}
       </div>
       <div className={`proof__panes${both ? " is-both" : ""}${shut ? " is-shut" : ""}${dragging ? " is-dragging" : ""}`} ref={panes}>
-        <div className="proof__graph">{graph}</div>
-        <div
+        {!plain && <div className="proof__graph">{graph}</div>}
+        {!plain && <div
           className="proof__handle"
           role="separator"
           aria-orientation={side ? "vertical" : "horizontal"}
@@ -163,7 +165,7 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
           onKeyDown={onHandleKey}
         >
           <span aria-hidden="true" />
-        </div>
+        </div>}
         <div className="proof__lean" hidden={!leanOpen}>{lean}</div>
       </div>
       {reading && <div className="proof__reading">{reading}</div>}
