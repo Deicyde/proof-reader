@@ -149,6 +149,8 @@ export interface Edition {
     noun?: string;
     /** Whether the page shows Proof Reader's own films; off unless paper.toml says films = true. */
     films?: boolean;
+    /** False when the proof is one statement: the right page is then the Lean alone. */
+    graph?: boolean;
     pages: number;
     sizes: [number, number][];
     crop: [number, number, number, number] | null;

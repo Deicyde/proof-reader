@@ -101,6 +101,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const declarations = useMemo(() => new Map(edition.declarations.map((d) => [d.id, d])), [edition]);
   const outline = useMemo(() => edition.reading?.outline ?? [], [edition]);
   const homeCopy: Copy = edition.reading ? "reading" : "pdf";
+  // A page whose proof is one statement has no graph worth drawing: its right page is the Lean.
+  const plain = edition.paper.graph === false;
 
   const started = useRef<{ entry: Entry; target: Target | null; record: string | undefined } | null>(null);
   if (!started.current) {
@@ -116,7 +118,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
       // page is a sheet under the paper, the sheet opens as a tap would open it and the
       // statement sits above it. A wider screen keeps the right page waiting to be asked for.
       const sheet = !!meaning.entry.pin && window.matchMedia(PHONE).matches;
-      const entry: Entry = { ...blankEntry(slug, homeCopy), lean: readLayout().lean, ...meaning.entry, sheet, bad: meaning.bad };
+      const entry: Entry = { ...blankEntry(slug, homeCopy), lean: plain || readLayout().lean, ...meaning.entry, sheet, bad: meaning.bad };
       replaceEntry(entry);
       started.current = { entry, target: meaning.target, record: route.record };
     }
@@ -285,7 +287,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
         tab: o.tab ?? "step",
         top: o.target ? null : cur.top,
         leanTop: 0,
-        lean: o.lean ?? (o.pin ? true : layoutRef.current.lean),
+        lean: o.lean ?? (o.pin ? true : plain || layoutRef.current.lean),
         wentToLean: !!o.wentToLean,
         opened: (o.pin === undefined ? cur.pin : o.pin) || (o.tab ?? "step") !== "step"
           ? cur.opened ? { steps: cur.opened.steps + 1, fromGraph: cur.opened.fromGraph } : cur.pin || cur.tab !== "step" ? null : { steps: 1, fromGraph: !cur.lean }
@@ -421,6 +423,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
    * when that is where the reader came from, and in place otherwise. As Lean Exposition does.
    */
   const setMode = useCallback((mode: PaneMode) => {
+    if (plain && mode === "graph") return;
     const cur = entryRef.current;
     if (mode === "lean") {
       if (cur.lean) return;
@@ -433,7 +436,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (cur.opened?.fromGraph) window.history.go(-cur.opened.steps);
     else if (cur.wentToLean && !cur.pin && cur.tab === "step") window.history.back();
     else letGo(false);
-  }, [chooseMode, letGo, open]);
+  }, [chooseMode, letGo, open, plain]);
 
   const closeSheet = useCallback(() => {
     const next = { ...entryRef.current, sheet: false, pin: null, lean: false };
@@ -449,7 +452,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     else if (cur.opened) window.history.go(-cur.opened.steps);
     // An address opened directly on a sheet: close it, where Back from a tapped statement lands.
     else if (cur.sheet && !wide) closeSheet();
-    else letGo(layoutRef.current.lean);
+    else letGo(plain || layoutRef.current.lean);
   }, [closeSheet, letGo, setMode, wide]);
 
   const lineId = useRef<string | null>(null);
@@ -458,7 +461,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     // statement, the Lean and the graph follow the reading line again.
     const cur = entryRef.current;
     if (byReader && cur.pin && cur.tab === "step" && id && id !== lineId.current && id !== cur.pin.passage) {
-      const unpinned = { ...cur, pin: null, lean: layoutRef.current.lean, opened: null };
+      const unpinned = { ...cur, pin: null, lean: plain || layoutRef.current.lean, opened: null };
       entryRef.current = unpinned;
       setEntry(unpinned);
       setMapStays(false);
@@ -553,7 +556,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (!next) return;
     stepAt.current = index;
     if (entryRef.current.pin) {
-      const unpinned = { ...entryRef.current, pin: null, lean: layoutRef.current.lean, opened: null };
+      const unpinned = { ...entryRef.current, pin: null, lean: plain || layoutRef.current.lean, opened: null };
       entryRef.current = unpinned;
       setEntry(unpinned);
     }
@@ -889,6 +892,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
         {showRight && (
           <ProofPage
             leanOpen={entry.lean}
+            plain={plain}
             onMode={setMode}
             layout={layout}
             onLayout={onLayout}

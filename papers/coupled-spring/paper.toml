@@ -5,6 +5,7 @@ authors = ["Explanatory reconstruction prepared by Will Cook with AI assistance"
 venue = "Explanatory reconstruction of Bjørn Kjos-Hanssen's Lean file in PhyslibAlpha"
 markdown = "paper.md"
 noun = "page"
+graph = false
 
 [credit]
 text = "Lean formalization: Bjørn Kjos-Hanssen, PhyslibAlpha in Physlib at be0a9ee. Explanatory reconstruction prepared by Will Cook with AI assistance"

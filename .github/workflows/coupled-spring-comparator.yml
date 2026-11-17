@@ -1,0 +1,78 @@
+# Judge the author's proof of the coupled-spring local minimum with Comparator, at Physlib's
+# own toolchain and commit. The challenge states the theorem with Mathlib imports only. The
+# files live in papers/coupled-spring/comparator/ and are copied into a fresh Physlib clone
+# for the run; nothing in Physlib is changed in this repository.
+name: Judge the coupled-spring statement with Comparator
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/coupled-spring-*']
+    paths:
+      - '.github/workflows/coupled-spring-comparator.yml'
+      - 'papers/coupled-spring/comparator/**'
+permissions:
+  contents: read
+jobs:
+  comparator:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      PHYSLIB_COMMIT: be0a9eef7dac78da524bfbde91c812340b194610
+      EVIDENCE: papers/coupled-spring/comparator
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Physlib at the pinned commit
+        run: |
+          git init -q "$RUNNER_TEMP/physlib"
+          cd "$RUNNER_TEMP/physlib"
+          git remote add origin https://github.com/leanprover-community/physlib.git
+          git fetch -q --depth 1 origin "$PHYSLIB_COMMIT"
+          git checkout -q FETCH_HEAD
+          git rev-parse HEAD
+      - name: Fetch Mathlib's compiled files
+        working-directory: ${{ runner.temp }}/physlib
+        run: lake exe cache get
+      - name: Put the challenge and solution into the clone for this run
+        run: |
+          P="$RUNNER_TEMP/physlib/PhyslibAlpha/Checked"
+          mkdir -p "$P/Negative"
+          cp "$EVIDENCE/Challenge.lean" "$EVIDENCE/Solution.lean" "$EVIDENCE/comparator.json" "$P/"
+          cp "$EVIDENCE/negative/Challenge.lean" "$EVIDENCE/negative/comparator.json" "$P/Negative/"
+      - name: Compile the author's proof, the challenge and the control
+        working-directory: ${{ runner.temp }}/physlib
+        run: |
+          set -o pipefail
+          lake --version && lake comparator --help | head -8
+          lake build PhyslibAlpha.Checked.Solution PhyslibAlpha.Checked.Challenge PhyslibAlpha.Checked.Negative.Challenge 2>&1 | tee "$RUNNER_TEMP/build.log" | { grep -v '^✔' || true; }
+      - name: Install the sandbox Comparator uses
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq bubblewrap
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+          bwrap --version
+      - name: Comparator on the statement and on the control
+        working-directory: ${{ runner.temp }}/physlib
+        run: |
+          mkdir -p "$RUNNER_TEMP/out"
+          E="$GITHUB_WORKSPACE/$EVIDENCE"
+          { lake --version; cat lean-toolchain; git rev-parse HEAD; git -C "$GITHUB_WORKSPACE" rev-parse HEAD; bwrap --version; sha256sum "$E/Challenge.lean" "$E/Solution.lean" "$E/comparator.json" "$E/negative/Challenge.lean" "$E/negative/comparator.json"; } > "$RUNNER_TEMP/out/environment.txt" 2>&1
+          cp "$RUNNER_TEMP/build.log" "$RUNNER_TEMP/out/"
+          run() { # name, config, extra flags
+            echo "== $1"
+            if timeout 60m lake comparator --config "$2" $3 > "$RUNNER_TEMP/out/$1.log" 2>&1; then echo 0 > "$RUNNER_TEMP/out/$1.exit"; else echo $? > "$RUNNER_TEMP/out/$1.exit"; fi
+            tail -20 "$RUNNER_TEMP/out/$1.log"; echo "exit $(cat "$RUNNER_TEMP/out/$1.exit")"
+          }
+          run control.sandboxed PhyslibAlpha/Checked/Negative/comparator.json ""
+          run statement.sandboxed PhyslibAlpha/Checked/comparator.json ""
+          if [ "$(cat "$RUNNER_TEMP/out/statement.sandboxed.exit")" != 0 ]; then
+            run control.unsandboxed PhyslibAlpha/Checked/Negative/comparator.json "--inadvisably-no-sandbox"
+            run statement.unsandboxed PhyslibAlpha/Checked/comparator.json "--inadvisably-no-sandbox"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coupled-spring-comparator
+          path: ${{ runner.temp }}/out
