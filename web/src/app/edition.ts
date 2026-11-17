@@ -125,6 +125,8 @@ export interface ComparatorEvidence {
   links: { challenge: string; solution: string; config: string; receipt: string; control: string };
   control: { change: string; theorem: string };
   limits: string;
+  /** What the challenge imports, when the receipt says; empty when it imports the authors' definitions. */
+  imports?: string;
   /** Each theorem name the run checked: its statement in the challenge and the lines it fills. */
   theorems: Record<string, { first: number; last: number; statement: string; url: string }>;
 }

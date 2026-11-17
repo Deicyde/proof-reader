@@ -21,3 +21,6 @@ scope = "Lean 4.35.0 compiled the two listed modules of Physlib at commit be0a9e
 
 [reading]
 language = "lean"
+
+[comparator]
+evidence = "comparator"

@@ -179,7 +179,9 @@ the statements of Section 3 that the proof uses: that $U$ is analytic at
 every point, the formula for $DU(x)$ at every point, that the gradient at
 the origin is zero, the formula for $D^2U(z)$ at every point, and that
 the second derivative at the origin is positive definite. Theorem 2.1 is
-proved in the companion file. The spring system of Section 1, the answers
+proved in the companion file. Comparator, run in its sandbox, accepted
+the proof of Theorem 4.1 against a copy of its statement that imports
+only Mathlib, so no definition from Physlib enters that statement. The spring system of Section 1, the answers
 of Section 6 and the proof sketch after Theorem 2.1 are explanations
 written for this page.
 

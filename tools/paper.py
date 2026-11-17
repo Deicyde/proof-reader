@@ -710,7 +710,16 @@ def challenge_statements(text: str) -> dict[str, list[int]]:
             name = ".".join([*spaces, match.group(2)])
             if name in found:
                 raise PaperError(f"the challenge states {name} twice")
-            found[name] = [number, statement_end(lines, number, len(lines), "theorem")]
+            end = statement_end(lines, number, len(lines), "theorem")
+            # A challenge's proof is `sorry`, so the statement runs to the line before it. This
+            # matters when the statement itself holds a `:=`, as a `let` does.
+            for later in range(number, len(lines) + 1):
+                if lines[later - 1].strip() == "sorry":
+                    end = max(end, later - 1)
+                    break
+                if later > number and WRITTEN.match(lines[later - 1]) and not lines[later - 1][:1].isspace():
+                    break
+            found[name] = [number, end]
     return found
 
 
@@ -804,6 +813,7 @@ def comparator_evidence(folder: Path, config: dict) -> dict | None:
                   "control": f"{base}/{control_challenge}"},
         "control": {"change": control["change"], "theorem": rejected[1]},
         "limits": receipt.get("limits", ""),
+        "imports": receipt.get("imports", ""),
         "theorems": theorems,
     }
 
