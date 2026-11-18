@@ -55,25 +55,29 @@ function Names({ edition, names, act }: { edition: Edition; names: string[]; act
   );
 }
 
-function Axioms({ edition, d, act }: { edition: Edition; d: Declaration; act: LeanActions }) {
+/** Lean's axiom report is for the whole declaration. When the page shows a few selected
+ *  lines of it, the sentence says so, so the report is not read as a fact about those lines. */
+function Axioms({ edition, d, act, part }: { edition: Edition; d: Declaration; act: LeanActions; part: boolean }) {
   if (d.keyword === "axiom") return <p className="decl__axiom">An assumption declared without a proof.</p>;
   if (d.keyword !== "theorem" && d.keyword !== "lemma") return null;
   const evidence = declEvidence(edition, d);
   if (evidence === "statement-compiled") return <p className="decl__facts">No axiom report: the retained Lean extraction compiled the statement only. It did not build the proof.</p>;
   if (evidence === "source-read") return <p className="decl__facts">Read from source. This edition does not have a Lean axiom report for the proof.</p>;
   const sorry = edition.analytics.sorry.includes(d.id);
+  const whole = `the whole ${d.keyword}${d.lines > 1 ? `, lines ${d.line} to ${d.end_line},` : ""}`;
   return (
     <p className="decl__facts">
       {d.axioms.length > 0 ? (
         <>
-          Lean reports that this depends on the authors’ axiom <Names edition={edition} names={d.axioms} act={act} />
+          Lean reports that {whole} depends on the authors’ axiom <Names edition={edition} names={d.axioms} act={act} />
           {d.standard_axioms.length > 0 && <>, and on Lean’s standard {list(d.standard_axioms)}</>}.
         </>
       ) : d.standard_axioms.length > 0 ? (
-        <>Lean reports that this depends on its standard {list(d.standard_axioms)}.</>
+        <>Lean reports that {whole} depends on its standard {list(d.standard_axioms)}.</>
       ) : !sorry && (
-        <>Lean reports that this depends on no axioms.</>
+        <>Lean reports that {whole} depends on no axioms.</>
       )}
+      {part && !sorry && <> Lean gives no separate report for the highlighted lines.</>}
       {sorry && <strong> It contains sorry.</strong>}
     </p>
   );
@@ -128,7 +132,7 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
       {passage && <p className="decl__relation">{relation(passage)}</p>}
       {d.note && <p className="decl__note"><span className="decl__note-by">Note added for this page</span>{d.note.text}</p>}
       <FidelityBlock edition={edition} d={d} act={act} onPassage={onPassage} />
-      <Axioms edition={edition} d={d} act={act} />
+      <Axioms edition={edition} d={d} act={act} part={!!exact && (exact[0] > d.line || exact[1] < d.end_line)} />
       <ComparatorFold edition={edition} d={d} names={names} act={act} />
       <div className="decl__code" tabIndex={0} aria-label={`Statement of ${d.id}`}>
         <LeanCode paper={edition.slug} lines={lines} from={d.line} to={d.statement_end} names={names} self={d.id} exact={exact} act={act} />
