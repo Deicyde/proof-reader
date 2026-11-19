@@ -15,6 +15,9 @@ import "./app/app.css";
 import "./paper/reading.css";
 
 import { App } from "./app/App";
+import { installMathsCopy } from "./paper/copyMaths";
+
+installMathsCopy();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
