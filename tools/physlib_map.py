@@ -46,12 +46,33 @@ def refresh() -> None:
         "repo": REPO, "commit": index["commit"], "index": INDEX, "path": PATH,
         "file": node["file"], "title": node["title"],
         "leanReferences": node["leanReferences"], "references": node["references"],
+        "maps": maps_of(index),
     }
     (FOLDER / "index.json").write_text(json.dumps(snapshot, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
+def maps_of(index: dict) -> list[dict]:
+    """Every API map in the tracker index, with its claim counts and the maps it cites."""
+    return [{
+        "path": n["path"], "title": n["title"],
+        "done": sum(1 for r in n["requirements"] if r["done"]), "total": len(n["requirements"]),
+        "cites": [p["path"] for p in n["parents"]],
+    } for n in sorted(index["nodes"], key=lambda n: n["path"])]
+
+
+def check_maps(snapshot: dict) -> None:
+    maps = snapshot.get("maps") or []
+    paths = {m["path"] for m in maps}
+    if snapshot["path"] not in paths or len(paths) != len(maps):
+        raise ValueError("The map list must name each API map once, including this one")
+    for m in maps:
+        if any(c not in paths for c in m["cites"]) or not 0 <= m["done"] <= m["total"]:
+            raise ValueError(f"{m['path']} cites an unknown map or has impossible claim counts")
+
+
 def build() -> None:
     snapshot = json.loads((FOLDER / "index.json").read_text(encoding="utf-8"))
+    check_maps(snapshot)
     groups = snapshot["leanReferences"]
     refs = snapshot["references"]
     source = FOLDER / "API-map.md"

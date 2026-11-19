@@ -1603,6 +1603,33 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     check(pane.locator("[data-reference]").count() == 9,
           "a paragraph can collect prose references and Lean citations together")
 
+    deps = page.locator("#dependency-map")
+    deps.scroll_into_view_if_needed()
+    cards = deps.locator(".deps__figure .deps__card")
+    wait_until(page, lambda: cards.count() == 13, "the dependency map shows Gauge theory and the 12 maps it reaches")
+    here = deps.locator('.deps__card[aria-current="page"]')
+    check(here.count() == 1 and "Gauge theory" in here.inner_text(), "the current map is marked on the dependency map")
+    lattice = deps.get_by_role("link", name=re.compile("^Lattice QFT"))
+    check(lattice.get_attribute("href") == "https://physlib.io/api-tracker#Physlib/LatticeQFT",
+          "another map's card opens that map on physlib.io")
+    check(lattice.bounding_box()["y"] < here.bounding_box()["y"], "a map that cites Gauge theory sits above it")
+    check(deps.locator(".deps__line.is-mutual").count() >= 1, "two maps that cite each other share one dashed line")
+    check(page.evaluate("""() => {
+      const cards = [...document.querySelectorAll('#dependency-map .deps__figure .deps__card')].map((el) => el.getBoundingClientRect());
+      return cards.every((a, i) => cards.every((b, j) => i === j || a.right <= b.left || b.right <= a.left || a.bottom <= b.top || b.bottom <= a.top));
+    }"""), "no two cards on the dependency map overlap")
+    if not mobile:
+        lattice.hover()
+        check(deps.locator(".deps__line.is-lit").count() >= 1, "pointing at a card lights its citations")
+        page.mouse.move(2, 2)
+    deps.get_by_role("button", name="See all 39 API maps in Physlib").click()
+    dialog = page.get_by_role("dialog", name="All 39 API maps in Physlib")
+    wait_until(page, lambda: dialog.locator(".deps__card").count() == 39, "the full view shows all 39 maps")
+    check(dialog.get_by_role("button", name="Close").evaluate("(el) => el === document.activeElement"), "the full view starts on its Close button")
+    page.keyboard.press("Escape")
+    wait_until(page, lambda: not dialog.is_visible(), "Escape closes the full view")
+    check(page.evaluate("document.documentElement.scrollWidth === innerWidth"), "the page still fits the viewport")
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)

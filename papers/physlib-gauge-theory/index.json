@@ -474,5 +474,378 @@
       "text": "Physlib GitHub issue #859, https://github.com/leanprover-community/physlib/issues/859",
       "apiMap": null
     }
+  ],
+  "maps": [
+    {
+      "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
+      "title": "Gauge theory",
+      "done": 14,
+      "total": 24,
+      "cites": [
+        "Physlib/Electromagnetism/Kinematics",
+        "Physlib/Particles/StandardModel/GaugeGroup"
+      ]
+    },
+    {
+      "path": "Physlib/ClassicalFieldTheory/GreenOperator",
+      "title": "Green operators and the causal propagator",
+      "done": 10,
+      "total": 10,
+      "cites": []
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/ConfigurationSpace",
+      "title": "Configuration Space",
+      "done": 2,
+      "total": 3,
+      "cites": [
+        "Physlib/ClassicalMechanics/Lagrangian",
+        "Physlib/ClassicalMechanics/HarmonicOscillator/Geometric",
+        "Physlib/ClassicalMechanics/Pendulum"
+      ]
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/DampedHarmonicOscillator",
+      "title": "Damped harmonic oscillator",
+      "done": 14,
+      "total": 14,
+      "cites": [
+        "Physlib/SpaceAndTime/Time"
+      ]
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/HamiltonianMechanics",
+      "title": "Hamiltonian mechanics",
+      "done": 23,
+      "total": 34,
+      "cites": [
+        "Physlib/ClassicalMechanics/ConfigurationSpace",
+        "Physlib/ClassicalMechanics/HarmonicOscillator/Geometric",
+        "Physlib/ClassicalMechanics/Pendulum/SimplePendulum",
+        "Physlib/ClassicalMechanics/Lagrangian"
+      ]
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/HarmonicOscillator/Geometric",
+      "title": "Configuration space of the harmonic oscillator",
+      "done": 9,
+      "total": 9,
+      "cites": [
+        "Physlib/SpaceAndTime/Space",
+        "Physlib/SpaceAndTime/Time"
+      ]
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/Lagrangian",
+      "title": "Lagrangian mechanics",
+      "done": 6,
+      "total": 12,
+      "cites": [
+        "Physlib/ClassicalMechanics/ConfigurationSpace",
+        "Physlib/SpaceAndTime/Time"
+      ]
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/Pendulum",
+      "title": "Configuration space for pendulum",
+      "done": 5,
+      "total": 5,
+      "cites": [
+        "Physlib/ClassicalMechanics/Lagrangian",
+        "Physlib/ClassicalMechanics/Pendulum/SimplePendulum",
+        "Physlib/SpaceAndTime/Space"
+      ]
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/Pendulum/SimplePendulum",
+      "title": "Simple pendulum",
+      "done": 17,
+      "total": 18,
+      "cites": [
+        "Physlib/ClassicalMechanics/Pendulum",
+        "Physlib/SpaceAndTime/Space"
+      ]
+    },
+    {
+      "path": "Physlib/ClassicalMechanics/RigidBody",
+      "title": "Rigid body",
+      "done": 10,
+      "total": 13,
+      "cites": [
+        "Physlib/SpaceAndTime/Space"
+      ]
+    },
+    {
+      "path": "Physlib/Cosmology/FLRW",
+      "title": "FLRW cosmology",
+      "done": 30,
+      "total": 31,
+      "cites": [
+        "Physlib/SpaceAndTime/Time"
+      ]
+    },
+    {
+      "path": "Physlib/Electromagnetism/Kinematics",
+      "title": "Electromagnetic Potential",
+      "done": 11,
+      "total": 12,
+      "cites": [
+        "Physlib/SpaceAndTime/SpaceTime",
+        "Physlib/Relativity/LorentzGroup"
+      ]
+    },
+    {
+      "path": "Physlib/FluidDynamics",
+      "title": "Fluid",
+      "done": 5,
+      "total": 9,
+      "cites": [
+        "Physlib/SpaceAndTime/Space",
+        "Physlib/SpaceAndTime/Time"
+      ]
+    },
+    {
+      "path": "Physlib/LatticeQFT",
+      "title": "Lattice QFT",
+      "done": 0,
+      "total": 20,
+      "cites": [
+        "Physlib/ClassicalFieldTheory/GaugeTheory"
+      ]
+    },
+    {
+      "path": "Physlib/Particles/BeyondTheStandardModel/TwoHDM",
+      "title": "Two Higgs Doublet Model",
+      "done": 13,
+      "total": 15,
+      "cites": [
+        "Physlib/Particles/StandardModel/HiggsBoson"
+      ]
+    },
+    {
+      "path": "Physlib/Particles/StandardModel/GaugeGroup",
+      "title": "Standard Model gauge group",
+      "done": 11,
+      "total": 15,
+      "cites": [
+        "Physlib/Particles/StandardModel/HiggsBoson"
+      ]
+    },
+    {
+      "path": "Physlib/Particles/StandardModel/HiggsBoson",
+      "title": "Higgs Field",
+      "done": 19,
+      "total": 23,
+      "cites": [
+        "Physlib/Particles/StandardModel/GaugeGroup",
+        "Physlib/Particles/BeyondTheStandardModel/TwoHDM",
+        "Physlib/SpaceAndTime/SpaceTime"
+      ]
+    },
+    {
+      "path": "Physlib/QFT/PerturbationTheory/FeynmanDiagrams",
+      "title": "Feynman diagrams",
+      "done": 1,
+      "total": 7,
+      "cites": [
+        "Physlib/Relativity/LorentzGroup"
+      ]
+    },
+    {
+      "path": "Physlib/QFT/TopologicalFieldTheory",
+      "title": "Topological field theory",
+      "done": 0,
+      "total": 17,
+      "cites": [
+        "Physlib/SpaceAndTime/Time"
+      ]
+    },
+    {
+      "path": "Physlib/QuantumMechanics/HilbertSpaces/SpaceD",
+      "title": "Hilbert spaces on Space",
+      "done": 8,
+      "total": 15,
+      "cites": [
+        "Physlib/SpaceAndTime/Space",
+        "Physlib/QuantumMechanics/Operators"
+      ]
+    },
+    {
+      "path": "Physlib/QuantumMechanics/HilbertSpaces/TensorProducts",
+      "title": "Hilbert space tensor products",
+      "done": 4,
+      "total": 8,
+      "cites": []
+    },
+    {
+      "path": "Physlib/QuantumMechanics/Operators",
+      "title": "Operator algebra",
+      "done": 29,
+      "total": 33,
+      "cites": [
+        "Physlib/QuantumMechanics/Operators/SpectralTheory",
+        "Physlib/SpaceAndTime/Space",
+        "Physlib/QuantumMechanics/HilbertSpaces/SpaceD"
+      ]
+    },
+    {
+      "path": "Physlib/QuantumMechanics/Operators/SpectralTheory",
+      "title": "Spectral theory of unbounded operators",
+      "done": 14,
+      "total": 17,
+      "cites": [
+        "Physlib/QuantumMechanics/Operators"
+      ]
+    },
+    {
+      "path": "Physlib/QuantumMechanics/QuantumSystem",
+      "title": "QuantumSystem",
+      "done": 3,
+      "total": 9,
+      "cites": []
+    },
+    {
+      "path": "Physlib/QuantumMechanics/Qubit",
+      "title": "Qubits",
+      "done": 9,
+      "total": 21,
+      "cites": []
+    },
+    {
+      "path": "Physlib/Relativity/Fermions/Dirac",
+      "title": "Dirac Fermions",
+      "done": 21,
+      "total": 26,
+      "cites": [
+        "Physlib/Relativity/Fermions/Weyl",
+        "Physlib/Relativity/LorentzGroup"
+      ]
+    },
+    {
+      "path": "Physlib/Relativity/Fermions/Weyl",
+      "title": "Weyl Fermions",
+      "done": 15,
+      "total": 19,
+      "cites": [
+        "Physlib/Relativity/LorentzGroup",
+        "Physlib/Relativity/Fermions/Dirac"
+      ]
+    },
+    {
+      "path": "Physlib/Relativity/LorentzGroup",
+      "title": "Lorentz Group",
+      "done": 10,
+      "total": 12,
+      "cites": [
+        "Physlib/SpaceAndTime/SpaceTime",
+        "Physlib/Relativity/Tensors",
+        "Physlib/Relativity/Fermions/Weyl",
+        "Physlib/Relativity/Fermions/Dirac"
+      ]
+    },
+    {
+      "path": "Physlib/Relativity/Poincare",
+      "title": "Poincaré transformations",
+      "done": 12,
+      "total": 12,
+      "cites": [
+        "Physlib/Relativity/LorentzGroup"
+      ]
+    },
+    {
+      "path": "Physlib/Relativity/Tensors",
+      "title": "Tensors",
+      "done": 68,
+      "total": 73,
+      "cites": [
+        "Physlib/Relativity/LorentzGroup",
+        "Physlib/Relativity/Fermions/Weyl"
+      ]
+    },
+    {
+      "path": "Physlib/SpaceAndTime/GalileanGroup",
+      "title": "Galilean group",
+      "done": 8,
+      "total": 9,
+      "cites": [
+        "Physlib/SpaceAndTime/Space",
+        "Physlib/SpaceAndTime/Time"
+      ]
+    },
+    {
+      "path": "Physlib/SpaceAndTime/ReferenceFrame",
+      "title": "Reference frame",
+      "done": 15,
+      "total": 19,
+      "cites": [
+        "Physlib/SpaceAndTime/Space",
+        "Physlib/SpaceAndTime/Time"
+      ]
+    },
+    {
+      "path": "Physlib/SpaceAndTime/Space",
+      "title": "Space",
+      "done": 16,
+      "total": 18,
+      "cites": []
+    },
+    {
+      "path": "Physlib/SpaceAndTime/SpaceTime",
+      "title": "SpaceTime",
+      "done": 10,
+      "total": 11,
+      "cites": [
+        "Physlib/Relativity/Tensors",
+        "Physlib/SpaceAndTime/Space",
+        "Physlib/SpaceAndTime/Time",
+        "Physlib/Relativity/LorentzGroup"
+      ]
+    },
+    {
+      "path": "Physlib/SpaceAndTime/Time",
+      "title": "Time",
+      "done": 11,
+      "total": 14,
+      "cites": [
+        "Physlib/Relativity/Tensors"
+      ]
+    },
+    {
+      "path": "Physlib/SpaceAndTime/TimeAndSpace",
+      "title": "TimeAndSpace",
+      "done": 6,
+      "total": 6,
+      "cites": [
+        "Physlib/SpaceAndTime/Time",
+        "Physlib/SpaceAndTime/Space"
+      ]
+    },
+    {
+      "path": "Physlib/StatisticalMechanics/CanonicalEnsemble",
+      "title": "Canonical ensemble",
+      "done": 14,
+      "total": 16,
+      "cites": [
+        "Physlib/Thermodynamics/Temperature"
+      ]
+    },
+    {
+      "path": "Physlib/Thermodynamics/Temperature",
+      "title": "Temperature",
+      "done": 13,
+      "total": 16,
+      "cites": []
+    },
+    {
+      "path": "Physlib/Units",
+      "title": "Units",
+      "done": 73,
+      "total": 78,
+      "cites": [
+        "Physlib/SpaceAndTime/Time",
+        "Physlib/SpaceAndTime/Space",
+        "Physlib/Thermodynamics/Temperature"
+      ]
+    }
   ]
 }
