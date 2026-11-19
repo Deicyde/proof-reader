@@ -68,7 +68,7 @@ class CoupledSpringClaims(unittest.TestCase):
             self.assertEqual(q, 2 * U(h0, h1))
             self.assertEqual(q - (h0 ** 2 + h1 ** 2), (h0 + h1) ** 2)
         self.states(r"$$K=\begin{pmatrix}2&1\\1&2\end{pmatrix}.$$", r"$h^{T}Kh\ge\lVert h\rVert^2$",
-                    "The last square\nvanishes when $h_0=-h_1$")
+                    "with equality exactly when $h_0=-h_1$")
 
     def test_normal_modes_and_their_frequencies(self) -> None:
         # The frequency written on the page is sqrt(lambda k / m) for the eigenvalue lambda of K.
@@ -95,11 +95,26 @@ class CoupledSpringClaims(unittest.TestCase):
 
     def test_the_cubic_keeps_the_local_minimum_and_loses_the_global_one(self) -> None:
         for x0, x1 in GRID:
-            bound = (x1 + x0 / 2) ** 2 + x0 ** 2 / 2
-            self.assertEqual(W(x0, x1) - bound, x0 ** 2 * (x0 + F(1, 4)))
+            # W - |x|^2/4 = (x0 + x1)^2/2 + x1^2/4 + x0^2 (x0 + 1/4), nonnegative when x0 >= -1/4.
+            self.assertEqual(W(x0, x1) - (x0 ** 2 + x1 ** 2) / 4,
+                             (x0 + x1) ** 2 / 2 + x1 ** 2 / 4 + x0 ** 2 * (x0 + F(1, 4)))
+            # U >= |x|^2/2, the wall springs' share: U - |x|^2/2 = (x0 + x1)^2/2.
+            self.assertEqual(U(x0, x1) - (x0 ** 2 + x1 ** 2) / 2, (x0 + x1) ** 2 / 2)
+        for t in [F(n, 4) for n in range(-12, 5)]:
+            self.assertEqual(W(t, 0), t ** 2 * (1 + t))
+            if -1 < t < 0:
+                self.assertGreater(W(t, 0), 0)
+        self.assertEqual(W(-1, 0), 0)
         self.assertEqual(W(-2, 0), -4)
-        self.states(r"$|x_0|<\tfrac14$, then", r"$W(x)\ge\left(x_1+\tfrac12x_0\right)^2+\tfrac12x_0^2$",
-                    r"$W(-2,0)=-4<W(0)$")
+        self.states(r"wherever $|x_0|\le\tfrac14$", r"$$W(x)\ge\tfrac14\lVert x\rVert^2,$$",
+                    r"$W(t,0)=t^2(1+t)$", r"$W(-2,0)=-4<W(0)$", r"$U(x)\ge\tfrac12\lVert x\rVert^2$")
+
+    def test_the_slow_mode_is_the_direction_where_the_hessian_bound_is_sharp(self) -> None:
+        # The smaller eigenvalue of K is the constant C of the lower bound, attained along (1, -1).
+        v = (1, -1)
+        self.assertEqual(Kv(v), v)
+        self.assertEqual(sum(v[i] * Kv(v)[i] for i in range(2)), v[0] ** 2 + v[1] ** 2)
+        self.states(r"so $C=1$, attained at", r"$m\omega_-^2=Ck$")
 
 
 if __name__ == "__main__":

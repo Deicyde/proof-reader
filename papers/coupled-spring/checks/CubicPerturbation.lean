@@ -1,3 +1,4 @@
+import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 import PhyslibAlpha.ClassicalMechanics.CoupledSpringPotential
 
 /-- The coupled spring potential plus the cubic `x₀³`. -/
@@ -24,8 +25,8 @@ lemma cubicPerturbation_iteratedFDeriv_two_zero (a b : EuclideanSpace ℝ (Fin 2
     ((EuclideanSpace.proj (𝕜 := ℝ) (0 : Fin 2)).contDiff.pow 3).contDiffAt
   have hsplit : cubicPerturbation
       = couplingPotential + fun x : EuclideanSpace ℝ (Fin 2) => (x 0) ^ 3 := rfl
-  rw [hsplit, iteratedFDeriv_add_apply hU hg, ContinuousMultilinearMap.add_apply,
-    cube_iteratedFDeriv_two_zero, add_zero]
+  rw [hsplit, iteratedFDeriv_add_apply hU hg]
+  simp [cube_iteratedFDeriv_two_zero]
 
 /-- The perturbed potential is analytic at every point. -/
 lemma cubicPerturbation_analyticAt (z : EuclideanSpace ℝ (Fin 2)) :
