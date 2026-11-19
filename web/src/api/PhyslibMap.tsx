@@ -51,6 +51,7 @@ interface Edition {
   leanReferences: Group[];
   references: Reference[];
   glossary: Record<string, string>;
+  noteHtml: Record<string, string>;
   paragraphs: Record<string, string[]>;
   phrases: Phrase[];
   tones: Record<string, number>;
@@ -297,7 +298,7 @@ function MapReader({ edition }: { edition: Edition }) {
   };
   const declarationsFor = (item: Group) => item.declarations.map((d) => (
     <DeclarationCard key={d.fullName} decl={d} title={edition.glossary[d.fullName]} sourceUrl={sourceOf(edition, item.file, d.line)}
-      tone={edition.tones[citeKey(item)]} phrases={phrasesOf.get(d.fullName) ?? []} onPhrase={showPhrase}
+      tone={edition.tones[citeKey(item)]} phrases={phrasesOf.get(d.fullName) ?? []} onPhrase={showPhrase} note={edition.noteHtml[d.fullName]}
       onLight={(on) => setLit(on ? [d.fullName] : null)}
       onSource={() => {
         if (item !== group) navigate(`@${citeKey(item)}`);
@@ -519,8 +520,8 @@ function PhraseQuotes({ phrases, onPhrase }: { phrases: Phrase[]; onPhrase(id: n
   );
 }
 
-function DeclarationCard({ decl, title, tone, phrases, onPhrase, onLight, onSource, sourceUrl }: {
-  decl: MapDeclaration; title: string; tone: number; phrases: Phrase[]; onPhrase(id: number): void; onLight(on: boolean): void; onSource(): void; sourceUrl: string;
+function DeclarationCard({ decl, title, tone, phrases, note, onPhrase, onLight, onSource, sourceUrl }: {
+  decl: MapDeclaration; title: string; tone: number; phrases: Phrase[]; note?: string; onPhrase(id: number): void; onLight(on: boolean): void; onSource(): void; sourceUrl: string;
 }) {
   return (
     <section className="step-proof api-map__declaration" data-lean-name={decl.fullName} data-tone={tone} tabIndex={-1}
@@ -528,7 +529,14 @@ function DeclarationCard({ decl, title, tone, phrases, onPhrase, onLight, onSour
       <h2>{title}</h2>
       <p className="api-map__raw-name"><code>{decl.fullName}</code></p>
       <PhraseQuotes phrases={phrases} onPhrase={onPhrase} />
-      {decl.doc && <p className="api-map__doc"><Doc text={decl.doc} /></p>}
+      {note && <div className="api-map__note">
+        <p className="api-map__said-label">Reading note <span>AI-drafted</span></p>
+        <p dangerouslySetInnerHTML={{ __html: note }} />
+      </div>}
+      {decl.doc && <div className="api-map__docstring">
+        <p className="api-map__said-label">Docstring in Physlib</p>
+        <p className="api-map__doc"><Doc text={decl.doc} /></p>
+      </div>}
       {decl.signature && (
         <div className="decl__code api-map__signature" tabIndex={0} aria-label={decl.signature.includes("…") ? "Lean signature excerpt" : "Lean signature"}>
           {decl.signature.includes("…") && <p className="api-map__excerpt">Signature excerpt</p>}

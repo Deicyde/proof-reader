@@ -1525,6 +1525,23 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
           and entries.first.locator(".api-map__raw-name").inner_text() == "LocalGaugeData.iteratedDeriv",
           "the declaration leads with its glossary title and retains its exact Lean name")
     check(paper.evaluate("(el) => el.scrollTop") == left_top, "selecting a citation keeps the reading position")
+    check(entries.evaluate_all("(cards) => cards.every((c) => c.querySelector('.api-map__note .katex'))"),
+          "every declaration in the citation has a reading note with typeset formulas")
+    check("ai-drafted" in entries.first.locator(".api-map__note").inner_text().lower(), "a reading note is marked as AI-drafted")
+    copied_note = entries.first.locator(".api-map__note").evaluate("""(note) => {
+      const formula = [...note.querySelectorAll('.katex')].find((k) =>
+        k.querySelector('annotation')?.textContent.trim() === '\\\\partial_0 \\\\partial_0 \\\\partial_2');
+      const range = document.createRange();
+      range.selectNodeContents(formula.querySelector('.katex-html'));
+      const selected = getSelection();
+      selected.removeAllRanges();
+      selected.addRange(range);
+      const data = new DataTransfer();
+      formula.dispatchEvent(new ClipboardEvent('copy', { clipboardData: data, bubbles: true, cancelable: true }));
+      selected.removeAllRanges();
+      return data.getData('text/plain');
+    }""")
+    check(copied_note == "∂₀ ∂₀ ∂₂", "a formula selected in a reading note copies as Unicode")
     check(cite.get_attribute("aria-expanded") == "true", "the related mark is selected in the article")
     shot(page, shots, f"physlib-gauge-theory-{'phone' if mobile else 'desktop'}")
     entries.first.get_by_role("button", name="View source at line 216").click()
@@ -1667,6 +1684,13 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     deps.get_by_role("button", name="See all 39 API maps in Physlib").click()
     dialog = page.get_by_role("dialog", name="All 39 API maps in Physlib")
     wait_until(page, lambda: dialog.locator(".deps__card").count() == 39, "the full view shows all 39 maps")
+    check(dialog.evaluate("""(root) => [...root.querySelectorAll('.deps__card')].every((card) => {
+      const box = card.getBoundingClientRect();
+      return [...card.querySelectorAll('.deps__title, .deps__count')].every((el) =>
+        el.getBoundingClientRect().right <= box.right + 0.5 && el.scrollWidth <= el.clientWidth + 1);
+    })"""), "every card's title and claim count stay inside the card")
+    check(dialog.locator(".deps__stage").first.evaluate("(el) => getComputedStyle(el).transform") == "none",
+          "the full view draws the maps at full size and scrolls instead of shrinking")
     check(dialog.get_by_role("button", name="Close").evaluate("(el) => el === document.activeElement"), "the full view starts on its Close button")
     page.keyboard.press("Escape")
     wait_until(page, lambda: not dialog.is_visible(), "Escape closes the full view")

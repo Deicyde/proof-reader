@@ -490,4 +490,13 @@ for (const entry of outline) {
   entry.title = entry.title.replace(new RegExp(`${OPEN}(\\d+)${CLOSE}`, "g"), (_m, n) => plainMath(spans[Number(n)].tex, false));
 }
 
-process.stdout.write(JSON.stringify({ html, math, outline, ...(apiMap ? { paragraphs: apiParagraphs, phrases: apiPhrases, tones: apiTones, concepts: apiMap.concepts, sectionTopics } : {}), ...(guide ? { source_blocks: sourceBlocks, quote_html: quoteHtml, heading_aliases: headingAliases } : {}) }));
+// Reading notes: plain text with $…$ TeX, typeset like the map, and `…` for Lean names.
+const noteHtml = Object.fromEntries(Object.entries(apiMap?.notes ?? {}).map(([name, note]) => {
+  if ((note.match(/\$/g) ?? []).length % 2) throw new Error(`Unpaired $ in the reading note for ${name}`);
+  return [name, note.split(/(\$[^$]+\$|`[^`]+`)/).map((part) => {
+    if (part.startsWith("$")) return katex.renderToString(part.slice(1, -1), { output: "htmlAndMathml", strict: "ignore", throwOnError: true, trust: false });
+    if (part.startsWith("`")) return `<code>${escapeHtml(part.slice(1, -1))}</code>`;
+    return escapeHtml(part);
+  }).join("")];
+}));
+process.stdout.write(JSON.stringify({ html, math, outline, ...(apiMap ? { paragraphs: apiParagraphs, phrases: apiPhrases, tones: apiTones, concepts: apiMap.concepts, sectionTopics, noteHtml } : {}), ...(guide ? { source_blocks: sourceBlocks, quote_html: quoteHtml, heading_aliases: headingAliases } : {}) }));
