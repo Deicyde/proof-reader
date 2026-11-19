@@ -463,5 +463,5 @@ with the comparison for Theorem 4.1.
 [couplingPotential_iteratedFDeriv_two]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L106-L130
 [couplingPotential_posDef]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L142-L151
 [coupled_spring_potential]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L153-L160
-[couplingPotential_origin_le]: https://github.com/wcook04/proof-reader/blob/416f0020df20740cc08585f8865ab2b14303b87c/papers/coupled-spring/checks/GlobalMinimum.lean#L16-L20
-[couplingPotential_pos]: https://github.com/wcook04/proof-reader/blob/416f0020df20740cc08585f8865ab2b14303b87c/papers/coupled-spring/checks/StrictMinimum.lean#L3-L30
+[couplingPotential_origin_le]: https://github.com/wcook04/proof-reader/blob/main/papers/coupled-spring/checks/GlobalMinimum.lean#L16-L20
+[couplingPotential_pos]: https://github.com/wcook04/proof-reader/blob/main/papers/coupled-spring/checks/StrictMinimum.lean#L3-L30

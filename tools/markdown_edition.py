@@ -14,7 +14,6 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import subprocess
 import sys
 from pathlib import Path
 
@@ -22,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import paper as tool  # noqa: E402
 
 SITE = "https://wcook04.github.io/proof-reader/#/{slug}"
-REPO = "https://github.com/wcook04/proof-reader/blob/{commit}/papers/{slug}/{path}#L{line}-L{end}"
+REPO = "https://github.com/wcook04/proof-reader/blob/main/papers/{slug}/{path}#L{line}-L{end}"
 VERDICT = {"same": "Same statement", "stronger": "Lean is stronger", "weaker": "Lean is weaker",
            "different": "Different statement"}
 
@@ -67,11 +66,6 @@ def excerpt(lines: list[str], first: int, last: int, keyword: str, whole: bool =
     return "\n".join(lines[top - 1:last if whole else end]), at, end
 
 
-def commit_of(folder: Path) -> str:
-    return subprocess.run(["git", "log", "-1", "--format=%H", "--", "."], cwd=folder,
-                          capture_output=True, text=True, check=True).stdout.strip()
-
-
 def details(entries: list[dict]) -> str:
     if len(entries) == 1:
         heading = f"{entries[0]['title']} · <code>{entries[0]['name']}</code>"
@@ -100,7 +94,6 @@ def build(slug: str) -> Path:
     checks = {c["name"]: c for c in resolved["checks"]}
     lean = config["lean"]
     project = tool.lean_project(folder, config)
-    commit = commit_of(folder)
 
     def lean_entry(name: str, proof: bool = False) -> dict:
         row = written[name]
@@ -116,7 +109,7 @@ def build(slug: str) -> Path:
 
     def check_entry(name: str) -> dict:
         c = checks[name]
-        url = REPO.format(commit=commit, slug=slug, path=c["file"], line=c["line"], end=c["end_line"])
+        url = REPO.format(slug=slug, path=c["file"], line=c["line"], end=c["end_line"])
         code = c["code"].split(":= by")[0].rstrip() + " := by"
         where = (f"Written for this page and accepted by Lean against the two files: "
                  f"[{c['file']}, lines {c['line']}–{c['end_line']}][{name}]. It is not in Physlib.")
