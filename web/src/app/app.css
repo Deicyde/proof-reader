@@ -70,6 +70,9 @@ button:disabled { cursor: default; }
 .bar .fam-lockup__home img { width: 24px; height: 24px; }
 .bar .fam-lockup__site { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); text-decoration: none; white-space: nowrap; }
 .bar .fam-lockup__name { font-family: var(--font-serif); font-size: 1rem; }
+/* The reading page's first column is the rail's width, too narrow for "Will Cook" and
+   "Proof Reader" both: the book mark stands for the site there, and the front page names it. */
+.bar--spread .fam-lockup__name { display: none; }
 .bookmark { display: block; flex: none; }
 .bar__title { min-width: 0; flex: 1; display: flex; align-items: baseline; gap: 10px; }
 .bar__paper { min-width: 0; overflow: hidden; text-overflow: ellipsis; margin: 0; font-family: var(--font-serif); font-size: 1rem; font-weight: 400; color: var(--ink); white-space: nowrap; }

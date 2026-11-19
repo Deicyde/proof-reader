@@ -79,6 +79,8 @@ function notFound(base: string, papers: ShelfItem[]): string {
   .lockup { display: flex; align-items: center; gap: 10px; margin-bottom: 28px; font-size: 1rem; }
   .lockup i { width: 1px; height: 1.35rem; background: currentColor; opacity: 0.3; }
   .lockup img { display: block; }
+  .lockup .home { display: inline-flex; align-items: center; gap: 8px; color: inherit; text-decoration: none; }
+  .lockup b { font: 650 1rem/1 system-ui, -apple-system, "Segoe UI", sans-serif; white-space: nowrap; }
   h1 { margin: 0 0 12px; font-size: 1.75rem; font-weight: 400; }
   a { color: #a25200; }
   ul { padding-left: 1.2em; }
@@ -87,7 +89,7 @@ function notFound(base: string, papers: ShelfItem[]): string {
 </head>
 <body>
 <main>
-<p class="lockup"><a href="https://wcook04.github.io/" rel="author"><img src="${base}plectis.svg" alt="Will Cook: all websites and films" width="26" height="26" /></a><i></i><a href="${base}">Proof Reader</a></p>
+<p class="lockup"><a class="home" href="https://wcook04.github.io/" rel="author" title="All of Will Cook's projects and videos"><img src="${base}plectis.svg" alt="" width="26" height="26" /><b>Will Cook</b></a><i></i><a href="${base}">Proof Reader</a></p>
 <h1>There is nothing at this address.</h1>
 <p>Proof Reader shows a paper beside its Lean proof. These are the papers on the site:</p>
 <ul>

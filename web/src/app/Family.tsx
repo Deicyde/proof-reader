@@ -10,11 +10,12 @@ const THIS_SITE = "proof-reader";
 export function Lockup({ here = false }: { here?: boolean }) {
   return (
     <span className="fam-lockup">
-      <a className="fam-lockup__home" href={family.owner.home} rel="author" title="All of Will Cook's websites and films">
-        <img src={`${import.meta.env.BASE_URL}plectis.svg`} alt="Will Cook: all websites and films" width={26} height={26} />
+      <a className="fam-lockup__home" href={family.owner.home} rel="author" title="All of Will Cook's projects and videos">
+        <img src={`${import.meta.env.BASE_URL}plectis.svg`} alt="" width={26} height={26} />
+        <span className="fam-lockup__owner" translate="no">Will Cook</span>
       </a>
       <span className="fam-lockup__rule" aria-hidden="true" />
-      <a className="fam-lockup__site" href={routeHref({})} aria-label="Proof Reader, all papers" aria-current={here ? "page" : undefined}>
+      <a className="fam-lockup__site" href={routeHref({})} aria-label="Proof Reader, all papers" title="Proof Reader, all papers" aria-current={here ? "page" : undefined}>
         <BookMark />
         <span className="fam-lockup__name" translate="no">Proof Reader</span>
       </a>

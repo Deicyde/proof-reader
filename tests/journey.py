@@ -396,7 +396,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     print("The family")
     home = page.locator(".fam-lockup__home")
     check(home.get_attribute("href") == "https://wcook04.github.io/", "the plait links home")
-    check(home.locator("img").get_attribute("alt") == "Will Cook: all websites and films", "with the family's accessible name")
+    check(home.locator(".fam-lockup__owner").inner_text() == "Will Cook" and home.locator("img").get_attribute("alt") == "", "it names Will Cook beside the plait")
     check(home.locator("img").evaluate("(img) => img.complete && img.naturalWidth > 0"), "and its picture loads from this site")
     check(page.locator(".bar").bounding_box()["height"] <= 47, "the header keeps its height")
     check(page.locator(".bar__film").get_attribute("href") == "https://www.youtube.com/watch?v=LZxaDZ-gQm8", "the header opens the short video")
