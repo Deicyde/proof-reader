@@ -396,13 +396,60 @@ Statement copied from [PartialDerivativeTest.lean, lines 514–530][le_of_little
 </details>
 
 For U the Taylor error is zero. Now add a cubic and set
-W(x) = U(x) + x₀³. At the origin the gradient and Hessian are unchanged.
-Here the error matters. If ‖x‖ ≤ 1/4, then
-|x₀|³ ≤ ¼‖x‖², so
-W(x) − W(0) ≥ ¼‖x‖².
+W(x) = U(x) + x₀³. At the origin the gradient and Hessian are unchanged,
+and the Taylor error is the cubic itself. If |x₀| < ¼, then
+x₀³ ≥ −¼x₀², so
+W(x) ≥ (x₁ + ½x₀)² + ½x₀², which is positive unless x = 0.
 The origin is still a strict local minimum, even though
-W(−2, 0) = −4 < W(0). This is what local curvature can tell us when the
-quadratic approximation ceases to control the function farther away.
+W(−2, 0) = −4 < W(0). A supplementary Lean proof checks the local minimum and
+the value at (−2, 0). Near the origin the quadratic terms are larger than the
+cubic, and far from it they are not, which is why the test can only give a
+local conclusion.
+
+<details>
+<summary><b>Lean proof</b> · 2 statements: Adding `x₀³` keeps a local minimum at the origin: near the origin `|x₀| < 1/4`, and then the potential is at least `(x₁ + x₀/2)² + x₀²/2`; The origin is not a global minimum after adding `x₀³`: the value at `(-2, 0)` is `-4`</summary>
+
+**Adding `x₀³` keeps a local minimum at the origin: near the origin `|x₀| < 1/4`, and then the potential is at least `(x₁ + x₀/2)² + x₀²/2`** · `cubicPerturbation_isLocalMin`
+
+```lean
+/-- Adding `x₀³` keeps a local minimum at the origin: near the origin `|x₀| < 1/4`, and then
+the potential is at least `(x₁ + x₀/2)² + x₀²/2`. -/
+theorem cubicPerturbation_isLocalMin :
+    IsLocalMin cubicPerturbation (0 : EuclideanSpace ℝ (Fin 2)) := by
+  have hc : Continuous (fun x : EuclideanSpace ℝ (Fin 2) => x 0) :=
+    (EuclideanSpace.proj (𝕜 := ℝ) (0 : Fin 2)).continuous
+  have ht : Filter.Tendsto (fun x : EuclideanSpace ℝ (Fin 2) => x 0) (nhds 0) (nhds 0) := by
+    simpa using hc.tendsto (0 : EuclideanSpace ℝ (Fin 2))
+  have hnear : ∀ᶠ x in nhds (0 : EuclideanSpace ℝ (Fin 2)), |x 0| < 1 / 4 := by
+    filter_upwards [ht.eventually (Metric.ball_mem_nhds (0 : ℝ) (by norm_num : (0 : ℝ) < 1 / 4))]
+      with x hx
+    simpa [Metric.mem_ball, Real.dist_eq] using hx
+  filter_upwards [hnear] with x hx
+  have h0 : cubicPerturbation (0 : EuclideanSpace ℝ (Fin 2)) = 0 := by
+    simp [cubicPerturbation, couplingPotential]
+  rw [h0]
+  have hlo : -(1 / 4 : ℝ) < x 0 := (abs_lt.mp hx).1
+  have hprod : 0 ≤ (x 0) ^ 2 * (x 0 + 1 / 4) := mul_nonneg (sq_nonneg _) (by linarith)
+  unfold cubicPerturbation couplingPotential
+  nlinarith [sq_nonneg (x 1 + x 0 / 2), sq_nonneg (x 0), hprod]
+```
+
+Lean accepted this supplementary proof, written with AI for this page. [checks/CubicPerturbation.lean, lines 7–26][cubicPerturbation_isLocalMin].
+
+**The origin is not a global minimum after adding `x₀³`: the value at `(-2, 0)` is `-4`** · `cubicPerturbation_not_global`
+
+```lean
+/-- The origin is not a global minimum after adding `x₀³`: the value at `(-2, 0)` is `-4`. -/
+theorem cubicPerturbation_not_global :
+    cubicPerturbation (!₂[-2, 0] : EuclideanSpace ℝ (Fin 2))
+      < cubicPerturbation (0 : EuclideanSpace ℝ (Fin 2)) := by
+  simp [cubicPerturbation, couplingPotential]
+  norm_num
+```
+
+Lean accepted this supplementary proof, written with AI for this page. [checks/CubicPerturbation.lean, lines 28–33][cubicPerturbation_not_global].
+
+</details>
 
 ### The smoothness hypothesis in Lean
 
@@ -419,7 +466,7 @@ differentiable function also has the required Taylor remainder. The
 Physlib test used here takes analyticity at the point.
 
 <details>
-<summary><b>Lean</b> · 3 statements: The test from a Taylor error bound; Lower bound for a smooth function; The remainder lemma without smoothness</summary>
+<summary><b>Lean</b> · 3 statements: The test from a Taylor error bound; Lower bound for a smooth function; The little-o form of the second-derivative test holds without the smoothness hypothesis: the proof of `isLocalMin_of_posDef_of_littleo` with its use of that hypothesis removed</summary>
 
 **The test from a Taylor error bound** · `isLocalMin_of_posDef_of_littleo`
 
@@ -433,6 +480,8 @@ theorem isLocalMin_of_posDef_of_littleo {V : Type*} [NormedAddCommGroup V]
 ```
 
 Statement copied from [PartialDerivativeTest.lean, lines 534–554][isLocalMin_of_posDef_of_littleo] in Physlib at be0a9ee; the proof is at the link.
+
+**Comparison with the page, made by AI and not reviewed: lean is weaker.** The page's argument needs the Taylor estimate, a zero gradient and a positive definite second derivative. The Lean statement also assumes ContDiffAt ℝ ⊤ f x₀, so it says less than the argument gives. Its proof obtains the lower bound from coercive_of_posdef and again from coercive_of_posdef_of_contdiff, and only the second uses the extra hypothesis. The supplementary Lean proof reaches the same conclusion without it.
 
 **Lower bound for a smooth function** · `coercive_of_posdef_of_contdiff`
 
@@ -452,7 +501,7 @@ lemma coercive_of_posdef_of_contdiff {V : Type*}
 
 Statement copied from [PartialDerivativeTest.lean, lines 432–452][coercive_of_posdef_of_contdiff] in Physlib at be0a9ee; the proof is at the link.
 
-**The remainder lemma without smoothness** · `isLocalMin_of_posDef_of_littleo_without_smoothness`
+**The little-o form of the second-derivative test holds without the smoothness hypothesis: the proof of `isLocalMin_of_posDef_of_littleo` with its use of that hypothesis removed** · `isLocalMin_of_posDef_of_littleo_without_smoothness`
 
 ```lean
 /-- The little-o form of the second-derivative test holds without the smoothness hypothesis:
@@ -540,8 +589,11 @@ the springs obey Hooke's law.
   Mathlib and rejected a control that asked for a local maximum.
 
 AI agents wrote this companion under Will Cook’s direction. Lean checked
-the two original modules and the supplementary proofs. The prose, the
-passage links and the mechanics model await independent expert review.
+the two original modules and the supplementary proofs. A test in the
+repository recomputes each identity, bound, frequency and sign stated here in
+exact arithmetic and fails if the prose states a different one. It does not
+judge the physical model. The prose, the passage links and the mechanics model
+await independent expert review.
 
 [physlib-u]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean
 [physlib-test]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean
@@ -567,12 +619,15 @@ The statements on this page that were compared with a Lean declaration, and the 
 | Zero gradient at the origin | [`couplingPotential_gradient_zero`][couplingPotential_gradient_zero] | Same statement |
 | Second derivative of the potential | [`couplingPotential_iteratedFDeriv_two`][couplingPotential_iteratedFDeriv_two] | Same statement |
 | Positive definite at the origin | [`couplingPotential_posDef`][couplingPotential_posDef] | Same statement |
-| The remainder lemma without smoothness | [`isLocalMin_of_posDef_of_littleo_without_smoothness`][isLocalMin_of_posDef_of_littleo_without_smoothness] | Written by AI for this page; not in Physlib |
+| Adding `x₀³` keeps a local minimum at the origin: near the origin `|x₀| < 1/4`, and then the potential is at least `(x₁ + x₀/2)² + x₀²/2` | [`cubicPerturbation_isLocalMin`][cubicPerturbation_isLocalMin] | Written by AI for this page; not in Physlib |
+| The origin is not a global minimum after adding `x₀³`: the value at `(-2, 0)` is `-4` | [`cubicPerturbation_not_global`][cubicPerturbation_not_global] | Written by AI for this page; not in Physlib |
+| The test from a Taylor error bound | [`isLocalMin_of_posDef_of_littleo`][isLocalMin_of_posDef_of_littleo] | Lean is weaker |
+| The little-o form of the second-derivative test holds without the smoothness hypothesis: the proof of `isLocalMin_of_posDef_of_littleo` with its use of that hypothesis removed | [`isLocalMin_of_posDef_of_littleo_without_smoothness`][isLocalMin_of_posDef_of_littleo_without_smoothness] | Written by AI for this page; not in Physlib |
 
 [couplingPotential]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L56-L57
-[couplingPotential_origin_lt]: https://github.com/wcook04/proof-reader/blob/f540e6ccdf4e56dcdd083fef84bed5b9301f7bdd/papers/coupled-spring/checks/StrictMinimum.lean#L32-L41
-[couplingPotential_eq_sq_add_sq]: https://github.com/wcook04/proof-reader/blob/f540e6ccdf4e56dcdd083fef84bed5b9301f7bdd/papers/coupled-spring/checks/GlobalMinimum.lean#L3-L7
-[couplingPotential_pos]: https://github.com/wcook04/proof-reader/blob/f540e6ccdf4e56dcdd083fef84bed5b9301f7bdd/papers/coupled-spring/checks/StrictMinimum.lean#L3-L30
+[couplingPotential_origin_lt]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/StrictMinimum.lean#L32-L41
+[couplingPotential_eq_sq_add_sq]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/GlobalMinimum.lean#L3-L7
+[couplingPotential_pos]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/StrictMinimum.lean#L3-L30
 [coupled_spring_potential]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L153-L160
 [second_derivative_test_analyticAt]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L600-L606
 [couplingPotential_analyticAt]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L68-L75
@@ -584,6 +639,8 @@ The statements on this page that were compared with a Lean declaration, and the 
 [coercive_of_posdef]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L455-L505
 [littleO_of_powerseries]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L558-L568
 [le_of_littleO]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L514-L530
+[cubicPerturbation_isLocalMin]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/CubicPerturbation.lean#L7-L26
+[cubicPerturbation_not_global]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/CubicPerturbation.lean#L28-L33
 [isLocalMin_of_posDef_of_littleo]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L534-L554
 [coercive_of_posdef_of_contdiff]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L432-L452
-[isLocalMin_of_posDef_of_littleo_without_smoothness]: https://github.com/wcook04/proof-reader/blob/f540e6ccdf4e56dcdd083fef84bed5b9301f7bdd/papers/coupled-spring/checks/WithoutSmoothness.lean#L5-L26
+[isLocalMin_of_posDef_of_littleo_without_smoothness]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/WithoutSmoothness.lean#L5-L26

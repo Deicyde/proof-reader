@@ -230,6 +230,21 @@
       }
     },
     {
+      "id": "cubic-local-minimum",
+      "section": "3. Why the test is useful",
+      "role": "states",
+      "lean": [],
+      "quote": "A supplementary Lean proof checks the local minimum and\nthe value at $(-2,0)$.",
+      "anchor": {
+        "heading": "3. Why the test is useful",
+        "block": 4
+      },
+      "checks": [
+        "cubicPerturbation_isLocalMin",
+        "cubicPerturbation_not_global"
+      ]
+    },
+    {
       "id": "lean-smoothness",
       "section": "The smoothness hypothesis in Lean",
       "role": "explains",
@@ -352,6 +367,16 @@
         "potential-positive-definite"
       ],
       "checks": []
+    },
+    "isLocalMin_of_posDef_of_littleo": {
+      "verdict": "weaker",
+      "because": [
+        "lean-smoothness"
+      ],
+      "checks": [
+        "isLocalMin_of_posDef_of_littleo_without_smoothness"
+      ],
+      "text": "The page's argument needs the Taylor estimate, a zero gradient and a positive definite second derivative. The Lean statement also assumes ContDiffAt ℝ ⊤ f x₀, so it says less than the argument gives. Its proof obtains the lower bound from coercive_of_posdef and again from coercive_of_posdef_of_contdiff, and only the second uses the extra hypothesis. The supplementary Lean proof reaches the same conclusion without it."
     }
   }
 }

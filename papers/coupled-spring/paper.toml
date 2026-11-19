@@ -26,4 +26,4 @@ language = "lean"
 evidence = "comparator"
 
 [checks]
-source_lines = "https://github.com/wcook04/proof-reader/blob/f540e6ccdf4e56dcdd083fef84bed5b9301f7bdd/papers/coupled-spring/{path}#L{line}-L{end}"
+source_lines = "https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/{path}#L{line}-L{end}"

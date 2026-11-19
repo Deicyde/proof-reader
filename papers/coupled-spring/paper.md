@@ -98,13 +98,15 @@ Lean's `IsLocalMin`. The same estimate with $\epsilon=C/4$ gives
 a strict inequality for nonzero $h$ in a possibly smaller neighbourhood.
 
 For $U$ the Taylor error is zero. Now add a cubic and set
-$W(x)=U(x)+x_0^3$. At the origin the gradient and Hessian are unchanged.
-Here the error matters. If $\lVert x\rVert\le1/4$, then
-$|x_0|^3\le\tfrac14\lVert x\rVert^2$, so
-$W(x)-W(0)\ge\tfrac14\lVert x\rVert^2$.
+$W(x)=U(x)+x_0^3$. At the origin the gradient and Hessian are unchanged,
+and the Taylor error is the cubic itself. If $|x_0|<\tfrac14$, then
+$x_0^3\ge-\tfrac14x_0^2$, so
+$W(x)\ge\left(x_1+\tfrac12x_0\right)^2+\tfrac12x_0^2$, which is positive unless $x=0$.
 The origin is still a strict local minimum, even though
-$W(-2,0)=-4<W(0)$. This is what local curvature can tell us when the
-quadratic approximation ceases to control the function farther away.
+$W(-2,0)=-4<W(0)$. A supplementary Lean proof checks the local minimum and
+the value at $(-2,0)$. Near the origin the quadratic terms are larger than the
+cubic, and far from it they are not, which is why the test can only give a
+local conclusion.
 
 ### The smoothness hypothesis in Lean
 
@@ -177,8 +179,11 @@ the springs obey Hooke's law.
   Mathlib and rejected a control that asked for a local maximum.
 
 AI agents wrote this companion under Will Cook’s direction. Lean checked
-the two original modules and the supplementary proofs. The prose, the
-passage links and the mechanics model await independent expert review.
+the two original modules and the supplementary proofs. A test in the
+repository recomputes each identity, bound, frequency and sign stated here in
+exact arithmetic and fails if the prose states a different one. It does not
+judge the physical model. The prose, the passage links and the mechanics model
+await independent expert review.
 
 [physlib-u]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean
 [physlib-test]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean
