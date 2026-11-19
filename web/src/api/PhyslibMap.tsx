@@ -31,6 +31,14 @@ interface Reference {
   text: string;
   apiMap: string | null;
 }
+interface Phrase {
+  id: number;
+  citation: string;
+  quote: string;
+  names: string[];
+  tone: number;
+  html: string;
+}
 interface Edition {
   title: string;
   repo: string;
@@ -44,6 +52,10 @@ interface Edition {
   references: Reference[];
   glossary: Record<string, string>;
   paragraphs: Record<string, string[]>;
+  phrases: Phrase[];
+  tones: Record<string, number>;
+  concepts: { name: string; citations: number[] }[];
+  sectionTopics: Record<string, number[]>;
   maps: MapNode[];
 }
 
@@ -88,6 +100,8 @@ function MapReader({ edition }: { edition: Edition }) {
   const [sourceFailed, setSourceFailed] = useState(false);
   const [markdown, setMarkdown] = useState<string | null>(null);
   const [message, setMessage] = useState("");
+  const [lit, setLit] = useState<string[] | null>(null);
+  const [pickedPhrase, setPickedPhrase] = useState<number | null>(null);
   const scheme = useScheme();
   const paper = useRef<HTMLDivElement>(null);
   const article = useRef<HTMLElement>(null);
@@ -110,6 +124,11 @@ function MapReader({ edition }: { edition: Edition }) {
     .map((item) => ({ ...item, ties: 0, page: null })), [edition]);
   const order = useMemo(() => [...new Set(Array.from(edition.html.matchAll(/data-api-citation="(lean-\d+)"/g), (match) => match[1]))], [edition]);
   const position = order.indexOf(paragraph?.find((id) => id.startsWith("lean-")) ?? citation);
+  const phrasesOf = useMemo(() => {
+    const byName = new Map<string, Phrase[]>();
+    for (const phrase of edition.phrases) for (const name of phrase.names) byName.set(name, [...byName.get(name) ?? [], phrase]);
+    return byName;
+  }, [edition]);
   const declarations = useMemo(() => edition.leanReferences.flatMap((item) => item.declarations.map((d) => ({
     id: d.fullName, plain: edition.glossary[d.fullName], file: item.file, line: d.line, end_line: d.line,
   }))), [edition]);
@@ -135,6 +154,7 @@ function MapReader({ edition }: { edition: Edition }) {
     setSourceLine(null);
     setRecord(next);
     setRail(false);
+    setPickedPhrase(null);
   };
 
   const focusDeclaration = (name: string) => {
@@ -235,6 +255,38 @@ function MapReader({ edition }: { edition: Edition }) {
     scrollSource.current = false;
   }, [sourceLine, files]);
 
+  const showPhrase = (id: number) => {
+    const element = article.current?.querySelector<HTMLElement>(`[data-phrase="${id}"]`);
+    if (!element) return;
+    locate(element, true);
+    element.classList.remove("is-flash");
+    void element.offsetWidth;
+    element.classList.add("is-flash");
+  };
+  const openPhrase = (id: number) => {
+    const phrase = edition.phrases[id];
+    scrollDeclaration.current = phrase.names[0];
+    navigate(`@${phrase.citation}`);
+    setPickedPhrase(id);
+    if (citation === phrase.citation && sourceLine === null) focusDeclaration(phrase.names[0]);
+  };
+
+  // Light a phrase and its declarations together, wherever the pointer is.
+  useLayoutEffect(() => {
+    const names = new Set(lit ?? []);
+    article.current?.querySelectorAll<HTMLElement>("[data-phrase]").forEach((element) => {
+      const phrase = edition.phrases[Number(element.dataset.phrase)];
+      element.classList.toggle("is-lit", phrase.names.some((name) => names.has(name)));
+      element.classList.toggle("is-active", phrase.citation === citation || paragraph?.includes(phrase.citation) === true);
+      element.classList.toggle("is-picked", phrase.id === pickedPhrase);
+    });
+    right.current?.querySelectorAll<HTMLElement>("[data-lean-name]").forEach((element) => {
+      const name = element.dataset.leanName ?? "";
+      element.classList.toggle("is-lit", names.has(name));
+      element.classList.toggle("is-picked", pickedPhrase !== null && edition.phrases[pickedPhrase].names.includes(name));
+    });
+  });
+
   const close = () => {
     navigate(null);
     focusBack.current?.focus({ preventScroll: true });
@@ -245,6 +297,8 @@ function MapReader({ edition }: { edition: Edition }) {
   };
   const declarationsFor = (item: Group) => item.declarations.map((d) => (
     <DeclarationCard key={d.fullName} decl={d} title={edition.glossary[d.fullName]} sourceUrl={sourceOf(edition, item.file, d.line)}
+      tone={edition.tones[citeKey(item)]} phrases={phrasesOf.get(d.fullName) ?? []} onPhrase={showPhrase}
+      onLight={(on) => setLit(on ? [d.fullName] : null)}
       onSource={() => {
         if (item !== group) navigate(`@${citeKey(item)}`);
         openSource(d.line);
@@ -293,7 +347,17 @@ function MapReader({ edition }: { edition: Edition }) {
       <main className={`spread spread--reading has-right api-map__spread${group || ref || paragraph || record === "@index" ? " is-open" : ""}`}>
         <Contents
           noun="map" outline={outline} current={section} open={rail} declarations={declarations} files={files ?? {}} html={edition.html} copy="reading"
-          topLabel="Start of map" keys={<span><kbd>j</kbd> and <kbd>k</kbd> step through Lean citations. <kbd>Esc</kbd> closes a citation.</span>}
+          topLabel="Start of map"
+          marks={Object.fromEntries(Object.entries(edition.sectionTopics).map(([id, topics]) => [id,
+            <span key={id} className="api-map__topic-bars" title={`Cites Lean on: ${topics.map((t) => edition.concepts[t].name).join(", ")}`}>
+              {topics.map((t) => <span key={t} data-tone={t * 2} />)}
+            </span>]))}
+          keys={<>
+            <span className="api-map__key"><span className="api-map__key-label">Topic colours</span>
+              {edition.concepts.map((c, t) => <span key={c.name} className="api-map__topic" data-tone={t * 2}>{c.name}</span>)}
+            </span>
+            <span><kbd>j</kbd> and <kbd>k</kbd> step through Lean citations. <kbd>Esc</kbd> closes a citation.</span>
+          </>}
           onTop={() => navigate(null, true)} onJump={(id) => navigate(`@${id}`, true)}
           onBlock={(element) => { locate(element); setRail(false); }}
           onName={openDeclaration}
@@ -307,6 +371,13 @@ function MapReader({ edition }: { edition: Edition }) {
                 if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
                 const target = event.target as Element;
                 const mark = target.closest<HTMLAnchorElement>("[data-api-citation]");
+                const phrase = target.closest<HTMLElement>("[data-phrase]");
+                if (!mark && phrase && !target.closest("a")) {
+                  event.preventDefault();
+                  if (window.getSelection()?.toString()) return;
+                  openPhrase(Number(phrase.dataset.phrase));
+                  return;
+                }
                 const block = target.closest<HTMLElement>("[data-api-paragraph]");
                 if (!mark && (!block || target.closest("a:not(.api-map__passage)"))) return;
                 const link = mark ?? block?.querySelector<HTMLAnchorElement>(".api-map__passage");
@@ -317,7 +388,11 @@ function MapReader({ edition }: { edition: Edition }) {
                 const record = link.hash.split("/").at(-1) ?? null;
                 const isClosedOnMobile = !group && !ref && !paragraph && citation !== "index" && window.matchMedia("(max-width: 900px)").matches;
                 navigate(record, isClosedOnMobile);
-              }} />
+              }} onMouseOver={(event) => {
+                const phrase = (event.target as Element).closest<HTMLElement>("[data-phrase]");
+                const names = phrase ? edition.phrases[Number(phrase.dataset.phrase)].names : null;
+                if (names?.join() !== lit?.join()) setLit(names);
+              }} onMouseLeave={() => setLit(null)} />
               <div className="sheet__text api-map__deps-wrap">
                 <DependencyMap maps={edition.maps} current={edition.path} tracker={tracker} home={indexRoute()} />
               </div>
@@ -352,7 +427,7 @@ function MapReader({ edition }: { edition: Edition }) {
                   </div>
                   {sourceLine === null ? (
                     <>
-                      <p className="api-map__glossary-credit">AI-drafted reading titles added by Proof Reader.</p>
+                      <p className="api-map__glossary-credit">AI-drafted reading titles, phrase matches and topics added by Proof Reader.</p>
                       {declarationsFor(group)}
                     </>
                   ) : files ? (
@@ -368,7 +443,7 @@ function MapReader({ edition }: { edition: Edition }) {
                   <div className="api-map__file">
                     <nav className="api-map__paragraph-jumps" aria-label="References in this paragraph">
                       {paragraphReferences.map(({ id, lean, general }) => (
-                        <button key={id} type="button" aria-label={lean ? `Jump to Lean citation ${lean.index}` : `Jump to reference ${general?.index}`}
+                        <button key={id} type="button" data-tone={lean ? edition.tones[id] : undefined} aria-label={lean ? `Jump to Lean citation ${lean.index}` : `Jump to reference ${general?.index}`}
                           onClick={() => right.current?.querySelector(`[data-reference="${id}"]`)?.scrollIntoView({ block: "start" })}>
                           {lean ? `[${lean.index}]` : `{${general?.index}}`}
                         </button>
@@ -376,9 +451,9 @@ function MapReader({ edition }: { edition: Edition }) {
                     </nav>
                     <button type="button" onClick={() => void copy(() => location.href, "Paragraph link copied")}>Copy link</button>
                   </div>
-                  {paragraphReferences.some((item) => item.lean) && <p className="api-map__glossary-credit">AI-drafted reading titles added by Proof Reader.</p>}
+                  {paragraphReferences.some((item) => item.lean) && <p className="api-map__glossary-credit">AI-drafted reading titles, phrase matches and topics added by Proof Reader.</p>}
                   {paragraphReferences.map(({ id, lean, general }) => (
-                    <section className="api-map__paragraph-group" key={id} data-reference={id}>
+                    <section className="api-map__paragraph-group" key={id} data-reference={id} data-tone={lean ? edition.tones[id] : undefined}>
                       <button type="button" className="api-map__paragraph-name" onClick={() => navigate(`@${id}`)}>{lean ? `Lean citation [${lean.index}], ${lean.declarations.length} ${lean.declarations.length === 1 ? "declaration" : "declarations"}` : `Reference {${general?.index}}`}</button>
                       {lean && declarationsFor(lean)}
                       {general && <BibliographyReference reference={general} />}
@@ -387,18 +462,24 @@ function MapReader({ edition }: { edition: Edition }) {
                 </>
               ) : (
                 <>
-                  <p className="api-map__aside-note">Choose a numbered citation in the map, or look up a declaration below.</p>
-                  <p className="api-map__glossary-credit">AI-drafted reading titles added by Proof Reader. Lean names and signatures are from Physlib.</p>
+                  <p className="api-map__aside-note api-map__lede">The map cites {edition.leanReferences.reduce((n, item) => n + item.declarations.length, 0)} Lean declarations in {edition.leanReferences.length} numbered citations, listed here under {edition.concepts.length} topics. In the map, the phrases a declaration states are underlined in its topic’s colour. Point at a title to highlight its phrase in the map.</p>
+                  <p className="api-map__glossary-credit">AI-drafted reading titles, phrase matches and topics added by Proof Reader. Lean names and signatures are from Physlib.</p>
+                  {edition.concepts.map((concept, topic) => <section key={concept.name} className="api-map__topic-group">
+                  <h3 className="api-map__topic-name" data-tone={topic * 2}><span className="api-map__topic">{concept.name}</span></h3>
                   <ol className="api-map__references">
-                    {edition.leanReferences.map((item) => <li key={item.index}>
-                      <h2>[{item.index}]</h2>
+                    {edition.leanReferences.filter((item) => concept.citations.includes(item.index)).map((item) => <li key={item.index} data-tone={edition.tones[citeKey(item)]}>
+                      <h2><button type="button" aria-label={`Open Lean citation ${item.index}`} onClick={() => navigate(`@${citeKey(item)}`)}>[{item.index}]</button></h2>
                       <ul>
-                        {item.declarations.map((d) => <li key={d.fullName}><button type="button" onClick={() => openDeclaration(d.fullName)}>
-                          <span>{edition.glossary[d.fullName]}</span><code>{d.fullName}</code>
-                        </button></li>)}
+                        {item.declarations.map((d) => <li key={d.fullName} data-glossary-name={d.fullName}
+                          onMouseEnter={() => setLit([d.fullName])} onMouseLeave={() => setLit(null)}>
+                          <button type="button" onClick={() => openDeclaration(d.fullName)}>
+                            <span>{edition.glossary[d.fullName]}</span><code>{d.fullName}</code>
+                          </button>
+                        </li>)}
                       </ul>
                     </li>)}
                   </ol>
+                  </section>)}
                 </>
               )}
             </div>
@@ -423,11 +504,30 @@ function Code({ source, active }: { source: string; active?: number }) {
   return <LeanCode lines={lines} from={1} to={lines.length} numbers={active !== undefined} exact={active ? [active, active] : null} />;
 }
 
-function DeclarationCard({ decl, title, onSource, sourceUrl }: { decl: MapDeclaration; title: string; onSource(): void; sourceUrl: string }) {
+function PhraseQuotes({ phrases, onPhrase }: { phrases: Phrase[]; onPhrase(id: number): void }) {
+  if (!phrases.length) return null;
   return (
-    <section className="step-proof api-map__declaration" data-lean-name={decl.fullName} tabIndex={-1}>
+    <div className="api-map__said">
+      <p className="api-map__said-label">In the map</p>
+      {phrases.map((phrase) => (
+        <button key={phrase.id} type="button" className="api-map__said-quote" data-tone={phrase.tone} title="Show this phrase in the map"
+          aria-label={`Show the phrase “${phrase.quote}” in the map`} onClick={() => onPhrase(phrase.id)}>
+          <span dangerouslySetInnerHTML={{ __html: phrase.html }} />
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function DeclarationCard({ decl, title, tone, phrases, onPhrase, onLight, onSource, sourceUrl }: {
+  decl: MapDeclaration; title: string; tone: number; phrases: Phrase[]; onPhrase(id: number): void; onLight(on: boolean): void; onSource(): void; sourceUrl: string;
+}) {
+  return (
+    <section className="step-proof api-map__declaration" data-lean-name={decl.fullName} data-tone={tone} tabIndex={-1}
+      onMouseEnter={() => onLight(true)} onMouseLeave={() => onLight(false)}>
       <h2>{title}</h2>
       <p className="api-map__raw-name"><code>{decl.fullName}</code></p>
+      <PhraseQuotes phrases={phrases} onPhrase={onPhrase} />
       {decl.doc && <p className="api-map__doc"><Doc text={decl.doc} /></p>}
       {decl.signature && (
         <div className="decl__code api-map__signature" tabIndex={0} aria-label={decl.signature.includes("…") ? "Lean signature excerpt" : "Lean signature"}>

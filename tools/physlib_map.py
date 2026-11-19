@@ -70,6 +70,41 @@ def check_maps(snapshot: dict) -> None:
             raise ValueError(f"{m['path']} cites an unknown map or has impossible claim counts")
 
 
+def check_phrases(phrases: dict, groups: list[dict]) -> list[dict]:
+    """Each Lean citation's phrases: the map's own words that its declarations state.
+
+    Proof Reader drafts these matches (phrases.json); the Markdown is unchanged. Every
+    declaration needs a phrase, and every phrase names declarations of its own citation.
+    The renderer then fails unless each phrase occurs exactly once in its citation's paragraph.
+    """
+    flat = []
+    for group in groups:
+        number = str(group["index"])
+        own = {d["fullName"] for d in group["declarations"]}
+        entries = phrases.get(number) or []
+        named = {name for entry in entries for name in entry["names"]}
+        if named != own:
+            raise ValueError(f"Lean citation [{number}] phrases name {sorted(named ^ own)} differently from the index")
+        for entry in entries:
+            quote = entry["quote"]
+            if not quote.strip() or quote != " ".join(quote.split()) or not entry["names"]:
+                raise ValueError(f"Lean citation [{number}] has an empty, untrimmed or unnamed phrase")
+            flat.append({"citation": int(number), "quote": quote, "names": entry["names"]})
+    if set(phrases) != {str(group["index"]) for group in groups}:
+        raise ValueError("phrases.json and the index list different Lean citations")
+    return flat
+
+
+def check_concepts(concepts: list[dict], groups: list[dict]) -> list[dict]:
+    """The physics topic of each Lean citation (concepts.json); each topic has one colour."""
+    listed = [n for concept in concepts for n in concept["citations"]]
+    if sorted(listed) != sorted(group["index"] for group in groups):
+        raise ValueError("concepts.json must place every Lean citation in exactly one topic")
+    if any(not c["name"].strip() for c in concepts) or len({c["name"] for c in concepts}) != len(concepts):
+        raise ValueError("Topic names must be distinct and nonempty")
+    return concepts
+
+
 def build() -> None:
     snapshot = json.loads((FOLDER / "index.json").read_text(encoding="utf-8"))
     check_maps(snapshot)
@@ -103,9 +138,13 @@ def build() -> None:
             if not first or not re.search(rf"\b{re.escape(name)}(?=\s|[:(\[{{]|$)", lines[first - 1]):
                 raise ValueError(f"{decl['text']} was not found at its indexed source line")
     maths = json.loads((FOLDER / "maths.json").read_text(encoding="utf-8"))
+    phrases = check_phrases(json.loads((FOLDER / "phrases.json").read_text(encoding="utf-8")), groups)
+    here = next(m for m in snapshot["maps"] if m["path"] == snapshot["path"])
     rendered = subprocess.run(
         ["node", str(ROOT / "web" / "tools" / "render-paper.mjs"), str(source), SLUG, "lean", "--api-map"],
-        input=json.dumps({"maths": maths, "references": refs}, ensure_ascii=False),
+        input=json.dumps({"maths": maths, "references": refs, "phrases": phrases,
+                          "concepts": check_concepts(json.loads((FOLDER / "concepts.json").read_text(encoding="utf-8")), groups),
+                          "status": {"done": here["done"], "total": here["total"]}}, ensure_ascii=False),
         text=True, capture_output=True, check=False,
     )
     if rendered.returncode:
@@ -117,7 +156,8 @@ def build() -> None:
         (PUBLIC / name).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
     shutil.copyfile(source, PUBLIC / "API-map.md")
     shutil.copyfile(FOLDER / "LICENSE", PUBLIC / "LICENSE")
-    print(f"built {SLUG} ({len(groups)} citation groups, {sum(len(g['declarations']) for g in groups)} Lean declarations)")
+    shutil.copyfile(FOLDER / "phrases.json", PUBLIC / "phrases.json")
+    print(f"built {SLUG} ({len(groups)} citation groups, {sum(len(g['declarations']) for g in groups)} Lean declarations, {len(phrases)} matched phrases)")
 
 
 if __name__ == "__main__":
