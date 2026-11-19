@@ -14,6 +14,7 @@ import MarkdownIt from "markdown-it";
 const [source, slug, language = "haskell", mode] = process.argv.slice(2);
 const guide = mode === "--markdown-source";
 const guideLinks = guide ? JSON.parse(readFileSync(0, "utf8") || "{}") : {};
+const apiMap = mode === "--api-map" ? JSON.parse(readFileSync(0, "utf8")) : null;
 const OPEN = "";
 const CLOSE = "";
 const DISPLAY_OPEN = "";
@@ -153,7 +154,61 @@ function highlight(line, language) {
   return out;
 }
 
-const md = new MarkdownIt({ html: true, linkify: false, typographer: false });
+const md = new MarkdownIt({ html: !apiMap, linkify: !!apiMap, typographer: false });
+const apiParagraphs = {};
+
+if (apiMap) {
+  md.inline.ruler.before("link", "api_map_reference", (state, silent) => {
+    const remaining = state.src.slice(state.pos);
+    const mark = /^(?:\[(\d+|TODO)\]|\{(\d+)\})(?!\()/.exec(remaining);
+    if (!mark) return false;
+    if (!silent) {
+      const token = state.push("api_map_reference", "", 0);
+      token.meta = mark;
+    }
+    state.pos += mark[0].length;
+    return true;
+  });
+  md.renderer.rules.api_map_reference = (tokens, index) => {
+    const mark = tokens[index].meta;
+    if (mark[1] === "TODO") return '<span class="api-map__todo">[TODO]</span>';
+    const lean = !!mark[1];
+    const number = mark[1] ?? mark[2];
+    const name = lean ? "Lean citation" : "Reference";
+    const id = `${lean ? "lean" : "ref"}-${number}`;
+    return `<a class="api-map__cite" data-api-citation="${id}" aria-label="${name} ${number}" aria-controls="api-map-references" href="#/${slug}/@${id}">${mark[0]}</a>`;
+  };
+  md.core.ruler.push("api_map_index_ids", ({ tokens }) => {
+    let list = "";
+    let number = 0;
+    for (const [i, token] of tokens.entries()) {
+      if (token.type === "heading_open") {
+        const title = tokens[i + 1].content;
+        list = title === "Lean References" ? "lean" : title === "References" ? "ref" : "";
+        number = 0;
+      }
+      if (list && token.type === "list_item_open" && token.level === 1) token.attrSet("id", `index-${list}-${++number}`);
+      if (list || token.type !== "paragraph_open" || !token.map) continue;
+      const marks = tokens[i + 1].children.filter((child) => child.type === "api_map_reference")
+        .map((child) => child.meta)
+        .filter((mark) => mark[1] !== "TODO")
+        .map((mark) => mark[1] ? `lean-${mark[1]}` : `ref-${mark[2]}`);
+      if (!marks.length) continue;
+      const id = `p-${token.map[0] + 1}`;
+      const references = [...new Set(marks)];
+      token.attrSet("id", id);
+      token.attrSet("data-api-paragraph", id);
+      apiParagraphs[id] = references;
+    }
+  });
+  md.renderer.rules.paragraph_open = (tokens, index, options, _env, renderer) => {
+    const paragraph = renderer.renderToken(tokens, index, options);
+    const id = tokens[index].attrGet("data-api-paragraph");
+    if (!id) return paragraph;
+    const target = apiParagraphs[id].length === 1 ? apiParagraphs[id][0] : id;
+    return paragraph.trimEnd() + `<a class="api-map__passage" href="#/${slug}/@${target}" aria-controls="api-map-references" aria-label="Open references for this paragraph"></a>`;
+  };
+}
 
 md.inline.ruler.before("link", "note_mark", (state, silent) => {
   const m = /^\[\^(\d+)\]/.exec(state.src.slice(state.pos));
@@ -240,6 +295,24 @@ if (guide) {
 }
 const spans = [];
 text = protectMath(text, spans);
+if (apiMap) {
+  // A typesetting overlay can only replace a literal span of the authors' Unicode.
+  // Longer formulas win over a symbol inside them, and code spans stay intact
+  // unless their entire contents are one of the explicitly mapped expressions.
+  const formulas = Object.keys(apiMap.maths).sort((a, b) => b.length - a.length);
+  const seen = new Set();
+  const literal = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const expression = new RegExp(`\x60[^\x60\n]+\x60|(?<![\\p{L}\\p{N}_])(?:${formulas.map(literal).join("|")})(?![\\p{L}\\p{N}_])`, "gu");
+  const boundary = text.indexOf("\n## Lean References\n");
+  text = text.slice(0, boundary).replace(expression, (source) => {
+    const plain = source.startsWith("`") ? source.slice(1, -1) : source;
+    if (!Object.hasOwn(apiMap.maths, plain)) return source;
+    seen.add(plain);
+    spans.push({ tex: apiMap.maths[plain], display: false, plain });
+    return `${OPEN}${spans.length - 1}${CLOSE}`;
+  }) + text.slice(boundary);
+  for (const source of formulas) if (!seen.has(source)) throw new Error(`No source formula: ${source}`);
+}
 
 // Footnotes: each definition follows the block that marks it.
 const notes = new Map();
@@ -252,6 +325,13 @@ text = text.replace(/<figcaption>(.*?)<\/figcaption>/g, (_all, body) => `<figcap
 
 const environment = {};
 let html = md.render(text, environment);
+if (apiMap) {
+  for (const ref of apiMap.references.filter((ref) => ref.apiMap)) {
+    const path = escapeHtml(ref.apiMap);
+    const file = `${path}/API-map.md`;
+    html = html.replace(file, `<a href="https://physlib.io/api-tracker#${path}">${file}</a>`);
+  }
+}
 const quoteHtml = {};
 if (guide) {
   for (const passage of guideLinks.passages ?? []) {
@@ -292,6 +372,10 @@ const math = spans.map(({ tex, display }) =>
 );
 const place = (n, display) => {
   const index = Number(n);
+  if (apiMap) {
+    const plain = spans[index].plain;
+    return plain === undefined ? math[index] : `<span class="api-map__math" data-copy-math="${escapeHtml(plain)}">${math[index]}</span>`;
+  }
   const span = `<span class="m" data-m="${index}">${escapeHtml(plainMath(spans[index].tex, spans[index].display))}</span>`;
   return display ? `<div class="math-display">${span}</div>` : span;
 };
@@ -307,4 +391,4 @@ for (const entry of outline) {
   entry.title = entry.title.replace(new RegExp(`${OPEN}(\\d+)${CLOSE}`, "g"), (_m, n) => plainMath(spans[Number(n)].tex, false));
 }
 
-process.stdout.write(JSON.stringify({ html, math, outline, ...(guide ? { source_blocks: sourceBlocks, quote_html: quoteHtml, heading_aliases: headingAliases } : {}) }));
+process.stdout.write(JSON.stringify({ html, math, outline, ...(apiMap ? { paragraphs: apiParagraphs } : {}), ...(guide ? { source_blocks: sourceBlocks, quote_html: quoteHtml, heading_aliases: headingAliases } : {}) }));

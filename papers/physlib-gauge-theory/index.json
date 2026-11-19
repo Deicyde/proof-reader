@@ -1,0 +1,478 @@
+{
+  "repo": "leanprover-community/physlib",
+  "commit": "be0a9eef7dac78da524bfbde91c812340b194610",
+  "index": "https://raw.githubusercontent.com/Kernel-Science/physlib-website/1afd9e675f930e2d45adaea8edb4bd05b002b634/web2/data/APIMap.json",
+  "path": "Physlib/ClassicalFieldTheory/GaugeTheory",
+  "file": "Physlib/ClassicalFieldTheory/GaugeTheory/API-map.md",
+  "title": "Gauge theory",
+  "leanReferences": [
+    {
+      "index": 1,
+      "file": "Physlib/Particles/StandardModel/GaugeGroup/Basic.lean",
+      "declarations": [
+        {
+          "text": "GaugeGroupI",
+          "fullName": "StandardModel.GaugeGroupI",
+          "kind": "abbrev",
+          "line": 39,
+          "doc": "The global gauge group of the Standard Model with no discrete quotients. The `I` in the Name is an indication of the statement that this has no discrete quotients.",
+          "signature": "abbrev GaugeGroupI : Type"
+        },
+        {
+          "text": "GaugeGroupI.toSU3",
+          "fullName": "StandardModel.GaugeGroupI.toSU3",
+          "kind": "def",
+          "line": 45,
+          "doc": "The underlying element of `SU(3)` of an element in `GaugeGroupI`.",
+          "signature": "def toSU3 : GaugeGroupI →* specialUnitaryGroup (Fin 3) ℂ where"
+        },
+        {
+          "text": "GaugeGroupI.toSU2",
+          "fullName": "StandardModel.GaugeGroupI.toSU2",
+          "kind": "def",
+          "line": 51,
+          "doc": "The underlying element of `SU(2)` of an element in `GaugeGroupI`.",
+          "signature": "def toSU2 : GaugeGroupI →* specialUnitaryGroup (Fin 2) ℂ where"
+        },
+        {
+          "text": "GaugeGroupI.toU1",
+          "fullName": "StandardModel.GaugeGroupI.toU1",
+          "kind": "def",
+          "line": 57,
+          "doc": "The underlying element of `U(1)` of an element in `GaugeGroupI`.",
+          "signature": "def toU1 : GaugeGroupI →* unitary ℂ where"
+        },
+        {
+          "text": "gaugeGroupℤ₆SubGroup",
+          "fullName": "StandardModel.gaugeGroupℤ₆SubGroup",
+          "kind": "def",
+          "line": 325,
+          "doc": "The subgroup of the un-quotiented gauge group which acts trivially on all particles in the standard model, i.e., the ℤ₆-subgroup of `GaugeGroupI` with elements `(α^2 * I₃, α^(-3) * I₂, α)`, where `α` is a sixth complex root of unity.",
+          "signature": "noncomputable def gaugeGroupℤ₆SubGroup : Subgroup GaugeGroupI"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 2,
+      "file": "Physlib/Electromagnetism/Kinematics/EMPotential.lean",
+      "declarations": [
+        {
+          "text": "ElectromagneticPotential",
+          "fullName": "Electromagnetism.ElectromagneticPotential",
+          "kind": "structure",
+          "line": 72,
+          "doc": "The electromagnetic potential is a tensor `A^μ`.",
+          "signature": "structure ElectromagneticPotential (d : ℕ := 3) where\n  val : SpaceTime d → Lorentz.Vector d"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 3,
+      "file": "Physlib/Electromagnetism/Kinematics/FieldStrength.lean",
+      "declarations": [
+        {
+          "text": "toFieldStrength",
+          "fullName": "Electromagnetism.ElectromagneticPotential.toFieldStrength",
+          "kind": "def",
+          "line": 73,
+          "doc": "The field strength from an electromagnetic potential, as a tensor `F^{μν}`.",
+          "signature": "noncomputable def toFieldStrength {d} (A : ElectromagneticPotential d) :\n    SpaceTime d → Lorentz.Vector d ⊗[ℝ] Lorentz.Vector d"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 4,
+      "file": "Physlib/Electromagnetism/Kinematics/GaugeTransformation.lean",
+      "declarations": [
+        {
+          "text": "ofGradient",
+          "fullName": "Electromagnetism.ElectromagneticPotential.ofGradient",
+          "kind": "def",
+          "line": 95,
+          "doc": "The pure-gauge electromagnetic potential `A^μ = ∂^μ χ = η^{μν} ∂_ν χ` built from a gauge function `χ`. The metric-contracted form `∑ κ, η μ κ * ∂_ κ χ` is the definition; the diagonal form (which equals `η μ μ * ∂_ μ χ` since `η` is diagonal) is derived in `ofGradient_apply`.",
+          "signature": "noncomputable def ofGradient {d} (χ : SpaceTime d → ℝ) : ElectromagneticPotential d where"
+        },
+        {
+          "text": "gaugeTransform",
+          "fullName": "Electromagnetism.ElectromagneticPotential.gaugeTransform",
+          "kind": "def",
+          "line": 242,
+          "doc": "The gauge transformation `A^μ ↦ A^μ + ∂^μ χ` of an electromagnetic potential.",
+          "signature": "noncomputable def gaugeTransform {d} (χ : SpaceTime d → ℝ) (A : ElectromagneticPotential d) :\n    ElectromagneticPotential d"
+        },
+        {
+          "text": "gaugeTransform_apply",
+          "fullName": "Electromagnetism.ElectromagneticPotential.gaugeTransform_apply",
+          "kind": "lemma",
+          "line": 246,
+          "doc": "Evaluation of `gaugeTransform`.",
+          "signature": "lemma gaugeTransform_apply {d} (χ : SpaceTime d → ℝ) (A : ElectromagneticPotential d)\n    (x : SpaceTime d) : gaugeTransform χ A x = A x + ofGradient χ x"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 5,
+      "file": "Physlib/Electromagnetism/Kinematics/GaugeTransformation.lean",
+      "declarations": [
+        {
+          "text": "toFieldStrength_gaugeTransform",
+          "fullName": "Electromagnetism.ElectromagneticPotential.toFieldStrength_gaugeTransform",
+          "kind": "lemma",
+          "line": 260,
+          "doc": "The field strength tensor is invariant under gauge transformations.",
+          "signature": "lemma toFieldStrength_gaugeTransform {d} (A : ElectromagneticPotential d)\n    (χ : SpaceTime d → ℝ) (hA : Differentiable ℝ A) (hχ : ContDiff ℝ 2 χ) (x : SpaceTime d) :\n    (gaugeTransform χ A).toFieldStrength x = A.toFieldStrength x"
+        },
+        {
+          "text": "toFieldStrength_eval_gaugeTransform",
+          "fullName": "Electromagnetism.ElectromagneticPotential.toFieldStrength_eval_gaugeTransform",
+          "kind": "lemma",
+          "line": 267,
+          "doc": "The components of the field strength tensor are invariant under gauge transformations.",
+          "signature": "lemma toFieldStrength_eval_gaugeTransform {d} (A : ElectromagneticPotential d)\n    (χ : SpaceTime d → ℝ) (hA : Differentiable ℝ A) (hχ : ContDiff ℝ 2 χ) (x : SpaceTime d)\n    (μ ν : Fin 1 ⊕ Fin d) :\n    toScalar {(gaugeTransform χ A).toFie…"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 6,
+      "file": "Physlib/Electromagnetism/Kinematics/GaugeTransformation.lean",
+      "declarations": [
+        {
+          "text": "toFieldStrength_ofGradient",
+          "fullName": "Electromagnetism.ElectromagneticPotential.toFieldStrength_ofGradient",
+          "kind": "lemma",
+          "line": 161,
+          "doc": "A pure-gauge potential has vanishing field strength.",
+          "signature": "lemma toFieldStrength_ofGradient {d} {χ : SpaceTime d → ℝ} (hχ : ContDiff ℝ 2 χ)\n    (x : SpaceTime d) : (ofGradient χ).toFieldStrength x = 0"
+        },
+        {
+          "text": "toFieldStrength_eval_bareGradient_inl_inr",
+          "fullName": "Electromagnetism.ElectromagneticPotential.toFieldStrength_eval_bareGradient_inl_inr",
+          "kind": "lemma",
+          "line": 342,
+          "doc": "The `(inl 0, inr i)` component of the field strength tensor of the bare-gradient potential `B^μ := ∂_μ χ` for `χ(x) = x⁰·xⁱ` equals `2`. This witnesses that the bare covariant gradient does not produce a gauge-invariant field strength, so the raised-index contraction `η^{μν} ∂_ν χ` in `ofGradient` is necessary (see the module overview).",
+          "signature": "lemma toFieldStrength_eval_bareGradient_inl_inr {d : ℕ} (i : Fin d)\n    (x : SpaceTime d) :\n    let χ : SpaceTime d → ℝ"
+        },
+        {
+          "text": "toFieldStrength_bareGradient_ne_zero",
+          "fullName": "Electromagnetism.ElectromagneticPotential.toFieldStrength_bareGradient_ne_zero",
+          "kind": "lemma",
+          "line": 390,
+          "doc": "The field strength of the bare-gradient potential `B^μ := ∂_μ χ` for `χ(x) = x⁰·xⁱ` is nonzero (follows from `toFieldStrength_eval_bareGradient_inl_inr`).",
+          "signature": "lemma toFieldStrength_bareGradient_ne_zero {d : ℕ} (i : Fin d)\n    (x : SpaceTime d) :\n    let χ : SpaceTime d → ℝ"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 7,
+      "file": "Physlib/Electromagnetism/Kinematics/GaugeTransformation.lean",
+      "declarations": [
+        {
+          "text": "gaugeTransform_zero",
+          "fullName": "Electromagnetism.ElectromagneticPotential.gaugeTransform_zero",
+          "kind": "lemma",
+          "line": 288,
+          "doc": "Shifting by the zero gauge function is the identity.",
+          "signature": "lemma gaugeTransform_zero {d} (A : ElectromagneticPotential d) :\n    gaugeTransform (0 : SpaceTime d → ℝ) A = A"
+        },
+        {
+          "text": "gaugeTransform_gaugeTransform",
+          "fullName": "Electromagnetism.ElectromagneticPotential.gaugeTransform_gaugeTransform",
+          "kind": "lemma",
+          "line": 296,
+          "doc": "Two successive gauge shifts compose: shifting by χ₂ then χ₁ equals shifting by χ₁ + χ₂. This upgrades one-step F-invariance to invariance along any finite chain of gauge shifts.",
+          "signature": "lemma gaugeTransform_gaugeTransform {d} (A : ElectromagneticPotential d)\n    (χ₁ χ₂ : SpaceTime d → ℝ) (hχ₁ : Differentiable ℝ χ₁) (hχ₂ : Differentiable ℝ χ₂) :\n    gaugeTransform χ₁ (gaugeTransform χ₂ A) = gaugeTransform (χ₁ + χ₂) A"
+        },
+        {
+          "text": "ofGradient_add",
+          "fullName": "Electromagnetism.ElectromagneticPotential.ofGradient_add",
+          "kind": "lemma",
+          "line": 120,
+          "doc": "`ofGradient` is additive in the gauge function (when both summands are differentiable).",
+          "signature": "lemma ofGradient_add {d} {χ₁ χ₂ : SpaceTime d → ℝ}\n    (hχ₁ : Differentiable ℝ χ₁) (hχ₂ : Differentiable ℝ χ₂) :\n    ofGradient (χ₁ + χ₂) = ofGradient χ₁ + ofGradient χ₂"
+        },
+        {
+          "text": "ofGradient_zero",
+          "fullName": "Electromagnetism.ElectromagneticPotential.ofGradient_zero",
+          "kind": "lemma",
+          "line": 114,
+          "doc": "The pure-gauge potential built from the zero gauge function has all components zero.",
+          "signature": "lemma ofGradient_zero {d} (x : SpaceTime d) (μ : Fin 1 ⊕ Fin d) :\n    ofGradient (0 : SpaceTime d → ℝ) x μ = 0"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 8,
+      "file": "Physlib/Electromagnetism/Kinematics/GaugeTransformation.lean",
+      "declarations": [
+        {
+          "text": "ofGradient_equivariant",
+          "fullName": "Electromagnetism.ElectromagneticPotential.ofGradient_equivariant",
+          "kind": "lemma",
+          "line": 192,
+          "doc": "`ofGradient` intertwines the Lorentz action on potentials with composition by Λ⁻¹ on the gauge function: `Λ • ofGradient χ = ofGradient (χ ∘ (Λ⁻¹ • ·))`.",
+          "signature": "lemma ofGradient_equivariant {d} (χ : SpaceTime d → ℝ) (hχ : Differentiable ℝ χ)\n    (Λ : LorentzGroup d) :\n    Λ • ofGradient χ = ofGradient (χ ∘ (Λ⁻¹ • ·))"
+        },
+        {
+          "text": "gaugeTransform_equivariant",
+          "fullName": "Electromagnetism.ElectromagneticPotential.gaugeTransform_equivariant",
+          "kind": "lemma",
+          "line": 317,
+          "doc": "Gauge transformations commute with Lorentz transformations: applying Λ and then performing a gauge transformation by `χ` equals performing a gauge transformation by `χ ∘ (Λ⁻¹ • ·)` and then applying Λ.",
+          "signature": "lemma gaugeTransform_equivariant {d} (A : ElectromagneticPotential d)\n    (χ : SpaceTime d → ℝ) (hχ : Differentiable ℝ χ) (Λ : LorentzGroup d) :\n    Λ • gaugeTransform χ A = gaugeTransform (χ ∘ (Λ⁻¹ • ·)) (Λ • A)"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 9,
+      "file": "Physlib/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/Basic.lean",
+      "declarations": [
+        {
+          "text": "LocalGaugeData",
+          "fullName": "LocalGaugeData",
+          "kind": "structure",
+          "line": 96,
+          "doc": "Local gauge data. A gauge group `G₀` with Lie algebra `𝔤`, its group of jets `GJ` with Lie algebra of jets `𝔤J`, evaluation at the base point, formal derivatives, the adjoint action and the Maurer–Cartan form, subject to the identities used by the transformation laws of gauge and matter fields.",
+          "signature": "structure LocalGaugeData (G₀ : Type) [Group G₀] (𝔤 : Type) [LieRing 𝔤] [LieAlgebra ℝ 𝔤]\n    (GJ : Type) [Group GJ] (𝔤J : Type) [LieRing 𝔤J] [LieAlgebra ℝ 𝔤J] where\n  eval : GJ →* G₀\n  ofConstant : G₀ →* GJ\n  eval_ofConstant : ∀ g, ev…"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 10,
+      "file": "Physlib/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/Basic.lean",
+      "declarations": [
+        {
+          "text": "LocalGaugeData.eval_surjective",
+          "fullName": "LocalGaugeData.eval_surjective",
+          "kind": "lemma",
+          "line": 165,
+          "doc": "Every global gauge transformation is the value of a jet, namely its constant jet.",
+          "signature": "lemma eval_surjective : Function.Surjective jets.eval"
+        },
+        {
+          "text": "LocalGaugeData.ofConstant_injective",
+          "fullName": "LocalGaugeData.ofConstant_injective",
+          "kind": "lemma",
+          "line": 168,
+          "doc": null,
+          "signature": "lemma ofConstant_injective : Function.Injective jets.ofConstant"
+        },
+        {
+          "text": "LocalGaugeData.evalLie_surjective",
+          "fullName": "LocalGaugeData.evalLie_surjective",
+          "kind": "lemma",
+          "line": 171,
+          "doc": null,
+          "signature": "lemma evalLie_surjective : Function.Surjective jets.evalLie"
+        },
+        {
+          "text": "LocalGaugeData.ofConstantLie_injective",
+          "fullName": "LocalGaugeData.ofConstantLie_injective",
+          "kind": "lemma",
+          "line": 174,
+          "doc": null,
+          "signature": "lemma ofConstantLie_injective : Function.Injective jets.ofConstantLie"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 11,
+      "file": "Physlib/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/Basic.lean",
+      "declarations": [
+        {
+          "text": "LocalGaugeData.adjoint_bracket",
+          "fullName": "LocalGaugeData.adjoint_bracket",
+          "kind": "lemma",
+          "line": 177,
+          "doc": null,
+          "signature": "lemma adjoint_bracket (g : G₀) (a b : 𝔤) :\n    jets.adjoint g ⁅a, b⁆ = ⁅jets.adjoint g a, jets.adjoint g b⁆"
+        },
+        {
+          "text": "LocalGaugeData.deriv_adjointJ_ofConstant",
+          "fullName": "LocalGaugeData.deriv_adjointJ_ofConstant",
+          "kind": "lemma",
+          "line": 185,
+          "doc": null,
+          "signature": "lemma deriv_adjointJ_ofConstant (g : G₀) (μ : Fin 1 ⊕ Fin 3) (x : 𝔤J) :\n    jets.deriv μ (jets.adjointJ (jets.ofConstant g) x) =\n      jets.adjointJ (jets.ofConstant g) (jets.deriv μ x)"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 12,
+      "file": "Physlib/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/Basic.lean",
+      "declarations": [
+        {
+          "text": "LocalGaugeData.iteratedDeriv",
+          "fullName": "LocalGaugeData.iteratedDeriv",
+          "kind": "def",
+          "line": 216,
+          "doc": "The iterated formal derivative on the jet Lie algebra.",
+          "signature": "noncomputable def iteratedDeriv (μs : Multiset (Fin 1 ⊕ Fin 3)) : 𝔤J →ₗ[ℝ] 𝔤J"
+        },
+        {
+          "text": "LocalGaugeData.iteratedDeriv_zero",
+          "fullName": "LocalGaugeData.iteratedDeriv_zero",
+          "kind": "lemma",
+          "line": 226,
+          "doc": null,
+          "signature": "lemma iteratedDeriv_zero : jets.iteratedDeriv (0 : Multiset (Fin 1 ⊕ Fin 3)) = LinearMap.id"
+        },
+        {
+          "text": "LocalGaugeData.iteratedDeriv_cons",
+          "fullName": "LocalGaugeData.iteratedDeriv_cons",
+          "kind": "lemma",
+          "line": 229,
+          "doc": null,
+          "signature": "lemma iteratedDeriv_cons (μ : Fin 1 ⊕ Fin 3) (μs : Multiset (Fin 1 ⊕ Fin 3)) :\n    jets.iteratedDeriv (μ ::ₘ μs) = (jets.deriv μ).comp (jets.iteratedDeriv μs)"
+        },
+        {
+          "text": "LocalGaugeData.iteratedDeriv_add",
+          "fullName": "LocalGaugeData.iteratedDeriv_add",
+          "kind": "lemma",
+          "line": 244,
+          "doc": "The iterated derivative is additive in the multiset.",
+          "signature": "lemma iteratedDeriv_add (s t : Multiset (Fin 1 ⊕ Fin 3)) :\n    jets.iteratedDeriv (s + t) = (jets.iteratedDeriv s).comp (jets.iteratedDeriv t)"
+        },
+        {
+          "text": "LocalGaugeData.iteratedDeriv_singleton",
+          "fullName": "LocalGaugeData.iteratedDeriv_singleton",
+          "kind": "lemma",
+          "line": 253,
+          "doc": null,
+          "signature": "lemma iteratedDeriv_singleton (μ : Fin 1 ⊕ Fin 3) :\n    jets.iteratedDeriv ({μ} : Multiset (Fin 1 ⊕ Fin 3)) = jets.deriv μ"
+        },
+        {
+          "text": "LocalGaugeData.iteratedDeriv_bracket",
+          "fullName": "LocalGaugeData.iteratedDeriv_bracket",
+          "kind": "lemma",
+          "line": 265,
+          "doc": "The iterated Leibniz rule for the bracket.",
+          "signature": "lemma iteratedDeriv_bracket (s : Multiset (Fin 1 ⊕ Fin 3)) (a b : 𝔤J) :\n    jets.iteratedDeriv s ⁅a, b⁆ =\n      (s.antidiagonal.map fun p =>\n        ⁅jets.iteratedDeriv p.1 a, jets.iteratedDeriv p.2 b⁆).sum"
+        },
+        {
+          "text": "LocalGaugeData.iteratedDeriv_ofConstantLie_of_ne_zero",
+          "fullName": "LocalGaugeData.iteratedDeriv_ofConstantLie_of_ne_zero",
+          "kind": "lemma",
+          "line": 287,
+          "doc": null,
+          "signature": "lemma iteratedDeriv_ofConstantLie_of_ne_zero {p : Multiset (Fin 1 ⊕ Fin 3)} (hp : p ≠ 0)\n    (a : 𝔤) : jets.iteratedDeriv p (jets.ofConstantLie a) = 0"
+        },
+        {
+          "text": "LocalGaugeData.iteratedDeriv_adjointJ_ofConstant",
+          "fullName": "LocalGaugeData.iteratedDeriv_adjointJ_ofConstant",
+          "kind": "lemma",
+          "line": 297,
+          "doc": null,
+          "signature": "lemma iteratedDeriv_adjointJ_ofConstant (g : G₀) (s : Multiset (Fin 1 ⊕ Fin 3)) (x : 𝔤J) :\n    jets.iteratedDeriv s (jets.adjointJ (jets.ofConstant g) x) =\n      jets.adjointJ (jets.ofConstant g) (jets.iteratedDeriv s x)"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 13,
+      "file": "Physlib/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/Basic.lean",
+      "declarations": [
+        {
+          "text": "LocalGaugeData.evalLie_iteratedDeriv_mulCoord",
+          "fullName": "LocalGaugeData.evalLie_iteratedDeriv_mulCoord",
+          "kind": "lemma",
+          "line": 304,
+          "doc": null,
+          "signature": "lemma evalLie_iteratedDeriv_mulCoord (μ : Fin 1 ⊕ Fin 3) (s : Multiset (Fin 1 ⊕ Fin 3)) (a : 𝔤J) :\n    jets.evalLie (jets.iteratedDeriv s (jets.mulCoord μ a)) =\n      s.count μ • jets.evalLie (jets.iteratedDeriv (s.erase μ) a)"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 14,
+      "file": "Physlib/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/Basic.lean",
+      "declarations": [
+        {
+          "text": "LocalGaugeData.Hom",
+          "fullName": "LocalGaugeData.Hom",
+          "kind": "structure",
+          "line": 329,
+          "doc": "A morphism of local gauge data.",
+          "signature": "structure Hom (jets : LocalGaugeData G₀ 𝔤 GJ 𝔤J) (jets' : LocalGaugeData G₀' 𝔤' GJ' 𝔤J') where\n  group : G₀ →* G₀'\n  groupJ : GJ →* GJ'\n  eval_groupJ : ∀ U, jets'.eval (groupJ U) = group (jets.eval U)\n  groupJ_ofConstant : ∀ g, groupJ …"
+        },
+        {
+          "text": "LocalGaugeData.Hom.lie_adjoint",
+          "fullName": "LocalGaugeData.Hom.lie_adjoint",
+          "kind": "lemma",
+          "line": 361,
+          "doc": "A morphism intertwines the adjoint actions of the gauge groups.",
+          "signature": "lemma lie_adjoint (g : G₀) (x : 𝔤) :\n    f.lie (jets.adjoint g x) = jets'.adjoint (f.group g) (f.lie x)"
+        },
+        {
+          "text": "LocalGaugeData.Hom.lieJ_iteratedDeriv",
+          "fullName": "LocalGaugeData.Hom.lieJ_iteratedDeriv",
+          "kind": "lemma",
+          "line": 375,
+          "doc": "A morphism commutes with iterated derivatives.",
+          "signature": "lemma lieJ_iteratedDeriv (s : Multiset (Fin 1 ⊕ Fin 3)) (a : 𝔤J) :\n    f.lieJ (jets.iteratedDeriv s a) = jets'.iteratedDeriv s (f.lieJ a)"
+        }
+      ],
+      "exists": true
+    },
+    {
+      "index": 15,
+      "file": "Physlib/ClassicalFieldTheory/GaugeTheory/LocalGaugeData/Basic.lean",
+      "declarations": [
+        {
+          "text": "LocalGaugeData.Hom.id",
+          "fullName": "LocalGaugeData.Hom.id",
+          "kind": "def",
+          "line": 390,
+          "doc": "The identity morphism of local gauge data.",
+          "signature": "protected def id (jets : LocalGaugeData G₀ 𝔤 GJ 𝔤J) : Hom jets jets where"
+        },
+        {
+          "text": "LocalGaugeData.Hom.comp",
+          "fullName": "LocalGaugeData.Hom.comp",
+          "kind": "def",
+          "line": 415,
+          "doc": "The composite `g ∘ f` of morphisms of local gauge data.",
+          "signature": "def comp (g : Hom jets' jets'') : Hom jets jets'' where"
+        }
+      ],
+      "exists": true
+    }
+  ],
+  "references": [
+    {
+      "index": 1,
+      "text": "Electromagnetic Potential API map — Physlib/Electromagnetism/Kinematics/API-map.md",
+      "apiMap": "Physlib/Electromagnetism/Kinematics"
+    },
+    {
+      "index": 2,
+      "text": "Wikipedia, Mathematical descriptions of the electromagnetic field, Gauge freedom, https://en.wikipedia.org/wiki/Mathematical_descriptions_of_the_electromagnetic_field#Gauge_freedom",
+      "apiMap": null
+    },
+    {
+      "index": 3,
+      "text": "Standard Model gauge group API map — Physlib/Particles/StandardModel/GaugeGroup/API-map.md",
+      "apiMap": "Physlib/Particles/StandardModel/GaugeGroup"
+    },
+    {
+      "index": 4,
+      "text": "Wikipedia, Gauge theory, https://en.wikipedia.org/wiki/Gauge_theory",
+      "apiMap": null
+    },
+    {
+      "index": 5,
+      "text": "Physlib GitHub issue #859, https://github.com/leanprover-community/physlib/issues/859",
+      "apiMap": null
+    }
+  ]
+}

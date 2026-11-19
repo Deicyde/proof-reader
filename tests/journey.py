@@ -1497,12 +1497,119 @@ def coupled_spring(page: Page, url: str) -> None:
           "the end of the page does not switch to the index")
 
 
+def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
+    print(f"Physlib API map on {'phone' if mobile else 'desktop'}")
+    address = f"{url}#/physlib-gauge-theory"
+    page.goto(address + "/@lean-9")
+    article = page.locator(".api-map article")
+    pane = page.locator(".api-map__aside")
+    cite = article.get_by_role("link", name="Lean citation 12", exact=True)
+    structure = pane.locator('[data-lean-name="LocalGaugeData"]')
+    wait_until(page, lambda: structure.is_visible(),
+               "a direct link opens the Physlib structure")
+    page.evaluate("document.fonts.ready")
+    check(article.get_by_role("link", name="Lean citation 9", exact=True).evaluate("""(link) => {
+      const mark = link.getBoundingClientRect();
+      const pane = link.closest(".reading").getBoundingClientRect();
+      return mark.top >= pane.top && mark.bottom <= pane.bottom;
+    }"""), "a direct link leaves its citation visible after fonts load")
+    check(article.locator("[data-api-citation]").count() == 20,
+          "the full page retains the 15 Lean citations and five prose references")
+    paper = page.locator(".api-map .reading")
+    cite.scroll_into_view_if_needed()
+    left_top = paper.evaluate("(el) => el.scrollTop")
+    cite.click()
+    entries = pane.locator(".api-map__declaration")
+    wait_until(page, lambda: entries.count() == 8, "citation 12 opens every indexed declaration")
+    check(entries.first.get_by_role("heading").inner_text() == "Iterated formal derivative on Lie algebra jets"
+          and entries.first.locator(".api-map__raw-name").inner_text() == "LocalGaugeData.iteratedDeriv",
+          "the declaration leads with its glossary title and retains its exact Lean name")
+    check(paper.evaluate("(el) => el.scrollTop") == left_top, "selecting a citation keeps the reading position")
+    check(cite.get_attribute("aria-expanded") == "true", "the related mark is selected in the article")
+    shot(page, shots, f"physlib-gauge-theory-{'phone' if mobile else 'desktop'}")
+    entries.first.get_by_role("button", name="View source at line 216").click()
+    line = pane.locator('[data-line="216"].is-exact')
+    wait_until(page, lambda: line.is_visible(), "the whole file opens at the indexed line")
+    check("noncomputable def iteratedDeriv" in line.inner_text(), "the line contains the upstream Lean source")
+    page.go_back()
+    wait_until(page, lambda: page.url.endswith("/@lean-9") and structure.is_visible(),
+               "Back restores the previous citation")
+    check(paper.evaluate("(el) => el.scrollTop") == left_top, "Back restores the reading position")
+    pane.get_by_role("button", name="Next citation").click()
+    wait_until(page, lambda: page.url.endswith("/@lean-10"), "Next follows the citation order in the article")
+    page.keyboard.press("k")
+    wait_until(page, lambda: page.url.endswith("/@lean-9"), "the keyboard can step back one citation")
+    pane.get_by_role("button", name="Glossary").click()
+    check(pane.locator(".api-map__references button").count() == 42, "the glossary lists all 42 declarations")
+    check("AI-drafted" in pane.locator(".api-map__glossary-credit").inner_text(), "the glossary identifies the origin of the added titles")
+    pane.get_by_role("button", name=re.compile("Iterated Leibniz rule for the Lie bracket")).click()
+    focused = pane.locator('[data-lean-name="LocalGaugeData.iteratedDeriv_bracket"]')
+    wait_until(page, lambda: focused.evaluate("(el) => el === document.activeElement"),
+               "a glossary result focuses the exact declaration in its citation group")
+    formula = article.locator('[data-copy-math^="F_μν ="]').first
+    formula.scroll_into_view_if_needed()
+    copied = formula.evaluate("""(node) => {
+      const range = document.createRange();
+      range.selectNodeContents(node.querySelector(".katex-html"));
+      const selected = getSelection();
+      selected.removeAllRanges();
+      selected.addRange(range);
+      const data = new DataTransfer();
+      node.dispatchEvent(new ClipboardEvent("copy", { clipboardData: data, bubbles: true, cancelable: true }));
+      selected.removeAllRanges();
+      return data.getData("text/plain");
+    }""")
+    check(copied == "F_μν = ∂_μ A_ν − ∂_ν A_μ + ⁅A_μ, A_ν⁆", "selected KaTeX copies as the exact source Unicode")
+    if page.context.browser.browser_type.name == "chromium":
+        page.context.grant_permissions(["clipboard-read", "clipboard-write"])
+        page.get_by_role("button", name="Copy page").click()
+        wait_until(page, lambda: page.get_by_role("status").get_by_text("Markdown copied").is_visible(),
+                   "Copy page finishes writing the original Markdown")
+        source = (ROOT / "papers" / "physlib-gauge-theory" / "API-map.md").read_text(encoding="utf-8")
+        check(page.evaluate("navigator.clipboard.readText()") == source, "the clipboard contains the entire original Markdown")
+    check(page.evaluate("document.documentElement.scrollWidth === innerWidth"), "the page fits the viewport")
+    abelian = article.get_by_role("heading", name="The abelian theory", exact=True)
+    check(abelian.evaluate("(el) => parseFloat(getComputedStyle(el).fontSize) > parseFloat(getComputedStyle(el.nextElementSibling).fontSize) + 2"),
+          "the subsection title is visibly larger than its prose")
+    paragraph = article.locator("p[data-api-paragraph]").filter(has_text="For a multiset")
+    paragraph.scroll_into_view_if_needed()
+    paragraph.click(position={"x": 20, "y": 8})
+    wait_until(page, lambda: pane.get_by_text("References in this paragraph", exact=True).is_visible(),
+               "clicking ordinary prose opens the whole paragraph’s references")
+    check(pane.locator("[data-reference]").evaluate_all("(items) => items.map(el => el.dataset.reference)") == ["lean-12", "lean-13"],
+          "the paragraph shows both citation groups in their authored order")
+    check(pane.locator(".api-map__declaration").count() == 9,
+          "the paragraph shows the complete set of nine cited Lean declarations")
+    check(paragraph.evaluate("""(node) => {
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      const selected = getSelection();
+      selected.removeAllRanges();
+      selected.addRange(range);
+      const start = location.href;
+      node.querySelector('[data-api-citation="lean-13"]').click();
+      selected.removeAllRanges();
+      return location.href === start;
+    }"""), "selecting text in a cited paragraph does not open a reference")
+    paragraph.get_by_role("link", name="Lean citation 13", exact=True).click()
+    wait_until(page, lambda: page.url.endswith("/@lean-13") and pane.locator(".api-map__declaration").count() == 1,
+               "clicking a numbered mark shows just that citation")
+    page.go_back()
+    wait_until(page, lambda: pane.locator("[data-reference]").count() == 2,
+               "Back restores the paragraph view")
+    abelian.locator("xpath=following-sibling::p[1]").get_by_role("link", name="Open references for this paragraph").click()
+    wait_until(page, lambda: pane.locator('[data-reference="ref-1"] a').is_visible(),
+               "the paragraph gutter opens a bibliography reference beside the Lean groups")
+    check(pane.locator("[data-reference]").count() == 9,
+          "a paragraph can collect prose references and Lean citations together")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--url", help="a running site, ending in /")
     parser.add_argument("--dist", type=Path, default=ROOT / "web" / "dist")
     parser.add_argument("--shots", type=Path)
-    parser.add_argument("--only", choices=("journey", "fidelity", "sizes", "companions", "coupled-spring"))
+    parser.add_argument("--only", choices=("journey", "fidelity", "sizes", "companions", "coupled-spring", "physlib"))
     parser.add_argument("--browser", choices=("chromium", "firefox", "webkit"), default="chromium")
     parser.add_argument("--serve", type=Path, help=argparse.SUPPRESS)
     parser.add_argument("--port", type=int, help=argparse.SUPPRESS)
@@ -1524,6 +1631,11 @@ def main() -> int:
                 context = browser.new_context(viewport={"width": 1440, "height": 900})
                 coupled_spring(context.new_page(), url)
                 context.close()
+            if args.only in (None, "physlib"):
+                for w, h in ((1440, 900), (390, 844)):
+                    context = browser.new_context(viewport={"width": w, "height": h})
+                    physlib_map(context.new_page(), url, args.shots, mobile=w < 900)
+                    context.close()
             if args.only in (None, "journey"):
                 context = browser.new_context(viewport={"width": 1440, "height": 790})
                 opening(context.new_page(), url)

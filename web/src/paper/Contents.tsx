@@ -3,7 +3,7 @@
 // the paper's text and the Lean's names. The rail stays for the PDF as well, so
 // the two views of the paper share one frame. Every result is a jump with a Back.
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { Declaration, OutlineEntry } from "../app/edition";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   current: string | null;
   /** On a narrow screen the list opens over the page. */
   open: boolean;
-  declarations: Declaration[];
+  declarations: Pick<Declaration, "id" | "plain" | "file" | "line" | "end_line">[];
   /** The Lean files, by name, so search reaches inside the proofs. */
   files: Record<string, string>;
   /** The reading copy, which search reads even while the PDF is showing. */
@@ -30,6 +30,8 @@ interface Props {
   onSearch(): void;
   /** What the page calls the authors' text. */
   noun?: string;
+  topLabel?: string;
+  keys?: ReactNode;
 }
 
 interface Block {
@@ -81,7 +83,7 @@ function Snippet({ text, at, length }: { text: string; at: number; length: numbe
   );
 }
 
-export function Contents({ outline, current, open, declarations, files, html, copy, onJump, onTop, onName, onPage, onBlock, onIndex, onClose, onSearch, noun = "paper" }: Props) {
+export function Contents({ outline, current, open, declarations, files, html, copy, onJump, onTop, onName, onPage, onBlock, onIndex, onClose, onSearch, noun = "paper", topLabel = "Title and abstract", keys }: Props) {
   const list = useRef<HTMLOListElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const blocks = useRef<Block[]>([]);
@@ -155,7 +157,7 @@ export function Contents({ outline, current, open, declarations, files, html, co
   };
 
   return (
-    <nav className={`rail${open ? " is-open" : ""}`} aria-label="Sections of this paper">
+    <nav className={`rail${open ? " is-open" : ""}`} aria-label={`Sections of this ${noun}`}>
       <button type="button" className="rail__close" onClick={onClose}>Close</button>
       <div className="rail__search" role="search">
         <input
@@ -211,7 +213,7 @@ export function Contents({ outline, current, open, declarations, files, html, co
         <ol className="rail__list" ref={list}>
           <li>
             <button type="button" className="rail__item" aria-current={current === null ? "location" : undefined} onClick={onTop}>
-              <span className="rail__title">Title and abstract</span>
+              <span className="rail__title">{topLabel}</span>
             </button>
           </li>
           {outline.map((entry) => (
@@ -230,9 +232,7 @@ export function Contents({ outline, current, open, declarations, files, html, co
           </li>
         </ol>
       )}
-      <p className="rail__key">
-        <span>Each number counts a section’s statements with Lean. <kbd>j</kbd> and <kbd>k</kbd> step through them, <kbd>Enter</kbd> opens, <kbd>Esc</kbd> closes, <kbd>g</kbd> switches, <kbd>[</kbd> goes back.</span>
-      </p>
+      <p className="rail__key">{keys ?? <span>Each number counts a section’s statements with Lean. <kbd>j</kbd> and <kbd>k</kbd> step through them, <kbd>Enter</kbd> opens, <kbd>Esc</kbd> closes, <kbd>g</kbd> switches, <kbd>[</kbd> goes back.</span>}</p>
     </nav>
   );
 }

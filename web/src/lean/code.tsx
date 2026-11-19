@@ -88,19 +88,20 @@ export function DeclLink({ paper, name, className, act, children }: { paper: str
 }
 
 interface CodeProps {
-  paper: string;
+  paper?: string;
   lines: Piece[][];
   from: number;
   to: number;
-  names: ReadonlySet<string>;
+  names?: ReadonlySet<string>;
   /** The name of the declaration on show. */
   self?: string;
   on?: (line: number) => boolean;
   exact?: [number, number] | null;
-  act: LeanActions;
+  act?: LeanActions;
+  numbers?: boolean;
 }
 
-export function LeanCode({ paper, lines, from, to, names, self, on, exact, act }: CodeProps) {
+export function LeanCode({ paper, lines, from, to, names, self, on, exact, act, numbers = true }: CodeProps) {
   const rows = [];
   for (let line = from; line <= to; line++) {
     const pieces = lines[line - 1] ?? [];
@@ -109,12 +110,12 @@ export function LeanCode({ paper, lines, from, to, names, self, on, exact, act }
     const indent = /^ */.exec(pieces.map((piece) => piece.text).join(""))?.[0].length ?? 0;
     rows.push(
       <span key={line} className={`source__line${on?.(line) ? " is-on" : ""}${isExact ? " is-exact" : ""}`} data-line={line}>
-        <span className="source__no" aria-hidden="true">{line}</span>
+        {numbers && <span className="source__no" aria-hidden="true">{line}</span>}
         <span className="source__text" style={{ "--indent": indent } as CSSProperties}>
           {pieces.map((piece, i) => {
             // Types take one colour on both pages, so the same name reads the same.
             const typed = piece.kind === "ident" && /^[A-Z]/.test(piece.text);
-            if (names.has(piece.text)) {
+            if (paper && act && names?.has(piece.text)) {
               if (piece.text === self) return <span key={i} className="source__self">{piece.text}</span>;
               return <DeclLink key={i} paper={paper} name={piece.text} act={act} className={`source__ref${typed ? " lk--type" : ""}`}>{piece.text}</DeclLink>;
             }

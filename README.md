@@ -191,15 +191,18 @@ challenge statement; it does not test whether that statement means what the pape
 ## Repository map
 
 Authored paper files and checked-in declaration records live under `papers/`.
-`tools/paper.py build` turns them into `web/public/papers/`. The website build
-command then packages them with the application in `web/dist/`. Both output directories are ignored by Git:
-change their sources and rebuild them.
+`tools/paper.py build` writes the paper editions under `web/public/papers/` and
+the Physlib sample under `web/public/api-maps/`. The website build packages
+both with the application in `web/dist/`. These generated directories are
+ignored by Git. Change their sources and rebuild them.
 
 | Source | What it holds |
 | --- | --- |
 | [papers/](papers/) | One folder for each paper |
+| [Physlib Gauge theory sample](papers/physlib-gauge-theory/API-map.md) | The original Markdown, pinned catalog, cited Lean files and separate reading-title glossary |
 | [skills/add-paper/](skills/add-paper/) | How to fill in a new paper |
 | [tools/paper.py](tools/paper.py) | Extract the Lean, compare with the PDF and build the data |
+| [tools/physlib_map.py](tools/physlib_map.py) | Import the Gauge theory sample and verify its citations |
 | [tools/transcribe.py](tools/transcribe.py) | Draft a paper's reading text from its PDF |
 | [tools/reading.py](tools/reading.py) | Compare the reading copy with the PDF and mark its linked statements |
 | [render-paper.mjs](web/tools/render-paper.mjs) | Typeset `paper.md` with Markdown and KaTeX |

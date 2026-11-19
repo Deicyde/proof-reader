@@ -7,6 +7,8 @@
 import { plainMaths } from "./plainMaths";
 
 function plainOf(formula: Element): string {
+  const original = formula.closest<HTMLElement>("[data-copy-math]")?.dataset.copyMath;
+  if (original !== undefined) return original;
   const tex = formula.querySelector('annotation[encoding="application/x-tex"]')?.textContent?.trim();
   if (!tex) return formula.querySelector(".katex-mathml")?.textContent ?? "";
   try {
@@ -26,8 +28,8 @@ export function installMathsCopy(root: Document = document): void {
     const range = selection.getRangeAt(0).cloneRange();
     const first = formulaAt(range.startContainer);
     const last = formulaAt(range.endContainer);
-    if (first) range.setStartBefore(first);
-    if (last) range.setEndAfter(last);
+    if (first) range.setStartBefore(first.closest("[data-copy-math]") ?? first);
+    if (last) range.setEndAfter(last.closest("[data-copy-math]") ?? last);
     const fragment = range.cloneContents();
     const formulas = fragment.querySelectorAll(".katex");
     if (!formulas.length) return;
