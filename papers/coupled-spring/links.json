@@ -13,7 +13,7 @@
     {
       "id": "global-minimum",
       "title": "The origin is the unique global minimum",
-      "section": "3",
+      "section": "5",
       "passage": "global-minimum",
       "lean": [],
       "checks": [
@@ -31,13 +31,12 @@
     },
     {
       "id": "cubic-local-not-global",
-      "title": "The cubic perturbation has a local minimum and a smaller value elsewhere",
-      "section": "What a cubic changes",
+      "title": "Adding x₀³ keeps the local minimum, by the same test",
+      "section": "3",
       "passage": "cubic-local-minimum",
       "lean": [],
       "checks": [
-        "cubicPerturbation_isLocalMin",
-        "cubicPerturbation_not_global"
+        "cubicPerturbation_isLocalMin"
       ]
     }
   ],
@@ -56,270 +55,286 @@
       }
     },
     {
+      "id": "completed-square",
+      "section": "The minimum of the coupled spring potential",
+      "role": "states",
+      "lean": [],
+      "quote": "$$U(x)=\\left(x_0+\\tfrac12x_1\\right)^2+\\tfrac34x_1^2,$$",
+      "anchor": {
+        "heading": "The minimum of the coupled spring potential",
+        "block": 2
+      },
+      "checks": [
+        "couplingPotential_eq_sq_add_sq"
+      ]
+    },
+    {
       "id": "local-minimum",
-      "section": "1. What PhyslibAlpha proves",
+      "section": "1. What the test requires",
       "role": "states",
       "lean": [
         "coupled_spring_potential"
       ],
       "quote": "The coupled spring potential $U$ has a local minimum\nat the origin.",
       "anchor": {
-        "heading": "1. What PhyslibAlpha proves",
+        "heading": "1. What the test requires",
         "block": 1
       }
     },
     {
       "id": "test-statement",
-      "section": "1. What PhyslibAlpha proves",
+      "section": "1. What the test requires",
       "role": "states",
       "lean": [
         "second_derivative_test_analyticAt"
       ],
-      "quote": "If $f$ is analytic at $a$, its gradient vanishes at $a$, and\n$D^2f(a)[h,h]>0$ for every $h\\ne0$, then $f$ has a local minimum at $a$.",
+      "quote": "If $f$ is analytic at $a$, its\ngradient vanishes at $a$, and $D^2f(a)[h,h]>0$ for every $h\\ne0$, then $f$\nhas a local minimum at $a$.",
       "anchor": {
-        "heading": "1. What PhyslibAlpha proves",
+        "heading": "1. What the test requires",
         "block": 2
       }
     },
     {
       "id": "potential-analytic",
-      "section": "1. What PhyslibAlpha proves",
+      "section": "1. What the test requires",
       "role": "states",
       "lean": [
         "couplingPotential_analyticAt"
       ],
-      "quote": "It is a polynomial, so it is\nanalytic at every point.",
+      "quote": "$U$ is a polynomial, so it is analytic at every point.",
       "anchor": {
-        "heading": "1. What PhyslibAlpha proves",
+        "heading": "1. What the test requires",
         "block": 3
       }
     },
     {
       "id": "potential-derivative",
-      "section": "1. What PhyslibAlpha proves",
+      "section": "1. What the test requires",
       "role": "states",
       "lean": [
         "couplingPotential_hasFDerivAt"
       ],
       "quote": "$$DU(x)[h]=(2x_0+x_1)h_0+(x_0+2x_1)h_1.$$",
       "anchor": {
-        "heading": "1. What PhyslibAlpha proves",
-        "block": 7
+        "heading": "1. What the test requires",
+        "block": 4
       }
     },
     {
       "id": "potential-gradient",
-      "section": "1. What PhyslibAlpha proves",
+      "section": "1. What the test requires",
       "role": "states",
       "lean": [
         "couplingPotential_gradient_zero"
       ],
       "quote": "so the gradient at the origin is zero.",
       "anchor": {
-        "heading": "1. What PhyslibAlpha proves",
-        "block": 8
+        "heading": "1. What the test requires",
+        "block": 7
       }
     },
     {
       "id": "potential-second-derivative",
-      "section": "1. What PhyslibAlpha proves",
+      "section": "1. What the test requires",
       "role": "states",
       "lean": [
         "couplingPotential_iteratedFDeriv_two"
       ],
       "quote": "$$K=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}.$$",
       "anchor": {
-        "heading": "1. What PhyslibAlpha proves",
-        "block": 9
+        "heading": "1. What the test requires",
+        "block": 8
       }
     },
     {
       "id": "potential-positive-definite",
-      "section": "1. What PhyslibAlpha proves",
+      "section": "1. What the test requires",
       "role": "states",
       "lean": [
         "couplingPotential_posDef"
       ],
       "quote": "The Hessian at the origin is positive definite.",
       "anchor": {
-        "heading": "1. What PhyslibAlpha proves",
-        "block": 12
+        "heading": "1. What the test requires",
+        "block": 11
       }
     },
     {
       "id": "test-quadratic-map",
-      "section": "2. Why the test works",
+      "section": "2. How the test turns a positive Hessian into a minimum",
       "role": "explains",
       "lean": [
         "iteratedFDerivQuadraticMap"
       ],
-      "quote": "Lean packages $Q(h)=D^2f(a)[h,h]$ as a quadratic map",
+      "quote": "Lean packages $Q$ as a quadratic map",
       "anchor": {
-        "heading": "2. Why the test works",
+        "heading": "2. How the test turns a positive Hessian into a minimum",
         "block": 1
       }
     },
     {
       "id": "test-lower-bound",
-      "section": "2. Why the test works",
+      "section": "2. How the test turns a positive Hessian into a minimum",
       "role": "explains",
       "lean": [
         "coercive_of_posdef"
       ],
-      "quote": "Scaling gives $Q(h)\\ge C\\lVert h\\rVert^2$.",
+      "quote": "scaling gives $Q(h)\\ge C\\lVert h\\rVert^2$",
       "anchor": {
-        "heading": "2. Why the test works",
+        "heading": "2. How the test turns a positive Hessian into a minimum",
         "block": 1
       }
     },
     {
       "id": "test-taylor-error",
-      "section": "2. Why the test works",
+      "section": "2. How the test turns a positive Hessian into a minimum",
       "role": "explains",
       "lean": [
         "littleO_of_powerseries"
       ],
       "quote": "$R(h)=o(\\lVert h\\rVert^2)$.",
       "anchor": {
-        "heading": "2. Why the test works",
+        "heading": "2. How the test turns a positive Hessian into a minimum",
         "block": 2
       }
     },
     {
       "id": "test-inequality",
-      "section": "2. Why the test works",
+      "section": "2. How the test turns a positive Hessian into a minimum",
       "role": "explains",
       "lean": [
         "le_of_littleO"
       ],
-      "quote": "In that neighbourhood $f(a+h)\\ge f(a)$, as required by",
+      "quote": "so $f(a+h)\\ge f(a)$ throughout that neighbourhood",
       "anchor": {
-        "heading": "2. Why the test works",
-        "block": 3
-      }
-    },
-    {
-      "id": "hessian-polar-form",
-      "role": "states",
-      "lean": [
-        "polarBilin_iteratedFDerivQuadraticMap"
-      ],
-      "quote": "$$Q(u+v)-Q(u)-Q(v)=B(u,v)+B(v,u).$$",
-      "section": "The smoothness hypothesis in Lean",
-      "anchor": {
-        "heading": "The smoothness hypothesis in Lean",
+        "heading": "2. How the test turns a positive Hessian into a minimum",
         "block": 2
       }
     },
     {
+      "id": "cubic-local-minimum",
+      "section": "3. A remainder that matters",
+      "role": "states",
+      "lean": [],
+      "quote": "A supplementary Lean proof applies\nKjos-Hanssen's analytic test to $W$ unchanged. Its only new step shows\nthat the second derivative of $x_0^3$ vanishes at the origin.",
+      "anchor": {
+        "heading": "3. A remainder that matters",
+        "block": 1
+      },
+      "checks": [
+        "cubicPerturbation_isLocalMin",
+        "cube_iteratedFDeriv_two_zero"
+      ]
+    },
+    {
+      "id": "cubic-strict",
+      "section": "3. A remainder that matters",
+      "role": "states",
+      "lean": [],
+      "quote": "A second supplementary proof\nchecks the strict inequality near the origin in Lean.",
+      "anchor": {
+        "heading": "3. A remainder that matters",
+        "block": 4
+      },
+      "checks": [
+        "cubicPerturbation_strict_near_origin"
+      ]
+    },
+    {
+      "id": "cubic-not-global",
+      "section": "3. A remainder that matters",
+      "role": "states",
+      "lean": [],
+      "quote": "For example $W(-2,0)=-4<W(0)$, which Lean also checks,",
+      "anchor": {
+        "heading": "3. A remainder that matters",
+        "block": 5
+      },
+      "checks": [
+        "cubicPerturbation_not_global"
+      ]
+    },
+    {
       "id": "lean-smoothness",
-      "section": "The smoothness hypothesis in Lean",
+      "section": "4. A hypothesis the proof never uses",
       "role": "explains",
       "lean": [
         "isLocalMin_of_posDef_of_littleo",
         "coercive_of_posdef_of_contdiff"
       ],
-      "quote": "Its proof obtains the same kind of lower bound twice.",
+      "quote": "Its proof\nobtains the lower bound $Q(h)\\ge C\\lVert h\\rVert^2$ twice.",
       "anchor": {
-        "heading": "The smoothness hypothesis in Lean",
-        "block": 4
-      },
-      "lines": [
-        539,
-        540
-      ]
+        "heading": "4. A hypothesis the proof never uses",
+        "block": 1
+      }
+    },
+    {
+      "id": "hessian-polar-form",
+      "section": "4. A hypothesis the proof never uses",
+      "role": "states",
+      "lean": [
+        "polarBilin_iteratedFDerivQuadraticMap"
+      ],
+      "quote": "$$Q(u+v)-Q(u)-Q(v)=B(u,v)+B(v,u).$$",
+      "anchor": {
+        "heading": "4. A hypothesis the proof never uses",
+        "block": 3
+      }
     },
     {
       "id": "without-smoothness",
-      "section": "The smoothness hypothesis in Lean",
+      "section": "4. A hypothesis the proof never uses",
       "role": "explains",
       "lean": [],
-      "quote": "The supplementary Lean proof keeps the\nlittle-o remainder, zero gradient and positive definiteness and drops\nthe smoothness assumption.",
+      "quote": "A supplementary Lean proof keeps the little-o estimate, the zero gradient\nand positive definiteness, drops the smoothness hypothesis, and reaches the\nsame conclusion with the first call alone.",
       "anchor": {
-        "heading": "The smoothness hypothesis in Lean",
+        "heading": "4. A hypothesis the proof never uses",
         "block": 5
       },
       "checks": [
         "isLocalMin_of_posDef_of_littleo_without_smoothness"
-      ],
-      "title": "The remainder lemma without smoothness"
+      ]
     },
     {
       "id": "power-series-caller",
+      "section": "4. A hypothesis the proof never uses",
       "role": "explains",
       "lean": [
         "second_derivative_test"
       ],
-      "quote": "It passes `h₁.analyticAt.contDiffAt` to the\nremainder lemma.",
-      "lines": [
-        593,
-        594
-      ],
-      "section": "The smoothness hypothesis in Lean",
+      "quote": "which passes `h₁.analyticAt.contDiffAt` to the\nremainder lemma.",
       "anchor": {
-        "heading": "The smoothness hypothesis in Lean",
+        "heading": "4. A hypothesis the proof never uses",
         "block": 6
       }
     },
     {
-      "id": "cubic-local-minimum",
-      "section": "What a cubic changes",
-      "role": "states",
-      "lean": [],
-      "quote": "The supplementary Lean proofs establish `IsLocalMin` by a direct\nneighbourhood bound and check the strict inequality at $(-2,0)$.",
-      "anchor": {
-        "heading": "What a cubic changes",
-        "block": 2
-      },
-      "checks": [
-        "cubicPerturbation_isLocalMin",
-        "cubicPerturbation_not_global"
-      ]
-    },
-    {
       "id": "global-minimum",
-      "section": "3. Spring energy and the global minimum",
+      "section": "5. Where the three squares come from",
       "role": "states",
       "lean": [],
       "quote": "For every nonzero $x\\in\\mathbb R^2$, $U(x)>U(0)$.",
       "anchor": {
-        "heading": "3. Spring energy and the global minimum",
-        "block": 5
-      },
-      "checks": [
-        "couplingPotential_origin_lt"
-      ],
-      "title": "Unique global minimum"
-    },
-    {
-      "id": "completed-square",
-      "section": "3. Spring energy and the global minimum",
-      "role": "states",
-      "lean": [],
-      "quote": "$$U(x)=\\left(x_0+\\tfrac12x_1\\right)^2+\\tfrac34x_1^2.$$",
-      "anchor": {
-        "heading": "3. Spring energy and the global minimum",
+        "heading": "5. Where the three squares come from",
         "block": 6
       },
       "checks": [
-        "couplingPotential_eq_sq_add_sq"
-      ],
-      "title": "Completing the square"
+        "couplingPotential_origin_lt"
+      ]
     },
     {
       "id": "strict-positivity",
-      "section": "3. Spring energy and the global minimum",
+      "section": "5. Where the three squares come from",
       "role": "proves",
       "lean": [],
-      "quote": "If the sum is zero, the second term forces $x_1=0$. The first then forces\n$x_0=0$.",
+      "quote": "the\nsecond term forces $x_1=0$. The first then forces $x_0=0$.",
       "anchor": {
-        "heading": "3. Spring energy and the global minimum",
-        "block": 7
+        "heading": "5. Where the three squares come from",
+        "block": 6
       },
       "checks": [
         "couplingPotential_pos"
-      ],
-      "title": "Why equality forces the origin"
+      ]
     }
   ],
   "plain": {

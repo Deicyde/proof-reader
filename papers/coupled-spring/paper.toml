@@ -27,10 +27,18 @@ language = "lean"
 evidence = "comparator"
 
 [checks]
-source_lines = "https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/{path}#L{line}-L{end}"
+source_lines = "https://github.com/wcook04/proof-reader/blob/31e15e8d604c9feb9c17594cc57fad3d2f95e0af/papers/coupled-spring/{path}#L{line}-L{end}"
 
 [checks.titles]
-cubicPerturbation_isLocalMin = "A local minimum at the origin"
+cubicPerturbation_isLocalMin = "A local minimum by the analytic test"
+cubicPerturbation_strict_near_origin = "A strict minimum near the origin"
+cube_iteratedFDeriv_two_zero = "The cubic's second derivative at the origin"
+cubicPerturbation_iteratedFDeriv_two_zero = "The same second derivative as U"
+cubicPerturbation_analyticAt = "The perturbed potential is analytic"
+cubicPerturbation_gradient_zero = "Zero gradient at the origin"
+cubicPerturbation_posDef = "Positive definite at the origin"
+couplingPotential_origin = "The potential is zero at the origin"
+couplingPotential_origin_le = "The origin is a global minimum"
 cubicPerturbation_not_global = "A smaller value at (−2, 0)"
 couplingPotential_eq_sq_add_sq = "Completing the square"
 couplingPotential_origin_lt = "The unique global minimum"
