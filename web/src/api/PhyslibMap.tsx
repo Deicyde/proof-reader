@@ -324,7 +324,7 @@ function MapReader({ edition }: { edition: Edition }) {
         <PaperSplit />
         <aside className="proof api-map__aside" id="api-map-references" aria-label="Map references">
           <div className="proof__caption">
-            <div className="proof__says"><p><b>{group ? `Lean citation [${group.index}]` : ref ? `Reference {${ref.index}}` : paragraph ? "References in this paragraph" : "Lean glossary"}</b> {group && `, ${group.declarations.length} ${group.declarations.length === 1 ? "declaration" : "declarations"}`}</p></div>
+            <div className="proof__says"><p><b>{group ? `Lean citation [${group.index}]` : ref ? `Reference {${ref.index}}` : paragraph ? "References in this paragraph" : "Lean glossary"}</b>{group && `, ${group.declarations.length} ${group.declarations.length === 1 ? "declaration" : "declarations"}`}</p></div>
             {citation && <button type="button" className="proof__close" onClick={close}>Close</button>}
           </div>
           <div className="leaf">
