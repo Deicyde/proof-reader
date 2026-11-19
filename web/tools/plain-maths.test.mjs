@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 import { plainMaths } from "../src/paper/plainMaths.ts";
 
@@ -13,6 +14,12 @@ const cases = {
   "t\\to-\\infty": "t → −∞",
   "\\lvert c\\rvert<2": "|c| < 2",
   "\\tfrac94": "9/4",
+  "\\mathrm{SU}(3) \\times \\mathrm{SU}(2) \\times \\mathrm{U}(1)": "SU(3) × SU(2) × U(1)",
+  "\\operatorname{Ad}_g [a, b] = [\\operatorname{Ad}_g a, \\operatorname{Ad}_g b]": "Ad_g [a, b] = [Ad_g a, Ad_g b]",
+  "\\Lambda \\eta = \\eta (\\Lambda^{-1})^{\\mathsf T}": "Λη = η(Λ⁻¹)ᵀ",
+  "\\mathfrak g_J \\to \\mathfrak g_J'": "𝔤_J → 𝔤_J'",
+  "\\eta = \\operatorname{diag}(1, -1, \\dots, -1)": "η = diag(1, −1, …, −1)",
+  "g \\circ f": "g ∘ f",
 };
 
 test("formulas read as Physlib writes them", () => {
@@ -31,4 +38,11 @@ print(json.dumps([[a or b, p.convert(a or b)] for a, b in m.MATHS.findall(text)]
   const pairs = JSON.parse(execFileSync("python3", ["-c", script], { encoding: "utf8" }));
   assert.ok(pairs.length > 30);
   for (const [tex, text] of pairs) assert.equal(plainMaths(tex), text, tex);
+});
+
+test("every formula in the Gauge theory reading notes copies as Unicode, not TeX", () => {
+  const notes = JSON.parse(readFileSync(new URL("../../api-maps/physlib-gauge-theory/notes.json", import.meta.url), "utf8"));
+  for (const note of Object.values(notes)) for (const [, tex] of note.matchAll(/\$([^$]+)\$/g)) {
+    assert.doesNotThrow(() => plainMaths(tex), tex);
+  }
 });

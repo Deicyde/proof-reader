@@ -20,8 +20,8 @@ export interface MapNode {
 }
 
 const ROOT = "∅top";
-const CARD = { w: 196, h: 78 };
-const METRICS = { ...METRICS_COMPACT, sepCard: 18, gapMin: 40 };
+const CARD = { w: 232, h: 92 };
+const METRICS = { ...METRICS_COMPACT, sepCard: 28, gapMin: 58 };
 
 /** The maps reachable from `start` along `next`, without `start` itself. */
 function reach(start: string, next: (path: string) => string[]): Set<string> {
@@ -121,7 +121,7 @@ export function dependencyGraph(maps: readonly MapNode[], shown: ReadonlySet<str
 function claims(m: MapNode): string {
   if (!m.total) return "No claims listed";
   if (m.done === m.total) return `All ${m.total} claims formalized`;
-  return `${m.done} of ${m.total} claims formalized`;
+  return `${m.done}/${m.total} claims formalized`;
 }
 
 /** A downward arrowhead whose tip touches the top of the cited map. */
@@ -230,8 +230,8 @@ function Figure({ maps, byPath, shown, current, tracker, home, wrap }: FigurePro
     const { groups, alone } = citationGroups(maps, shown);
     const title = (p: string) => byPath.get(p)?.title ?? p;
     const stages = groups.map((g) => draw(maps, g, wrap ? width : null));
-    // Unwrapped, the widest drawing sets one scale for all of them, never below 0.72: past that the box scrolls.
-    const k = wrap ? 1 : Math.max(0.72, Math.min(1, width / Math.max(1, ...stages.map((d) => d.w))));
+    // Drawn at full size, as on physlib.io: a drawing wider than its box scrolls instead of shrinking.
+    const k = 1;
     return { stages, k, alone: alone.sort((a, b) => title(a).localeCompare(title(b))) };
   }, [maps, shown, width, byPath, wrap]);
   const neighbours = useMemo(() => {
@@ -256,7 +256,7 @@ function Figure({ maps, byPath, shown, current, tracker, home, wrap }: FigurePro
         <span className="deps__title">{m.title}</span>
         <span className="deps__claims">
           <span className="deps__bar" aria-hidden="true"><span style={{ width: `${Math.round(share * 100)}%` }} /></span>
-          {claims(m)}
+          <span className="deps__count">{claims(m)}</span>
         </span>
       </a>
     );

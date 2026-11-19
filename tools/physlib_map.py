@@ -128,6 +128,9 @@ def build() -> None:
     names = {decl["fullName"] for group in groups for decl in group["declarations"]}
     if glossary.keys() != names:
         raise ValueError(f"Glossary and index name different declarations: {', '.join(sorted(glossary.keys() ^ names))}")
+    notes = json.loads((FOLDER / "notes.json").read_text(encoding="utf-8"))
+    if notes.keys() != names or any(not n.strip() or n != n.strip() for n in notes.values()):
+        raise ValueError(f"notes.json needs one trimmed reading note per declaration: {', '.join(sorted(notes.keys() ^ names))}")
     if len(set(glossary.values())) != len(glossary) or any(not title.strip() or title != title.strip() for title in glossary.values()):
         raise ValueError("Glossary titles must be distinct, nonempty and trimmed")
     for group in groups:
@@ -143,6 +146,7 @@ def build() -> None:
     rendered = subprocess.run(
         ["node", str(ROOT / "web" / "tools" / "render-paper.mjs"), str(source), SLUG, "lean", "--api-map"],
         input=json.dumps({"maths": maths, "references": refs, "phrases": phrases,
+                          "notes": notes,
                           "concepts": check_concepts(json.loads((FOLDER / "concepts.json").read_text(encoding="utf-8")), groups),
                           "status": {"done": here["done"], "total": here["total"]}}, ensure_ascii=False),
         text=True, capture_output=True, check=False,

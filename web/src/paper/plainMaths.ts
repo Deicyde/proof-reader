@@ -19,12 +19,18 @@ const GLYPH: Record<string, string> = { "1/2": "½", "3/4": "¾", "1/4": "¼", "
 const SYMBOL: Record<string, string> = {
   to: "→", mapsto: "↦", times: "×", in: "∈", neq: "≠", ne: "≠", le: "≤", leq: "≤", ge: "≥", geq: "≥",
   infty: "∞", lVert: "‖", rVert: "‖", lvert: "|", rvert: "|", blacksquare: "∎", partial: "∂", cdot: "·", sum: "Σ", nabla: "∇", pm: "±",
-  cos: "cos",
+  cos: "cos", circ: "∘", dots: "…", ldots: "…", cdots: "⋯",
 };
-const LETTER: Record<string, Record<string, string>> = { mathbb: { R: "ℝ", N: "ℕ", Z: "ℤ", Q: "ℚ", C: "ℂ" } };
-const GREEK_NAMES = "alpha beta gamma delta epsilon theta lambda mu nu pi rho sigma tau phi chi psi omega".split(" ");
-const GREEK: Record<string, string> = Object.fromEntries(GREEK_NAMES.map((name, i) => [name, [..."αβγδεθλμνπρστφχψω"][i]]));
-const RELATION = new Set([..."=<>≤≥≠→↦∈×"]);
+const LETTER: Record<string, Record<string, string>> = {
+  mathbb: { R: "ℝ", N: "ℕ", Z: "ℤ", Q: "ℚ", C: "ℂ" },
+  mathfrak: { g: "𝔤", h: "𝔥", k: "𝔨", s: "𝔰", t: "𝔱", u: "𝔲" },
+};
+// Upright names and operators are written as their letters: \mathrm{SU}(3) is SU(3), \operatorname{Ad}_g is Ad_g.
+const UPRIGHT = new Set(["mathrm", "operatorname", "mathsf", "text", "textrm"]);
+const GREEK_NAMES = ("alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi pi rho sigma tau phi chi psi omega " +
+  "Gamma Delta Theta Lambda Xi Pi Sigma Phi Psi Omega").split(" ");
+const GREEK: Record<string, string> = Object.fromEntries(GREEK_NAMES.map((name, i) => [name, [..."αβγδεζηθικλμνξπρστφχψωΓΔΘΛΞΠΣΦΨΩ"][i]]));
+const RELATION = new Set([..."=<>≤≥≠→↦∈×∘"]);
 const OPEN = "([";
 const SCRIPTS = Object.values(SUP).join("") + Object.values(SUB).join("");
 
@@ -76,7 +82,11 @@ function tokens(tex: string): string[] {
       else if ([" ", ",", ";", "quad", "!"].includes(name)) out.push(name === "!" ? "" : " ");
       else if (Object.hasOwn(SYMBOL, name)) out.push(SYMBOL[name]);
       else if (GREEK_NAMES.includes(name)) out.push(GREEK[name]);
-      else if (Object.hasOwn(LETTER, name)) {
+      else if (UPRIGHT.has(name)) {
+        let arg: string;
+        [arg, i] = group(tex, i);
+        out.push(arg.trim());
+      } else if (Object.hasOwn(LETTER, name)) {
         let arg: string;
         [arg, i] = group(tex, i);
         if (!Object.hasOwn(LETTER[name], arg)) throw new MathsError(`no plain letter for \\${name}{${arg}}`);
