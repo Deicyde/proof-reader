@@ -23,7 +23,6 @@ import paper as tool  # noqa: E402
 import plain_maths  # noqa: E402
 
 SITE = "https://wcook04.github.io/proof-reader/#/{slug}"
-REPO = "https://github.com/wcook04/proof-reader/blob/main/papers/{slug}/{path}#L{line}-L{end}"
 DEFINES = ("def", "abbrev")
 VERDICT = {"same": "Same statement", "stronger": "Lean is stronger", "weaker": "Lean is weaker",
            "different": "Different statement"}
@@ -118,13 +117,14 @@ def build(slug: str) -> Path:
         return {"name": name, "title": plain.get(name, name), "code": code, "where": where, "url": url,
                 "proof": proof}
 
-    def check_entry(name: str) -> dict:
+    def check_entry(name: str, title: str | None = None) -> dict:
         c = checks[name]
-        url = REPO.format(slug=slug, path=c["file"], line=c["line"], end=c["end_line"])
+        template = config.get("checks", {}).get("source_lines", "{path}#L{line}-L{end}")
+        url = template.format(path=c["file"], line=c["line"], end=c["end_line"])
         code = c["code"].rstrip()
-        where = (f"Written by AI for this page and accepted by Lean against the two files: "
-                 f"[{c['file']}, lines {c['line']}–{c['end_line']}][{name}]. It is not in Physlib.")
-        return {"name": name, "title": c["doc"].rstrip("."), "code": code, "where": where, "url": url,
+        where = (f"Lean accepted this supplementary proof, written with AI for this page. "
+                 f"[{c['file']}, lines {c['line']}–{c['end_line']}][{name}].")
+        return {"name": name, "title": title or c["doc"].rstrip("."), "code": code, "where": where, "url": url,
                 "proof": True}
 
     def comparison(name: str) -> str | None:
@@ -179,9 +179,9 @@ def build(slug: str) -> Path:
             if compare_at.get(name) == p["id"]:
                 entry["comparison"] = comparison(name)
             bucket.append(entry)
-        for name in checks_at.get(p["id"], []):
+        for name in [*p.get("checks", []), *checks_at.get(p["id"], [])]:
             if not any(e["name"] == name for e in bucket):
-                bucket.append(check_entry(name))
+                bucket.append(check_entry(name, p.get("title") if name in p.get("checks", []) else None))
 
     # The table of statements, in reading order.
     rows, seen, urls = [], set(), {}
@@ -201,28 +201,26 @@ def build(slug: str) -> Path:
             rows.append(f"| {e['title']} | [`{e['name']}`][{e['name']}] | {verdict} |")
 
     title_end = next(i for i, b in enumerate(paragraphs) if b.startswith("## "))
-    head, rest = paragraphs[:title_end], range(title_end, len(paragraphs))
     out = ["<!-- Written by tools/markdown_edition.py from paper.md, links.json and the Lean. "
            "Edit those, then run it again. -->", ""]
-    out += ["\n\n".join(head), ""]
-    out += [f"[Read it with the Lean beside it]({SITE.format(slug=slug)}) · "
-            f"[Lean source]({lean['source']}) · "
-            "Each ▸ **Lean** under a paragraph opens the statements that paragraph is about.", ""]
     table = ["## Statements and comparisons", "",
              "The statements on this page that were compared with a Lean declaration, and the Lean "
              "statements written for this page. The comparisons were made by AI and have not been reviewed.", "",
              "| Statement on this page | Lean | Comparison with the page |", "| --- | --- | --- |", *rows, ""]
     waiting: list[dict] = []
-    for i in rest:
-        if paragraphs[i].startswith("## Lean References"):
+    for i, paragraph in enumerate(paragraphs):
+        if i == title_end:
+            out += [f"[Read it with the Lean beside it]({SITE.format(slug=slug)}) · "
+                    f"[Lean source]({lean['source']})", ""]
+        if paragraph.startswith("## Lean References"):
             out += table
             table = []
-        out += [plain_text(paragraphs[i]), ""]
+        out += [plain_text(paragraph), ""]
         waiting += attached.get(i, [])
         # A fold waits until the sentence ends: "The function $$U=…$$ on ℝ² is
         # called…" is one sentence over three paragraphs, and its Lean opens after it.
-        if waiting and (paragraphs[i].startswith("#") or i + 1 == len(paragraphs)
-                        or sentence_ends(paragraphs[i])):
+        if waiting and (paragraph.startswith("#") or i + 1 == len(paragraphs)
+                        or sentence_ends(paragraph)):
             out += [details(waiting), ""]
             waiting = []
     out += table

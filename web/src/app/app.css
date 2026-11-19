@@ -318,6 +318,8 @@ button:disabled { cursor: default; }
 .fid__checked .declname, .index__check .declname, .stepline__fid .declname { display: inline; margin-right: 0; }
 .fid__fold { min-height: 26px; margin-top: 0; }
 .fid .fid__code { margin: 4px -16px 0 -28px; }
+.fid--supplementary { margin: 8px 16px 0; }
+.fid--supplementary .fid__code { margin: 4px 0 0; }
 .fid__file { margin-top: 2px !important; font-size: var(--fs-xs); }
 .fid__back, .made__link { min-height: 24px; color: inherit; text-decoration: underline; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
 /* Comparator's run on a declaration: a closed fold under the axiom report. */
@@ -344,6 +346,7 @@ button:disabled { cursor: default; }
 .stepline__fid button:hover { color: var(--lit); }
 .made p { margin: 0 0 4px; color: var(--ink); text-wrap: pretty; }
 .index__check { margin: 0 0 10px; }
+.index__check summary { cursor: pointer; }
 .index__check .fid__code { margin: 4px -16px 0; }
 .index__checkname { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); }
 .index__checkkind { font-size: var(--fs-xs); }

@@ -62,6 +62,21 @@ class MarkdownEditionTest(unittest.TestCase):
 
     def test_proofs_written_for_the_page_are_shown_whole(self) -> None:
         self.assertIn("exact couplingPotential_pos x hx", self.before)
+        self.assertIn("have h1sq : (x 1) ^ 2 = 0", self.before)
+
+    def test_global_minimum_uses_its_own_proof(self) -> None:
+        built = markdown_edition.tool.edition(SLUG)
+        claims = {claim["id"]: claim for claim in built["claims"]}
+        passages = {passage["id"]: passage for passage in built["passages"]}
+        original = passages[claims["local-minimum"]["passage"]]
+        self.assertEqual(original["lean"], ["coupled_spring_potential"])
+        self.assertIn("a local minimum", original["quote"])
+        global_result = passages[claims["global-minimum"]["passage"]]
+        self.assertEqual(global_result["lean"], [])
+        self.assertEqual(global_result["checks"], ["couplingPotential_origin_lt"])
+        self.assertIn("For every nonzero", global_result["quote"])
+        self.assertEqual(passages["strict-positivity"]["checks"], ["couplingPotential_pos"])
+        self.assertEqual(passages["completed-square"]["checks"], ["couplingPotential_eq_sq_add_sq"])
 
     def test_definitions_are_shown_whole_and_empty_docstrings_dropped(self) -> None:
         self.assertIn("toFun := fun y => iteratedFDeriv ℝ 2 f x₀ ![y,y]", self.before)

@@ -1462,12 +1462,36 @@ def narrow_header(page: Page, url: str, shots: Path | None) -> None:
     shot(page, shots, "pcp-narrow-header-1363")
 
 
+def coupled_spring(page: Page, url: str) -> None:
+    print("Coupled spring evidence follows the reading")
+    paper = f"{url}#/coupled-spring"
+    page.goto(f"{paper}/@strict-positivity")
+    proof = page.locator('.leaf [data-check="couplingPotential_pos"]')
+    proof.get_by_role("button", name="The proof in Lean", exact=False).click()
+    check("have h1sq" in proof.locator(".fid__code").inner_text(),
+          "the equality argument opens the actual positivity proof")
+    check(page.locator(".leaf .decl").count() == 0,
+          "the supplementary proof is displayed without a Physlib declaration")
+
+    page.goto(paper)
+    reading = page.locator("[data-paper-pane]")
+    reading.locator("#s-4").wait_for(state="attached")
+    reading.hover()
+    page.mouse.wheel(0, 20000)
+    retained = page.locator('.leaf [data-check="isLocalMin_of_posDef_of_littleo_without_smoothness"]')
+    retained.wait_for()
+    check(page.locator(".stepper span").inner_text() == "After the last statement",
+          "the last linked proof stays visible while the reader is in the sources")
+    check(page.locator(".leaf .untied, .leaf #checks").count() == 0,
+          "the end of the page does not switch to the index")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--url", help="a running site, ending in /")
     parser.add_argument("--dist", type=Path, default=ROOT / "web" / "dist")
     parser.add_argument("--shots", type=Path)
-    parser.add_argument("--only", choices=("journey", "fidelity", "sizes", "companions"))
+    parser.add_argument("--only", choices=("journey", "fidelity", "sizes", "companions", "coupled-spring"))
     parser.add_argument("--browser", choices=("chromium", "firefox", "webkit"), default="chromium")
     parser.add_argument("--serve", type=Path, help=argparse.SUPPRESS)
     parser.add_argument("--port", type=int, help=argparse.SUPPRESS)
@@ -1485,6 +1509,10 @@ def main() -> int:
     try:
         with sync_playwright() as playwright:
             browser = getattr(playwright, args.browser).launch()
+            if args.only in (None, "coupled-spring"):
+                context = browser.new_context(viewport={"width": 1440, "height": 900})
+                coupled_spring(context.new_page(), url)
+                context.close()
             if args.only in (None, "journey"):
                 context = browser.new_context(viewport={"width": 1440, "height": 790})
                 opening(context.new_page(), url)

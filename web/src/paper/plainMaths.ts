@@ -10,7 +10,7 @@
 const pairs = (keys: string, values: string): Record<string, string> =>
   Object.fromEntries([...keys].map((key, i) => [key, [...values][i]]));
 
-const SUP = pairs("0123456789+-=()ni", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿⁱ");
+const SUP = pairs("0123456789+-=()niT", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿⁱᵀ");
 const SUB = pairs("0123456789+-=()aehijklmnoprstuvx", "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ");
 // A minus sign is already "−" when a script is converted: U_{-2} is U₋₂.
 SUP["−"] = "⁻";
@@ -19,6 +19,7 @@ const GLYPH: Record<string, string> = { "1/2": "½", "3/4": "¾", "1/4": "¼", "
 const SYMBOL: Record<string, string> = {
   to: "→", mapsto: "↦", times: "×", in: "∈", neq: "≠", ne: "≠", le: "≤", leq: "≤", ge: "≥", geq: "≥",
   infty: "∞", lVert: "‖", rVert: "‖", lvert: "|", rvert: "|", blacksquare: "∎", partial: "∂", cdot: "·", sum: "Σ", nabla: "∇", pm: "±",
+  cos: "cos",
 };
 const LETTER: Record<string, Record<string, string>> = { mathbb: { R: "ℝ", N: "ℕ", Z: "ℤ", Q: "ℚ", C: "ℂ" } };
 const GREEK_NAMES = "alpha beta gamma delta epsilon theta lambda mu nu pi rho sigma tau phi chi psi omega".split(" ");

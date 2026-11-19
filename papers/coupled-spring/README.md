@@ -1,40 +1,13 @@
 <!-- Written by tools/markdown_edition.py from paper.md, links.json and the Lean. Edit those, then run it again. -->
 
-# A minimum of the coupled spring potential
+# The minimum of the coupled spring potential
 
-*The second-derivative test in a Lean file by Bjørn Kjos-Hanssen, written out.*
-
-*Written by AI agents under Will Cook's direction, 17 November 2026, revised 19 November.
-Neither the author of the Lean nor a physicist has reviewed it. Section 7 says who wrote what.*
-
-[Read it with the Lean beside it](https://wcook04.github.io/proof-reader/#/coupled-spring) · [Lean source](https://github.com/leanprover-community/physlib/tree/be0a9eef7dac78da524bfbde91c812340b194610) · Each ▸ **Lean** under a paragraph opens the statements that paragraph is about.
-
-## Abstract
-
-In PhyslibAlpha, Bjørn Kjos-Hanssen proves in Lean that the coupled spring potential
-U(x₀, x₁) = x₀² + x₀x₁ + x₁² has a local minimum at the origin. He does it by applying a
-general second-derivative test, proved in a companion file, and describes the file as a proof
-of concept for that test. The test has hypotheses only about the behaviour of a function near
-the point, and for U each of them can be checked by hand. Because U is quadratic, completing
-the square gives a second, shorter proof with a stronger conclusion, that the origin is the unique
-global minimum. This page writes out both proofs, shows which Lean
-statements carry each step, and explains what the second derivative of U means for two
-masses joined by springs. It is written for a reader who knows multivariable calculus and has
-not read the Lean.
-
-Lean declarations are cited [1] to [13] and other sources {1} to {5}, as in Physlib's API maps.
-Both lists are at the end.
-
-## 1. The potential and a spring system with this energy
-
-The function
-
-U(x₀, x₁) = x₀² + x₀x₁ + x₁²
-
-on ℝ² is called the coupled spring potential in PhyslibAlpha {1}. In that file
-Bjørn Kjos-Hanssen proves in Lean that U has a local minimum at the origin [6]. The file
-names no particular physical system [1]. The system below is one reading of U, chosen for this
-page.
+The coupled spring potential U(x₀, x₁) = x₀² + x₀x₁ + x₁² has a unique
+global minimum at the origin. To see why, think of two masses joined by
+springs. Moving either mass stores energy in its wall spring. In
+PhyslibAlpha, Bjørn Kjos-Hanssen proves a local minimum with a general
+second-derivative test. The spring calculation also supplies the uniform
+Hessian bound that drives that test.
 
 <details>
 <summary><b>Lean</b> · The coupled spring potential · <code>couplingPotential</code></summary>
@@ -49,32 +22,140 @@ Copied whole from [CoupledSpringPotential.lean, lines 56–57][couplingPotential
 
 </details>
 
-Two masses lie on a line between two walls. Each mass is joined to the nearer wall by a spring,
-and the two masses are joined by a third spring. All three springs have spring constant k and
-are at their natural lengths when both masses are at their equilibrium positions. Let x₀ and
-x₁ be the displacements of the two masses from those positions, each measured positive
-towards the other mass. Then the left spring is stretched by x₀, the right spring is stretched
-by x₁, and the middle spring is shortened by x₀ + x₁. Each stretch or shortening can be
-negative. The energy stored in the three springs is
+[Read it with the Lean beside it](https://wcook04.github.io/proof-reader/#/coupled-spring) · [Lean source](https://github.com/leanprover-community/physlib/tree/be0a9eef7dac78da524bfbde91c812340b194610)
 
-½k x₀² + ½k x₁² + ½k (x₀ + x₁)² = k U(x₀, x₁).
+## 1. Where the squares come from
 
-So U is the spring energy in units of k. The sign of the cross term comes from the choice of
-directions. If both displacements are measured positive to the right, the middle spring changes
-length by x₁ − x₀ and the energy is k(x₀² − x₀x₁ + x₁²), which is kU with x₁ replaced
-by −x₁.
+Take two masses on a line between fixed walls. A spring connects each mass
+to its wall, and a third connects the masses. All three ideal springs have
+stiffness k > 0 and are at their natural lengths at the reference positions.
+Measure x₀ and x₁ from those positions, with each positive direction
+pointing inward.
 
-## 2. The second-derivative test
+![Two masses between fixed walls, joined by three springs of stiffness k. Positive x₀ points right and positive x₁ points left.](spring-coordinates.svg)
 
-For a function f on a real inner product space V, write Df(a) for its derivative at a, a
-linear map V → ℝ, and D²f(a) for its second derivative at a, a bilinear map
-V × V → ℝ.
+Moving the left mass inward by x₀ lengthens its wall spring by x₀.
+The right wall spring lengthens by x₁. Both inward motions shorten the
+middle spring, so its change in length is −(x₀ + x₁). Each spring stores
+½k times its squared change in length. Their total is kU(x), where
 
-**Theorem 2.1 (second-derivative test).** Let V be a finite-dimensional real inner product
-space, let f: V → ℝ and let a ∈ V. Suppose that f is analytic at a, that the
-gradient of f at a is zero, and that the second derivative of f at a is positive definite:
-D²f(a)(y, y) > 0 for every y ≠ 0. Then f has a local minimum at a: there is a neighbourhood
-of a on which f(a) ≤ f(x). [7][8]
+U(x) = ½(x₀² + x₁² + (x₀ + x₁)²).
+
+For displacements in metres, U has units of square metres and kU is
+in joules. Multiplication by k > 0 preserves minima. The wall springs alone
+give U(x) ≥ ½‖x‖², so the origin is the only place
+where all the stored energy can vanish.
+
+**Supplementary result.** For every nonzero x ∈ ℝ², U(x) > U(0).
+Both sides are zero at x = 0. A separate Lean proof written for this page
+starts by completing the square.
+
+<details>
+<summary><b>Lean proof</b> · Unique global minimum · <code>couplingPotential_origin_lt</code></summary>
+
+```lean
+/-- At every point other than the origin the coupled spring potential is larger than at the
+origin. -/
+theorem couplingPotential_origin_lt (x : EuclideanSpace ℝ (Fin 2)) (hx : x ≠ 0) :
+    couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2)) < couplingPotential x := by
+  have h0 : couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2)) = 0 := by
+    first
+      | simp [couplingPotential]
+      | norm_num [couplingPotential]
+  rw [h0]
+  exact couplingPotential_pos x hx
+```
+
+Lean accepted this supplementary proof, written with AI for this page. [checks/StrictMinimum.lean, lines 32–41][couplingPotential_origin_lt].
+
+</details>
+
+U(x) = (x₀ + ½x₁)² + ¾x₁².
+
+<details>
+<summary><b>Lean proof</b> · Completing the square · <code>couplingPotential_eq_sq_add_sq</code></summary>
+
+```lean
+/-- The coupled spring potential equals `(x₀ + x₁/2)² + (3/4) x₁²` at every point. -/
+theorem couplingPotential_eq_sq_add_sq (x : EuclideanSpace ℝ (Fin 2)) :
+    couplingPotential x = (x 0 + x 1 / 2) ^ 2 + 3 / 4 * (x 1) ^ 2 := by
+  unfold couplingPotential
+  ring
+```
+
+Lean accepted this supplementary proof, written with AI for this page. [checks/GlobalMinimum.lean, lines 3–7][couplingPotential_eq_sq_add_sq].
+
+</details>
+
+If the sum is zero, the second term forces x₁ = 0. The first then forces
+x₀ = 0. The three-square form identifies the spring that stores energy.
+The two-square form rules out equality one coordinate at a time.
+
+<details>
+<summary><b>Lean proof</b> · Why equality forces the origin · <code>couplingPotential_pos</code></summary>
+
+```lean
+/-- Away from the origin the coupled spring potential is strictly positive. -/
+theorem couplingPotential_pos (x : EuclideanSpace ℝ (Fin 2)) (hx : x ≠ 0) :
+    0 < couplingPotential x := by
+  have hsq : couplingPotential x = (x 0 + x 1 / 2) ^ 2 + 3 / 4 * (x 1) ^ 2 := by
+    unfold couplingPotential
+    ring
+  rw [hsq]
+  by_contra h
+  have hs : 0 ≤ (x 0 + x 1 / 2) ^ 2 := sq_nonneg _
+  have ht : 0 ≤ (x 1) ^ 2 := sq_nonneg _
+  have h1 : x 1 = 0 := by
+    have h1sq : (x 1) ^ 2 = 0 := by linarith
+    exact (pow_eq_zero_iff two_ne_zero).mp h1sq
+  have h0 : x 0 = 0 := by
+    have h0sq : (x 0 + x 1 / 2) ^ 2 = 0 := by linarith
+    have h0lin : x 0 + x 1 / 2 = 0 := (pow_eq_zero_iff two_ne_zero).mp h0sq
+    linarith
+  apply hx
+  ext i
+  fin_cases i
+  · first
+      | simpa using h0
+      | (simp; exact h0)
+      | exact h0
+  · first
+      | simpa using h1
+      | (simp; exact h1)
+      | exact h1
+```
+
+Lean accepted this supplementary proof, written with AI for this page. [checks/StrictMinimum.lean, lines 3–30][couplingPotential_pos].
+
+</details>
+
+## 2. What Physlib proves
+
+**Physlib theorem.** The coupled spring potential U has a local minimum
+at the origin. In symbols, U(0) ≤ U(x) for all x in some neighbourhood
+of 0.
+
+<details>
+<summary><b>Lean</b> · Local minimum at the origin · <code>coupled_spring_potential</code></summary>
+
+```lean
+lemma coupled_spring_potential :
+    let U := fun x : EuclideanSpace ℝ (Fin 2) => (x 0)^2 + x 0 * x 1 + (x 1)^2
+    IsLocalMin U {
+        ofLp := ![0,0]
+    } := by
+```
+
+Statement copied from [CoupledSpringPotential.lean, lines 153–160][coupled_spring_potential] in Physlib at be0a9ee; the proof is at the link.
+
+**Comparison with the page, made by AI and not reviewed: same statement.** The Lean theorem writes out the polynomial in a let expression and states IsLocalMin at the zero vector. That means U(0) ≤ U(x) on a neighbourhood. The global inequality has its own passage and proof.
+
+</details>
+
+Kjos-Hanssen applies the following test from the companion Lean file.
+Let f be real-valued on a finite-dimensional real inner product space.
+If f is analytic at a, its gradient vanishes at a, and
+D²f(a)[h, h] > 0 for every h ≠ 0, then f has a local minimum at a.
 
 <details>
 <summary><b>Lean</b> · The second-derivative test · <code>second_derivative_test_analyticAt</code></summary>
@@ -92,20 +173,140 @@ theorem second_derivative_test_analyticAt {V : Type*} [NormedAddCommGroup V]
 
 Statement copied from [PartialDerivativeTest.lean, lines 600–606][second_derivative_test_analyticAt] in Physlib at be0a9ee; the proof is at the link.
 
-**Comparison with the page, made by AI and not reviewed: same statement.** Theorem 2.1 and the Lean statement have the same hypotheses and the same conclusion. Both ask for a finite-dimensional real inner product space, a function analytic at the point, a gradient equal to zero there and a positive definite second derivative there, and both conclude a local minimum with a weak inequality on a neighbourhood. In the Lean, positive definite is said of the quadratic map that sends y to the second derivative at (y, y), and the gradient condition is the equation gradient f x₀ = 0.
+**Comparison with the page, made by AI and not reviewed: same statement.** Lean takes a finite-dimensional real inner product space, analyticity and zero gradient at the point, and PosDef of the map h ↦ D²f(a)[h,h]. Its conclusion is IsLocalMin, with a weak inequality on a neighbourhood.
 
 </details>
 
-The hypotheses are sufficient and not necessary. Section 6 gives a function with a minimum whose
-second derivative is not positive definite.
-
-The companion file proves the theorem in four steps.
-
-First, y ↦ D²f(a)(y, y) is packaged as a quadratic map on V, so that "positive definite"
-has its usual meaning [8].
+The hypotheses can all be read off from U. It is a polynomial, so it is
+analytic at every point. Expanding U(x + h) gives a linear term in h and
+the remainder U(h). The bound 0 ≤ U(h) ≤ (3/2)‖h‖²
+follows from the three squares and (h₀ + h₁)² ≤ 2‖h‖².
+Thus U(h)/‖h‖ tends to zero as h tends to zero through
+nonzero vectors. The linear term is the derivative.
 
 <details>
-<summary><b>Lean</b> · Second derivative as a quadratic map · <code>iteratedFDerivQuadraticMap</code></summary>
+<summary><b>Lean</b> · The potential is analytic · <code>couplingPotential_analyticAt</code></summary>
+
+```lean
+/-
+The coupling potential is analytic everywhere (it is a polynomial).
+-/
+lemma couplingPotential_analyticAt (z : EuclideanSpace ℝ (Fin 2)) :
+    AnalyticAt ℝ couplingPotential z := by
+```
+
+Statement copied from [CoupledSpringPotential.lean, lines 68–75][couplingPotential_analyticAt] in Physlib at be0a9ee; the proof is at the link.
+
+**Comparison with the page, made by AI and not reviewed: same statement.** The point z is arbitrary in EuclideanSpace ℝ (Fin 2). Lean proves analyticity at each such point.
+
+</details>
+
+DU(x)[h] = (2x₀ + x₁)h₀ + (x₀ + 2x₁)h₁.
+
+<details>
+<summary><b>Lean</b> · Derivative of the potential · <code>couplingPotential_hasFDerivAt</code></summary>
+
+```lean
+/-
+The derivative of the coupling potential at any point, as an explicit
+linear functional.
+-/
+lemma couplingPotential_hasFDerivAt (x : EuclideanSpace ℝ (Fin 2)) :
+    HasFDerivAt couplingPotential
+      ((2 * x 0 + x 1) • (EuclideanSpace.proj (𝕜 := ℝ) 0)
+        + (x 0 + 2 * x 1) • (EuclideanSpace.proj (𝕜 := ℝ) 1)) x := by
+```
+
+Statement copied from [CoupledSpringPotential.lean, lines 81–92][couplingPotential_hasFDerivAt] in Physlib at be0a9ee; the proof is at the link.
+
+**Comparison with the page, made by AI and not reviewed: same statement.** Lean defines the continuous linear map as (2x₀+x₁) times the first coordinate projection plus (x₀+2x₁) times the second. Applying that map to h gives the displayed derivative.
+
+</details>
+
+Both coefficients vanish at x = 0, so the gradient at the origin is zero.
+The coefficients depend linearly on x. Differentiating them gives
+the same Hessian matrix at every point.
+
+<details>
+<summary><b>Lean</b> · Zero gradient at the origin · <code>couplingPotential_gradient_zero</code></summary>
+
+```lean
+/-
+The gradient of the coupling potential vanishes at the origin.
+-/
+lemma couplingPotential_gradient_zero :
+    gradient couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2)) = 0 := by
+```
+
+Statement copied from [CoupledSpringPotential.lean, lines 97–101][couplingPotential_gradient_zero] in Physlib at be0a9ee; the proof is at the link.
+
+**Comparison with the page, made by AI and not reviewed: same statement.** Lean states gradient couplingPotential !₂[0, 0] = 0. The vector !₂[0, 0] is the origin of the Euclidean plane.
+
+</details>
+
+K = [[2, 1], [1, 2]].
+
+<details>
+<summary><b>Lean</b> · Second derivative of the potential · <code>couplingPotential_iteratedFDeriv_two</code></summary>
+
+```lean
+/-
+The value of the second derivative quadratic map of the coupling potential.
+-/
+lemma couplingPotential_iteratedFDeriv_two (z : EuclideanSpace ℝ (Fin 2))
+    (a b : EuclideanSpace ℝ (Fin 2)) :
+    iteratedFDeriv ℝ 2 couplingPotential z ![a, b]
+      = 2 * a 0 * b 0 + a 0 * b 1 + a 1 * b 0 + 2 * a 1 * b 1 := by
+```
+
+Statement copied from [CoupledSpringPotential.lean, lines 106–130][couplingPotential_iteratedFDeriv_two] in Physlib at be0a9ee; the proof is at the link.
+
+**Comparison with the page, made by AI and not reviewed: same statement.** Lean evaluates the second derivative on two arbitrary vectors. The four coefficients of the resulting bilinear expression give the entries of K, independent of the base point z.
+
+</details>
+
+To test positive definiteness, give the bilinear second derivative the
+same displacement in both slots. This recovers twice the spring quadratic.
+
+hᵀKh = 2U(h) = h₀² + h₁² + (h₀ + h₁)².
+
+The Hessian at the origin is positive definite. In fact it gives the
+uniform bound hᵀKh ≥ ‖h‖². The last square
+vanishes when h₀ = −h₁, so the bound is sharp.
+
+<details>
+<summary><b>Lean</b> · Positive definite at the origin · <code>couplingPotential_posDef</code></summary>
+
+```lean
+/-
+The second derivative quadratic map of the coupling potential is positive definite
+at the origin.
+-/
+lemma couplingPotential_posDef :
+    (iteratedFDerivQuadraticMap couplingPotential
+    (!₂[0, 0] : EuclideanSpace ℝ (Fin 2))).PosDef := by
+```
+
+Statement copied from [CoupledSpringPotential.lean, lines 142–151][couplingPotential_posDef] in Physlib at be0a9ee; the proof is at the link.
+
+**Comparison with the page, made by AI and not reviewed: same statement.** Lean asserts positivity of the Hessian quadratic map at the origin on nonzero vectors. The lower bound by ‖h‖² in the next sentence follows from the displayed squares.
+
+</details>
+
+## 3. Why the test is useful
+
+The general test needs a lower bound that works in every direction near
+a. Lean packages Q(h) = D²f(a)[h, h] as a quadratic map, so it can use
+the same lower-bound lemma for any positive-definite Q of this form.
+The map scales by the square of a scalar, and the cross term
+Q(h + v) − Q(h) − Q(v) is bilinear. On the compact unit sphere, the continuous map
+Q attains a positive minimum C. Scaling gives Q(h) ≥ C‖h‖².
+The zero-dimensional case has only the point a.
+
+<details>
+<summary><b>Lean</b> · 2 statements: Second derivative as a quadratic map; Positive definite gives a lower bound</summary>
+
+**Second derivative as a quadratic map** · `iteratedFDerivQuadraticMap`
 
 ```lean
 /-- The second iterated Frechét derivative as a quadratic map. -/
@@ -133,18 +334,7 @@ noncomputable def iteratedFDerivQuadraticMap {V : Type*} [NormedAddCommGroup V]
 
 Copied whole from [PartialDerivativeTest.lean, lines 107–126][iteratedFDerivQuadraticMap] in Physlib at be0a9ee.
 
-</details>
-
-Second, a positive definite form is bounded below by a multiple of the squared norm: there is
-C > 0 with D²f(a)(y, y) ≥ C‖y‖² for every y. [9] If V = {0} there is nothing to
-prove, and the file treats that case on its own. Otherwise the unit sphere of V is compact,
-because V is finite-dimensional, so the continuous map y ↦ D²f(a)(y, y) attains a
-minimum C on it, and C > 0. Scaling a unit vector by t multiplies the form by t², which
-gives the bound for every y. In an infinite-dimensional space a form can be positive in every
-direction and have no such C.
-
-<details>
-<summary><b>Lean</b> · Positive definite gives a lower bound · <code>coercive_of_posdef</code></summary>
+**Positive definite gives a lower bound** · `coercive_of_posdef`
 
 ```lean
 /-- Positive definiteness implies coercivity. -/
@@ -159,9 +349,13 @@ Statement copied from [PartialDerivativeTest.lean, lines 455–505][coercive_of_
 
 </details>
 
-Third, the second-order Taylor polynomial of f at a approximates f with an error smaller than
-any fixed multiple of ‖x − a‖² once x is close enough to a. [10] The file proves
-this estimate from the power series of f at a, which is the first use of analyticity.
+At a critical point the Taylor expansion reads
+f(a + h) − f(a) = ½Q(h) + R(h). The power-series lemma gives
+R(h) = o(‖h‖²). For any ε > 0,
+|R(h)| ≤ ε‖h‖² throughout some neighbourhood of
+0. Lean's `nhds` denotes the neighbourhood filter. The little-o
+hypothesis with that filter lets the proof choose the neighbourhood
+after choosing ε.
 
 <details>
 <summary><b>Lean</b> · Taylor error from a power series · <code>littleO_of_powerseries</code></summary>
@@ -178,29 +372,13 @@ Statement copied from [PartialDerivativeTest.lean, lines 558–568][littleO_of_p
 
 </details>
 
-Fourth, the two estimates are compared. [11] With the gradient zero, the Taylor polynomial is
-f(a) + ½D²f(a)(x − a, x − a). Choosing the neighbourhood so that the error is at most
-½C‖x − a‖² gives, for every x in it,
-
-f(x) − f(a) ≥ ½C‖x − a‖² − ½C‖x − a‖² = 0.
+With ε = C/2, the error can cancel at most the quadratic
+lower bound. In that neighbourhood f(a + h) ≥ f(a), as required by
+Lean's `IsLocalMin`. The same estimate with ε = C/4 gives
+a strict inequality for nonzero h in a possibly smaller neighbourhood.
 
 <details>
-<summary><b>Lean</b> · 2 statements: The test from a Taylor error bound; Comparison from the Taylor error</summary>
-
-**The test from a Taylor error bound** · `isLocalMin_of_posDef_of_littleo`
-
-```lean
-/-- Second partial derivative test, "little oh" form. -/
-theorem isLocalMin_of_posDef_of_littleo {V : Type*} [NormedAddCommGroup V]
-    [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] {f : V → ℝ} {x₀ : V}
-    (h : (fun x => f x - ∑ i ∈ range 3, 1 / (i)! * iteratedFDeriv ℝ i f x₀ fun _ => x - x₀)
-      =o[nhds x₀] fun x => ‖x - x₀‖ ^ 2) (h₀ : gradient f x₀ = 0) (hcd : ContDiffAt ℝ ⊤ f x₀)
-    (hf : (iteratedFDerivQuadraticMap f x₀).PosDef) : IsLocalMin f x₀ := by
-```
-
-Statement copied from [PartialDerivativeTest.lean, lines 534–554][isLocalMin_of_posDef_of_littleo] in Physlib at be0a9ee; the proof is at the link.
-
-**Comparison from the Taylor error** · `le_of_littleO`
+<summary><b>Lean</b> · Comparison from the Taylor error · <code>le_of_littleO</code></summary>
 
 ```lean
 theorem le_of_littleO {V : Type*}
@@ -217,337 +395,213 @@ Statement copied from [PartialDerivativeTest.lean, lines 514–530][le_of_little
 
 </details>
 
-Analyticity is assumed for two reasons: the error estimate, and the symmetry of the second
-derivative, which the file proves from analyticity at a. Any f with those two properties at a
-would do, for example one that is twice
-continuously differentiable near a, as in the usual statement of the test {5}. The Lean theorem
-is stated for analytic f.
+For U the Taylor error is zero. Now add a cubic and set
+W(x) = U(x) + x₀³. At the origin the gradient and Hessian are unchanged,
+and the Taylor error is the cubic itself. If |x₀| < ¼, then
+x₀³ ≥ −¼x₀², so
+W(x) ≥ (x₁ + ½x₀)² + ½x₀², which is positive unless x = 0.
+The origin is still a strict local minimum, even though
+W(−2, 0) = −4 < W(0). A supplementary Lean proof checks the local minimum and
+the value at (−2, 0). Near the origin the quadratic terms are larger than the
+cubic, and far from it they are not, which is why the test can only give a
+local conclusion.
 
 <details>
-<summary><b>Lean</b> · The second derivative is symmetric · <code>iteratedFDeriv_two_swap</code></summary>
+<summary><b>Lean proof</b> · 2 statements: Adding `x₀³` keeps a local minimum at the origin: near the origin `|x₀| < 1/4`, and then the potential is at least `(x₁ + x₀/2)² + x₀²/2`; The origin is not a global minimum after adding `x₀³`: the value at `(-2, 0)` is `-4`</summary>
+
+**Adding `x₀³` keeps a local minimum at the origin: near the origin `|x₀| < 1/4`, and then the potential is at least `(x₁ + x₀/2)² + x₀²/2`** · `cubicPerturbation_isLocalMin`
 
 ```lean
-/--
-Symmetry of the second iterated Fréchet derivative (Schwarz's theorem).
--/
-lemma iteratedFDeriv_two_swap {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ V]
-    {f : V → ℝ} {x₀ : V} (hf : ContDiffAt ℝ ⊤ f x₀) (x y : V) :
-    iteratedFDeriv ℝ 2 f x₀ ![y, x] = iteratedFDeriv ℝ 2 f x₀ ![x, y] := by
-```
-
-Statement copied from [PartialDerivativeTest.lean, lines 415–425][iteratedFDeriv_two_swap] in Physlib at be0a9ee; the proof is at the link.
-
-</details>
-
-Choosing the error at most ¼C‖x − a‖² instead gives
-f(x) − f(a) ≥ ¼C‖x − a‖² > 0 for every x ≠ a near a, a strict local minimum.
-That follows from the same estimates, but the Lean theorem states only the weak inequality.
-
-## 3. The hypotheses for the potential
-
-**Analytic.** U is a polynomial in the two coordinates, so it is analytic at every point. [2]
-
-<details>
-<summary><b>Lean</b> · The potential is analytic · <code>couplingPotential_analyticAt</code></summary>
-
-```lean
-/-
-The coupling potential is analytic everywhere (it is a polynomial).
--/
-lemma couplingPotential_analyticAt (z : EuclideanSpace ℝ (Fin 2)) :
-    AnalyticAt ℝ couplingPotential z := by
-```
-
-Statement copied from [CoupledSpringPotential.lean, lines 68–75][couplingPotential_analyticAt] in Physlib at be0a9ee; the proof is at the link.
-
-**Comparison with the page, made by AI and not reviewed: same statement.** Both say that the potential is analytic at every point z of the plane. The Lean statement quantifies over z in EuclideanSpace ℝ (Fin 2), which is the plane with its usual inner product.
-
-</details>
-
-**Zero gradient.** For every x and h in ℝ², expanding the squares gives
-
-U(x + h) = U(x) + (2x₀ + x₁)h₀ + (x₀ + 2x₁)h₁ + U(h).
-
-The two middle terms are linear in h, and U(h) ≤ (3/2)‖h‖², so the derivative
-of U at x is
-
-DU(x)(h) = (2x₀ + x₁)h₀ + (x₀ + 2x₁)h₁.
-
-<details>
-<summary><b>Lean</b> · Derivative of the potential · <code>couplingPotential_hasFDerivAt</code></summary>
-
-```lean
-/-
-The derivative of the coupling potential at any point, as an explicit
-linear functional.
--/
-lemma couplingPotential_hasFDerivAt (x : EuclideanSpace ℝ (Fin 2)) :
-    HasFDerivAt couplingPotential
-      ((2 * x 0 + x 1) • (EuclideanSpace.proj (𝕜 := ℝ) 0)
-        + (x 0 + 2 * x 1) • (EuclideanSpace.proj (𝕜 := ℝ) 1)) x := by
-```
-
-Statement copied from [CoupledSpringPotential.lean, lines 81–92][couplingPotential_hasFDerivAt] in Physlib at be0a9ee; the proof is at the link.
-
-**Comparison with the page, made by AI and not reviewed: same statement.** Both give the derivative at every point x as the linear map with coefficients 2x₀ + x₁ and x₀ + 2x₁. The Lean writes the map as a combination of the two coordinate projections.
-
-</details>
-
-At the origin both coefficients are zero, so the gradient of U at the origin is zero. [3]
-
-<details>
-<summary><b>Lean</b> · Zero gradient at the origin · <code>couplingPotential_gradient_zero</code></summary>
-
-```lean
-/-
-The gradient of the coupling potential vanishes at the origin.
--/
-lemma couplingPotential_gradient_zero :
-    gradient couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2)) = 0 := by
-```
-
-Statement copied from [CoupledSpringPotential.lean, lines 97–101][couplingPotential_gradient_zero] in Physlib at be0a9ee; the proof is at the link.
-
-**Comparison with the page, made by AI and not reviewed: same statement.** Both say that the gradient of the potential at the origin is zero. The Lean writes the origin as !₂[0, 0].
-
-</details>
-
-**Second derivative.** Differentiating the two coefficients gives, at every point x and for every
-y and h,
-
-D²U(x)(y, h) = 2y₀h₀ + y₀h₁ + y₁h₀ + 2y₁h₁.
-
-<details>
-<summary><b>Lean</b> · Second derivative of the potential · <code>couplingPotential_iteratedFDeriv_two</code></summary>
-
-```lean
-/-
-The value of the second derivative quadratic map of the coupling potential.
--/
-lemma couplingPotential_iteratedFDeriv_two (z : EuclideanSpace ℝ (Fin 2))
-    (a b : EuclideanSpace ℝ (Fin 2)) :
-    iteratedFDeriv ℝ 2 couplingPotential z ![a, b]
-      = 2 * a 0 * b 0 + a 0 * b 1 + a 1 * b 0 + 2 * a 1 * b 1 := by
-```
-
-Statement copied from [CoupledSpringPotential.lean, lines 106–130][couplingPotential_iteratedFDeriv_two] in Physlib at be0a9ee; the proof is at the link.
-
-**Comparison with the page, made by AI and not reviewed: same statement.** Both give 2y₀h₀ + y₀h₁ + y₁h₀ + 2y₁h₁ for the second derivative at every point, applied to two vectors. The Lean names the vectors a and b and the point z.
-
-</details>
-
-[4] This is the same bilinear map at every point, with matrix
-
-K = [[2, 1], [1, 2]].
-
-Because U is quadratic, its Taylor expansion at the origin ends at second order:
-U(x) = ½D²U(0)(x, x) exactly, with no error term.
-
-**Positive definite.** Setting h = y,
-
-D²U(0)(y, y) = 2U(y) = y₀² + y₁² + (y₀ + y₁)².
-
-So the second derivative at the origin is positive definite. [5] Dropping the last square gives
-D²U(0)(y, y) ≥ ‖y‖², so the constant of the second step is C = 1. On the unit circle
-the minimum is attained at y = (1, −1)/√2, where the last square is zero.
-
-<details>
-<summary><b>Lean</b> · Positive definite at the origin · <code>couplingPotential_posDef</code></summary>
-
-```lean
-/-
-The second derivative quadratic map of the coupling potential is positive definite
-at the origin.
--/
-lemma couplingPotential_posDef :
-    (iteratedFDerivQuadraticMap couplingPotential
-    (!₂[0, 0] : EuclideanSpace ℝ (Fin 2))).PosDef := by
-```
-
-Statement copied from [CoupledSpringPotential.lean, lines 142–151][couplingPotential_posDef] in Physlib at be0a9ee; the proof is at the link.
-
-**Comparison with the page, made by AI and not reviewed: same statement.** Both say that the second derivative at the origin is positive definite. The page also gives the identity D²U(0)(y, y) = 2U(y) and the bound D²U(0)(y, y) ≥ ‖y‖², which are not in the Lean statement.
-
-</details>
-
-**Theorem 3.1 (Kjos-Hanssen, proved in Lean).** The coupled spring potential U has a local
-minimum at the origin. [6]
-
-<details>
-<summary><b>Lean</b> · Local minimum at the origin · <code>coupled_spring_potential</code></summary>
-
-```lean
-lemma coupled_spring_potential :
-    let U := fun x : EuclideanSpace ℝ (Fin 2) => (x 0)^2 + x 0 * x 1 + (x 1)^2
-    IsLocalMin U {
-        ofLp := ![0,0]
-    } := by
-```
-
-Statement copied from [CoupledSpringPotential.lean, lines 153–160][coupled_spring_potential] in Physlib at be0a9ee; the proof is at the link.
-
-**Comparison with the page, made by AI and not reviewed: same statement.** Theorem 3.1 and the Lean statement both say that the potential has a local minimum at the origin, with a weak inequality on a neighbourhood. The Lean statement writes the potential out as a function on EuclideanSpace ℝ (Fin 2) instead of naming couplingPotential. Proposition 4.1 says more, a strict inequality at every other point of the plane. It is not in the author's files. The Lean statement of it written for this page is shown under it.
-
-</details>
-
-*Proof.* Apply Theorem 2.1 with V = ℝ², f = U and a = 0. The three hypotheses are the
-first, second and fourth paragraphs of this section. ∎
-
-<details>
-<summary><b>Lean proof</b> · Local minimum at the origin · <code>coupled_spring_potential</code></summary>
-
-```lean
-lemma coupled_spring_potential :
-    let U := fun x : EuclideanSpace ℝ (Fin 2) => (x 0)^2 + x 0 * x 1 + (x 1)^2
-    IsLocalMin U {
-        ofLp := ![0,0]
-    } := by
-  show IsLocalMin couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2))
-  exact second_derivative_test_analyticAt couplingPotential_gradient_zero
-    (couplingPotential_analyticAt _) couplingPotential_posDef
-```
-
-Copied whole from [CoupledSpringPotential.lean, lines 153–160][coupled_spring_potential] in Physlib at be0a9ee.
-
-</details>
-
-## 4. The second proof, by completing the square
-
-Completing the square in x₀ gives
-
-U(x) = (x₀ + ½x₁)² + ¾x₁²
-
-for every x. [12]
-
-**Proposition 4.1.** For every x ≠ 0 in ℝ² we have U(x) > U(0). In particular the
-origin is the unique global minimum of U. [13]
-
-<details>
-<summary><b>Lean proof</b> · At every point other than the origin the coupled spring potential is larger than at the origin · <code>couplingPotential_origin_lt</code></summary>
-
-```lean
-/-- At every point other than the origin the coupled spring potential is larger than at the
-origin. -/
-theorem couplingPotential_origin_lt (x : EuclideanSpace ℝ (Fin 2)) (hx : x ≠ 0) :
-    couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2)) < couplingPotential x := by
-  have h0 : couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2)) = 0 := by
-    first
-      | simp [couplingPotential]
-      | norm_num [couplingPotential]
+/-- Adding `x₀³` keeps a local minimum at the origin: near the origin `|x₀| < 1/4`, and then
+the potential is at least `(x₁ + x₀/2)² + x₀²/2`. -/
+theorem cubicPerturbation_isLocalMin :
+    IsLocalMin cubicPerturbation (0 : EuclideanSpace ℝ (Fin 2)) := by
+  have hc : Continuous (fun x : EuclideanSpace ℝ (Fin 2) => x 0) :=
+    (EuclideanSpace.proj (𝕜 := ℝ) (0 : Fin 2)).continuous
+  have ht : Filter.Tendsto (fun x : EuclideanSpace ℝ (Fin 2) => x 0) (nhds 0) (nhds 0) := by
+    simpa using hc.tendsto (0 : EuclideanSpace ℝ (Fin 2))
+  have hnear : ∀ᶠ x in nhds (0 : EuclideanSpace ℝ (Fin 2)), |x 0| < 1 / 4 := by
+    filter_upwards [ht.eventually (Metric.ball_mem_nhds (0 : ℝ) (by norm_num : (0 : ℝ) < 1 / 4))]
+      with x hx
+    simpa [Metric.mem_ball, Real.dist_eq] using hx
+  filter_upwards [hnear] with x hx
+  have h0 : cubicPerturbation (0 : EuclideanSpace ℝ (Fin 2)) = 0 := by
+    simp [cubicPerturbation, couplingPotential]
   rw [h0]
-  exact couplingPotential_pos x hx
+  have hlo : -(1 / 4 : ℝ) < x 0 := (abs_lt.mp hx).1
+  have hprod : 0 ≤ (x 0) ^ 2 * (x 0 + 1 / 4) := mul_nonneg (sq_nonneg _) (by linarith)
+  unfold cubicPerturbation couplingPotential
+  nlinarith [sq_nonneg (x 1 + x 0 / 2), sq_nonneg (x 0), hprod]
 ```
 
-Written by AI for this page and accepted by Lean against the two files: [checks/StrictMinimum.lean, lines 32–41][couplingPotential_origin_lt]. It is not in Physlib.
+Lean accepted this supplementary proof, written with AI for this page. [checks/CubicPerturbation.lean, lines 7–26][cubicPerturbation_isLocalMin].
+
+**The origin is not a global minimum after adding `x₀³`: the value at `(-2, 0)` is `-4`** · `cubicPerturbation_not_global`
+
+```lean
+/-- The origin is not a global minimum after adding `x₀³`: the value at `(-2, 0)` is `-4`. -/
+theorem cubicPerturbation_not_global :
+    cubicPerturbation (!₂[-2, 0] : EuclideanSpace ℝ (Fin 2))
+      < cubicPerturbation (0 : EuclideanSpace ℝ (Fin 2)) := by
+  simp [cubicPerturbation, couplingPotential]
+  norm_num
+```
+
+Lean accepted this supplementary proof, written with AI for this page. [checks/CubicPerturbation.lean, lines 28–33][cubicPerturbation_not_global].
 
 </details>
 
-*Proof.* Both terms of the identity are squares, so U(x) ≥ 0 = U(0). If U(x) = 0 then both terms
-are zero, so x₁ = 0 and then x₀ = 0. ∎
+### The smoothness hypothesis in Lean
 
-The proof by completing the square depends on an identity that holds on the whole plane because
-U is a quadratic form, and its conclusion is a strict inequality everywhere. The hypotheses of the
-second-derivative test concern only f near the point, and its conclusion is only local. In return
-it applies to every analytic function whose second derivative is positive definite at a critical
-point, including functions with no identity of this kind, such as W in Section 6. For U the
-test proves less than the identity does. That suits a proof of concept: each hypothesis can be
-checked by hand, and the conclusion can be compared with the global argument.
+Physlib's little-o lemma takes `ContDiffAt ℝ ⊤ f a`, smoothness of all
+orders at a, in addition to the Taylor remainder hypothesis. Its proof
+obtains a lower bound twice. The second route uses smoothness to show the
+second derivative is symmetric and identify its bilinear representation
+with the one recovered from the quadratic map. It shadows the constant
+from the first route, which already gives the same kind of bound on the
+diagonal. Once the Taylor estimate is given, the first bound suffices.
+A supplementary Lean proof checks the little-o argument with that
+smoothness hypothesis removed. In ordinary calculus a twice continuously
+differentiable function also has the required Taylor remainder. The
+Physlib test used here takes analyticity at the point.
 
-## 5. What the minimum means for the masses
+<details>
+<summary><b>Lean</b> · 3 statements: The test from a Taylor error bound; Lower bound for a smooth function; The little-o form of the second-derivative test holds without the smoothness hypothesis: the proof of `isLocalMin_of_posDef_of_littleo` with its use of that hypothesis removed</summary>
 
-This section is about the spring system of Section 1 and is not in the Lean. It assumes point
-masses m that move along the line without friction, ideal springs that obey Hooke's law and have
-no mass, and Newton's laws. It ignores the walls and collisions, so the masses can be anywhere in
-ℝ²; a real system allows only displacements smaller than the gaps.
+**The test from a Taylor error bound** · `isLocalMin_of_posDef_of_littleo`
 
-The force on each mass, measured in that mass's own positive direction, is −k times the partial
-derivative of U: −k(2x₀ + x₁) on the left mass and −k(x₀ + 2x₁) on the right mass. For
-example, move the left mass a distance d towards the right mass and hold the right mass at its
-equilibrium position. The left mass then feels −2kd: both springs push it back. The right mass
-feels −kd in its own positive direction, that is, the shortened middle spring pushes it towards
-its wall. The zero gradient at the origin says that both forces vanish there.
+```lean
+/-- Second partial derivative test, "little oh" form. -/
+theorem isLocalMin_of_posDef_of_littleo {V : Type*} [NormedAddCommGroup V]
+    [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] {f : V → ℝ} {x₀ : V}
+    (h : (fun x => f x - ∑ i ∈ range 3, 1 / (i)! * iteratedFDeriv ℝ i f x₀ fun _ => x - x₀)
+      =o[nhds x₀] fun x => ‖x - x₀‖ ^ 2) (h₀ : gradient f x₀ = 0) (hcd : ContDiffAt ℝ ⊤ f x₀)
+    (hf : (iteratedFDerivQuadraticMap f x₀).PosDef) : IsLocalMin f x₀ := by
+```
 
-The kinetic energy is ½m(ẋ₀² + ẋ₁²), so the equations of motion are
-mẍ = −kKx. Since the mass matrix is m times the identity, the normal modes are the
-eigenvectors of K {3}. In the coordinates
+Statement copied from [PartialDerivativeTest.lean, lines 534–554][isLocalMin_of_posDef_of_littleo] in Physlib at be0a9ee; the proof is at the link.
 
-q₋ = (1/√2)(x₀ − x₁),  q₊ = (1/√2)(x₀ + x₁),
+**Comparison with the page, made by AI and not reviewed: lean is weaker.** The page's argument needs the Taylor estimate, a zero gradient and a positive definite second derivative. The Lean statement also assumes ContDiffAt ℝ ⊤ f x₀, so it says less than the argument gives. Its proof obtains the lower bound from coercive_of_posdef and again from coercive_of_posdef_of_contdiff, and only the second uses the extra hypothesis. The supplementary Lean proof reaches the same conclusion without it.
 
-the energy is kU = ½k (q₋² + 3q₊²), and each coordinate oscillates on its own:
-q₋ with angular frequency √(k/m) and q₊ with angular frequency √(3k/m). In the
-first mode the two masses move the same distance in the same direction, so the middle spring keeps
-its length. In the second they move in opposite directions, so the middle spring is alternately
-shortened and stretched and adds to the restoring force.
+**Lower bound for a smooth function** · `coercive_of_posdef_of_contdiff`
 
-Because the second derivative is positive definite, the equilibrium is stable. The total energy
-½m(ẋ₀² + ẋ₁²) + kU(x) is conserved, and kU(x) ≥ ½k‖x‖²
-by Section 3, so a motion that starts near equilibrium with little energy stays near it. Without
-friction the masses keep oscillating and do not return to rest.
+```lean
+/-- Positive definiteness implies coercivity.
+  The proof uses the general fact `coercive_of_posdefHalf`
+  but requires a differentiability assumption on `f`.
+-/
+lemma coercive_of_posdef_of_contdiff {V : Type*}
+    [NormedAddCommGroup V] [NormedSpace ℝ V]
+    [FiniteDimensional ℝ V] {f : V → ℝ} {x₀ : V}
+    (hf : ContDiffAt ℝ ⊤ f x₀)
+    (hf' : (iteratedFDerivQuadraticMap f x₀).PosDef) :
+    IsCoercive (continuousBilinearMapOfContinuousMultilinearMap
+        (iteratedFDeriv ℝ 2 f x₀)) := by
+```
 
-## 6. Changed cases
+Statement copied from [PartialDerivativeTest.lean, lines 432–452][coercive_of_posdef_of_contdiff] in Physlib at be0a9ee; the proof is at the link.
 
-**Question 1.** Replace U by U_c(x) = x₀² + c x₀x₁ + x₁² for a real number c. For which
-c is the origin a minimum, and for which does Theorem 2.1 apply?
+**The little-o form of the second-derivative test holds without the smoothness hypothesis: the proof of `isLocalMin_of_posDef_of_littleo` with its use of that hypothesis removed** · `isLocalMin_of_posDef_of_littleo_without_smoothness`
 
-**Question 2.** Replace U by W(x) = U(x) + x₀³. Which of Theorem 3.1 and Proposition 4.1 hold
-for W?
+```lean
+/-- The little-o form of the second-derivative test holds without the smoothness hypothesis:
+the proof of `isLocalMin_of_posDef_of_littleo` with its use of that hypothesis removed. -/
+theorem isLocalMin_of_posDef_of_littleo_without_smoothness {V : Type*} [NormedAddCommGroup V]
+    [InnerProductSpace ℝ V] [FiniteDimensional ℝ V] {f : V → ℝ} {x₀ : V}
+    (h : (fun x => f x - ∑ i ∈ range 3, 1 / (i)! * iteratedFDeriv ℝ i f x₀ fun _ => x - x₀)
+      =o[nhds x₀] fun x => ‖x - x₀‖ ^ 2) (h₀ : gradient f x₀ = 0)
+    (hf : (iteratedFDerivQuadraticMap f x₀).PosDef) : IsLocalMin f x₀ := by
+  have ⟨C,hC⟩ := coercive_of_posdef hf
+  simp only [Asymptotics.IsLittleO, Asymptotics.IsBigOWith] at h
+  apply (h (half_pos hC.1)).mono
+  intro x
+  have hx := hC.2 (x - x₀)
+  simp only [continuousBilinearMapOfContinuousMultilinearMap, MultilinearMap.toFun_eq_coe,
+    coe_coe, ContinuousLinearMap.coe_mk', LinearMap.coe_mk,
+    AddHom.coe_mk] at hx
+  rw [mul_assoc,show ![x - x₀, x - x₀] = fun _ => x - x₀ by
+    ext i; fin_cases i <;> simp] at hx
+  have hx₀ : inner ℝ (gradient f x₀) (x - x₀) = fderiv ℝ f x₀ (x - x₀) := by simp [gradient]
+  simp only [h₀, inner_zero_left, map_sub] at hx₀
+  simp only [norm_pow, norm_norm]
+  rw [← pow_two] at hx
+  exact le_of_littleO hx <| sub_eq_zero.mp hx₀.symm
+```
 
-**Answer 1.** The gradient of U_c at the origin is zero for every c, and
+Lean accepted this supplementary proof, written with AI for this page. [checks/WithoutSmoothness.lean, lines 5–26][isLocalMin_of_posDef_of_littleo_without_smoothness].
 
-D²U_c(0)(y, y) = 2y₀² + 2c y₀y₁ + 2y₁².
+</details>
 
-Completing the square in y₀,
+## 4. What the potential says about motion
 
-D²U_c(0)(y, y) = 2(y₀ + (c/2)y₁)² + (2 − c²/2)y₁².
+The spring interpretation in §1 supplies the forces. In the inward
+coordinates they are −kKx. For instance, move the left mass inward by
+d > 0 and leave the right one at its reference position. The compressed
+middle spring pushes the right mass toward its wall, giving force −kd
+in its own positive direction.
 
-| c | At the origin |
-| --- | --- |
-| \|c\| < 2 | The unique global minimum, and Theorem 2.1 applies |
-| c = 2 or c = −2 | A global minimum that is not unique, and Theorem 2.1 does not apply |
-| \|c\| > 2 | Not a local minimum |
+To obtain motion, also specify the masses and the equations they obey.
+With equal masses m > 0, Newton's law and no damping give
+mẍ = −kKx. Two displacement patterns stay in their own directions
+because K(1, −1)ᵀ = (1, −1)ᵀ and
+K(1, 1)ᵀ = 3(1, 1)ᵀ. Their angular frequencies are
+ω₋ = √(k/m) and ω₊ = √(3k/m), respectively.
+In the first pattern both masses move in the same physical direction
+and the middle spring keeps its length. In the second they move
+toward or away from each other, so the middle spring adds a restoring force.
 
-For |c| < 2 both coefficients are positive, so the second derivative is positive
-definite, and since U_c(x) = ½D²U_c(0)(x, x) the same identity shows that U_c(x) > 0 for
-x ≠ 0. At c = 2 we have U₂(x) = (x₀ + x₁)², which is zero on the whole line x₀ = −x₁, and at
-c = −2 we have U₋₂(x) = (x₀ − x₁)², which is zero on the line x₀ = x₁. In both cases the
-origin is a global minimum, the second derivative is zero in one direction, and Theorem 2.1 does
-not apply. For c > 2, U_c(t, −t) = (2 − c)t² < 0 for every t ≠ 0, and for c < −2,
-U_c(t, t) = (2 + c)t² < 0, so the origin is not a local minimum.
+Any initial displacement and velocity can be resolved along these two
+directions. If only the left mass is displaced by d and both masses are
+released from rest, (d, 0) = (d/2)(1, −1) + (d/2)(1, 1).
+In particular,
 
-In the spring system, give the wall springs constants k₁ and k₂ and the middle spring constant
-k. In the coordinates of Section 1 the energy is
-½(k₁ + k)x₀² + ½(k₂ + k)x₁² + k x₀x₁, and its second derivative is positive
-definite exactly when k² < (k₁ + k)(k₂ + k), that is, when k₁k₂ + k(k₁ + k₂) > 0. With all three
-constants positive this always holds. It fails when both wall springs are removed: then the
-energy is zero along x₀ = −x₁, where the two masses slide together and the middle spring keeps
-its length. This is the case c = 2. Springs with positive constants never give c > 2, which would
-need a negative spring constant.
+x₁(t) = (d/2)(cos(ω₊t) − cos(ω₋t)).
 
-**Answer 2.** The term x₀³ has first derivative 3x₀² and second derivative 6x₀ in the
-direction of x₀, and both are zero at the origin. So W is analytic and has the same gradient
-and the same second derivative at the origin as U, and Theorem 2.1 gives a local minimum of W
-at the origin. Proposition 4.1 fails for W: W(−2, 0) = −4 < W(0), and W(t, 0) = t² + t³ is unbounded
-below as t → −∞. So for W the test gives a local minimum that is not a global one.
+The two contributions cancel at release and then evolve at different
+rates. Their difference gives the motion of the mass that started at rest
+at its reference position.
 
-## 7. What has been checked, and who wrote what
+The same potential with unequal positive masses gives the same
+equilibrium and a different frequency problem. For a diagonal mass matrix
+M, the mode equation is kKv = ω²Mv. This dependence on M is why
+an energy minimum on its own gives no oscillation frequency.
 
-Bjørn Kjos-Hanssen wrote the two Lean files in PhyslibAlpha {1}{2}. Lean 4.35.0 compiled them at
-Physlib commit be0a9ee. The statements cited [1] to [11] are in them, including every statement of
-Section 3 and Theorem 2.1.
+For the undamped model, dot the equation of motion with ẋ to see
+that ½m‖ẋ‖² + kU(x) is constant. This energy bounds
+½m‖ẋ‖² + ½k‖x‖² from above, so
+small initial displacements **and** velocities stay small. The ideal
+equations extend to all of ℝ². The physical model applies
+while the masses stay between their walls in their original order and
+the springs obey Hooke's law.
 
-Comparator {4} checked one further point about Theorem 3.1. The Lean statement writes the
-potential out in Mathlib's own terms. In a sandbox, Comparator confirmed that the proof in Physlib
-proves exactly that statement, using only Lean's three standard axioms, against a copy of the
-statement that imports only Mathlib. The same run rejected a copy with "local maximum" in place of
-"local minimum". So the theorem proved in Physlib can be read using Mathlib's definitions alone.
-Comparator does not check the spring system or any sentence of this page.
+## Sources and review
 
-AI agents wrote this page under Will Cook's direction: the prose, the spring system, Sections 5
-and 6, the links from sentences to the Lean, the comparisons of each statement with its Lean, and
-the two Lean files cited [12] and [13]. Lean accepts the statements in those two files against the
-Physlib files. They are not part of Physlib. Building the page checks that every linked sentence
-appears in the text. Nobody has checked whether each sentence and its Lean say the same thing, and
-no physicist has reviewed Sections 1, 5 or 6.
+- Bjørn Kjos-Hanssen, [Coupled spring potential][physlib-u] and
+  [Second-derivative test][physlib-test], PhyslibAlpha at commit `be0a9ee`.
+- Matthew D. Schwartz, [From Oscillators to Waves][schwartz], Harvard
+  Physics 15c, §1. See also MIT OpenCourseWare,
+  [Coupled Oscillators, Normal Modes][mit], for the superposition of modes.
+- Schematic adapted from Jim.belk’s [Coupled Harmonic Oscillator k][figure],
+  with inward displacement arrows and equal-stiffness labels.
+  [CC BY-SA 3.0][figure-license].
+- [Comparator receipt][comparator] for the original local-minimum theorem.
+  Comparator accepted the Physlib proof against a challenge importing only
+  Mathlib and rejected a control that asked for a local maximum.
+
+AI agents wrote this companion under Will Cook’s direction. Lean checked
+the two original modules and the supplementary proofs. A test in the
+repository recomputes each identity, bound, frequency and sign stated here in
+exact arithmetic and fails if the prose states a different one. It does not
+judge the physical model. The prose, the passage links and the mechanics model
+await independent expert review.
+
+[physlib-u]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean
+[physlib-test]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean
+[schwartz]: https://schwartz.scholars.harvard.edu/sites/g/files/omnuum7046/files/schwartz/files/lecture4-oscillators-to-waves.pdf
+[mit]: https://ocw.mit.edu/courses/8-03sc-physics-iii-vibrations-and-waves-fall-2016/pages/part-i-mechanical-vibrations-and-waves/lecture-4/
+[figure]: https://commons.wikimedia.org/w/index.php?title=File:Coupled_Harmonic_Oscillator_k.svg&oldid=870225002
+[figure-license]: https://creativecommons.org/licenses/by-sa/3.0/
+[comparator]: https://github.com/wcook04/proof-reader/tree/f5f5e6f81251f766b0a705d46960e47e8b8a8962/papers/coupled-spring/comparator
 
 ## Statements and comparisons
 
@@ -555,58 +609,38 @@ The statements on this page that were compared with a Lean declaration, and the 
 
 | Statement on this page | Lean | Comparison with the page |
 | --- | --- | --- |
+| Unique global minimum | [`couplingPotential_origin_lt`][couplingPotential_origin_lt] | Written by AI for this page; not in Physlib |
+| Completing the square | [`couplingPotential_eq_sq_add_sq`][couplingPotential_eq_sq_add_sq] | Written by AI for this page; not in Physlib |
+| Why equality forces the origin | [`couplingPotential_pos`][couplingPotential_pos] | Written by AI for this page; not in Physlib |
+| Local minimum at the origin | [`coupled_spring_potential`][coupled_spring_potential] | Same statement |
 | The second-derivative test | [`second_derivative_test_analyticAt`][second_derivative_test_analyticAt] | Same statement |
 | The potential is analytic | [`couplingPotential_analyticAt`][couplingPotential_analyticAt] | Same statement |
 | Derivative of the potential | [`couplingPotential_hasFDerivAt`][couplingPotential_hasFDerivAt] | Same statement |
 | Zero gradient at the origin | [`couplingPotential_gradient_zero`][couplingPotential_gradient_zero] | Same statement |
 | Second derivative of the potential | [`couplingPotential_iteratedFDeriv_two`][couplingPotential_iteratedFDeriv_two] | Same statement |
 | Positive definite at the origin | [`couplingPotential_posDef`][couplingPotential_posDef] | Same statement |
-| Local minimum at the origin | [`coupled_spring_potential`][coupled_spring_potential] | Same statement |
-| At every point other than the origin the coupled spring potential is larger than at the origin | [`couplingPotential_origin_lt`][couplingPotential_origin_lt] | Written by AI for this page; not in Physlib |
-
-## Lean References
-
-1. PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean — `couplingPotential`
-2. PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean — `couplingPotential_analyticAt`
-3. PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean — `couplingPotential_hasFDerivAt`,
-   `couplingPotential_gradient_zero`
-4. PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean — `couplingPotential_iteratedFDeriv_two`
-5. PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean — `couplingPotential_posDef`
-6. PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean — `coupled_spring_potential`
-7. PhyslibAlpha/Mathematics/PartialDerivativeTest.lean — `second_derivative_test_analyticAt`,
-   `second_derivative_test`
-8. PhyslibAlpha/Mathematics/PartialDerivativeTest.lean — `iteratedFDerivQuadraticMap`
-9. PhyslibAlpha/Mathematics/PartialDerivativeTest.lean — `coercive_of_posdef`
-10. PhyslibAlpha/Mathematics/PartialDerivativeTest.lean — `littleO_of_powerseries`
-11. PhyslibAlpha/Mathematics/PartialDerivativeTest.lean — `isLocalMin_of_posDef_of_littleo`,
-    `le_of_littleO`, `iteratedFDeriv_two_swap`
-12. checks/GlobalMinimum.lean, written for this page — `couplingPotential_eq_sq_add_sq`
-13. checks/StrictMinimum.lean, written for this page — `couplingPotential_origin_lt`
-
-## References
-
-1. Bjørn Kjos-Hanssen, CoupledSpringPotential.lean, PhyslibAlpha, Physlib at commit be0a9ee,
-   https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean
-2. Bjørn Kjos-Hanssen, PartialDerivativeTest.lean, PhyslibAlpha, Physlib at commit be0a9ee,
-   https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean
-3. Wikipedia, Normal mode, section Coupled oscillators, https://en.wikipedia.org/wiki/Normal_mode
-4. Comparator, https://github.com/leanprover/comparator. The run for this page: challenge,
-   configuration and receipt at
-   https://github.com/wcook04/proof-reader/tree/f5f5e6f81251f766b0a705d46960e47e8b8a8962/papers/coupled-spring/comparator
-5. Wikipedia, Second partial derivative test, https://en.wikipedia.org/wiki/Second_partial_derivative_test
+| Adding `x₀³` keeps a local minimum at the origin: near the origin `|x₀| < 1/4`, and then the potential is at least `(x₁ + x₀/2)² + x₀²/2` | [`cubicPerturbation_isLocalMin`][cubicPerturbation_isLocalMin] | Written by AI for this page; not in Physlib |
+| The origin is not a global minimum after adding `x₀³`: the value at `(-2, 0)` is `-4` | [`cubicPerturbation_not_global`][cubicPerturbation_not_global] | Written by AI for this page; not in Physlib |
+| The test from a Taylor error bound | [`isLocalMin_of_posDef_of_littleo`][isLocalMin_of_posDef_of_littleo] | Lean is weaker |
+| The little-o form of the second-derivative test holds without the smoothness hypothesis: the proof of `isLocalMin_of_posDef_of_littleo` with its use of that hypothesis removed | [`isLocalMin_of_posDef_of_littleo_without_smoothness`][isLocalMin_of_posDef_of_littleo_without_smoothness] | Written by AI for this page; not in Physlib |
 
 [couplingPotential]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L56-L57
+[couplingPotential_origin_lt]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/StrictMinimum.lean#L32-L41
+[couplingPotential_eq_sq_add_sq]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/GlobalMinimum.lean#L3-L7
+[couplingPotential_pos]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/StrictMinimum.lean#L3-L30
+[coupled_spring_potential]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L153-L160
 [second_derivative_test_analyticAt]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L600-L606
-[iteratedFDerivQuadraticMap]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L107-L126
-[coercive_of_posdef]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L455-L505
-[littleO_of_powerseries]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L558-L568
-[isLocalMin_of_posDef_of_littleo]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L534-L554
-[le_of_littleO]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L514-L530
-[iteratedFDeriv_two_swap]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L415-L425
 [couplingPotential_analyticAt]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L68-L75
 [couplingPotential_hasFDerivAt]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L81-L92
 [couplingPotential_gradient_zero]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L97-L101
 [couplingPotential_iteratedFDeriv_two]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L106-L130
 [couplingPotential_posDef]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L142-L151
-[coupled_spring_potential]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/ClassicalMechanics/CoupledSpringPotential.lean#L153-L160
-[couplingPotential_origin_lt]: https://github.com/wcook04/proof-reader/blob/main/papers/coupled-spring/checks/StrictMinimum.lean#L32-L41
+[iteratedFDerivQuadraticMap]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L107-L126
+[coercive_of_posdef]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L455-L505
+[littleO_of_powerseries]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L558-L568
+[le_of_littleO]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L514-L530
+[cubicPerturbation_isLocalMin]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/CubicPerturbation.lean#L7-L26
+[cubicPerturbation_not_global]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/CubicPerturbation.lean#L28-L33
+[isLocalMin_of_posDef_of_littleo]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L534-L554
+[coercive_of_posdef_of_contdiff]: https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/PhyslibAlpha/Mathematics/PartialDerivativeTest.lean#L432-L452
+[isLocalMin_of_posDef_of_littleo_without_smoothness]: https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/checks/WithoutSmoothness.lean#L5-L26

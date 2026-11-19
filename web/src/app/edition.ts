@@ -13,6 +13,9 @@ export interface Passage {
   /** The same words set as the reading copy sets them, formulas typeset. Markdown papers only. */
   quote_html?: string;
   lean: string[];
+  /** Supplementary proofs compiled against the authors' Lean. */
+  checks?: string[];
+  title?: string;
   /** Null for Markdown; source_lines give its location. */
   page: number | null;
   last_page: number | null;
@@ -132,6 +135,7 @@ export interface ComparatorEvidence {
 }
 
 export interface Edition {
+  check_source_lines?: string;
   schema: 1;
   slug: string;
   source?: { kind: "pdf" | "markdown"; file: string; sha256: string };

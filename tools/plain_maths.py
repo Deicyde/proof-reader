@@ -12,7 +12,7 @@ from __future__ import annotations
 
 import re
 
-SUP = dict(zip("0123456789+-=()ni", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿⁱ"))
+SUP = dict(zip("0123456789+-=()niT", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿⁱᵀ"))
 SUB = dict(zip("0123456789+-=()aehijklmnoprstuvx", "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ"))
 # A minus sign is already "−" when a script is converted: U_{-2} is U₋₂.
 SUP["−"], SUB["−"] = "⁻", "₋"
@@ -21,6 +21,7 @@ SYMBOL = {
     "to": "→", "mapsto": "↦", "times": "×", "in": "∈", "neq": "≠", "ne": "≠", "le": "≤",
     "leq": "≤", "ge": "≥", "geq": "≥", "infty": "∞", "lVert": "‖", "rVert": "‖", "lvert": "|",
     "rvert": "|", "blacksquare": "∎", "partial": "∂", "cdot": "·", "sum": "Σ", "nabla": "∇", "pm": "±",
+    "cos": "cos",
 }
 LETTER = {"mathbb": {"R": "ℝ", "N": "ℕ", "Z": "ℤ", "Q": "ℚ", "C": "ℂ"}}
 GREEK = dict(zip("alpha beta gamma delta epsilon theta lambda mu nu pi rho sigma tau phi chi psi omega".split(),

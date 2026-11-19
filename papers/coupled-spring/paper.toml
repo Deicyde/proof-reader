@@ -1,8 +1,8 @@
 [paper]
-title = "A minimum of the coupled spring potential"
-short_title = "A minimum of the coupled spring potential"
+title = "The minimum of the coupled spring potential"
+short_title = "The minimum of the coupled spring potential"
 authors = ["Written by AI agents under Will Cook's direction"]
-venue = "Explanatory reconstruction of Bjørn Kjos-Hanssen's Lean file in PhyslibAlpha"
+venue = "Companion to Bjørn Kjos-Hanssen’s PhyslibAlpha formalization"
 markdown = "paper.md"
 noun = "page"
 graph = false
@@ -17,10 +17,13 @@ source = "https://github.com/leanprover-community/physlib/tree/be0a9eef7dac78da5
 source_name = "Physlib at be0a9ee"
 source_lines = "https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/{path}#L{line}-L{end}"
 licence = "Apache-2.0"
-scope = "Lean 4.35.0 compiled the two listed modules of Physlib at commit be0a9ee, and each declaration's statement, dependencies and axioms shown here are Lean's own report from those compiled modules. The two files are unchanged copies. The page's text, the links from its sentences to the Lean, the plain titles, the comparisons and the two Lean files in checks/ were written by AI under Will Cook's direction. None of them has been reviewed by the author of the Lean or by a physicist."
+scope = "Lean 4.35.0 compiled two unchanged PhyslibAlpha modules at be0a9ee. The supplementary proofs were compiled against those modules."
 
 [reading]
 language = "lean"
 
 [comparator]
 evidence = "comparator"
+
+[checks]
+source_lines = "https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/{path}#L{line}-L{end}"

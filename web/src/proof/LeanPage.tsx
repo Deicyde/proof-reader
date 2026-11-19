@@ -9,7 +9,7 @@ import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code
 import { sectionLabel, shapeOf } from "../model/fromEdition";
 import { READING_LINE } from "../paper/reading-line";
 import { DeclBlock, KIND_WORDS, list } from "./DeclBlock";
-import { AllChecks, FidelityLines, HowMade, reviewers } from "./Fidelity";
+import { AllChecks, CheckLine, checksOf, FidelityLines, HowMade, reviewers } from "./Fidelity";
 import { ComparatorIndex } from "./Comparator";
 import { MadeLink } from "./MadeLink";
 import { Quote } from "../paper/Quote";
@@ -86,7 +86,10 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
   // pane; a step come back to keeps its place.
   const shownOpen = useRef(false);
   const arriving = useRef(true);
-  const tabWas = useRef(tab);
+  const supplementary = checksOf(edition, step.passage?.checks ?? []);
+  const hasWholeFile = step.decls.length > 0 || !supplementary.length;
+  const visibleTab = tab === "file" && !hasWholeFile ? "step" : tab;
+  const tabWas = useRef(visibleTab);
   useLayoutEffect(() => {
     const el = body.current;
     if (!el || !open) {
@@ -95,9 +98,9 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
     }
     // The whole file and the index scroll this same page. Coming back to the step, place
     // it afresh: their scroll position means nothing here.
-    const back = tab === "step" && tabWas.current !== "step";
-    tabWas.current = tab;
-    if (tab !== "step") return;
+    const back = visibleTab === "step" && tabWas.current !== "step";
+    tabWas.current = visibleTab;
+    if (visibleTab !== "step") return;
     const was = shownKey.current;
     if (was === step.key && shownOpen.current && !back) return;
     if (was !== step.key && shownOpen.current) tops.current.set(was, el.scrollTop);
@@ -137,19 +140,19 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
     if (target > 0 && target < top) target = fits(0) ? 0 : top;
     el.scrollTop = Math.max(0, target);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, step, tab]);
+  }, [open, step, visibleTab]);
 
   return (
     <section className="leaf" aria-label="Lean">
       <div className="leaf__tabs" role="group" aria-label="What the Lean page shows">
-        <button type="button" aria-pressed={tab === "step"} onClick={() => onTab("step")}>This step</button>
-        <button type="button" aria-pressed={tab === "file"} onClick={() => onTab("file")}>Whole file</button>
-        <button type="button" aria-pressed={tab === "index"} onClick={() => onTab("index")}>Index</button>
+        <button type="button" aria-pressed={visibleTab === "step"} onClick={() => onTab("step")}>This step</button>
+        <button type="button" aria-pressed={visibleTab === "file"} disabled={!hasWholeFile} onClick={() => onTab("file")}>Whole file</button>
+        <button type="button" aria-pressed={visibleTab === "index"} onClick={() => onTab("index")}>Index</button>
       </div>
       <div className="leaf__body" ref={body} tabIndex={-1}>
-        {tab === "index" ? (
+        {visibleTab === "index" ? (
           <AllDeclarations edition={edition} act={act} />
-        ) : tab === "file" ? (
+        ) : visibleTab === "file" ? (
           <WholeFile edition={edition} step={step} act={act} names={names} scroller={body} />
         ) : (
           <>
@@ -196,7 +199,13 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
                 />
               );
             })}
-            {step.passage && (
+            {supplementary.length > 0 && (
+              <section className="fid fid--supplementary" aria-label="Supplementary Lean proofs">
+                <p className="fid__head"><span className="decl__label">Supplementary Lean</span> <span className="fid__by">Written for this page</span></p>
+                {supplementary.map((check) => <CheckLine key={check.name} edition={edition} check={check} act={act} />)}
+              </section>
+            )}
+            {step.decls.length > 0 && step.passage && (
               <p className="stepline__caveat stepline__caveat--foot">{(hasComparisons(edition) ? LINK_CAVEAT : LINK_CAVEAT_PLAIN)(reviewers(edition))} <MadeLink onOpen={() => onTab("index")} /></p>
             )}
           </>

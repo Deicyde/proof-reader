@@ -313,6 +313,8 @@ def statement_sheets(claims: list[dict], declarations: list[dict], passages: lis
     sheets = []
     for claim in claims:
         heads = [n for n in claim.get("lean", []) if n in by_id]
+        if not heads:
+            continue
         order: list[str] = []
         seen: set[str] = set()
 
@@ -655,6 +657,11 @@ def resolve(slug: str) -> dict:
     if problem:
         errors.append(problem)
     checks = load_checks(folder)
+    check_names = {c["name"] for c in checks["checks"]}
+    for passage in passages:
+        for name in passage.get("checks", []):
+            if name not in check_names:
+                errors.append(f"passage {passage['id']}: no supplementary proof called {name}")
     stale = stale_checks(folder, checks["files"])
     if stale:
         errors.append(f"checks changed since extract last compiled them ({', '.join(stale)}): "
@@ -662,7 +669,7 @@ def resolve(slug: str) -> dict:
     claimed = [name for claim in claims for name in claim.get("lean", []) if name in written]
     required = list(dict.fromkeys(claimed + sorted(
         name for name in reachable(claimed, shard_info["uses"]) if written[name]["keyword"] == "axiom")))
-    errors += comparison_problems(links, written, ids, {c["name"] for c in checks["checks"]}, required)
+    errors += comparison_problems(links, written, ids, check_names, required)
     if errors:
         raise PaperError("\n".join(errors))
     return {"folder": folder, "config": config, "shards": shard_info, "links": links, "passages": passages,
@@ -919,6 +926,7 @@ def edition(slug: str) -> dict:
         "mentions": find_mentions(data["words"], names),
         "declarations": declarations,
         "checks": data["checks"],
+        **({"check_source_lines": config["checks"]["source_lines"]} if config.get("checks", {}).get("source_lines") else {}),
         "comparator": comparator_evidence(data["folder"], config),
         "shelf": {"example": examples[0] if examples else None, "examples": examples},
         "sheets": statement_sheets(links.get("claims", []), declarations, data["passages"], shard_info),
