@@ -5,7 +5,8 @@
 The file is the paper's own Markdown with the Lean beside it. Under each paragraph
 that links to Lean, a folded block opens the statements it is about, copied from the
 compiled source with a link to their lines, and the page's comparison with the Lean.
-A table at the top lists the statements and comparisons. Nothing is written that the
+A table at the top lists the statements and comparisons. Formulas are written as
+plain Unicode text, as in Physlib's API maps, so that they copy as they read. Nothing is written that the
 website does not already show: the words are the paper, plain titles, Lean source and
 the comparisons in links.json. The source must be a Markdown paper.
 """
@@ -19,6 +20,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import paper as tool  # noqa: E402
+import plain_maths  # noqa: E402
 
 SITE = "https://wcook04.github.io/proof-reader/#/{slug}"
 REPO = "https://github.com/wcook04/proof-reader/blob/main/papers/{slug}/{path}#L{line}-L{end}"
@@ -31,21 +33,13 @@ def blocks(text: str) -> list[str]:
     return re.split(r"\n[ \t]*\n", text.strip("\n"))
 
 
-INLINE_MATH = re.compile(r"(?<![$\\])\$(?!\$)(.+?)(?<!\\)\$", re.S)
+MATHS = re.compile(r"\$\$(.+?)\$\$|(?<![\\$])\$(.+?)(?<!\\)\$", re.S)
 
 
-def github_math(paragraph: str) -> str:
-    """Keep each inline formula on one line, and protect a `\\\\` row break.
-
-    GitHub finds inline maths within a line, and its Markdown pass turns `\\\\` into
-    `\\`. Its `$`...`$` form passes the formula through untouched."""
-    if paragraph.startswith("$$"):
-        return paragraph
-
-    def fix(match: re.Match) -> str:
-        formula = match[1].replace("\n", " ")
-        return f"$`{formula}`$" if "\\\\" in formula else f"${formula}$"
-    return INLINE_MATH.sub(fix, paragraph)
+def plain_text(paragraph: str) -> str:
+    """Write each formula as plain Unicode text, as Physlib's API maps do, so the
+    maths reads the same in the file, on GitHub and when copied."""
+    return MATHS.sub(lambda m: plain_maths.convert(m[1] or m[2]), paragraph)
 
 
 def squash(text: str) -> str:
@@ -197,7 +191,7 @@ def build(slug: str) -> Path:
             "Each ▸ **Lean** under a paragraph opens the statements that paragraph is about.", ""]
     out += ["| Statement on this page | Lean | Comparison with the page |", "| --- | --- | --- |", *rows, ""]
     for i in rest:
-        out += [github_math(paragraphs[i]), ""]
+        out += [plain_text(paragraphs[i]), ""]
         if attached.get(i):
             out += [details(attached[i]), ""]
     if refs:
