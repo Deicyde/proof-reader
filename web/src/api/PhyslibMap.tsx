@@ -7,6 +7,7 @@ import { LeanCode, useFileLines } from "../lean/code";
 import { Contents } from "../paper/Contents";
 import { PaperSplit } from "../paper/PaperSplit";
 import { Doc } from "../proof/Fidelity";
+import { DependencyMap, type MapNode } from "./DependencyMap";
 import "./physlib-map.css";
 
 export const PHYSLIB_MAP = "physlib-gauge-theory";
@@ -43,6 +44,7 @@ interface Edition {
   references: Reference[];
   glossary: Record<string, string>;
   paragraphs: Record<string, string[]>;
+  maps: MapNode[];
 }
 
 async function getFile<T>(name: string, parse: (response: Response) => Promise<T>) {
@@ -104,7 +106,8 @@ function MapReader({ edition }: { edition: Edition }) {
     const general = edition.references.find((item) => `ref-${item.index}` === id);
     return lean || general ? [{ id, lean, general }] : [];
   });
-  const outline = useMemo(() => edition.outline.map((item) => ({ ...item, ties: 0, page: null })), [edition]);
+  const outline = useMemo(() => [...edition.outline, { id: "dependency-map", number: "", title: "Dependency map", level: 2 }]
+    .map((item) => ({ ...item, ties: 0, page: null })), [edition]);
   const order = useMemo(() => [...new Set(Array.from(edition.html.matchAll(/data-api-citation="(lean-\d+)"/g), (match) => match[1]))], [edition]);
   const position = order.indexOf(paragraph?.find((id) => id.startsWith("lean-")) ?? citation);
   const declarations = useMemo(() => edition.leanReferences.flatMap((item) => item.declarations.map((d) => ({
@@ -315,6 +318,9 @@ function MapReader({ edition }: { edition: Edition }) {
                 const isClosedOnMobile = !group && !ref && !paragraph && citation !== "index" && window.matchMedia("(max-width: 900px)").matches;
                 navigate(record, isClosedOnMobile);
               }} />
+              <div className="sheet__text api-map__deps-wrap">
+                <DependencyMap maps={edition.maps} current={edition.path} tracker={tracker} home={indexRoute()} />
+              </div>
               <footer className="foot api-map__footer">
                 <p>Map and Lean by the Physlib contributors. <a href={base + "LICENSE"}>Apache 2.0</a>. Citation groups and signatures from the <a href={edition.index}>tracker index</a> at <a href={`https://github.com/${edition.repo}/commit/${edition.commit}`}><code>{edition.commit.slice(0, 7)}</code></a>.</p>
               </footer>

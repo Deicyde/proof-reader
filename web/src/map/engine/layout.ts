@@ -41,6 +41,11 @@ export interface LayoutInput {
    * below it, as the Plectis maths site's reader wraps a wide layer. Unset, ranks never wrap.
    */
   wrapWidth?: number;
+  /**
+   * Proof Reader: ranks to use in place of the longest path from the root (the root at 0). The API-map
+   * dependency map ranks from the bottom, so a map sits just above the highest map it cites.
+   */
+  ranks?: ReadonlyMap<string, number>;
 }
 
 /**
@@ -114,7 +119,7 @@ export function computeRanks(root: string, nodes: readonly string[], edges: read
 
 export function layoutTree(input: LayoutInput): { layout: Layout; plan: Plan } {
   const { root, nodes, edges, metrics, prev, pin } = input;
-  const rank = computeRanks(root, nodes, edges);
+  const rank = input.ranks ? new Map(input.ranks) : computeRanks(root, nodes, edges);
   if (input.wrapWidth) wrapRanks(rank, nodes, edges, (id) => input.size(id).w, metrics, input.wrapWidth);
   const depth = Math.max(0, ...rank.values());
 
