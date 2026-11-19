@@ -21,7 +21,7 @@ theorem cubicPerturbation_isLocalMin :
     simp [cubicPerturbation, couplingPotential]
   rw [h0]
   have hlo : -(1 / 4 : ℝ) < x 0 := (abs_lt.mp hx).1
-  have hprod : 0 ≤ (x 0) ^ 2 * (x 0 + 1 / 4) := by positivity
+  have hprod : 0 ≤ (x 0) ^ 2 * (x 0 + 1 / 4) := mul_nonneg (sq_nonneg _) (by linarith)
   unfold cubicPerturbation couplingPotential
   nlinarith [sq_nonneg (x 1 + x 0 / 2), sq_nonneg (x 0), hprod]
 
