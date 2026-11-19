@@ -404,7 +404,7 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
       if (first && !seen.has(first)) {
         seen.add(first);
         first.tabIndex = 0;
-        first.setAttribute("aria-label", `Statement with Lean, ${passage.lean.join(", ")}: ${passage.quote}`);
+        first.setAttribute("aria-label", `Statement with Lean, ${passage.title ?? passage.lean.join(", ")}: ${passage.quote}`);
       }
     }
     measure();

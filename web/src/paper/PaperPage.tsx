@@ -181,7 +181,6 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const rightPending = useRef<{ leanTop: number; scene: Entry["scene"]; paused: boolean } | null>(null);
   const leftReading = useRef<{ top: number; width: number; page: number } | null>(null);
   const stepAt = useRef(-1);
-  const lastPassage = useRef<string | null>(null);
   const dwell = useRef(0);
   const cardsQuiet = useRef(0);
 
@@ -468,7 +467,6 @@ export function PaperPage({ edition }: { edition: Edition }) {
     }
     lineId.current = id;
     setLine({ id, zone, above });
-    if (above) lastPassage.current = above;
     const at = id ?? above;
     stepAt.current = at ? edition.passages.findIndex((p) => p.id === at) : -1;
   }, [edition]);
@@ -645,10 +643,11 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (pin?.decl) return { mode: "pin", passage: null, decl: pin.decl };
     if (pin?.passage) return { mode: "pin", passage: passages.get(pin.passage) ?? null, decl: null };
     if (line.id) return { mode: "line", passage: passages.get(line.id) ?? null, decl: null };
-    if (line.zone === "after") return { mode: "after", passage: null, decl: null };
-    if (line.zone === "between" && lastPassage.current) return { mode: "between", passage: passages.get(lastPassage.current) ?? null, decl: null };
+    // The Lean-only reader keeps the previous proof when the next text has no link.
+    if (!plain && line.zone === "after") return { mode: "after", passage: null, decl: null };
+    if (line.above) return { mode: plain ? "line" : "between", passage: passages.get(line.above) ?? null, decl: null };
     return { mode: "start", passage: claimPassage, decl: null };
-  }, [claimPassage, entry.lean, line, passages, pin, pointedCard, pointedClaim, pointedPassage]);
+  }, [claimPassage, entry.lean, line, passages, pin, plain, pointedCard, pointedClaim, pointedPassage]);
 
   const stepView = useMemo((): Step => {
     if (shown.mode === "after") return { key: "after", title: null, passage: null, decls: [], exact: null, untied: { section: hereLabel, last: lastTie } };
@@ -688,17 +687,20 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const reachedDecls = useMemo(() => (reached === 0 ? 0 : new Set([...passed, ...lit]).size), [lit, passed, reached]);
 
   const back = useCallback(() => window.history.back(), []);
-  const firstTie = edition.coverage.sections[0];
-  const lastSection = edition.coverage.sections[edition.coverage.sections.length - 1];
 
   const plainOf = useCallback((id: string | undefined) => (id ? declarations.get(id)?.plain ?? id : ""), [declarations]);
-  const name = plainOf(stepView.decls[0]);
+  const name = plainOf(stepView.decls[0]) || stepView.passage?.title;
   const says = (() => {
     if (shown.mode === "preview") return <><b>Previewing</b> {plainOf(shown.decl ?? undefined) || stepView.title}. Move away to return.</>;
-    if (shown.mode === "pin") return <><b>Pinned</b> {plainOf(pin?.decl ?? undefined) || stepView.title}<button type="button" className="proof__unpin" onClick={closeLean}>Unpin</button></>;
-    if (shown.mode === "after") return <><b>{hereLabel ? `No statement in ${hereLabel} is linked to this Lean.` : "No statement here is linked to this Lean."}</b> The linked statements are in {sectionLabel(firstTie)} to {sectionLabel(lastSection)}.</>;
+    if (shown.mode === "pin") return <><b>Pinned</b> {plainOf(pin?.decl ?? undefined) || stepView.passage?.title || stepView.title}<button type="button" className="proof__unpin" onClick={closeLean}>Unpin</button></>;
+    if (shown.mode === "after") {
+      const sections = edition.coverage.sections;
+      return <><b>{hereLabel ? `No statement in ${hereLabel} is linked to this Lean.` : "No statement here is linked to this Lean."}</b> The linked statements are in {sectionLabel(sections[0])} to {sectionLabel(sections[sections.length - 1])}.</>;
+    }
     if (shown.mode === "between") return <><b>No statement at this line.</b> The last was {name}.</>;
-    if (shown.mode === "start") return <><b>Before the first statement,</b> in {sectionLabel(firstTie)}. Showing the main claim.</>;
+    if (shown.mode === "start") return markdown
+      ? <><b>Main claim</b> {name}</>
+      : <><b>Before the first statement,</b> in {sectionLabel(edition.coverage.sections[0])}. Showing the main claim.</>;
     // The statement by its plain name and section; its exact place is under "In the paper".
     return <><b>Following the {noun(edition)}:</b> {name && stepView.passage ? `${name}, ${sectionLabel(stepView.passage.section)}` : stepView.title}</>;
   })();
@@ -731,8 +733,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const credit = markdown ? (
     <p>
       {edition.credit?.text ?? `Text: ${paper.authors.join(", ")}, ${paper.licence}`}.
-      {" "}We rendered this {noun(edition)}’s Markdown source directly and checked each quotation against its source heading and block. <a href={sourceUrl}>Read the source Markdown</a>.
-      {" "}{leanOrigin(edition)} Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors of the Lean. <MadeLink onOpen={() => onTab("index")} />.
+      {" "}<a href={sourceUrl}>Source Markdown</a>. <MadeLink onOpen={() => onTab("index")} />.
     </p>
   ) : (
     <p>
@@ -779,7 +780,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
           <div className="bar__title">
             {copy === "reading" && edition.reading ? <p className="bar__paper">{paper.short_title}</p> : <h1 className="bar__paper">{paper.short_title}</h1>}
           </div>
-          {(wide ? !showRight : !entry.sheet) && <button type="button" className="bar__open" onClick={() => (wide ? onLayout({ ...layout, graph: true }) : open({ sheet: true, record: readRoute().record, tab: entry.tab, lean: entry.lean }))}>Graph</button>}
+          {(wide ? !showRight : !entry.sheet) && <button type="button" className="bar__open" onClick={() => (wide ? onLayout({ ...layout, graph: true }) : open({ sheet: true, record: readRoute().record, tab: entry.tab, lean: plain || entry.lean }))}>{plain ? "Lean" : "Graph"}</button>}
           <button type="button" className="bar__theme" aria-label={scheme === "dark" ? "Use the day theme" : "Use the night theme"} onClick={() => setScheme(scheme === "dark" ? "light" : "dark")}>{scheme === "dark" ? "Day" : "Night"}</button>
           {paper.films && <a className="bar__film" href={SHORT_FILM.youtube} target="_blank" rel="noopener noreferrer" title={`${SHORT_FILM.title}, video on YouTube`}>
             <span className="bar__film-mark" aria-hidden="true" />Video, {clockTime(SHORT_FILM.seconds)}<span className="sr-only"> on YouTube</span>
@@ -840,7 +841,9 @@ export function PaperPage({ edition }: { edition: Edition }) {
               onInsetClosed={saveNow}
               onPoint={onPoint}
               onReady={() => setTick((t) => t + 1)}
-              hint={(
+              hint={markdown ? (
+                <p className="firstline firstline--status">Click a marked passage<span className="firstline__mark" aria-hidden="true" /> to read its Lean.</p>
+              ) : (
                 <div className="start">
                 <p className="firstline firstline--status">{hasComparisons(edition)
                   ? `The links from this ${noun(edition)} to its proof in Lean, the notes and the comparisons were made with AI`

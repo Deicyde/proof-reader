@@ -136,6 +136,10 @@ a map, so use the paper's own words for its title and name the theorems that sta
   one Haskell equation linked to the matching Lean line lets a reader read the two side by
   side. A quote may run across lines of code.
 - Link every declaration you can. A passage may link to several.
+- To open a supplementary proof beside a passage, list its compiled declaration name
+  in the passage's `checks` and give the passage a short `title`. Use an empty `lean`
+  list when the passage is supported only by that supplementary proof. The check
+  must appear in `generated/checks.json`.
 - If a quote occurs twice, lengthen it, or add `"page": n` for the PDF and `"nth": n` for
   the reading copy.
 

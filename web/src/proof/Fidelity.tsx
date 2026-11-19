@@ -60,6 +60,9 @@ const span = (check: Check) => check.end_line - check.line + 1;
 export function CheckLine({ edition, check, act }: { edition: Edition; check: Check; act: LeanActions }) {
   const [open, setOpen] = useState(false);
   const n = span(check);
+  const source = edition.check_source_lines?.replace("{path}", check.file)
+    .replace("{line}", String(check.line)).replace("{end}", String(check.end_line));
+  const location = `${check.file}, lines ${check.line} to ${check.end_line}`;
   return (
     <div className="fid__check" data-check={check.name}>
       <p className="fid__doc"><Doc text={check.doc} /></p>
@@ -70,7 +73,7 @@ export function CheckLine({ edition, check, act }: { edition: Edition; check: Ch
       {open && (
         <>
           <CheckCode edition={edition} check={check} act={act} />
-          <p className="fid__file">{check.file}, lines {check.line} to {check.end_line}, written for this page.{" "}
+          <p className="fid__file">{source ? <a href={source} target="_blank" rel="noreferrer">{location}</a> : location}.{" "}
             <button type="button" className="fid__back" onClick={() => setOpen(false)}>Hide the proof</button>
           </p>
         </>
@@ -156,20 +159,19 @@ export function AllChecks({ edition, act }: { edition: Edition; act: LeanActions
   return (
     <>
       <h3 id="checks">Lean proofs written for this page</h3>
-      <p>These Lean proofs were written for this page with AI. Each one imports the authors’ file, and Lean accepted each proof.</p>
+      <p>Lean accepted these AI-written proofs against the original Lean files.</p>
       {checks.map((c) => {
         const users = usedIn(c.name);
         return (
-          <div key={c.name} className="index__check" data-check={c.name}>
-            <p><code className="index__checkname">{c.name}</code> <span className="index__checkkind">{c.keyword === "def" ? "Definition" : "Theorem"}, lines {c.line} to {c.end_line} of {c.file}</span></p>
-            <p className="fid__doc"><Doc text={c.doc} /></p>
-            <p><b>Lean accepted this proof.</b> <CheckAxioms edition={edition} check={c} act={act} />
+          <details key={c.name} className="index__check" data-check={c.name}>
+            <summary><Doc text={c.doc} /> <code className="index__checkname">{c.name}</code></summary>
+            <p className="index__checkkind">{c.file}, lines {c.line} to {c.end_line}. <CheckAxioms edition={edition} check={c} act={act} />
               {users.length > 0 && <> Cited in the comparison for {users.map((d, i) => (
                 <span key={d.id}>{i > 0 && (i === users.length - 1 ? " and " : ", ")}<DeclLink paper={edition.slug} name={d.id} act={act} className="declname" /></span>
               ))}.</>}
             </p>
             <CheckCode edition={edition} check={c} act={act} />
-          </div>
+          </details>
         );
       })}
     </>
