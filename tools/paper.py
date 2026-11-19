@@ -30,6 +30,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import reading as reading_copy  # noqa: E402
+import physlib_map  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 PAPERS = ROOT / "papers"
@@ -1183,12 +1184,15 @@ def main() -> int:
     args = parser.parse_args()
     try:
         if args.command == "build":
-            build([args.slug] if args.slug else all_papers())
+            if args.slug != physlib_map.SLUG:
+                build([args.slug] if args.slug else all_papers())
+            if args.slug in (None, physlib_map.SLUG):
+                physlib_map.build()
         elif not args.slug:
             parser.error("this command needs a paper name")
         else:
             {"extract": extract, "check": check, "new": new}[args.command](args.slug)
-    except (PaperError, reading_copy.ReadingError) as error:
+    except (PaperError, reading_copy.ReadingError, ValueError) as error:
         print(error, file=sys.stderr)
         return 1
     return 0

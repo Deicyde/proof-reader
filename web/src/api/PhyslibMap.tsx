@@ -1,0 +1,438 @@
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import type { OutlineEntry } from "../app/edition";
+import { Lockup } from "../app/Family";
+import { readRoute, routeHref } from "../app/router";
+import { setScheme, useScheme } from "../app/theme";
+import { LeanCode, useFileLines } from "../lean/code";
+import { Contents } from "../paper/Contents";
+import { PaperSplit } from "../paper/PaperSplit";
+import { Doc } from "../proof/Fidelity";
+import "./physlib-map.css";
+
+export const PHYSLIB_MAP = "physlib-gauge-theory";
+const base = `${import.meta.env.BASE_URL}api-maps/${PHYSLIB_MAP}/`;
+const indexRoute = (record?: string) => routeHref({ paper: PHYSLIB_MAP, record });
+const tracker = "https://physlib.io/api-tracker";
+
+interface MapDeclaration {
+  fullName: string;
+  doc?: string;
+  line: number;
+  signature: string;
+}
+interface Group {
+  index: number;
+  file: string;
+  declarations: MapDeclaration[];
+}
+interface Reference {
+  index: number;
+  text: string;
+  apiMap: string | null;
+}
+interface Edition {
+  title: string;
+  repo: string;
+  commit: string;
+  path: string;
+  file: string;
+  index: string;
+  html: string;
+  outline: Pick<OutlineEntry, "id" | "number" | "title" | "level">[];
+  leanReferences: Group[];
+  references: Reference[];
+  glossary: Record<string, string>;
+  paragraphs: Record<string, string[]>;
+}
+
+async function getFile<T>(name: string, parse: (response: Response) => Promise<T>) {
+  const response = await fetch(base + name);
+  if (!response.ok) throw new Error(`Could not open ${name}`);
+  return parse(response);
+}
+
+export function PhyslibMap() {
+  const [edition, setEdition] = useState<Edition | null>(null);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    let current = true;
+    void getFile("edition.json", (response) => response.json() as Promise<Edition>).then((data) => {
+      if (!current) return;
+      setEdition(data);
+      document.title = `${data.title} · Physlib API map · Proof Reader`;
+    }, () => { if (current) setFailed(true); });
+    return () => { current = false; };
+  }, []);
+  if (failed) return (
+    <>
+      <header className="bar"><div className="bar__left"><Lockup /></div></header>
+      <p className="status" role="alert">Could not open the sample. <a href={tracker}>Read the map on Physlib</a>.</p>
+    </>
+  );
+  return edition ? <MapReader edition={edition} /> : <p className="status">Opening the Physlib API map…</p>;
+}
+
+const citeKey = (group: Group) => `lean-${group.index}`;
+const selectedRecord = () => readRoute().record ?? null;
+const sourceOf = (edition: Edition, file: string, line?: number) =>
+  `https://github.com/${edition.repo}/blob/${edition.commit}/${file}${line ? `#L${line}` : ""}`;
+
+function MapReader({ edition }: { edition: Edition }) {
+  const [record, setRecord] = useState(selectedRecord);
+  const [section, setSection] = useState<string | null>(null);
+  const [rail, setRail] = useState(false);
+  const [sourceLine, setSourceLine] = useState<number | null>(null);
+  const [files, setFiles] = useState<Record<string, string> | null>(null);
+  const [sourceFailed, setSourceFailed] = useState(false);
+  const [markdown, setMarkdown] = useState<string | null>(null);
+  const [message, setMessage] = useState("");
+  const scheme = useScheme();
+  const paper = useRef<HTMLDivElement>(null);
+  const article = useRef<HTMLElement>(null);
+  const right = useRef<HTMLDivElement>(null);
+  const focusBack = useRef<HTMLAnchorElement | null>(null);
+  const scrollTarget = useRef<"address" | number | null>("address");
+  const scrollSource = useRef(false);
+  const scrollDeclaration = useRef<string | null>(null);
+  const citation = record?.startsWith("@") ? record.slice(1) : "";
+  const group = edition.leanReferences.find((item) => citeKey(item) === citation);
+  const ref = edition.references.find((item) => `ref-${item.index}` === citation);
+  const paragraph = edition.paragraphs[citation];
+  const picked = new Set(paragraph ?? [citation]);
+  const paragraphReferences = paragraph?.flatMap((id) => {
+    const lean = edition.leanReferences.find((item) => citeKey(item) === id);
+    const general = edition.references.find((item) => `ref-${item.index}` === id);
+    return lean || general ? [{ id, lean, general }] : [];
+  });
+  const outline = useMemo(() => edition.outline.map((item) => ({ ...item, ties: 0, page: null })), [edition]);
+  const order = useMemo(() => [...new Set(Array.from(edition.html.matchAll(/data-api-citation="(lean-\d+)"/g), (match) => match[1]))], [edition]);
+  const position = order.indexOf(paragraph?.find((id) => id.startsWith("lean-")) ?? citation);
+  const declarations = useMemo(() => edition.leanReferences.flatMap((item) => item.declarations.map((d) => ({
+    id: d.fullName, plain: edition.glossary[d.fullName], file: item.file, line: d.line, end_line: d.line,
+  }))), [edition]);
+
+  const find = (id: string) => article.current?.querySelector<HTMLElement>(`[id="${CSS.escape(id)}"]`);
+  const findCitation = (id: string) => article.current?.querySelector<HTMLAnchorElement>(`[data-api-citation="${CSS.escape(id)}"]`);
+  const locate = (element?: Element | null, center = false) => {
+    const pane = paper.current;
+    if (!pane || !element) return;
+    const top = element.getBoundingClientRect().top - pane.getBoundingClientRect().top + pane.scrollTop;
+    pane.scrollTop = top - (center ? pane.clientHeight * 0.23 : 20);
+  };
+  const navigate = (next: string | null, jump = false) => {
+    if (selectedRecord() !== next) {
+      history.replaceState({ ...history.state, apiMapTop: paper.current?.scrollTop ?? 0 }, "");
+      history.pushState(jump ? {} : { apiMapTop: paper.current?.scrollTop ?? 0 }, "", indexRoute(next ?? undefined));
+    }
+    if (jump && next === record) {
+      const id = next?.slice(1);
+      if (id) locate(findCitation(id) ?? find(id), !!findCitation(id));
+      else if (paper.current) paper.current.scrollTop = 0;
+    } else if (jump) scrollTarget.current = "address";
+    setSourceLine(null);
+    setRecord(next);
+    setRail(false);
+  };
+
+  const focusDeclaration = (name: string) => {
+    const panel = right.current;
+    const entry = panel?.querySelector<HTMLElement>(`[data-lean-name="${CSS.escape(name)}"]`);
+    if (!panel || !entry) return;
+    panel.scrollTop += entry.getBoundingClientRect().top - panel.getBoundingClientRect().top - 10;
+    entry.focus({ preventScroll: true });
+    scrollDeclaration.current = null;
+  };
+  const openDeclaration = (name: string) => {
+    const hit = edition.leanReferences.find((item) => item.declarations.some((d) => d.fullName === name));
+    if (!hit) return;
+    scrollDeclaration.current = name;
+    navigate(`@${citeKey(hit)}`, true);
+    if (hit === group && sourceLine === null) focusDeclaration(name);
+  };
+
+  useEffect(() => {
+    const onAddress = () => {
+      const next = selectedRecord();
+      if (next === record) return;
+      scrollTarget.current = typeof history.state?.apiMapTop === "number" ? history.state.apiMapTop : "address";
+      setSourceLine(null);
+      setRecord(next);
+    };
+    window.addEventListener("hashchange", onAddress);
+    window.addEventListener("popstate", onAddress);
+    return () => {
+      window.removeEventListener("hashchange", onAddress);
+      window.removeEventListener("popstate", onAddress);
+    };
+  }, [record]);
+
+  useEffect(() => {
+    let current = true;
+    void getFile("API-map.md", (response) => response.text()).then((text) => {
+      if (current) setMarkdown(text);
+    }, () => undefined);
+    return () => { current = false; };
+  }, []);
+
+  useEffect(() => {
+    if (!message) return;
+    const timer = window.setTimeout(() => setMessage(""), 3000);
+    return () => window.clearTimeout(timer);
+  }, [message]);
+
+  useLayoutEffect(() => {
+    article.current?.querySelectorAll<HTMLAnchorElement>("[data-api-citation]").forEach((link) => {
+      const active = picked.has(link.dataset.apiCitation ?? "");
+      link.classList.toggle("is-active", active);
+      link.setAttribute("aria-expanded", String(active));
+    });
+    article.current?.querySelectorAll<HTMLElement>("[data-api-paragraph]").forEach((block) => {
+      const isOpen = block.dataset.apiParagraph === citation;
+      block.classList.toggle("is-inspected", isOpen);
+      block.querySelector(".api-map__passage")?.setAttribute("aria-expanded", String(isOpen || !!block.querySelector(".api-map__cite.is-active")));
+    });
+    if (scrollTarget.current === "address") {
+      const mark = citation ? findCitation(citation) : null;
+      const target = mark ?? (citation ? find(citation) : null);
+      locate(target, !!mark);
+      const pane = paper.current;
+      if (target && pane && document.fonts.status === "loading") {
+        const top = pane.scrollTop;
+        void document.fonts.ready.then(() => {
+          if (pane.isConnected && selectedRecord() === record && Math.abs(pane.scrollTop - top) < 2) {
+            locate(target, !!mark);
+          }
+        });
+      }
+      if (!citation && paper.current) paper.current.scrollTop = 0;
+    } else if (scrollTarget.current !== null && paper.current) {
+      paper.current.scrollTop = scrollTarget.current;
+    }
+    scrollTarget.current = null;
+    if (right.current) right.current.scrollTop = 0;
+  }, [citation]);
+
+  useLayoutEffect(() => {
+    if (sourceLine === null && scrollDeclaration.current) focusDeclaration(scrollDeclaration.current);
+  }, [citation, sourceLine]);
+
+  const useFiles = () => {
+    if (files || sourceFailed) return;
+    void getFile("source.json", (response) => response.json() as Promise<Record<string, string>>)
+      .then(setFiles, () => setSourceFailed(true));
+  };
+  const openSource = (line: number) => {
+    scrollSource.current = true;
+    setSourceLine(line);
+    useFiles();
+  };
+  useLayoutEffect(() => {
+    if (!scrollSource.current || sourceLine === null || !files) return;
+    right.current?.querySelector(`[data-line="${sourceLine}"]`)?.scrollIntoView({ block: "center" });
+    scrollSource.current = false;
+  }, [sourceLine, files]);
+
+  const close = () => {
+    navigate(null);
+    focusBack.current?.focus({ preventScroll: true });
+  };
+  const step = (direction: -1 | 1) => {
+    const next = position === -1 && direction === -1 ? order.at(-1) : order[position + direction];
+    if (next) navigate(`@${next}`, true);
+  };
+  const declarationsFor = (item: Group) => item.declarations.map((d) => (
+    <DeclarationCard key={d.fullName} decl={d} title={edition.glossary[d.fullName]} sourceUrl={sourceOf(edition, item.file, d.line)}
+      onSource={() => {
+        if (item !== group) navigate(`@${citeKey(item)}`);
+        openSource(d.line);
+      }} />
+  ));
+  const copy = async (read: () => string | Promise<string>, success: string) => {
+    try {
+      const content = read();
+      await navigator.clipboard.writeText(typeof content === "string" ? content : await content);
+      setMessage(success);
+    } catch {
+      setMessage("Could not copy. You can select the text or open the source.");
+    }
+  };
+  const nextSection = () => {
+    const top = paper.current?.getBoundingClientRect().top ?? 0;
+    const current = [...outline].reverse().find((item) => (find(item.id)?.getBoundingClientRect().top ?? Infinity) < top + 36);
+    setSection(current?.id ?? null);
+  };
+
+  return (
+    <div className="page api-map" onKeyDown={(event) => {
+      if (event.defaultPrevented) return;
+      if (event.key === "Escape") {
+        if (rail) setRail(false);
+        else if (citation) close();
+      }
+      if (event.metaKey || event.ctrlKey || event.altKey || (event.target as HTMLElement).closest("input, textarea, [contenteditable]")) return;
+      if (event.key === "j" || event.key === "k") {
+        step(event.key === "j" ? 1 : -1);
+        event.preventDefault();
+      }
+    }}>
+      <a className="skip" href="#map-text" onClick={(event) => { event.preventDefault(); paper.current?.focus(); }}>Skip to the map</a>
+      <header className="bar api-map__bar">
+        <div className="bar__left"><Lockup /><button type="button" className="bar__contents api-map__contents-toggle" aria-expanded={rail} onClick={() => setRail(!rail)}>Contents</button></div>
+        <div className="bar__title"><p className="bar__paper">{edition.title}</p></div>
+        <nav className="bar__right" aria-label="Map actions">
+          <button type="button" className="bar__open api-map__index-toggle" onClick={() => navigate("@index")}>Glossary</button>
+          <a className="bar__link api-map__source-link" href={sourceOf(edition, edition.file)}>Source Markdown</a>
+          <button type="button" className="bar__open" title="Copy the original Markdown with Unicode formulas" onClick={() => void copy(() => markdown ?? getFile("API-map.md", (response) => response.text()), "Markdown copied")}>Copy page</button>
+          <button type="button" className="bar__theme" aria-label={scheme === "dark" ? "Use the day theme" : "Use the night theme"} onClick={() => setScheme(scheme === "dark" ? "light" : "dark")}>{scheme === "dark" ? "Day" : "Night"}</button>
+        </nav>
+        <div className="api-map__copy-status" role="status" hidden={!message}>{message}</div>
+      </header>
+      <main className={`spread spread--reading has-right api-map__spread${group || ref || paragraph || record === "@index" ? " is-open" : ""}`}>
+        <Contents
+          noun="map" outline={outline} current={section} open={rail} declarations={declarations} files={files ?? {}} html={edition.html} copy="reading"
+          topLabel="Start of map" keys={<span><kbd>j</kbd> and <kbd>k</kbd> step through Lean citations. <kbd>Esc</kbd> closes a citation.</span>}
+          onTop={() => navigate(null, true)} onJump={(id) => navigate(`@${id}`, true)}
+          onBlock={(element) => { locate(element); setRail(false); }}
+          onName={openDeclaration}
+          onIndex={() => navigate("@index")} onPage={() => undefined} onSearch={useFiles} onClose={() => setRail(false)}
+        />
+        <div className="left">
+          <div className="reading" id="map-text" tabIndex={0} ref={paper} onScroll={nextSection} aria-label="Gauge theory API map">
+            <div className="sheet">
+              <p className="firstline api-map__credit"><a href={`${tracker}#${edition.path}`}>Physlib API tracker</a> <span aria-hidden="true">/</span> Classical field theory</p>
+              <article className="sheet__text" ref={article} dangerouslySetInnerHTML={{ __html: edition.html }} onClick={(event) => {
+                if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                const target = event.target as Element;
+                const mark = target.closest<HTMLAnchorElement>("[data-api-citation]");
+                const block = target.closest<HTMLElement>("[data-api-paragraph]");
+                if (!mark && (!block || target.closest("a:not(.api-map__passage)"))) return;
+                const link = mark ?? block?.querySelector<HTMLAnchorElement>(".api-map__passage");
+                if (!link) return;
+                event.preventDefault();
+                if (window.getSelection()?.toString()) return;
+                focusBack.current = link;
+                const record = link.hash.split("/").at(-1) ?? null;
+                const isClosedOnMobile = !group && !ref && !paragraph && citation !== "index" && window.matchMedia("(max-width: 900px)").matches;
+                navigate(record, isClosedOnMobile);
+              }} />
+              <footer className="foot api-map__footer">
+                <p>Map and Lean by the Physlib contributors. <a href={base + "LICENSE"}>Apache 2.0</a>. Citation groups and signatures from the <a href={edition.index}>tracker index</a> at <a href={`https://github.com/${edition.repo}/commit/${edition.commit}`}><code>{edition.commit.slice(0, 7)}</code></a>.</p>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <PaperSplit />
+        <aside className="proof api-map__aside" id="api-map-references" aria-label="Map references">
+          <div className="proof__caption">
+            <div className="proof__says"><p><b>{group ? `Lean citation [${group.index}]` : ref ? `Reference {${ref.index}}` : paragraph ? "References in this paragraph" : "Lean glossary"}</b> {group && `· ${group.declarations.length} ${group.declarations.length === 1 ? "declaration" : "declarations"}`}</p></div>
+            {citation && <button type="button" className="proof__close" onClick={close}>Close</button>}
+          </div>
+          <div className="leaf">
+            {group && <nav className="leaf__tabs" aria-label="Citation view">
+              <button type="button" aria-pressed={sourceLine === null} onClick={() => { setSourceLine(null); if (right.current) right.current.scrollTop = 0; }}>This citation</button>
+              <button type="button" aria-pressed={sourceLine !== null} onClick={() => openSource(group.declarations[0].line)}>Whole file</button>
+              <button type="button" onClick={() => navigate("@index")}>Glossary</button>
+              <div className="api-map__step">
+                <button type="button" aria-label="Previous citation" title="Previous citation (k)" onClick={() => step(-1)} disabled={position < 1}>←</button>
+                <button type="button" aria-label="Next citation" title="Next citation (j)" onClick={() => step(1)} disabled={position === order.length - 1}>→</button>
+              </div>
+            </nav>}
+            <div className="leaf__body api-map__reference-body" ref={right} tabIndex={0}>
+              {group ? (
+                <>
+                  <div className="api-map__file">
+                    <a href={sourceOf(edition, group.file)}>{group.file}</a>
+                    <button type="button" onClick={() => void copy(() => location.href, "Citation link copied")}>Copy link</button>
+                  </div>
+                  {sourceLine === null ? (
+                    <>
+                      <p className="api-map__glossary-credit">AI-drafted reading titles added by Proof Reader.</p>
+                      {declarationsFor(group)}
+                    </>
+                  ) : files ? (
+                    <div className="decl__code api-map__whole-file">
+                      <Code source={files[group.file]} active={sourceLine} />
+                    </div>
+                  ) : <p className="api-map__aside-note" role="status">{sourceFailed ? "Could not load the local file. Open its source link above." : "Opening the Lean source…"}</p>}
+                </>
+              ) : ref ? (
+                <BibliographyReference reference={ref} />
+              ) : paragraphReferences ? (
+                <>
+                  <div className="api-map__file">
+                    <nav className="api-map__paragraph-jumps" aria-label="References in this paragraph">
+                      {paragraphReferences.map(({ id, lean, general }) => (
+                        <button key={id} type="button" aria-label={lean ? `Jump to Lean citation ${lean.index}` : `Jump to reference ${general?.index}`}
+                          onClick={() => right.current?.querySelector(`[data-reference="${id}"]`)?.scrollIntoView({ block: "start" })}>
+                          {lean ? `[${lean.index}]` : `{${general?.index}}`}
+                        </button>
+                      ))}
+                    </nav>
+                    <button type="button" onClick={() => void copy(() => location.href, "Paragraph link copied")}>Copy link</button>
+                  </div>
+                  {paragraphReferences.some((item) => item.lean) && <p className="api-map__glossary-credit">AI-drafted reading titles added by Proof Reader.</p>}
+                  {paragraphReferences.map(({ id, lean, general }) => (
+                    <section className="api-map__paragraph-group" key={id} data-reference={id}>
+                      <button type="button" className="api-map__paragraph-name" onClick={() => navigate(`@${id}`)}>{lean ? `Lean citation [${lean.index}] · ${lean.declarations.length} ${lean.declarations.length === 1 ? "declaration" : "declarations"}` : `Reference {${general?.index}}`}</button>
+                      {lean && declarationsFor(lean)}
+                      {general && <BibliographyReference reference={general} />}
+                    </section>
+                  ))}
+                </>
+              ) : (
+                <>
+                  <p className="api-map__aside-note">Choose a numbered citation in the map, or look up a declaration below.</p>
+                  <p className="api-map__glossary-credit">AI-drafted reading titles added by Proof Reader. Lean names and signatures are from Physlib.</p>
+                  <ol className="api-map__references">
+                    {edition.leanReferences.map((item) => <li key={item.index}>
+                      <h2>[{item.index}]</h2>
+                      <ul>
+                        {item.declarations.map((d) => <li key={d.fullName}><button type="button" onClick={() => openDeclaration(d.fullName)}>
+                          <span>{edition.glossary[d.fullName]}</span><code>{d.fullName}</code>
+                        </button></li>)}
+                      </ul>
+                    </li>)}
+                  </ol>
+                </>
+              )}
+            </div>
+          </div>
+        </aside>
+      </main>
+    </div>
+  );
+}
+
+function BibliographyReference({ reference }: { reference: Reference }) {
+  return (
+    <div className="api-map__aside-note">
+      <p>{reference.text.replace(/\s*— Physlib\/.*|\s*,?\s*https?:\/\/\S+$/, "")}</p>
+      <a href={reference.apiMap ? `${tracker}#${reference.apiMap}` : reference.text.match(/https?:\/\/\S+$/)?.[0]}>Open reference</a>
+    </div>
+  );
+}
+
+function Code({ source, active }: { source: string; active?: number }) {
+  const lines = useFileLines(source.replace(/\n$/, ""));
+  return <LeanCode lines={lines} from={1} to={lines.length} numbers={active !== undefined} exact={active ? [active, active] : null} />;
+}
+
+function DeclarationCard({ decl, title, onSource, sourceUrl }: { decl: MapDeclaration; title: string; onSource(): void; sourceUrl: string }) {
+  return (
+    <section className="step-proof api-map__declaration" data-lean-name={decl.fullName} tabIndex={-1}>
+      <h2>{title}</h2>
+      <p className="api-map__raw-name"><code>{decl.fullName}</code></p>
+      {decl.doc && <p className="api-map__doc"><Doc text={decl.doc} /></p>}
+      {decl.signature && (
+        <div className="decl__code api-map__signature" tabIndex={0} aria-label={decl.signature.includes("…") ? "Lean signature excerpt" : "Lean signature"}>
+          {decl.signature.includes("…") && <p className="api-map__excerpt">Signature excerpt</p>}
+          <Code source={decl.signature} />
+        </div>
+      )}
+      <div className="step-proof__meta">
+        <button type="button" className="decl__copy" onClick={onSource}>View source at line {decl.line}</button>
+        <a href={sourceUrl}>GitHub</a>
+      </div>
+    </section>
+  );
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
+import { PHYSLIB_MAP, PhyslibMap } from "../api/PhyslibMap";
 import { PaperPage } from "../paper/PaperPage";
 import { StatementSheet } from "../paper/StatementSheet";
 import { Lockup } from "./Family";
@@ -32,6 +33,7 @@ export function App() {
       window.removeEventListener("popstate", onChange);
     };
   }, []);
+  if (route.paper === PHYSLIB_MAP) return <PhyslibMap />;
   return route.paper ? <Loaded key={route.paper} slug={route.paper} sheet={route.record === "@sheet"} /> : <Shelf />;
 }
 

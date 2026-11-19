@@ -4,6 +4,7 @@
 // papers are in it. Nothing here knows about any one paper.
 
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
+import { PHYSLIB_MAP } from "../api/PhyslibMap";
 import { tokenizeLean } from "../lean/leanTokens";
 import { Lockup, SisterSites } from "./Family";
 import { FilmSlot } from "./FilmSlot";
@@ -144,6 +145,7 @@ export function Shelf() {
                 </li>
               ))}
             </ul>
+            <p className="shelf__add"><a href={routeHref({ paper: PHYSLIB_MAP, record: "@lean-12" })}>Gauge theory in Proof Reader</a> uses Physlib’s own API map and numbered Lean citations.</p>
             <p className="shelf__add">If you have written a paper with public Lean and an open licence, I would be glad to add it. <a href={ADD_A_PAPER}>The add-paper guide</a> lists the steps, and <a href={REPOSITORY}>the code is on GitHub</a>.</p>
           </div>
         </section>

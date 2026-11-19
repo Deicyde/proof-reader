@@ -14,4 +14,8 @@ The paper rendering uses pdf.js (Apache-2.0), and the reading copy uses KaTeX (M
 markdown-it (MIT). web/tools/render-paper.mjs adapts lean-exposition's math protection.
 
 Papers and Lean projects under papers/ belong to their authors and keep their own
-licences, named in each folder's paper.toml.
+licences, named in each folder's paper.toml. The Gauge theory API map, its Lean
+files and the indexed signatures and docstrings are from the Physlib contributors
+(https://github.com/leanprover-community/physlib), Apache-2.0. The source files and
+licence are in papers/physlib-gauge-theory/. The tracker catalog is a projection
+of those sources.
