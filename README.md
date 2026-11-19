@@ -2,234 +2,120 @@
 
 [Will Cook’s home page: all projects and videos](https://wcook04.github.io/)
 
-Proof Reader displays a research paper beside its proof in
-[Lean](https://lean-lang.org), a language for writing mathematical statements
-and proofs that a computer can check. Click a linked statement in the paper to
-open the authors' corresponding Lean code. You can also explore a diagram of
-the proof steps and the connections between them.
+Proof Reader shows a research paper beside its proof in [Lean](https://lean-lang.org),
+a language for writing mathematical statements and proofs that a computer can check.
+Click a linked sentence in the paper and the Lean code it describes opens beside it, under
+a graph of the other declarations that code uses.
 
-**[Read a paper in it](https://wcook04.github.io/proof-reader/#/contextual-embeddings)**: *Contextual Embeddings* by Frohlich, Foster, Kavvos and Wang (PLDI 2026), shown with the authors' Lean under CC BY 4.0. The links and comparisons between the paper and the Lean were made with AI and have not been reviewed by the authors.
+**[Open the site](https://wcook04.github.io/proof-reader/)** or go straight to
+[one paragraph of *Contextual Embeddings* and the five lines of Lean it describes](https://wcook04.github.io/proof-reader/#/contextual-embeddings/@isoR-clam).
 
 [![A paper on the left page with one sentence highlighted, and on the right the graph of its Lean proof above the exact Lean lines the sentence describes.](web/public/reader.webp)](https://wcook04.github.io/proof-reader/#/contextual-embeddings)
 
-For a specific example, [open a paragraph and its five linked lines of Lean](https://wcook04.github.io/proof-reader/#/contextual-embeddings/@isoR-clam),
-linked to Lean lines 217 to 221.
+## Pages on the site
 
-The PCP collection contains a [detailed argument](papers/pcp-full-argument/paper.md),
-a [specialist paper](papers/pcp-specialist/paper.md), and a [worked exposition](papers/pcp-exposition/paper.md).
-In the reader these use the routes `#/pcp-full-argument`, `#/pcp-specialist`,
-and `#/pcp-exposition`; Troy Lee's [original reading guide](papers/pcp-reading-guide/guide.md)
-remains at `#/pcp-reading-guide`. The algebraic proof is due to Amireddy,
-Behera, Srinivasan, Sudan and Willumsgaard; Lee wrote the Lean formalization.
-Will Cook prepared the three explanations with AI assistance.
+| Page | What it is | Lean by |
+| --- | --- | --- |
+| [Contextual Embeddings](https://wcook04.github.io/proof-reader/#/contextual-embeddings) | The paper by Frohlich, Foster, Kavvos and Wang (PLDI 2026), set from its PDF under CC BY 4.0 | The paper's authors |
+| [Reading the Lean PCP proof](https://wcook04.github.io/proof-reader/#/pcp-reading-guide) | Troy Lee's own guide to his formalization | Troy Lee |
+| [The algebraic PCP theorem: a detailed account](https://wcook04.github.io/proof-reader/#/pcp-full-argument) | A detailed account of the algebraic proof of the PCP theorem, following the Lean | Troy Lee |
+| [Constant-query verification by algebraic encoding](https://wcook04.github.io/proof-reader/#/pcp-specialist) | A shorter account of the same proof, for specialists | Troy Lee |
+| [Checking a long proof by reading a few bits](https://wcook04.github.io/proof-reader/#/pcp-exposition) | The same proof through worked examples that follow one colouring constraint down to the bits the verifier reads | Troy Lee |
+| [The minimum of the coupled spring potential](https://wcook04.github.io/proof-reader/#/coupled-spring) | The coupled spring potential U(x₀, x₁) = x₀² + x₀x₁ + x₁² and its minimum at the origin, beside the PhyslibAlpha proof that the origin is a local minimum | Bjørn Kjos-Hanssen |
+| [Gauge theory](https://wcook04.github.io/proof-reader/#/physlib-gauge-theory) | Physlib's own API map for gauge theory, beside the Lean files it cites | Physlib contributors |
 
-On a desktop, each visit opens with the paper on the left and the proof pane on
-the right: the graph above the Lean, or beside it on a very wide screen. Drag
-the divider between the paper and the proof to give either side more room, and
-the handle between the graph and the Lean to share the pane; both are
-remembered. Closing the proof pane lasts for that visit.
-As you scroll, the proof pane follows the linked passage you are reading: the
-Lean shows its declaration, and the graph shows that declaration with what it
-uses, with no click needed. A statement you open by clicking it stays until you
-read on to another statement. Above the Lean, the graph takes only the room its
-drawing needs. Click a statement or diagram
-card to see its Lean code. Use **Back**
-to return to the diagram without losing your place, or the **Graph / Lean**
-toggle to choose what stays beside the paper.
+The algebraic PCP proof is due to Amireddy, Behera, Srinivasan, Sudan and Willumsgaard.
+Will Cook prepared the three PCP accounts with AI assistance, and AI agents wrote the
+coupled spring page under his direction.
+On every page, the links between sentences and Lean, the plain titles of declarations and
+any comparisons of a statement with its Lean were made with AI and have not been reviewed
+by the authors of the paper or the Lean.
 
-Citations and figures open beneath the paragraph that mentions them. Each
-linked statement has its own address, so you can send someone directly to it.
-The contents also include an index of named Lean definitions and theorems
-(called **declarations**), with the assumptions each proof uses (**axioms**).
+## Reading a page
 
-For PDF papers, a program checks the reading copy against extracted text, and the original PDF
-is one click away. Markdown-source pages render their supplied text directly and check each
-linked quote against its exact source heading and block. Declaration titles, links, notes and
-comparisons are marked as AI-made and not reviewed by the authors. Comparisons can be held;
-where one cites a Lean check written for the page, the check and its reported axioms are shown.
+The paper is on the left and the proof pane on the right, with the graph above the Lean,
+or beside it on a very wide screen. As you scroll, the proof pane shows the declaration
+for the linked passage you are reading, and the graph shows that declaration with what it
+uses. Clicking a sentence or a graph card keeps its Lean open until you read on to
+another linked statement. **Back** returns to where you were. Use the **Graph / Lean**
+toggle to choose what stays beside the paper. Both dividers can be dragged, and the site
+remembers where you leave them.
 
-Evidence differs by page. Some declaration data comes from Lean's report on compiled modules.
-For the three PCP companions, Lean compiled the listed modules of the authors' project in a
-GitHub Actions run, and every declaration's dependencies and axiom report is Lean's output from
-that run. The original guide's page keeps its earlier extraction, with a statement-only
-compilation of the headline theorem. Comparator accepted the authors' proofs of the three headline statements in a second run.
-Sentence-by-sentence comparisons of statements with their Lean have not been written. The [source review](papers/pcp-full-argument/source-review.md)
-records the source pin and hashes. Neither a source link nor a correspondence check establishes
-that the prose and Lean have the same meaning.
+Citations and figures open beneath the paragraph that mentions them. Each linked
+statement has its own address, so you can send someone straight to it. The contents
+end with an index of the named Lean definitions and theorems (declarations), with the
+axioms Lean reports for each. For a PDF paper, the original PDF is one click away.
 
-## Run the site
+[What the checks show](docs/what-the-checks-show.md) says what the build programs test on
+each page. No program tests whether a sentence means the same as its Lean.
 
-Use Python 3.11 or later, Node 20.19 or later, and [Poppler](https://poppler.freedesktop.org/)
-(`brew install poppler` on macOS; `sudo apt-get install poppler-utils` on Ubuntu).
-From a fresh clone:
+## Run it locally
+
+You need Python 3.11 or later, Node 20.19 or later and
+[Poppler](https://poppler.freedesktop.org/) (`brew install poppler` on macOS,
+`sudo apt-get install poppler-utils` on Ubuntu).
 
 ```sh
 git clone https://github.com/wcook04/proof-reader.git
 cd proof-reader
-cd web
-npm ci
-cd ..
+npm ci --prefix web
 python3 tools/paper.py build
-cd web
-npm run dev
+cd web && npm run dev
 ```
 
-Open the address it prints and choose a paper. The paper build creates the data the site needs
-from checked-in declaration records, so reading the existing papers does not require Lean.
-After changing a paper's files, run `python3 tools/paper.py build`
-again from the repository root.
+Open the address it prints. `paper.py build` makes the site's data from the files in
+`papers/` and `api-maps/`, including the recorded Lean output, so reading the existing
+pages does not need Lean installed. Run it again after changing a paper's files.
 
-From `web/`, `npm run build` writes a static site to `web/dist`.
-`npm run preview` serves that build locally. If you set `VITE_BASE_PATH` for
-the build, use the same setting for the preview. For example, a build made with
-`VITE_BASE_PATH=/proof-reader/ npm run build` needs
-`VITE_BASE_PATH=/proof-reader/ npm run preview`.
-
-To test the reading controls in a real browser, build the site and run the
-browser test script. It needs Playwright for Python, and takes `--browser firefox` or `webkit` as well:
-
-```sh
-cd web && VITE_BASE_PATH=/proof-reader/ npm run build && cd ..
-python3 tests/journey.py --shots /tmp/journey
-```
-
-`tests/speed.py` measures a paper's first screen on a home connection.
-
-`tools/capture_images.py` retakes the social card, the picture above and the front page's two pictures of the reader from a running site.
+For a static copy, run `npm run build` in `web/`; it writes `web/dist/`, and
+`npm run preview` serves it. Use the same `VITE_BASE_PATH` for both, for example
+`VITE_BASE_PATH=/proof-reader/`.
 
 ## Add a paper
 
-To add a paper, create a folder containing its PDF or Markdown source, the Lean project,
-and links between passages and Lean statements. For a PDF, provide a reading copy as well.
-The build command turns those files into pages for the website.
+A paper is one folder under `papers/`, holding the paper, the authors' Lean project and a
+`links.json` that ties passages of the paper to Lean declarations. The paper can be a PDF,
+with a reading copy that `tools/transcribe.py` drafts from it, or a Markdown file.
 
-```
-papers/<slug>/
-  paper.pdf      the authors' PDF, unchanged, for a PDF source
-  paper.md       a PDF reading copy, or the supplied Markdown source
-  paper.toml     title, authors, licences and the Lean modules to read
-  lean/          the authors' Lean project, unchanged
-  links.json     which passage goes with which declaration, plain titles, notes and comparisons
-  checks/        optional Lean files of ours that test a statement against the authors' Lean
-  comparator/    optional files of a Comparator run: challenge, solution, configuration, receipt
-  generated/     recorded declaration data and its provenance, plus any compiled checks
-```
+- [The paper folder](docs/paper-folder.md) lists every file and command.
+- [The add-paper guide](skills/add-paper/SKILL.md) is the step-by-step procedure, written
+  so that a person or an AI assistant can follow it.
+- [Contributing](CONTRIBUTING.md) covers licences, reporting a wrong link and changing the code.
 
-The [add-paper guide](skills/add-paper/SKILL.md) gives the PDF procedure for a
-person or an AI assistant. For a Markdown source, set `[paper] markdown` in
-`paper.toml`; `links.json` identifies exact unique quotations with a heading and
-block anchor. Source-read declarations must be labelled as such. Comparisons may
-be held with `fidelity_held`, in which case the page does not present them. The
-`[reading.companions]` table maps relative Markdown paths to other reader editions,
-for example `"../companion/paper.md" = "companion"`. Links to those paths open the
-companion, and a heading fragment opens the corresponding section.
+## Repository layout
 
-For a Markdown-source figure, put the image in the same paper folder (or a child
-folder) and refer to it with a relative Markdown image such as
-`![A proof map](proof-map.png)`. `paper.py check` rejects missing images and paths
-that leave the paper folder. `paper.py build` copies referenced images into
-`web/public/papers/<slug>/` beside the reading HTML and records each image's
-SHA-256 in `edition.json` under `source.images`. Rebuild the paper and then the
-website after changing an image. An editable SVG can remain beside a PNG used
-by the Markdown and PDF renderer.
+Data moves one way: the files in `papers/` and `api-maps/` go through `tools/paper.py`
+into `web/public/`, and the website in `web/` reads them. The generated folders
+`web/public/papers/`, `web/public/api-maps/` and `web/dist/` are ignored by Git.
 
-The PDF commands are:
-
-```sh
-python3 tools/paper.py new my-paper       # then add the PDF, Lean and paper.toml
-python3 tools/paper.py extract my-paper   # build the Lean, list its declarations, compile checks/
-python3 tools/transcribe.py my-paper      # draft paper.md from the PDF's structure
-# define a result under claims in links.json, with its passage and Lean declaration
-python3 tools/paper.py check my-paper     # compare the text and check the links
-python3 tools/paper.py build              # write the data the site reads
-```
-
-`extract` needs [elan](https://github.com/leanprover/elan), the Lean installer,
-and uses the Lean version specified by the paper's authors. `check` and `build` need Python 3.11 and Poppler, and, for
-a paper with a `paper.md`, Node with `npm ci` run in `web/`. `transcribe.py` also
-needs `pypdf`. The authors' code runs on your machine, so read a project you do not
-trust before extracting it.
-
-## What `paper.py check` establishes
-
-For a PDF, the command compares the reading copy with extracted text. It skips the top
-7.5% and bottom 5.5% of each page, repeated headers and footers, bullet marks, and words
-inside figure crops. The figures themselves are copied from the PDF.
-
-It treats some typographic differences as equivalent, such as ligatures and line-break
-hyphens, and allows text blocks to move. These allowances can also let changes in word
-or character order pass. The check helps find transcription errors; a pass does not
-certify an exact copy. Review the reading copy alongside the original PDF.
-
-For Markdown, it checks exact source quotations and heading/block anchors; it does not compare
-against a PDF. For both source types, it confirms that every quotation appears exactly once, that exact Lean lines lie
-inside their declaration and that every Lean name exists. No program confirms that a sentence is
-about the code it is linked to: a person has to read both. Names printed in the paper are linked
-by matching the name alone, so `STLC` in the paper's Haskell opens the Lean `STLC`. Lean reports
-what a proof depends on, and does not report whether a Lean statement means what the paper says.
-
-When comparisons are provided, each claimed result and relevant author axiom carries a comparison:
-the Lean says the same as the paper, more, less, or something different. `check` stops if one is
-missing unless comparisons are explicitly held for the page.
-A comparison is AI judgement. Where it cites a check, the check is a Lean file of ours under
-`papers/<slug>/checks/`, compiled by `extract` against the authors' Lean, with the axioms Lean
-reports for it. `check` stops if a check file has changed since `extract` compiled it. Each page
-says that the links, notes and comparisons have not been reviewed by the authors, until an author
-has reviewed them.
-
-A paper can show a [Comparator](https://github.com/leanprover/comparator) run. Name the folder
-holding the run's files under `[comparator] evidence` in `paper.toml`; pages that show the same
-Lean name one shared folder, such as `"../pcp-full-argument/comparator"`. The folder holds
-`Challenge.lean`, `Solution.lean`, the configuration, the rejected control and a `receipt.json`
-recording the run. The build reads each configured theorem's statement from `Challenge.lean`,
-with its lines, and links the files at the commit it builds. It stops if a file's SHA-256 differs
-from the receipt, if the challenge states no theorem of a configured name, or if the receipt does
-not record an accepted run and a rejected control. Each checked declaration then has a closed
-"Comparator evidence" fold beneath its axiom report. Comparator tests a proof against the
-challenge statement; it does not test whether that statement means what the paper says.
-
-## Repository map
-
-Authored paper files and checked-in declaration records live under `papers/`.
-`tools/paper.py build` writes the paper editions under `web/public/papers/` and
-the Physlib sample under `web/public/api-maps/`. The website build packages
-both with the application in `web/dist/`. These generated directories are
-ignored by Git. Change their sources and rebuild them.
-
-| Source | What it holds |
+| Folder | What it contains |
 | --- | --- |
-| [papers/](papers/) | One folder for each paper |
-| [Physlib Gauge theory sample](papers/physlib-gauge-theory/API-map.md) | The original Markdown, pinned catalog, cited Lean files and separate reading-title glossary |
-| [skills/add-paper/](skills/add-paper/) | How to fill in a new paper |
-| [tools/paper.py](tools/paper.py) | Extract the Lean, compare with the PDF and build the data |
-| [tools/physlib_map.py](tools/physlib_map.py) | Import the Gauge theory sample and verify its citations |
-| [tools/transcribe.py](tools/transcribe.py) | Draft a paper's reading text from its PDF |
-| [tools/reading.py](tools/reading.py) | Compare the reading copy with the PDF and mark its linked statements |
-| [render-paper.mjs](web/tools/render-paper.mjs) | Typeset `paper.md` with Markdown and KaTeX |
-| [extract.lean.template](tools/extract.lean.template) | The Lean program that lists a project's declarations |
-| [web/](web/) | The website |
-| [web/src/map/](web/src/map/) | The map, copied from [lean-exposition](https://github.com/wcook04/lean-exposition) |
-| [history.ts](web/src/app/history.ts) | Saved reading position and open statements for the Back button |
-| [web/src/lean/](web/src/lean/) | Code for displaying and colouring Lean source |
-| [web/src/proof/](web/src/proof/) | The proof diagram and Lean panel beside the paper |
-| [check-source.mjs](web/tools/check-source.mjs) | Find source files that the application and tools do not use; run with `npm run check:source` in `web/` |
-| [tests/](tests/) | Python unit tests and the browser [journey](tests/journey.py) |
-| [Pages workflow](.github/workflows/pages.yml) | Check every paper, build the site and publish to GitHub Pages |
+| [papers/](papers/) | One folder for each paper: the source, the authors' Lean, links and recorded Lean output |
+| [api-maps/](api-maps/) | Physlib's Gauge theory API map, the Lean it cites, and our plain titles |
+| [docs/](docs/) | The paper folder reference, what the checks show, and the `paper.toml` template |
+| [skills/add-paper/](skills/add-paper/) | The step-by-step guide to adding a paper |
+| [tools/](tools/) | Python programs that extract the Lean, draft and compare reading copies, and build the data |
+| [web/](web/) | The website, written in React and TypeScript |
+| [web/src/map/](web/src/map/) | The graph, copied from [Lean Exposition](https://github.com/wcook04/lean-exposition) |
+| [tests/](tests/) | Python unit tests and [journey.py](tests/journey.py), which drives the site in a browser |
+| [.github/workflows/](.github/workflows/) | [pages.yml](.github/workflows/pages.yml) tests every paper, builds the site and publishes it; the others compile a paper's Lean or run Comparator |
+
+Before committing, run the commands in [AGENTS.md](AGENTS.md). `tests/journey.py` needs
+Playwright for Python and a site built with `VITE_BASE_PATH=/proof-reader/`.
 
 ## Related work and videos
 
 [Introduction to the projects](https://www.youtube.com/watch?v=FwgaZYH2otY) · [Proof Reader short](https://www.youtube.com/watch?v=LZxaDZ-gQm8) · [Full comparison of the three maths readers](https://www.youtube.com/watch?v=ZE9thkr5jew)
 
-[Lean Exposition](https://github.com/wcook04/lean-exposition) contains writing guides and tools for explaining a Lean proof in three papers
-with different levels of detail. Its
-[reading website](https://wcook04.github.io/lean-exposition-site/) presents those draft
-explanations beside the graph; [this video walks through that site](https://www.youtube.com/watch?v=sYMDcT7vyng).
-For PDF papers, Proof Reader's reading copy keeps the original paper's wording.
+[Lean Exposition](https://github.com/wcook04/lean-exposition) contains writing guides and
+tools for explaining a Lean proof in three papers at different levels of detail. Its
+[reading website](https://wcook04.github.io/lean-exposition-site/) shows those draft
+explanations beside the graph, and [this video goes through that site](https://www.youtube.com/watch?v=sYMDcT7vyng).
 
 ## Licence
 
-Code is Apache-2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE). Each paper and Lean
-project keeps its own licence and credit, named in its `paper.toml` and on its page.
+The code is Apache-2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE). Each paper and Lean
+project keeps its own licence and credit, named in its `paper.toml` or folder and on its page.
 
-Proof Reader is one of Will Cook's sites. Find the other websites and code on
-[Will's home page](https://wcook04.github.io/), and the [project videos](https://wcook04.github.io/#videos).
+Proof Reader is one of Will Cook's sites. The other websites and code are on
+[Will's home page](https://wcook04.github.io/), with the [project videos](https://wcook04.github.io/#videos).
