@@ -731,8 +731,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const credit = markdown ? (
     <p>
       {edition.credit?.text ?? `Text: ${paper.authors.join(", ")}, ${paper.licence}`}.
-      {" "}We rendered the authors’ Markdown directly and checked each quotation against its source heading and block. <a href={sourceUrl}>Read the source Markdown</a>.
-      {" "}{leanOrigin(edition)} Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.
+      {" "}We rendered this {noun(edition)}’s Markdown source directly and checked each quotation against its source heading and block. <a href={sourceUrl}>Read the source Markdown</a>.
+      {" "}{leanOrigin(edition)} Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors of the Lean. <MadeLink onOpen={() => onTab("index")} />.
     </p>
   ) : (
     <p>
@@ -844,7 +844,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
                 <div className="start">
                 <p className="firstline firstline--status">{hasComparisons(edition)
                   ? `The links from this ${noun(edition)} to its proof in Lean, the notes and the comparisons were made with AI`
-                  : `The links from this ${noun(edition)} to its proof in Lean, and the notes, were made with AI`} and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.</p>
+                  : `The links from this ${noun(edition)} to its proof in Lean, and the notes, were made with AI`} and have not been reviewed by {markdown ? "the authors of the Lean" : "the authors"}. <MadeLink onOpen={() => onTab("index")} />.</p>
                 <p className="firstline">
                   Click a statement with a mark<span className="firstline__mark" aria-hidden="true" /> beside it to read its Lean.
                   {(firstSection || claimSection) && (

@@ -61,7 +61,11 @@ class MarkdownEditionTest(unittest.TestCase):
             self.assertIn("made by AI and not reviewed", line)
 
     def test_proofs_written_for_the_page_are_shown_whole(self) -> None:
-        self.assertIn("by_contra h", self.before)
+        self.assertIn("exact couplingPotential_pos x hx", self.before)
+
+    def test_definitions_are_shown_whole_and_empty_docstrings_dropped(self) -> None:
+        self.assertIn("toFun := fun y => iteratedFDeriv ℝ 2 f x₀ ![y,y]", self.before)
+        self.assertNotIn("/-- . -/", self.before)
 
     def test_formulas_read_as_physlib_writes_them(self) -> None:
         convert = markdown_edition.plain_maths.convert
@@ -78,6 +82,7 @@ class MarkdownEditionTest(unittest.TestCase):
             r"c=\pm2": "c = ±2",
             r"-\nabla U": "−∇U",
             r"\sqrt3": "√3",
+            r"U_{-2}(x)": "U₋₂(x)",
         }
         for tex, text in cases.items():
             self.assertEqual(convert(tex), text)

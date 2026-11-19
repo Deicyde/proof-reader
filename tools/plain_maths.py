@@ -14,6 +14,8 @@ import re
 
 SUP = dict(zip("0123456789+-=()ni", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿⁱ"))
 SUB = dict(zip("0123456789+-=()aehijklmnoprstuvx", "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ"))
+# A minus sign is already "−" when a script is converted: U_{-2} is U₋₂.
+SUP["−"], SUB["−"] = "⁻", "₋"
 GLYPH = {("1", "2"): "½", ("3", "4"): "¾", ("1", "4"): "¼", ("1", "3"): "⅓", ("2", "3"): "⅔"}
 SYMBOL = {
     "to": "→", "mapsto": "↦", "times": "×", "in": "∈", "neq": "≠", "ne": "≠", "le": "≤",
@@ -75,6 +77,9 @@ def tokens(tex: str) -> list[str]:
                     i += 1
             if name in ("left", "right", "big", "Big"):
                 continue
+            if name in "{}":
+                out.append(name)
+                continue
             if name == "qquad":
                 out.append("  ")
             elif name in (" ", ",", ";", "quad", "!"):
@@ -100,6 +105,10 @@ def tokens(tex: str) -> list[str]:
                 # A fraction that multiplies what follows is bracketed: (c/2)y₁.
                 multiplies = bool(rest) and (rest[0].isalnum() or (rest[0] in "(\\" and not closes))
                 out.append(f"({text})" if multiplies else text)
+            elif name in ("dot", "ddot"):
+                # A time derivative: \dot x is ẋ, with a combining dot above the letter.
+                arg, i = group(tex, i)
+                out.append(convert(arg, spaced=False) + ("\u0307" if name == "dot" else "\u0308"))
             elif name == "sqrt":
                 arg, i = group(tex, i)
                 text = convert(arg, spaced=False)

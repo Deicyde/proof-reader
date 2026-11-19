@@ -4,7 +4,7 @@
     {
       "id": "local-minimum",
       "title": "The coupled spring potential has a local minimum at the origin",
-      "section": "5",
+      "section": "3",
       "passage": "local-minimum",
       "lean": [
         "coupled_spring_potential"
@@ -13,7 +13,7 @@
     {
       "id": "second-derivative-test",
       "title": "The second-derivative test",
-      "section": "3",
+      "section": "2",
       "passage": "test-statement",
       "lean": [
         "second_derivative_test_analyticAt"
@@ -23,210 +23,224 @@
   "passages": [
     {
       "id": "intro-local-minimum",
-      "section": "1. The potential and its spring system",
+      "section": "1. The potential and a spring system with this energy",
       "role": "explains",
       "lean": [
         "coupled_spring_potential"
       ],
-      "quote": "Bjørn Kjos-Hanssen proves in Lean that $U$ has a local minimum at the origin",
+      "quote": "In that file\nBjørn Kjos-Hanssen proves in Lean that $U$ has a local minimum at the origin",
       "anchor": {
-        "heading": "1. The potential and its spring system",
+        "heading": "1. The potential and a spring system with this energy",
         "block": 3
       }
     },
     {
       "id": "potential-definition",
-      "section": "1. The potential and its spring system",
+      "section": "1. The potential and a spring system with this energy",
       "role": "defines",
       "lean": [
         "couplingPotential"
       ],
       "quote": "$$U(x_0,x_1)=x_0^2+x_0x_1+x_1^2$$",
       "anchor": {
-        "heading": "1. The potential and its spring system",
+        "heading": "1. The potential and a spring system with this energy",
         "block": 2
       }
     },
     {
       "id": "test-statement",
-      "section": "3. The second-derivative test",
+      "section": "2. The second-derivative test",
       "role": "states",
       "lean": [
         "second_derivative_test_analyticAt"
       ],
       "quote": "Suppose that $f$ is analytic at $a$, that the\ngradient of $f$ at $a$ is zero",
       "anchor": {
-        "heading": "3. The second-derivative test",
+        "heading": "2. The second-derivative test",
         "block": 2
       }
     },
     {
       "id": "test-quadratic-map",
-      "section": "3. The second-derivative test",
+      "section": "2. The second-derivative test",
       "role": "explains",
       "lean": [
         "iteratedFDerivQuadraticMap"
       ],
-      "quote": "$D^2f(a)(y,y)>0$ for every $y\\neq0$.",
+      "quote": "is packaged as a quadratic map on $V$",
       "anchor": {
-        "heading": "3. The second-derivative test",
-        "block": 2
-      }
-    },
-    {
-      "id": "test-lower-bound",
-      "section": "3. The second-derivative test",
-      "role": "explains",
-      "lean": [
-        "coercive_of_posdef"
-      ],
-      "quote": "Scaling gives $D^2f(a)(y,y)\\ge C\\lVert y\\rVert^2$ for every $y$.",
-      "anchor": {
-        "heading": "3. The second-derivative test",
-        "block": 4
-      }
-    },
-    {
-      "id": "test-taylor-error",
-      "section": "3. The second-derivative test",
-      "role": "explains",
-      "lean": [
-        "littleO_of_powerseries"
-      ],
-      "quote": "its second-order Taylor polynomial approximates it with an\nerror smaller than any fixed multiple of $\\lVert x-a\\rVert^2$",
-      "anchor": {
-        "heading": "3. The second-derivative test",
+        "heading": "2. The second-derivative test",
         "block": 5
       }
     },
     {
-      "id": "test-inequality",
-      "section": "3. The second-derivative test",
+      "id": "test-lower-bound",
+      "section": "2. The second-derivative test",
       "role": "explains",
       "lean": [
-        "le_of_littleO"
+        "coercive_of_posdef"
       ],
-      "quote": "$$f(x)-f(a)\\ \\ge\\ \\tfrac12C\\lVert x-a\\rVert^2-\\tfrac12C\\lVert x-a\\rVert^2\\ =\\ 0 .$$",
+      "quote": "there is\n$C>0$ with $D^2f(a)(y,y)\\ge C\\lVert y\\rVert^2$ for every $y$.",
       "anchor": {
-        "heading": "3. The second-derivative test",
+        "heading": "2. The second-derivative test",
         "block": 6
       }
     },
     {
+      "id": "test-taylor-error",
+      "section": "2. The second-derivative test",
+      "role": "explains",
+      "lean": [
+        "littleO_of_powerseries"
+      ],
+      "quote": "approximates $f$ with an error smaller than\nany fixed multiple of $\\lVert x-a\\rVert^2$",
+      "anchor": {
+        "heading": "2. The second-derivative test",
+        "block": 7
+      }
+    },
+    {
+      "id": "test-inequality",
+      "section": "2. The second-derivative test",
+      "role": "explains",
+      "lean": [
+        "isLocalMin_of_posDef_of_littleo",
+        "le_of_littleO"
+      ],
+      "quote": "$$f(x)-f(a)\\ \\ge\\ \\tfrac12C\\lVert x-a\\rVert^2-\\tfrac12C\\lVert x-a\\rVert^2\\ =\\ 0 .$$",
+      "anchor": {
+        "heading": "2. The second-derivative test",
+        "block": 9
+      }
+    },
+    {
+      "id": "test-symmetry",
+      "section": "2. The second-derivative test",
+      "role": "explains",
+      "lean": [
+        "iteratedFDeriv_two_swap"
+      ],
+      "quote": "the symmetry of the second\nderivative",
+      "anchor": {
+        "heading": "2. The second-derivative test",
+        "block": 10
+      }
+    },
+    {
       "id": "potential-analytic",
-      "section": "4. The hypotheses for the potential, and what the second derivative means",
+      "section": "3. The hypotheses for the potential",
       "role": "states",
       "lean": [
         "couplingPotential_analyticAt"
       ],
-      "quote": "So $U$ is analytic at\nevery point.",
+      "quote": "so it is analytic at every point.",
       "anchor": {
-        "heading": "4. The hypotheses for the potential, and what the second derivative means",
+        "heading": "3. The hypotheses for the potential",
         "block": 1
       }
     },
     {
       "id": "potential-derivative",
-      "section": "4. The hypotheses for the potential, and what the second derivative means",
+      "section": "3. The hypotheses for the potential",
       "role": "states",
       "lean": [
         "couplingPotential_hasFDerivAt"
       ],
       "quote": "$$DU(x)(h)=(2x_0+x_1)h_0+(x_0+2x_1)h_1 .$$",
       "anchor": {
-        "heading": "4. The hypotheses for the potential, and what the second derivative means",
+        "heading": "3. The hypotheses for the potential",
         "block": 5
       }
     },
     {
       "id": "potential-gradient",
-      "section": "4. The hypotheses for the potential, and what the second derivative means",
+      "section": "3. The hypotheses for the potential",
       "role": "states",
       "lean": [
         "couplingPotential_gradient_zero"
       ],
       "quote": "so the gradient of $U$ at the origin is zero.",
       "anchor": {
-        "heading": "4. The hypotheses for the potential, and what the second derivative means",
+        "heading": "3. The hypotheses for the potential",
         "block": 6
       }
     },
     {
       "id": "potential-second-derivative",
-      "section": "4. The hypotheses for the potential, and what the second derivative means",
+      "section": "3. The hypotheses for the potential",
       "role": "states",
       "lean": [
         "couplingPotential_iteratedFDeriv_two"
       ],
-      "quote": "$$D^2U(z)(a,b)=2a_0b_0+a_0b_1+a_1b_0+2a_1b_1 .$$",
+      "quote": "$$D^2U(x)(y,h)=2y_0h_0+y_0h_1+y_1h_0+2y_1h_1 .$$",
       "anchor": {
-        "heading": "4. The hypotheses for the potential, and what the second derivative means",
+        "heading": "3. The hypotheses for the potential",
         "block": 8
       }
     },
     {
       "id": "potential-three-squares",
-      "section": "4. The hypotheses for the potential, and what the second derivative means",
+      "section": "3. The hypotheses for the potential",
       "role": "proves",
       "lean": [
         "couplingPotential_posDef"
       ],
       "quote": "$$D^2U(0)(y,y)=2U(y)=y_0^2+y_1^2+(y_0+y_1)^2 .$$",
       "anchor": {
-        "heading": "4. The hypotheses for the potential, and what the second derivative means",
+        "heading": "3. The hypotheses for the potential",
         "block": 13
       }
     },
     {
       "id": "potential-positive-definite",
-      "section": "4. The hypotheses for the potential, and what the second derivative means",
+      "section": "3. The hypotheses for the potential",
       "role": "states",
       "lean": [
         "couplingPotential_posDef"
       ],
-      "quote": "So the second derivative at the origin is positive definite",
+      "quote": "So the second derivative at the origin is positive definite.",
       "anchor": {
-        "heading": "4. The hypotheses for the potential, and what the second derivative means",
+        "heading": "3. The hypotheses for the potential",
         "block": 14
       }
     },
     {
       "id": "local-minimum",
-      "section": "5. The local minimum, and the global minimum",
+      "section": "3. The hypotheses for the potential",
       "role": "states",
       "lean": [
         "coupled_spring_potential"
       ],
       "quote": "The coupled spring potential $U$ has a local\nminimum at the origin.",
       "anchor": {
-        "heading": "5. The local minimum, and the global minimum",
-        "block": 1
+        "heading": "3. The hypotheses for the potential",
+        "block": 15
       }
     },
     {
       "id": "local-minimum-proof",
-      "section": "5. The local minimum, and the global minimum",
+      "section": "3. The hypotheses for the potential",
       "role": "proves",
       "lean": [
         "coupled_spring_potential"
       ],
-      "quote": "Apply Theorem 3.1 with $V=\\mathbb R^2$, $f=U$ and $a=0$.",
+      "quote": "Apply Theorem 2.1 with $V=\\mathbb R^2$, $f=U$ and $a=0$.",
       "anchor": {
-        "heading": "5. The local minimum, and the global minimum",
-        "block": 2
+        "heading": "3. The hypotheses for the potential",
+        "block": 16
       }
     },
     {
       "id": "global-minimum",
-      "section": "5. The local minimum, and the global minimum",
+      "section": "4. The second proof, by completing the square",
       "role": "uses",
       "lean": [
         "couplingPotential"
       ],
       "quote": "For every $x\\neq0$ in $\\mathbb R^2$ we have $U(x)>U(0)$.",
       "anchor": {
-        "heading": "5. The local minimum, and the global minimum",
-        "block": 3
+        "heading": "4. The second proof, by completing the square",
+        "block": 4
       }
     }
   ],
@@ -266,7 +280,7 @@
   "fidelity": {
     "second_derivative_test_analyticAt": {
       "verdict": "same",
-      "text": "Theorem 3.1 and the Lean statement have the same hypotheses and the same conclusion: a finite-dimensional real inner product space, a function analytic at the point, zero gradient there, a positive definite second derivative there, and a local minimum with a weak inequality on a neighbourhood. In the Lean the second derivative enters as the quadratic map sending y to its value at (y, y).",
+      "text": "Theorem 2.1 and the Lean statement have the same hypotheses and the same conclusion. Both ask for a finite-dimensional real inner product space, a function analytic at the point, a gradient equal to zero there and a positive definite second derivative there, and both conclude a local minimum with a weak inequality on a neighbourhood. In the Lean, positive definite is said of the quadratic map that sends y to the second derivative at (y, y), and the gradient condition is the equation gradient f x₀ = 0.",
       "checks": [],
       "because": [
         "test-statement",
@@ -275,7 +289,7 @@
     },
     "couplingPotential_analyticAt": {
       "verdict": "same",
-      "text": "Both say that the potential is analytic at every point of the plane.",
+      "text": "Both say that the potential is analytic at every point z of the plane. The Lean statement quantifies over z in EuclideanSpace ℝ (Fin 2), which is the plane with its usual inner product.",
       "checks": [],
       "because": [
         "potential-analytic"
@@ -283,7 +297,7 @@
     },
     "couplingPotential_hasFDerivAt": {
       "verdict": "same",
-      "text": "Both give the derivative at every point x as the linear map with coefficients 2x₀ + x₁ and x₀ + 2x₁. The Lean writes it as a combination of the two coordinate projections.",
+      "text": "Both give the derivative at every point x as the linear map with coefficients 2x₀ + x₁ and x₀ + 2x₁. The Lean writes the map as a combination of the two coordinate projections.",
       "checks": [],
       "because": [
         "potential-derivative"
@@ -291,7 +305,7 @@
     },
     "couplingPotential_gradient_zero": {
       "verdict": "same",
-      "text": "Both say that the gradient of the potential at the origin is zero.",
+      "text": "Both say that the gradient of the potential at the origin is zero. The Lean writes the origin as !₂[0, 0].",
       "checks": [],
       "because": [
         "potential-gradient"
@@ -299,7 +313,7 @@
     },
     "couplingPotential_iteratedFDeriv_two": {
       "verdict": "same",
-      "text": "Both give the same formula for the second derivative at every point z and every pair of vectors a and b.",
+      "text": "Both give 2y₀h₀ + y₀h₁ + y₁h₀ + 2y₁h₁ for the second derivative at every point, applied to two vectors. The Lean names the vectors a and b and the point z.",
       "checks": [],
       "because": [
         "potential-second-derivative"
@@ -307,7 +321,7 @@
     },
     "couplingPotential_posDef": {
       "verdict": "same",
-      "text": "Both say that the second derivative at the origin is positive definite. The page also notes that the second derivative is the same at every point and gives the bound D²U(0)(y, y) ≥ ‖y‖²; the Lean statement is about positive definiteness at the origin only.",
+      "text": "Both say that the second derivative at the origin is positive definite. The page also gives the identity D²U(0)(y, y) = 2U(y) and the bound D²U(0)(y, y) ≥ ‖y‖², which are not in the Lean statement.",
       "checks": [],
       "because": [
         "potential-positive-definite",
@@ -316,14 +330,13 @@
     },
     "coupled_spring_potential": {
       "verdict": "same",
-      "text": "Theorem 5.1 and the Lean statement both say that the potential has a local minimum at the origin, with a weak inequality on a neighbourhood. Proposition 5.2 says more, a strict inequality at every other point of the plane. It is not in the author's files. The two Lean files written for this page and shown under it prove its parts.",
+      "text": "Theorem 3.1 and the Lean statement both say that the potential has a local minimum at the origin, with a weak inequality on a neighbourhood. The Lean statement writes the potential out as a function on EuclideanSpace ℝ (Fin 2) instead of naming couplingPotential. Proposition 4.1 says more, a strict inequality at every other point of the plane. It is not in the author's files. The Lean statement of it written for this page is shown under it.",
       "because": [
         "local-minimum",
         "global-minimum"
       ],
       "checks": [
-        "couplingPotential_origin_le",
-        "couplingPotential_pos"
+        "couplingPotential_origin_lt"
       ]
     }
   }

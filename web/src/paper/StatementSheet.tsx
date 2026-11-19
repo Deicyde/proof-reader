@@ -10,7 +10,7 @@ import { Lockup } from "../app/Family";
 import { routeHref } from "../app/router";
 import { LeanCode, useFileLines, type LeanActions } from "../lean/code";
 import { sectionLabel } from "../model/fromEdition";
-import { verdictWords } from "../proof/Fidelity";
+import { reviewers, verdictWords } from "../proof/Fidelity";
 import "./sheet.css";
 import { Quote } from "./Quote";
 
@@ -52,7 +52,7 @@ export function StatementSheet({ edition }: { edition: Edition }) {
           Beside each is the {word}’s own explanation where it has one; otherwise a note added for this page, marked as such.
           Where the definitions reach Lean’s own library the sheet names those declarations and stops.</> : <>Selected source declarations and their linked passages. Dependencies have not been extracted, so this sheet does not list every definition a statement needs.</>}
         </p>
-        <p className="sheetpage__prov">{leanOrigin(edition)} Links and notes were made with AI and have not been reviewed by the authors.</p>
+        <p className="sheetpage__prov">{leanOrigin(edition)} Links and notes were made with AI and have not been reviewed by {reviewers(edition).toLowerCase()}.</p>
         {sheets.map((sheet) => (
           <section key={sheet.claim} className="sheet" aria-labelledby={`sheet-${sheet.claim}`}>
             <h2 id={`sheet-${sheet.claim}`}>{sheet.title}</h2>

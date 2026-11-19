@@ -117,7 +117,9 @@ export function FidelityBlock({ edition, d, act, onPassage }: { edition: Edition
   );
 }
 
-const lower = (text: string) => text.replace(/^The /, "the ");
+// "Lean accepted a proof that at every point …": lower the first word of a sentence
+// such as "At" or "The", and leave a name such as "Lean" or "U" alone.
+const lower = (text: string) => text.replace(/^([A-Z])(?=[a-z]+ )(?!ean )/, (c) => c.toLowerCase());
 
 /** One short line per declaration of a statement, for the top of the step. */
 export function FidelityLines({ edition, ids, act, onGo }: { edition: Edition; ids: string[]; act: LeanActions; onGo(id: string): void }) {
@@ -174,6 +176,10 @@ export function AllChecks({ edition, act }: { edition: Edition; act: LeanActions
   );
 }
 
+/** Who has not reviewed the AI-made links: for a Markdown page written for this site, the
+ * people who could are the authors of the Lean. */
+export const reviewers = (edition: Edition) => (edition.source?.kind === "markdown" ? "The authors of the Lean" : "The authors");
+
 /** The full account of how the page was made, said once. */
 export function HowMade({ edition }: { edition: Edition }) {
   return (
@@ -181,7 +187,7 @@ export function HowMade({ edition }: { edition: Edition }) {
       <h3 id="made-title">How this page was made</h3>
       <p>
         {edition.source?.kind === "markdown"
-          ? <>We rendered the authors’ Markdown directly. We checked every raw quotation once in that source and checked its heading and block. <a href={edition.paper.url}>Read the source Markdown</a>.</>
+          ? <>We rendered this {noun(edition)}’s Markdown source directly. We checked every raw quotation once in that source and checked its heading and block. <a href={edition.paper.url}>Read the source Markdown</a>.</>
           : edition.reading
           ? <>A program compares the reading copy with text extracted from the authors’ PDF. The comparison leaves out margins and figures, and the original PDF is one click away.</>
           : <>Each linked quotation was found in text extracted from the authors’ PDF.</>}
@@ -189,10 +195,10 @@ export function HowMade({ edition }: { edition: Edition }) {
       <p>{leanOrigin(edition)}</p>
       {hasComparisons(edition)
         ? <>
-            <p>The links from sentences to Lean, the plain titles, the notes and the comparisons between the {noun(edition)} and the Lean were made with AI. The authors have not reviewed them.</p>
-            <p>Where a comparison cites a Lean proof written for this page, the proof is shown with it, and Lean accepted the proof against the authors’ file.</p>
+            <p>The links from sentences to Lean, the plain titles, the notes and the comparisons between the {noun(edition)} and the Lean were made with AI. {reviewers(edition)} have not reviewed them.</p>
+            <p>Where a comparison cites a Lean proof written for this page, the proof is shown with it, and Lean accepted the proof against {edition.source?.kind === "markdown" ? "the Lean authors’" : "the authors’"} file.</p>
           </>
-        : <p>The links from sentences to Lean, the plain titles and the notes were made with AI. The authors have not reviewed them.</p>}
+        : <p>The links from sentences to Lean, the plain titles and the notes were made with AI. {reviewers(edition)} have not reviewed them.</p>}
     </section>
   );
 }

@@ -9,7 +9,7 @@ import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code
 import { sectionLabel, shapeOf } from "../model/fromEdition";
 import { READING_LINE } from "../paper/reading-line";
 import { DeclBlock, KIND_WORDS, list } from "./DeclBlock";
-import { AllChecks, FidelityLines, HowMade } from "./Fidelity";
+import { AllChecks, FidelityLines, HowMade, reviewers } from "./Fidelity";
 import { ComparatorIndex } from "./Comparator";
 import { MadeLink } from "./MadeLink";
 import { Quote } from "../paper/Quote";
@@ -26,8 +26,8 @@ export interface Step {
   untied: { section: string | null; last: Passage | null } | null;
 }
 
-const LINK_CAVEAT = "An AI agent read each statement and its Lean, linked them and compared what the two say. The authors have not reviewed the links or the comparisons. Where a comparison cites a Lean proof, the proof is shown with it.";
-const LINK_CAVEAT_PLAIN = "An AI agent read each statement and its Lean and linked them. The authors have not reviewed these links.";
+const LINK_CAVEAT = (who: string) => `An AI agent read each statement and its Lean, linked them and compared what the two say. ${who} have not reviewed the links or the comparisons. Where a comparison cites a Lean proof, the proof is shown with it.`;
+const LINK_CAVEAT_PLAIN = (who: string) => `An AI agent read each statement and its Lean and linked them. ${who} have not reviewed these links.`;
 
 export interface LeanPageHandle {
   top(): number;
@@ -197,7 +197,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
               );
             })}
             {step.passage && (
-              <p className="stepline__caveat stepline__caveat--foot">{hasComparisons(edition) ? LINK_CAVEAT : LINK_CAVEAT_PLAIN} <MadeLink onOpen={() => onTab("index")} /></p>
+              <p className="stepline__caveat stepline__caveat--foot">{(hasComparisons(edition) ? LINK_CAVEAT : LINK_CAVEAT_PLAIN)(reviewers(edition))} <MadeLink onOpen={() => onTab("index")} /></p>
             )}
           </>
         )}
@@ -253,6 +253,9 @@ function Untied({ edition, untied, onPassage }: { edition: Edition; untied: NonN
   );
 }
 
+const sameUsers = (standard: [string, string[]][]) =>
+  standard.length > 1 && standard.every(([, users]) => users.length > 0 && [...users].sort().join() === [...standard[0][1]].sort().join());
+
 function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions }) {
   const { analytics, declarations, slug } = edition;
   const standard = Object.entries(analytics.standard_axioms);
@@ -273,7 +276,11 @@ function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions 
       ))}
       {analytics.free_of_axioms.length > 0 && <p>Proofs whose Lean reports list no axioms: {plain(analytics.free_of_axioms)}.</p>}
       {extracted && <p>
-        Lean’s standard axioms in the extracted reports: {list(standard.map(([name, users]) => `${name} (${users.length ? plain(users) : "not reported as used"})`))}.
+        {sameUsers(standard)
+          // When every reported proof uses the same standard axioms, one sentence says so
+          // instead of listing each proof once per axiom.
+          ? <>In the extracted reports, {standard[0][1].length} declarations depend on Lean’s standard axioms {list(standard.map(([name]) => name))}, each on all {standard.length}.</>
+          : <>Lean’s standard axioms in the extracted reports: {list(standard.map(([name, users]) => `${name} (${users.length ? plain(users) : "not reported as used"})`))}.</>}
         {" "}{analytics.sorry.length > 0 ? <strong>Lean reports that {plain(analytics.sorry)} use sorry.</strong> : <>The extracted reports list no use of sorry.</>}
       </p>}
       <AllChecks edition={edition} act={act} />

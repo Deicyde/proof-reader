@@ -12,6 +12,9 @@ const pairs = (keys: string, values: string): Record<string, string> =>
 
 const SUP = pairs("0123456789+-=()ni", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿⁱ");
 const SUB = pairs("0123456789+-=()aehijklmnoprstuvx", "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ");
+// A minus sign is already "−" when a script is converted: U_{-2} is U₋₂.
+SUP["−"] = "⁻";
+SUB["−"] = "₋";
 const GLYPH: Record<string, string> = { "1/2": "½", "3/4": "¾", "1/4": "¼", "1/3": "⅓", "2/3": "⅔" };
 const SYMBOL: Record<string, string> = {
   to: "→", mapsto: "↦", times: "×", in: "∈", neq: "≠", ne: "≠", le: "≤", leq: "≤", ge: "≥", geq: "≥",
@@ -64,6 +67,10 @@ function tokens(tex: string): string[] {
       // TeX drops the spaces after a command's name.
       if (/^[A-Za-z]+$/.test(name)) while (i < tex.length && tex[i] === " ") i++;
       if (["left", "right", "big", "Big"].includes(name)) continue;
+      if (name === "{" || name === "}") {
+        out.push(name);
+        continue;
+      }
       if (name === "qquad") out.push("\u2003\u2003");
       else if ([" ", ",", ";", "quad", "!"].includes(name)) out.push(name === "!" ? "" : " ");
       else if (Object.hasOwn(SYMBOL, name)) out.push(SYMBOL[name]);
@@ -87,6 +94,11 @@ function tokens(tex: string): string[] {
         // A fraction that multiplies what follows is bracketed: (c/2)y₁.
         const multiplies = rest.length > 0 && (/^[\p{L}\p{N}]/u.test(rest) || ("(\\".includes(rest[0]) && !closes));
         out.push(multiplies ? `(${text})` : text);
+      } else if (name === "dot" || name === "ddot") {
+        // A time derivative: \dot x is ẋ, with a combining dot above the letter.
+        let arg: string;
+        [arg, i] = group(tex, i);
+        out.push(plainMaths(arg, false) + (name === "dot" ? "\u0307" : "\u0308"));
       } else if (name === "sqrt") {
         let arg: string;
         [arg, i] = group(tex, i);
