@@ -79,7 +79,8 @@ def details(entries: list[dict]) -> str:
         heading = f"{entries[0]['title']} · <code>{entries[0]['name']}</code>"
     else:
         heading = f"{len(entries)} statements: " + "; ".join(e["title"] for e in entries)
-    label = "Lean proof" if all(e.get("proof") for e in entries) else "Lean"
+    labels = {e["origin"] for e in entries}
+    label = labels.pop() if len(labels) == 1 else "Lean"
     out = ["<details>", f"<summary><b>{label}</b> · {heading}</summary>", ""]
     for e in entries:
         if len(entries) > 1:
@@ -115,7 +116,7 @@ def build(slug: str) -> Path:
         where = (f"Copied whole from {span}." if whole
                  else f"Statement copied from {span}; the proof is at the link.")
         return {"name": name, "title": plain.get(name, name), "code": code, "where": where, "url": url,
-                "proof": proof}
+                "proof": proof, "origin": lean.get("source_label", "Lean")}
 
     def check_entry(name: str, title: str | None = None) -> dict:
         c = checks[name]
@@ -125,7 +126,7 @@ def build(slug: str) -> Path:
         where = (f"Lean accepted this supplementary proof, written with AI for this page. "
                  f"[{c['file']}, lines {c['line']}–{c['end_line']}][{name}].")
         return {"name": name, "title": title or c["doc"].rstrip("."), "code": code, "where": where, "url": url,
-                "proof": True}
+                "proof": True, "origin": "Supplementary Lean"}
 
     def comparison(name: str) -> str | None:
         f = fidelity.get(name)
@@ -136,12 +137,13 @@ def build(slug: str) -> Path:
 
     # Which paragraph carries each comparison and each written-for-the-page check.
     compare_at, checks_at = {}, {}
+    anchored_checks = {name for p in links["passages"] for name in p.get("checks", [])}
     for name, f in fidelity.items():
         because = f.get("because") or []
         if because:
             compare_at[name] = because[0]
             if f.get("checks"):
-                checks_at.setdefault(because[-1], []).extend(f["checks"])
+                checks_at.setdefault(because[-1], []).extend(name for name in f["checks"] if name not in anchored_checks)
 
     source = (folder / config["paper"]["markdown"]).read_text(encoding="utf-8")
     body, _, refs = source.partition("\n[file]:") if "\n[file]:" in source else (source, "", "")
@@ -211,7 +213,7 @@ def build(slug: str) -> Path:
     for i, paragraph in enumerate(paragraphs):
         if i == title_end:
             out += [f"[Read it with the Lean beside it]({SITE.format(slug=slug)}) · "
-                    f"[Lean source]({lean['source']})", ""]
+                    f"[Editable Markdown]({config['paper']['markdown']}) · [Lean source]({lean['source']})", ""]
         if paragraph.startswith("## Lean References"):
             out += table
             table = []

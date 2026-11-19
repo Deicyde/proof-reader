@@ -53,7 +53,7 @@ class MarkdownEditionTest(unittest.TestCase):
                 self.assertTrue(markdown_edition.sentence_ends(before), before)
 
     def test_definitions_show_their_bodies(self) -> None:
-        fold = self.before.split("<code>couplingPotential</code>", 1)[1].split("</details>", 1)[0]
+        fold = self.before.split("· `couplingPotential`\n", 1)[1].split("</details>", 1)[0]
         self.assertIn("(x 0) ^ 2 + x 0 * x 1 + (x 1) ^ 2", fold)
 
     def test_comparisons_are_labelled_as_unreviewed(self) -> None:
@@ -74,6 +74,7 @@ class MarkdownEditionTest(unittest.TestCase):
         global_result = passages[claims["global-minimum"]["passage"]]
         self.assertEqual(global_result["lean"], [])
         self.assertEqual(global_result["checks"], ["couplingPotential_origin_lt"])
+        self.assertEqual(claims["global-minimum"]["checks"], global_result["checks"])
         self.assertIn("For every nonzero", global_result["quote"])
         self.assertEqual(passages["strict-positivity"]["checks"], ["couplingPotential_pos"])
         self.assertEqual(passages["completed-square"]["checks"], ["couplingPotential_eq_sq_add_sq"])

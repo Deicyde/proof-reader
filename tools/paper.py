@@ -658,10 +658,22 @@ def resolve(slug: str) -> dict:
         errors.append(problem)
     checks = load_checks(folder)
     check_names = {c["name"] for c in checks["checks"]}
+    check_titles = config.get("checks", {}).get("titles", {})
+    for name, title in check_titles.items():
+        if name not in check_names:
+            errors.append(f"checks.titles: no supplementary proof called {name}")
+        if not isinstance(title, str) or not title.strip():
+            errors.append(f"checks.titles: {name} needs a nonempty title")
+    by_passage = {p["id"]: p for p in passages}
     for passage in passages:
         for name in passage.get("checks", []):
             if name not in check_names:
                 errors.append(f"passage {passage['id']}: no supplementary proof called {name}")
+    for claim in claims:
+        supporting = by_passage.get(claim["passage"], {}).get("checks", [])
+        for name in claim.get("checks", []):
+            if name not in supporting:
+                errors.append(f"claim {claim['id']}: supplementary proof {name} is not attached to its passage")
     stale = stale_checks(folder, checks["files"])
     if stale:
         errors.append(f"checks changed since extract last compiled them ({', '.join(stale)}): "
@@ -910,6 +922,7 @@ def edition(slug: str) -> dict:
     paper = config["paper"]
     # In reading order, so a page can say plainly where the ties begin and stop.
     tied_sections = list(dict.fromkeys(p["section"] for p in data["passages"]))
+    check_titles = config.get("checks", {}).get("titles", {})
     return {
         "schema": 1, "slug": slug,
         "source": data["source"],
@@ -925,7 +938,7 @@ def edition(slug: str) -> dict:
         "passages": [{k: v for k, v in p.items() if k != "order"} for p in data["passages"]],
         "mentions": find_mentions(data["words"], names),
         "declarations": declarations,
-        "checks": data["checks"],
+        "checks": [{**c, "title": check_titles[c["name"]]} if c["name"] in check_titles else c for c in data["checks"]],
         **({"check_source_lines": config["checks"]["source_lines"]} if config.get("checks", {}).get("source_lines") else {}),
         "comparator": comparator_evidence(data["folder"], config),
         "shelf": {"example": examples[0] if examples else None, "examples": examples},

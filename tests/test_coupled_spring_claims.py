@@ -1,12 +1,10 @@
-"""The coupled-spring page says what the mathematics says.
+"""Regression checks for selected formulas and statements in the coupled-spring page.
 
-Each test computes one claim of papers/coupled-spring/paper.md exactly, then checks that the page
-still states it. A prose edit that changes a formula, a frequency, a sign or a quantifier fails
-here even though the Lean, the links and the build are untouched.
+These checks pair exact calculations with expected Markdown fragments. They catch
+changes to those fragments and leave other prose and modelling choices to review.
 
-Polynomial identities are checked on a grid of rational points. A polynomial in two variables of
-degree at most d in each variable that vanishes on a (d+1) by (d+1) grid is zero, so a 5 by 5
-grid proves every identity below, all of degree at most 3.
+The full rational grid determines the two-variable polynomials checked on it.
+Calculations using subsets of the grid are regression samples.
 """
 from __future__ import annotations
 
@@ -40,7 +38,7 @@ class CoupledSpringClaims(unittest.TestCase):
         for x0, x1 in GRID:
             self.assertEqual(U(x0, x1), F(1, 2) * (x0 ** 2 + x1 ** 2 + (x0 + x1) ** 2))
             self.assertEqual(U(x0, x1), (x0 + x1 / 2) ** 2 + F(3, 4) * x1 ** 2)
-        self.states(r"U(x)=\tfrac12\left(x_0^2+x_1^2+(x_0+x_1)^2\right)",
+        self.states(r"U(h)=\tfrac12\left(h_0^2+h_1^2+(h_0+h_1)^2\right)",
                     r"U(x)=\left(x_0+\tfrac12x_1\right)^2+\tfrac34x_1^2")
 
     def test_the_global_minimum_is_claimed_only_away_from_the_origin(self) -> None:
@@ -51,8 +49,8 @@ class CoupledSpringClaims(unittest.TestCase):
         self.states(r"For every nonzero $x\in\mathbb R^2$, $U(x)>U(0)$.", "Both sides are zero at $x=0$.")
 
     def test_the_physlib_theorem_is_called_local(self) -> None:
-        self.states("**Physlib theorem.** The coupled spring potential $U$ has a local minimum")
-        self.assertNotIn("**Physlib theorem.** The coupled spring potential $U$ has a global", PAPER)
+        self.states("**PhyslibAlpha theorem.** The coupled spring potential $U$ has a local minimum")
+        self.assertNotIn("**PhyslibAlpha theorem.** The coupled spring potential $U$ has a global", PAPER)
 
     def test_derivative_and_remainder(self) -> None:
         for (x0, x1) in GRID:
@@ -70,7 +68,7 @@ class CoupledSpringClaims(unittest.TestCase):
             self.assertEqual(q, 2 * U(h0, h1))
             self.assertEqual(q - (h0 ** 2 + h1 ** 2), (h0 + h1) ** 2)
         self.states(r"$$K=\begin{pmatrix}2&1\\1&2\end{pmatrix}.$$", r"$h^{T}Kh\ge\lVert h\rVert^2$",
-                    "The last square\nvanishes when $h_0=-h_1$")
+                    "with equality exactly when $h_0=-h_1$")
 
     def test_normal_modes_and_their_frequencies(self) -> None:
         # The frequency written on the page is sqrt(lambda k / m) for the eigenvalue lambda of K.
@@ -97,11 +95,26 @@ class CoupledSpringClaims(unittest.TestCase):
 
     def test_the_cubic_keeps_the_local_minimum_and_loses_the_global_one(self) -> None:
         for x0, x1 in GRID:
-            bound = (x1 + x0 / 2) ** 2 + x0 ** 2 / 2
-            self.assertEqual(W(x0, x1) - bound, x0 ** 2 * (x0 + F(1, 4)))
+            # W - |x|^2/4 = (x0 + x1)^2/2 + x1^2/4 + x0^2 (x0 + 1/4), nonnegative when x0 >= -1/4.
+            self.assertEqual(W(x0, x1) - (x0 ** 2 + x1 ** 2) / 4,
+                             (x0 + x1) ** 2 / 2 + x1 ** 2 / 4 + x0 ** 2 * (x0 + F(1, 4)))
+            # U >= |x|^2/2, the wall springs' share: U - |x|^2/2 = (x0 + x1)^2/2.
+            self.assertEqual(U(x0, x1) - (x0 ** 2 + x1 ** 2) / 2, (x0 + x1) ** 2 / 2)
+        for t in [F(n, 4) for n in range(-12, 5)]:
+            self.assertEqual(W(t, 0), t ** 2 * (1 + t))
+            if -1 < t < 0:
+                self.assertGreater(W(t, 0), 0)
+        self.assertEqual(W(-1, 0), 0)
         self.assertEqual(W(-2, 0), -4)
-        self.states(r"If $|x_0|<\tfrac14$, then", r"$W(x)\ge\left(x_1+\tfrac12x_0\right)^2+\tfrac12x_0^2$",
-                    r"$W(-2,0)=-4<W(0)$")
+        self.states(r"wherever $|x_0|\le\tfrac14$", r"$$W(x)\ge\tfrac14\lVert x\rVert^2,$$",
+                    r"$W(t,0)=t^2(1+t)$", r"$W(-2,0)=-4<W(0)$", r"$U(x)\ge\tfrac12\lVert x\rVert^2$")
+
+    def test_the_slow_mode_is_the_direction_where_the_hessian_bound_is_sharp(self) -> None:
+        # The smaller eigenvalue of K is the constant C of the lower bound, attained along (1, -1).
+        v = (1, -1)
+        self.assertEqual(Kv(v), v)
+        self.assertEqual(sum(v[i] * Kv(v)[i] for i in range(2)), v[0] ** 2 + v[1] ** 2)
+        self.states(r"so $C=1$, attained at", r"$m\omega_-^2=Ck$")
 
 
 if __name__ == "__main__":

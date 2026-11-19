@@ -51,6 +51,7 @@ export interface Claim {
   section: string;
   passage: string;
   lean: string[];
+  checks?: string[];
 }
 
 export interface Declaration {
@@ -99,6 +100,7 @@ export interface Fidelity {
 
 export interface Check {
   name: string;
+  title?: string;
   keyword: "theorem" | "def";
   file: string;
   line: number;
