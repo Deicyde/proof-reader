@@ -1540,7 +1540,22 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     page.keyboard.press("k")
     wait_until(page, lambda: page.url.endswith("/@lean-9"), "the keyboard can step back one citation")
     pane.get_by_role("button", name="Glossary").click()
-    check(pane.locator(".api-map__references button").count() == 42, "the glossary lists all 42 declarations")
+    check(pane.locator("[data-glossary-name] > button").count() == 42, "the glossary lists all 42 declarations")
+    check(pane.locator(".api-map__references h2 button").count() == 15, "the glossary names all 15 citation numbers")
+    if not mobile:
+        leibniz = article.locator('[data-phrase-citation="lean-12"]').filter(has_text="iterated Leibniz rule")
+        pane.locator('[data-glossary-name="LocalGaugeData.iteratedDeriv_bracket"]').hover()
+        wait_until(page, lambda: "is-lit" in (leibniz.get_attribute("class") or ""),
+                   "pointing at a glossary title lights its phrase in the map")
+        check(leibniz.evaluate("(el) => getComputedStyle(el).getPropertyValue('--tone').trim()") ==
+              pane.locator('.api-map__references > li[data-tone]').filter(has=page.get_by_role("button", name="Open Lean citation 12", exact=True))
+              .evaluate("(el) => getComputedStyle(el).getPropertyValue('--tone').trim()"),
+              "a phrase and its citation's glossary group share one colour")
+        check(pane.locator(".api-map__topic-name").all_inner_texts() == ["Gauge group", "Potential and field strength", "Gauge transformations",
+                                                                        "Local gauge data", "Iterated derivatives", "Morphisms"],
+              "the glossary groups its citations under six physics topics")
+        check(page.locator(".rail .api-map__topic-bars").count() == 3 and page.locator(".rail .api-map__key .api-map__topic").count() == 6,
+              "the contents list marks three sections with topic colours above a six-topic key")
     check("AI-drafted" in pane.locator(".api-map__glossary-credit").inner_text(), "the glossary identifies the origin of the added titles")
     pane.get_by_role("button", name=re.compile("Iterated Leibniz rule for the Lie bracket")).click()
     focused = pane.locator('[data-lean-name="LocalGaugeData.iteratedDeriv_bracket"]')
@@ -1602,6 +1617,28 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
                "the paragraph gutter opens a bibliography reference beside the Lean groups")
     check(pane.locator("[data-reference]").count() == 9,
           "a paragraph can collect prose references and Lean citations together")
+
+    phrases = article.locator("[data-phrase]")
+    check(phrases.count() == 33, "33 phrases in the map are matched to Lean declarations")
+    named = set(phrases.evaluate_all("(items) => items.map(el => el.dataset.phraseCitation)"))
+    check(named == {f"lean-{n}" for n in range(1, 16)}, "every Lean citation has at least one matched phrase")
+    trivial = article.locator('[data-phrase]').filter(has_text="the trivial shift is the identity")
+    trivial.scroll_into_view_if_needed()
+    trivial.click()
+    picked = pane.locator('[data-lean-name="Electromagnetism.ElectromagneticPotential.gaugeTransform_zero"]')
+    wait_until(page, lambda: page.url.endswith("/@lean-7") and picked.evaluate("(el) => el === document.activeElement"),
+               "clicking a phrase opens its citation at the declaration that states it")
+    check("is-picked" in (pane.locator('[data-lean-name="Electromagnetism.ElectromagneticPotential.ofGradient_zero"]').get_attribute("class") or ""),
+          "every declaration matched to the clicked phrase is marked")
+    quote = picked.locator(".api-map__said-quote")
+    check(quote.inner_text().strip() == "the trivial shift is the identity", "a declaration quotes the phrase it states")
+    paper.evaluate("(el) => { el.scrollTop = 0; }")
+    quote.click()
+    wait_until(page, lambda: trivial.evaluate("""(el) => {
+      const box = el.getBoundingClientRect(), pane = el.closest('.reading').getBoundingClientRect();
+      return el.classList.contains('is-flash') && box.top >= pane.top && box.bottom <= pane.bottom;
+    }"""), "a quoted phrase scrolls the map back to its place")
+    check(page.url.endswith("/@lean-7"), "showing a phrase does not change the open citation")
 
     deps = page.locator("#dependency-map")
     deps.scroll_into_view_if_needed()

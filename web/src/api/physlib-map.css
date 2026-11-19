@@ -197,3 +197,92 @@
 .deps__dialog-body { flex: 1; min-height: 0; overflow: auto; padding: 22px 24px 30px; }
 .deps__dialog-body .deps__figure { width: auto; margin: 0; padding: 0; border: 0; }
 .deps__dialog-body .deps__hidden { margin-top: 18px; }
+
+/* Topic colours (papers/physlib-gauge-theory/concepts.json): tone 2t and 2t+1 are two shades
+   of topic t, so neighbouring citations of one topic still differ. Bars, never dots, and hues
+   kept apart from physlib.io's yellow, green and red completeness dots. */
+/* Gauge group: violet */
+.api-map [data-tone="0"] { --tone: light-dark(oklch(0.50 0.19 300), oklch(0.76 0.15 300)); }
+.api-map [data-tone="1"] { --tone: light-dark(oklch(0.57 0.17 285), oklch(0.67 0.15 285)); }
+/* Potential and field strength: blue */
+.api-map [data-tone="2"] { --tone: light-dark(oklch(0.48 0.18 258), oklch(0.73 0.15 258)); }
+.api-map [data-tone="3"] { --tone: light-dark(oklch(0.55 0.16 240), oklch(0.64 0.15 240)); }
+/* Gauge transformations: orange */
+.api-map [data-tone="4"] { --tone: light-dark(oklch(0.58 0.19 48), oklch(0.76 0.17 48)); }
+.api-map [data-tone="5"] { --tone: light-dark(oklch(0.65 0.17 38), oklch(0.67 0.17 38)); }
+/* Local gauge data: emerald */
+.api-map [data-tone="6"] { --tone: light-dark(oklch(0.52 0.14 165), oklch(0.80 0.15 165)); }
+.api-map [data-tone="7"] { --tone: light-dark(oklch(0.59 0.13 180), oklch(0.71 0.15 180)); }
+/* Iterated derivatives: pink */
+.api-map [data-tone="8"] { --tone: light-dark(oklch(0.55 0.21 352), oklch(0.75 0.17 352)); }
+.api-map [data-tone="9"] { --tone: light-dark(oklch(0.62 0.19 335), oklch(0.66 0.17 335)); }
+/* Morphisms: cyan */
+.api-map [data-tone="10"] { --tone: light-dark(oklch(0.54 0.11 210), oklch(0.82 0.12 210)); }
+.api-map [data-tone="11"] { --tone: light-dark(oklch(0.61 0.10 222), oklch(0.73 0.12 222)); }
+
+.api-map__phrase {
+  cursor: pointer; border-radius: 2px;
+  background-image: linear-gradient(color-mix(in oklab, var(--tone) 72%, transparent), color-mix(in oklab, var(--tone) 72%, transparent));
+  background-size: 100% 1.5px; background-position: 0 100%; background-repeat: no-repeat;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  transition: background-color 140ms, background-size 140ms;
+}
+.api-map__phrase:hover, .api-map__phrase.is-lit, .api-map__phrase.is-active {
+  background-image: linear-gradient(var(--tone), var(--tone)); background-size: 100% 2px;
+  background-color: color-mix(in oklab, var(--tone) 14%, transparent);
+}
+.api-map__phrase.is-lit, .api-map__phrase.is-picked { background-color: color-mix(in oklab, var(--tone) 26%, transparent); }
+.api-map__phrase.is-flash { animation: api-map-flash 1.4s ease-out; }
+@keyframes api-map-flash { 0%, 30% { background-color: color-mix(in oklab, var(--tone) 45%, transparent); } }
+.sheet__text .api-map__cite[data-tone] { color: var(--tone); font-weight: 600; text-decoration-color: color-mix(in oklab, var(--tone) 55%, transparent); }
+.sheet__text .api-map__cite[data-tone]:hover, .sheet__text .api-map__cite[data-tone].is-active { color: var(--ink); background: color-mix(in oklab, var(--tone) 24%, transparent); }
+.api-map [data-api-paragraph].is-inspected { --wash: color-mix(in oklab, var(--highlight-soft) 35%, transparent); }
+
+/* Physlib's own marks: the Alpha badge, claim progress and TODO, drawn as on physlib.io. */
+.api-map__paren { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.api-map__badge { display: inline-block; padding: 0.1em 0.55em; border: 1px solid light-dark(#d6a24a, #8a6420); border-radius: 999px; background: light-dark(#fdf3df, #2a1f08); color: light-dark(#8a5a07, #edb94a); font: 500 0.72rem/1.4 var(--font-sans); letter-spacing: 0.01em; vertical-align: 0.25em; }
+.sheet__text h2 .api-map__badge, .sheet__text h3 .api-map__badge { margin-left: 0.3em; }
+.api-map__status { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: -0.2em 0 0.4em; font-size: var(--fs-sm); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.api-map__status .api-map__badge { vertical-align: baseline; }
+.api-map__progress { display: inline-block; width: 140px; height: 4px; border-radius: 2px; background: var(--rule); overflow: hidden; }
+.api-map__progress > span { display: block; height: 100%; background: light-dark(#d08a1c, #edb94a); }
+.api-map__guide { margin: 0 0 1.4em; padding: 10px 14px; border: 1px solid var(--rule); border-radius: var(--radius-s); background: var(--desk); font-size: var(--fs-sm); line-height: 1.45; color: var(--ink-2); }
+.api-map__guide p { margin: 0; }
+.api-map__guide p + p { margin-top: 6px; }
+.api-map__legend { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.api-map__legend-label { font: 600 0.72rem/1.4 var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.api-map__topic { color: var(--ink); white-space: nowrap; background: linear-gradient(var(--tone), var(--tone)) 0 100% / 100% 2px no-repeat; padding-bottom: 1px; }
+.api-map__topic-bars { display: inline-flex; gap: 3px; margin-left: 8px; flex: none; align-self: center; }
+.api-map__topic-bars > span { display: block; width: 12px; height: 3px; border-radius: 2px; background: var(--tone); }
+.api-map__key { display: block; margin-bottom: 10px; }
+.api-map__key-label { display: block; margin-bottom: 4px; font: 600 0.68rem/1.4 var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.api-map__key .api-map__topic { display: inline-block; margin: 0 10px 4px 0; color: var(--ink-2); }
+.sheet__text .api-map__todo { display: inline-block; margin-inline: 2px; padding: 0 0.5em; border: 1px solid light-dark(#d6a24a, #8a6420); border-radius: 999px; background: light-dark(#fdf3df, #2a1f08); color: light-dark(#8a5a07, #edb94a); font: 500 0.66em/1.5 var(--font-sans); letter-spacing: 0.03em; vertical-align: 0.12em; }
+
+/* The right pane: a declaration reads title first; the Lean name and code sit smaller beneath. */
+.api-map__lede { color: var(--ink-2); line-height: 1.45; }
+.api-map__references > li[data-tone] { border-top-color: var(--rule); }
+.api-map__references h2 button { min-height: 28px; padding: 0 4px; border-radius: var(--radius-s); color: var(--tone); font-weight: 600; font-variant-numeric: tabular-nums; }
+.api-map__references h2 button:hover { background: color-mix(in oklab, var(--tone) 14%, transparent); }
+.api-map__references li[data-tone] > ul { border-left: 2px solid color-mix(in oklab, var(--tone) 70%, transparent); padding-left: 8px; }
+.api-map__references [data-glossary-name] > button { border-radius: var(--radius-s); transition: background-color 120ms; }
+.api-map__references [data-glossary-name].is-lit > button { background: color-mix(in oklab, var(--tone) 14%, transparent); }
+.api-map__references button code { font-size: calc(var(--pane) * 0.72); color: var(--ink-3); }
+.api-map__declaration[data-tone] { border-left: 3px solid var(--tone); transition: box-shadow 140ms, background-color 140ms; }
+.api-map__declaration.is-lit { box-shadow: 0 0 0 1px color-mix(in oklab, var(--tone) 60%, transparent); }
+.api-map__declaration.is-picked { background: color-mix(in oklab, var(--tone) 7%, var(--sheet)); }
+.api-map__declaration h2 { font-size: calc(var(--pane) * 1.125); font-weight: 500; }
+.api-map__raw-name { margin: 2px 0 8px; font-size: calc(var(--pane) * 0.72); color: var(--ink-3); }
+.api-map__doc { font-size: calc(var(--pane) * 0.9375); color: var(--ink-2); }
+.api-map__signature .lean-code { font-size: calc(var(--pane) * 0.75); }
+.api-map__said { margin: 0 0 8px; }
+.api-map__said-label { margin: 0 0 3px; font: 600 calc(var(--pane) * 0.625)/1.3 var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+.api-map__said-quote { display: block; width: 100%; margin: 0 0 4px; padding: 4px 9px; border-left: 2px solid var(--tone); border-radius: 0 var(--radius-s) var(--radius-s) 0; background: color-mix(in oklab, var(--tone) 8%, transparent); color: var(--ink); font: calc(var(--pane) * 0.9375)/1.45 var(--font-sans); text-align: left; transition: background-color 120ms; }
+.api-map__said-quote:hover { background: color-mix(in oklab, var(--tone) 18%, transparent); }
+.api-map__paragraph-jumps button[data-tone] { color: var(--tone); font-weight: 600; }
+.api-map__paragraph-group[data-tone] > .api-map__paragraph-name { color: var(--ink); }
+.api-map__paragraph-group[data-tone] > .api-map__paragraph-name::before { content: ""; display: inline-block; width: 14px; height: 3px; margin-right: 9px; border-radius: 2px; background: var(--tone); vertical-align: middle; }
+@media (prefers-reduced-motion: reduce) { .api-map__phrase, .api-map__declaration { transition: none; } .api-map__phrase.is-flash { animation: none; } }
+.api-map__topic-group + .api-map__topic-group { margin-top: 18px; }
+.api-map__topic-name { margin: 6px 0 6px; font: 600 calc(var(--pane) * 0.8125)/1.4 var(--font-sans); letter-spacing: 0.04em; color: var(--ink); }
+.api-map .rail__item .api-map__topic-bars { margin-left: auto; padding-left: 8px; }

@@ -1,0 +1,65 @@
+{
+  "1": [
+    {"quote": "SU(3) × SU(2) × U(1)", "names": ["StandardModel.GaugeGroupI"]},
+    {"quote": "its projections onto the three factors", "names": ["StandardModel.GaugeGroupI.toSU3", "StandardModel.GaugeGroupI.toSU2", "StandardModel.GaugeGroupI.toU1"]},
+    {"quote": "a central discrete subgroup of sixth roots of unity", "names": ["StandardModel.gaugeGroupℤ₆SubGroup"]}
+  ],
+  "2": [
+    {"quote": "the electromagnetic potential", "names": ["Electromagnetism.ElectromagneticPotential"]},
+    {"quote": "a Lorentz-vector-valued field on spacetime", "names": ["Electromagnetism.ElectromagneticPotential"]}
+  ],
+  "3": [
+    {"quote": "its field strength is built from that potential", "names": ["Electromagnetism.ElectromagneticPotential.toFieldStrength"]}
+  ],
+  "4": [
+    {"quote": "A gauge transformation shifts the potential by the gradient of a scalar", "names": ["Electromagnetism.ElectromagneticPotential.gaugeTransform", "Electromagnetism.ElectromagneticPotential.gaugeTransform_apply"]},
+    {"quote": "the pure-gauge potential is the shift of zero", "names": ["Electromagnetism.ElectromagneticPotential.ofGradient"]}
+  ],
+  "5": [
+    {"quote": "Gauge transformations leave the field strength invariant", "names": ["Electromagnetism.ElectromagneticPotential.toFieldStrength_gaugeTransform", "Electromagnetism.ElectromagneticPotential.toFieldStrength_eval_gaugeTransform"]}
+  ],
+  "6": [
+    {"quote": "a pure-gauge potential has vanishing field strength", "names": ["Electromagnetism.ElectromagneticPotential.toFieldStrength_ofGradient"]},
+    {"quote": "the bare gradient of a scalar can have nonzero field strength", "names": ["Electromagnetism.ElectromagneticPotential.toFieldStrength_eval_bareGradient_inl_inr", "Electromagnetism.ElectromagneticPotential.toFieldStrength_bareGradient_ne_zero"]}
+  ],
+  "7": [
+    {"quote": "Gauge transformations compose", "names": ["Electromagnetism.ElectromagneticPotential.gaugeTransform_gaugeTransform"]},
+    {"quote": "the trivial shift is the identity", "names": ["Electromagnetism.ElectromagneticPotential.gaugeTransform_zero", "Electromagnetism.ElectromagneticPotential.ofGradient_zero"]},
+    {"quote": "successive shifts add", "names": ["Electromagnetism.ElectromagneticPotential.gaugeTransform_gaugeTransform", "Electromagnetism.ElectromagneticPotential.ofGradient_add"]}
+  ],
+  "8": [
+    {"quote": "They commute with the action of the Lorentz group", "names": ["Electromagnetism.ElectromagneticPotential.ofGradient_equivariant", "Electromagnetism.ElectromagneticPotential.gaugeTransform_equivariant"]}
+  ],
+  "9": [
+    {"quote": "We define *local gauge data* to be exactly this information", "names": ["LocalGaugeData"]},
+    {"quote": "subject to the rules that make the transformation laws consistent", "names": ["LocalGaugeData"]}
+  ],
+  "10": [
+    {"quote": "evaluation G_J → G is surjective", "names": ["LocalGaugeData.eval_surjective"]},
+    {"quote": "the inclusion of constants G → G_J is injective", "names": ["LocalGaugeData.ofConstant_injective"]},
+    {"quote": "the same holds for 𝔤_J → 𝔤 and 𝔤 → 𝔤_J", "names": ["LocalGaugeData.evalLie_surjective", "LocalGaugeData.ofConstantLie_injective"]}
+  ],
+  "11": [
+    {"quote": "Ad_g is a Lie algebra automorphism of 𝔤", "names": ["LocalGaugeData.adjoint_bracket"]},
+    {"quote": "∂_μ commutes with Ad_g", "names": ["LocalGaugeData.deriv_adjointJ_ofConstant"]}
+  ],
+  "12": [
+    {"quote": "the iterated derivative ∂_s applies ∂_μ once for each μ in s", "names": ["LocalGaugeData.iteratedDeriv", "LocalGaugeData.iteratedDeriv_zero", "LocalGaugeData.iteratedDeriv_cons", "LocalGaugeData.iteratedDeriv_singleton"]},
+    {"quote": "∂_(s + t) = ∂_s ∂_t", "names": ["LocalGaugeData.iteratedDeriv_add"]},
+    {"quote": "the iterated Leibniz rule ∂_s ⁅a, b⁆ = Σ ⁅∂_s₁ a, ∂_s₂ b⁆", "names": ["LocalGaugeData.iteratedDeriv_bracket"]},
+    {"quote": "If s is non-empty then ∂_s c = 0 for every constant c ∈ 𝔤", "names": ["LocalGaugeData.iteratedDeriv_ofConstantLie_of_ne_zero"]},
+    {"quote": "∂_s commutes with Ad_g for g ∈ G", "names": ["LocalGaugeData.iteratedDeriv_adjointJ_ofConstant"]}
+  ],
+  "13": [
+    {"quote": "The value (∂_s (x_μ a))(x) is the number of times μ occurs in s, multiplied by (∂_(s − μ) a)(x)", "names": ["LocalGaugeData.evalLie_iteratedDeriv_mulCoord"]}
+  ],
+  "14": [
+    {"quote": "A morphism of local gauge data consists of maps G → G', 𝔤 → 𝔤', G_J → G'_J and 𝔤_J → 𝔤'_J compatible with all of the operations above", "names": ["LocalGaugeData.Hom"]},
+    {"quote": "It intertwines Ad on 𝔤 and 𝔤'", "names": ["LocalGaugeData.Hom.lie_adjoint"]},
+    {"quote": "commutes with ∂_s", "names": ["LocalGaugeData.Hom.lieJ_iteratedDeriv"]}
+  ],
+  "15": [
+    {"quote": "Morphisms have identities", "names": ["LocalGaugeData.Hom.id"]},
+    {"quote": "compose", "names": ["LocalGaugeData.Hom.comp"]}
+  ]
+}

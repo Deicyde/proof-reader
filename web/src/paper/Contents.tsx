@@ -32,6 +32,8 @@ interface Props {
   noun?: string;
   topLabel?: string;
   keys?: ReactNode;
+  /** Optional marks after a section's title, keyed by section id. */
+  marks?: Record<string, ReactNode>;
 }
 
 interface Block {
@@ -83,7 +85,7 @@ function Snippet({ text, at, length }: { text: string; at: number; length: numbe
   );
 }
 
-export function Contents({ outline, current, open, declarations, files, html, copy, onJump, onTop, onName, onPage, onBlock, onIndex, onClose, onSearch, noun = "paper", topLabel = "Title and abstract", keys }: Props) {
+export function Contents({ outline, current, open, declarations, files, html, copy, onJump, onTop, onName, onPage, onBlock, onIndex, onClose, onSearch, noun = "paper", topLabel = "Title and abstract", keys, marks }: Props) {
   const list = useRef<HTMLOListElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const blocks = useRef<Block[]>([]);
@@ -221,6 +223,7 @@ export function Contents({ outline, current, open, declarations, files, html, co
               <button type="button" className="rail__item" aria-current={entry.id === current ? "location" : undefined} onClick={() => onJump(entry.id)}>
                 {entry.number && <span className="rail__no">{entry.number}</span>}
                 <span className="rail__title">{entry.title}</span>
+                {marks?.[entry.id]}
                 {entry.ties > 0 && <span className="rail__ties" title={`${entry.ties} statements with Lean`}>{entry.ties}</span>}
               </button>
             </li>

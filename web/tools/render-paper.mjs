@@ -156,6 +156,12 @@ function highlight(line, language) {
 
 const md = new MarkdownIt({ html: !apiMap, linkify: !!apiMap, typographer: false });
 const apiParagraphs = {};
+// Each Lean citation gets the colour of its physics topic (concepts.json). Its phrases,
+// number and cards all carry that colour.
+const apiTones = {};
+const PHRASE_OPEN = "\uE020";
+const PHRASE_MID = "\uE021";
+const PHRASE_CLOSE = "\uE022";
 
 if (apiMap) {
   md.inline.ruler.before("link", "api_map_reference", (state, silent) => {
@@ -171,12 +177,13 @@ if (apiMap) {
   });
   md.renderer.rules.api_map_reference = (tokens, index) => {
     const mark = tokens[index].meta;
-    if (mark[1] === "TODO") return '<span class="api-map__todo">[TODO]</span>';
+    if (mark[1] === "TODO") return '<span class="api-map__todo" title="Not yet formalized"><span class="api-map__paren">[</span>TODO<span class="api-map__paren">]</span></span>';
     const lean = !!mark[1];
     const number = mark[1] ?? mark[2];
     const name = lean ? "Lean citation" : "Reference";
     const id = `${lean ? "lean" : "ref"}-${number}`;
-    return `<a class="api-map__cite" data-api-citation="${id}" aria-label="${name} ${number}" aria-controls="api-map-references" href="#/${slug}/@${id}">${mark[0]}</a>`;
+    const tone = lean ? ` data-tone="${apiTones[id]}"` : "";
+    return `<a class="api-map__cite" data-api-citation="${id}"${tone} aria-label="${name} ${number}" aria-controls="api-map-references" href="#/${slug}/@${id}">${mark[0]}</a>`;
   };
   md.core.ruler.push("api_map_index_ids", ({ tokens }) => {
     let list = "";
@@ -293,6 +300,53 @@ if (guide) {
   const lines = text.split("\n");
   text = lines.map((line, i) => (insertions.get(i) ?? "") + line).join("\n") + (insertions.get(lines.length) ?? "");
 }
+const apiPhrases = [];
+if (apiMap) {
+  // Mark each matched phrase in the authors' Markdown before it is parsed. A phrase is
+  // found, with any line breaks, only in the paragraph that carries its citation, and
+  // must occur there exactly once and must not cut through a typeset formula.
+  const boundary = text.indexOf("\n## Lean References\n");
+  const prose = text.slice(0, boundary);
+  // A citation's tone is its topic's colour; citations of one topic alternate
+  // between that colour's two shades in reading order.
+  const order = [...new Set(Array.from(prose.matchAll(/\[(\d+)\](?!\()/g), (m) => m[1]))];
+  const seen = apiMap.concepts.map(() => 0);
+  for (const number of order) {
+    const topic = apiMap.concepts.findIndex((c) => c.citations.includes(Number(number)));
+    apiTones[`lean-${number}`] = topic * 2 + (seen[topic]++ % 2);
+  }
+  const paragraphs = [];
+  for (const m of prose.matchAll(/(?:^|\n\n)([\s\S]*?)(?=\n\n|$)/g)) {
+    const start = m.index + m[0].length - m[1].length;
+    paragraphs.push({ start, end: start + m[1].length });
+  }
+  const literal = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const formulas = Object.keys(apiMap.maths).sort((a, b) => b.length - a.length);
+  const formulaAt = new RegExp(`(?<![\\p{L}\\p{N}_])(?:${formulas.map(literal).join("|")})(?![\\p{L}\\p{N}_])`, "gu");
+  const typeset = Array.from(prose.matchAll(formulaAt), (m) => [m.index, m.index + m[0].length]);
+  const ranges = [];
+  apiMap.phrases.forEach((phrase, id) => {
+    const mark = new RegExp(`\\[${phrase.citation}\\](?!\\()`).exec(prose);
+    const home = mark && paragraphs.find((p) => p.start <= mark.index && mark.index < p.end);
+    if (!home) throw new Error(`Lean citation [${phrase.citation}] is not in the map's text`);
+    const pattern = new RegExp(phrase.quote.split(" ").map(literal).join("(?:[ \\t]+|[ \\t]*\\n[ \\t]*)"), "gu");
+    const hits = Array.from(prose.slice(home.start, home.end).matchAll(pattern));
+    if (hits.length !== 1) throw new Error(`Phrase for [${phrase.citation}] occurs ${hits.length} times in its paragraph: ${phrase.quote}`);
+    const start = home.start + hits[0].index;
+    const end = start + hits[0][0].length;
+    const cut = typeset.find(([a, b]) => a < end && b > start && !(a >= start && b <= end) && !(a <= start && b >= end && a === start && b === end));
+    if (cut) throw new Error(`Phrase for [${phrase.citation}] cuts the formula ${prose.slice(cut[0], cut[1])}: ${phrase.quote}`);
+    const clash = ranges.find((r) => r.start < end && r.end > start);
+    if (clash) throw new Error(`Phrases overlap: ${phrase.quote} / ${apiMap.phrases[clash.id].quote}`);
+    ranges.push({ id, start, end });
+    apiPhrases.push({ id, citation: `lean-${phrase.citation}`, quote: phrase.quote, names: phrase.names, tone: apiTones[`lean-${phrase.citation}`] });
+  });
+  let marked = prose;
+  for (const { id, start, end } of [...ranges].sort((a, b) => b.start - a.start)) {
+    marked = marked.slice(0, start) + PHRASE_OPEN + id + PHRASE_MID + marked.slice(start, end) + PHRASE_CLOSE + marked.slice(end);
+  }
+  text = marked + text.slice(boundary);
+}
 const spans = [];
 text = protectMath(text, spans);
 if (apiMap) {
@@ -393,8 +447,47 @@ if (apiMap) {
     `${open}<span class="api-map__path">${escapeHtml(path).replaceAll("/", "/<wbr>")}</span> `);
 }
 
+if (apiMap) {
+  // Turn each phrase marker into a span. The span may hold whole elements, such as a
+  // formula or an emphasis, but may not open or close one that started outside it.
+  html = html.replace(new RegExp(`${PHRASE_OPEN}(\\d+)${PHRASE_MID}`, "g"), (_m, id) => {
+    const phrase = apiPhrases[Number(id)];
+    return `<span class="api-map__phrase" data-phrase="${id}" data-phrase-citation="${phrase.citation}" data-tone="${phrase.tone}">`;
+  }).replaceAll(PHRASE_CLOSE, "</span>");
+  for (const phrase of apiPhrases) {
+    const open = html.indexOf(`<span class="api-map__phrase" data-phrase="${phrase.id}"`);
+    const from = html.indexOf(">", open) + 1;
+    const tags = /<(\/?)([a-zA-Z][\w-]*)\b[^>]*?(\/?)>/g;
+    tags.lastIndex = from;
+    const stack = [];
+    let to = -1;
+    for (let tag; (tag = tags.exec(html));) {
+      const [, closing, name, selfClosing] = tag;
+      if (selfClosing || /^(?:br|wbr|img|hr|input|col|area|base|link|meta|source)$/i.test(name)) continue;
+      if (!closing) stack.push(name);
+      else if (stack.length) {
+        if (stack.pop() !== name) throw new Error(`Phrase crosses an element boundary: ${phrase.quote}`);
+      } else if (name === "span") { to = tag.index; break; }
+      else throw new Error(`Phrase crosses an element boundary: ${phrase.quote}`);
+    }
+    if (to < 0) throw new Error(`Phrase is not closed: ${phrase.quote}`);
+    phrase.html = html.slice(from, to);
+  }
+  // The topics cited between each heading and the next, for the contents list.
+  var sectionTopics = {};
+  let section = null;
+  for (const m of html.matchAll(/<h[2-6] id="([^"]+)"|data-api-citation="lean-(\d+)"/g)) {
+    if (m[1]) { section = m[1]; continue; }
+    const topic = apiMap.concepts.findIndex((c) => c.citations.includes(Number(m[2])));
+    if (section && !(sectionTopics[section] ??= []).includes(topic)) sectionTopics[section].push(topic);
+  }
+  const { done, total } = apiMap.status;
+  html = html.replace("</h1>", `</h1>\n<p class="api-map__status"><span class="api-map__badge">Alpha</span> <span>${done} of ${total} claims formalized</span> <span class="api-map__progress" role="img" aria-label="${done} of ${total} claims formalized"><span style="width:${(100 * done / total).toFixed(1)}%"></span></span></p>\n<div class="api-map__guide"><p class="api-map__legend"><span class="api-map__legend-label">Topic colours</span>${apiMap.concepts.map((c, i) => ` <span class="api-map__topic" data-tone="${i * 2}">${escapeHtml(c.name)}</span>`).join("")}</p><p>Click an underlined phrase, a citation number or a paragraph to open the Lean declarations cited there.</p></div>\n`);
+  html = html.replace(/ \(Alpha\)<\/h([23])>/g, ' <span class="api-map__badge"><span class="api-map__paren">(</span>Alpha<span class="api-map__paren">)</span></span></h$1>');
+}
+
 for (const entry of outline) {
   entry.title = entry.title.replace(new RegExp(`${OPEN}(\\d+)${CLOSE}`, "g"), (_m, n) => plainMath(spans[Number(n)].tex, false));
 }
 
-process.stdout.write(JSON.stringify({ html, math, outline, ...(apiMap ? { paragraphs: apiParagraphs } : {}), ...(guide ? { source_blocks: sourceBlocks, quote_html: quoteHtml, heading_aliases: headingAliases } : {}) }));
+process.stdout.write(JSON.stringify({ html, math, outline, ...(apiMap ? { paragraphs: apiParagraphs, phrases: apiPhrases, tones: apiTones, concepts: apiMap.concepts, sectionTopics } : {}), ...(guide ? { source_blocks: sourceBlocks, quote_html: quoteHtml, heading_aliases: headingAliases } : {}) }));
