@@ -11,12 +11,7 @@ lemma cube_iteratedFDeriv_two_zero (a b : EuclideanSpace ℝ (Fin 2)) :
       = (fun t : ℝ => t ^ 3) ∘ (EuclideanSpace.proj (𝕜 := ℝ) (0 : Fin 2)) := rfl
   have hcd : ContDiff ℝ ⊤ (fun t : ℝ => t ^ 3) := contDiff_id.pow 3
   rw [hcomp, (EuclideanSpace.proj (𝕜 := ℝ) (0 : Fin 2)).iteratedFDeriv_comp_right hcd _ le_top]
-  first
-    | simp [iteratedFDeriv_apply_eq_iteratedDeriv_mul_prod, iteratedDeriv_fun_pow_zero]
-    | simp [iteratedFDeriv_apply_eq_iteratedDeriv_mul_prod, iteratedDeriv_pow]
-    | (rw [ContinuousMultilinearMap.compContinuousLinearMap_apply,
-          iteratedFDeriv_apply_eq_iteratedDeriv_mul_prod, map_zero, iteratedDeriv_pow]
-       norm_num)
+  simp [iteratedFDeriv_apply_eq_iteratedDeriv_mul_prod, iteratedDeriv_pow]
 
 /-- At the origin the second derivative of the perturbed potential is that of the coupled
 spring potential. -/
@@ -46,10 +41,10 @@ lemma cubicPerturbation_gradient_zero :
   have h0 : HasFDerivAt (fun x : EuclideanSpace ℝ (Fin 2) => x 0)
       (EuclideanSpace.proj (𝕜 := ℝ) 0) (0 : EuclideanSpace ℝ (Fin 2)) :=
     (EuclideanSpace.proj (𝕜 := ℝ) 0).hasFDerivAt
-  have hsum := (couplingPotential_hasFDerivAt 0).add (h0.pow 3)
+  have hz : ∀ i : Fin 2, (0 : EuclideanSpace ℝ (Fin 2)) i = 0 := fun i => rfl
   have hzero : HasFDerivAt cubicPerturbation (0 : EuclideanSpace ℝ (Fin 2) →L[ℝ] ℝ) 0 := by
-    convert hsum using 1
-    ext v
+    refine ((couplingPotential_hasFDerivAt 0).add (h0.pow 3)).congr_fderiv ?_
+    simp only [hz]
     simp
   simp [gradient, hzero.fderiv]
 
@@ -96,8 +91,8 @@ theorem cubicPerturbation_strict_near_origin :
   have hbound : (x 1 + x 0 / 2) ^ 2 + (x 0) ^ 2 / 2 ≤ cubicPerturbation x := by
     unfold cubicPerturbation couplingPotential
     nlinarith [hprod]
-  by_contra hle
-  push_neg at hle
+  by_contra hlt
+  have hle : cubicPerturbation x ≤ 0 := not_lt.mp hlt
   have hs : 0 ≤ (x 1 + x 0 / 2) ^ 2 := sq_nonneg _
   have h0 : x 0 = 0 := by
     have h0sq : (x 0) ^ 2 = 0 := by nlinarith [sq_nonneg (x 0)]
@@ -109,14 +104,8 @@ theorem cubicPerturbation_strict_near_origin :
   apply hne
   ext i
   fin_cases i
-  · first
-      | simpa using h0
-      | (simp; exact h0)
-      | exact h0
-  · first
-      | simpa using h1
-      | (simp; exact h1)
-      | exact h1
+  · simpa using h0
+  · simpa using h1
 
 /-- The origin is not a global minimum after adding `x₀³`: the value at `(-2, 0)` is `-4`. -/
 theorem cubicPerturbation_not_global :
