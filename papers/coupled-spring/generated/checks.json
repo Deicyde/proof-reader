@@ -1,7 +1,7 @@
 {
  "files": {
   "checks/GlobalMinimum.lean": "b22cb447e91c0ba9b49dd90681f9a6b95aa57e25d9b2342d73946067633248bb",
-  "checks/StrictMinimum.lean": "9e40c8385bc0243931c3e467ab64bb0aff37d9fa5fc6ddcfdcc21f95a3d4b63d"
+  "checks/StrictMinimum.lean": "1bd3e4ca3f59a2479af0aff3f10b2eb9a722209c7c47e07319e923bcaecf02b1"
  },
  "checks": [
   {
@@ -56,6 +56,21 @@
    "end_line": 30,
    "code": "/-- Away from the origin the coupled spring potential is strictly positive. -/\ntheorem couplingPotential_pos (x : EuclideanSpace ℝ (Fin 2)) (hx : x ≠ 0) :\n    0 < couplingPotential x := by\n  have hsq : couplingPotential x = (x 0 + x 1 / 2) ^ 2 + 3 / 4 * (x 1) ^ 2 := by\n    unfold couplingPotential\n    ring\n  rw [hsq]\n  by_contra h\n  have hs : 0 ≤ (x 0 + x 1 / 2) ^ 2 := sq_nonneg _\n  have ht : 0 ≤ (x 1) ^ 2 := sq_nonneg _\n  have h1 : x 1 = 0 := by\n    have h1sq : (x 1) ^ 2 = 0 := by linarith\n    exact (pow_eq_zero_iff two_ne_zero).mp h1sq\n  have h0 : x 0 = 0 := by\n    have h0sq : (x 0 + x 1 / 2) ^ 2 = 0 := by linarith\n    have h0lin : x 0 + x 1 / 2 = 0 := (pow_eq_zero_iff two_ne_zero).mp h0sq\n    linarith\n  apply hx\n  ext i\n  fin_cases i\n  · first\n      | simpa using h0\n      | (simp; exact h0)\n      | exact h0\n  · first\n      | simpa using h1\n      | (simp; exact h1)\n      | exact h1",
    "doc": "Away from the origin the coupled spring potential is strictly positive.",
+   "file": "checks/StrictMinimum.lean",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "status": "checked"
+  },
+  {
+   "name": "couplingPotential_origin_lt",
+   "keyword": "theorem",
+   "line": 32,
+   "end_line": 41,
+   "code": "/-- At every point other than the origin the coupled spring potential is larger than at the\norigin. -/\ntheorem couplingPotential_origin_lt (x : EuclideanSpace ℝ (Fin 2)) (hx : x ≠ 0) :\n    couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2)) < couplingPotential x := by\n  have h0 : couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2)) = 0 := by\n    first\n      | simp [couplingPotential]\n      | norm_num [couplingPotential]\n  rw [h0]\n  exact couplingPotential_pos x hx",
+   "doc": "At every point other than the origin the coupled spring potential is larger than at the origin.",
    "file": "checks/StrictMinimum.lean",
    "axioms": [
     "propext",

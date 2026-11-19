@@ -25,7 +25,6 @@ import plain_maths  # noqa: E402
 SITE = "https://wcook04.github.io/proof-reader/#/{slug}"
 REPO = "https://github.com/wcook04/proof-reader/blob/main/papers/{slug}/{path}#L{line}-L{end}"
 DEFINES = ("def", "abbrev")
-LONG_DEFINITION = 12
 VERDICT = {"same": "Same statement", "stronger": "Lean is stronger", "weaker": "Lean is weaker",
            "different": "Different statement"}
 
@@ -69,6 +68,10 @@ def excerpt(lines: list[str], first: int, last: int, keyword: str, whole: bool =
     above = tool.comment_above(lines, at)
     if above and above[0] < top:
         top = above[0]
+    # A docstring that is only a full stop, "/-- . -/", tells the reader nothing; the
+    # link to the lines still shows it.
+    while top < at and re.fullmatch(r"\s*(/--\s*\.\s*-/)?\s*", lines[top - 1]):
+        top += 1
     return "\n".join(lines[top - 1:last if whole else end]), at, end
 
 
@@ -104,9 +107,8 @@ def build(slug: str) -> Path:
     def lean_entry(name: str, proof: bool = False) -> dict:
         row = written[name]
         lines = texts[row["module"]].splitlines()
-        # A definition is shown with its body, which is what it defines, unless
-        # the body is too long to read in a fold.
-        whole = proof or (row["keyword"] in DEFINES and row["end_line"] - row["line"] < LONG_DEFINITION)
+        # A definition is shown with its body, which is what it defines.
+        whole = proof or row["keyword"] in DEFINES
         code, at, _ = excerpt(lines, row["line"], row["end_line"], row["keyword"], whole=whole)
         path = tool.module_file(project, row["module"]).relative_to(project).as_posix()
         url = lean["source_lines"].format(path=path, line=at, end=row["end_line"])
@@ -207,8 +209,8 @@ def build(slug: str) -> Path:
             f"[Lean source]({lean['source']}) · "
             "Each ▸ **Lean** under a paragraph opens the statements that paragraph is about.", ""]
     table = ["## Statements and comparisons", "",
-             "Each statement on this page that has a Lean declaration, with the comparison of the two. "
-             "The comparisons were made by AI and have not been reviewed.", "",
+             "The statements on this page that were compared with a Lean declaration, and the Lean "
+             "statements written for this page. The comparisons were made by AI and have not been reviewed.", "",
              "| Statement on this page | Lean | Comparison with the page |", "| --- | --- | --- |", *rows, ""]
     waiting: list[dict] = []
     for i in rest:
