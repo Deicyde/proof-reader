@@ -15,7 +15,7 @@ const SUB = pairs("0123456789+-=()aehijklmnoprstuvx", "₀₁₂₃₄₅₆₇�
 const GLYPH: Record<string, string> = { "1/2": "½", "3/4": "¾", "1/4": "¼", "1/3": "⅓", "2/3": "⅔" };
 const SYMBOL: Record<string, string> = {
   to: "→", mapsto: "↦", times: "×", in: "∈", neq: "≠", ne: "≠", le: "≤", leq: "≤", ge: "≥", geq: "≥",
-  infty: "∞", lVert: "‖", rVert: "‖", lvert: "|", rvert: "|", blacksquare: "∎", partial: "∂", cdot: "·", sum: "Σ",
+  infty: "∞", lVert: "‖", rVert: "‖", lvert: "|", rvert: "|", blacksquare: "∎", partial: "∂", cdot: "·", sum: "Σ", nabla: "∇", pm: "±",
 };
 const LETTER: Record<string, Record<string, string>> = { mathbb: { R: "ℝ", N: "ℕ", Z: "ℤ", Q: "ℚ", C: "ℂ" } };
 const GREEK_NAMES = "alpha beta gamma delta epsilon theta lambda mu nu pi rho sigma tau phi chi psi omega".split(" ");
@@ -87,6 +87,11 @@ function tokens(tex: string): string[] {
         // A fraction that multiplies what follows is bracketed: (c/2)y₁.
         const multiplies = rest.length > 0 && (/^[\p{L}\p{N}]/u.test(rest) || ("(\\".includes(rest[0]) && !closes));
         out.push(multiplies ? `(${text})` : text);
+      } else if (name === "sqrt") {
+        let arg: string;
+        [arg, i] = group(tex, i);
+        const text = plainMaths(arg, false);
+        out.push(text.length === 1 || /^\d+$/.test(text) ? `√${text}` : `√(${text})`);
       } else if (name === "begin") {
         let env: string;
         [env, i] = group(tex, i);

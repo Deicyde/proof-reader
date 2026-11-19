@@ -18,7 +18,7 @@ GLYPH = {("1", "2"): "½", ("3", "4"): "¾", ("1", "4"): "¼", ("1", "3"): "⅓"
 SYMBOL = {
     "to": "→", "mapsto": "↦", "times": "×", "in": "∈", "neq": "≠", "ne": "≠", "le": "≤",
     "leq": "≤", "ge": "≥", "geq": "≥", "infty": "∞", "lVert": "‖", "rVert": "‖", "lvert": "|",
-    "rvert": "|", "blacksquare": "∎", "partial": "∂", "cdot": "·", "sum": "Σ",
+    "rvert": "|", "blacksquare": "∎", "partial": "∂", "cdot": "·", "sum": "Σ", "nabla": "∇", "pm": "±",
 }
 LETTER = {"mathbb": {"R": "ℝ", "N": "ℕ", "Z": "ℤ", "Q": "ℚ", "C": "ℂ"}}
 GREEK = dict(zip("alpha beta gamma delta epsilon theta lambda mu nu pi rho sigma tau phi chi psi omega".split(),
@@ -100,6 +100,10 @@ def tokens(tex: str) -> list[str]:
                 # A fraction that multiplies what follows is bracketed: (c/2)y₁.
                 multiplies = bool(rest) and (rest[0].isalnum() or (rest[0] in "(\\" and not closes))
                 out.append(f"({text})" if multiplies else text)
+            elif name == "sqrt":
+                arg, i = group(tex, i)
+                text = convert(arg, spaced=False)
+                out.append(f"√{text}" if len(text) == 1 or text.isdigit() else f"√({text})")
             elif name == "begin":
                 env, i = group(tex, i)
                 end = tex.index(f"\\end{{{env}}}", i)

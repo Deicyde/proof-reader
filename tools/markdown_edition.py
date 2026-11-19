@@ -25,7 +25,7 @@ import plain_maths  # noqa: E402
 SITE = "https://wcook04.github.io/proof-reader/#/{slug}"
 REPO = "https://github.com/wcook04/proof-reader/blob/main/papers/{slug}/{path}#L{line}-L{end}"
 DEFINES = ("def", "abbrev")
-LONG_DEFINITION = 40
+LONG_DEFINITION = 12
 VERDICT = {"same": "Same statement", "stronger": "Lean is stronger", "weaker": "Lean is weaker",
            "different": "Different statement"}
 
@@ -41,7 +41,17 @@ MATHS = re.compile(r"\$\$(.+?)\$\$|(?<![\\$])\$(.+?)(?<!\\)\$", re.S)
 def plain_text(paragraph: str) -> str:
     """Write each formula as plain Unicode text, as Physlib's API maps do, so the
     maths reads the same in the file, on GitHub and when copied."""
+    if paragraph.lstrip().startswith("|"):
+        # Inside a table a bare | would end the cell: |c| < 2 is written \|c\| < 2.
+        return MATHS.sub(lambda m: plain_maths.convert(m[1] or m[2]).replace("|", "\\|"), paragraph)
     return MATHS.sub(lambda m: plain_maths.convert(m[1] or m[2]), paragraph)
+
+
+def sentence_ends(paragraph: str) -> bool:
+    """Whether a paragraph finishes its sentence, ignoring citations such as [6] or {2}
+    after the full stop."""
+    text = re.sub(r"(\s*(\[[0-9TODO]+\]|\{[0-9]+\}))+\s*$", "", plain_text(paragraph).rstrip())
+    return bool(re.search(r"[.!?∎][*_)]*$", text))
 
 
 def squash(text: str) -> str:
@@ -109,16 +119,18 @@ def build(slug: str) -> Path:
     def check_entry(name: str) -> dict:
         c = checks[name]
         url = REPO.format(slug=slug, path=c["file"], line=c["line"], end=c["end_line"])
-        code = c["code"].split(":= by")[0].rstrip() + " := by"
-        where = (f"Written for this page and accepted by Lean against the two files: "
+        code = c["code"].rstrip()
+        where = (f"Written by AI for this page and accepted by Lean against the two files: "
                  f"[{c['file']}, lines {c['line']}–{c['end_line']}][{name}]. It is not in Physlib.")
-        return {"name": name, "title": c["doc"].rstrip("."), "code": code, "where": where, "url": url}
+        return {"name": name, "title": c["doc"].rstrip("."), "code": code, "where": where, "url": url,
+                "proof": True}
 
     def comparison(name: str) -> str | None:
         f = fidelity.get(name)
         if not f:
             return None
-        return f"**Comparison with the page: {VERDICT.get(f['verdict'], f['verdict']).lower()}.** {f['text']}"
+        return (f"**Comparison with the page, made by AI and not reviewed: "
+                f"{VERDICT.get(f['verdict'], f['verdict']).lower()}.** {f['text']}")
 
     # Which paragraph carries each comparison and each written-for-the-page check.
     compare_at, checks_at = {}, {}
@@ -173,20 +185,20 @@ def build(slug: str) -> Path:
     rows, seen, urls = [], set(), {}
     for i in sorted(attached):
         for e in attached[i]:
-            if e["name"] in seen or e.get("proof"):
+            if e["name"] in seen or (e.get("proof") and e["name"] not in checks):
                 continue
             seen.add(e["name"])
             f = fidelity.get(e["name"])
             urls[e["name"]] = e["url"]
             if e["name"] in checks:
-                verdict = "Written for this page; not in Physlib"
+                verdict = "Written by AI for this page; not in Physlib"
             elif f:
                 verdict = VERDICT.get(f["verdict"], f["verdict"])
             else:
                 continue
             rows.append(f"| {e['title']} | [`{e['name']}`][{e['name']}] | {verdict} |")
 
-    title_end = next(i for i, b in enumerate(paragraphs) if b.startswith("## Introduction"))
+    title_end = next(i for i, b in enumerate(paragraphs) if b.startswith("## "))
     head, rest = paragraphs[:title_end], range(title_end, len(paragraphs))
     out = ["<!-- Written by tools/markdown_edition.py from paper.md, links.json and the Lean. "
            "Edit those, then run it again. -->", ""]
@@ -194,17 +206,24 @@ def build(slug: str) -> Path:
     out += [f"[Read it with the Lean beside it]({SITE.format(slug=slug)}) · "
             f"[Lean source]({lean['source']}) · "
             "Each ▸ **Lean** under a paragraph opens the statements that paragraph is about.", ""]
-    out += ["| Statement on this page | Lean | Comparison with the page |", "| --- | --- | --- |", *rows, ""]
+    table = ["## Statements and comparisons", "",
+             "Each statement on this page that has a Lean declaration, with the comparison of the two. "
+             "The comparisons were made by AI and have not been reviewed.", "",
+             "| Statement on this page | Lean | Comparison with the page |", "| --- | --- | --- |", *rows, ""]
     waiting: list[dict] = []
     for i in rest:
+        if paragraphs[i].startswith("## Lean References"):
+            out += table
+            table = []
         out += [plain_text(paragraphs[i]), ""]
         waiting += attached.get(i, [])
         # A fold waits until the sentence ends: "The function $$U=…$$ on ℝ² is
         # called…" is one sentence over three paragraphs, and its Lean opens after it.
         if waiting and (paragraphs[i].startswith("#") or i + 1 == len(paragraphs)
-                        or re.search(r"[.!?][*_)]*$", plain_text(paragraphs[i]).rstrip())):
+                        or sentence_ends(paragraphs[i])):
             out += [details(waiting), ""]
             waiting = []
+    out += table
     if refs:
         out += ["[file]:" + refs.rstrip("\n")]
     out += [f"[{name}]: {url}" for name, url in urls.items()] + [""]
