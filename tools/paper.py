@@ -1190,6 +1190,10 @@ def main() -> int:
                 physlib_map.build()
         elif not args.slug:
             parser.error("this command needs a paper name")
+        elif args.command == "check" and args.slug == physlib_map.SLUG:
+            # An API map has no paper.toml. Building it verifies its citations, glossary and
+            # source lines against the pinned tracker index.
+            physlib_map.build()
         else:
             {"extract": extract, "check": check, "new": new}[args.command](args.slug)
     except (PaperError, reading_copy.ReadingError, ValueError) as error:

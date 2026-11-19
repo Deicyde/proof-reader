@@ -617,3 +617,16 @@ class ComparatorEvidence(unittest.TestCase):
     def test_a_folder_outside_papers_is_refused(self):
         with self.assertRaisesRegex(paper.PaperError, "folder under papers/"):
             self.evidence({"comparator": {"evidence": "../../.."}})
+
+
+class EveryFolderChecks(unittest.TestCase):
+    def test_every_folder_in_papers_passes_check(self) -> None:
+        # The publishing workflow runs `paper.py check` on every folder in papers/, including
+        # the Physlib API map, which has no paper.toml.
+        import subprocess
+        root = Path(__file__).resolve().parent.parent
+        for folder in sorted((root / "papers").iterdir()):
+            if folder.is_dir():
+                run = subprocess.run([sys.executable, "tools/paper.py", "check", folder.name], cwd=root,
+                                     capture_output=True, text=True)
+                self.assertEqual(run.returncode, 0, f"{folder.name}: {run.stderr[-800:]}")
