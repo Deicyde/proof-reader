@@ -28,3 +28,14 @@ theorem couplingPotential_pos (x : EuclideanSpace ℝ (Fin 2)) (hx : x ≠ 0) :
       | simpa using h1
       | (simp; exact h1)
       | exact h1
+
+/-- At every point other than the origin the coupled spring potential is larger than at the
+origin. -/
+theorem couplingPotential_origin_lt (x : EuclideanSpace ℝ (Fin 2)) (hx : x ≠ 0) :
+    couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2)) < couplingPotential x := by
+  have h0 : couplingPotential (!₂[0, 0] : EuclideanSpace ℝ (Fin 2)) = 0 := by
+    first
+      | simp [couplingPotential]
+      | norm_num [couplingPotential]
+  rw [h0]
+  exact couplingPotential_pos x hx
