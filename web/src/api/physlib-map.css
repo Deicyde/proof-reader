@@ -256,7 +256,6 @@
 .api-map__topic-bars > span { display: block; width: 12px; height: 3px; border-radius: 2px; background: var(--tone); }
 .api-map__key { display: block; margin-bottom: 10px; }
 .api-map__key-label { display: block; margin-bottom: 4px; font: 600 0.68rem/1.4 var(--font-sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
-.api-map__key .api-map__topic { display: inline-block; margin: 0 10px 4px 0; color: var(--ink-2); }
 .sheet__text .api-map__todo { display: inline-block; margin-inline: 2px; padding: 0 0.5em; border: 1px solid light-dark(#d6a24a, #8a6420); border-radius: 999px; background: light-dark(#fdf3df, #2a1f08); color: light-dark(#8a5a07, #edb94a); font: 500 0.66em/1.5 var(--font-sans); letter-spacing: 0.03em; vertical-align: 0.12em; }
 
 /* The right pane: a declaration reads title first; the Lean name and code sit smaller beneath. */
@@ -286,3 +285,30 @@
 .api-map__topic-group + .api-map__topic-group { margin-top: 18px; }
 .api-map__topic-name { margin: 6px 0 6px; font: 600 calc(var(--pane) * 0.8125)/1.4 var(--font-sans); letter-spacing: 0.04em; color: var(--ink); }
 .api-map .rail__item .api-map__topic-bars { margin-left: auto; padding-left: 8px; }
+
+/* Topic keys. The reading column centres every block (reading.css), so the key keeps auto
+   side margins. Each topic is a colour bar then its name, the same bar as in the contents. */
+.api-map .sheet__text > .api-map__guide { margin: 0.2em auto 1.8em; padding: 13px 16px 14px; }
+.api-map__legend { display: grid; grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); gap: 7px 20px; margin-bottom: 10px; }
+.api-map__legend-label { grid-column: 1 / -1; margin-bottom: 1px; }
+.api-map__guide .api-map__topic, .api-map__key .api-map__topic { display: flex; align-items: center; gap: 9px; padding: 0; background: none; color: var(--ink); white-space: normal; }
+.api-map__guide .api-map__topic::before, .api-map__key .api-map__topic::before { content: ""; flex: none; width: 16px; height: 3px; border-radius: 2px; background: var(--tone); }
+.api-map__guide p + p { margin-top: 0; padding-top: 10px; border-top: 1px solid var(--rule); }
+
+/* The contents list: room between rows, and the key straight after the list. */
+.api-map .rail { padding: 18px 10px 16px 16px; font-size: clamp(0.875rem, 0.78rem + 0.16vw, 1rem); }
+.api-map .rail__search { margin-bottom: 16px; }
+.api-map .rail__list { flex: 0 1 auto; }
+.api-map .rail__item { min-height: 34px; padding: 7px 8px; line-height: 1.35; align-items: center; }
+.api-map .rail__sub .rail__item { padding-left: 20px; }
+.api-map .rail__key { margin: 26px 6px 0; padding-top: 14px; gap: 14px; font-size: calc(1em * 0.82); }
+.api-map__key { display: flex; flex-direction: column; gap: 9px; margin: 0; }
+.api-map__key .api-map__topic { margin: 0; color: var(--ink-2); font-size: 1.06em; }
+.api-map__key-label { margin-bottom: 2px; }
+.api-map .sheet__text .api-map__guide p { margin: 0; }
+.api-map .sheet__text .api-map__guide .api-map__legend { margin-bottom: 11px; }
+.api-map .rail__item .api-map__topic-bars { gap: 2px; padding-left: 6px; }
+.api-map .rail__item .api-map__topic-bars > span { width: 9px; }
+.api-map__topic-name .api-map__topic { display: inline-flex; align-items: center; gap: 9px; padding: 0; background: none; }
+.api-map__topic-name .api-map__topic::before { content: ""; flex: none; width: 16px; height: 3px; border-radius: 2px; background: var(--tone); }
+.api-map__topic-name { margin: 8px 0 8px; font-size: calc(var(--pane) * 0.875); }
