@@ -16,7 +16,7 @@ author of a paper here and want it changed or removed, say so and it will be.
 Data flows one way: `papers/<slug>/` to `tools/paper.py` to `web/public/papers/` to
 `web/`. Keep the code free of knowledge of any one paper.
 
-Install the [prerequisites in the README](README.md#run-the-site), then run
+Install the [prerequisites in the README](README.md#run-it-locally), then run
 these commands from the repository root. Install the website dependencies
 before checking a paper: the paper checker uses its Markdown and maths renderer.
 

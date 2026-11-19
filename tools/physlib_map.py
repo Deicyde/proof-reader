@@ -12,7 +12,7 @@ from urllib.request import urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 SLUG = "physlib-gauge-theory"
-FOLDER = ROOT / "papers" / SLUG
+FOLDER = ROOT / "api-maps" / SLUG
 PUBLIC = ROOT / "web" / "public" / "api-maps" / SLUG
 PATH = "Physlib/ClassicalFieldTheory/GaugeTheory"
 INDEX = (

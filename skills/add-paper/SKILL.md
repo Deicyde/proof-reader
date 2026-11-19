@@ -56,7 +56,7 @@ result under `claims` in `links.json`, with its passage and Lean declaration (st
 Then run `paper.py check`. The comparison
 skips page margins, recurring headers and footers, and figure crops. It also permits
 some rearrangements of text, so passing does not certify an exact copy; see the
-[check's limits](../../README.md#what-paperpy-check-establishes).
+[check's limits](../../docs/what-the-checks-show.md).
 Review and repair `paper.md` by hand:
 
 - **The first page.** The title block, abstract, keywords and the licence box arrive in
@@ -70,7 +70,7 @@ Review and repair `paper.md` by hand:
   `paper.toml`, and describe the plot in the image's alternative text.
 
 For a Markdown source, keep each referenced local image inside the paper folder.
-The [Markdown image route](../../README.md#add-a-paper) checks the relative path,
+The [Markdown image route](../../docs/paper-folder.md#figures) checks the relative path,
 records its hash and copies it into the built site; PDF figure crops above apply
 only when the paper source is a PDF.
 
@@ -209,8 +209,8 @@ comparisons.
 
 If Comparator has judged some of the authors' theorems against a challenge file, put the
 run's files in one folder (`Challenge.lean`, `Solution.lean`, the configuration, the rejected
-control and `receipt.json`) and name it under `[comparator] evidence` in `paper.toml`; see the
-[README](../../README.md#what-paperpy-check-establishes). The build checks the files against
+control and `receipt.json`) and name it under `[comparator] evidence` in `paper.toml`; see
+[Comparator runs](../../docs/what-the-checks-show.md#comparator-runs). The build checks the files against
 the receipt's hashes and shows the evidence under each checked declaration. Comparator does not test
 whether the challenge matches the paper, so its result never replaces a comparison.
 

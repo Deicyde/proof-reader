@@ -1565,7 +1565,7 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
         page.get_by_role("button", name="Copy page").click()
         wait_until(page, lambda: page.get_by_role("status").get_by_text("Markdown copied").is_visible(),
                    "Copy page finishes writing the original Markdown")
-        source = (ROOT / "papers" / "physlib-gauge-theory" / "API-map.md").read_text(encoding="utf-8")
+        source = (ROOT / "api-maps" / "physlib-gauge-theory" / "API-map.md").read_text(encoding="utf-8")
         check(page.evaluate("navigator.clipboard.readText()") == source, "the clipboard contains the entire original Markdown")
     check(page.evaluate("document.documentElement.scrollWidth === innerWidth"), "the page fits the viewport")
     abelian = article.get_by_role("heading", name="The abelian theory", exact=True)
