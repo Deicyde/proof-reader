@@ -24,6 +24,8 @@ import plain_maths  # noqa: E402
 
 SITE = "https://wcook04.github.io/proof-reader/#/{slug}"
 REPO = "https://github.com/wcook04/proof-reader/blob/main/papers/{slug}/{path}#L{line}-L{end}"
+DEFINES = ("def", "abbrev")
+LONG_DEFINITION = 40
 VERDICT = {"same": "Same statement", "stronger": "Lean is stronger", "weaker": "Lean is weaker",
            "different": "Different statement"}
 
@@ -92,11 +94,14 @@ def build(slug: str) -> Path:
     def lean_entry(name: str, proof: bool = False) -> dict:
         row = written[name]
         lines = texts[row["module"]].splitlines()
-        code, at, _ = excerpt(lines, row["line"], row["end_line"], row["keyword"], whole=proof)
+        # A definition is shown with its body, which is what it defines, unless
+        # the body is too long to read in a fold.
+        whole = proof or (row["keyword"] in DEFINES and row["end_line"] - row["line"] < LONG_DEFINITION)
+        code, at, _ = excerpt(lines, row["line"], row["end_line"], row["keyword"], whole=whole)
         path = tool.module_file(project, row["module"]).relative_to(project).as_posix()
         url = lean["source_lines"].format(path=path, line=at, end=row["end_line"])
         span = f"[{Path(path).name}, lines {at}–{row['end_line']}][{name}] in {lean['source_name']}"
-        where = (f"Copied whole from {span}." if proof
+        where = (f"Copied whole from {span}." if whole
                  else f"Statement copied from {span}; the proof is at the link.")
         return {"name": name, "title": plain.get(name, name), "code": code, "where": where, "url": url,
                 "proof": proof}
@@ -190,10 +195,16 @@ def build(slug: str) -> Path:
             f"[Lean source]({lean['source']}) · "
             "Each ▸ **Lean** under a paragraph opens the statements that paragraph is about.", ""]
     out += ["| Statement on this page | Lean | Comparison with the page |", "| --- | --- | --- |", *rows, ""]
+    waiting: list[dict] = []
     for i in rest:
         out += [plain_text(paragraphs[i]), ""]
-        if attached.get(i):
-            out += [details(attached[i]), ""]
+        waiting += attached.get(i, [])
+        # A fold waits until the sentence ends: "The function $$U=…$$ on ℝ² is
+        # called…" is one sentence over three paragraphs, and its Lean opens after it.
+        if waiting and (paragraphs[i].startswith("#") or i + 1 == len(paragraphs)
+                        or re.search(r"[.!?][*_)]*$", plain_text(paragraphs[i]).rstrip())):
+            out += [details(waiting), ""]
+            waiting = []
     if refs:
         out += ["[file]:" + refs.rstrip("\n")]
     out += [f"[{name}]: {url}" for name, url in urls.items()] + [""]
