@@ -1465,9 +1465,20 @@ def narrow_header(page: Page, url: str, shots: Path | None) -> None:
 def coupled_spring(page: Page, url: str) -> None:
     print("Coupled spring evidence follows the reading")
     paper = f"{url}#/coupled-spring"
+    page.goto(f"{paper}/@cubic-local-minimum")
+    cubic = page.locator(".leaf .step-proof")
+    wait_until(page, lambda: cubic.count() == 2, "both cubic proofs are in the step")
+    check(cubic.nth(0).locator(".fid__code").is_visible() and cubic.nth(1).locator(".fid__code").is_visible(),
+          "both cubic proofs open to the Lean code")
+    check(cubic.nth(0).locator(".step-proof__axioms[open]").count() == 0,
+          "the axiom report stays collapsed until requested")
+    cubic.nth(1).locator(".step-proof__summary").click()
+    check(cubic.nth(0).locator(".fid__code").is_visible() and not cubic.nth(1).locator(".fid__code").is_visible(),
+          "the reader can fold one proof without hiding the other")
+
     page.goto(f"{paper}/@strict-positivity")
     proof = page.locator('.leaf [data-check="couplingPotential_pos"]')
-    proof.get_by_role("button", name="The proof in Lean", exact=False).click()
+    proof.locator(".fid__code").wait_for()
     check("have h1sq" in proof.locator(".fid__code").inner_text(),
           "the equality argument opens the actual positivity proof")
     check(page.locator(".leaf .decl").count() == 0,

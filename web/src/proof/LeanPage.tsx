@@ -9,7 +9,7 @@ import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code
 import { sectionLabel, shapeOf } from "../model/fromEdition";
 import { READING_LINE } from "../paper/reading-line";
 import { DeclBlock, KIND_WORDS, list } from "./DeclBlock";
-import { AllChecks, CheckLine, checksOf, FidelityLines, HowMade, reviewers } from "./Fidelity";
+import { AllChecks, checksOf, FidelityLines, HowMade, reviewers, SupplementaryProofs } from "./Fidelity";
 import { ComparatorIndex } from "./Comparator";
 import { MadeLink } from "./MadeLink";
 import { Quote } from "../paper/Quote";
@@ -149,7 +149,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
         <button type="button" aria-pressed={visibleTab === "file"} disabled={!hasWholeFile} onClick={() => onTab("file")}>Whole file</button>
         <button type="button" aria-pressed={visibleTab === "index"} onClick={() => onTab("index")}>Index</button>
       </div>
-      <div className="leaf__body" ref={body} tabIndex={-1}>
+      <div className={`leaf__body${visibleTab === "step" && supplementary.length > 0 ? " leaf__body--supplementary" : ""}`} ref={body} tabIndex={-1}>
         {visibleTab === "index" ? (
           <AllDeclarations edition={edition} act={act} />
         ) : visibleTab === "file" ? (
@@ -164,7 +164,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
             )}
             {step.passage && (
               <header className="stepline">
-                {step.title && <p className="stepline__title">{step.title}</p>}
+                {step.title && (!supplementary.length || step.decls.length > 0) && <p className="stepline__title">{step.title}</p>}
                 <blockquote><Quote passage={step.passage} /></blockquote>
                 <FidelityLines edition={edition} ids={step.decls} act={act} onGo={goTo} />
                 {step.decls.length > 1 && (
@@ -199,12 +199,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
                 />
               );
             })}
-            {supplementary.length > 0 && (
-              <section className="fid fid--supplementary" aria-label="Supplementary Lean proofs">
-                <p className="fid__head"><span className="decl__label">Supplementary Lean</span> <span className="fid__by">Written for this page</span></p>
-                {supplementary.map((check) => <CheckLine key={check.name} edition={edition} check={check} act={act} />)}
-              </section>
-            )}
+            {supplementary.length > 0 && <SupplementaryProofs edition={edition} checks={supplementary} act={act} />}
             {step.decls.length > 0 && step.passage && (
               <p className="stepline__caveat stepline__caveat--foot">{(hasComparisons(edition) ? LINK_CAVEAT : LINK_CAVEAT_PLAIN)(reviewers(edition))} <MadeLink onOpen={() => onTab("index")} /></p>
             )}

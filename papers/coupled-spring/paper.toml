@@ -28,3 +28,11 @@ evidence = "comparator"
 
 [checks]
 source_lines = "https://github.com/wcook04/proof-reader/blob/91c61ce91abe650978a26c1c7cd291384c1a411c/papers/coupled-spring/{path}#L{line}-L{end}"
+
+[checks.titles]
+cubicPerturbation_isLocalMin = "A local minimum at the origin"
+cubicPerturbation_not_global = "A smaller value at (−2, 0)"
+couplingPotential_eq_sq_add_sq = "Completing the square"
+couplingPotential_origin_lt = "The unique global minimum"
+couplingPotential_pos = "Strict positivity away from the origin"
+isLocalMin_of_posDef_of_littleo_without_smoothness = "The remainder lemma without smoothness"

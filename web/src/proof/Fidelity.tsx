@@ -56,12 +56,48 @@ function CheckCode({ edition, check, act }: { edition: Edition; check: Check; ac
 
 const span = (check: Check) => check.end_line - check.line + 1;
 
+function checkSource(edition: Edition, check: Check) {
+  return edition.check_source_lines?.replace("{path}", check.file)
+    .replace("{line}", String(check.line)).replace("{end}", String(check.end_line));
+}
+
+/** Proofs for the passage itself, with the checked code already in view. */
+export function SupplementaryProofs({ edition, checks, act }: { edition: Edition; checks: Check[]; act: LeanActions }) {
+  return (
+    <section className="step-proofs" aria-label="Supplementary Lean proofs">
+      <p className="step-proofs__credit"><strong>Supplementary proofs</strong> <span>Written for this page and checked by Lean</span></p>
+      {checks.map((check) => {
+        const source = checkSource(edition, check);
+        const file = check.file.split("/").pop();
+        const lines = span(check);
+        return (
+          <details key={check.name} className="step-proof" data-check={check.name} open>
+            <summary className="step-proof__summary">
+              <span className="step-proof__title"><Doc text={check.title ?? check.doc} /></span>
+              <span className="step-proof__length">{lines} {lines === 1 ? "line" : "lines"}</span>
+            </summary>
+            <CheckCode edition={edition} check={check} act={act} />
+            <div className="step-proof__meta">
+              {source
+                ? <a href={source} target="_blank" rel="noreferrer" title={check.file}>{file}, lines {check.line}–{check.end_line}</a>
+                : <span>{file}, lines {check.line}–{check.end_line}</span>}
+              <details className="step-proof__axioms">
+                <summary>Axiom report</summary>
+                <p><CheckAxioms edition={edition} check={check} act={act} /></p>
+              </details>
+            </div>
+          </details>
+        );
+      })}
+    </section>
+  );
+}
+
 /** One check: what it shows, that Lean checked it, and its code a click away. */
 export function CheckLine({ edition, check, act }: { edition: Edition; check: Check; act: LeanActions }) {
   const [open, setOpen] = useState(false);
   const n = span(check);
-  const source = edition.check_source_lines?.replace("{path}", check.file)
-    .replace("{line}", String(check.line)).replace("{end}", String(check.end_line));
+  const source = checkSource(edition, check);
   const location = `${check.file}, lines ${check.line} to ${check.end_line}`;
   return (
     <div className="fid__check" data-check={check.name}>

@@ -100,6 +100,7 @@ export interface Fidelity {
 
 export interface Check {
   name: string;
+  title?: string;
   keyword: "theorem" | "def";
   file: string;
   line: number;
