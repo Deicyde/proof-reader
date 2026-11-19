@@ -4,7 +4,7 @@
     {
       "id": "local-minimum",
       "title": "The coupled spring potential has a local minimum at the origin",
-      "section": "2",
+      "section": "1",
       "passage": "local-minimum",
       "lean": [
         "coupled_spring_potential"
@@ -13,17 +13,31 @@
     {
       "id": "global-minimum",
       "title": "The origin is the unique global minimum",
-      "section": "1",
+      "section": "3",
       "passage": "global-minimum",
-      "lean": []
+      "lean": [],
+      "checks": [
+        "couplingPotential_origin_lt"
+      ]
     },
     {
       "id": "second-derivative-test",
       "title": "The analytic second-derivative test",
-      "section": "2",
+      "section": "1",
       "passage": "test-statement",
       "lean": [
         "second_derivative_test_analyticAt"
+      ]
+    },
+    {
+      "id": "cubic-local-not-global",
+      "title": "The cubic perturbation has a local minimum and a smaller value elsewhere",
+      "section": "What a cubic changes",
+      "passage": "cubic-local-minimum",
+      "lean": [],
+      "checks": [
+        "cubicPerturbation_isLocalMin",
+        "cubicPerturbation_not_global"
       ]
     }
   ],
@@ -42,207 +56,160 @@
       }
     },
     {
-      "id": "global-minimum",
-      "section": "1. Where the squares come from",
-      "role": "states",
-      "lean": [],
-      "quote": "For every nonzero $x\\in\\mathbb R^2$, $U(x)>U(0)$.",
-      "anchor": {
-        "heading": "1. Where the squares come from",
-        "block": 6
-      },
-      "checks": [
-        "couplingPotential_origin_lt"
-      ],
-      "title": "Unique global minimum"
-    },
-    {
-      "id": "completed-square",
-      "section": "1. Where the squares come from",
-      "role": "states",
-      "lean": [],
-      "quote": "$$U(x)=\\left(x_0+\\tfrac12x_1\\right)^2+\\tfrac34x_1^2.$$",
-      "anchor": {
-        "heading": "1. Where the squares come from",
-        "block": 7
-      },
-      "checks": [
-        "couplingPotential_eq_sq_add_sq"
-      ],
-      "title": "Completing the square"
-    },
-    {
-      "id": "strict-positivity",
-      "section": "1. Where the squares come from",
-      "role": "proves",
-      "lean": [],
-      "quote": "If the sum is zero, the second term forces $x_1=0$. The first then forces\n$x_0=0$.",
-      "anchor": {
-        "heading": "1. Where the squares come from",
-        "block": 8
-      },
-      "checks": [
-        "couplingPotential_pos"
-      ],
-      "title": "Why equality forces the origin"
-    },
-    {
       "id": "local-minimum",
-      "section": "2. What Physlib proves",
+      "section": "1. What PhyslibAlpha proves",
       "role": "states",
       "lean": [
         "coupled_spring_potential"
       ],
       "quote": "The coupled spring potential $U$ has a local minimum\nat the origin.",
       "anchor": {
-        "heading": "2. What Physlib proves",
+        "heading": "1. What PhyslibAlpha proves",
         "block": 1
       }
     },
     {
       "id": "test-statement",
-      "section": "2. What Physlib proves",
+      "section": "1. What PhyslibAlpha proves",
       "role": "states",
       "lean": [
         "second_derivative_test_analyticAt"
       ],
       "quote": "If $f$ is analytic at $a$, its gradient vanishes at $a$, and\n$D^2f(a)[h,h]>0$ for every $h\\ne0$, then $f$ has a local minimum at $a$.",
       "anchor": {
-        "heading": "2. What Physlib proves",
+        "heading": "1. What PhyslibAlpha proves",
         "block": 2
       }
     },
     {
       "id": "potential-analytic",
-      "section": "2. What Physlib proves",
+      "section": "1. What PhyslibAlpha proves",
       "role": "states",
       "lean": [
         "couplingPotential_analyticAt"
       ],
       "quote": "It is a polynomial, so it is\nanalytic at every point.",
       "anchor": {
-        "heading": "2. What Physlib proves",
+        "heading": "1. What PhyslibAlpha proves",
         "block": 3
       }
     },
     {
       "id": "potential-derivative",
-      "section": "2. What Physlib proves",
+      "section": "1. What PhyslibAlpha proves",
       "role": "states",
       "lean": [
         "couplingPotential_hasFDerivAt"
       ],
       "quote": "$$DU(x)[h]=(2x_0+x_1)h_0+(x_0+2x_1)h_1.$$",
       "anchor": {
-        "heading": "2. What Physlib proves",
-        "block": 4
+        "heading": "1. What PhyslibAlpha proves",
+        "block": 7
       }
     },
     {
       "id": "potential-gradient",
-      "section": "2. What Physlib proves",
+      "section": "1. What PhyslibAlpha proves",
       "role": "states",
       "lean": [
         "couplingPotential_gradient_zero"
       ],
       "quote": "so the gradient at the origin is zero.",
       "anchor": {
-        "heading": "2. What Physlib proves",
-        "block": 5
+        "heading": "1. What PhyslibAlpha proves",
+        "block": 8
       }
     },
     {
       "id": "potential-second-derivative",
-      "section": "2. What Physlib proves",
+      "section": "1. What PhyslibAlpha proves",
       "role": "states",
       "lean": [
         "couplingPotential_iteratedFDeriv_two"
       ],
       "quote": "$$K=\\begin{pmatrix}2&1\\\\1&2\\end{pmatrix}.$$",
       "anchor": {
-        "heading": "2. What Physlib proves",
-        "block": 6
+        "heading": "1. What PhyslibAlpha proves",
+        "block": 9
       }
     },
     {
       "id": "potential-positive-definite",
-      "section": "2. What Physlib proves",
+      "section": "1. What PhyslibAlpha proves",
       "role": "states",
       "lean": [
         "couplingPotential_posDef"
       ],
       "quote": "The Hessian at the origin is positive definite.",
       "anchor": {
-        "heading": "2. What Physlib proves",
-        "block": 9
+        "heading": "1. What PhyslibAlpha proves",
+        "block": 12
       }
     },
     {
       "id": "test-quadratic-map",
-      "section": "3. Why the test is useful",
+      "section": "2. Why the test works",
       "role": "explains",
       "lean": [
         "iteratedFDerivQuadraticMap"
       ],
       "quote": "Lean packages $Q(h)=D^2f(a)[h,h]$ as a quadratic map",
       "anchor": {
-        "heading": "3. Why the test is useful",
+        "heading": "2. Why the test works",
         "block": 1
       }
     },
     {
       "id": "test-lower-bound",
-      "section": "3. Why the test is useful",
+      "section": "2. Why the test works",
       "role": "explains",
       "lean": [
         "coercive_of_posdef"
       ],
       "quote": "Scaling gives $Q(h)\\ge C\\lVert h\\rVert^2$.",
       "anchor": {
-        "heading": "3. Why the test is useful",
+        "heading": "2. Why the test works",
         "block": 1
       }
     },
     {
       "id": "test-taylor-error",
-      "section": "3. Why the test is useful",
+      "section": "2. Why the test works",
       "role": "explains",
       "lean": [
         "littleO_of_powerseries"
       ],
       "quote": "$R(h)=o(\\lVert h\\rVert^2)$.",
       "anchor": {
-        "heading": "3. Why the test is useful",
+        "heading": "2. Why the test works",
         "block": 2
       }
     },
     {
       "id": "test-inequality",
-      "section": "3. Why the test is useful",
+      "section": "2. Why the test works",
       "role": "explains",
       "lean": [
         "le_of_littleO"
       ],
       "quote": "In that neighbourhood $f(a+h)\\ge f(a)$, as required by",
       "anchor": {
-        "heading": "3. Why the test is useful",
+        "heading": "2. Why the test works",
         "block": 3
       }
     },
     {
-      "id": "cubic-local-minimum",
-      "section": "3. Why the test is useful",
+      "id": "hessian-polar-form",
       "role": "states",
-      "lean": [],
-      "quote": "A supplementary Lean proof checks the local minimum and\nthe value at $(-2,0)$.",
+      "lean": [
+        "polarBilin_iteratedFDerivQuadraticMap"
+      ],
+      "quote": "$$Q(u+v)-Q(u)-Q(v)=B(u,v)+B(v,u).$$",
+      "section": "The smoothness hypothesis in Lean",
       "anchor": {
-        "heading": "3. Why the test is useful",
-        "block": 4
-      },
-      "checks": [
-        "cubicPerturbation_isLocalMin",
-        "cubicPerturbation_not_global"
-      ]
+        "heading": "The smoothness hypothesis in Lean",
+        "block": 2
+      }
     },
     {
       "id": "lean-smoothness",
@@ -252,10 +219,10 @@
         "isLocalMin_of_posDef_of_littleo",
         "coercive_of_posdef_of_contdiff"
       ],
-      "quote": "Its proof\nobtains a lower bound twice.",
+      "quote": "Its proof obtains the same kind of lower bound twice.",
       "anchor": {
         "heading": "The smoothness hypothesis in Lean",
-        "block": 1
+        "block": 4
       },
       "lines": [
         539,
@@ -267,15 +234,92 @@
       "section": "The smoothness hypothesis in Lean",
       "role": "explains",
       "lean": [],
-      "quote": "A supplementary Lean proof checks the little-o argument with that\nsmoothness hypothesis removed.",
+      "quote": "The supplementary Lean proof keeps the\nlittle-o remainder, zero gradient and positive definiteness and drops\nthe smoothness assumption.",
       "anchor": {
         "heading": "The smoothness hypothesis in Lean",
-        "block": 1
+        "block": 5
       },
       "checks": [
         "isLocalMin_of_posDef_of_littleo_without_smoothness"
       ],
       "title": "The remainder lemma without smoothness"
+    },
+    {
+      "id": "power-series-caller",
+      "role": "explains",
+      "lean": [
+        "second_derivative_test"
+      ],
+      "quote": "It passes `h₁.analyticAt.contDiffAt` to the\nremainder lemma.",
+      "lines": [
+        593,
+        594
+      ],
+      "section": "The smoothness hypothesis in Lean",
+      "anchor": {
+        "heading": "The smoothness hypothesis in Lean",
+        "block": 6
+      }
+    },
+    {
+      "id": "cubic-local-minimum",
+      "section": "What a cubic changes",
+      "role": "states",
+      "lean": [],
+      "quote": "The supplementary Lean proofs establish `IsLocalMin` by a direct\nneighbourhood bound and check the strict inequality at $(-2,0)$.",
+      "anchor": {
+        "heading": "What a cubic changes",
+        "block": 2
+      },
+      "checks": [
+        "cubicPerturbation_isLocalMin",
+        "cubicPerturbation_not_global"
+      ]
+    },
+    {
+      "id": "global-minimum",
+      "section": "3. Spring energy and the global minimum",
+      "role": "states",
+      "lean": [],
+      "quote": "For every nonzero $x\\in\\mathbb R^2$, $U(x)>U(0)$.",
+      "anchor": {
+        "heading": "3. Spring energy and the global minimum",
+        "block": 5
+      },
+      "checks": [
+        "couplingPotential_origin_lt"
+      ],
+      "title": "Unique global minimum"
+    },
+    {
+      "id": "completed-square",
+      "section": "3. Spring energy and the global minimum",
+      "role": "states",
+      "lean": [],
+      "quote": "$$U(x)=\\left(x_0+\\tfrac12x_1\\right)^2+\\tfrac34x_1^2.$$",
+      "anchor": {
+        "heading": "3. Spring energy and the global minimum",
+        "block": 6
+      },
+      "checks": [
+        "couplingPotential_eq_sq_add_sq"
+      ],
+      "title": "Completing the square"
+    },
+    {
+      "id": "strict-positivity",
+      "section": "3. Spring energy and the global minimum",
+      "role": "proves",
+      "lean": [],
+      "quote": "If the sum is zero, the second term forces $x_1=0$. The first then forces\n$x_0=0$.",
+      "anchor": {
+        "heading": "3. Spring energy and the global minimum",
+        "block": 7
+      },
+      "checks": [
+        "couplingPotential_pos"
+      ],
+      "title": "Why equality forces the origin"
     }
   ],
   "plain": {
@@ -377,6 +421,14 @@
         "isLocalMin_of_posDef_of_littleo_without_smoothness"
       ],
       "text": "The page's argument needs the Taylor estimate, a zero gradient and a positive definite second derivative. The Lean statement also assumes ContDiffAt ℝ ⊤ f x₀, so it says less than the argument gives. Its proof obtains the lower bound from coercive_of_posdef and again from coercive_of_posdef_of_contdiff, and only the second uses the extra hypothesis. The supplementary Lean proof reaches the same conclusion without it."
+    },
+    "polarBilin_iteratedFDerivQuadraticMap": {
+      "verdict": "same",
+      "text": "The full polar form sums the second derivative on the ordered pairs (u,v) and (v,u). Recovering the Hessian off the diagonal requires halving the sum and using symmetry.",
+      "because": [
+        "hessian-polar-form"
+      ],
+      "checks": []
     }
   }
 }

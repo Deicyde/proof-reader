@@ -658,10 +658,16 @@ def resolve(slug: str) -> dict:
         errors.append(problem)
     checks = load_checks(folder)
     check_names = {c["name"] for c in checks["checks"]}
+    by_passage = {p["id"]: p for p in passages}
     for passage in passages:
         for name in passage.get("checks", []):
             if name not in check_names:
                 errors.append(f"passage {passage['id']}: no supplementary proof called {name}")
+    for claim in claims:
+        supporting = by_passage.get(claim["passage"], {}).get("checks", [])
+        for name in claim.get("checks", []):
+            if name not in supporting:
+                errors.append(f"claim {claim['id']}: supplementary proof {name} is not attached to its passage")
     stale = stale_checks(folder, checks["files"])
     if stale:
         errors.append(f"checks changed since extract last compiled them ({', '.join(stale)}): "

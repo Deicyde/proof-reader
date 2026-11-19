@@ -15,6 +15,7 @@ project = "lean"
 modules = ["PhyslibAlpha.Mathematics.PartialDerivativeTest", "PhyslibAlpha.ClassicalMechanics.CoupledSpringPotential"]
 source = "https://github.com/leanprover-community/physlib/tree/be0a9eef7dac78da524bfbde91c812340b194610"
 source_name = "Physlib at be0a9ee"
+source_label = "PhyslibAlpha"
 source_lines = "https://github.com/leanprover-community/physlib/blob/be0a9eef7dac78da524bfbde91c812340b194610/{path}#L{line}-L{end}"
 licence = "Apache-2.0"
 scope = "Lean 4.35.0 compiled two unchanged PhyslibAlpha modules at be0a9ee. The supplementary proofs were compiled against those modules."

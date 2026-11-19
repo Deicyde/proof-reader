@@ -74,6 +74,7 @@ class MarkdownEditionTest(unittest.TestCase):
         global_result = passages[claims["global-minimum"]["passage"]]
         self.assertEqual(global_result["lean"], [])
         self.assertEqual(global_result["checks"], ["couplingPotential_origin_lt"])
+        self.assertEqual(claims["global-minimum"]["checks"], global_result["checks"])
         self.assertIn("For every nonzero", global_result["quote"])
         self.assertEqual(passages["strict-positivity"]["checks"], ["couplingPotential_pos"])
         self.assertEqual(passages["completed-square"]["checks"], ["couplingPotential_eq_sq_add_sq"])

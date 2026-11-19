@@ -51,6 +51,7 @@ export interface Claim {
   section: string;
   passage: string;
   lean: string[];
+  checks?: string[];
 }
 
 export interface Declaration {

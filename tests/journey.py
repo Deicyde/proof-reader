@@ -1478,10 +1478,10 @@ def coupled_spring(page: Page, url: str) -> None:
     reading.locator("#s-4").wait_for(state="attached")
     reading.hover()
     page.mouse.wheel(0, 20000)
-    retained = page.locator('.leaf [data-check="isLocalMin_of_posDef_of_littleo_without_smoothness"]')
-    retained.wait_for()
-    check(page.locator(".stepper span").inner_text() == "After the last statement",
-          "the last linked proof stays visible while the reader is in the sources")
+    retained = page.locator('.leaf [data-check="couplingPotential_pos"]')
+    wait_until(page, lambda: page.locator(".stepper span").inner_text() == "After the last statement",
+               "the reader reaches the sources")
+    check(retained.is_visible(), "the last linked proof stays visible while the reader is in the sources")
     check(page.locator(".leaf .untied, .leaf #checks").count() == 0,
           "the end of the page does not switch to the index")
 

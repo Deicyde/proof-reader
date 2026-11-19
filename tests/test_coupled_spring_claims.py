@@ -1,12 +1,10 @@
-"""The coupled-spring page says what the mathematics says.
+"""Regression checks for selected formulas and statements in the coupled-spring page.
 
-Each test computes one claim of papers/coupled-spring/paper.md exactly, then checks that the page
-still states it. A prose edit that changes a formula, a frequency, a sign or a quantifier fails
-here even though the Lean, the links and the build are untouched.
+These checks pair exact calculations with expected Markdown fragments. They catch
+changes to those fragments and leave other prose and modelling choices to review.
 
-Polynomial identities are checked on a grid of rational points. A polynomial in two variables of
-degree at most d in each variable that vanishes on a (d+1) by (d+1) grid is zero, so a 5 by 5
-grid proves every identity below, all of degree at most 3.
+The full rational grid determines the two-variable polynomials checked on it.
+Calculations using subsets of the grid are regression samples.
 """
 from __future__ import annotations
 
@@ -40,7 +38,7 @@ class CoupledSpringClaims(unittest.TestCase):
         for x0, x1 in GRID:
             self.assertEqual(U(x0, x1), F(1, 2) * (x0 ** 2 + x1 ** 2 + (x0 + x1) ** 2))
             self.assertEqual(U(x0, x1), (x0 + x1 / 2) ** 2 + F(3, 4) * x1 ** 2)
-        self.states(r"U(x)=\tfrac12\left(x_0^2+x_1^2+(x_0+x_1)^2\right)",
+        self.states(r"U(h)=\tfrac12\left(h_0^2+h_1^2+(h_0+h_1)^2\right)",
                     r"U(x)=\left(x_0+\tfrac12x_1\right)^2+\tfrac34x_1^2")
 
     def test_the_global_minimum_is_claimed_only_away_from_the_origin(self) -> None:
@@ -51,8 +49,8 @@ class CoupledSpringClaims(unittest.TestCase):
         self.states(r"For every nonzero $x\in\mathbb R^2$, $U(x)>U(0)$.", "Both sides are zero at $x=0$.")
 
     def test_the_physlib_theorem_is_called_local(self) -> None:
-        self.states("**Physlib theorem.** The coupled spring potential $U$ has a local minimum")
-        self.assertNotIn("**Physlib theorem.** The coupled spring potential $U$ has a global", PAPER)
+        self.states("**PhyslibAlpha theorem.** The coupled spring potential $U$ has a local minimum")
+        self.assertNotIn("**PhyslibAlpha theorem.** The coupled spring potential $U$ has a global", PAPER)
 
     def test_derivative_and_remainder(self) -> None:
         for (x0, x1) in GRID:
@@ -100,7 +98,7 @@ class CoupledSpringClaims(unittest.TestCase):
             bound = (x1 + x0 / 2) ** 2 + x0 ** 2 / 2
             self.assertEqual(W(x0, x1) - bound, x0 ** 2 * (x0 + F(1, 4)))
         self.assertEqual(W(-2, 0), -4)
-        self.states(r"If $|x_0|<\tfrac14$, then", r"$W(x)\ge\left(x_1+\tfrac12x_0\right)^2+\tfrac12x_0^2$",
+        self.states(r"$|x_0|<\tfrac14$, then", r"$W(x)\ge\left(x_1+\tfrac12x_0\right)^2+\tfrac12x_0^2$",
                     r"$W(-2,0)=-4<W(0)$")
 
 
