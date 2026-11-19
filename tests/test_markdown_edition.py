@@ -50,11 +50,18 @@ class MarkdownEditionTest(unittest.TestCase):
         # is called…" or before the formula that ends "and therefore".
         for before in re.findall(r"(.*)\n\n<details>", self.before):
             if not before.startswith("#"):
-                self.assertRegex(before.rstrip(), r"[.!?][*_)]*$")
+                self.assertTrue(markdown_edition.sentence_ends(before), before)
 
     def test_definitions_show_their_bodies(self) -> None:
         fold = self.before.split("<code>couplingPotential</code>", 1)[1].split("</details>", 1)[0]
         self.assertIn("(x 0) ^ 2 + x 0 * x 1 + (x 1) ^ 2", fold)
+
+    def test_comparisons_are_labelled_as_unreviewed(self) -> None:
+        for line in re.findall(r"\*\*Comparison with the page[^*]*\*\*", self.before):
+            self.assertIn("made by AI and not reviewed", line)
+
+    def test_proofs_written_for_the_page_are_shown_whole(self) -> None:
+        self.assertIn("by_contra h", self.before)
 
     def test_formulas_read_as_physlib_writes_them(self) -> None:
         convert = markdown_edition.plain_maths.convert
@@ -68,6 +75,9 @@ class MarkdownEditionTest(unittest.TestCase):
             r"t\to-\infty": "t → −∞",
             r"\lvert c\rvert<2": "|c| < 2",
             r"\tfrac94": "9/4",
+            r"c=\pm2": "c = ±2",
+            r"-\nabla U": "−∇U",
+            r"\sqrt3": "√3",
         }
         for tex, text in cases.items():
             self.assertEqual(convert(tex), text)
