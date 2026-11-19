@@ -1583,7 +1583,12 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
         source = (ROOT / "api-maps" / "physlib-gauge-theory" / "API-map.md").read_text(encoding="utf-8")
         check(page.evaluate("navigator.clipboard.readText()") == source, "the clipboard contains the entire original Markdown")
     check(page.evaluate("document.documentElement.scrollWidth === innerWidth"), "the page fits the viewport")
-    abelian = article.get_by_role("heading", name="The abelian theory", exact=True)
+    check(page.evaluate("""() => {
+      const key = document.querySelector('.api-map__guide').getBoundingClientRect();
+      const text = document.querySelector('#s-abstract').getBoundingClientRect();
+      return Math.abs(key.left - text.left) < 1 && Math.abs(key.right - text.right) < 1;
+    }"""), "the topic key lines up with the text column")
+    abelian =article.get_by_role("heading", name="The abelian theory", exact=True)
     check(abelian.evaluate("(el) => parseFloat(getComputedStyle(el).fontSize) > parseFloat(getComputedStyle(el.nextElementSibling).fontSize) + 2"),
           "the subsection title is visibly larger than its prose")
     paragraph = article.locator("p[data-api-paragraph]").filter(has_text="For a multiset")
