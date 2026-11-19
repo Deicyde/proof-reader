@@ -324,7 +324,7 @@ function MapReader({ edition }: { edition: Edition }) {
         <PaperSplit />
         <aside className="proof api-map__aside" id="api-map-references" aria-label="Map references">
           <div className="proof__caption">
-            <div className="proof__says"><p><b>{group ? `Lean citation [${group.index}]` : ref ? `Reference {${ref.index}}` : paragraph ? "References in this paragraph" : "Lean glossary"}</b> {group && `· ${group.declarations.length} ${group.declarations.length === 1 ? "declaration" : "declarations"}`}</p></div>
+            <div className="proof__says"><p><b>{group ? `Lean citation [${group.index}]` : ref ? `Reference {${ref.index}}` : paragraph ? "References in this paragraph" : "Lean glossary"}</b> {group && `, ${group.declarations.length} ${group.declarations.length === 1 ? "declaration" : "declarations"}`}</p></div>
             {citation && <button type="button" className="proof__close" onClick={close}>Close</button>}
           </div>
           <div className="leaf">
@@ -373,7 +373,7 @@ function MapReader({ edition }: { edition: Edition }) {
                   {paragraphReferences.some((item) => item.lean) && <p className="api-map__glossary-credit">AI-drafted reading titles added by Proof Reader.</p>}
                   {paragraphReferences.map(({ id, lean, general }) => (
                     <section className="api-map__paragraph-group" key={id} data-reference={id}>
-                      <button type="button" className="api-map__paragraph-name" onClick={() => navigate(`@${id}`)}>{lean ? `Lean citation [${lean.index}] · ${lean.declarations.length} ${lean.declarations.length === 1 ? "declaration" : "declarations"}` : `Reference {${general?.index}}`}</button>
+                      <button type="button" className="api-map__paragraph-name" onClick={() => navigate(`@${id}`)}>{lean ? `Lean citation [${lean.index}], ${lean.declarations.length} ${lean.declarations.length === 1 ? "declaration" : "declarations"}` : `Reference {${general?.index}}`}</button>
                       {lean && declarationsFor(lean)}
                       {general && <BibliographyReference reference={general} />}
                     </section>

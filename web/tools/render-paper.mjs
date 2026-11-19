@@ -387,6 +387,12 @@ for (const id of Object.keys(quoteHtml)) {
   quoteHtml[id] = quoteHtml[id].replace(new RegExp(`${DISPLAY_OPEN}(\\d+)${DISPLAY_CLOSE}`, "g"), (_m, n) => place(n, true));
 }
 
+if (apiMap) {
+  // In the Lean References list, set each file path on its own line, breakable only after a slash.
+  html = html.replace(/(<li id="index-lean-\d+">\s*(?:<p>)?)([^<\s]+\.lean) — /g, (_m, open, path) =>
+    `${open}<span class="api-map__path">${escapeHtml(path).replaceAll("/", "/<wbr>")}</span> `);
+}
+
 for (const entry of outline) {
   entry.title = entry.title.replace(new RegExp(`${OPEN}(\\d+)${CLOSE}`, "g"), (_m, n) => plainMath(spans[Number(n)].tex, false));
 }
