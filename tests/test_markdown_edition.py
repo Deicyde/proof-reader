@@ -45,6 +45,17 @@ class MarkdownEditionTest(unittest.TestCase):
         self.assertNotIn("$", prose)
         self.assertNotRegex(prose, r"\\[A-Za-z]")
 
+    def test_a_fold_never_breaks_a_sentence(self) -> None:
+        # A fold opens after a full stop, never inside "The function U = … on ℝ²
+        # is called…" or before the formula that ends "and therefore".
+        for before in re.findall(r"(.*)\n\n<details>", self.before):
+            if not before.startswith("#"):
+                self.assertRegex(before.rstrip(), r"[.!?][*_)]*$")
+
+    def test_definitions_show_their_bodies(self) -> None:
+        fold = self.before.split("<code>couplingPotential</code>", 1)[1].split("</details>", 1)[0]
+        self.assertIn("(x 0) ^ 2 + x 0 * x 1 + (x 1) ^ 2", fold)
+
     def test_formulas_read_as_physlib_writes_them(self) -> None:
         convert = markdown_edition.plain_maths.convert
         cases = {

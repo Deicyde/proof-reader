@@ -28,23 +28,24 @@ The function
 
 U(x₀, x₁) = x₀² + x₀x₁ + x₁²
 
+on ℝ² is called the coupled spring potential in
+[PhyslibAlpha][file]. In that file Bjørn Kjos-Hanssen proves in Lean that
+U has a local minimum at the origin. The proof applies a
+second-derivative test, which he proves in a [companion file][test], and
+the file is described there as a proof of concept for the test.
+
 <details>
 <summary><b>Lean</b> · The coupled spring potential · <code>couplingPotential</code></summary>
 
 ```lean
 /-- The potential energy of a pair of coupled springs. -/
 noncomputable def couplingPotential (x : EuclideanSpace ℝ (Fin 2)) : ℝ :=
+  (x 0) ^ 2 + x 0 * x 1 + (x 1) ^ 2
 ```
 
-Statement copied from [CoupledSpringPotential.lean, lines 56–57][couplingPotential] in Physlib at be0a9ee; the proof is at the link.
+Copied whole from [CoupledSpringPotential.lean, lines 56–57][couplingPotential] in Physlib at be0a9ee.
 
 </details>
-
-on ℝ² is called the coupled spring potential in
-[PhyslibAlpha][file]. In that file Bjørn Kjos-Hanssen proves in Lean that
-U has a local minimum at the origin. The proof applies a
-second-derivative test, which he proves in a [companion file][test], and
-the file is described there as a proof of concept for the test.
 
 These notes are for a reader who knows partial derivatives and has not
 read the Lean. In Sections 1 to 4 we write out the argument of the file:
@@ -115,9 +116,27 @@ Statement copied from [PartialDerivativeTest.lean, lines 600–606][second_deriv
 /-- The second iterated Frechét derivative as a quadratic map. -/
 noncomputable def iteratedFDerivQuadraticMap {V : Type*} [NormedAddCommGroup V]
     [NormedSpace ℝ V] (f : V → ℝ) (x₀ : V) : QuadraticMap ℝ V ℝ := {
+  toFun := fun y => iteratedFDeriv ℝ 2 f x₀ ![y,y]
+  exists_companion' := ⟨hessianBilinearCompanion f x₀, fun x y => by
+    have ha (u v b) := (iteratedFDeriv ℝ 2 f x₀).map_update_add' ![u,v] b x y
+    have ha₀ := ha x (x + y) 0
+    have ha₁ (u) := ha u x 1
+    simp only [update₀, MultilinearMap.toFun_eq_coe, coe_coe, update₁, hessianBilinearCompanion]
+        at ha₀ ha₁ ha ⊢
+    rw [ha₀, ha₁, ha₁, add_assoc, add_assoc]
+    apply add_left_cancel_iff.mpr
+    rw [← add_assoc, add_comm]
+    simp⟩
+  toFun_smul := fun u v => by
+    have hsm (b c) := (iteratedFDeriv ℝ 2 f x₀).map_update_smul' ![b,v] c u v
+    have hsm₀ := hsm v 0
+    have hsm₁ := hsm (u • v) 1
+    simp only [update₀, update₁, MultilinearMap.toFun_eq_coe, coe_coe, smul_eq_mul]
+        at hsm₀ hsm₁ hsm
+    rw [smul_eq_mul, mul_assoc, ← hsm₀, hsm₁]}
 ```
 
-Statement copied from [PartialDerivativeTest.lean, lines 107–126][iteratedFDerivQuadraticMap] in Physlib at be0a9ee; the proof is at the link.
+Copied whole from [PartialDerivativeTest.lean, lines 107–126][iteratedFDerivQuadraticMap] in Physlib at be0a9ee.
 
 </details>
 
@@ -130,8 +149,10 @@ error that is at most ½C‖x − a‖² for every x near
 a. With the gradient zero, the Taylor polynomial is
 f(a) + ½D²f(a)(x − a, x − a), and therefore
 
+f(x) − f(a) ≥ ½C‖x − a‖² − ½C‖x − a‖² = 0.
+
 <details>
-<summary><b>Lean</b> · 2 statements: Positive definite gives a lower bound; Taylor error from a power series</summary>
+<summary><b>Lean</b> · 3 statements: Positive definite gives a lower bound; Taylor error from a power series; Comparison from the Taylor error</summary>
 
 **Positive definite gives a lower bound** · `coercive_of_posdef`
 
@@ -158,12 +179,7 @@ lemma littleO_of_powerseries {V : Type*} [NormedAddCommGroup V] [NormedSpace ℝ
 
 Statement copied from [PartialDerivativeTest.lean, lines 558–568][littleO_of_powerseries] in Physlib at be0a9ee; the proof is at the link.
 
-</details>
-
-f(x) − f(a) ≥ ½C‖x − a‖² − ½C‖x − a‖² = 0.
-
-<details>
-<summary><b>Lean</b> · Comparison from the Taylor error · <code>le_of_littleO</code></summary>
+**Comparison from the Taylor error** · `le_of_littleO`
 
 ```lean
 /-- . -/
@@ -334,6 +350,8 @@ Statement copied from [CoupledSpringPotential.lean, lines 153–160][coupled_spr
 three hypotheses are the first, second and fourth paragraphs of
 Section 3. ∎
 
+## 5. A global minimum, by completing the square
+
 <details>
 <summary><b>Lean proof</b> · Local minimum at the origin · <code>coupled_spring_potential</code></summary>
 
@@ -351,8 +369,6 @@ lemma coupled_spring_potential :
 Copied whole from [CoupledSpringPotential.lean, lines 153–160][coupled_spring_potential] in Physlib at be0a9ee.
 
 </details>
-
-## 5. A global minimum, by completing the square
 
 The argument of this section does not appear in the file. Completing the
 square in x₀ gives, for every x in ℝ²,
