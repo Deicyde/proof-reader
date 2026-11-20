@@ -797,6 +797,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
             <span className="bar__film-mark" aria-hidden="true" />Video, {clockTime(SHORT_FILM.seconds)}<span className="sr-only"> on YouTube</span>
           </a>}
           {!!edition.sheets?.length && <a className="bar__link" href={routeHref({ paper: slug, record: "@sheet" })} title={fromLean(edition) ? "The theorem and every definition it needs, on one page" : "Selected source declarations and linked passages"}>Statement sheet</a>}
+          {edition.evaluation && <button type="button" className="bar__link" onClick={() => onTab("index")}>Results</button>}
           <a className="bar__link" href={sourceUrl}>{markdown ? "Source Markdown" : "Published paper"}</a>
           <a className="bar__link" href={lean.source}>Lean artifact</a>
         </div>

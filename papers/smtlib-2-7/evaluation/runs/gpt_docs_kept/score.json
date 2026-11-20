@@ -1,0 +1,667 @@
+{
+ "label": "GPT-6.1, documentation kept",
+ "cited_declarations": 105,
+ "groups_found": [
+  165,
+  187
+ ],
+ "complete": [
+  83,
+  105
+ ],
+ "rule_found": [
+  65,
+  81
+ ],
+ "links_in_key": [
+  111,
+  159
+ ],
+ "rule_links_in_key": [
+  80,
+  88
+ ],
+ "links_per_cited_declaration": 1.51,
+ "links_on_cited_outside_their_key": 48,
+ "links_outside_key": 84,
+ "answered": 298,
+ "unknown_ids": [],
+ "misses": [
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.SymbolOrWildcard.token",
+   "group": "2.7 ⟨pattern⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Identifier.Valid",
+   "group": "2.7 ⟨identifier⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.SymbolOrWildcard.Valid",
+   "group": "2.7 ⟨pattern⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Symbol",
+   "group": "2.7 §3.1 Symbols"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.SymbolOrWildcard",
+   "group": "2.7 ⟨pattern⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.SyntaxToken",
+   "group": "2.7 §3.1 Symbols"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.SyntaxToken.ofToken",
+   "group": "2.7 §3.1 Symbols"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.SourceFile",
+   "group": "2.5 §3"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.whiteSpaceChar",
+   "group": "2.7 ⟨white_space_char⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.printableChar",
+   "group": "2.7 §3.1 Printable Characters"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.digit",
+   "group": "2.7 ⟨digit⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.letter",
+   "group": "2.7 ⟨letter⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.numeral",
+   "group": "2.7 ⟨numeral⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.decimal",
+   "group": "2.7 ⟨decimal⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.hexadecimal",
+   "group": "2.7 ⟨hexadecimal⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.binary",
+   "group": "2.7 ⟨binary⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.string",
+   "group": "2.7 ⟨string⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.string20",
+   "group": "2.0 ⟨string⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.symbolPunctuation",
+   "group": "2.7 ⟨simple_symbol⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.simpleSymbol",
+   "group": "2.7 §3.1 Symbols"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.quotedSymbol",
+   "group": "2.7 ⟨symbol⟩"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.keyword",
+   "group": "2.0 ⟨keyword⟩"
+  }
+ ],
+ "review_on_cited": [
+  {
+   "declaration": "BSmtLibSpec.Grammar.File.From",
+   "passage": "2.7-p066-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.File.From",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.File",
+   "passage": "2.7-p066-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.File",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Script",
+   "passage": "2.7-p066-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Script",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Command.tokens",
+   "passage": "2.6-p046-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.SExpr.Valid",
+   "passage": "2.5-p024-11"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Index.Valid",
+   "passage": "2.0-p022-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Identifier.Valid",
+   "passage": "2.0-p022-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.SymbolOrWildcard.Valid",
+   "passage": "2.6-p028-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Pattern.Valid",
+   "passage": "2.6-p028-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Term.Valid",
+   "passage": "2.5-p027-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Term.Valid",
+   "passage": "2.6-p028-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.PropLiteral.Valid",
+   "passage": "2.7-p026-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Command.Valid",
+   "passage": "2.0-p035-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Command.Valid",
+   "passage": "2.5-p042-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Command.Valid",
+   "passage": "2.6-p046-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Symbol",
+   "passage": "2.7-p026-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.SyntaxToken",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.SyntaxToken",
+   "passage": "2.7-p026-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.SyntaxToken.ofToken",
+   "passage": "2.7-p024-12"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.SyntaxToken.ofToken",
+   "passage": "2.7-p026-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.SourceFile",
+   "passage": "2.7-p023-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.string20",
+   "passage": "2.7-p024-12"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.unescape20",
+   "passage": "2.7-p024-12"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.addedBasicReservedWords",
+   "passage": "2.0-p020-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.addedBasicReservedWords",
+   "passage": "2.5-p023-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.addedBasicReservedWords",
+   "passage": "2.5-p023-09"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.addedBasicReservedWords",
+   "passage": "2.6-p024-09"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.basicReservedWords",
+   "passage": "2.0-p020-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.basicReservedWords",
+   "passage": "2.5-p023-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.basicReservedWords",
+   "passage": "2.5-p023-09"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.basicReservedWords",
+   "passage": "2.6-p024-09"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.addedCommandNames",
+   "passage": "2.0-p035-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.addedCommandNames",
+   "passage": "2.5-p042-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.addedCommandNames",
+   "passage": "2.6-p046-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.addedCommandNames",
+   "passage": "2.7-p051-07"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.commandNames",
+   "passage": "2.0-p035-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.commandNames",
+   "passage": "2.5-p042-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.commandNames",
+   "passage": "2.6-p046-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.commandNames",
+   "passage": "2.7-p051-07"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.keyword",
+   "passage": "2.7-p026-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.keyword",
+   "passage": "2.7-p026-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.categoryRegex",
+   "passage": "2.0-p020-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.Token.content",
+   "passage": "2.0-p020-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.Token.content",
+   "passage": "2.7-p026-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Properties.Takes",
+   "passage": "2.7-p066-04"
+  }
+ ],
+ "review_uncited": [
+  {
+   "declaration": "BSmtLibSpec.Grammar.versionNumber",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.versionOfNumber",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.word",
+   "passage": "2.7-p025-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.commandTokens",
+   "passage": "2.7-p050-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Command.modeAfter",
+   "passage": "2.7-p066-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Command.modeAfter",
+   "passage": "2.7-p066-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Command.modeAfter",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Command.declaredVersion",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Command.namesNoVersion",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.SExpr.tokensAll",
+   "passage": "2.7-p026-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Sort.tokensAll",
+   "passage": "2.7-p028-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Quantifier.word",
+   "passage": "2.7-p030-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Term.tokensAll",
+   "passage": "2.7-p030-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.SExpr.ValidAll",
+   "passage": "2.7-p026-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Sort.ValidAll",
+   "passage": "2.7-p028-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Term.ValidAll",
+   "passage": "2.7-p030-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Term.ValidBindings",
+   "passage": "2.7-p030-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.Term.ValidCases",
+   "passage": "2.7-p030-07"
+  },
+  {
+   "declaration": "BSmtLibSpec.Grammar.Tree.PropLiteral.asTerm",
+   "passage": "2.6-p046-07"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexer.TokenType",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexer.ReservedKind",
+   "passage": "2.7-p025-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexer.ReservedKind",
+   "passage": "2.7-p025-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.Category.type",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.Token.reservedKind",
+   "passage": "2.7-p025-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.Token.reservedKind",
+   "passage": "2.7-p025-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexer.Complete",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexer.FailsCorrectly",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexer.HandsOverAll",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexer.WholeInputCorrect",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexer.layoutFrom",
+   "passage": "2.7-p023-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexer.layoutFrom",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.commentAtEnd",
+   "passage": "2.7-p023-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.commentAtEnd",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.whitespaceAtEnd",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.Tokenization.Delimited",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Lexicon.Tokenization.Exactly",
+   "passage": "2.7-p024-01"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Properties.received",
+   "passage": "2.7-p051-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Properties.received",
+   "passage": "2.7-p066-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Properties.versionAt",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.TermNode",
+   "passage": "2.7-p030-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.SExprNode",
+   "passage": "2.7-p026-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.AttributeValueNode",
+   "passage": "2.7-p027-09"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.Signature",
+   "passage": "2.7-p051-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.Constructor",
+   "passage": "2.7-p051-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.sort",
+   "passage": "2.7-p028-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.sorts",
+   "passage": "2.7-p028-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.sExpr",
+   "passage": "2.7-p026-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.sExprs",
+   "passage": "2.7-p026-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.attributeValue",
+   "passage": "2.7-p027-09"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.attributeThen",
+   "passage": "2.7-p027-10"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.attributesThen",
+   "passage": "2.7-p027-10"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.qualIdentifier",
+   "passage": "2.7-p030-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.sortedVars",
+   "passage": "2.7-p030-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.term",
+   "passage": "2.7-p030-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.term",
+   "passage": "2.7-p035-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.term",
+   "passage": "2.7-p035-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.terms",
+   "passage": "2.7-p030-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.bindings",
+   "passage": "2.7-p030-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.bindings",
+   "passage": "2.7-p031-12"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.cases",
+   "passage": "2.7-p030-07"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.cases",
+   "passage": "2.7-p035-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.signature",
+   "passage": "2.7-p051-05"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.selectors",
+   "passage": "2.7-p051-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.constructorAfterOpen",
+   "passage": "2.7-p051-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.constructors",
+   "passage": "2.7-p051-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.datatype",
+   "passage": "2.7-p051-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.recursiveBodies",
+   "passage": "2.7-p070-03"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.recursiveBodies",
+   "passage": "2.7-p070-06"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.opening",
+   "passage": "2.7-p050-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.command",
+   "passage": "2.6-p046-07"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.command",
+   "passage": "2.7-p051-07"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.switchVersion",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.commands",
+   "passage": "2.7-p051-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.commands",
+   "passage": "2.7-p066-04"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.commands",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.script",
+   "passage": "2.7-p051-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.Traversal.script",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.VersionPolicy",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.VersionPolicy.unrestricted",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.VersionPolicy.Error",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Parser.VersionPolicy.check",
+   "passage": "2.7-p077-02"
+  },
+  {
+   "declaration": "BSmtLibSpec.Reader.ReadsFiles",
+   "passage": "2.7-p051-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Reader.FinishesOnlyOnFiles",
+   "passage": "2.7-p051-08"
+  },
+  {
+   "declaration": "BSmtLibSpec.Reader.LexesThenParses",
+   "passage": "2.7-p051-08"
+  }
+ ],
+ "controls": {
+  "link_every_passage": {
+   "groups_found": [
+    187,
+    187
+   ],
+   "links_in_key": [
+    4552,
+    148718
+   ],
+   "rule_links_in_key": [
+    7572,
+    43036
+   ]
+  }
+ }
+}

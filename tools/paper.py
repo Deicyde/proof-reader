@@ -845,6 +845,22 @@ def comparator_evidence(folder: Path, config: dict) -> dict | None:
     }
 
 
+def evaluation_summary(folder: Path, config: dict) -> dict | None:
+    """A matcher's results against the authors' own links, when the paper keeps them:
+    `[evaluation] summary` names a JSON file in the paper's folder."""
+    name = config.get("evaluation", {}).get("summary")
+    if not name:
+        return None
+    path = folder / name
+    if not path.is_file():
+        raise PaperError(f"[evaluation] summary is missing: {name}")
+    summary = json.loads(path.read_text(encoding="utf-8"))
+    for key in ("matcher", "method", "columns", "rows", "findings", "misses", "records"):
+        if key not in summary:
+            raise PaperError(f"{name}: needs {key!r}")
+    return summary
+
+
 def edition(slug: str) -> dict:
     data = resolve(slug)
     config, shard_info, links = data["config"], data["shards"], data["links"]
@@ -952,6 +968,7 @@ def edition(slug: str) -> dict:
         "shelf": {"example": examples[0] if examples else None, "examples": examples},
         "sheets": statement_sheets(links.get("claims", []), declarations, data["passages"], shard_info),
         "coverage": {"sections": tied_sections, "ties": len(data["passages"])},
+        "evaluation": evaluation_summary(data["folder"], config),
         "reading": {k: v for k, v in setting.items() if k != "html"} if setting else None,
         "reading_html": setting["html"] if setting else None,
         "analytics": {

@@ -1,0 +1,377 @@
+{
+ "tally": {
+  "changed": {
+   "right": 12,
+   "of": 12,
+   "unsure": 0
+  },
+  "reading": {
+   "right": 7,
+   "of": 12,
+   "unsure": 3
+  },
+  "as_written": {
+   "right": 5,
+   "of": 5,
+   "unsure": 0
+  },
+  "carried": {
+   "right": 3,
+   "of": 3,
+   "unsure": 0
+  }
+ },
+ "rows": [
+  {
+   "session": "1",
+   "item": "item-01",
+   "slug": "hexadecimal",
+   "truth": "changed",
+   "carried_from": [
+    "BSmtLibSpec.Lexicon.digit"
+   ],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean accepts #xG and #xg, which the passages exclude; it rejects #x9, which they allow."
+  },
+  {
+   "session": "1",
+   "item": "item-02",
+   "slug": "reading-L5",
+   "truth": "reading",
+   "carried_from": [
+    "BSmtLibSpec.Lexicon.digit"
+   ],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean accepts :0 and :assert, although the passages require a simple-symbol suffix, excluding a digit at the start and reserved words. It also rejects :a9, which the passages allow.",
+   "grade": null
+  },
+  {
+   "session": "1",
+   "item": "item-03",
+   "slug": "digit",
+   "truth": "changed",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean rejects the character 9 (decimal code 57), which both passages allow as a digit."
+  },
+  {
+   "session": "1",
+   "item": "item-04",
+   "slug": "reading-L2",
+   "truth": "reading",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean accepts a final semicolon-only comment, or ;abc at end of input without a line break. The passages require a subsequent line-breaking character to end a comment. Conversely, commentAtEnd itself rejects ;abc followed by LF as a whole match, although that is a complete comment in the passages.",
+   "grade": null
+  },
+  {
+   "session": "1",
+   "item": "item-05",
+   "slug": "binary",
+   "truth": "as_written",
+   "carried_from": [],
+   "verdict": "exact",
+   "right_verdict": true,
+   "difference": ""
+  },
+  {
+   "session": "1",
+   "item": "item-06",
+   "slug": "white-space",
+   "truth": "changed",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean rejects tab (decimal code 9) as whitespace; both passages allow it."
+  },
+  {
+   "session": "1",
+   "item": "item-07",
+   "slug": "application",
+   "truth": "changed",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "In version 2.7, Lean accepts an application with no arguments, serialized as (f). The passage requires at least one argument and therefore excludes (f)."
+  },
+  {
+   "session": "1",
+   "item": "item-08",
+   "slug": "string",
+   "truth": "carried",
+   "carried_from": [
+    "BSmtLibSpec.Lexicon.whiteSpaceChar"
+   ],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean rejects a string literal containing an actual tab, such as the byte sequence [34, 9, 34]. The passages allow whitespace characters, including tab, inside string literals."
+  },
+  {
+   "session": "1",
+   "item": "item-09",
+   "slug": "decimal",
+   "truth": "carried",
+   "carried_from": [
+    "BSmtLibSpec.Lexicon.digit",
+    "BSmtLibSpec.Lexicon.numeral"
+   ],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean accepts 00.1, which the passages exclude because its integer part is not a numeral. Lean rejects 9.0 and 0.9, both allowed by the passages."
+  },
+  {
+   "session": "1",
+   "item": "item-10",
+   "slug": "reading-L4",
+   "truth": "reading",
+   "carried_from": [
+    "BSmtLibSpec.Lexicon.digit"
+   ],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean rejects a9 as a simple symbol in both versions 2.5 and 2.7, although the passages allow it.",
+   "grade": null
+  },
+  {
+   "session": "1",
+   "item": "item-11",
+   "slug": "reading-G1",
+   "truth": "reading",
+   "carried_from": [],
+   "verdict": "unsure",
+   "right_verdict": false,
+   "difference": "",
+   "grade": null
+  },
+  {
+   "session": "1",
+   "item": "item-12",
+   "slug": "numeral",
+   "truth": "changed",
+   "carried_from": [
+    "BSmtLibSpec.Lexicon.digit"
+   ],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean accepts 00 and 0012 as numerals, which the passages exclude; it rejects 9 and 19, which the passages allow."
+  },
+  {
+   "session": "1",
+   "item": "item-13",
+   "slug": "reading-L3",
+   "truth": "reading",
+   "carried_from": [],
+   "verdict": "unsure",
+   "right_verdict": false,
+   "difference": "",
+   "grade": null
+  },
+  {
+   "session": "1",
+   "item": "item-14",
+   "slug": "reading-L6",
+   "truth": "reading",
+   "carried_from": [],
+   "verdict": "exact",
+   "right_verdict": false,
+   "difference": "",
+   "grade": null
+  },
+  {
+   "session": "1",
+   "item": "item-15",
+   "slug": "quoted-symbol",
+   "truth": "carried",
+   "carried_from": [
+    "BSmtLibSpec.Lexicon.whiteSpaceChar"
+   ],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean rejects a quoted symbol containing an actual tab, such as the byte sequence [124, 9, 124]. The passages allow it."
+  },
+  {
+   "session": "1",
+   "item": "item-16",
+   "slug": "declare-const",
+   "truth": "changed",
+   "carried_from": [
+    "BSmtLibSpec.Grammar.Tree.Term.Valid"
+   ],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "For version 2.5, Lean rejects (declare-const x Int), although 2.5-p090-04 explicitly permits it. Also, via Term.Valid, Lean accepts (assert (f)) in both 2.0 and 2.5, even though (f) has no argument and is not a term under the referenced grammar."
+  },
+  {
+   "session": "2",
+   "item": "item-01",
+   "slug": "reading-L3",
+   "truth": "reading",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Read literally as supplied, the cited production excludes uppercase B through Z, while Lean accepts them; for example Lean accepts B as a letter. This judgment does not silently correct the printed uppercase endpoint A to Z.",
+   "grade": null
+  },
+  {
+   "session": "2",
+   "item": "item-02",
+   "slug": "reading-L4",
+   "truth": "reading",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "At version 2.5, Lean rejects let (and assert) as a simple symbol, although the cited 2.5 appendix production allows these nonempty, letter-only sequences. At version 2.7, the reserved-word exclusion agrees with the cited prose.",
+   "grade": null
+  },
+  {
+   "session": "2",
+   "item": "item-03",
+   "slug": "numeral",
+   "truth": "as_written",
+   "carried_from": [],
+   "verdict": "exact",
+   "right_verdict": true,
+   "difference": ""
+  },
+  {
+   "session": "2",
+   "item": "item-04",
+   "slug": "reading-L6",
+   "truth": "reading",
+   "carried_from": [],
+   "verdict": "exact",
+   "right_verdict": false,
+   "difference": "",
+   "grade": null
+  },
+  {
+   "session": "2",
+   "item": "item-05",
+   "slug": "digit",
+   "truth": "as_written",
+   "carried_from": [],
+   "verdict": "exact",
+   "right_verdict": true,
+   "difference": ""
+  },
+  {
+   "session": "2",
+   "item": "item-06",
+   "slug": "binary",
+   "truth": "changed",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean accepts #b2 (and #b102) as a binary literal; both cited passages exclude the digit 2."
+  },
+  {
+   "session": "2",
+   "item": "item-07",
+   "slug": "hexadecimal",
+   "truth": "as_written",
+   "carried_from": [],
+   "verdict": "exact",
+   "right_verdict": true,
+   "difference": ""
+  },
+  {
+   "session": "2",
+   "item": "item-08",
+   "slug": "echo",
+   "truth": "changed",
+   "carried_from": [
+    "BSmtLibSpec.Grammar.Tree.Term.Valid"
+   ],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "At version 2.5, Lean rejects (echo \"\"), which the cited 2.5 command production allows."
+  },
+  {
+   "session": "2",
+   "item": "item-09",
+   "slug": "white-space",
+   "truth": "as_written",
+   "carried_from": [],
+   "verdict": "exact",
+   "right_verdict": true,
+   "difference": ""
+  },
+  {
+   "session": "2",
+   "item": "item-10",
+   "slug": "string",
+   "truth": "changed",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean rejects the valid four-double-quote token (character codes [34,34,34,34]), which denotes a string containing one double quote. It instead accepts the token with codes [34,92,34,34] (opening quote, backslash, quote, closing quote), which is not a complete valid literal under the passages' doubled-quote rule."
+  },
+  {
+   "session": "2",
+   "item": "item-11",
+   "slug": "reading-L5",
+   "truth": "reading",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean accepts :1 as a keyword, while the passages require a simple-symbol suffix, which cannot start with a digit. It also accepts :let, whose suffix is a reserved word and therefore is not a simple symbol in version 2.7.",
+   "grade": null
+  },
+  {
+   "session": "2",
+   "item": "item-12",
+   "slug": "let",
+   "truth": "changed",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "At version 2.7, Lean accepts (let () 0), while the cited term production requires at least one variable binding."
+  },
+  {
+   "session": "2",
+   "item": "item-13",
+   "slug": "quoted-symbol",
+   "truth": "changed",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean accepts a quoted symbol containing a backslash, for example the five-character token |a\\b| (codes [124,97,92,98,124]); the passages forbid backslash inside quoted symbols."
+  },
+  {
+   "session": "2",
+   "item": "item-14",
+   "slug": "reading-L2",
+   "truth": "reading",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean accepts ;abc at end of input, with no following line feed or carriage return, as a comment. The cited definition requires the comment to end with a subsequent line-breaking character and supplies no end-of-file exception.",
+   "grade": null
+  },
+  {
+   "session": "2",
+   "item": "item-15",
+   "slug": "reading-G1",
+   "truth": "reading",
+   "carried_from": [],
+   "verdict": "unsure",
+   "right_verdict": false,
+   "difference": "",
+   "grade": null
+  },
+  {
+   "session": "2",
+   "item": "item-16",
+   "slug": "decimal",
+   "truth": "changed",
+   "carried_from": [],
+   "verdict": "differs",
+   "right_verdict": true,
+   "difference": "Lean rejects 1.1 and 0.0 as decimals, although both passages allow them: choose zero occurrences of the optional fractional-prefix zero, then the numeral 1 or 0 respectively."
+  }
+ ]
+}

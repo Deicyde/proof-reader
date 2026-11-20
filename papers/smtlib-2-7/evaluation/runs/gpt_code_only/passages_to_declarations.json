@@ -1,0 +1,2949 @@
+[
+  {
+    "passage": "2.7-p023-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduction and motivation for the concrete syntax; it does not add a production or constraint."
+  },
+  {
+    "passage": "2.7-p023-02",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.SourceFile",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.printableChar",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.comment",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.Tokenization.From",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Byte-based source input, printable ranges, and semicolon comments are represented, but no predicate validates Unicode encodings; the comment definition continues on the next page."
+  },
+  {
+    "passage": "2.7-p024-01",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.lineBreak",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.whitespace",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.categoryRegex",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.Tokenization.From",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p024-02",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.whiteSpaceChar",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p024-03",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.printableChar",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Characters are represented as bytes, so the non-ASCII printable range is 128–255."
+  },
+  {
+    "passage": "2.7-p024-04",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.digit",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p024-05",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.letter",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p024-06",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.numeral",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p024-07",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.decimal",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p024-08",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.hexadecimal",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p024-10",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.binary",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p024-12",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.string",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.unescape",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p025-04",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.string",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.unescape",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Only doubled quotes are unescaped; backslash sequences remain ordinary characters."
+  },
+  {
+    "passage": "2.7-p025-05",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.addedBasicReservedWords",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.basicReservedWords",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.reserved",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p025-08",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.commandNames",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.reserved",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p025-09",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.simpleSymbol",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.quotedSymbol",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.symbolPunctuation",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p025-11",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.simpleSymbol",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p025-14",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.quotedSymbol",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p026-03",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.simpleSymbol",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.quotedSymbol",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.Token.content",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Case and quoted-symbol contents are preserved, but Tree.Symbol also retains a quoted flag and no symbol-identity equivalence is defined; solver-only prefixes are not enforced."
+  },
+  {
+    "passage": "2.7-p026-04",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.keyword",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The prefix and character set are represented, but keyword does not apply simpleSymbol: it permits initial digits and reserved-word suffixes."
+  },
+  {
+    "passage": "2.7-p026-06",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SExpr.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SExpr.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p026-07",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SpecConstant",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SpecConstant.token",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p026-08",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SExpr.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SExpr.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p026-09",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains theory-dependent interpretations of constants rather than a lexical or grammar rule."
+  },
+  {
+    "passage": "2.7-p026-10",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "This continued footnote requires quoted and unquoted names to count as the same symbol; contents are stripped of bars but no symbol-identity relation is defined."
+  },
+  {
+    "passage": "2.7-p026-11",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "This continued footnote requires quoted and unquoted names to count as the same symbol; contents are stripped of bars but no symbol-identity relation is defined."
+  },
+  {
+    "passage": "2.7-p027-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains theory-dependent interpretations of constants rather than a lexical or grammar rule."
+  },
+  {
+    "passage": "2.7-p027-02",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Identifier.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Index.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p027-03",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Index.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Index.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p027-04",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Identifier.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "An empty index list serializes as a simple symbol; a non-empty list produces the parenthesized underscore form."
+  },
+  {
+    "passage": "2.7-p027-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of identifiers."
+  },
+  {
+    "passage": "2.7-p027-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Terminology for simple and indexed identifiers and their uses."
+  },
+  {
+    "passage": "2.7-p027-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains namespaces and lexical shadowing; no additional concrete production is given."
+  },
+  {
+    "passage": "2.7-p027-08",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Attribute.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.AttributeValue.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The explicit attribute_value alternatives also exclude bare reserved words; keywords can still occur inside list values."
+  },
+  {
+    "passage": "2.7-p027-09",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.AttributeValue.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.AttributeValue.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p027-10",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Attribute.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Attribute.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p028-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of attributes."
+  },
+  {
+    "passage": "2.7-p028-02",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Sort.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The identifier/application shapes of sorts are represented, but uniqueness of a term’s sort and the distinction between sort symbols and parameters are not defined."
+  },
+  {
+    "passage": "2.7-p028-03",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Sort.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Sort.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p028-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of sorts."
+  },
+  {
+    "passage": "2.7-p028-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of sorts."
+  },
+  {
+    "passage": "2.7-p028-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of sorts."
+  },
+  {
+    "passage": "2.7-p028-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of sorts."
+  },
+  {
+    "passage": "2.7-p028-08",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Defines polymorphic-sort terminology and explains contextual instantiation at satisfiability-checking time."
+  },
+  {
+    "passage": "2.7-p029-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script."
+  },
+  {
+    "passage": "2.7-p029-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script."
+  },
+  {
+    "passage": "2.7-p029-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script."
+  },
+  {
+    "passage": "2.7-p029-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script."
+  },
+  {
+    "passage": "2.7-p029-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script."
+  },
+  {
+    "passage": "2.7-p029-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script."
+  },
+  {
+    "passage": "2.7-p029-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script."
+  },
+  {
+    "passage": "2.7-p029-08",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script."
+  },
+  {
+    "passage": "2.7-p029-09",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains polymorphic ranks, instantiation, and their interpretation rather than concrete syntax."
+  },
+  {
+    "passage": "2.7-p029-10",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains polymorphic ranks, instantiation, and their interpretation rather than concrete syntax."
+  },
+  {
+    "passage": "2.7-p029-11",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains polymorphic ranks, instantiation, and their interpretation rather than concrete syntax."
+  },
+  {
+    "passage": "2.7-p030-01",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.Valid",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.QualIdentifier.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The term forms, binders, and optional as qualification are represented; contextual variable/function resolution and function ranks are not."
+  },
+  {
+    "passage": "2.7-p030-02",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.QualIdentifier.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.QualIdentifier.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p030-03",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.bindingTokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.ValidBindings",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p030-04",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SortedVar.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SortedVar.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p030-05",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SymbolOrWildcard.token",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SymbolOrWildcard.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p030-06",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Pattern.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Pattern.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p030-07",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.caseTokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.ValidCases",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p030-08",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Term.Valid imposes the non-empty lists and the version gates for lambda, match, and wildcards; Term.tokens gives the concrete forms."
+  },
+  {
+    "passage": "2.7-p030-09",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "The grammar accepts term and sort shapes, but does not require sort-parameter declarations or check well-sortedness and Bool result sorts."
+  },
+  {
+    "passage": "2.7-p031-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example quantified term."
+  },
+  {
+    "passage": "2.7-p031-02",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The five binder forms and their non-empty lists are represented; local variable scope is not defined as a binding relation."
+  },
+  {
+    "passage": "2.7-p031-03",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.Valid",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The lambda form and non-empty variable list are represented; equivalence to nested abstractions is not formalised."
+  },
+  {
+    "passage": "2.7-p031-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the semantic explanation of lambda and a cross-reference."
+  },
+  {
+    "passage": "2.7-p031-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the semantic explanation of lambda and a cross-reference."
+  },
+  {
+    "passage": "2.7-p031-07",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.Valid",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SortedVar.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Sorted, non-empty quantifier variable lists are represented; sequential nesting semantics is not defined."
+  },
+  {
+    "passage": "2.7-p031-09",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Continuation of the semantic equivalence between a multi-variable quantifier and nested quantifiers."
+  },
+  {
+    "passage": "2.7-p031-11",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains shadowing under nested-quantifier semantics; it adds no required distinctness check."
+  },
+  {
+    "passage": "2.7-p031-12",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Gives the parallel substitution semantics of let."
+  },
+  {
+    "passage": "2.7-p032-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration requires pairwise distinct let variables or represents the stated restrictions on local polymorphism."
+  },
+  {
+    "passage": "2.7-p032-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script illustrating well-sortedness."
+  },
+  {
+    "passage": "2.7-p032-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script illustrating well-sortedness."
+  },
+  {
+    "passage": "2.7-p032-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script illustrating well-sortedness."
+  },
+  {
+    "passage": "2.7-p032-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script illustrating well-sortedness."
+  },
+  {
+    "passage": "2.7-p032-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script illustrating well-sortedness."
+  },
+  {
+    "passage": "2.7-p032-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Lines of an example script illustrating well-sortedness."
+  },
+  {
+    "passage": "2.7-p032-08",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains why the preceding example terms are well sorted or ill sorted."
+  },
+  {
+    "passage": "2.7-p032-09",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains how nesting lets gives sequential binding semantics."
+  },
+  {
+    "passage": "2.7-p032-10",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The match form is represented; datatype interpretation is not part of the grammar."
+  },
+  {
+    "passage": "2.7-p033-01",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Pattern.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Pattern.Valid",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.ValidCases",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The flat symbol/wildcard and constructor patterns are represented, but datatype typing, distinct variables, coverage, and variable binding constraints are not."
+  },
+  {
+    "passage": "2.7-p033-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example match expressions."
+  },
+  {
+    "passage": "2.7-p033-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example match expressions."
+  },
+  {
+    "passage": "2.7-p033-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example match expressions."
+  },
+  {
+    "passage": "2.7-p033-05",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Pattern",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Pattern.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Constructor arguments are symbols or wildcards, never recursively nested patterns; variable name resolution is left to a handler."
+  },
+  {
+    "passage": "2.7-p033-06",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Identifier.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SymbolOrWildcard.token",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Pattern.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p034-01",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Identifier.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SymbolOrWildcard.token",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Pattern.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p034-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains the semantic translation of match into other constructs."
+  },
+  {
+    "passage": "2.7-p034-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains the semantic translation of match into other constructs."
+  },
+  {
+    "passage": "2.7-p034-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains the semantic translation of match into other constructs."
+  },
+  {
+    "passage": "2.7-p034-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains the semantic translation of match into other constructs."
+  },
+  {
+    "passage": "2.7-p034-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains the semantic translation of match into other constructs."
+  },
+  {
+    "passage": "2.7-p034-08",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduces the following definitions of free occurrence and scope."
+  },
+  {
+    "passage": "2.7-p034-09",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines free variable occurrence or computes free variables in expressions."
+  },
+  {
+    "passage": "2.7-p034-10",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines free variable occurrence or computes free variables in expressions."
+  },
+  {
+    "passage": "2.7-p034-11",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines free variable occurrence or computes free variables in expressions."
+  },
+  {
+    "passage": "2.7-p034-12",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines free variable occurrence or computes free variables in expressions."
+  },
+  {
+    "passage": "2.7-p034-13",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines free variable occurrence or computes free variables in expressions."
+  },
+  {
+    "passage": "2.7-p035-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduces the following scope definitions."
+  },
+  {
+    "passage": "2.7-p035-02",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "Traversal callbacks bracket binder bodies, but no declaration defines the scope of individual variable occurrences."
+  },
+  {
+    "passage": "2.7-p035-03",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "Traversal callbacks bracket binder bodies, but no declaration defines the scope of individual variable occurrences."
+  },
+  {
+    "passage": "2.7-p035-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains lexical shadowing semantics; the supplied grammar does not resolve variable names."
+  },
+  {
+    "passage": "2.7-p035-05",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration checks a bound variable or sort parameter against theory symbol names."
+  },
+  {
+    "passage": "2.7-p035-06",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration checks well-sortedness, detects ambiguous function symbols, or requires their as qualifications."
+  },
+  {
+    "passage": "2.7-p036-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example terms or an example assumption."
+  },
+  {
+    "passage": "2.7-p036-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduces examples illustrating well-sortedness."
+  },
+  {
+    "passage": "2.7-p036-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example terms or an example assumption."
+  },
+  {
+    "passage": "2.7-p036-04",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration distinguishes solver-generated constants or requires output-sort qualifications for them."
+  },
+  {
+    "passage": "2.7-p036-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example terms or an example assumption."
+  },
+  {
+    "passage": "2.7-p036-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example terms or an example assumption."
+  },
+  {
+    "passage": "2.7-p036-07",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.QualIdentifier.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.QualIdentifier.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": "as qualification is syntactically allowed without an ambiguity check, but no declaration checks that its sort matches the function result."
+  },
+  {
+    "passage": "2.7-p036-08",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The annotation wrapper and non-empty attribute list are defined; the stated semantic equivalence is outside this grammar."
+  },
+  {
+    "passage": "2.7-p036-09",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "Generic attributes are supported, but there is no rule restricting :named values to symbols or requiring the named term to be closed."
+  },
+  {
+    "passage": "2.7-p036-10",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example named annotations."
+  },
+  {
+    "passage": "2.7-p036-11",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration gives :pattern a term-list value category or restricts its placement to a quantifier body."
+  },
+  {
+    "passage": "2.7-p037-02",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "Continues the quantifier-body placement restriction for :pattern, which is not enforced."
+  },
+  {
+    "passage": "2.7-p037-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Schematic illustration of the annotated formula described in the surrounding prose."
+  },
+  {
+    "passage": "2.7-p037-04",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration requires instantiation-pattern terms to be binder-free, annotation-free, or well sorted."
+  },
+  {
+    "passage": "2.7-p037-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example instantiation patterns."
+  },
+  {
+    "passage": "2.7-p037-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Describes the intended solver heuristic for patterns."
+  },
+  {
+    "passage": "2.7-p037-07",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "The theory-declaration format and its predefined attributes are not defined by the supplied Lean declarations."
+  },
+  {
+    "passage": "2.7-p037-08",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "The theory-declaration format and its predefined attributes are not defined by the supplied Lean declarations."
+  },
+  {
+    "passage": "2.7-p038-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p038-02",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p038-03",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p038-04",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p038-05",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p038-06",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p038-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p038-08",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No theory-declaration grammar defines the attribute values or sort/function declaration forms described here."
+  },
+  {
+    "passage": "2.7-p039-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "The theory function-symbol declaration format, including its special-constant forms and ranks, is not defined."
+  },
+  {
+    "passage": "2.7-p039-03",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "The theory function-symbol declaration format, including its special-constant forms and ranks, is not defined."
+  },
+  {
+    "passage": "2.7-p039-05",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "Polymorphic theory function declarations, local parameter distinctness, and restrictions on predefined function annotations are not represented."
+  },
+  {
+    "passage": "2.7-p039-06",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines the annotation-dependent arity restrictions or the associative, chainable, and pairwise syntax expansions."
+  },
+  {
+    "passage": "2.7-p039-07",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines the annotation-dependent arity restrictions or the associative, chainable, and pairwise syntax expansions."
+  },
+  {
+    "passage": "2.7-p039-08",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines the annotation-dependent arity restrictions or the associative, chainable, and pairwise syntax expansions."
+  },
+  {
+    "passage": "2.7-p039-09",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines the annotation-dependent arity restrictions or the associative, chainable, and pairwise syntax expansions."
+  },
+  {
+    "passage": "2.7-p039-10",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines the annotation-dependent arity restrictions or the associative, chainable, and pairwise syntax expansions."
+  },
+  {
+    "passage": "2.7-p039-11",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines the annotation-dependent arity restrictions or the associative, chainable, and pairwise syntax expansions."
+  },
+  {
+    "passage": "2.7-p040-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of annotated theory function declarations."
+  },
+  {
+    "passage": "2.7-p040-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of annotated theory function declarations."
+  },
+  {
+    "passage": "2.7-p040-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of annotated theory function declarations."
+  },
+  {
+    "passage": "2.7-p040-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of annotated theory function declarations."
+  },
+  {
+    "passage": "2.7-p040-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of annotated theory function declarations."
+  },
+  {
+    "passage": "2.7-p040-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of annotated theory function declarations."
+  },
+  {
+    "passage": "2.7-p040-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Examples of annotated theory function declarations."
+  },
+  {
+    "passage": "2.7-p040-08",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains the use of informal descriptions for infinite signatures."
+  },
+  {
+    "passage": "2.7-p040-09",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example informal theory attribute value."
+  },
+  {
+    "passage": "2.7-p040-10",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example informal theory attribute value."
+  },
+  {
+    "passage": "2.7-p040-12",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example informal theory attribute value."
+  },
+  {
+    "passage": "2.7-p040-13",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains natural-language theory definitions and the semantics of value terms."
+  },
+  {
+    "passage": "2.7-p041-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "There is no theory declaration validator for attribute multiplicity, prior sort declarations, or references to declared symbols."
+  },
+  {
+    "passage": "2.7-p041-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduces example theory declarations."
+  },
+  {
+    "passage": "2.7-p041-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Describes implicit inclusion and interpretation of Core in other theories."
+  },
+  {
+    "passage": "2.7-p041-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduces or comments on an example integer theory declaration."
+  },
+  {
+    "passage": "2.7-p041-05",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "Continues the requirement that :definition and :values be present in a theory declaration; no such validator is defined."
+  },
+  {
+    "passage": "2.7-p041-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduces or comments on an example integer theory declaration."
+  },
+  {
+    "passage": "2.7-p041-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduces or comments on an example integer theory declaration."
+  },
+  {
+    "passage": "2.7-p042-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example integer theory declaration."
+  },
+  {
+    "passage": "2.7-p042-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p042-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains interpretations and instances of example theories."
+  },
+  {
+    "passage": "2.7-p042-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains interpretations and instances of example theories."
+  },
+  {
+    "passage": "2.7-p043-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example array theory declaration and its semantic definition."
+  },
+  {
+    "passage": "2.7-p043-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example array theory declaration and its semantic definition."
+  },
+  {
+    "passage": "2.7-p043-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p043-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains theory instances and the motivation for restricting them through logics."
+  },
+  {
+    "passage": "2.7-p043-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains theory instances and the motivation for restricting them through logics."
+  },
+  {
+    "passage": "2.7-p044-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example theory declaration for sets and relations."
+  },
+  {
+    "passage": "2.7-p044-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p045-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the example Core theory declaration."
+  },
+  {
+    "passage": "2.7-p045-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the example Core theory declaration."
+  },
+  {
+    "passage": "2.7-p045-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the example Core theory declaration."
+  },
+  {
+    "passage": "2.7-p045-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the example Core theory declaration."
+  },
+  {
+    "passage": "2.7-p045-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the example Core theory declaration."
+  },
+  {
+    "passage": "2.7-p045-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p045-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Continuation of the preceding discussion of theory instances."
+  },
+  {
+    "passage": "2.7-p045-08",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains the Core signature and its meaning and introduces examples of abbreviations."
+  },
+  {
+    "passage": "2.7-p046-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Continues examples of Core term abbreviations."
+  },
+  {
+    "passage": "2.7-p046-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Continues examples of Core term abbreviations."
+  },
+  {
+    "passage": "2.7-p046-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Discusses interpretations of Core instances and combinations with other theories."
+  },
+  {
+    "passage": "2.7-p046-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduces the higher-order theory and explains the distinction between maps and functions."
+  },
+  {
+    "passage": "2.7-p046-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example map definition."
+  },
+  {
+    "passage": "2.7-p047-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the example HO-Core theory declaration."
+  },
+  {
+    "passage": "2.7-p047-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the example HO-Core theory declaration."
+  },
+  {
+    "passage": "2.7-p047-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the example HO-Core theory declaration."
+  },
+  {
+    "passage": "2.7-p047-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the example HO-Core theory declaration."
+  },
+  {
+    "passage": "2.7-p047-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of the example HO-Core theory declaration."
+  },
+  {
+    "passage": "2.7-p047-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p047-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example conversion of a map into a function."
+  },
+  {
+    "passage": "2.7-p047-08",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example conversion of a map into a function."
+  },
+  {
+    "passage": "2.7-p047-09",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration expands -> or @ associativity or omitted @ applications; Term.application requires a qualified identifier head rather than an arbitrary term."
+  },
+  {
+    "passage": "2.7-p047-10",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "States and illustrates extensional equality semantics for maps."
+  },
+  {
+    "passage": "2.7-p047-11",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "States and illustrates extensional equality semantics for maps."
+  },
+  {
+    "passage": "2.7-p048-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains sorting and interpretation of functions and maps and introduces polymorphic-map examples."
+  },
+  {
+    "passage": "2.7-p048-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Example polymorphic map declarations and definitions."
+  },
+  {
+    "passage": "2.7-p048-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Cross-reference explaining the sorting discipline for polymorphic maps."
+  },
+  {
+    "passage": "2.7-p048-04",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "The embedded logic_attribute production and the logic-declaration format are not defined."
+  },
+  {
+    "passage": "2.7-p048-05",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "There is no grammar or tree for logic declarations."
+  },
+  {
+    "passage": "2.7-p048-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains the name and meaning of a logic declaration."
+  },
+  {
+    "passage": "2.7-p049-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration validates logic attribute multiplicity, theory references, arity compatibility, or the described language restrictions and expansions."
+  },
+  {
+    "passage": "2.7-p049-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Illustrative descriptions of sublogics and their languages and semantics, rather than general SMT-LIB concrete syntax rules."
+  },
+  {
+    "passage": "2.7-p049-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Illustrative descriptions of sublogics and their languages and semantics, rather than general SMT-LIB concrete syntax rules."
+  },
+  {
+    "passage": "2.7-p050-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Illustrative descriptions of sublogics and their languages and semantics, rather than general SMT-LIB concrete syntax rules."
+  },
+  {
+    "passage": "2.7-p050-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Illustrative descriptions of sublogics and their languages and semantics, rather than general SMT-LIB concrete syntax rules."
+  },
+  {
+    "passage": "2.7-p050-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Illustrative descriptions of sublogics and their languages and semantics, rather than general SMT-LIB concrete syntax rules."
+  },
+  {
+    "passage": "2.7-p050-04",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Script",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Command.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Command sequences and fixed outer command shapes, generic attribute options, and keyword info flags are represented; prescribed option-value types and solver response behavior are not."
+  },
+  {
+    "passage": "2.7-p051-01",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SortDec.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p051-02",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SelectorDec.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SelectorDec.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p051-03",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.ConstructorDec.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.ConstructorDec.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p051-04",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.DatatypeDec.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.DatatypeDec.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p051-05",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.FunctionDec.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.FunctionDec.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p051-06",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.FunctionDef.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.FunctionDef.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p051-07",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Command.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Command.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Options are represented by generic attributes and info flags by keywords, matching the catch-all alternatives in those productions; predefined option-value conventions are not checked."
+  },
+  {
+    "passage": "2.7-p051-08",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Script",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Script defines command sequences, with additional version-switching and exit handling."
+  },
+  {
+    "passage": "2.7-p051-09",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p052-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration restricts a syntax category to the two symbols true and false; Lean Bool fields elsewhere are not this lexical category."
+  },
+  {
+    "passage": "2.7-p052-02",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Attribute.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Command.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "set-option accepts a generic attribute, covering the catch-all alternative, but no declaration distinguishes the predefined options or constrains their values to the listed categories."
+  },
+  {
+    "passage": "2.7-p052-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p052-04",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Command.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The getInfo branch accepts a keyword, which covers the production because its final alternative is any keyword; predefined meanings are not encoded."
+  },
+  {
+    "passage": "2.7-p052-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p052-06",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Command.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "getInfo accepts arbitrary keyword flags, including solver-specific ones; their usage and semantics are not represented."
+  },
+  {
+    "passage": "2.7-p052-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Describes assertion-stack operations and global-declaration behavior."
+  },
+  {
+    "passage": "2.7-p053-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Describes assertion-stack operations and global-declaration behavior."
+  },
+  {
+    "passage": "2.7-p053-02",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration rejects declared or defined names beginning with . or @."
+  },
+  {
+    "passage": "2.7-p053-03",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration requires or defines general_response output or checks the channel-name string conventions; the remaining output behavior is operational."
+  },
+  {
+    "passage": "2.7-p053-04",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration associates solver commands with these specific response categories."
+  },
+  {
+    "passage": "2.7-p053-05",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration associates solver commands with these specific response categories."
+  },
+  {
+    "passage": "2.7-p053-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Cross-reference."
+  },
+  {
+    "passage": "2.7-p053-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduces an example solver interaction."
+  },
+  {
+    "passage": "2.7-p054-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-02",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-03",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-04",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-05",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-06",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-07",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-08",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-09",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-10",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-11",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-12",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-13",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-14",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-15",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-16",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-17",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-18",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-19",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p054-20",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p055-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example solver interaction, including illustrative output."
+  },
+  {
+    "passage": "2.7-p055-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example solver interaction, including illustrative output."
+  },
+  {
+    "passage": "2.7-p055-03",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example solver interaction, including illustrative output."
+  },
+  {
+    "passage": "2.7-p055-04",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example solver interaction, including illustrative output."
+  },
+  {
+    "passage": "2.7-p055-05",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example solver interaction, including illustrative output."
+  },
+  {
+    "passage": "2.7-p055-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example solver interaction, including illustrative output."
+  },
+  {
+    "passage": "2.7-p055-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example solver interaction, including illustrative output."
+  },
+  {
+    "passage": "2.7-p055-08",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example solver interaction, including illustrative output."
+  },
+  {
+    "passage": "2.7-p055-09",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example solver interaction, including illustrative output."
+  },
+  {
+    "passage": "2.7-p055-10",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p055-11",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Part of an example solver interaction, including illustrative output."
+  },
+  {
+    "passage": "2.7-p055-12",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Figure caption."
+  },
+  {
+    "passage": "2.7-p056-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains the example scripts and their solver interactions."
+  },
+  {
+    "passage": "2.7-p056-02",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "set-info syntax exists, but no declaration defines benchmarks or their required metadata and ordering constraints."
+  },
+  {
+    "passage": "2.7-p056-03",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration requires these four metadata attributes to be set exactly once; VersionPolicy only optionally limits version declarations."
+  },
+  {
+    "passage": "2.7-p056-04",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration requires expected-status metadata before satisfiability checks."
+  },
+  {
+    "passage": "2.7-p056-05",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration requires the version-setting command to be first in a benchmark."
+  },
+  {
+    "passage": "2.7-p056-06",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains that a displayed solver response is only illustrative."
+  },
+  {
+    "passage": "2.7-p056-07",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Explains that a displayed solver response is only illustrative."
+  },
+  {
+    "passage": "2.7-p104-01",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.reserved",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.simpleSymbol",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The listed words are excluded from the reserved-word lists and can be simple symbols; their predefined meanings are outside the lexical rule."
+  },
+  {
+    "passage": "2.7-p104-02",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Catalog of keywords with predefined meanings, rather than an additional lexical restriction."
+  },
+  {
+    "passage": "2.7-p104-03",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.whiteSpaceChar",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p104-04",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.printableChar",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p104-05",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.digit",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p104-06",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.letter",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p105-01",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.basicReservedWords",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.commandNames",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.reserved",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The listed reserved words are represented, but the Lean command-name list also contains define-funs-rec, present in the command production but omitted from this passage’s list."
+  },
+  {
+    "passage": "2.7-p105-02",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.categoryRegex",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The parenthesis tokens are the parenOpen and parenClose branches."
+  },
+  {
+    "passage": "2.7-p105-03",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.numeral",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p105-04",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.decimal",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p105-05",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.hexadecimal",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p105-06",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.binary",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p105-07",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.string",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.unescape",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p105-08",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.simpleSymbol",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.symbolPunctuation",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The implementation uses ASCII ~ and ^ for the typographic forms in the extracted punctuation list."
+  },
+  {
+    "passage": "2.7-p105-09",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.simpleSymbol",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Lexicon.quotedSymbol",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p105-10",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Lexicon.keyword",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The colon and non-empty symbol-character suffix are defined, but the suffix may begin with a digit or be a reserved word; it is not constrained by simpleSymbol as this passage specifies."
+  },
+  {
+    "passage": "2.7-p105-11",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "The lexer accepts these prefixes, but no declaration reserves their use to solver-generated names or abstract values."
+  },
+  {
+    "passage": "2.7-p105-12",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SpecConstant",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SpecConstant.token",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p105-13",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SExpr.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SExpr.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p105-14",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Index.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Index.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p105-15",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Identifier.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "An empty index list serializes as a simple symbol; a non-empty list produces the parenthesized underscore form."
+  },
+  {
+    "passage": "2.7-p106-01",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Sort.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Sort.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p106-02",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.AttributeValue.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.AttributeValue.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p106-03",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Attribute.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Attribute.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p106-04",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.QualIdentifier.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.QualIdentifier.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p106-05",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.bindingTokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.ValidBindings",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p106-06",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SortedVar.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SortedVar.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p106-07",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SymbolOrWildcard.token",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SymbolOrWildcard.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p106-08",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Pattern.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Pattern.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p106-09",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.caseTokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.ValidCases",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p106-10",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Term.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Term.Valid imposes the non-empty lists and the version gates for lambda, match, and wildcards; Term.tokens gives the concrete forms."
+  },
+  {
+    "passage": "2.7-p107-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p107-02",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p107-03",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p107-04",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p107-05",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p107-06",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines this theory-declaration category; script declaration helpers and generic S-expressions do not state this rule."
+  },
+  {
+    "passage": "2.7-p107-07",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "There is no logic_attribute grammar; generic attributes do not state these logic-specific value categories."
+  },
+  {
+    "passage": "2.7-p107-08",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "There is no grammar or tree for logic declarations."
+  },
+  {
+    "passage": "2.7-p108-01",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Command.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The getInfo branch accepts a keyword, which covers the production because its final alternative is any keyword; predefined meanings are not encoded."
+  },
+  {
+    "passage": "2.7-p108-02",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration restricts a syntax category to the two symbols true and false; Lean Bool fields elsewhere are not this lexical category."
+  },
+  {
+    "passage": "2.7-p108-03",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Attribute.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Command.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": "set-option accepts a generic attribute, covering the catch-all alternative, but no declaration distinguishes the predefined options or constrains their values to the listed categories."
+  },
+  {
+    "passage": "2.7-p109-01",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SortDec.tokens",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p109-02",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.SelectorDec.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.SelectorDec.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p109-03",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.ConstructorDec.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.ConstructorDec.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p109-04",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.DatatypeDec.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.DatatypeDec.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p109-05",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.FunctionDec.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.FunctionDec.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p109-06",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.FunctionDef.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.FunctionDef.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": ""
+  },
+  {
+    "passage": "2.7-p109-07",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Command.tokens",
+        "relation": "defines"
+      },
+      {
+        "id": "Spec.Grammar.Tree.Command.Valid",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Options are represented by generic attributes and info flags by keywords, matching the catch-all alternatives in those productions; predefined option-value conventions are not checked."
+  },
+  {
+    "passage": "2.7-p109-08",
+    "status": "formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Script",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Script defines command sequences, with additional version-switching and exit handling."
+  },
+  {
+    "passage": "2.7-p110-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-02",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-03",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-04",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-05",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-06",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-07",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-08",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-09",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-10",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-11",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-12",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-13",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-14",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-15",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-16",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-17",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-18",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p110-19",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No solver-response grammar is defined; existing string, S-expression, attribute, term, and command definitions do not designate or constrain responses."
+  },
+  {
+    "passage": "2.7-p111-01",
+    "status": "not_a_rule",
+    "targets": [],
+    "notes": "Introduces mathematical notation for abstract syntactic domains."
+  },
+  {
+    "passage": "2.7-p111-02",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Sort",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Recursive sort applications have a concrete tree representation, but there is no separate monomorphic-sort grammar or distinction between sort symbols and parameters."
+  },
+  {
+    "passage": "2.7-p111-03",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Sort",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Bare identifiers and recursive sort applications are represented, but sort parameters have no distinct tree constructor or abstract syntactic domain."
+  },
+  {
+    "passage": "2.7-p111-04",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Pattern",
+        "relation": "defines"
+      }
+    ],
+    "notes": "Flat symbol and constructor patterns are represented, but there is no abstract distinction between variable and function-symbol domains; the concrete tree also retains wildcards."
+  },
+  {
+    "passage": "2.7-p111-05",
+    "status": "partly_formalised",
+    "targets": [
+      {
+        "id": "Spec.Grammar.Tree.Term",
+        "relation": "defines"
+      }
+    ],
+    "notes": "The concrete term tree represents the corresponding forms, but there is no separate abstract grammar distinguishing variables from functions or desugaring multiple binders into unary abstractions."
+  },
+  {
+    "passage": "2.7-p112-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No declaration defines signatures, function ranks, rank instantiation, or a well-sorting judgment."
+  },
+  {
+    "passage": "2.7-p112-08",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No abstract theory sort-symbol declaration is defined; Tree.SortDec is a helper for script datatype commands."
+  },
+  {
+    "passage": "2.7-p112-09",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No abstract theory function declaration as a symbol with a non-empty rank is defined; script function signatures are a different category."
+  },
+  {
+    "passage": "2.7-p112-10",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No abstract theory-attribute or theory-declaration grammar is defined."
+  },
+  {
+    "passage": "2.7-p112-11",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No abstract theory-attribute or theory-declaration grammar is defined."
+  },
+  {
+    "passage": "2.7-p113-01",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No abstract logic-attribute or logic-declaration grammar is defined."
+  },
+  {
+    "passage": "2.7-p113-02",
+    "status": "not_formalised",
+    "targets": [],
+    "notes": "No abstract logic-attribute or logic-declaration grammar is defined."
+  }
+]

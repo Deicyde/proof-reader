@@ -1,0 +1,3 @@
+Created [out/declarations.json](/tmp/smtlib-match/gpt_docs_kept_decls/out/declarations.json).
+
+Validated JSON, exactly 298 unique declaration records, and all cited passage IDs. Used only files within this folder; no network access.

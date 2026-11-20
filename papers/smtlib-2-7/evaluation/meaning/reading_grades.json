@@ -1,0 +1,18 @@
+{
+ "graded_by": "Claude (Opus 5.5), with the authors' Readings and the rubric in reference/readings_rubric.json visible. A reviewed judgement, not a blind measurement.",
+ "rule": "recovered: the answer names the case where the Lean departs from the letter of the passages, and which side allows it, as the authors' Reading says. missed: no such case, a wrong case, or unsure. not_tested: the item as we built it left out the passage the Reading is about.",
+ "grades": {
+  "1/reading-L5": {"grade": "recovered", "why": "Names :0 (leading digit) and :assert (reserved word) as accepted by the Lean and excluded by the passages. Its third remark, that the Lean rejects :a9, comes from this session's change to digit, not from the Reading."},
+  "1/reading-L2": {"grade": "recovered", "why": "Names ;abc at the end of input without a line break, accepted by the Lean, against the passages' requirement of a line-breaking character."},
+  "1/reading-L4": {"grade": "missed", "why": "Names a9, which differs only because this session changed digit; it does not name the reserved-word exclusion. This item was affected by our own change."},
+  "1/reading-G1": {"grade": "missed", "why": "unsure"},
+  "1/reading-L3": {"grade": "missed", "why": "unsure"},
+  "1/reading-L6": {"grade": "not_tested", "why": "The item gave only the two §3.1 reserved-word paragraphs. It left out Appendix B's list of reserved words, which is where define-funs-rec is missing, so 'exact' is a fair answer to what it was shown."},
+  "2/reading-L3": {"grade": "recovered", "why": "Reads the 2.5 production literally (A to A, then a to z), says it excludes B to Z while the Lean accepts them, and says it did not silently correct the printed endpoint."},
+  "2/reading-L4": {"grade": "recovered", "why": "At 2.5, the Lean rejects let and assert as simple symbols while the cited 2.5 appendix production allows them; at 2.7 the two agree."},
+  "2/reading-L6": {"grade": "not_tested", "why": "As in session 1: Appendix B's reserved-word list was not among the item's passages."},
+  "2/reading-L5": {"grade": "recovered", "why": "Names :1 (leading digit) and :let (reserved word) as accepted by the Lean and excluded by the passages."},
+  "2/reading-L2": {"grade": "recovered", "why": "Names ;abc at end of input without a line break, and says the passages give no end-of-file exception."},
+  "2/reading-G1": {"grade": "missed", "why": "unsure"}
+ }
+}

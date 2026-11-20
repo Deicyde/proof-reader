@@ -172,6 +172,40 @@ def score(predictions: list[dict], ref: dict, all_declarations: list[str]) -> di
     }
 
 
+def score_passages(answers: list[dict], ref: dict, narrow: int = 4) -> dict:
+    """The other direction: from each 2.7 passage to the declarations stating it.
+
+    The authors' citations say exactly which 2.7 passage they mean only for a grammar rule
+    or a paragraph under a cited run-in heading, so those passages are scored; whole-section
+    citations are not. A scored passage is found when the matcher names a declaration the
+    authors attach there; its targets agree when the authors attach them there."""
+    expected: dict[str, set[str]] = {}
+    asked = {a["passage"] for a in answers}  # the eligible passages: prose and grammar rules
+    for decl, entry in ref["declarations"].items():
+        for g in entry["groups"]:
+            if g["kind"] == "rule" or len(g["ids"]) <= narrow:
+                for pid in g["ids"]:
+                    if pid.startswith("2.7-") and pid in asked:
+                        expected.setdefault(pid, set()).add(decl)
+    given = {a["passage"]: a for a in answers}
+    found = targets = agree = 0
+    misses = []
+    for pid, decls in sorted(expected.items()):
+        named = {canonical(t["id"]) for t in (given.get(pid) or {}).get("targets") or []}
+        hit = bool(named & decls)
+        found += hit
+        targets += len(named)
+        agree += len(named & decls)
+        if not hit:
+            misses.append({"passage": pid, "authors_attach": sorted(decls), "matcher_named": sorted(named),
+                           "status": (given.get(pid) or {}).get("status")})
+    statuses: dict[str, int] = {}
+    for a in answers:
+        statuses[a.get("status", "missing")] = statuses.get(a.get("status", "missing"), 0) + 1
+    return {"scored_passages": len(expected), "found": [found, len(expected)],
+            "targets_agree": [agree, targets], "statuses": statuses, "misses": misses}
+
+
 def fraction(pair: list[int]) -> str:
     return f"{pair[0]} / {pair[1]}" + (f" ({100 * pair[0] / pair[1]:.0f}%)" if pair[1] else "")
 
@@ -202,6 +236,13 @@ def main() -> int:
             print(f"{k:18} {fraction(result[k]):24}" + (f" link-everything control: {fraction(base)}" if base else ""))
         print(f"answered {result['answered']} of {len(decls)}; unknown ids {len(result['unknown_ids'])}; "
               f"links to review: {result['links_on_cited_outside_their_key']} on cited, {result['links_outside_key']} on uncited")
+        return 0
+    if sys.argv[1] == "score-passages":
+        answers = json.loads(Path(sys.argv[2]).read_text(encoding="utf-8"))
+        ref = json.loads((HERE / "reference" / "author_groups.json").read_text(encoding="utf-8"))
+        result = {"label": sys.argv[3], **score_passages(answers, ref)}
+        Path(sys.argv[4] + ".json").write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        print(f"found {fraction(result['found'])}; targets agreeing with the authors {fraction(result['targets_agree'])}; statuses {result['statuses']}")
         return 0
     raise SystemExit(__doc__)
 

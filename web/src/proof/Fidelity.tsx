@@ -3,7 +3,7 @@
 // says how the page was made.
 
 import { useState, type ReactNode } from "react";
-import { hasComparisons, leanOrigin, noun, passageLocation, type Check, type Declaration, type Edition, type Verdict } from "../app/edition";
+import { hasComparisons, leanOrigin, noun, passageLocation, type Check, type Declaration, type Edition, type Evaluation, type Passage, type Verdict } from "../app/edition";
 import { routeHref } from "../app/router";
 import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code";
 import { sectionLabel } from "../model/fromEdition";
@@ -219,6 +219,69 @@ export function AllChecks({ edition, act }: { edition: Edition; act: LeanActions
 export const reviewers = (edition: Edition) => (edition.source?.kind === "markdown" ? "The authors of the Lean" : "The authors");
 
 /** The full account of how the page was made, said once. */
+const count = (n: number, of: number) => (n === of ? (of === 1 ? "the one" : `all ${of}`) : n === 0 ? (of === 1 ? "not the one" : `none of the ${of}`) : `${n} of the ${of}`);
+
+/** One or two sentences for the entry: how the matcher's links here stand to the authors' citations. */
+export function MatchSummary({ edition, passage }: { edition: Edition; passage: Passage }) {
+  const match = passage.match;
+  if (!match) return null;
+  const matcher = edition.evaluation?.matcher ?? "The matcher";
+  const plain = (id: string) => edition.declarations.find((d) => d.id === id)?.plain ?? id;
+  const entries = Object.entries(match);
+  const cited = entries.filter(([, m]) => m.authors === "cites");
+  const foundCited = cited.filter(([, m]) => m.found_by.length).length;
+  const release = entries.filter(([, m]) => m.authors === "other_release");
+  const elsewhere = entries.filter(([, m]) => m.found_by.length && m.authors === "elsewhere").length;
+  const uncited = entries.filter(([, m]) => m.found_by.length && m.authors === "uncited").length;
+  const lines: string[] = [];
+  if (cited.length) {
+    const head = `${matcher} found ${count(foundCited, cited.length)} declaration${cited.length === 1 ? "" : "s"} the authors cite here`;
+    const more = [elsewhere && `${elsewhere} they cite at another passage`, uncited && `${uncited} they do not cite`].filter(Boolean);
+    lines.push(more.length ? `${head}, and ${more.join(" and ")}.` : `${head}.`);
+  } else if (elsewhere || uncited) {
+    lines.push(`${matcher} found ${[elsewhere && `${elsewhere} declaration${elsewhere === 1 ? "" : "s"} the authors cite at another passage`, uncited && `${uncited} they do not cite`].filter(Boolean).join(" and ")}.`);
+  }
+  for (const [id, m] of release) {
+    lines.push(`${m.found_by.length ? `${matcher} linked ${plain(id)} here.` : ""} The authors cite this rule as release ${(m.releases ?? []).join(" and ")} prints it.`.trim());
+  }
+  return <p className="matchsummary">{lines.join(" ")}</p>;
+}
+
+const share = (pair: [number, number] | null) => (pair ? `${pair[0]} of ${pair[1]}` : "");
+
+/** A matcher's results against the authors' own citations, beside its controls. */
+export function EvaluationResults({ evaluation }: { evaluation: Evaluation }) {
+  return (
+    <section className="evaluation" id="how-well-the-matching-worked" aria-labelledby="evaluation-title">
+      <h3 id="evaluation-title">How well the matching worked</h3>
+      {evaluation.method.map((line, i) => <p key={i}>{line}</p>)}
+      <table>
+        <thead>
+          <tr><th scope="col">Measure</th>{evaluation.columns.map((c) => <th key={c.id} scope="col" title={c.about}>{c.label}</th>)}</tr>
+        </thead>
+        <tbody>
+          {evaluation.rows.map((row) => (
+            <tr key={row.measure}>
+              <th scope="row">{row.measure}{row.about && <span className="evaluation__about">{row.about}</span>}</th>
+              {evaluation.columns.map((c) => <td key={c.id}>{share(row.counts[c.id] ?? null)}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <ul className="evaluation__columns">{evaluation.columns.map((c) => <li key={c.id}><strong>{c.label}</strong>: {c.about}</li>)}</ul>
+      <h4>What the runs showed</h4>
+      <ul>{evaluation.findings.map((line, i) => <li key={i}>{line}</li>)}</ul>
+      {evaluation.misses.length > 0 && (
+        <details>
+          <summary>The {evaluation.misses.length} citations by the authors that no run found</summary>
+          <ul>{evaluation.misses.map((m, i) => <li key={i}><code>{m.declaration}</code>: {m.citation}</li>)}</ul>
+        </details>
+      )}
+      <p><a href={evaluation.records}>Every run, its inputs, its answers and the scorer</a>.</p>
+    </section>
+  );
+}
+
 export function HowMade({ edition }: { edition: Edition }) {
   return (
     <section className="made" id="how-this-page-was-made" aria-labelledby="made-title">

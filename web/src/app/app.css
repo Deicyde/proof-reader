@@ -403,6 +403,18 @@ button:disabled { cursor: default; }
 .untied__go { display: flex; flex-wrap: wrap; gap: 4px 16px; }
 .untied__go button { min-height: 28px; color: var(--lit); text-decoration: underline; text-underline-offset: 3px; }
 
+.matchsummary { margin: 6px 0 0; font-size: var(--fs-sm); line-height: 1.4; color: var(--ink-2); }
+.alsostate { margin: 4px 0 0; font-size: var(--fs-sm); line-height: 1.5; color: var(--ink-2); }
+.alsostate__link { color: var(--lit); }
+.evaluation { margin: 14px 0 12px; font-size: var(--fs-ui); line-height: 1.5; color: var(--ink); }
+.evaluation p, .evaluation li { max-width: 52rem; }
+.evaluation table { margin: 6px 0 8px; }
+.evaluation td { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.evaluation__about { display: block; font-size: var(--fs-xs); color: var(--ink-2); }
+.evaluation__columns { margin: 0 0 8px; padding-left: 18px; font-size: var(--fs-xs); }
+.evaluation h4 { margin: 10px 0 4px; font-size: var(--fs-sm); color: var(--ink); }
+.evaluation details { margin: 6px 0; }
+.evaluation summary { cursor: pointer; color: var(--lit); }
 .index { padding: 10px 16px 0; font-size: var(--fs-sm); line-height: 1.45; color: var(--ink-2); }
 .index h3 { margin: 10px 0 4px; font-family: var(--font-serif); font-size: 1rem; color: var(--ink); }
 .index h3:first-child { margin-top: 0; }

@@ -9,7 +9,7 @@ import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code
 import { sectionLabel, shapeOf } from "../model/fromEdition";
 import { READING_LINE } from "../paper/reading-line";
 import { DeclBlock, KIND_WORDS, list } from "./DeclBlock";
-import { AllChecks, checksOf, FidelityLines, HowMade, reviewers, SupplementaryProofs } from "./Fidelity";
+import { AllChecks, checksOf, EvaluationResults, FidelityLines, HowMade, MatchSummary, reviewers, SupplementaryProofs } from "./Fidelity";
 import { ComparatorIndex } from "./Comparator";
 import { MadeLink } from "./MadeLink";
 import { Quote } from "../paper/Quote";
@@ -89,6 +89,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
   const supplementary = checksOf(edition, step.passage?.checks ?? []);
   const hasWholeFile = step.decls.length > 0 || !supplementary.length;
   const visibleTab = tab === "file" && !hasWholeFile ? "step" : tab;
+  const standard = !!edition.paper.standard;
   const tabWas = useRef(visibleTab);
   useLayoutEffect(() => {
     const el = body.current;
@@ -167,7 +168,15 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
                 {step.title && (!supplementary.length || step.decls.length > 0) && <p className="stepline__title">{step.title}</p>}
                 <blockquote><Quote passage={step.passage} /></blockquote>
                 <FidelityLines edition={edition} ids={step.decls} act={act} onGo={goTo} />
-                {step.decls.length > 1 && (
+                <MatchSummary edition={edition} passage={step.passage} />
+                {standard && step.decls.length > 1 && (
+                  <p className="alsostate">Also in the Lean for this rule:{" "}
+                    {step.decls.slice(1).map((id, i) => (
+                      <span key={id}>{i > 0 && ", "}<a className="alsostate__link" href={routeHref({ paper: edition.slug, record: id })}>{act.plain(id)}</a></span>
+                    ))}
+                  </p>
+                )}
+                {!standard && step.decls.length > 1 && (
                   <nav className="crumbs" aria-label="The declarations of this statement">
                     <span>{step.decls.length} declarations here</span>
                     {step.decls.map((id) => (
@@ -180,8 +189,8 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
                 )}
               </header>
             )}
-            {!step.untied && <Crumbs edition={edition} id={step.decls[0]} onPassage={onPassage} />}
-            {!step.untied && step.decls.map((id) => {
+            {!step.untied && !standard && <Crumbs edition={edition} id={step.decls[0]} onPassage={onPassage} />}
+            {!step.untied && (standard ? step.decls.slice(0, 1) : step.decls).map((id) => {
               const d = edition.declarations.find((x) => x.id === id);
               if (!d) return null;
               return (
@@ -196,6 +205,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
                   onPassage={onPassage}
                   act={act}
                   names={names}
+                  compact={standard}
                 />
               );
             })}
@@ -268,6 +278,7 @@ function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions 
   const plain = (names: string[]) => list(names.map((name) => declarations.find((d) => d.id === name)?.plain ?? name));
   return (
     <div className="index">
+      {edition.evaluation && <EvaluationResults evaluation={edition.evaluation} />}
       <HowMade edition={edition} />
       <h3>Axioms, as Lean reports them</h3>
       {!extracted && <p>This edition has no Lean axiom reports.</p>}

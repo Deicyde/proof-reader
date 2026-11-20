@@ -1,0 +1,3288 @@
+[
+  {
+    "id": "Spec.Grammar.versionAtLeast",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Tests membership in the cumulative version ordering."
+  },
+  {
+    "id": "Spec.Grammar.versionNumber",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Concrete decimal spelling of each supported version."
+  },
+  {
+    "id": "Spec.Grammar.versionOfNumber",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Recognises only the four supported decimal spellings; this is a support choice."
+  },
+  {
+    "id": "Spec.Grammar.SyntaxToken",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Abstract tokens carry decoded payloads rather than source positions and spellings."
+  },
+  {
+    "id": "Spec.Grammar.SyntaxToken.ofToken",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Forgets source locations and transfers decoded lexical payloads into grammar tokens."
+  },
+  {
+    "id": "Spec.Grammar.paren",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p105-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Wraps an arbitrary token list in parentheses."
+  },
+  {
+    "id": "Spec.Grammar.word",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p025-08",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Constructs a reserved token without checking membership in the version’s reserved set."
+  },
+  {
+    "id": "Spec.Grammar.commandTokens",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p109-07",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Shared command-serialization wrapper; it does not check arguments or command-name membership."
+  },
+  {
+    "id": "Spec.Grammar.File.Mode",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Internal read-version or unparsed-tail state."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Command.modeAfter",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p066-04",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.7-p077-01",
+        "2.7-p077-02"
+      ],
+      "description": "The standard describes set-info as script metadata and identifies :smt-lib-version with the benchmark’s version; it does not specify a mid-stream lexer/parser version switch. This model changes the language of subsequent commands."
+    },
+    "notes": "Exit stops parsing; recognised version metadata switches versions and malformed or unsupported declarations have no successor mode."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Command.declaredVersion",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Extracts a supported decimal version from set-info metadata; does not itself switch a parser."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Command.namesNoVersion",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Detects :smt-lib-version with a missing, nondecimal, or unsupported value."
+  },
+  {
+    "id": "Spec.Grammar.File.From",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-08",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p066-04",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Relates raw input to commands, changing lexical/grammar versions after metadata and leaving any tail after exit unparsed; From also tracks the source offset."
+  },
+  {
+    "id": "Spec.Grammar.File",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-08",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p066-04",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Relates raw input to commands, changing lexical/grammar versions after metadata and leaving any tail after exit unparsed; starts at offset zero."
+  },
+  {
+    "id": "Spec.Grammar.Properties.SExprsOneToOne",
+    "kind": "derived_property",
+    "matches": [
+      {
+        "passage": "2.7-p105-13",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "States injectivity of token serialization on version-valid trees; this is a property of the formalisation, not a stated standard requirement."
+  },
+  {
+    "id": "Spec.Grammar.Properties.AttributesOneToOne",
+    "kind": "derived_property",
+    "matches": [
+      {
+        "passage": "2.7-p106-03",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "States injectivity of token serialization on version-valid trees; this is a property of the formalisation, not a stated standard requirement."
+  },
+  {
+    "id": "Spec.Grammar.Properties.SortsOneToOne",
+    "kind": "derived_property",
+    "matches": [
+      {
+        "passage": "2.7-p106-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "States injectivity of token serialization on version-valid trees; this is a property of the formalisation, not a stated standard requirement."
+  },
+  {
+    "id": "Spec.Grammar.Properties.TermsOneToOne",
+    "kind": "derived_property",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "States injectivity of token serialization on version-valid trees; this is a property of the formalisation, not a stated standard requirement."
+  },
+  {
+    "id": "Spec.Grammar.Properties.CommandsOneToOne",
+    "kind": "derived_property",
+    "matches": [
+      {
+        "passage": "2.7-p109-07",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "States injectivity of token serialization on version-valid trees; this is a property of the formalisation, not a stated standard requirement."
+  },
+  {
+    "id": "Spec.Grammar.Properties.FilesUnique",
+    "kind": "derived_property",
+    "matches": [
+      {
+        "passage": "2.7-p109-08",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Uniqueness of the command list related to an input by the formalisation’s File predicate."
+  },
+  {
+    "id": "Spec.Grammar.Properties.CommandsHandedOverWhole",
+    "kind": "derived_property",
+    "matches": [
+      {
+        "passage": "2.7-p109-07",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Connects complete command syntax to maximal lexer handover; the handover property is not a standard production."
+  },
+  {
+    "id": "Spec.Grammar.Script",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-08",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.7-p066-04",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Adds model-specific version transitions and requires exit, if present, to be the final represented command; the standard’s command-star production alone is less restrictive."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SpecConstant.token",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-12",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.SExpr.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-13",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Specifies token shape; the separate Valid predicate enforces version and nonempty-list restrictions."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SExpr.tokensAll",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p105-13",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Concatenates the serialized elements of a list; this helper imposes no grammar cardinality restriction."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Index.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-14",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.Identifier.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-15",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.0-p022-02",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.0-p022-03",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.0-p022-02",
+        "2.0-p022-03"
+      ],
+      "description": "The 2.0 prose introduces an indexed identifier with _, but its displayed production omits _; the code consistently follows the prose and later grammar."
+    },
+    "notes": "Empty indices serialize as a bare symbol; nonempty indices use the explicit _ prefix in every version."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-01",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Empty arguments produce a bare identifier, so parenthesized applications always have at least one argument."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Sort.tokensAll",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Concatenates the serialized elements of a list; this helper imposes no grammar cardinality restriction."
+  },
+  {
+    "id": "Spec.Grammar.Tree.AttributeValue.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-02",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-03",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.QualIdentifier.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-04",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.SortedVar.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-06",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.SymbolOrWildcard.token",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-07",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.Pattern.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-08",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Specifies token shape; the separate Valid predicate enforces version and nonempty-list restrictions."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Quantifier.word",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Selects the forall or exists terminal used in the term production."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Specifies token shape; the separate Valid predicate enforces version and nonempty-list restrictions."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Term.tokensAll",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Concatenates the serialized elements of a list; this helper imposes no grammar cardinality restriction."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Term.bindingTokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-05",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Serializes each binding; the containing let checks that the list is nonempty."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Term.caseTokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-09",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Serializes each match case; the containing match checks that the case list is nonempty."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SortDec.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-01",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.SelectorDec.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-02",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.ConstructorDec.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-03",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.DatatypeDec.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-04",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Empty parameters select the non-par form; nonempty constructors are checked by DatatypeDec.Valid."
+  },
+  {
+    "id": "Spec.Grammar.Tree.FunctionDec.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-05",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.FunctionDef.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-06",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Grammar.Tree.PropLiteral.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.6-p101-07",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Serializes legacy assumption literals; PropLiteral.Valid separately requires the negative head’s name to be not."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Command.tokens",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-07",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.6-p101-07",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.6-p101-08",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Serialization includes the union of supported command forms; validity and version selection are separate."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SExpr.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-13",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.5-p087-13",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Reserved-token atoms are admitted only from 2.6; list contents are checked recursively."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SExpr.ValidAll",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-13",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Lifts component validity to every list member; the empty list is allowed here and cardinality belongs to the enclosing production."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Index.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-14",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.0-p022-02",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Numeral indices are always permitted, while symbolic indices require 2.5 or later."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Identifier.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-15",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.0-p022-02",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Checks only the version-dependent index categories; token serialization supplies the indexed identifier’s shape."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-01",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Propagates the version-specific validity conditions into its syntax components."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Sort.ValidAll",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Lifts component validity to every list member; the empty list is allowed here and cardinality belongs to the enclosing production."
+  },
+  {
+    "id": "Spec.Grammar.Tree.AttributeValue.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-02",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Propagates the version-specific validity conditions into its syntax components."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-03",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Propagates the version-specific validity conditions into its syntax components."
+  },
+  {
+    "id": "Spec.Grammar.Tree.QualIdentifier.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-04",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Propagates the version-specific validity conditions into its syntax components."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SortedVar.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-06",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Propagates the version-specific validity conditions into its syntax components."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SymbolOrWildcard.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-07",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.6-p098-08",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Makes the reserved wildcard available starting in 2.7; ordinary symbols remain permitted."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Pattern.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-08",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.6-p098-08",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.7-p106-07",
+        "2.7-p106-08",
+        "2.7-p033-01",
+        "2.7-p033-03"
+      ],
+      "description": "The grammar and example allow a standalone wildcard pattern, while the prose also says the wildcard can only replace constructor-argument variables; this predicate follows the grammar and example."
+    },
+    "notes": "Requires a nonempty constructor-argument list and checks wildcard availability; semantic constructor and variable checks are outside this predicate."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.5-p088-07",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.6-p098-11",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Enforces the grammar’s nonempty lists, admits match from 2.6 and lambda from 2.7, and checks children; this is not well-sortedness."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Term.ValidAll",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Lifts component validity to every list member; the empty list is allowed here and cardinality belongs to the enclosing production."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Term.ValidBindings",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-05",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Lifts component validity to every list member; the empty list is allowed here and cardinality belongs to the enclosing production."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Term.ValidCases",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-09",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Lifts component validity to every list member; the empty list is allowed here and cardinality belongs to the enclosing production."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SelectorDec.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-02",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Propagates the version-specific validity conditions into its syntax components."
+  },
+  {
+    "id": "Spec.Grammar.Tree.ConstructorDec.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-03",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Propagates the version-specific validity conditions into its syntax components."
+  },
+  {
+    "id": "Spec.Grammar.Tree.DatatypeDec.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-04",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Requires at least one constructor; an empty parameter list denotes the non-par production."
+  },
+  {
+    "id": "Spec.Grammar.Tree.FunctionDec.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-05",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Propagates the version-specific validity conditions into its syntax components."
+  },
+  {
+    "id": "Spec.Grammar.Tree.FunctionDef.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-06",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Propagates the version-specific validity conditions into its syntax components."
+  },
+  {
+    "id": "Spec.Grammar.Tree.PropLiteral.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.6-p101-07",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "For a negative legacy literal, requires the head symbol’s decoded name to be not; quoting is not excluded."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Command.Valid",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-07",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.0-p035-03",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.5-p042-04",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.6-p046-08",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Enforces command introduction versions, equal nonzero lengths for mutual declarations/definitions, and nonempty get-value arguments; 2.7 assumptions are general terms rather than legacy literals."
+  },
+  {
+    "id": "Spec.Grammar.Syntax.IsSExpr",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-13",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Combines version validity with equality to the tree’s token serialization; assumes lexical payloads have already been checked."
+  },
+  {
+    "id": "Spec.Grammar.Syntax.IsAttribute",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-03",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Combines version validity with equality to the tree’s token serialization; assumes lexical payloads have already been checked."
+  },
+  {
+    "id": "Spec.Grammar.Syntax.IsSort",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-01",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Combines version validity with equality to the tree’s token serialization; assumes lexical payloads have already been checked."
+  },
+  {
+    "id": "Spec.Grammar.Syntax.IsTerm",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Combines version validity with equality to the tree’s token serialization; assumes lexical payloads have already been checked."
+  },
+  {
+    "id": "Spec.Grammar.Syntax.IsCommand",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p109-07",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Combines version validity with equality to the tree’s token serialization; assumes lexical payloads have already been checked."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Symbol",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p105-09",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Retains a quoted flag for concrete syntax; the standard identifies abc with |abc| semantically, so this is not semantic symbol equality."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SpecConstant",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p105-12",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Tags five kinds of special constant and carries their byte payloads; the type does not enforce lexical validity."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SExpr",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p105-13",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Carries syntax; lexical validity and version/cardinality restrictions are not enforced by this type alone."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Index",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p105-14",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Carries numeral or symbol indices; the type itself does not distinguish version support."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Identifier",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p105-15",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Uses an empty list to select the unindexed, unapplied, or nonparametric form; token serialization and Valid supply the grammar interpretation."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Sort",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Uses an empty list to select the unindexed, unapplied, or nonparametric form; token serialization and Valid supply the grammar interpretation."
+  },
+  {
+    "id": "Spec.Grammar.Tree.AttributeValue",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Carries syntax; lexical validity and version/cardinality restrictions are not enforced by this type alone."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-03",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Carries a keyword name and an optional value; it does not determine token boundaries or check the payload."
+  },
+  {
+    "id": "Spec.Grammar.Tree.QualIdentifier",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-04",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Carries either a plain identifier or an identifier qualified by a sort."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SortedVar",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-06",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Pairs a symbol with a sort; the concrete parentheses are supplied by serialization."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SymbolOrWildcard",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-07",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Carries syntax; lexical validity and version/cardinality restrictions are not enforced by this type alone."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Pattern",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-08",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Carries syntax; lexical validity and version/cardinality restrictions are not enforced by this type alone."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Quantifier",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Distinguishes universal and existential binders; their concrete words are supplied separately."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Term",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Carries syntax; lexical validity and version/cardinality restrictions are not enforced by this type alone."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SortDec",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p109-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Pairs a datatype sort symbol with an arity byte sequence, without checking that the arity is a numeral."
+  },
+  {
+    "id": "Spec.Grammar.Tree.SelectorDec",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p109-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Pairs a selector name with its result sort."
+  },
+  {
+    "id": "Spec.Grammar.Tree.ConstructorDec",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p109-03",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Carries a constructor name and its possibly empty selector list."
+  },
+  {
+    "id": "Spec.Grammar.Tree.DatatypeDec",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p109-04",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Uses an empty list to select the unindexed, unapplied, or nonparametric form; token serialization and Valid supply the grammar interpretation."
+  },
+  {
+    "id": "Spec.Grammar.Tree.FunctionDec",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p109-05",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Carries a function name, possibly empty sorted-parameter list, and result sort."
+  },
+  {
+    "id": "Spec.Grammar.Tree.FunctionDef",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p109-06",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Adds a body term to a function signature; version-specific grammar checks are separate."
+  },
+  {
+    "id": "Spec.Grammar.Tree.PropLiteral",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.6-p101-07",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Representation of the 2.5/2.6 assumption grammar; the negative form stores a symbol whose name is checked separately."
+  },
+  {
+    "id": "Spec.Grammar.Tree.PropLiteral.asTerm",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.6-p101-07",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Embeds a legacy propositional literal into the general term representation for traversal."
+  },
+  {
+    "id": "Spec.Grammar.Tree.Command",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p109-07",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Contains both old literal-assumption and new term-assumption constructors; Command.Valid selects the version’s forms."
+  },
+  {
+    "id": "Spec.Lexer.Location",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Source offset and zero-based line/column metadata."
+  },
+  {
+    "id": "Spec.Lexer.locate",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Computes positions by counting LF bytes only; column is the number of bytes since the last LF."
+  },
+  {
+    "id": "Spec.Lexer.TokenType",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Consumer-facing token tags also include whitespace, comments, and an EOF marker."
+  },
+  {
+    "id": "Spec.Lexer.ReservedKind",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p025-08",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Separates general reserved words from command names."
+  },
+  {
+    "id": "Spec.Lexer.Handed",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Consumer-facing token record with locations, reserved-word classification, and decoded content."
+  },
+  {
+    "id": "Spec.Lexicon.Category.type",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Maps reserved tokens and simple symbols to the common unquoted-symbol consumer tag."
+  },
+  {
+    "id": "Spec.Lexicon.Token.reservedKind",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p025-08",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Classifies an already reserved token as general or a command name."
+  },
+  {
+    "id": "Spec.Lexicon.Token.handed",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Packages a lexical token into the consumer record, locating its endpoints and decoding its payload."
+  },
+  {
+    "id": "Spec.Lexer.endOfFile",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Constructs a synthetic EOF item at the end of the byte input."
+  },
+  {
+    "id": "Spec.Lexer.endOfFileAt",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Constructs a synthetic EOF item at a supplied location, including a discarded-tail boundary."
+  },
+  {
+    "id": "Spec.Lexer.Fed",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Snapshot of tokens handed over and a lexical-failure flag."
+  },
+  {
+    "id": "Spec.Lexer.DelimiterSeen",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "A streaming token is ready only after its endpoint has been passed, except for parentheses."
+  },
+  {
+    "id": "Spec.Lexer.LongestViableStart",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Selects a longest tokenizable-completable prefix of the available bytes."
+  },
+  {
+    "id": "Spec.Lexer.HandoverReady",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires determined tokens and an observed delimiter for each token."
+  },
+  {
+    "id": "Spec.Lexer.HandoverMaximal",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires the greatest number of tokens among ready handovers."
+  },
+  {
+    "id": "Spec.Lexer.Complete",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires an ended input and existence of a complete tokenization."
+  },
+  {
+    "id": "Spec.Lexer.FailsCorrectly",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Specifies failure on an impossible prefix, or on untokenizable complete input after EOF."
+  },
+  {
+    "id": "Spec.Lexer.HandsOverAll",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "At EOF, requires all tokens and one synthetic EOF item."
+  },
+  {
+    "id": "Spec.Lexer.HandsOverMaximal",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Before complete success, hands over the maximal determined tokens from a longest viable prefix."
+  },
+  {
+    "id": "Spec.Lexer.HandsOverCorrectly",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Selects complete-input or incomplete/failing-prefix handover behavior."
+  },
+  {
+    "id": "Spec.Lexer.Correct",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Combines exact lexical failure and handover requirements for arbitrary input slices."
+  },
+  {
+    "id": "Spec.Lexer.Extends",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires token output to grow by prefix extension and failure to be persistent."
+  },
+  {
+    "id": "Spec.Lexer.Sequential",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires additional slices or EOF to extend the preceding feed result."
+  },
+  {
+    "id": "Spec.Lexer.WholeInputCorrect",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "States equivalence of successful ended-input output with the full tokenization plus EOF."
+  },
+  {
+    "id": "Spec.Lexer.ComposesAtClose",
+    "kind": "derived_property",
+    "matches": [],
+    "tension": null,
+    "notes": "A completed closing-parenthesis token makes the prefix maximally ready and allows independent suffix tokenization with translated offsets."
+  },
+  {
+    "id": "Spec.Lexer.Answer",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Consumer continuation, result, or error response."
+  },
+  {
+    "id": "Spec.Lexer.Consumer",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Callback interface, with optional layout tokens, version switching, and remainder discard requests."
+  },
+  {
+    "id": "Spec.Lexer.Consumer.BreaksAtEnd",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires a consumer to stop or fail when it receives EOF."
+  },
+  {
+    "id": "Spec.Lexer.collector",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "A consumer that collects until EOF and requests no version change or discard."
+  },
+  {
+    "id": "Spec.Lexer.Failure",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Distinguishes lexical, consumer, and trailing-input failures."
+  },
+  {
+    "id": "Spec.Lexer.Outcome",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Internal running, holding, failure, and finished session states."
+  },
+  {
+    "id": "Spec.Lexer.Session",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Stores consumed tokens, session outcome, current version, and any discard position."
+  },
+  {
+    "id": "Spec.Lexer.Outcome.isFailed",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Tests whether an internal outcome is a failure."
+  },
+  {
+    "id": "Spec.Lexer.Outcome.isFinished",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Tests whether an internal outcome is finished."
+  },
+  {
+    "id": "Spec.Lexer.Session.fed",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Projects session tokens and failure into a feed snapshot."
+  },
+  {
+    "id": "Spec.Lexer.settle",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Resets version and discard bookkeeping to the starting state when a session finishes."
+  },
+  {
+    "id": "Spec.Lexer.Location.after",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Translates a local location after an input prefix, using the model’s LF-based byte coordinates."
+  },
+  {
+    "id": "Spec.Lexer.Handed.after",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Translates both token locations after an input prefix."
+  },
+  {
+    "id": "Spec.Lexer.segment",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Lexes an input suffix and translates its token locations back into the enclosing input."
+  },
+  {
+    "id": "Spec.Lexer.layoutEntry",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Constructs a whitespace or comment item with concrete source positions."
+  },
+  {
+    "id": "Spec.Lexer.layoutFrom",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Extracts completed whitespace/comment runs; an unfinished run is withheld until more input or EOF."
+  },
+  {
+    "id": "Spec.Lexer.withLayout",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Optionally interleaves concrete whitespace/comment items with lexical tokens."
+  },
+  {
+    "id": "Spec.Lexer.readyFrom",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Combines suffix lexing, location translation, and optional concrete-layout handover."
+  },
+  {
+    "id": "Spec.Lexer.following",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "On a version-switch request, re-lexes remaining input using the requested version."
+  },
+  {
+    "id": "Spec.Lexer.AfterBreak",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "After a consumer result, distinguishes EOF success, trailing-token failure, lexical failure, and waiting."
+  },
+  {
+    "id": "Spec.Lexer.Runs",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Defines consumer/lexer session transitions, including version changes, held results, EOF, and discarded remainders."
+  },
+  {
+    "id": "Spec.Lexer.Lexing",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Type of a lexer with consumers, earlier sessions, sliced input, and explicit input completion."
+  },
+  {
+    "id": "Spec.Lexer.Lexing.fed",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Obtains feed behavior from a consumer-aware lexer by running the collector."
+  },
+  {
+    "id": "Spec.Lexer.HandlesConsumer",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires consumer execution to agree with the Runs transition relation."
+  },
+  {
+    "id": "Spec.Lexer.ResetsAtEnd",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Finished sessions must not affect a subsequent session."
+  },
+  {
+    "id": "Spec.Lexer.CorrectWithConsumers",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Combines lexical correctness, consumer protocol correctness, and session reset behavior."
+  },
+  {
+    "id": "Spec.Lexer.Recovered",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Recovery bookkeeping for a held result and the number of intervening errors."
+  },
+  {
+    "id": "Spec.Lexer.RecoveringLexing",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Type of a recovering lexer reporting an optional recovered result."
+  },
+  {
+    "id": "Spec.Lexer.DropsHeldOnError",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires recovery to discard a held result whenever an error occurred after the last break."
+  },
+  {
+    "id": "Spec.Lexicon.Version",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Enumeration of the four versions supported by this formalisation."
+  },
+  {
+    "id": "Spec.Lexicon.Version.upTo",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Cumulative version ordering used by the lexical and grammar guards."
+  },
+  {
+    "id": "Spec.Lexicon.SourceFile",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p023-02",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.0-p019-03",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Restricts 2.0 input to ASCII bytes and places no restriction on later byte lists; it does not validate Unicode encodings."
+  },
+  {
+    "id": "Spec.Lexicon.whiteSpaceChar",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p104-03",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.printableChar",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p104-04",
+        "relation": "defines"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.7-p024-03",
+        "2.7-p104-04"
+      ],
+      "description": "The prose allows characters from 128 onward, while Appendix B ends the range at 255; this byte predicate follows Appendix B."
+    },
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.digit",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p104-05",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.letter",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p104-06",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.lineBreak",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.comment",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p023-02",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.7-p024-01",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.commentAtEnd",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p023-02",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.7-p023-02",
+        "2.7-p024-01"
+      ],
+      "description": "The standard ends a comment at the first subsequent line-breaking character and does not specify the no-line-break-at-EOF case; this formalisation accepts that case."
+    },
+    "notes": "Adds acceptance of an unterminated final comment; it is not the literal newline-terminated comment rule."
+  },
+  {
+    "id": "Spec.Lexicon.whitespace",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.whitespaceAtEnd",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.7-p023-02",
+        "2.7-p024-01"
+      ],
+      "description": "The standard ends a comment at the first subsequent line-breaking character and does not specify the no-line-break-at-EOF case; this formalisation accepts that case."
+    },
+    "notes": "Allows ordinary whitespace followed by a final comment without a line break."
+  },
+  {
+    "id": "Spec.Lexicon.numeral",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-03",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.decimal",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-04",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.hexadecimal",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-05",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.binary",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-06",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.string",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p024-12",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.0-p020-05",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Uses doubled quotes, the string syntax of 2.5 and later, rather than 2.0 backslash escapes."
+  },
+  {
+    "id": "Spec.Lexicon.unescape",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p024-12",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.0-p020-05",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Collapses doubled quotes in an already delimited string body; other bytes are retained."
+  },
+  {
+    "id": "Spec.Lexicon.string20",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p024-12",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.0-p020-05",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.0-p020-07",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Models the old backslash convention, but permits whitespace and the shared 128–255 printable range, beyond the 2.0 string rule’s printable ASCII wording."
+  },
+  {
+    "id": "Spec.Lexicon.unescape20",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.0-p020-05",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.0-p020-07",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Decodes only backslash-quote and backslash-backslash; unknown backslash sequences retain both characters."
+  },
+  {
+    "id": "Spec.Lexicon.addedBasicReservedWords",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p025-06",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.7-p025-07",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.0-p020-08",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.5-p023-08",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.5-p023-09",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.6-p024-09",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Tracks the additions of BINARY/HEXADECIMAL in 2.5, match in 2.6, and lambda in 2.7. Each branch lists additions, not the entire version’s set."
+  },
+  {
+    "id": "Spec.Lexicon.basicReservedWords",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p025-06",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.7-p025-07",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.0-p020-08",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.5-p023-08",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.5-p023-09",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.6-p024-09",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Tracks the additions of BINARY/HEXADECIMAL in 2.5, match in 2.6, and lambda in 2.7."
+  },
+  {
+    "id": "Spec.Lexicon.addedCommandNames",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p025-08",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.7-p109-07",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.0-p035-03",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.5-p042-04",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.6-p046-08",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.7-p025-08",
+        "2.7-p105-01",
+        "2.7-p109-07"
+      ],
+      "description": "The prose reserves every command name and the command grammar includes define-funs-rec, but Appendix B’s reserved-command list omits it; this formalisation reserves it."
+    },
+    "notes": "Tracks command introductions across all four versions. Branches contain only new names; the cumulative set is assembled separately."
+  },
+  {
+    "id": "Spec.Lexicon.commandNames",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p025-08",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.7-p109-07",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.0-p035-03",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.5-p042-04",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.6-p046-08",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.7-p025-08",
+        "2.7-p105-01",
+        "2.7-p109-07"
+      ],
+      "description": "The prose reserves every command name and the command grammar includes define-funs-rec, but Appendix B’s reserved-command list omits it; this formalisation reserves it."
+    },
+    "notes": "Tracks command introductions across all four versions."
+  },
+  {
+    "id": "Spec.Lexicon.reserved",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p025-05",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.7-p025-08",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Combines the version’s general reserved words and command names."
+  },
+  {
+    "id": "Spec.Lexicon.symbolPunctuation",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p025-10",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.simpleSymbol",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-08",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.quotedSymbol",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p025-14",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": ""
+  },
+  {
+    "id": "Spec.Lexicon.keyword",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p105-10",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.7-p026-05",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.0-p021-07",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.7-p026-04",
+        "2.7-p026-05",
+        "2.7-p105-08",
+        "2.7-p105-10"
+      ],
+      "description": "The rule :<simple_symbol> inherits a ban on leading digits and reserved words, yet :56 is an explicit keyword example; the code accepts digit-leading and reserved-word suffixes, following the broader 2.0 rule."
+    },
+    "notes": "The nonempty suffix uses letters, digits and symbol punctuation, without the simple-symbol exclusions."
+  },
+  {
+    "id": "Spec.Lexicon.Category",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Token-category enumeration splits the standard’s symbol category into simple and quoted cases."
+  },
+  {
+    "id": "Spec.Lexicon.categoryRegex",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "defines"
+      },
+      {
+        "passage": "2.0-p020-05",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Dispatches to lexical predicates, selecting the 2.0 string rule only for that version."
+  },
+  {
+    "id": "Spec.Lexicon.Token",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Stores category, source offset and original bytes; offsets are implementation metadata."
+  },
+  {
+    "id": "Spec.Lexicon.Token.content",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p024-12",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p025-14",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p026-04",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p105-05",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p105-06",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.0-p020-05",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Produces token payloads by removing delimiters or prefixes and decoding the applicable string escapes; other tokens retain their bytes."
+  },
+  {
+    "id": "Spec.Lexicon.Token.moveBy",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Adjusts an offset when tokens are moved into a larger input."
+  },
+  {
+    "id": "Spec.Lexicon.EndsWithClose",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p105-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Auxiliary condition about the last token and its source endpoint, not a standard grammar production."
+  },
+  {
+    "id": "Spec.Lexicon.Properties.Unique",
+    "kind": "derived_property",
+    "matches": [],
+    "tension": null,
+    "notes": "Tokenization uniqueness is a proposition about the chosen segmentation rules."
+  },
+  {
+    "id": "Spec.Lexicon.Properties.Viable",
+    "kind": "derived_property",
+    "matches": [],
+    "tension": null,
+    "notes": "An extendible-input-prefix predicate, defined by existence of a tokenizable completion."
+  },
+  {
+    "id": "Spec.Lexicon.Properties.Determined",
+    "kind": "derived_property",
+    "matches": [],
+    "tension": null,
+    "notes": "A universal-completion predicate identifying the tokens fixed by a prefix."
+  },
+  {
+    "id": "Spec.Lexicon.Properties.ReadsOnItsOwn",
+    "kind": "derived_property",
+    "matches": [],
+    "tension": null,
+    "notes": "Translation invariance of tokenization under source-offset changes."
+  },
+  {
+    "id": "Spec.Lexicon.Tokenization.Delimited",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p105-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.7-p024-01",
+        "2.7-p025-05",
+        "2.7-p105-02"
+      ],
+      "description": "The standard says whitespace breaks tokens and lists parentheses as tokens, but gives no general token-adjacency or maximal-munch rule; this model requires whitespace, parentheses, semicolon, or EOF after every non-parenthesis token."
+    },
+    "notes": "Treats parentheses as self-delimiting and admits semicolon or end of input as other token boundaries."
+  },
+  {
+    "id": "Spec.Lexicon.Tokenization.From",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "Segments input into lexically valid tokens separated by whitespace, applying Delimited and the special final-comment rule while tracking offsets."
+  },
+  {
+    "id": "Spec.Lexicon.Tokenization",
+    "kind": "syntax_definition",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "defines"
+      }
+    ],
+    "tension": null,
+    "notes": "The offset-zero instance of the tokenization relation."
+  },
+  {
+    "id": "Spec.Lexicon.Tokenization.Exactly",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Adds that the last token ends exactly at the segment boundary; useful for composing complete command segments."
+  },
+  {
+    "id": "Spec.Parser.Properties.Recorded",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Instantiates every client value type with a natural-number event identifier."
+  },
+  {
+    "id": "Spec.Parser.Properties.Event",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Records arrivals, processing, client calls, version notifications, and producer discard requests."
+  },
+  {
+    "id": "Spec.Parser.Properties.Event.isCall",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Keeps client callback and handler-version events, excluding token/producer events."
+  },
+  {
+    "id": "Spec.Parser.Properties.Event.arrived",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Projects the received input from an arrival event."
+  },
+  {
+    "id": "Spec.Parser.Properties.Event.processed",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Projects the received input from a processing event."
+  },
+  {
+    "id": "Spec.Parser.Properties.Recording",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "State monad carrying an event list."
+  },
+  {
+    "id": "Spec.Parser.Properties.emit",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Prepends an event to the recording state."
+  },
+  {
+    "id": "Spec.Parser.Properties.recordedValue",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Uses the event count as the client result for every non-unit return category."
+  },
+  {
+    "id": "Spec.Parser.Properties.recordingPoints",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Instrumentation implementation that records arrival and processing events."
+  },
+  {
+    "id": "Spec.Parser.Properties.recordingHandler",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Records callbacks with their return tags and gives each a numeric client value."
+  },
+  {
+    "id": "Spec.Parser.Properties.recordingProducer",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Records producer version-switch and discard requests."
+  },
+  {
+    "id": "Spec.Parser.Properties.record",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Executes the canonical traversal with unrestricted version policy and returns chronological recorded events."
+  },
+  {
+    "id": "Spec.Parser.Properties.received",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p066-04",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Flattens command tokens into input events, truncating after exit and appending EOF."
+  },
+  {
+    "id": "Spec.Parser.Properties.eventsBefore",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Cuts the event stream before the next arrival after a specified number of input arrivals."
+  },
+  {
+    "id": "Spec.Parser.Properties.eventsBeforeProcessing",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Cuts events at a processing boundary, suppressing an unprocessed arrival at that boundary."
+  },
+  {
+    "id": "Spec.Parser.Properties.eventsBeforeProcessingOf",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Chooses arrival-based truncation for a closing parenthesis and processing-based truncation for other items."
+  },
+  {
+    "id": "Spec.Parser.Properties.TakesItsTokens",
+    "kind": "derived_property",
+    "matches": [],
+    "tension": null,
+    "notes": "States that canonical traversal arrivals and processing agree exactly with the script’s input-event sequence."
+  },
+  {
+    "id": "Spec.Parser.Properties.CallsDetermineScript",
+    "kind": "derived_property",
+    "matches": [],
+    "tension": null,
+    "notes": "States that the client-call subsequence determines a valid script at a fixed starting version."
+  },
+  {
+    "id": "Spec.Parser.Properties.PlacementDetermined",
+    "kind": "derived_property",
+    "matches": [],
+    "tension": null,
+    "notes": "States that identical token prefixes determine identical canonical event prefixes."
+  },
+  {
+    "id": "Spec.Parser.Properties.Ending",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Parser outcome tags: waiting, finished, rejected, or version-policy failure."
+  },
+  {
+    "id": "Spec.Parser.Properties.Takes",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Models complete input-event sequences, stopping at exit or a refused version declaration."
+  },
+  {
+    "id": "Spec.Parser.Properties.Viable",
+    "kind": "derived_property",
+    "matches": [],
+    "tension": null,
+    "notes": "Input-prefix extendibility with respect to Takes, including sequences ending in version refusal."
+  },
+  {
+    "id": "Spec.Parser.Properties.versionAt",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Computes the active version at a token count, changing it after a supported version-declaration command."
+  },
+  {
+    "id": "Spec.Parser.Properties.RecordingParser",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Abstract parser interface exposing event traces, input-item meaning, and an ending state."
+  },
+  {
+    "id": "Spec.Parser.Properties.FollowsTheTraversal",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires each valid/refused input prefix to yield the corresponding canonical traversal events and ending status."
+  },
+  {
+    "id": "Spec.Parser.Properties.RejectsFirstUnviable",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires rejection at the first impossible token prefix while preserving the preceding traversal events and processing the rejected token."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Values",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Types of client values returned for expressions, attributes, sorts, terms, and scopes."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Returns",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Tags for the callback result types, plus a no-result tag."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Values.of",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Interprets result tags as client types."
+  },
+  {
+    "id": "Spec.Parser.Traversal.TermNode",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Callback payload for atomic terms, qualified identifiers, and applications; binders use separate callbacks."
+  },
+  {
+    "id": "Spec.Parser.Traversal.SExprNode",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p105-13",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "S-expression callback payload with already handled children."
+  },
+  {
+    "id": "Spec.Parser.Traversal.AttributeValueNode",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p106-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Attribute-value payload with already handled S-expression children."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Signature",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p109-05",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Function signature carrying client sort values."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Constructor",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p109-03",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Datatype-constructor callback payload carrying handled selector sorts."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Call",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Typed callback requests, including binder entry/exit and command events; the standard prescribes no such API."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Handler",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Client callback interface with its own errors and a version-change notification."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Received",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Input token or synthetic end-of-input marker."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Received.OfVersion",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p025-08",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Checks only that reserved input tokens are reserved in the active version; other token payloads are assumed valid."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Points",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Instrumentation hooks distinguishing token arrival from processing."
+  },
+  {
+    "id": "Spec.Parser.Traversal.VersionRefused",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Empty record used as the producer’s version-refusal error."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Producer",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Input-producer hooks for version changes and discarding the remaining input."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Cause",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Separates parser policy errors from client-handler errors."
+  },
+  {
+    "id": "Spec.Parser.Traversal.Run",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Exception-transformer type for traversal execution."
+  },
+  {
+    "id": "Spec.Parser.Traversal.call",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Invokes the handler and reclassifies its errors."
+  },
+  {
+    "id": "Spec.Parser.Traversal.receive",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Records arrival, performs an optional arrival action, then records processing."
+  },
+  {
+    "id": "Spec.Parser.Traversal.take",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Consumes one token through the arrival/processing instrumentation."
+  },
+  {
+    "id": "Spec.Parser.Traversal.takeAll",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Consumes a token list in order."
+  },
+  {
+    "id": "Spec.Parser.Traversal.takeAllArriving",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Runs the supplied arrival action only on the first token of a nonempty list."
+  },
+  {
+    "id": "Spec.Parser.Traversal.sort",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Visits sort children before invoking handleSort, following the serialized token order."
+  },
+  {
+    "id": "Spec.Parser.Traversal.sorts",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Traverses a list of sorts from left to right."
+  },
+  {
+    "id": "Spec.Parser.Traversal.sExpr",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p105-13",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Consumes S-expression tokens and invokes a callback after handling its children."
+  },
+  {
+    "id": "Spec.Parser.Traversal.sExprs",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p105-13",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Traverses S-expression list elements in order."
+  },
+  {
+    "id": "Spec.Parser.Traversal.attributeValue",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Consumes an attribute value, invoking S-expression handlers for list contents."
+  },
+  {
+    "id": "Spec.Parser.Traversal.attributeThen",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-03",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "For a valueless attribute, consumes the following token before the callback; for a valued attribute, invokes the callback before that token."
+  },
+  {
+    "id": "Spec.Parser.Traversal.attributesThen",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-03",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p106-10",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Threads the next keyword or final closing parenthesis through attribute traversal."
+  },
+  {
+    "id": "Spec.Parser.Traversal.qualIdentifier",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-04",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Consumes an identifier and any as-qualification, traversing the qualification sort."
+  },
+  {
+    "id": "Spec.Parser.Traversal.sortedVars",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-06",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Traverses sorted-variable declarations, returning symbols paired with handled sorts."
+  },
+  {
+    "id": "Spec.Parser.Traversal.term",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Consumes term syntax and orders client callbacks, including scope entry/exit around binder bodies; callback timing is an implementation model."
+  },
+  {
+    "id": "Spec.Parser.Traversal.terms",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-10",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Traverses term lists in source order."
+  },
+  {
+    "id": "Spec.Parser.Traversal.bindings",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-05",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Traverses all right-hand sides before the enclosing let traversal opens its scope."
+  },
+  {
+    "id": "Spec.Parser.Traversal.cases",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p106-09",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Consumes each pattern and traverses its body between startMatchCase/endMatchCase callbacks."
+  },
+  {
+    "id": "Spec.Parser.Traversal.signature",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-05",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p109-06",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Consumes a function name, parameter list, and result sort without an enclosing declaration parenthesis."
+  },
+  {
+    "id": "Spec.Parser.Traversal.selectors",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Traverses selector declarations, handling their sorts."
+  },
+  {
+    "id": "Spec.Parser.Traversal.constructorAfterOpen",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-03",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Handles a constructor after its opening parenthesis was consumed by the caller."
+  },
+  {
+    "id": "Spec.Parser.Traversal.constructors",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-03",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Traverses constructor declarations in order."
+  },
+  {
+    "id": "Spec.Parser.Traversal.datatype",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-04",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Traverses a datatype and invokes its start callback once parameters are known; also has branches for trees that Valid would reject."
+  },
+  {
+    "id": "Spec.Parser.Traversal.recursiveBodies",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-07",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Traverses paired recursive signatures and bodies, calling startRecursiveBody at the first body token’s arrival."
+  },
+  {
+    "id": "Spec.Parser.Traversal.opening",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-07",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Consumes the common opening parenthesis and reserved command name."
+  },
+  {
+    "id": "Spec.Parser.Traversal.command",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-07",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.6-p101-07",
+        "relation": "version_difference"
+      },
+      {
+        "passage": "2.6-p101-08",
+        "relation": "version_difference"
+      }
+    ],
+    "tension": null,
+    "notes": "Traverses command arguments and invokes client callbacks, with staged callbacks for definitions and datatypes; validation belongs to the grammar predicates."
+  },
+  {
+    "id": "Spec.Parser.Traversal.switchVersion",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": {
+      "passages": [
+        "2.7-p077-01",
+        "2.7-p077-02"
+      ],
+      "description": "The standard describes set-info as script metadata and identifies :smt-lib-version with the benchmark’s version; it does not specify a mid-stream lexer/parser version switch. This model changes the language of subsequent commands."
+    },
+    "notes": "Checks implementation policy, switches the producer, then informs the handler; refusal becomes unsupportedVersion."
+  },
+  {
+    "id": "Spec.Parser.Traversal.commands",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-08",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p066-04",
+        "relation": "uses"
+      },
+      {
+        "passage": "2.7-p077-02",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "After exit, requests discard and receives EOF; otherwise applies supported version metadata between commands and counts declarations."
+  },
+  {
+    "id": "Spec.Parser.Traversal.script",
+    "kind": "operational_model",
+    "matches": [
+      {
+        "passage": "2.7-p109-08",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Initialises the handler’s version, then traverses commands with a zero declaration count."
+  },
+  {
+    "id": "Spec.Parser.VersionPolicy",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Implementation configuration of supported versions and an optional declaration-count limit."
+  },
+  {
+    "id": "Spec.Parser.VersionPolicy.unrestricted",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Allows all four modelled versions and arbitrarily many version declarations; this is not the official-repository benchmark policy."
+  },
+  {
+    "id": "Spec.Parser.VersionPolicy.Error",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Implementation error tags for unsupported versions and exceeded declaration limits."
+  },
+  {
+    "id": "Spec.Parser.VersionPolicy.check",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Applies the configured declaration-count limit before checking whether the version is supported."
+  },
+  {
+    "id": "Spec.Reader.calls",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Projects the canonical script recording to client calls and handler-version notifications."
+  },
+  {
+    "id": "Spec.Reader.RecordingReader",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Reader interface over sliced byte input, with a client-event result and completion flag."
+  },
+  {
+    "id": "Spec.Reader.ReadsFiles",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires every File-related input to finish with the canonical client-event sequence."
+  },
+  {
+    "id": "Spec.Reader.FinishesOnlyOnFiles",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires every reported successful completion to have a command list satisfying File."
+  },
+  {
+    "id": "Spec.Reader.CallsDetermineCommands",
+    "kind": "derived_property",
+    "matches": [],
+    "tension": null,
+    "notes": "States that equal client-event sequences from valid files determine both starting version and commands."
+  },
+  {
+    "id": "Spec.Lexer.Handed.received",
+    "kind": "representation",
+    "matches": [
+      {
+        "passage": "2.7-p024-01",
+        "relation": "uses"
+      }
+    ],
+    "tension": null,
+    "notes": "Drops concrete layout items, converts handed token payloads to parser input, and maps synthetic EOF to endOfInput."
+  },
+  {
+    "id": "Spec.Reader.requestsAfterLast",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Finds pending producer version/discard requests after the last processed input event."
+  },
+  {
+    "id": "Spec.Reader.consumer",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Adapts a recording parser to the lexer consumer protocol, forwarding version/discard requests and mapping parser endings to consumer answers."
+  },
+  {
+    "id": "Spec.Reader.LexesThenParses",
+    "kind": "operational_model",
+    "matches": [],
+    "tension": null,
+    "notes": "Requires the reader to factor through a correct consumer-aware lexer and a canonical, promptly rejecting parser."
+  },
+  {
+    "id": "Spec.Regex.Chars",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Byte-list representation; it does not by itself check an encoding or a lexical category."
+  },
+  {
+    "id": "Spec.Regex.chars",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Converts Lean string characters to UInt8 values; a helper for the ASCII literals used here."
+  },
+  {
+    "id": "Spec.Regex",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Represents a language as a predicate on byte lists."
+  },
+  {
+    "id": "Spec.Regex.range",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Inclusive interval of single-byte values, used to build lexical categories."
+  },
+  {
+    "id": "Spec.Regex.code",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Singleton-byte language helper."
+  },
+  {
+    "id": "Spec.Regex.anyChar",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Any single byte, including values that are not printable."
+  },
+  {
+    "id": "Spec.Regex.oneOf",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Single-byte membership helper."
+  },
+  {
+    "id": "Spec.Regex.lit",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Exact literal-byte-sequence helper."
+  },
+  {
+    "id": "Spec.Regex.litOneOf",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Finite choice of literal strings."
+  },
+  {
+    "id": "Spec.Regex.anything",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Unrestricted byte-sequence predicate."
+  },
+  {
+    "id": "Spec.Regex.seq",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Language concatenation helper."
+  },
+  {
+    "id": "Spec.Regex.alt",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Language union helper."
+  },
+  {
+    "id": "Spec.Regex.altAll",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Finite language union helper."
+  },
+  {
+    "id": "Spec.Regex.star",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Zero-or-more concatenation helper, including the empty sequence."
+  },
+  {
+    "id": "Spec.Regex.plus",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "One-or-more concatenation helper."
+  },
+  {
+    "id": "Spec.Regex.minus",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Language difference helper."
+  },
+  {
+    "id": "Spec.Regex.startsWith",
+    "kind": "representation",
+    "matches": [],
+    "tension": null,
+    "notes": "Prefix-language helper used to exclude leading zeroes and leading digits."
+  }
+]

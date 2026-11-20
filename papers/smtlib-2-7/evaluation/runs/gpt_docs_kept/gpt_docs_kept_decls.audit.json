@@ -1,0 +1,50 @@
+{
+ "condition": "docs_kept",
+ "task": "declarations_to_passages",
+ "model": "gpt-6.1-sol",
+ "effort": "high",
+ "codex_cli": "codex-cli 0.162.1",
+ "inputs_sha256": "04e122d0dc13d2e447ba6c184bc74e49583dd8ecf4efc2a66f4f92e1bd839a91",
+ "exit": 0,
+ "seconds": 390,
+ "audit": {
+  "commands": 29,
+  "outside_paths": [
+   {
+    "command": "/bin/zsh -lc 'wc -l lean/Spec/*.lean lean/Spec/*/*.lean && cat lean/Spec/Lexicon.lean'",
+    "path": "/*.lean"
+   }
+  ],
+  "command_list": [
+   "/bin/zsh -lc \"pwd && rg --files -g 'TASK.md' -g 'AGENTS.md' -g '\"'!node_modules'\"' -g '\"'!.git'\"'\"",
+   "/bin/zsh -lc 'cat TASK.md'",
+   "/bin/zsh -lc \"rg --files -g '\"'!out/**'\"'\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nx=json.load(open('declarations.json')); print(type(x),len(x)); print(json.dumps(x[:8],indent=2))\np=[json.loads(x) for x in open('passages.jsonl')]; print('PASSAGES',len(p)); print(p[:2])\nPY\"",
+   "/bin/zsh -lc 'wc -l lean/Spec/*.lean lean/Spec/*/*.lean && cat lean/Spec/Lexicon.lean'",
+   "/bin/zsh -lc 'cat lean/Spec/Grammar.lean'",
+   "/bin/zsh -lc 'cat lean/Spec/Grammar/Tree.lean lean/Spec/Grammar/Syntax.lean'",
+   "/bin/zsh -lc 'cat lean/Spec/Grammar/File.lean lean/Spec/Grammar/Script.lean lean/Spec/Parser/VersionPolicy.lean lean/Spec/Regex.lean lean/Spec/Lexicon/Tokenization.lean'",
+   "/bin/zsh -lc 'cat lean/Spec/Lexer.lean'",
+   "/bin/zsh -lc 'cat lean/Spec/Reader.lean lean/Spec/Facts.lean lean/Spec/Lexicon/Properties.lean lean/Spec/Grammar/Properties.lean'",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json,collections\np=[json.loads(l) for l in open('passages.jsonl')]; print(collections.Counter(x['version'] for x in p))\nfor x in p:\n if x['version']=='2.7' and x['page']<=32: print(x['id'],x['kind'],x['production'],x['text'])\nPY\"",
+   "/bin/zsh -lc \"cat lean/Spec/Parser/Properties.lean && sed -n '465,610p' lean/Spec/Lexer.lean\"",
+   "/bin/zsh -lc \"sed -n '1,310p' lean/Spec/Parser/Traversal.lean\"",
+   "/bin/zsh -lc \"sed -n '310,610p' lean/Spec/Parser/Traversal.lean\"",
+   "/bin/zsh -lc \"sed -n '610,911p' lean/Spec/Parser/Traversal.lean\"",
+   "/bin/zsh -lc \"sed -n '1,130p' lean/Spec/Parser/Properties.lean && sed -n '443,469p' lean/Spec/Lexer.lean && cat lean/Spec/Parser.lean\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfor d in json.load(open('declarations.json')): print(d['id'])\nPY\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfor l in open('passages.jsonl'):\n p=json.loads(l)\n if p['version']=='2.7' and (p['page']>32):\n  print(p['id'],p['production'] or p['heading'] or '',p['text'][:155])\nPY\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfor l in open('passages.jsonl'):\n p=json.loads(l)\n if p['version']=='2.7' and (50<=p['page']<=53 or 60<=p['page']<=68 or p['page']==77 or 104<=p['page']<=109): print(p['id'],p['kind'],p['production'],p['text'])\nPY\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfor l in open('passages.jsonl'):\n p=json.loads(l)\n if p['version']\"'!='\"'2.7' and (p['production'] in ['s_expr','index','identifier','prop_literal','command','term','pattern','string','printable_char'] or any(t in p['text'] for t in ['source files consist','String literals.','Reserved words.',':smt-lib-version possible','BINARY DECIMAL','NUMERAL DECIMAL','\\\\\\\\\\\\\\\\'])):\n  print(p['id'],p['production'],p['text'])\nPY\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfor l in open('passages.jsonl'):\n p=json.loads(l)\n if (p['version']=='2.0' and (p['page'] in [19,20,22,71,72] or 'smt-lib-version' in p['text'])) or (p['version'] in ['2.5','2.6'] and (('Reserved words.' in p['text']) or ('_ \"'! as'\"' in p['text']) or ('smt-lib-version' in p['text'] and p['page']<80))): print(p['id'],p['text'])\nPY\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nps=[json.loads(l) for l in open('passages.jsonl')]\nfor p in ps:\n if (p['version']=='2.7' and (p['page'] in [31,32] or p['id']=='2.7-p066-01')) or (p['version']=='2.6' and p['id'] in ['2.6-p028-07','2.6-p098-10','2.6-p101-08']) or (p['version']=='2.5' and p['page']==24): print(p['id'],p['text'])\nPY\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfor l in open('passages.jsonl'):\n p=json.loads(l)\n if (p['version']=='2.6' and (p['page'] in [26,28,98,101] or 'Checking for satisfiability'==p['heading'])): print(p['id'],p['production'],p['text'])\nPY\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfor l in open('passages.jsonl'):\n p=json.loads(l)\n if (p['version']=='2.6' and any(s in p['text'] for s in ['(check-sat-assuming (','\u27e8prop_literal','Boolean literals'])) or (p['version']=='2.7' and p['id'] in ['2.7-p035-02','2.7-p035-03','2.7-p070-03','2.7-p070-05','2.7-p070-06','2.7-p033-01']): print(p['id'],p['text'])\nPY\"",
+   "/bin/zsh -lc 'python3 out/build_matches.py'",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nx=json.load(open('passages.jsonl')) if False else [json.loads(l) for l in open('passages.jsonl')]\nfor p in x:\n if p['version']=='2.7' and any(s in p['text'].lower() for s in ['tokeniz','delimit','adjacen','longest','maximal','white space','whitespace','encoding']): print(p['id'],p['text'])\nPY\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfor l in open('passages.jsonl'):\n p=json.loads(l)\n if p['version']=='2.0' and p['page']==21: print(p['id'],p['text'])\nPY\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nx=json.load(open('out/declarations.json'))\nfor r in x:\n if r['tension']: print(r['id'],r['tension']['description'])\nPY\"",
+   "/bin/zsh -lc \"python3 - <<'PY'\nimport json\nfrom collections import Counter\nfrom pathlib import Path\nsource=json.loads(Path('declarations.json').read_text())\nresult=json.loads(Path('out/declarations.json').read_text())\npassages={json.loads(line)['id'] for line in Path('passages.jsonl').read_text().splitlines()}\nassert Counter(r['id'] for r in result)==Counter(r['id'] for r in source)\nassert all(n==1 for n in Counter(r['id'] for r in result).values())\nfor r in result:\n assert set(r)=={'id','kind','matches','tension','notes'}\n assert r['kind'] in {'syntax_definition','representation','derived_property','operational_model','unclear'}\n assert isinstance(r['notes'],str)\n assert isinstance(r['matches'],list)\n for m in r['matches']:\n  assert set(m)=={'passage','relation'}\n  assert m['passage'] in passages\n  assert m['relation'] in {'defines','uses','version_difference'}\n if r['tension'] is not None:\n  assert set(r['tension'])=={'passages','description'}\n  assert r['tension']['passages'] and all(p in passages for p in r['tension']['passages'])\n  assert isinstance(r['tension']['description'],str)\nprint('PASS: valid JSON, exactly 298 unique declaration records, valid schema, all match and tension passage IDs exist.')\nprint('Deliverable:',Path('out/declarations.json').stat().st_size,'bytes')\nprint('Output files:',', '.join(str(p) for p in Path('out').iterdir()))\nPY\""
+  ]
+ }
+}

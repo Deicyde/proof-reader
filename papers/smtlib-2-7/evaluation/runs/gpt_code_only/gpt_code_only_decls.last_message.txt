@@ -1,0 +1,3 @@
+Created [out/declarations.json](out/declarations.json) with all 298 declarations classified and annotated.
+
+Validated JSON syntax, exact declaration coverage, and every cited passage ID.

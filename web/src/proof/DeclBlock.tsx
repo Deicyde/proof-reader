@@ -5,6 +5,10 @@
 
 import { useEffect, useState } from "react";
 import { declEvidence, declOrigin, noun, passageLocation, type Declaration, type Edition, type Passage } from "../app/edition";
+
+/** Past this many characters, a passage in a declaration's list is named by its opening words. */
+const LIST_QUOTE = 160;
+const opening = (quote: string) => quote.split(/\s+/).slice(0, 16).join(" ");
 import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code";
 import { isType, sectionLabel, shapeOf } from "../model/fromEdition";
 import { routeHref } from "../app/router";
@@ -109,9 +113,11 @@ interface Props {
   onPassage(id: string): void;
   act: LeanActions;
   names: ReadonlySet<string>;
+  /** The code and the authors' comment only: no uses, no list of places. */
+  compact?: boolean;
 }
 
-export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassage, act, names }: Props) {
+export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassage, act, names, compact }: Props) {
   const lines = useFileLines(edition.lean.files[d.file]);
   const rest = d.end_line - d.statement_end;
   const word = foldWord(d);
@@ -129,7 +135,7 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
         <CopyName name={d.id} />
         <span className="decl__kind">{KIND_WORDS[d.keyword] ?? d.keyword}, line{d.lines > 1 ? `s ${d.line} to ${d.end_line}` : ` ${d.line}`}; {declOrigin(edition, d)}</span>
       </header>
-      {passage && <p className="decl__relation">{relation(passage)}</p>}
+      {passage && !compact && <p className="decl__relation">{relation(passage)}</p>}
       {d.note && <p className="decl__note"><span className="decl__note-by">Note added for this page</span>{d.note.text}</p>}
       <FidelityBlock edition={edition} d={d} act={act} onPassage={onPassage} />
       <Axioms edition={edition} d={d} act={act} part={!!exact && (exact[0] > d.line || exact[1] < d.end_line)} />
@@ -155,7 +161,7 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
           <LeanCode paper={edition.slug} lines={lines} from={d.comment[0]} to={d.comment[1]} names={names} act={act} />
         </div>
       )}
-      <div className="decl__links">
+      {!compact && <div className="decl__links">
         <div>
           <p className="decl__label">Names in this statement</p>
           {statementUses.length > 0 && <Names edition={edition} names={statementUses} act={act} />}
@@ -169,8 +175,8 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
           {d.used_by_proof.length > 0 && <p>Only in the {isType(d) ? "definition or proof" : "proof or body"} of: <Names edition={edition} names={d.used_by_proof} act={act} /></p>}
           {!d.used_by.length && <p>No uses recorded on this page.</p>}
         </div>
-      </div>
-      {passages.length > 0 && (
+      </div>}
+      {!compact && passages.length > 0 && (
         <div className="decl__where">
           <p className="decl__label">In the {noun(edition)}</p>
           <ul>
@@ -184,7 +190,9 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
                     onPassage(p.id);
                   }}
                 >
-                  <span className="decl__at">{sectionLabel(p.section)}, {passageLocation(p)}</span> <Quote passage={p} />
+                  <span className="decl__at">{sectionLabel(p.section)}, {passageLocation(p)}</span>{" "}
+                  {/* A list of places, not a reading: a long paragraph is named by its opening words. */}
+                  {p.quote.length > LIST_QUOTE ? <span className="decl__opening">{opening(p.quote)}…</span> : <Quote passage={p} />}
                 </a>
               </li>
             ))}

@@ -1,0 +1,3503 @@
+[
+ {
+  "passage": "2.7-p023-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p023-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p024-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p024-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.whiteSpaceChar",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Regex.Chars",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Regex.chars",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p024-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.printableChar",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Regex.Chars",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Regex.chars",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p024-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.digit",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p024-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.letter",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p024-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.numeral",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p024-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.decimal",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p024-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.decimal",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Lexicon.hexadecimal",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p024-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p024-12",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.string",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p025-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.string",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p025-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.word",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Quantifier.word",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Lexicon.reserved",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p025-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.word",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Quantifier.word",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Lexicon.reserved",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p025-09",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Symbol",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p025-11",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Symbol",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p025-14",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Symbol",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p026-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Symbol",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.cases",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p026-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.word",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Quantifier.word",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Lexicon.keyword",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p026-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p026-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.SpecConstant.token",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SpecConstant",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p026-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Parser.Traversal.sExpr",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p026-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p026-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p026-11",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p027-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p027-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Identifier.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p027-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Index.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Index.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Index",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p027-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Identifier.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p027-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Identifier.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p027-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Identifier.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p027-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Identifier.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p027-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p027-09",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.AttributeValue.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.AttributeValue.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.AttributeValue",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.attributeValue",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p027-10",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p028-01",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p028-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p028-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p028-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p028-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p028-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p028-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p028-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p029-01",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p029-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p029-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p029-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p029-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p029-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p029-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p029-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p029-09",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p029-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p029-11",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p030-01",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p030-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.QualIdentifier.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.QualIdentifier.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.QualIdentifier",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.qualIdentifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p030-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p030-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.SortedVar.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SortedVar.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SortedVar",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p030-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p030-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Pattern.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Pattern.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Pattern",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p030-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p030-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p030-09",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p031-01",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p031-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p031-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p031-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p031-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p031-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Quantifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p031-09",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Quantifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p031-11",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Quantifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p031-12",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p032-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p032-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p032-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p032-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p032-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p032-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p032-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p032-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p032-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p032-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p033-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p033-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p033-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p033-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p033-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p033-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-11",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-12",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p034-13",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p035-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p035-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p035-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p035-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p035-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p035-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p036-01",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p036-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p036-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p036-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p036-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p036-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p036-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sorts",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p036-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p036-09",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p036-10",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p036-11",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p037-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p037-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p037-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p037-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p037-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.terms",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p037-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p037-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p038-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p038-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p038-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p038-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p038-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p038-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p038-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p038-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p039-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p039-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p039-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p039-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p039-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p039-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p039-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p039-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p039-11",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-12",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p040-13",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p041-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p041-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p041-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p041-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p041-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p041-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p041-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p042-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p042-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p042-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p042-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p043-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p043-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p043-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p043-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p043-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p044-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p044-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p045-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p045-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p045-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p045-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p045-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p045-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p045-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p045-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p046-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p046-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p046-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p046-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p046-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p047-11",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p048-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p048-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p048-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p048-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p048-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p048-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p049-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p049-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p049-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p050-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p050-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p050-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p050-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p051-01",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.SortDec.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SortDec",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p051-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.SelectorDec.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SelectorDec.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SelectorDec",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p051-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.ConstructorDec.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.ConstructorDec.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.ConstructorDec",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p051-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.DatatypeDec.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.DatatypeDec.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.DatatypeDec",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p051-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.FunctionDec.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.FunctionDec.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.FunctionDec",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p051-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.FunctionDef.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.FunctionDef.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.FunctionDef",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p051-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Command.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Command.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Command",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.command",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p051-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p051-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p052-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p052-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p052-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p052-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p052-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p052-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p052-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p053-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p053-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p053-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Command.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Command.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Command",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.command",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.commands",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p053-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p053-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p053-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p053-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p054-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-11",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-12",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-13",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-14",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-15",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-16",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-17",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-18",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-19",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p054-20",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-01",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-09",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-10",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-11",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p055-12",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p056-01",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p056-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p056-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p056-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p056-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p056-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p056-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p104-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p104-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p104-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.whiteSpaceChar",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p104-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.printableChar",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p104-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.digit",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p104-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.letter",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p105-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p105-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.numeral",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.decimal",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.hexadecimal",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.binary",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.string",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.simpleSymbol",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-09",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Symbol",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-10",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Lexicon.keyword",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-11",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p105-12",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.SpecConstant.token",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SpecConstant",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-13",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Parser.Traversal.sExpr",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-14",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Index.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Index.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Index",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p105-15",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Identifier.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Identifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p106-01",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Sort.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Sort",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.sort",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p106-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.AttributeValue.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.AttributeValue.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.AttributeValue",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.attributeValue",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p106-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Attribute.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Attribute",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p106-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.QualIdentifier.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.QualIdentifier.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.QualIdentifier",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.qualIdentifier",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p106-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p106-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.SortedVar.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SortedVar.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SortedVar",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p106-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p106-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Pattern.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Pattern.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Pattern",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p106-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p106-10",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Term.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Term",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.term",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p107-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p107-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p107-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p107-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p107-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p107-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p107-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p107-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p108-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p108-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p108-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p109-01",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.SortDec.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SortDec",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p109-02",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.SelectorDec.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SelectorDec.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.SelectorDec",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p109-03",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.ConstructorDec.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.ConstructorDec.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.ConstructorDec",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p109-04",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.DatatypeDec.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.DatatypeDec.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.DatatypeDec",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p109-05",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.FunctionDec.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.FunctionDec.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.FunctionDec",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p109-06",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.FunctionDef.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.FunctionDef.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.FunctionDef",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p109-07",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Tree.Command.tokens",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Command.Valid",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Grammar.Tree.Command",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.command",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p109-08",
+  "status": "formalised",
+  "targets": [
+   {
+    "id": "Spec.Grammar.Script",
+    "relation": "defines"
+   },
+   {
+    "id": "Spec.Parser.Traversal.script",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "passage": "2.7-p110-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-06",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-07",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-11",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-12",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-13",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-14",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-15",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-16",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-17",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-18",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p110-19",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p111-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p111-02",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p111-03",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p111-04",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p111-05",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p112-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p112-08",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p112-09",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p112-10",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p112-11",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p113-01",
+  "status": "not_formalised",
+  "targets": []
+ },
+ {
+  "passage": "2.7-p113-02",
+  "status": "not_formalised",
+  "targets": []
+ }
+]
