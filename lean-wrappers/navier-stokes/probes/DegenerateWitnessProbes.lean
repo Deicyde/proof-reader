@@ -1,3 +1,13 @@
+import Breakdown.Defs
+import Breakdown.Weak.ZeroGradient
+import Breakdown.Cert.ExtendedStatement
+import Breakdown.Cert.ExtendedAdjointPairing
+import Breakdown.Cert.ExtendedCoerciveDefs
+import Breakdown.CertCell.ShapeSupportRadius
+import Breakdown.CertCell.StatementDefs
+import Mathlib
+import Breakdown.CellReduction.CellLayerBreakdownCompose
+
 /-!
 # Degenerate witness audit probes
 
@@ -15,15 +25,6 @@ Python arithmetic check is not evidence that this Lean file elaborates.
 Run the supplied run_lean_probes.py against an already built pinned package.
 All theorem axiom diagnostics are printed at the end. Retain the actual log.
 -/
-import Breakdown.Defs
-import Breakdown.Weak.ZeroGradient
-import Breakdown.Cert.ExtendedStatement
-import Breakdown.Cert.ExtendedAdjointPairing
-import Breakdown.Cert.ExtendedCoerciveDefs
-import Breakdown.CertCell.ShapeSupportRadius
-import Breakdown.CertCell.StatementDefs
-import Mathlib
-import Breakdown.CellReduction.CellLayerBreakdownCompose
 
 set_option autoImplicit false
 noncomputable section
