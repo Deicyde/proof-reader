@@ -1,0 +1,2386 @@
+[
+ {
+  "id": "Spec.Grammar.versionAtLeast",
+  "module": "Spec.Grammar",
+  "file": "Spec/Grammar.lean",
+  "line": 37,
+  "end_line": 38,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.versionNumber",
+  "module": "Spec.Grammar",
+  "file": "Spec/Grammar.lean",
+  "line": 41,
+  "end_line": 45,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.versionOfNumber",
+  "module": "Spec.Grammar",
+  "file": "Spec/Grammar.lean",
+  "line": 48,
+  "end_line": 49,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.SyntaxToken",
+  "module": "Spec.Grammar",
+  "file": "Spec/Grammar.lean",
+  "line": 57,
+  "end_line": 71,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.SyntaxToken.ofToken",
+  "module": "Spec.Grammar",
+  "file": "Spec/Grammar.lean",
+  "line": 78,
+  "end_line": 90,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.paren",
+  "module": "Spec.Grammar",
+  "file": "Spec/Grammar.lean",
+  "line": 93,
+  "end_line": 93,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.word",
+  "module": "Spec.Grammar",
+  "file": "Spec/Grammar.lean",
+  "line": 96,
+  "end_line": 96,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.commandTokens",
+  "module": "Spec.Grammar",
+  "file": "Spec/Grammar.lean",
+  "line": 99,
+  "end_line": 100,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.File.Mode",
+  "module": "Spec.Grammar.File",
+  "file": "Spec/Grammar/File.lean",
+  "line": 34,
+  "end_line": 38,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command.modeAfter",
+  "module": "Spec.Grammar.File",
+  "file": "Spec/Grammar/File.lean",
+  "line": 53,
+  "end_line": 61,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command.declaredVersion",
+  "module": "Spec.Grammar.File",
+  "file": "Spec/Grammar/File.lean",
+  "line": 66,
+  "end_line": 70,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command.namesNoVersion",
+  "module": "Spec.Grammar.File",
+  "file": "Spec/Grammar/File.lean",
+  "line": 80,
+  "end_line": 86,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.File.From",
+  "module": "Spec.Grammar.File",
+  "file": "Spec/Grammar/File.lean",
+  "line": 100,
+  "end_line": 115,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.File",
+  "module": "Spec.Grammar.File",
+  "file": "Spec/Grammar/File.lean",
+  "line": 123,
+  "end_line": 124,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Properties.SExprsOneToOne",
+  "module": "Spec.Grammar.Properties",
+  "file": "Spec/Grammar/Properties.lean",
+  "line": 36,
+  "end_line": 38,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Properties.AttributesOneToOne",
+  "module": "Spec.Grammar.Properties",
+  "file": "Spec/Grammar/Properties.lean",
+  "line": 48,
+  "end_line": 50,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Properties.SortsOneToOne",
+  "module": "Spec.Grammar.Properties",
+  "file": "Spec/Grammar/Properties.lean",
+  "line": 60,
+  "end_line": 62,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Properties.TermsOneToOne",
+  "module": "Spec.Grammar.Properties",
+  "file": "Spec/Grammar/Properties.lean",
+  "line": 72,
+  "end_line": 74,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Properties.CommandsOneToOne",
+  "module": "Spec.Grammar.Properties",
+  "file": "Spec/Grammar/Properties.lean",
+  "line": 85,
+  "end_line": 87,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Properties.FilesUnique",
+  "module": "Spec.Grammar.Properties",
+  "file": "Spec/Grammar/Properties.lean",
+  "line": 96,
+  "end_line": 98,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Properties.CommandsHandedOverWhole",
+  "module": "Spec.Grammar.Properties",
+  "file": "Spec/Grammar/Properties.lean",
+  "line": 108,
+  "end_line": 111,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Script",
+  "module": "Spec.Grammar.Script",
+  "file": "Spec/Grammar/Script.lean",
+  "line": 26,
+  "end_line": 36,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SpecConstant.token",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 40,
+  "end_line": 45,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SExpr.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 55,
+  "end_line": 60,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SExpr.tokensAll",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 63,
+  "end_line": 65,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Index.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 74,
+  "end_line": 76,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Identifier.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 83,
+  "end_line": 85,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Sort.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 94,
+  "end_line": 96,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Sort.tokensAll",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 99,
+  "end_line": 101,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.AttributeValue.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 111,
+  "end_line": 114,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Attribute.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 121,
+  "end_line": 123,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.QualIdentifier.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 131,
+  "end_line": 133,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SortedVar.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 140,
+  "end_line": 141,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SymbolOrWildcard.token",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 148,
+  "end_line": 150,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Pattern.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 157,
+  "end_line": 160,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Quantifier.word",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 163,
+  "end_line": 165,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 174,
+  "end_line": 195,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.tokensAll",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 198,
+  "end_line": 200,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.bindingTokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 207,
+  "end_line": 209,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.caseTokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 216,
+  "end_line": 218,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SortDec.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 227,
+  "end_line": 228,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SelectorDec.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 235,
+  "end_line": 236,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.ConstructorDec.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 243,
+  "end_line": 244,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.DatatypeDec.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 252,
+  "end_line": 256,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDec.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 264,
+  "end_line": 266,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDef.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 273,
+  "end_line": 275,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.PropLiteral.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 282,
+  "end_line": 284,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command.tokens",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 291,
+  "end_line": 334,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SExpr.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 348,
+  "end_line": 353,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SExpr.ValidAll",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 356,
+  "end_line": 358,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Index.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 367,
+  "end_line": 369,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Identifier.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 376,
+  "end_line": 377,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Sort.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 386,
+  "end_line": 387,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Sort.ValidAll",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 390,
+  "end_line": 392,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.AttributeValue.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 401,
+  "end_line": 403,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Attribute.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 410,
+  "end_line": 412,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.QualIdentifier.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 419,
+  "end_line": 421,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SortedVar.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 428,
+  "end_line": 429,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SymbolOrWildcard.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 436,
+  "end_line": 438,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Pattern.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 445,
+  "end_line": 447,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 457,
+  "end_line": 473,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.ValidAll",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 476,
+  "end_line": 478,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.ValidBindings",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 481,
+  "end_line": 483,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.ValidCases",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 486,
+  "end_line": 489,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SelectorDec.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 498,
+  "end_line": 499,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.ConstructorDec.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 506,
+  "end_line": 507,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.DatatypeDec.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 515,
+  "end_line": 516,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDec.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 523,
+  "end_line": 525,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDef.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 532,
+  "end_line": 534,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.PropLiteral.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 542,
+  "end_line": 544,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command.Valid",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 553,
+  "end_line": 593,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Syntax.IsSExpr",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 608,
+  "end_line": 609,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Syntax.IsAttribute",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 618,
+  "end_line": 620,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Syntax.IsSort",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 627,
+  "end_line": 628,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Syntax.IsTerm",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 636,
+  "end_line": 637,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Syntax.IsCommand",
+  "module": "Spec.Grammar.Syntax",
+  "file": "Spec/Grammar/Syntax.lean",
+  "line": 646,
+  "end_line": 647,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Symbol",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 30,
+  "end_line": 32,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SpecConstant",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 39,
+  "end_line": 44,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SExpr",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 51,
+  "end_line": 56,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Index",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 63,
+  "end_line": 65,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Identifier",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 72,
+  "end_line": 74,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Sort",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 81,
+  "end_line": 82,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.AttributeValue",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 89,
+  "end_line": 92,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Attribute",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 99,
+  "end_line": 101,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Grammar.Tree.QualIdentifier",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 108,
+  "end_line": 110,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SortedVar",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 117,
+  "end_line": 119,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SymbolOrWildcard",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 126,
+  "end_line": 128,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Pattern",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 135,
+  "end_line": 137,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Quantifier",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 144,
+  "end_line": 146,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 153,
+  "end_line": 161,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SortDec",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 168,
+  "end_line": 170,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Grammar.Tree.SelectorDec",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 177,
+  "end_line": 179,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Grammar.Tree.ConstructorDec",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 186,
+  "end_line": 188,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Grammar.Tree.DatatypeDec",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 195,
+  "end_line": 197,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDec",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 204,
+  "end_line": 207,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDef",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 214,
+  "end_line": 218,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Grammar.Tree.PropLiteral",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 225,
+  "end_line": 227,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Grammar.Tree.PropLiteral.asTerm",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 232,
+  "end_line": 235,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command",
+  "module": "Spec.Grammar.Tree",
+  "file": "Spec/Grammar/Tree.lean",
+  "line": 242,
+  "end_line": 275,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexer.Location",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 26,
+  "end_line": 30,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Lexer.locate",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 36,
+  "end_line": 38,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.TokenType",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 44,
+  "end_line": 58,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexer.ReservedKind",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 63,
+  "end_line": 66,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexer.Handed",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 80,
+  "end_line": 86,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Lexicon.Category.type",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 104,
+  "end_line": 114,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Token.reservedKind",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 119,
+  "end_line": 123,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Token.handed",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 128,
+  "end_line": 133,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.endOfFile",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 145,
+  "end_line": 147,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.endOfFileAt",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 152,
+  "end_line": 153,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Fed",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 175,
+  "end_line": 177,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Lexer.DelimiterSeen",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 186,
+  "end_line": 188,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.LongestViableStart",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 198,
+  "end_line": 200,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.HandoverReady",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 210,
+  "end_line": 211,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.HandoverMaximal",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 220,
+  "end_line": 222,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Complete",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 232,
+  "end_line": 233,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.FailsCorrectly",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 247,
+  "end_line": 251,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.HandsOverAll",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 263,
+  "end_line": 267,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.HandsOverMaximal",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 286,
+  "end_line": 291,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.HandsOverCorrectly",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 300,
+  "end_line": 303,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Correct",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 310,
+  "end_line": 312,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Extends",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 325,
+  "end_line": 326,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Sequential",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 335,
+  "end_line": 338,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.WholeInputCorrect",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 350,
+  "end_line": 355,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.ComposesAtClose",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 372,
+  "end_line": 378,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Answer",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 414,
+  "end_line": 420,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexer.Consumer",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 435,
+  "end_line": 444,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Lexer.Consumer.BreaksAtEnd",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 452,
+  "end_line": 453,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.collector",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 459,
+  "end_line": 465,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Failure",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 468,
+  "end_line": 474,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexer.Outcome",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 477,
+  "end_line": 486,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexer.Session",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 493,
+  "end_line": 497,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Lexer.Outcome.isFailed",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 500,
+  "end_line": 502,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Outcome.isFinished",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 505,
+  "end_line": 507,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Session.fed",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 510,
+  "end_line": 511,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.settle",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 520,
+  "end_line": 523,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Location.after",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 528,
+  "end_line": 532,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Handed.after",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 536,
+  "end_line": 537,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.segment",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 547,
+  "end_line": 550,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.layoutEntry",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 554,
+  "end_line": 557,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.layoutFrom",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 571,
+  "end_line": 595,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.withLayout",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 603,
+  "end_line": 609,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.readyFrom",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 615,
+  "end_line": 617,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.following",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 628,
+  "end_line": 633,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.AfterBreak",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 644,
+  "end_line": 655,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexer.Runs",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 672,
+  "end_line": 754,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexer.Lexing",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 764,
+  "end_line": 765,
+  "keyword": "abbrev"
+ },
+ {
+  "id": "Spec.Lexer.Lexing.fed",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 769,
+  "end_line": 771,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.HandlesConsumer",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 780,
+  "end_line": 786,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.ResetsAtEnd",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 795,
+  "end_line": 799,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.CorrectWithConsumers",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 806,
+  "end_line": 808,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Recovered",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 821,
+  "end_line": 823,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Lexer.RecoveringLexing",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 830,
+  "end_line": 831,
+  "keyword": "abbrev"
+ },
+ {
+  "id": "Spec.Lexer.DropsHeldOnError",
+  "module": "Spec.Lexer",
+  "file": "Spec/Lexer.lean",
+  "line": 840,
+  "end_line": 843,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Version",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 25,
+  "end_line": 30,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexicon.Version.upTo",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 33,
+  "end_line": 37,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.SourceFile",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 47,
+  "end_line": 49,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.whiteSpaceChar",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 58,
+  "end_line": 58,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.printableChar",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 67,
+  "end_line": 67,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.digit",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 74,
+  "end_line": 74,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.letter",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 84,
+  "end_line": 84,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.lineBreak",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 91,
+  "end_line": 91,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.comment",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 101,
+  "end_line": 101,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.commentAtEnd",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 109,
+  "end_line": 109,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.whitespace",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 116,
+  "end_line": 116,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.whitespaceAtEnd",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 123,
+  "end_line": 123,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.numeral",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 132,
+  "end_line": 132,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.decimal",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 139,
+  "end_line": 139,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.hexadecimal",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 147,
+  "end_line": 147,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.binary",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 154,
+  "end_line": 154,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.string",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 162,
+  "end_line": 165,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.unescape",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 172,
+  "end_line": 174,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.string20",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 186,
+  "end_line": 190,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.unescape20",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 197,
+  "end_line": 200,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.addedBasicReservedWords",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 208,
+  "end_line": 212,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.basicReservedWords",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 219,
+  "end_line": 220,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.addedCommandNames",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 230,
+  "end_line": 238,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.commandNames",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 246,
+  "end_line": 247,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.reserved",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 254,
+  "end_line": 255,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.symbolPunctuation",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 262,
+  "end_line": 262,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.simpleSymbol",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 271,
+  "end_line": 273,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.quotedSymbol",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 281,
+  "end_line": 282,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.keyword",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 294,
+  "end_line": 294,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Category",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 302,
+  "end_line": 314,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexicon.categoryRegex",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 321,
+  "end_line": 332,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Token",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 341,
+  "end_line": 345,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Lexicon.Token.content",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 360,
+  "end_line": 366,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Token.moveBy",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 372,
+  "end_line": 373,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.EndsWithClose",
+  "module": "Spec.Lexicon",
+  "file": "Spec/Lexicon.lean",
+  "line": 378,
+  "end_line": 380,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Properties.Unique",
+  "module": "Spec.Lexicon.Properties",
+  "file": "Spec/Lexicon/Properties.lean",
+  "line": 27,
+  "end_line": 29,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Properties.Viable",
+  "module": "Spec.Lexicon.Properties",
+  "file": "Spec/Lexicon/Properties.lean",
+  "line": 38,
+  "end_line": 39,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Properties.Determined",
+  "module": "Spec.Lexicon.Properties",
+  "file": "Spec/Lexicon/Properties.lean",
+  "line": 49,
+  "end_line": 50,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Properties.ReadsOnItsOwn",
+  "module": "Spec.Lexicon.Properties",
+  "file": "Spec/Lexicon/Properties.lean",
+  "line": 60,
+  "end_line": 63,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Tokenization.Delimited",
+  "module": "Spec.Lexicon.Tokenization",
+  "file": "Spec/Lexicon/Tokenization.lean",
+  "line": 26,
+  "end_line": 28,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Tokenization.From",
+  "module": "Spec.Lexicon.Tokenization",
+  "file": "Spec/Lexicon/Tokenization.lean",
+  "line": 37,
+  "end_line": 42,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Lexicon.Tokenization",
+  "module": "Spec.Lexicon.Tokenization",
+  "file": "Spec/Lexicon/Tokenization.lean",
+  "line": 49,
+  "end_line": 50,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexicon.Tokenization.Exactly",
+  "module": "Spec.Lexicon.Tokenization",
+  "file": "Spec/Lexicon/Tokenization.lean",
+  "line": 56,
+  "end_line": 59,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.Recorded",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 37,
+  "end_line": 37,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.Event",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 40,
+  "end_line": 49,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.Properties.Event.isCall",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 52,
+  "end_line": 54,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.Event.arrived",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 57,
+  "end_line": 59,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.Event.processed",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 62,
+  "end_line": 64,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.Recording",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 67,
+  "end_line": 67,
+  "keyword": "abbrev"
+ },
+ {
+  "id": "Spec.Parser.Properties.emit",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 70,
+  "end_line": 71,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.recordedValue",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 74,
+  "end_line": 80,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.recordingPoints",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 83,
+  "end_line": 85,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.recordingHandler",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 88,
+  "end_line": 93,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.recordingProducer",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 99,
+  "end_line": 101,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.record",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 107,
+  "end_line": 110,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.received",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 119,
+  "end_line": 122,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.eventsBefore",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 128,
+  "end_line": 132,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.eventsBeforeProcessing",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 140,
+  "end_line": 145,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.eventsBeforeProcessingOf",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 154,
+  "end_line": 157,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.TakesItsTokens",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 168,
+  "end_line": 171,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.CallsDetermineScript",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 180,
+  "end_line": 184,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.PlacementDetermined",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 196,
+  "end_line": 202,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.Ending",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 217,
+  "end_line": 225,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.Properties.Takes",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 239,
+  "end_line": 251,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.Properties.Viable",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 257,
+  "end_line": 258,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.versionAt",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 267,
+  "end_line": 271,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.RecordingParser",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 279,
+  "end_line": 282,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Parser.Properties.FollowsTheTraversal",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 296,
+  "end_line": 302,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Properties.RejectsFirstUnviable",
+  "module": "Spec.Parser.Properties",
+  "file": "Spec/Parser/Properties.lean",
+  "line": 323,
+  "end_line": 338,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Values",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 90,
+  "end_line": 95,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Returns",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 98,
+  "end_line": 104,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Values.of",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 107,
+  "end_line": 113,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.TermNode",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 116,
+  "end_line": 122,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.Traversal.SExprNode",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 125,
+  "end_line": 130,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.Traversal.AttributeValueNode",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 136,
+  "end_line": 139,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Signature",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 142,
+  "end_line": 145,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Constructor",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 148,
+  "end_line": 150,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Call",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 157,
+  "end_line": 226,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Handler",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 232,
+  "end_line": 234,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Received",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 239,
+  "end_line": 241,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Received.OfVersion",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 249,
+  "end_line": 251,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Points",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 258,
+  "end_line": 260,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Parser.Traversal.VersionRefused",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 263,
+  "end_line": 263,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Producer",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 269,
+  "end_line": 271,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Cause",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 274,
+  "end_line": 276,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.Traversal.Run",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 279,
+  "end_line": 279,
+  "keyword": "abbrev"
+ },
+ {
+  "id": "Spec.Parser.Traversal.call",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 289,
+  "end_line": 290,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.receive",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 296,
+  "end_line": 299,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.take",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 302,
+  "end_line": 303,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.takeAll",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 306,
+  "end_line": 307,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.takeAllArriving",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 312,
+  "end_line": 316,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.sort",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 321,
+  "end_line": 332,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.sorts",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 335,
+  "end_line": 340,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.sExpr",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 347,
+  "end_line": 364,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.sExprs",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 367,
+  "end_line": 372,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.attributeValue",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 377,
+  "end_line": 388,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.attributeThen",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 398,
+  "end_line": 407,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.attributesThen",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 413,
+  "end_line": 421,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.qualIdentifier",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 427,
+  "end_line": 439,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.sortedVars",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 442,
+  "end_line": 449,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.term",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 454,
+  "end_line": 530,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.terms",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 533,
+  "end_line": 538,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.bindings",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 541,
+  "end_line": 548,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.cases",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 555,
+  "end_line": 566,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.signature",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 576,
+  "end_line": 582,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.selectors",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 585,
+  "end_line": 592,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.constructorAfterOpen",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 598,
+  "end_line": 602,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.constructors",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 605,
+  "end_line": 608,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.datatype",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 619,
+  "end_line": 644,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.recursiveBodies",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 652,
+  "end_line": 657,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.opening",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 660,
+  "end_line": 662,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.command",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 670,
+  "end_line": 864,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.switchVersion",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 875,
+  "end_line": 881,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.commands",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 890,
+  "end_line": 905,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.Traversal.script",
+  "module": "Spec.Parser.Traversal",
+  "file": "Spec/Parser/Traversal.lean",
+  "line": 912,
+  "end_line": 915,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.VersionPolicy",
+  "module": "Spec.Parser.VersionPolicy",
+  "file": "Spec/Parser/VersionPolicy.lean",
+  "line": 23,
+  "end_line": 25,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Parser.VersionPolicy.unrestricted",
+  "module": "Spec.Parser.VersionPolicy",
+  "file": "Spec/Parser/VersionPolicy.lean",
+  "line": 30,
+  "end_line": 31,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Parser.VersionPolicy.Error",
+  "module": "Spec.Parser.VersionPolicy",
+  "file": "Spec/Parser/VersionPolicy.lean",
+  "line": 39,
+  "end_line": 45,
+  "keyword": "inductive"
+ },
+ {
+  "id": "Spec.Parser.VersionPolicy.check",
+  "module": "Spec.Parser.VersionPolicy",
+  "file": "Spec/Parser/VersionPolicy.lean",
+  "line": 53,
+  "end_line": 59,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Reader.calls",
+  "module": "Spec.Reader",
+  "file": "Spec/Reader.lean",
+  "line": 41,
+  "end_line": 42,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Reader.RecordingReader",
+  "module": "Spec.Reader",
+  "file": "Spec/Reader.lean",
+  "line": 48,
+  "end_line": 49,
+  "keyword": "structure"
+ },
+ {
+  "id": "Spec.Reader.ReadsFiles",
+  "module": "Spec.Reader",
+  "file": "Spec/Reader.lean",
+  "line": 59,
+  "end_line": 61,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Reader.FinishesOnlyOnFiles",
+  "module": "Spec.Reader",
+  "file": "Spec/Reader.lean",
+  "line": 68,
+  "end_line": 70,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Reader.CallsDetermineCommands",
+  "module": "Spec.Reader",
+  "file": "Spec/Reader.lean",
+  "line": 82,
+  "end_line": 86,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Lexer.Handed.received",
+  "module": "Spec.Reader",
+  "file": "Spec/Reader.lean",
+  "line": 95,
+  "end_line": 110,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Reader.requestsAfterLast",
+  "module": "Spec.Reader",
+  "file": "Spec/Reader.lean",
+  "line": 116,
+  "end_line": 122,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Reader.consumer",
+  "module": "Spec.Reader",
+  "file": "Spec/Reader.lean",
+  "line": 131,
+  "end_line": 143,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Reader.LexesThenParses",
+  "module": "Spec.Reader",
+  "file": "Spec/Reader.lean",
+  "line": 156,
+  "end_line": 167,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.Chars",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 24,
+  "end_line": 24,
+  "keyword": "abbrev"
+ },
+ {
+  "id": "Spec.Regex.chars",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 27,
+  "end_line": 27,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 30,
+  "end_line": 30,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.range",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 35,
+  "end_line": 35,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.code",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 38,
+  "end_line": 38,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.anyChar",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 41,
+  "end_line": 41,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.oneOf",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 44,
+  "end_line": 44,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.lit",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 47,
+  "end_line": 47,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.litOneOf",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 50,
+  "end_line": 50,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.anything",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 53,
+  "end_line": 53,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.seq",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 56,
+  "end_line": 56,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.alt",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 59,
+  "end_line": 59,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.altAll",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 62,
+  "end_line": 62,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.star",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 65,
+  "end_line": 65,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.plus",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 68,
+  "end_line": 68,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.minus",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 71,
+  "end_line": 71,
+  "keyword": "def"
+ },
+ {
+  "id": "Spec.Regex.startsWith",
+  "module": "Spec.Regex",
+  "file": "Spec/Regex.lean",
+  "line": 74,
+  "end_line": 74,
+  "keyword": "def"
+ }
+]

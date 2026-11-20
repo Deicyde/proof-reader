@@ -232,6 +232,11 @@ def declaration_line(lines: list[str], first: int, last: int) -> int:
     return line
 
 
+def written_name(declared: str) -> str:
+    """The name Lean gives a written declaration: `_root_.` only places it, and «» only quote."""
+    return declared.removeprefix("_root_.").replace("«", "").replace("»", "")
+
+
 def shards(folder: Path, config: dict) -> tuple[dict, dict]:
     """The declarations people wrote, each with the rest folded into it."""
     report = json.loads((folder / "generated" / "lean.json").read_text(encoding="utf-8"))
@@ -249,7 +254,7 @@ def shards(folder: Path, config: dict) -> tuple[dict, dict]:
             continue
         # Lean gives Ty.rec and Ty.casesOn the lines of `inductive Ty`, so the
         # declared name has to agree. An instance may have no written name.
-        keyword, declared = match.group(1).split()[0], match.group(2)
+        keyword, declared = match.group(1).split()[0], written_name(match.group(2))
         if name == declared or name.endswith(f".{declared}") or (keyword == "instance" and not declared):
             written[name] = {**row, "line": at, "keyword": keyword}
 
@@ -635,7 +640,9 @@ def resolve(slug: str) -> dict:
         passages.append(resolved)
     passages.sort(key=lambda p: p["order"])
     claims = links.get("claims", [])
-    if not claims:
+    # A claim is the top of a map, so a page without a graph (a standard, an index of
+    # definitions) may have none.
+    if not claims and config["paper"].get("graph", True):
         errors.append("links.json needs at least one claim: each claim is the top of a map")
     for claim in claims:
         for name in claim.get("lean", []):

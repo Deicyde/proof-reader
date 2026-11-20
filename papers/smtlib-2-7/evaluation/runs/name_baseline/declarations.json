@@ -1,0 +1,2889 @@
+[
+ {
+  "id": "Spec.Grammar.versionAtLeast",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.versionNumber",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.versionOfNumber",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.SyntaxToken",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.SyntaxToken.ofToken",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.paren",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.word",
+  "matches": [
+   {
+    "passage": "2.7-p025-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p025-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p026-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.commandTokens",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.File.Mode",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command.modeAfter",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command.declaredVersion",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command.namesNoVersion",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.File.From",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.File",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Properties.SExprsOneToOne",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Properties.AttributesOneToOne",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Properties.SortsOneToOne",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Properties.TermsOneToOne",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Properties.CommandsOneToOne",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Properties.FilesUnique",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Properties.CommandsHandedOverWhole",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Script",
+  "matches": [
+   {
+    "passage": "2.7-p051-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p053-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p054-20",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-12",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p056-01",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SpecConstant.token",
+  "matches": [
+   {
+    "passage": "2.7-p026-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p105-12",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SExpr.tokens",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.SExpr.tokensAll",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Index.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p027-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p105-14",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Identifier.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p027-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p105-15",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-07",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Sort.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p028-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p035-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-07",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Sort.tokensAll",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.AttributeValue.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p027-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-02",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Attribute.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p027-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.QualIdentifier.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p030-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SortedVar.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p030-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SymbolOrWildcard.token",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Pattern.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p030-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-08",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Quantifier.word",
+  "matches": [
+   {
+    "passage": "2.7-p025-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p025-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p026-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p030-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p030-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p030-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p031-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.tokensAll",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.bindingTokens",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.caseTokens",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.SortDec.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p051-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-01",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SelectorDec.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p051-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-02",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.ConstructorDec.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p051-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.DatatypeDec.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p051-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDec.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p051-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-05",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDef.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p051-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.PropLiteral.tokens",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command.tokens",
+  "matches": [
+   {
+    "passage": "2.7-p051-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p053-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SExpr.Valid",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.SExpr.ValidAll",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Index.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p027-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p105-14",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Identifier.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p027-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p105-15",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-07",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Sort.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p028-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p035-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-07",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Sort.ValidAll",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.AttributeValue.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p027-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-02",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Attribute.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p027-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.QualIdentifier.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p030-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SortedVar.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p030-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SymbolOrWildcard.Valid",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Pattern.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p030-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-08",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p030-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p030-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p030-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p031-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.ValidAll",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.ValidBindings",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term.ValidCases",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.SelectorDec.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p051-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-02",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.ConstructorDec.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p051-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.DatatypeDec.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p051-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDec.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p051-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-05",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDef.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p051-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.PropLiteral.Valid",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command.Valid",
+  "matches": [
+   {
+    "passage": "2.7-p051-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p053-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Syntax.IsSExpr",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Syntax.IsAttribute",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Syntax.IsSort",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Syntax.IsTerm",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Syntax.IsCommand",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Symbol",
+  "matches": [
+   {
+    "passage": "2.7-p105-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p025-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p025-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p025-14",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p026-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SpecConstant",
+  "matches": [
+   {
+    "passage": "2.7-p026-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p105-12",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SExpr",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Index",
+  "matches": [
+   {
+    "passage": "2.7-p027-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p105-14",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Identifier",
+  "matches": [
+   {
+    "passage": "2.7-p027-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p105-15",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-07",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Sort",
+  "matches": [
+   {
+    "passage": "2.7-p028-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p035-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-07",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.AttributeValue",
+  "matches": [
+   {
+    "passage": "2.7-p027-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-02",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Attribute",
+  "matches": [
+   {
+    "passage": "2.7-p027-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p027-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.QualIdentifier",
+  "matches": [
+   {
+    "passage": "2.7-p030-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SortedVar",
+  "matches": [
+   {
+    "passage": "2.7-p030-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SymbolOrWildcard",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Pattern",
+  "matches": [
+   {
+    "passage": "2.7-p030-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-08",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Quantifier",
+  "matches": [
+   {
+    "passage": "2.7-p031-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p031-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p031-11",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.Term",
+  "matches": [
+   {
+    "passage": "2.7-p030-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p030-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p030-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p031-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SortDec",
+  "matches": [
+   {
+    "passage": "2.7-p051-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-01",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.SelectorDec",
+  "matches": [
+   {
+    "passage": "2.7-p051-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-02",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.ConstructorDec",
+  "matches": [
+   {
+    "passage": "2.7-p051-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.DatatypeDec",
+  "matches": [
+   {
+    "passage": "2.7-p051-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDec",
+  "matches": [
+   {
+    "passage": "2.7-p051-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-05",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.FunctionDef",
+  "matches": [
+   {
+    "passage": "2.7-p051-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Grammar.Tree.PropLiteral",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.PropLiteral.asTerm",
+  "matches": []
+ },
+ {
+  "id": "Spec.Grammar.Tree.Command",
+  "matches": [
+   {
+    "passage": "2.7-p051-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p053-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexer.Location",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.locate",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.TokenType",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.ReservedKind",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Handed",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Category.type",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Token.reservedKind",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Token.handed",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.endOfFile",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.endOfFileAt",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Fed",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.DelimiterSeen",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.LongestViableStart",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.HandoverReady",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.HandoverMaximal",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Complete",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.FailsCorrectly",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.HandsOverAll",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.HandsOverMaximal",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.HandsOverCorrectly",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Correct",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Extends",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Sequential",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.WholeInputCorrect",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.ComposesAtClose",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Answer",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Consumer",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Consumer.BreaksAtEnd",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.collector",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Failure",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Outcome",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Session",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Outcome.isFailed",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Outcome.isFinished",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Session.fed",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.settle",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Location.after",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Handed.after",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.segment",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.layoutEntry",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.layoutFrom",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.withLayout",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.readyFrom",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.following",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.AfterBreak",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Runs",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Lexing",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Lexing.fed",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.HandlesConsumer",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.ResetsAtEnd",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.CorrectWithConsumers",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Recovered",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.RecoveringLexing",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.DropsHeldOnError",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Version",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Version.upTo",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.SourceFile",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.whiteSpaceChar",
+  "matches": [
+   {
+    "passage": "2.7-p104-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-02",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.printableChar",
+  "matches": [
+   {
+    "passage": "2.7-p104-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.digit",
+  "matches": [
+   {
+    "passage": "2.7-p104-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.letter",
+  "matches": [
+   {
+    "passage": "2.7-p104-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-05",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.lineBreak",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.comment",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.commentAtEnd",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.whitespace",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.whitespaceAtEnd",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.numeral",
+  "matches": [
+   {
+    "passage": "2.7-p105-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.decimal",
+  "matches": [
+   {
+    "passage": "2.7-p105-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-08",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.hexadecimal",
+  "matches": [
+   {
+    "passage": "2.7-p105-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-08",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.binary",
+  "matches": [
+   {
+    "passage": "2.7-p105-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.string",
+  "matches": [
+   {
+    "passage": "2.7-p105-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-12",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p025-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.unescape",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.string20",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.unescape20",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.addedBasicReservedWords",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.basicReservedWords",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.addedCommandNames",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.commandNames",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.reserved",
+  "matches": [
+   {
+    "passage": "2.7-p025-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p025-08",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.symbolPunctuation",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.simpleSymbol",
+  "matches": [
+   {
+    "passage": "2.7-p105-08",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.quotedSymbol",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.keyword",
+  "matches": [
+   {
+    "passage": "2.7-p105-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p026-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Lexicon.Category",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.categoryRegex",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Token",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Token.content",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Token.moveBy",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.EndsWithClose",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Properties.Unique",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Properties.Viable",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Properties.Determined",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Properties.ReadsOnItsOwn",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Tokenization.Delimited",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Tokenization.From",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Tokenization",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexicon.Tokenization.Exactly",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.Recorded",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.Event",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.Event.isCall",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.Event.arrived",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.Event.processed",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.Recording",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.emit",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.recordedValue",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.recordingPoints",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.recordingHandler",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.recordingProducer",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.record",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.received",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.eventsBefore",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.eventsBeforeProcessing",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.eventsBeforeProcessingOf",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.TakesItsTokens",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.CallsDetermineScript",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.PlacementDetermined",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.Ending",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.Takes",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.Viable",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.versionAt",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.RecordingParser",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.FollowsTheTraversal",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Properties.RejectsFirstUnviable",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Values",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Returns",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Values.of",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.TermNode",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.SExprNode",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.AttributeValueNode",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Signature",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Constructor",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Call",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Handler",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Received",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Received.OfVersion",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Points",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.VersionRefused",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Producer",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Cause",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.Run",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.call",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.receive",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.take",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.takeAll",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.takeAllArriving",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.sort",
+  "matches": [
+   {
+    "passage": "2.7-p028-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p035-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-07",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.Traversal.sorts",
+  "matches": [
+   {
+    "passage": "2.7-p028-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p028-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p029-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p035-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-07",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.Traversal.sExpr",
+  "matches": [
+   {
+    "passage": "2.7-p026-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p105-13",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.Traversal.sExprs",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.attributeValue",
+  "matches": [
+   {
+    "passage": "2.7-p027-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-02",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.Traversal.attributeThen",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.attributesThen",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.qualIdentifier",
+  "matches": [
+   {
+    "passage": "2.7-p030-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-04",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.Traversal.sortedVars",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.term",
+  "matches": [
+   {
+    "passage": "2.7-p030-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p106-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p030-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p030-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p031-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.Traversal.terms",
+  "matches": [
+   {
+    "passage": "2.7-p030-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p030-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p031-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p036-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p037-06",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.Traversal.bindings",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.cases",
+  "matches": [
+   {
+    "passage": "2.7-p026-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.Traversal.signature",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.selectors",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.constructorAfterOpen",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.constructors",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.datatype",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.recursiveBodies",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.opening",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.command",
+  "matches": [
+   {
+    "passage": "2.7-p051-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p053-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.Traversal.switchVersion",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.Traversal.commands",
+  "matches": [
+   {
+    "passage": "2.7-p053-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.Traversal.script",
+  "matches": [
+   {
+    "passage": "2.7-p051-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p109-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p053-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p054-20",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-01",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-03",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-04",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-05",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-06",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-07",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-08",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-09",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-10",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-11",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p055-12",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p056-01",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Parser.VersionPolicy",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.VersionPolicy.unrestricted",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.VersionPolicy.Error",
+  "matches": []
+ },
+ {
+  "id": "Spec.Parser.VersionPolicy.check",
+  "matches": []
+ },
+ {
+  "id": "Spec.Reader.calls",
+  "matches": []
+ },
+ {
+  "id": "Spec.Reader.RecordingReader",
+  "matches": []
+ },
+ {
+  "id": "Spec.Reader.ReadsFiles",
+  "matches": []
+ },
+ {
+  "id": "Spec.Reader.FinishesOnlyOnFiles",
+  "matches": []
+ },
+ {
+  "id": "Spec.Reader.CallsDetermineCommands",
+  "matches": []
+ },
+ {
+  "id": "Spec.Lexer.Handed.received",
+  "matches": []
+ },
+ {
+  "id": "Spec.Reader.requestsAfterLast",
+  "matches": []
+ },
+ {
+  "id": "Spec.Reader.consumer",
+  "matches": []
+ },
+ {
+  "id": "Spec.Reader.LexesThenParses",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.Chars",
+  "matches": [
+   {
+    "passage": "2.7-p024-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Regex.chars",
+  "matches": [
+   {
+    "passage": "2.7-p024-02",
+    "relation": "defines"
+   },
+   {
+    "passage": "2.7-p024-03",
+    "relation": "defines"
+   }
+  ]
+ },
+ {
+  "id": "Spec.Regex",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.range",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.code",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.anyChar",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.oneOf",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.lit",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.litOneOf",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.anything",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.seq",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.alt",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.altAll",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.star",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.plus",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.minus",
+  "matches": []
+ },
+ {
+  "id": "Spec.Regex.startsWith",
+  "matches": []
+ }
+]

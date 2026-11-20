@@ -1,0 +1,368 @@
+{
+ "sessions": {
+  "1": [
+   {
+    "slug": "hexadecimal",
+    "declaration": "Spec.Lexicon.hexadecimal",
+    "passages": [
+     "2.7-p105-05",
+     "2.7-p024-08"
+    ],
+    "truth": "changed",
+    "change": "allows the letters G and g",
+    "item": "item-01"
+   },
+   {
+    "slug": "reading-L5",
+    "declaration": "Spec.Lexicon.keyword",
+    "passages": [
+     "2.7-p105-10",
+     "2.7-p026-04"
+    ],
+    "truth": "authors_reading",
+    "reading": "L5",
+    "item": "item-02"
+   },
+   {
+    "slug": "digit",
+    "declaration": "Spec.Lexicon.digit",
+    "passages": [
+     "2.7-p104-05",
+     "2.7-p024-04"
+    ],
+    "truth": "changed",
+    "change": "excludes the digit 9",
+    "item": "item-03"
+   },
+   {
+    "slug": "reading-L2",
+    "declaration": "Spec.Lexicon.commentAtEnd",
+    "passages": [
+     "2.7-p023-02",
+     "2.7-p024-01"
+    ],
+    "truth": "authors_reading",
+    "reading": "L2",
+    "item": "item-04"
+   },
+   {
+    "slug": "binary",
+    "declaration": "Spec.Lexicon.binary",
+    "passages": [
+     "2.7-p105-06",
+     "2.7-p024-10"
+    ],
+    "truth": "as_written",
+    "item": "item-05"
+   },
+   {
+    "slug": "white-space",
+    "declaration": "Spec.Lexicon.whiteSpaceChar",
+    "passages": [
+     "2.7-p104-03",
+     "2.7-p024-02"
+    ],
+    "truth": "changed",
+    "change": "drops tab from white space",
+    "item": "item-06"
+   },
+   {
+    "slug": "application",
+    "declaration": "Spec.Grammar.Tree.Term.Valid",
+    "passages": [
+     "2.7-p106-10"
+    ],
+    "truth": "changed",
+    "change": "allows an application with no arguments",
+    "item": "item-07"
+   },
+   {
+    "slug": "string",
+    "declaration": "Spec.Lexicon.string",
+    "passages": [
+     "2.7-p105-07",
+     "2.7-p024-12",
+     "2.7-p025-04"
+    ],
+    "truth": "as_written",
+    "item": "item-08"
+   },
+   {
+    "slug": "decimal",
+    "declaration": "Spec.Lexicon.decimal",
+    "passages": [
+     "2.7-p105-04",
+     "2.7-p024-07"
+    ],
+    "truth": "as_written",
+    "item": "item-09"
+   },
+   {
+    "slug": "reading-L4",
+    "declaration": "Spec.Lexicon.simpleSymbol",
+    "passages": [
+     "2.5-p087-08",
+     "2.7-p025-09",
+     "2.7-p025-11",
+     "2.7-p025-14"
+    ],
+    "truth": "authors_reading",
+    "reading": "L4",
+    "item": "item-10"
+   },
+   {
+    "slug": "reading-G1",
+    "declaration": "Spec.Grammar.Tree.SExpr.Valid",
+    "passages": [
+     "2.5-p087-13",
+     "2.5-p024-09",
+     "2.5-p024-10",
+     "2.5-p024-11",
+     "2.5-p024-12",
+     "2.5-p024-13",
+     "2.5-p025-01"
+    ],
+    "truth": "authors_reading",
+    "reading": "G1",
+    "item": "item-11"
+   },
+   {
+    "slug": "numeral",
+    "declaration": "Spec.Lexicon.numeral",
+    "passages": [
+     "2.7-p105-03",
+     "2.7-p024-06"
+    ],
+    "truth": "changed",
+    "change": "allows leading zeros",
+    "item": "item-12"
+   },
+   {
+    "slug": "reading-L3",
+    "declaration": "Spec.Lexicon.letter",
+    "passages": [
+     "2.5-p086-06"
+    ],
+    "truth": "authors_reading",
+    "reading": "L3",
+    "item": "item-13"
+   },
+   {
+    "slug": "reading-L6",
+    "declaration": "Spec.Lexicon.addedCommandNames",
+    "passages": [
+     "2.7-p025-05",
+     "2.7-p025-08"
+    ],
+    "truth": "authors_reading",
+    "reading": "L6",
+    "item": "item-14"
+   },
+   {
+    "slug": "quoted-symbol",
+    "declaration": "Spec.Lexicon.quotedSymbol",
+    "passages": [
+     "2.7-p105-09",
+     "2.7-p025-09",
+     "2.7-p025-11",
+     "2.7-p025-14"
+    ],
+    "truth": "as_written",
+    "item": "item-15"
+   },
+   {
+    "slug": "declare-const",
+    "declaration": "Spec.Grammar.Tree.Command.Valid",
+    "passages": [
+     "2.0-p075-01",
+     "2.5-p090-04"
+    ],
+    "truth": "changed",
+    "change": "admits declare-const only from 2.6",
+    "item": "item-16"
+   }
+  ],
+  "2": [
+   {
+    "slug": "reading-L3",
+    "declaration": "Spec.Lexicon.letter",
+    "passages": [
+     "2.5-p086-06"
+    ],
+    "truth": "authors_reading",
+    "reading": "L3",
+    "item": "item-01"
+   },
+   {
+    "slug": "reading-L4",
+    "declaration": "Spec.Lexicon.simpleSymbol",
+    "passages": [
+     "2.5-p087-08",
+     "2.7-p025-09",
+     "2.7-p025-11",
+     "2.7-p025-14"
+    ],
+    "truth": "authors_reading",
+    "reading": "L4",
+    "item": "item-02"
+   },
+   {
+    "slug": "numeral",
+    "declaration": "Spec.Lexicon.numeral",
+    "passages": [
+     "2.7-p105-03",
+     "2.7-p024-06"
+    ],
+    "truth": "as_written",
+    "item": "item-03"
+   },
+   {
+    "slug": "reading-L6",
+    "declaration": "Spec.Lexicon.addedCommandNames",
+    "passages": [
+     "2.7-p025-05",
+     "2.7-p025-08"
+    ],
+    "truth": "authors_reading",
+    "reading": "L6",
+    "item": "item-04"
+   },
+   {
+    "slug": "digit",
+    "declaration": "Spec.Lexicon.digit",
+    "passages": [
+     "2.7-p104-05",
+     "2.7-p024-04"
+    ],
+    "truth": "as_written",
+    "item": "item-05"
+   },
+   {
+    "slug": "binary",
+    "declaration": "Spec.Lexicon.binary",
+    "passages": [
+     "2.7-p105-06",
+     "2.7-p024-10"
+    ],
+    "truth": "changed",
+    "change": "allows the digit 2",
+    "item": "item-06"
+   },
+   {
+    "slug": "hexadecimal",
+    "declaration": "Spec.Lexicon.hexadecimal",
+    "passages": [
+     "2.7-p105-05",
+     "2.7-p024-08"
+    ],
+    "truth": "as_written",
+    "item": "item-07"
+   },
+   {
+    "slug": "echo",
+    "declaration": "Spec.Grammar.Tree.Command.Valid",
+    "passages": [
+     "2.0-p075-01",
+     "2.5-p090-04"
+    ],
+    "truth": "changed",
+    "change": "admits echo only from 2.6",
+    "item": "item-08"
+   },
+   {
+    "slug": "white-space",
+    "declaration": "Spec.Lexicon.whiteSpaceChar",
+    "passages": [
+     "2.7-p104-03",
+     "2.7-p024-02"
+    ],
+    "truth": "as_written",
+    "item": "item-09"
+   },
+   {
+    "slug": "string",
+    "declaration": "Spec.Lexicon.string",
+    "passages": [
+     "2.7-p105-07",
+     "2.7-p024-12",
+     "2.7-p025-04"
+    ],
+    "truth": "changed",
+    "change": "escapes a quote with a backslash instead of doubling it",
+    "item": "item-10"
+   },
+   {
+    "slug": "reading-L5",
+    "declaration": "Spec.Lexicon.keyword",
+    "passages": [
+     "2.7-p105-10",
+     "2.7-p026-04"
+    ],
+    "truth": "authors_reading",
+    "reading": "L5",
+    "item": "item-11"
+   },
+   {
+    "slug": "let",
+    "declaration": "Spec.Grammar.Tree.Term.Valid",
+    "passages": [
+     "2.7-p106-10"
+    ],
+    "truth": "changed",
+    "change": "allows a let with no bindings",
+    "item": "item-12"
+   },
+   {
+    "slug": "quoted-symbol",
+    "declaration": "Spec.Lexicon.quotedSymbol",
+    "passages": [
+     "2.7-p105-09",
+     "2.7-p025-09",
+     "2.7-p025-11",
+     "2.7-p025-14"
+    ],
+    "truth": "changed",
+    "change": "allows a backslash inside a quoted symbol",
+    "item": "item-13"
+   },
+   {
+    "slug": "reading-L2",
+    "declaration": "Spec.Lexicon.commentAtEnd",
+    "passages": [
+     "2.7-p023-02",
+     "2.7-p024-01"
+    ],
+    "truth": "authors_reading",
+    "reading": "L2",
+    "item": "item-14"
+   },
+   {
+    "slug": "reading-G1",
+    "declaration": "Spec.Grammar.Tree.SExpr.Valid",
+    "passages": [
+     "2.5-p087-13",
+     "2.5-p024-09",
+     "2.5-p024-10",
+     "2.5-p024-11",
+     "2.5-p024-12",
+     "2.5-p024-13",
+     "2.5-p025-01"
+    ],
+    "truth": "authors_reading",
+    "reading": "G1",
+    "item": "item-15"
+   },
+   {
+    "slug": "decimal",
+    "declaration": "Spec.Lexicon.decimal",
+    "passages": [
+     "2.7-p105-04",
+     "2.7-p024-07"
+    ],
+    "truth": "changed",
+    "change": "requires a zero after the point",
+    "item": "item-16"
+   }
+  ]
+ }
+}
