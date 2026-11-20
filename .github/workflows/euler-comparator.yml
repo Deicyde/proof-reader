@@ -1,0 +1,286 @@
+# Judges the torus Euler statement (Alpöge, Buckmaster, Coiculescu) with Comparator.
+# Authors' sources stay pinned at 36d3961161f8e7bba9cc8f671e5d0c4a27281239 and are never copied
+# into this repository: the challenge files are generated at run time from their Statement.lean.
+# Build and replay run on separate fresh runners, linked by an exact-run compiled-output cache.
+# Artifacts hold logs, exit codes, hashes and axiom output, never author source or exports.
+# Green requires both negative controls rejected and the positive comparison accepted.
+name: Judge the torus Euler statement with Comparator
+'on':
+  workflow_dispatch: {}
+  push:
+    branches:
+    - claude/euler-*
+    paths:
+    - .github/workflows/euler-comparator.yml
+    - .github/euler/**
+permissions:
+  contents: read
+concurrency:
+  group: euler-comparator-v1
+  cancel-in-progress: false
+env:
+  EULER_COMMIT: 36d3961161f8e7bba9cc8f671e5d0c4a27281239
+  # lean4export pinned to the commit whose own toolchain is leanprover/lean4:v4.34.0-rc2.
+  EXPORT_COMMIT: cacf989bd75f608700820f6afc595f32e7a99a4d
+  EU: /home/runner/euler
+  OUT: /home/runner/out
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 355
+    defaults:
+      run:
+        shell: bash
+    outputs:
+      cache_key: ${{ steps.cachekey.outputs.key }}
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - name: Free disk space
+      run: |
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+        sudo apt-get install -y -qq time >/dev/null
+        df -h / | tail -1
+    - name: Install elan
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+        echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+    - name: Fetch the authors' repository at the pinned commit
+      run: |
+        mkdir -p "$OUT"
+        git init -q "$EU" && cd "$EU"
+        git remote add origin https://github.com/mcoiculescu/EulerBlowupPublic.git
+        git fetch -q --depth 1 origin "$EULER_COMMIT" && git checkout -q FETCH_HEAD
+        git rev-parse HEAD | tee "$OUT/euler-commit.txt"
+        cd formalization/lean && cat lean-toolchain && find TorusEuler -name '*.lean' | wc -l
+    - name: Write the challenge, the two controls and the solution from the pinned statement file
+      working-directory: ${{ env.EU }}/formalization/lean
+      run: |
+        python3 "$GITHUB_WORKSPACE/.github/euler/write_harness.py"
+        git -C "$EU" status --short
+    - name: Record this build cache key
+      id: cachekey
+      run: |
+        echo "key=euler-build-v1-${EULER_COMMIT}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
+    - name: Restore earlier compiled files of this package
+      uses: actions/cache/restore@v4
+      with:
+        path: ${{ env.EU }}/formalization/lean/.lake/build
+        key: euler-build-v1-${{ env.EULER_COMMIT }}-${{ github.run_id }}-${{ github.run_attempt }}
+        restore-keys: |
+          euler-build-v1-${{ env.EULER_COMMIT }}-
+    - name: Fetch Mathlib's compiled files (official cache, never built here)
+      working-directory: ${{ env.EU }}/formalization/lean
+      run: lake exe cache get
+    - name: Compile the package, the challenge files and the solution (at most 280 minutes)
+      id: build
+      working-directory: ${{ env.EU }}/formalization/lean
+      run: |
+        set -o pipefail
+        ( while sleep 120; do df -h / | tail -1 >> "$OUT/disk.log"; done ) &
+        loop=$!
+        start=$(date +%s)
+        code=0
+        timeout --kill-after=60s 280m bash -c 'lake build && lake build Challenge ControlStatement ControlDefinition Solution' 2>&1 | tee "$OUT/build.log" | { grep -v '^✔' || true; } || code=$?
+        kill $loop || true
+        echo "build exit $code after $(( $(date +%s) - start ))s" | tee "$OUT/build.exit"
+        echo "code=$code" >> "$GITHUB_OUTPUT"
+        if [ "$code" -ne 0 ]; then
+          echo "Build incomplete or failed; no verification result. The cache and logs will be saved."
+          exit "$code"
+        fi
+    - name: Save the compiled files, finished or not
+      if: always()
+      uses: actions/cache/save@v4
+      with:
+        path: ${{ env.EU }}/formalization/lean/.lake/build
+        key: ${{ steps.cachekey.outputs.key }}
+    - name: Check tracked source integrity after the build
+      if: steps.build.outputs.code == '0'
+      run: |
+        git -C "$EU" diff --exit-code "$EULER_COMMIT" -- . ':!formalization/lean/lakefile.toml'
+        git -C "$EU" diff "$EULER_COMMIT" -- formalization/lean/lakefile.toml > "$OUT/harness.diff"
+        (cd "$EU/formalization/lean" && sha256sum lean-toolchain lake-manifest.json TorusEuler/Statement.lean Challenge.lean ControlStatement.lean ControlDefinition.lean) > "$OUT/source-inputs.sha256"
+        cat "$OUT/source-inputs.sha256"
+    - name: Axiom output and the authors' own checks
+      if: steps.build.outputs.code == '0'
+      working-directory: ${{ env.EU }}/formalization/lean
+      run: |
+        printf 'import TorusEuler\n#print axioms TorusEuler.theorem11\n#print axioms TorusEuler.auxiliaryTerminalSmoothness\n#print axioms TorusEuler.IsEulerSolution.velocity_eq_on_common_interval\n' > "$RUNNER_TEMP/Axioms.lean"
+        lake env lean "$RUNNER_TEMP/Axioms.lean" 2>&1 | tee "$OUT/axioms.txt"
+        # Verify.lean: expected types restated apart from the proofs, plus an axiom scan of every
+        # TorusEuler declaration. Exit recorded; judged below.
+        if lake env lean Verify.lean > "$OUT/verify.log" 2>&1; then echo 0 > "$OUT/verify.exit"; else echo $? > "$OUT/verify.exit"; fi
+        cat "$OUT/verify.log"; echo "Verify.lean exit $(cat "$OUT/verify.exit")"
+        # VerifyPaper.lean reads TeX at paths of the authors' private tree; diagnostic only.
+        if lake env lean VerifyPaper.lean > "$OUT/verify-paper.log" 2>&1; then echo 0 > "$OUT/verify-paper.exit"; else echo $? > "$OUT/verify-paper.exit"; fi
+        tail -20 "$OUT/verify-paper.log"
+        grep -q "propext" "$OUT/axioms.txt"
+        if grep -E "sorryAx|depends on axioms: \[[^]]*(sorry|ofReduceBool|ofReduceNat|trustCompiler)" "$OUT/axioms.txt"; then
+          echo "Unexpected axiom in the main declarations"; exit 1
+        fi
+        test "$(cat "$OUT/verify.exit")" = 0
+        find .lake/build/lib/lean -name '*.olean' | LC_ALL=C sort | xargs sha256sum > "$OUT/package-oleans.sha256"
+        wc -l < "$OUT/package-oleans.sha256"
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: euler-build
+        path: ${{ env.OUT }}
+        if-no-files-found: error
+  judge:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 300
+    defaults:
+      run:
+        shell: bash
+    env:
+      BUILD_CACHE_KEY: ${{ needs.build.outputs.cache_key }}
+    needs: build
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - name: Free disk space
+      run: |
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+        sudo apt-get install -y -qq time >/dev/null
+        df -h / | tail -1
+    - name: Install elan
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+        echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+    - name: Fetch the authors' repository at the pinned commit
+      run: |
+        mkdir -p "$OUT"
+        git init -q "$EU" && cd "$EU"
+        git remote add origin https://github.com/mcoiculescu/EulerBlowupPublic.git
+        git fetch -q --depth 1 origin "$EULER_COMMIT" && git checkout -q FETCH_HEAD
+        git rev-parse HEAD | tee "$OUT/euler-commit.txt"
+    - name: Write the challenge, the two controls and the solution from the pinned statement file
+      working-directory: ${{ env.EU }}/formalization/lean
+      run: python3 "$GITHUB_WORKSPACE/.github/euler/write_harness.py"
+    - name: Restore the completed build from this run
+      id: completed_cache
+      uses: actions/cache/restore@v4
+      with:
+        path: ${{ env.EU }}/formalization/lean/.lake/build
+        key: ${{ needs.build.outputs.cache_key }}
+        fail-on-cache-miss: true
+    - name: Require an exact completed-build cache hit
+      env:
+        EXACT_CACHE_HIT: ${{ steps.completed_cache.outputs.cache-hit }}
+      run: |
+        test "$EXACT_CACHE_HIT" = true
+        echo "$BUILD_CACHE_KEY" > "$OUT/compiled-build-cache-key.txt"
+    - name: Fetch Mathlib's compiled files (official cache, never built here)
+      working-directory: ${{ env.EU }}/formalization/lean
+      run: lake exe cache get
+    - name: Fetch the build job's record of its compiled files
+      uses: actions/download-artifact@v4
+      with:
+        name: euler-build
+        path: ${{ runner.temp }}/buildout
+    - name: Check the restored compiled files are the ones the build job made
+      working-directory: ${{ env.EU }}/formalization/lean
+      run: |
+        sha256sum --check --quiet "$RUNNER_TEMP/buildout/package-oleans.sha256"
+        echo "package .olean files match the build job: $(wc -l < "$RUNNER_TEMP/buildout/package-oleans.sha256")"
+        cp "$RUNNER_TEMP/buildout/package-oleans.sha256" "$OUT/"
+        find .lake/packages -path '*/.lake/build/lib/lean/*' -name '*.olean' | LC_ALL=C sort | xargs sha256sum > "$OUT/dependency-oleans.sha256"
+        echo "dependency .olean files: $(wc -l < "$OUT/dependency-oleans.sha256"), digest $(sha256sum "$OUT/dependency-oleans.sha256" | cut -c1-64)"
+    - name: Build lean4export on its own pinned toolchain (v4.34.0-rc2)
+      run: |
+        git init -q "$RUNNER_TEMP/export" && cd "$RUNNER_TEMP/export"
+        git remote add origin https://github.com/leanprover/lean4export.git
+        git fetch -q --depth 1 origin "$EXPORT_COMMIT" && git checkout -q FETCH_HEAD
+        cat lean-toolchain | tee "$OUT/export-toolchain.txt"
+        test "$(cat lean-toolchain)" = "$(cat "$EU/formalization/lean/lean-toolchain")"
+        lake build && ls .lake/build/bin
+    - name: Write the exports
+      timeout-minutes: 90
+      working-directory: ${{ env.EU }}/formalization/lean
+      run: |
+        X="$RUNNER_TEMP/export/.lake/build/bin/lean4export"
+        PRELUDE="propext Quot.sound Classical.choice Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList Char.ofNat List eagerReduce Nat String String.mk Char optParam autoParam semiOutParam outParam"
+        mkdir -p "$RUNNER_TEMP/x"
+        ex() { echo "== $1"; /usr/bin/time -v lake env "$X" "$1" -- Quot Quot.mk Quot.lift Quot.ind TorusEuler.theorem11 $PRELUDE > "$RUNNER_TEMP/x/$2.export" 2> "$OUT/export-$2.time"; tail -3 "$OUT/export-$2.time"; }
+        ex Challenge challenge
+        ex ControlStatement control-statement
+        ex ControlDefinition control-definition
+        ex Solution solution
+        ls -l "$RUNNER_TEMP/x"; (cd "$RUNNER_TEMP/x" && sha256sum *.export) | tee "$OUT/exports.sha256"
+    - name: Install the sandbox Comparator uses, and Lean v4.36.0
+      run: |
+        sudo apt-get update -qq && sudo apt-get install -y -qq bubblewrap
+        sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+        mkdir -p "$RUNNER_TEMP/judge" && cd "$RUNNER_TEMP/judge"
+        echo 'leanprover/lean4:v4.36.0' > lean-toolchain
+        lake --version
+        # Comparator finds each external kernel by a PATH lookup; they ship in the toolchain bin.
+        bin="$(dirname "$(elan which lake)")"
+        export PATH="$bin:$PATH"
+        echo "$bin" >> "$GITHUB_PATH"
+        for k in leanchecker-paranoid nanoda_bin con-leche con-ron; do command -v "$k" || { echo "missing $k"; exit 1; }; done | tee "$OUT/kernels.txt"
+        lake comparator --help > "$OUT/comparator-help.txt"
+        head -12 "$OUT/comparator-help.txt"
+    - name: Comparator on the two controls and the challenge
+      timeout-minutes: 200
+      working-directory: ${{ runner.temp }}/judge
+      run: |
+        kernels='"external_kernels": {"Lean paranoid": ["leanchecker-paranoid", "--silent", "--from-export"], "nanoda": ["nanoda_bin"], "con-leche": ["con-leche"], "con-ron": ["con-ron"]}'
+        axioms='"permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]'
+        cfg() { echo "{\"challenge_module\": \"$1\", \"solution_module\": \"Solution\", \"theorem_names\": [\"TorusEuler.theorem11\"], $axioms, $kernels}" > "$2.json"; cat "$2.json"; }
+        cfg ControlStatement control-statement
+        cfg ControlDefinition control-definition
+        cfg Challenge challenge
+        cp *.json "$OUT/"
+        lake --version > "$OUT/judge-lean.txt"; bwrap --version >> "$OUT/judge-lean.txt"
+        run() {
+          echo "== $1"; local start=$(date +%s)
+          local limit=90m
+          [ "$1" = challenge ] || limit=15m
+          if /usr/bin/time -v timeout --kill-after=60s "$limit" lake comparator --config "$1.json" --challenge-from-export "$RUNNER_TEMP/x/$1.export" --solution-from-export "$RUNNER_TEMP/x/solution.export" > "$OUT/$1.log" 2>&1; then echo 0 > "$OUT/$1.exit"; else echo $? > "$OUT/$1.exit"; fi
+          tail -25 "$OUT/$1.log"; echo "exit $(cat "$OUT/$1.exit") after $(( $(date +%s) - start ))s"
+        }
+        run control-statement
+        run control-definition
+        run challenge
+        python3 - <<'PYJUDGE'
+        import json, os
+        from pathlib import Path
+        out = Path(os.environ["OUT"])
+        names = ["control-statement", "control-definition", "challenge"]
+        codes = {n: int((out / f"{n}.exit").read_text()) for n in names}
+        logs = {n: (out / f"{n}.log").read_text(errors="replace") for n in names}
+        expected = "Challenge and solution theorem statement do not match: 'TorusEuler.theorem11'"
+        statement_ok = codes["control-statement"] == 1 and expected in logs["control-statement"]
+        # Exit 1 is Comparator's rejection; exit 2 or a timeout is an infrastructure failure.
+        definition_ok = codes["control-definition"] == 1
+        positive_ok = codes["challenge"] == 0
+        accepted = statement_ok and definition_ok and positive_ok
+        tail = lambda s: s.strip().splitlines()[-6:]
+        report = {
+            "status": "accepted_unconditional_statement" if accepted else "no_verified_pass",
+            "authors_commit": os.environ["EULER_COMMIT"],
+            "lean4export_commit": os.environ["EXPORT_COMMIT"],
+            "compiled_build_cache_key": os.environ["BUILD_CACHE_KEY"],
+            "exit_codes": codes,
+            "statement_control_rejected_for_expected_mismatch": statement_ok,
+            "definition_control_rejected": definition_ok,
+            "definition_control_log_tail": tail(logs["control-definition"]),
+            "challenge_accepted": positive_ok,
+            "scope": "One theorem, TorusEuler.theorem11 : TorusEuler.Theorem11, against the authors' Statement.lean definitions.",
+        }
+        (out / "judgment.json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
+        print(json.dumps(report, indent=2, ensure_ascii=False))
+        if not accepted:
+            raise SystemExit("No verified pass: read the logs; an infrastructure failure is not a mathematical refutation.")
+        PYJUDGE
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: euler-comparator
+        path: ${{ env.OUT }}
+        if-no-files-found: error
