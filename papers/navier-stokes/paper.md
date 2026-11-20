@@ -253,8 +253,10 @@ it is not an enforcing audit of every theorem.
 **Comparator.** Not yet established. Run 44796269901 used the earlier
 workflow, which writes Comparator's exit codes to files without failing the
 job on a rejection, so a green result from it would not show acceptance. The
-corrected workflow above runs next and is the one whose result this page will
-report.
+corrected workflow above is run 44809248303, and its result is the one this
+page will report. That run compiles the package again: the compiled files of
+run 44774695098 were never cached, because the cache action rejects paths
+that contain `..`.
 
 ## 6. Historical scope
 
