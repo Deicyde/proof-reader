@@ -82,8 +82,8 @@ theorem glued_window_two_sided_rate {T lam θ c M Z : ℝ}
   have hnorm := norm_bounds_of_small_correction (hublo n s)
     (((ub n).norm_coe_le_norm s).trans (hubhi n)) hb hd
   have hnormhi : ‖ub n s + θ ^ n • z n s‖ ≤ M + Z :=
-    hnorm.2.trans (add_le_add_left
-      (mul_le_of_le_one_left hZ (pow_le_one₀ hθ hθ1.le)) M)
+    hnorm.2.trans (add_le_add le_rfl
+      (mul_le_of_le_one_left hZ (pow_le_one₀ hθ hθ1.le)))
   have hμ : 0 < stepScale T lam n := stepScale_pos hT hl n
   have htime : T - (stepStart T lam n + stepScale T lam n * (s : ℝ)) =
       stepScale T lam n * (1 - (s : ℝ)) := by

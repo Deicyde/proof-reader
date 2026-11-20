@@ -57,8 +57,11 @@ theorem gradient_reading_of_smooth (x : X) (f : Space → Space)
 
 theorem smooth_dilateField (μ : ℝ) (f : Space → Space) (hf : ContDiff ℝ ∞ f) :
     ContDiff ℝ ∞ (dilateField μ f) := by
-  have hs : ContDiff ℝ ∞ (fun y : Space => Real.sqrt μ • y) := contDiff_const.smul contDiff_id
-  have hc : ContDiff ℝ ∞ (fun y : Space => f (Real.sqrt μ • y)) := hf.comp hs
+  have hs : ContDiff ℝ ∞ (fun y : Space => Real.sqrt μ • y) := contDiff_const_smul (Real.sqrt μ)
+  have hc : ContDiff ℝ ∞ (fun y : Space => f (Real.sqrt μ • y)) := by
+    first
+    | exact hf.comp hs
+    | fun_prop
   exact hc.const_smul (Real.sqrt μ)
 
 theorem dilateField_ae {f g : Space → Space} (hfg : f =ᵐ[volume] g)
