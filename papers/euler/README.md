@@ -33,7 +33,8 @@ was prepared by AI agents under Will Cook's direction and has not been reviewed 
 | Each numbered result linked to its Lean statement and theorem | Done, for all 42 rows of the authors' map (below) |
 | Comparator on the headline `TorusEuler.theorem11` | Accepted at the earlier commit `36d3961` ([run 44826207811](https://github.com/wcook04/proof-reader/actions/runs/44826207811)). At `fd3a158`: **pending** |
 | Comparator on the revised headline `TorusEuler.Paper.theorem_1_1` | **Pending** |
-| Axioms of every Paper-layer declaration at `fd3a158` | **Pending** (extraction run on Actions) |
+| Axioms of every Paper-layer declaration at `fd3a158` | Done: all 669 declarations of the statement layer, the spine and `MainTheorem` use only `propext`, `Classical.choice` and `Quot.sound`, read from the compiled files ([run 44836591468](https://github.com/wcook04/proof-reader/actions/runs/44836591468)) |
+| The authors' spine check `VerifySpine.lean` at `fd3a158` | Passed in the same run: "42 nodes, standard axioms; frontiers equal to the TeX citations and no bypass", with Remark 1.2 the stated library exception |
 | A same, stronger or weaker comparison of each result with its Lean | **Pending**. Theorem 1.1 is compared below |
 | Sentence-level links inside each result and proof | **Pending** |
 | A reading copy and the Lean beside it on the Proof Reader site | **Pending**: the repository states no licence, so this needs the authors' permission |
