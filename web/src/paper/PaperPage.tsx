@@ -424,6 +424,15 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const setMode = useCallback((mode: PaneMode) => {
     if (plain && mode === "graph") return;
     const cur = entryRef.current;
+    // A sentence or declaration in hand stays in hand: only the mode changes, in place.
+    if (cur.pin && cur.tab === "step" && cur.lean !== (mode === "lean")) {
+      chooseMode(mode === "lean");
+      const next = { ...cur, lean: mode === "lean" };
+      entryRef.current = next;
+      setEntry(next);
+      replaceEntry(next);
+      return;
+    }
     if (mode === "lean") {
       if (cur.lean) return;
       chooseMode(true);
@@ -476,9 +485,9 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (cur.pin?.passage === id && !cur.pin.decl && (wide || cur.sheet)) return;
     // The sheet takes the lower part of a small screen: keep the statement above it.
     const target = !wide && !cur.sheet ? { passage: id } : null;
-    // The pane keeps the mode the reader chose: a click on the Graph shows the sentence's
-    // cards there, a click on the Lean shows its Lean.
-    open({ record: `@${id}`, pin: { passage: id, decl: null, at: null }, target, lean: plain || layoutRef.current.lean });
+    // A click changes the sentence, not the mode: the pane keeps the mode on screen, so a
+    // click on the Graph shows the sentence's cards there and a click on the Lean its Lean.
+    open({ record: `@${id}`, pin: { passage: id, decl: null, at: null }, target, lean: plain || entryRef.current.lean });
   }, [open, plain, wide]);
 
   /** A Lean name: the Lean page walks there and the paper stays put. */
