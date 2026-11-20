@@ -1,5 +1,11 @@
 # Finite-time singularity for the Euler equations on the torus: the paper and its Lean, result by result
 
+> **Credit.** The paper and its Lean formalization are the work of Levent Alpöge, Tristan
+> Buckmaster and Matei P. Coiculescu, in their repository
+> [mcoiculescu/EulerBlowupPublic](https://github.com/mcoiculescu/EulerBlowupPublic). Their paper
+> thanks Anthropic for supporting the collaboration from which it grew. Everything else here
+> (these pages, the links, titles and notes, and the tools) is ours, under the [MIT licence](LICENSE).
+
 **Snapshot: 20 November 2026, the authors' commit
 [`fd3a158`](https://github.com/mcoiculescu/EulerBlowupPublic/tree/fd3a1588967810b9abe42a1dcf46ee662d6434e2).**
 
@@ -12,8 +18,7 @@ at a time: each numbered result, and each display that a later proof cites, has 
 takes exactly the results its TeX proof cites
 ([the authors' README](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/README.md#L14-L44)).
 
-The authors' repository states no licence, so this page copies nothing of theirs. Every link
-below opens their paper or their Lean on GitHub at the pinned commit. The table follows the
+Every link below opens their paper or their Lean on GitHub at the pinned commit. The table follows the
 authors' own map,
 [`paper-coverage-latest.md`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/paper-coverage-latest.md),
 and was generated from it by [`tools/results_table.py`](tools/results_table.py). The page
