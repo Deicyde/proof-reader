@@ -250,13 +250,18 @@ theorems it lists depends on the axioms `propext`, `Classical.choice` and
 `Quot.sound` and on no others. That script prints diagnostics for those names;
 it is not an enforcing audit of every theorem.
 
-**Comparator.** Not yet established. Run 44796269901 used the earlier
-workflow, which writes Comparator's exit codes to files without failing the
-job on a rejection, so a green result from it would not show acceptance. The
-corrected workflow above is run 44809248303, and its result is the one this
-page will report. That run compiles the package again: the compiled files of
-run 44774695098 were never cached, because the cache action rejects paths
-that contain `..`.
+**Comparator.** Not yet established. Run 44796269901 compiled the package
+again (exit 0 after 7,680 seconds) and wrote all five exports, but Comparator
+judged nothing: each of the four calls stopped with exit code 2 because the
+external checker `leanchecker-paranoid` was not on the runner's PATH. Lake
+finds external checkers by a PATH lookup, and Lean v4.36.0 ships all four in
+its toolchain directory, which elan does not put on PATH. That run's job still
+showed green, because the earlier workflow wrote exit codes to files without
+failing on them. The corrected workflow above puts the toolchain directory on
+PATH, stops if any checker is missing, and fails unless the control is
+rejected and the three statement files are accepted. Its run, 44817368429,
+reuses the compiled files of run 44809248303, and its result is the one this
+page will report.
 
 ## 6. Historical scope
 
