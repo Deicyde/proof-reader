@@ -83,6 +83,12 @@ jobs:
         run: |
           set -o pipefail
           git -C "$EU" diff --exit-code
+          # Compiled files restored from a cache are older than this fresh checkout, so the
+          # extractor's mtime test would fail. Lake's own trace check decides instead: with
+          # --no-build it fails if any module would be rebuilt. Only then are the source
+          # times set back so that the extractor's simpler test agrees with Lake's.
+          (cd "$EU/formalization/lean" && lake build --no-build) 2>&1 | tail -2
+          git -C "$EU" ls-files -z formalization/lean | (cd "$EU" && xargs -0 touch -d '2000-01-01 00:00:00')
           # The page's copy of the Lean and its paper.toml exist only on this runner.
           cp papers/euler/notes/extract.toml papers/euler/paper.toml
           cp -R "$EU/formalization/lean" papers/euler/lean
