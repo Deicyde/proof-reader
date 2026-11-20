@@ -16,7 +16,7 @@ name: Judge the Navier–Stokes statement files with Comparator
 permissions:
   contents: read
 concurrency:
-  group: navier-stokes-comparator
+  group: navier-stokes-comparator-v3
   cancel-in-progress: false
 jobs:
   build:
@@ -28,8 +28,8 @@ jobs:
     env:
       NS_COMMIT: ad53419de079eb8f95f60313473374624a348546
       EXPORT_COMMIT: 15f6055e299ad5b89345e533cc2192f4cc00f659
-      NS: ${{ github.workspace }}/../ns
-      OUT: ${{ github.workspace }}/../out
+      NS: /home/runner/ns
+      OUT: /home/runner/out
     outputs:
       cache_key: ${{ steps.cachekey.outputs.key }}
     steps:
@@ -133,8 +133,8 @@ jobs:
     env:
       NS_COMMIT: ad53419de079eb8f95f60313473374624a348546
       EXPORT_COMMIT: 15f6055e299ad5b89345e533cc2192f4cc00f659
-      NS: ${{ github.workspace }}/../ns
-      OUT: ${{ github.workspace }}/../out
+      NS: /home/runner/ns
+      OUT: /home/runner/out
       BUILD_CACHE_KEY: ${{ needs.build.outputs.cache_key }}
     needs: build
     steps:
