@@ -37,7 +37,7 @@ was prepared by AI agents under Will Cook's direction and has not been reviewed 
 | The authors' spine check `VerifySpine.lean` at `fd3a158` | Passed in the same run: "42 nodes, standard axioms; frontiers equal to the TeX citations and no bypass", with Remark 1.2 the stated library exception |
 | A same, stronger or weaker comparison of each result with its Lean | **Pending**. Theorem 1.1 is compared below |
 | Sentence-level links inside each result and proof | **Pending** |
-| A reading copy and the Lean beside it on the Proof Reader site | **Pending**: the repository states no licence, so this needs the authors' permission |
+| A reading copy and the Lean beside it on the Proof Reader site | **Pending**: being built from the authors' TeX and Lean at `fd3a158` |
 
 ## Theorem 1.1
 
