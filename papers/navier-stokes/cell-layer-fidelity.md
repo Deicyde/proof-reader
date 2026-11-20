@@ -1,79 +1,116 @@
-# Cell-layer fidelity: `CellSystemCondition` (Lean) against Appendix B (paper)
+# Cell-layer fidelity: the Lean condition and Appendix B
 
-Source: tristanbuckmaster/navier-stokes at ad53419. Lean line numbers are in `lean/CellLayerChallenge.lean` unless another file is named. Paper references use the equation and proposition numbers of the 20 Nov 2026 PDF; text from `paper.txt` lines 2785 to 4084. Pages 33 and 57 were rendered from the PDF to check (7.26), (7.27) and (B.25), because the text extraction garbles them.
+**Snapshot reviewed:** the supplied Alpöge–Buckmaster repository at `ad53419de079eb8f95f60313473374624a348546`, dated 20 November 2026. References below use `lean/CellLayerChallenge.lean` unless another file is named and the printed pages/equation numbers of the supplied paper.
 
-Direction convention. "Lean stronger" means the formal hypothesis asks for more than the paper does. That is the dangerous direction: an Arb check of the paper's conditions would then not imply the Lean hypothesis. "Lean weaker" asks for less. That is harmless for soundness, provided the Lean proof compiles.
+**Status:** a source comparison, not a completed proof-checking or numerical-verification result. The supplied snapshot contains no numerical certificate and no external checker. Its root README says the cell-layer patch was not rebuilt before the repository was assembled.
 
-Preliminary check (comparator target). The comparator (`comparator-cell-layer.json`) checks the theorems as stated in `CellLayerTheorems.lean`, which imports `Breakdown/CertCell/StatementDefs.lean`. A script compared all 787 top-level declaration blocks of `CellLayerChallenge.lean` with the statement library. Every block is textually identical to a block with the same header in `Breakdown/` or in the other statement files. The structure `CellSystemCondition` (L7027, library `StatementDefs.lean:6223`) is identical too. So reading the Challenge file is reading what the comparator checks.
+## What this comparison needs to establish
 
-## Table
+The Lean implication is that data satisfying `CellSystemCondition` give the two stated breakdown conclusions. A released external checker must establish enough facts about the decoded certificate to imply that exact condition. Literal identity between two descriptions is unnecessary: a checker may verify stronger conditions. Conversely, matching many displayed equations is insufficient when some data obligations are unstated in the paper.
 
-| # | Condition (field) | Lean location | Paper location | Verdict | Note |
-|---|---|---|---|---|---|
-| 1 | `cell : CellHypothesis` | L5182-5201 | B.1 to B.3, (B.1), (B.11), (B.19), (B.38)-(B.43) | Mixed: same where compared; partly no written counterpart | Sub-items below. |
-| 1a | `rowWeightMax_eq`, `IsRowInstance`/`IsRowValues` (fields e_k) | L5195, L2311-2345 | (B.11), (B.22) third | same | Divergence equation `test_solenoidal`, axis vanishing `test_axis`, positive-definite Gram blocks `block_posDef`, conjugate closure (which gives real coefficients at ι=0). Lean `rowWeight = testWeight/(3/50)` with `testWeight ≤ 400(1+2^-18)`, which is the paper's (3/50)τ_k ≤ 400(1+2^-18). `rowBound_ge`: (50/3)·400(1+2^-18) ≤ c0^2 is (B.22) third. |
-| 1b | `azimuth_ge`, `mode_class`, `GeneratedByClassSymmetries` | L5193, L1971-1974, L2573-2577 | (B.1) and the text after it | same | κ ≥ 3; Γ contains (R_{π/κ}, 1/2) and (R_*, 0); every element has the form (R_{aπ/κ}[R_*], a/2 + j). |
-| 1c | `weightFn_eq`, `coercivity_eq`, `pinWeight_eq` | L5199-5201 | w_* = 39/50 (B.1); 3/50, 1000 in (B.21), (B.22) | same | |
-| 1d | `mesh_valid : IsCellMesh` | L1782-1797 | B.1 (cells), B.3 (resolved, tested, eliminated sets, degrees) | same, with one mesh-level weakening restored elsewhere | `skeletonDeg_ge` allows d0 ≥ −1 (L1789). `IsCellModeLayouts.skeleton_positive` (L4343) requires d0 ≥ 1 for resolved harmonics, as the paper does. d ≥ d0+2 (L1791) and d0 ≥ 2 for tested harmonics (L1790) match. `IsCellBox` (L254) requires 0 ≤ r1 < r2 and 0 ≤ z1 < z2, as the paper does. |
-| 1e | `given_shape … ActuatorSupportFacts.mesh_covers`, `radius_le` | L4832-4839 | B.1: the cells cover [0, r_*]^2, beyond which the forcing fields vanish | same | |
-| 1f | `continuum_conditions_given.enclosure_admissible` (`EnclosureAdmissibleClauses`) | L5174, L2987-3015 | "admissible at α", (B.19) | same | Transport bounds (`epsSpeed_ge`/`muSpeed_ge`, using ez×y), reference-profile bounds, Ω_p bounded below on N_p, I'_{2,ι} ≥ 0 (`conv_le`, since `curlHess = 1 − shareHat − convD`, L1937), and the three sums of (B.19). |
-| 1g | `values_flip` (`ValuesFlipClauses`) | L3017-3031 | symmetry giving (B.17) | same in kind | Flip and axisymmetry invariance of the bounds. The paper also states the permutation of P_λ and P_μ, which `IsFlipClosedValues` (L2525-2530) provides. |
-| 1h | `coefficients` (`CoefficientConditions`) | L5144-5170 | "lower bounds for the coefficients of (B.16)" | no written counterpart (paper: "we do not write them out in full", "the expressions of the coefficients of (B.16) and lower bounds for them") | Cannot be compared. |
-| 1i | `instance_entry.weights` (`IsWeightValues`) | L2498-2523 | B.2 (form of D_ι, Z_ι, λ_p, μ_p, auxiliary functions, c_μ) | same | C^2 and constant near 0 for D and Z; D ≥ 0; λ is (1−σ) times a continuous piecewise polynomial, flat at 0; μ is (1−σ)^2 times one; auxiliary step functions positive; 0 < c_μ < 1. |
-| 1j | `instance_entry.actuators` (`IsActuatorInstance`) | L2564-2571 | j_* condition, B.2 | same | |
-| 1k | `cell_conditions` (`CellCalculusConditions`), including `IsLeafValues` and `IsCellModeLayouts` | `IsLeafValues` L4382-4399; `IsCellModeLayouts` L4342-4347 | B.3: I2, I'2, A_{Q,ι}, (B.26), (B.27) | same where compared; the rest is described only in kind | **Patched item 2:** `hessFloor_pos: 0 < I2` and `curlHessFloor_nonneg: 0 ≤ I'2` (L4383, L4385), as in the paper's "I2 > 0 and I'2 ≥ 0", with `I_{2,ι} ≥ I2` and `I'_{2,ι} ≥ I'2` (L4384, L4386). (B.25) equals `supremumLoss` (L1587-1589) exactly. (B.27) equals `tailGain` (L3252-3253), with `innerRadius` = 1 when r1 = 0; Λ^r and Λ^z equal `radialEigen` and `heightEigen` (L320-323). The matrix rules (B.26) and E_Q, P_Q, B_Q, T_Q are not written out in the paper. |
-| 1l | `tree_conditions` (`TreeConditionsGiven`, `PassesNodeEnclosure`, `PassesPivotCount`) | L5130-5136, L2080-2085, L2201-2251; leaves L5084-5097 | (B.38)-(B.40), conditions before Lemma B.7, complex-coordinate variant | same | Leaves are A0, cell blocks (paired blocks on one node, `piece_node_symm`), 2·C_Π (`.inr j => 2 • …`) and ± null pairs. (B.39) matches `input_lower`/`front_upper`; (B.40) matches `row_bound` with `slackRemainder`; p_{ξ,j} ≤ p_j − m_j matches `slack_le`; the pivot count, root V ≥ 0 and #columns ≤ #free all appear. Complex-node rules match term by term. |
-| 1m | `pair_surrogate`, `kappaCost_nonneg` | L5188-5190 | "n_b is at least a sum over the cells of given nonnegative numbers and of the integrals…" after (B.43) | same in kind | Not written out in the paper. |
-| 1n | `credit_evaluations` (rectangles Π) | L4301-4302 (`credit_le` with `testForm⁻¹`) | rectangles Π, B.3 | same in kind | The paper states only "a bound, by a positive definite matrix … and a comparison of C_Π with the inverse of this matrix". |
-| 1o | `bound_valueSets`, `given_shape` (form of W^r, b_i) | L5191-5192 (definitions in `GivenShape`) | B.1, (B.6)-(B.8) | not fully compared | The divergence-free construction and joining orders were not checked field by field. |
-| 1p | `box_uniform` (`IsBoxUniform`) | L5011-5020 | B.1 and B.2 ("only the rates ν_p(α) depend on α"; the reference profile does not depend on α) | same | `cμ_eq` and `bounds_eq` refer to `pieces 0`; 0 ∈ K because the radii are nonnegative. |
-| 2 | `shape_valueSets` (`ShapeValuesFacts`) | L3050-3058 | B.2: the set of harmonics contains 0, −ι with ι, and the harmonics of W^r; S > 0; w constant | same | Flip closure is implicit in the paper through (B.17). |
-| 3 | `entry_conditions` (`CellLayerEntryConditions`) | L6657-6698 | B.3, (B.28)-(B.34), (B.43); the end of B.4 ("conditions that we have not written out") | partly same; mostly no written counterpart | Exterior and far field: `IsExteriorCondition` (L3466-3492) matches (B.29)-(B.31). That covers f2 ≥ 0, f1* ≥ f1∞, the bounds ρ^2·(−f0)+ ≤ f0∞ and ρ·f01 ≤ f01∞, `test` = (B.30), Λ0 ≤ 1/4+(k0−1)+^2 (`rayInverseSquareConst` L3462) or Λ0 ≤ 2 with ι1 = 0, and c_* ≥ 7/2 (`exterior_stretch_const`). `tree_rows.global_eq` with `globalForm` (L5022-5024, L6536-6538) is (B.43). The remainder (potential, pairing, rows, row functionals, tails, top block, elimination, gauge, pressure-blindness) is in the paper's list of conditions not written out. **Patched item 3** is here: `modelLabels` (L5752-5760) is used in `group_link` (L5814). |
-| 4 | `enclosure_numbers` | L7033-7034 | (B.19) with n_λ, n_∇λ, n_μ | same | Repeats 1f with the numbers in `N` fixed. |
-| 5 | `coerciveL2_ge` | L7035-7036 | (B.22) first, c_M of Prop. B.1 | same | With coercivity 3/50: √((50/3)(1+n_λ+n_∇λ/√w)^2 + n_μ/c_μ)·√(50/3) ≤ c1. |
-| 6 | `coercivePin_ge` | L7037 | (B.22) second | same | √(1000·50/3) ≤ c2. |
-| 7 | `certificate` (`CertificateClauses`) | L6911-6966 | B.4: "(7.21), (7.24) with ℓ̄=0, (7.25) to (7.28), (7.35), (7.36), (7.37)" | same for these items, in extended-certificate notation; Lean has extra extended-certificate items | `transferLoss = (c1+c0)·c_r` (`ExtendedCertificateChallenge.lean` L76) gives (7.20)/(7.21). `size` is (7.24). `small_first`, `small_second` and `small_third` are (7.25)-(7.27), checked term by term against the rendered page 33, with `supBoundFactor` = c_w. `nontrivial` is (7.28), `adjoint_inclusion` is (7.35), and `stiff_*` is (7.36)-(7.37). Lean also allows a nonzero `targetGap` where the paper sets ℓ̄ ≡ 0. That makes Lean more general, not stronger. |
-| 8 | `instantiation` (`InstantiationBounded`) | L3918-3920; `IsAdjointShapeEntry` L3910-3916 | B.1 form of W^a_α, q, ψ_j; h ≥ 3 for ψ_j | same where read (`highOrder_ge : 3 ≤ …`) | `IsProfileShapeEntry` and `IsPressureShapeEntry` were not compared field by field. |
-| 9 | `offset_expansion` (`IsOffsetExpansionEntry`) | L3991-4010; `offsetSum` L3984-3989 | Lemma B.13, (B.57)-(B.59) | same | Closed ball versus open ball differ by a null set. ϱ̂ = `coordRadius`. The far term n_F^out·n_j^out is `farDefect·farAdjoint`. |
-| 10 | `shift_numbers` (`ShiftNumbersBounded`) | L6980-6998 | Lemma B.9, (B.47), (B.48) (c_r and c''_3) | same | `gap_sum` is c_r and `shift_sum` is c''_3. |
-| 11 | `frozen_form` (`FrozenFormBounded`) | L3724-3732 | (B.47) s_−, n_r^(3); (B.48) c'_3 | same | |
-| 12 | `adjoint_quadratic` (`AdjointQuadraticBounded`) | L3745-3751 | Lemma B.10 | same | L3: 2/(√3·w) n_ψ. L2: c_w/√w n_ψ. |
-| 13 | `adjoint_links` (`AdjointEntryLinks`) | L4017-4026 | Lemma B.12 setup | same | `fitted_empty` reduces the Lean defect sum to the shape of (B.53). |
-| 14 | `potential_entries` (`PotentialEntriesBounded`) | L7000-7008; shapes L6744-6825 | the fields G_j, U_j, F_j, q_j "of a form similar to (B.6) … which we do not write out", (B.51) | no written counterpart | Cannot be compared. |
-| 15 | `adjoint_defect` (`AdjointDefectBounded`) | L3663-3696; `DualBounded` L3588-3590; `AzimuthalBounded` L3572-3585 | Lemma B.12, (B.52), (B.53); dual bound before Lemma B.11 | same (given `fitted_empty`) | **Patched item 1:** the weight `componentWeight/(|order|+1/2)^2` (L3584) is the paper's (|k|+1/2)^{−2} with factor 1/2 for the first two components. The paper's n'+n'' ≤ n and 2‖\|y\|R'‖ ≤ n' correspond to `ρ₁+ρ₂ ≤ ρ` and `(ρ/2)^2` (L3565). `potentialDefect` is the first term of (B.53). The free and time terms are the second, and `pinCharge` (n_Φ + n_Y c_Ξ/√w) is the third. Not checked term by term: the identity between `remainderField` with `pinFlux` (L3527-3542, L3617-3619) and (B.52), namely Σ Y_jl ΔΦ̃_l against Σ pinCoef·div(∇g − ∇gᵀ), and the sign conventions. |
+Here “Lean hypothesis stronger” means it asks for more of the same data. This can obstruct the bridge from the external checker. “Lean hypothesis weaker” means it asks for less. That can be sufficient if the proof of the intended conclusion is successfully checked with permitted axioms, but the direction alone does not validate the proof, statement, decoding or checker.
 
-## Patched items
+Appendix B explicitly leaves part of its condition unwritten. Its opening says that Propositions B.1 and B.4 are described in the paper and proved in the formalization. Those propositions supply the multiplier inequality and the cell inequalities; the paper is not a separate completed proof of these two steps.
 
-| Item | Lean | Paper | Identical? |
+## The definition Comparator actually sees
+
+`CellLayerTheorems.lean` imports `Breakdown.CertCell.StatementDefs`; this is the definition closure used by the cell Comparator configuration. Reading the standalone `CellLayerChallenge.lean` is not by itself a separate check of that closure.
+
+This review compared 20 critical declaration blocks between those files and found textual agreement: the full cell-system structure, condition-14 structures, the profile/pressure structures, the three patch sites, the principal potential and row-functional conditions, and selected mesh/assembly conditions. The first pass reported agreement for all 787 declaration blocks; that full comparison was not independently reproduced in this pass. Text agreement at these sites does not replace checking every imported definition or the mathematical interpretation.
+
+## Conditions 1 to 15
+
+The earlier pass sampled approximately 1,500 of the standalone file's 7,086 lines and compared all of Appendix B. This pass extended the portions identified below. “Retained” marks a first-pass comparison which was not independently repeated term by term here. The locations and conclusions added in this pass are given explicitly.
+
+| # | Lean field | Paper counterpart | Assessment and remaining obligation |
 |---|---|---|---|
-| Weight (\|m\|+1/2)^2 | `AzimuthalBounded` L3584 (library `StatementDefs.lean:2780`) | Dual bound before Lemma B.11 ("(\|k\|+1/2)^{−2}"), and (B.50) | yes |
-| A cell constant may be zero | `IsLeafValues.curlHessFloor_nonneg` L4385 (library `StatementDefs.lean:3581`); `hessFloor_pos` stays strict | B.3, "two numbers I2 > 0 and I'2 ≥ 0" | yes (inferred: the README does not name which constant changed, and I'2 is the only cell constant whose sign differs between the paper and the Lean) |
-| Model harmonics restricted to those that do not vanish in the cell | `modelLabels` L5752-5760 (filter: ∃ p ∈ rect with a nonzero `planeValue`), used only in `PotentialConditions.group_link` L5814 (library `StatementDefs.lean:4949`) | not stated; it falls under "the parts of W^r … that the polynomial models leave out, and the groups of harmonics that they couple" in the list of conditions not written out (end of B.4) | **not in Appendix B** |
+| 1 | `cell : CellHypothesis` | B.1–B.3; B.11, B.19, B.21–B.22, B.25–B.43 | Many explicit constants and inequalities correspond. The full coefficient, layout, row and error formats are not written out in the paper. The detailed subtable below separates these. |
+| 2 | `shape_valueSets` | B.1–B.2, pp.50–54 | All seven fields read: positive period/weight, constant weight, closure of bounds harmonics under negation and flip, inclusion of zero and the reference-profile labels. They implement the stated harmonic set and symmetries (L3050–3057). |
+| 3 | `entry_conditions` | B.26–B.34, B.43 and the omitted conditions named at the end of B.4 | Partial correspondence. The top-level B.26 inequality and B.43 upper bound are identifiable. Full matrix entries and global-row representations remain unmatched. Exterior radius regularity/boundedness is explicit in Lean but compressed in the paper. See below. |
+| 4 | `enclosure_numbers` | B.19 | Retained first-pass match. The enclosure conditions are repeated with the particular constants in `N` (L7033–7034); this is consistent with the existential enclosure in condition 1. |
+| 5 | `coerciveL2_ge` | B.22, first inequality | Retained first-pass algebraic match after substituting coercivity 3/50 and constant weight 39/50 (L7035–7036). |
+| 6 | `coercivePin_ge` | B.22, second inequality | Retained first-pass match: the lower bound is `sqrt(1000·50/3)` (L7037 with L5200–5201). |
+| 7 | `certificate` | B.4's explicit list: 7.21, 7.24–7.28, 7.35–7.37 | The first-pass formula comparisons are retained. Corrected specialization: although the generic extended certificate allows a nonzero target gap, this cell system forces it to zero through condition 8. The conclusion that this path is more general because of `targetGap` was wrong. |
+| 8 | `instantiation` | B.6–B.9 and pressure/adjoint data in B.1 | Extended reading found the profile formulas, affine phase dependence, spline joins, origin/axis factors, pressure exponents, pressure-gradient correction and adjoint decay in the stated form. L2783–2903 and L3799–3920. The joins are essential to interpret classical derivatives as weak derivatives without singular interface terms. |
+| 9 | `offset_expansion` | Lemma B.13 and B.57–B.59 | Retained first-pass match of the expansion and far-field product bound. Open versus closed balls have the same integrals for the relevant measures; this does not remove the required measurability/integrability assumptions. |
+| 10 | `shift_numbers` | Lemma B.9, B.47–B.48 | Retained comparison of the central and parameter-box errors and their combinations. Current source L6981–7000. |
+| 11 | `frozen_form` | B.47–B.48 | Retained first-pass comparison of the lower frozen-form bound and error constants. |
+| 12 | `adjoint_quadratic` | Lemma B.10 | Retained first-pass comparison of the two norm bounds. |
+| 13 | `adjoint_links` | Setup of Lemma B.12 | Retained match of the field identifications and `fitted_empty`. This emptiness reduces the generic fitted/free decomposition to the paper's B.53 expression. |
+| 14 | `potential_entries` | Potential data before Lemma B.12 and B.51 | **Partly comparable, with substantial extension.** The paper omits the precise coefficient format but states the analytic consequences. The formal shape conditions imply C¹/weak-derivative and decay properties sufficient for B.51. Full certificate-format equality cannot be established from the paper alone. L6720–6842, L6861–6890, L7007–7014 and the proof chain below. |
+| 15 | `adjoint_defect` | Dual bound before Lemma B.11, B.50–B.53 | The first-pass numerical bound comparison is retained; this pass explains the B.52 signs, the matrix transpose and the skew pin-flux expression. Equality is interpreted in the weak/a.e. sense relevant to spline fields. |
 
-## Findings, ranked by severity
+### Detail for condition 1
 
-1. **(High) Appendix B does not state the full condition, so the paper cannot establish "computed conditions = `CellSystemCondition`".** The paper says this itself at the end of B.4 ("The conditions that we have not written out are of the same kinds…"). The list covers the coefficient expressions of (B.16) and their lower bounds, pressure normalization, the rules from cell unknowns to global unknowns, the leftover parts of W^r and their harmonic groups, error bounds, the rectangles, and ι ↦ −ι symmetry. It also says of G_j, U_j, F_j, q_j "which we do not write out" (Lemma B.12 setup). In Lean these are condition 1h, most of conditions 3 and 1k, and condition 14. For them the only possible verdict is "same in kind". The match between the Arb computation and the Lean hypothesis can be checked only against the unreleased checker.
-2. **(High, provenance) The patched Lean package was not rebuilt.** The root README says: "The patched package was not rebuilt when this repository was assembled." That `Solution.lean` proves the three theorems for the patched `CellSystemCondition` is therefore unconfirmed in this repository. The patch made each changed hypothesis weaker (items 1 and 2) or narrower (item 3), so the old proofs need not go through unchanged.
-3. **(Medium) Patched item 3 is not stated in Appendix B.** The README's sentence "Appendix B of the paper states the conditions in this patched form" holds, checkably, for items 1 and 2 only. Item 3 (`modelLabels`) has no explicit counterpart. The Lean form is the weaker one (fewer `group_link` obligations), so it does not make the Lean hypothesis harder to satisfy.
-4. **(Low) Junk values, all in the harmless direction or excluded.**
-   - (a) `wtGrad` = ‖`fderiv`‖ (`CoerciveChallenge.lean` L771) is 0 at the kinks of the continuous piecewise-polynomial λ_p. This makes `eps_grad_sum_le` and the error terms of `lowCoef` slightly easier than "\|∇λ_p\| at every point", on a null set only.
-   - (b) `RowValues.mix` (L2295-2296) returns 0 when the pairing matrix is not Hermitian, and `cfc (√x)⁻¹` returns junk on a singular Gram matrix. The paper requires G to be positive definite; Lean requires the per-cell blocks to be positive definite (`block_posDef`).
-   - (c) In `credit_le`, `testForm⁻¹` is 0 for a singular matrix. That makes the condition harder (credit ≤ 0), not easier.
-   - (d) The divisions in `lowCoef` (by share, len, t_i, η) are guarded by `IsPositiveStep` and `mu_eta_pos` (L2516-2521). The divisions by `radialEigen`/`heightEigen` are nonzero because `IsCellBox` gives r1 < r2 and z1 < z2, and the volume degree is at least 3.
-   - (e) In `nontrivial`, `toReal ∞ = 0` makes the condition harder.
-   - (f) `params` always contains 0, because the radii are nonnegative. With k = 0 there are no actuators, so `mesh_covers` with H = 0 still forces at least one cell.
-   - I found no empty set, `sSup` or `iteratedFDeriv` junk value that makes a condition vacuous.
-5. **(Low) Lean weaker or more general in places, all harmless.**
-   - The mesh-level `skeletonDeg ≥ −1` (restored to d0 ≥ 1 in `IsCellModeLayouts`).
-   - `targetGap` instead of ℓ̄ ≡ 0.
-   - The `fittedSet` generality in `AdjointDefectEntry`, pinned to ∅ by `adjoint_links`.
-   - Many cell conditions are quantified only over x in `InRowRange`.
-   - One place where Lean is stronger in form: far-field direction radii must be measurable, homogeneous of degree 0 and bounded between R0 > 0 and R1 (`IsDirectionRadius` L3456-3460). The paper says only "a radius which may depend on the direction". Any implementable choice meets this.
-6. **(Info, for question b) No mismatch found.** Every item the paper says is required "as it stands" or checked numerically, among those I compared, appears in the same form in Lean: (B.11) τ bound, (B.19), (B.22), (B.25), (B.27), (B.29)-(B.31), (B.38)-(B.43), (B.47)-(B.48), Lemmas B.10, B.12 and B.13, and (7.21) and (7.24)-(7.37). Two items are existentially quantified inside `CellHypothesis` and then repeated with explicit numbers (enclosure numbers 1f and 4). This is consistent, and it is not a different form.
+| Part | Comparison |
+|---|---|
+| Row fields and weights | The first pass matched divergence-free polynomial rows, axis regularity, positive definite Gram blocks, conjugate closure and B.11/B.22's row weight. It did not run an independent construction of the Gram matrix. |
+| Symmetry and constants | `azimuth_ge` requires κ≥3 (L5197), `mode_class` records the generators of Γ (L5202), and the weight/coercivity/pinning constants are 39/50, 3/50 and 1000 (L5199–5201), as in B.1/B.21/B.22. |
+| Mesh degrees | The mesh permits a preliminary skeleton degree ≥−1; `IsCellModeLayouts` requires degree ≥1 on resolved harmonics (L4342–4347). Tested modes require ≥2 and volume degree ≥skeleton+2. Only azimuthal order zero is resolved on axis cells (L4681), as stated on p.57. |
+| Support coverage | `ActuatorSupportFacts` L4832–4839 matches the intended cover of the forcing support when the chosen radius is nonnegative. It does **not** itself prohibit an empty mesh: at k=0 an existential radius −1 gives an empty square. This is a local observation, not a witness for the complete condition. |
+| Enclosures, symmetries, weights | The first-pass comparison with B.19 and the classes of piecewise-polynomial weights is retained. The full coefficient lower-bound rules in `CoefficientConditions` have no fully written paper counterpart. |
+| Leaf inequalities | L4381–4400 imposes I₂>0, I′₂≥0, lower bounds on both coefficients, bounded measurable Hermitian matrices and two quadratic inequalities. These correspond to the prose on p.58 and B.25. The latter lower bound excludes the axis, where the cylindrical form is used only a.e.; zero denominators at the axis must not be treated as pointwise identities. |
+| Cell calculus/model split | L4456–4490 and L4680–4702 separate the polynomial approximation, higher-degree orthogonal part, distant harmonics, bounds on residuals, conjugate closure, and regularity. The first-pass degree and tail-factor comparison is retained. The paper describes these roles but omits their full data conditions. |
+| Tree | The first-pass B.38–B.40 and pivot-count comparisons are retained. A matrix-tree pass would check the chosen data; matching the abstract induction alone does not supply that data. |
+| Pairing surrogates and rectangle credits | Their purpose agrees with the prose after B.43 and the rectangle construction on p.58. Their detailed formulas remain outside the paper's explicit specification. |
+| Reference/forcing shape | B.6–B.8 and the spline orders are represented explicitly by `reducedComps` and `IsTimeFieldData` (L2823–2903); compact fields have vanishing amplitudes and zero axis coefficient (L2905–2916). The first-pass Hermite data and support construction are extended by this formula reading. |
+| Uniform parameter dependence | `IsBoxUniform` L5011–5020 freezes the model and weight data across the parameter box, with the intended rotation-frame exception, consistent with B.1–B.2. |
+
+## New details that resolve earlier uncertainties
+
+### The zero target gap is enforced
+
+`targetGap` is `target − pinValue(profile gradient)` in `ExtendedCertificateChallenge.lean:84–85`. `IsProfileShapeEntry.target_eq` (L3854) sets those two terms equal, so condition 8 forces `targetGap=0`. The proof already records this cancellation at `Breakdown/CellReduction/InstOffsetClause.lean:321–323`. The use of a more general structure does not mean this specialized path permits every value that structure could hold.
+
+### B.26 is visible in the assembly condition
+
+`EliminationConditions.residual_value_le` (L5486–5488) compares `cellForm−energyLeafForm` with `potentialKept+pairingKept−top+bandEliminated+rowsEliminated`. This is the organization of B.26. The hypothesis `InRowRange` restricts the vector to compatible cell rows, including permitted gauge/head directions; the paper instead writes `x=X_Qx_g`. The intended roles agree, but a full equivalence of these representations requires the row transport and pressure-blindness arguments, not just this line.
+
+The eliminated-mode formula divides by `bandSlack`. L5492–5495 explicitly handles its allowed zero value by requiring the corresponding residual to vanish. The positive-definite row weight and `bandSlack<1` guard the other inverses. These safeguards need to be retained in any checker-level translation.
+
+### What can be checked for the potential fields
+
+The data map is:
+
+| Lean field | Paper field | Relevant analytic behavior |
+|---|---|---|
+| `theta` | G_j | C¹; G_j decays as r⁻² and its gradient as r⁻³. |
+| `phi` | U_j | C¹; U_j decays as r⁻¹ and its gradient as r⁻². |
+| `flux` | F_jᵀ under the paper's matrix convention | Decays as r⁻²; has a weak divergence given by a function. |
+| `pressure` | q_j | Decays as r⁻²; has a weak gradient with the required near/far bounds. |
+
+`IsPotentialSeries` uses explicit factors or spline endpoint vanishing to obtain these orders. Its radial and polar flux conditions ensure continuity of the respective normal flux across radial and polar partition boundaries. Tangential jumps do not by themselves create a distributional divergence supported on the interface.
+
+The source chain is `PotentialPartsClosed.potentialParts_holds` → `PotentialShape.potentialData_of_series` → `CellLayerBreakdownCompose.adjointPotentialFacts_of_parts`. The resulting `IsPotentialData` is in `Breakdown/CellReduction/AdjointEntryDefs.lean:72–89`. It is sufficient for B.51; some derivative estimates are stronger. The derivative identities are understood almost everywhere. For r>0, the two pressure bounds r|∇q|≤C and r³|∇q|≤C imply |∇q|≤4C/[r(1+r)²], by splitting r≤1 and r≥1. Quantitative flux and gradient bounds use `matSq`, the Frobenius norm squared, so transpose does not introduce a numerical factor there. This is a source-level correspondence awaiting a build/check receipt. The omitted coefficient format and actual certificate values remain unavailable.
+
+### The B.52 signs and transpose
+
+The paper defines `(∇v)_{jk}=∂_jv_k` (p.31), while Lean's continuous linear map places output coordinates in rows. With that convention stated, `matrixDivergence` has the paper's `div F_jᵀ` effect. Expanding `remainderField` gives the transport adjoint, `−Δψ`, `+∇q+ΔG+wΔU` and `−div Fᵀ` with the paper's signs.
+
+The pin flux uses the skew matrix `Dg−Dg*`. Its divergence is `Δg−∇div g`. The B.6 generator fields are divergence-free, so this supplies the paper's `+ΣY_jl ΔΦ̃_l`. More generally the discrepancy is a gradient and is handled in the weak pairing with divergence-free perturbations. These statements are about the relevant weak operators; no pointwise identity at every spline seam is asserted.
+
+## The 20 November patch
+
+| Item | What is established | Limit |
+|---|---|---|
+| Azimuthal denominator | `AzimuthalBounded` L3576–3585 uses `(\|m\|+1/2)²`, with half weights for the first two complex components, matching the dual estimate before Lemma B.11. | The former denominator `m²+1/4` is smaller for nonzero m. The new numerical obligation is weaker, requiring the sharper analytic bound; the patched proof needs to be checked. |
+| A cell constant may vanish | L4385 allows `curlHessFloor≥0`, while L4383 requires `hessFloor>0`, matching I′₂≥0 and I₂>0 on p.58. | Identifying this as the README's unnamed modified constant is an inference. The prepatch diff is not supplied. |
+| Active model harmonics | L5752–5760 filters out labels whose four model fields all vanish throughout the cell. It is used at L5814, L5891 and L6043. | Appendix B does not write the filter or all three coverage conditions explicitly. The draft's “used only in group_link” statement was incorrect. |
+
+## Limits on claims of fidelity and nonvacuity
+
+There is no basis for the broad claim that no Lean hypothesis is stronger than the paper's prose. For example, `IsDirectionRadius` (L3456–3460) explicitly requires measurability, degree-zero homogeneity, a positive uniform lower bound and a finite upper bound; the paper compresses this as a radius depending on direction (p.59). Positive continuous data on the compact set of directions would satisfy such bounds, but an arbitrary implemented function need not. The concrete certificate must resolve this.
+
+Nor has this audit excluded every degenerate index set. `k=0`, an empty mesh and a negative existential support radius make the support-cover subconditions vacuous. Other nontriviality/coercivity/exterior obligations remain. This is a correction to the prior argument and should not be presented as a counterexample to the theorem or as a full certificate.
+
+Similarly, the zero value of a totalized derivative at a spline kink does not alone invalidate the intended weak derivative, but a claim of harmlessness requires the regularity and measure-zero interface arguments. Some source lemmas supply those arguments; this pass did not verify every one independently.
+
+## What to check when the numerical material is released
+
+For each decoded object, identify which exact field of `CellSystemCondition` is established by which checker operation. Include uniform parameter ranges, endpoints and strict inequalities, spline joining and axis conditions, all mode-coverage rules, exterior-radius bounds, matrix conventions, interval rounding and the treatment of equality/zero tests. Freeze the data hash, checker revision and formal definition revision together. A successful check of a stronger concrete condition is sufficient if the implication to the formal condition is established.
 
 ## Coverage
 
-- **Fully compared, term by term:** conditions 4, 5, 6, 7 (against the §7.3 items that B.4 lists), 9, 10, 11, 12, 13, and 15 (except the internal identity of `remainderField` against (B.52)). Within condition 1: 1a, 1b, 1c, 1d, 1e, 1f, 1i, 1j, 1l and 1p.
-- **Partially compared:** condition 1k (I2, I'2, A_{Q,ι} bounds, (B.25), (B.27) and degrees; not the `CellCalculusConditions` internals); condition 3 (exterior and far field, (B.43), patched item 3; not the potential, pairing, row or elimination internals); condition 8 (adjoint shape only); 1g; condition 2.
-- **Not comparable, because the paper does not write it out:** 1h, 1m and 1n in detail, most of condition 3, and condition 14. 1o (forms of W^r, b_i, W^a, q) was not read field by field.
-- **Lean read:** about 1,500 of the 7,086 lines, chosen by the definitions each condition references. Paper read: all of Appendix B and §7.3.
+This second pass closely read conditions 1k, 2, selected assembly parts of 3, 8 and 14; B.6–B.9 shape formulas; the B.51/B.52 potential interface; the patch uses; and the target-gap and empty-mesh arguments. It compared 20 critical declaration blocks with the statement library and visually inspected printed pp.52 and 67 to resolve pressure exponents and potential formulas.
+
+It did not compare every coefficient or matrix entry, verify all row/gauge transportation arguments, rebuild Lean, inspect all imported definitions, or execute a numerical checker. There is no new demonstrated contradiction in the full `CellSystemCondition` and no demonstrated witness satisfying it. The numerical certificate and its checker remain the decisive absent evidence for an unconditional verification claim.

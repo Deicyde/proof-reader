@@ -1,159 +1,286 @@
-# Build the Lean package of Alpöge and Buckmaster, "Finite-time blow-up for the Navier–Stokes
-# equations" (github.com/tristanbuckmaster/navier-stokes), unchanged, at the authors' Lean
-# v4.33.1, and judge its statement files with Comparator from Lean v4.36.0.
-#
-# Lean v4.33.1 has no `lake comparator`, so the route is the one used for the same Mathlib pin in
-# github.com/Deicyde/riemann-hypothesis: build with v4.33.1, write exports with lean4export
-# (tag v4.33.0, built with v4.33.1), and judge the exports with v4.36.0.
-#
-# The build may not fit in one six-hour job. The compiled files are saved to the Actions cache
-# whether or not the build finishes, and dispatching the workflow again resumes from them.
-#
-# A control config states `breakdown_on_space` without its hypothesis (the existence of a
-# periodic self-similar profile). Comparator must reject it; if it does not, the run is void.
+# Proposed correction reviewed 2026-11-20; not a completed verification result.
+# Authors' proof sources remain pinned at ad53419de079eb8f95f60313473374624a348546.
+# Build and replay use separate fresh runners, linked by an exact-run compiled-output cache.
+# No author source or proof exports are uploaded as artifacts; artifacts contain review logs.
+# The build may resume from earlier compiled outputs; a partial build fails the workflow.
+# Green requires the precise negative-control mismatch and all three positive Comparators.
+# The source-to-export provenance and compiled dependencies remain a trust boundary.
 name: Judge the Navier–Stokes statement files with Comparator
-on:
-  workflow_dispatch:
+'on':
+  workflow_dispatch: {}
   push:
-    branches: ['claude/navier-stokes-*']
-    paths: ['.github/workflows/navier-stokes-comparator.yml']
+    branches:
+    - claude/navier-stokes-*
+    paths:
+    - .github/workflows/navier-stokes-comparator.yml
 permissions:
   contents: read
 concurrency:
   group: navier-stokes-comparator
   cancel-in-progress: false
 jobs:
-  judge:
+  build:
     runs-on: ubuntu-24.04
     timeout-minutes: 355
+    defaults:
+      run:
+        shell: bash
     env:
       NS_COMMIT: ad53419de079eb8f95f60313473374624a348546
       EXPORT_COMMIT: 15f6055e299ad5b89345e533cc2192f4cc00f659
       NS: ${{ github.workspace }}/../ns
+      OUT: ${{ github.workspace }}/../out
+    outputs:
+      cache_key: ${{ steps.cachekey.outputs.key }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
-      - name: Free disk space
-        run: |
-          echo "OUT=$RUNNER_TEMP/out" >> "$GITHUB_ENV"
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
-          sudo apt-get install -y -qq time >/dev/null
-          df -h / | tail -1
-      - name: Install elan
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Fetch the authors' repository at the pinned commit
-        run: |
-          mkdir -p "$OUT"
-          git init -q "$NS" && cd "$NS"
-          git remote add origin https://github.com/tristanbuckmaster/navier-stokes.git
-          git fetch -q --depth 1 origin "$NS_COMMIT" && git checkout -q FETCH_HEAD
-          git rev-parse HEAD | tee "$OUT/ns-commit.txt"
-          cd lean && cat lean-toolchain && find Breakdown -name '*.lean' | wc -l
-      - name: Add the control (breakdown_on_space without its hypothesis)
-        working-directory: ${{ env.NS }}/lean
-        run: |
-          sed 's/^theorem breakdown_on_space (h : PeriodicSimilarityProfileExists) : BreakdownOnSpace := by$/theorem breakdown_on_space : BreakdownOnSpace := by/' Challenge.lean > ControlChallenge.lean
-          diff Challenge.lean ControlChallenge.lean && { echo "control edit did not apply"; exit 1; } || true
-          printf '\n[[lean_lib]]\nname = "ControlChallenge"\n' >> lakefile.toml
-      - name: Restore earlier compiled files of this package
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.NS }}/lean/.lake/build
-          key: ns-build-${{ env.NS_COMMIT }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: ns-build-${{ env.NS_COMMIT }}-
-      - name: Fetch Mathlib's compiled files (official cache, never built here)
-        working-directory: ${{ env.NS }}/lean
-        run: lake exe cache get
-      - name: Compile the package (at most 280 minutes in this job)
-        id: build
-        working-directory: ${{ env.NS }}/lean
-        run: |
-          set -o pipefail
-          ( while sleep 120; do
-              find .lake/build/ir -name '*.setup.json' 2>/dev/null | while IFS= read -r f; do
-                t=".lake/build/lib/lean/${f#.lake/build/ir/}"; [ "${t%.setup.json}.trace" -nt "$f" ] && rm -f "$f"
-              done; df -h / | tail -1 >> "$OUT/disk.log"; done ) &
-          loop=$!
-          start=$(date +%s)
-          code=0
-          timeout 280m lake build 2>&1 | tee "$OUT/build.log" | { grep -v '^✔' || true; } || code=$?
-          kill $loop || true
-          echo "build exit $code after $(( $(date +%s) - start ))s" | tee "$OUT/build.exit"
-          echo "code=$code" >> "$GITHUB_OUTPUT"
-      - name: Save the compiled files, finished or not
-        if: always()
-        uses: actions/cache/save@v4
-        with:
-          path: ${{ env.NS }}/lean/.lake/build
-          key: ns-build-${{ env.NS_COMMIT }}-${{ github.run_id }}-${{ github.run_attempt }}
-      - name: Compile the control, which is not a default target
-        if: steps.build.outputs.code == '0'
-        working-directory: ${{ env.NS }}/lean
-        run: lake build ControlChallenge 2>&1 | tail -5
-      - name: Axioms of every theorem, from the authors' script
-        if: steps.build.outputs.code == '0'
-        working-directory: ${{ env.NS }}/lean
-        run: lake env lean scripts/PrintAxioms.lean 2>&1 | tee "$OUT/axioms.txt"
-      - name: Build lean4export with Lean v4.33.1
-        if: steps.build.outputs.code == '0'
-        run: |
-          git init -q "$RUNNER_TEMP/export" && cd "$RUNNER_TEMP/export"
-          git remote add origin https://github.com/leanprover/lean4export.git
-          git fetch -q --depth 1 origin "$EXPORT_COMMIT" && git checkout -q FETCH_HEAD
-          echo 'leanprover/lean4:v4.33.1' > lean-toolchain
-          lake build && ls .lake/build/bin
-      - name: Write the exports
-        if: steps.build.outputs.code == '0'
-        working-directory: ${{ env.NS }}/lean
-        run: |
-          X="$RUNNER_TEMP/export/.lake/build/bin/lean4export"
-          PRELUDE="propext Quot.sound Classical.choice Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList Char.ofNat List eagerReduce Nat String String.mk Char optParam autoParam semiOutParam outParam"
-          HEAD="Breakdown.breakdown_on_space Breakdown.breakdown_on_torus Breakdown.breakdown_on_space_of_weak"
-          CERT=$(python3 -c "import json;print(' '.join(json.load(open('comparator-certificate.json'))['theorem_names']))")
-          CELL=$(python3 -c "import json;print(' '.join(json.load(open('comparator-cell-layer.json'))['theorem_names']))")
-          mkdir -p "$RUNNER_TEMP/x"
-          ex() { echo "== $1"; /usr/bin/time -v lake env "$X" "$1" -- Quot Quot.mk Quot.lift Quot.ind $2 $PRELUDE > "$RUNNER_TEMP/x/$3.export" 2> "$OUT/export-$3.time"; tail -3 "$OUT/export-$3.time"; }
-          ex Challenge "$HEAD" challenge
-          ex ControlChallenge "Breakdown.breakdown_on_space" control
-          ex ExtendedCoerciveChallenge "$CERT" certificate
-          ex CellLayerTheorems "$CELL" cell-layer
-          ex Solution "$HEAD $CERT $CELL" solution
-          ls -l "$RUNNER_TEMP/x"; (cd "$RUNNER_TEMP/x" && sha256sum *.export) | tee "$OUT/exports.sha256"
-          df -h / | tail -1
-      - name: Install the sandbox Comparator uses, and Lean v4.36.0
-        if: steps.build.outputs.code == '0'
-        run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq bubblewrap
-          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
-          mkdir -p "$RUNNER_TEMP/judge" && cd "$RUNNER_TEMP/judge"
-          echo 'leanprover/lean4:v4.36.0' > lean-toolchain
-          lake --version && lake comparator --help | head -12
-      - name: Comparator on the control and the three statement files
-        if: steps.build.outputs.code == '0'
-        working-directory: ${{ runner.temp }}/judge
-        run: |
-          kernels='"external_kernels": {"Lean paranoid": ["leanchecker-paranoid", "--silent", "--from-export"], "nanoda": ["nanoda_bin"], "con-leche": ["con-leche"], "con-ron": ["con-ron"]}'
-          axioms='"permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]'
-          names() { python3 -c "import json,sys;print(json.dumps(json.load(open(sys.argv[1]))['theorem_names']))" "$NS/lean/$1"; }
-          cfg() { echo "{\"challenge_module\": \"$1\", \"solution_module\": \"Solution\", \"theorem_names\": $2, $axioms, $kernels}" > "$3.json"; cat "$3.json"; }
-          cfg ControlChallenge '["Breakdown.breakdown_on_space"]' control
-          cfg Challenge "$(names comparator.json)" challenge
-          cfg ExtendedCoerciveChallenge "$(names comparator-certificate.json)" certificate
-          cfg CellLayerTheorems "$(names comparator-cell-layer.json)" cell-layer
-          cp *.json "$OUT/"
-          lake --version > "$OUT/judge-lean.txt"; bwrap --version >> "$OUT/judge-lean.txt"
-          run() {
-            echo "== $1"; local start=$(date +%s)
-            if /usr/bin/time -v timeout 60m lake comparator --config "$1.json" --challenge-from-export "$RUNNER_TEMP/x/$1.export" --solution-from-export "$RUNNER_TEMP/x/solution.export" > "$OUT/$1.log" 2>&1; then echo 0 > "$OUT/$1.exit"; else echo $? > "$OUT/$1.exit"; fi
-            tail -25 "$OUT/$1.log"; echo "exit $(cat "$OUT/$1.exit") after $(( $(date +%s) - start ))s"
-          }
-          run control
-          run challenge
-          run certificate
-          run cell-layer
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: navier-stokes-comparator
-          path: ${{ runner.temp }}/out
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - name: Free disk space
+      run: |
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+        sudo apt-get install -y -qq time >/dev/null
+        df -h / | tail -1
+    - name: Install elan
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+        echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+    - name: Fetch the authors' repository at the pinned commit
+      run: |
+        mkdir -p "$OUT"
+        git init -q "$NS" && cd "$NS"
+        git remote add origin https://github.com/tristanbuckmaster/navier-stokes.git
+        git fetch -q --depth 1 origin "$NS_COMMIT" && git checkout -q FETCH_HEAD
+        git rev-parse HEAD | tee "$OUT/ns-commit.txt"
+        cd lean && cat lean-toolchain && find Breakdown -name '*.lean' | wc -l
+    - name: Add the control (breakdown_on_space without its hypothesis)
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        python3 - <<'PYCONTROL'
+        from pathlib import Path
+        source = Path("Challenge.lean").read_text()
+        old = "theorem breakdown_on_space (h : PeriodicSimilarityProfileExists) : BreakdownOnSpace := by"
+        new = "theorem breakdown_on_space : BreakdownOnSpace := by"
+        if source.count(old) != 1:
+            raise SystemExit("Expected exactly one theorem header for the negative control")
+        Path("ControlChallenge.lean").write_text(source.replace(old, new))
+        PYCONTROL
+        printf '\n[[lean_lib]]\nname = "ControlChallenge"\n' >> lakefile.toml
+    - name: Record this build cache key
+      id: cachekey
+      run: |
+        echo "key=ns-build-v3-${NS_COMMIT}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
+    - name: Restore earlier compiled files of this package
+      uses: actions/cache/restore@v4
+      with:
+        path: ${{ env.NS }}/lean/.lake/build
+        key: ns-build-v3-${{ env.NS_COMMIT }}-${{ github.run_id }}-${{ github.run_attempt }}
+        restore-keys: |
+          ns-build-v3-${{ env.NS_COMMIT }}-
+          ns-build-${{ env.NS_COMMIT }}-
+    - name: Fetch Mathlib's compiled files (official cache, never built here)
+      working-directory: ${{ env.NS }}/lean
+      run: lake exe cache get
+    - name: Compile the package and the control (at most 280 minutes)
+      id: build
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        set -o pipefail
+        ( while sleep 120; do
+            find .lake/build/ir -name '*.setup.json' 2>/dev/null | while IFS= read -r f; do
+              t=".lake/build/lib/lean/${f#.lake/build/ir/}"; [ "${t%.setup.json}.trace" -nt "$f" ] && rm -f "$f"
+            done; df -h / | tail -1 >> "$OUT/disk.log"; done ) &
+        loop=$!
+        start=$(date +%s)
+        code=0
+        timeout --kill-after=60s 280m bash -c 'lake build && lake build ControlChallenge' 2>&1 | tee "$OUT/build.log" | { grep -v '^✔' || true; } || code=$?
+        kill $loop || true
+        echo "build exit $code after $(( $(date +%s) - start ))s" | tee "$OUT/build.exit"
+        echo "code=$code" >> "$GITHUB_OUTPUT"
+        if [ "$code" -ne 0 ]; then
+          echo "Build incomplete or failed; no verification result. The cache and logs will be saved."
+          exit "$code"
+        fi
+    - name: Save the compiled files, finished or not
+      if: always()
+      uses: actions/cache/save@v4
+      with:
+        path: ${{ env.NS }}/lean/.lake/build
+        key: ${{ steps.cachekey.outputs.key }}
+    - name: Check tracked source integrity after the build
+      if: steps.build.outputs.code == '0'
+      run: |
+        git -C "$NS" diff --exit-code "$NS_COMMIT" -- . ':!lean/lakefile.toml'
+        git -C "$NS" diff "$NS_COMMIT" -- lean/lakefile.toml > "$OUT/harness.diff"
+        (cd "$NS/lean" && sha256sum lean-toolchain lake-manifest.json) > "$OUT/source-inputs.sha256"
+        # This catches tracked-source edits, not tampering with compiled dependencies.
+    - name: Diagnostic axiom output for the authors' 27 named declarations
+      if: steps.build.outputs.code == '0'
+      working-directory: ${{ env.NS }}/lean
+      run: lake env lean scripts/PrintAxioms.lean 2>&1 | tee "$OUT/axioms.txt"
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: navier-stokes-build
+        path: ${{ env.OUT }}
+        if-no-files-found: error
+  judge:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 355
+    defaults:
+      run:
+        shell: bash
+    env:
+      NS_COMMIT: ad53419de079eb8f95f60313473374624a348546
+      EXPORT_COMMIT: 15f6055e299ad5b89345e533cc2192f4cc00f659
+      NS: ${{ github.workspace }}/../ns
+      OUT: ${{ github.workspace }}/../out
+      BUILD_CACHE_KEY: ${{ needs.build.outputs.cache_key }}
+    needs: build
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - name: Free disk space
+      run: |
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+        sudo apt-get install -y -qq time >/dev/null
+        df -h / | tail -1
+    - name: Install elan
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+        echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+    - name: Fetch the authors' repository at the pinned commit
+      run: |
+        mkdir -p "$OUT"
+        git init -q "$NS" && cd "$NS"
+        git remote add origin https://github.com/tristanbuckmaster/navier-stokes.git
+        git fetch -q --depth 1 origin "$NS_COMMIT" && git checkout -q FETCH_HEAD
+        git rev-parse HEAD | tee "$OUT/ns-commit.txt"
+        cd lean && cat lean-toolchain && find Breakdown -name '*.lean' | wc -l
+    - name: Add the control (breakdown_on_space without its hypothesis)
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        python3 - <<'PYCONTROL'
+        from pathlib import Path
+        source = Path("Challenge.lean").read_text()
+        old = "theorem breakdown_on_space (h : PeriodicSimilarityProfileExists) : BreakdownOnSpace := by"
+        new = "theorem breakdown_on_space : BreakdownOnSpace := by"
+        if source.count(old) != 1:
+            raise SystemExit("Expected exactly one theorem header for the negative control")
+        Path("ControlChallenge.lean").write_text(source.replace(old, new))
+        PYCONTROL
+        printf '\n[[lean_lib]]\nname = "ControlChallenge"\n' >> lakefile.toml
+    - name: Restore the completed build from this run
+      id: completed_cache
+      uses: actions/cache/restore@v4
+      with:
+        path: ${{ env.NS }}/lean/.lake/build
+        key: ${{ needs.build.outputs.cache_key }}
+        fail-on-cache-miss: true
+    - name: Require an exact completed-build cache hit
+      env:
+        EXACT_CACHE_HIT: ${{ steps.completed_cache.outputs.cache-hit }}
+      run: |
+        test "$EXACT_CACHE_HIT" = true
+        echo "$BUILD_CACHE_KEY" > "$OUT/compiled-build-cache-key.txt"
+    - name: Fetch Mathlib's compiled files (official cache, never built here)
+      working-directory: ${{ env.NS }}/lean
+      run: lake exe cache get
+    - name: Build lean4export with Lean v4.33.1
+      run: |
+        git init -q "$RUNNER_TEMP/export" && cd "$RUNNER_TEMP/export"
+        git remote add origin https://github.com/leanprover/lean4export.git
+        git fetch -q --depth 1 origin "$EXPORT_COMMIT" && git checkout -q FETCH_HEAD
+        echo 'leanprover/lean4:v4.33.1' > lean-toolchain
+        lake build && ls .lake/build/bin
+    - name: Check tracked source integrity after the build
+      run: |
+        git -C "$NS" diff --exit-code "$NS_COMMIT" -- . ':!lean/lakefile.toml'
+        git -C "$NS" diff "$NS_COMMIT" -- lean/lakefile.toml > "$OUT/harness.diff"
+        (cd "$NS/lean" && sha256sum lean-toolchain lake-manifest.json) > "$OUT/source-inputs.sha256"
+        # This catches tracked-source edits, not tampering with compiled dependencies.
+    - name: Write the exports
+      timeout-minutes: 90
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        X="$RUNNER_TEMP/export/.lake/build/bin/lean4export"
+        PRELUDE="propext Quot.sound Classical.choice Nat.add Nat.sub Nat.mul Nat.pow Nat.gcd Nat.div Nat.mod Nat.beq Nat.ble Nat.land Nat.lor Nat.xor Nat.shiftLeft Nat.shiftRight String.ofList Char.ofNat List eagerReduce Nat String String.mk Char optParam autoParam semiOutParam outParam"
+        HEAD="Breakdown.breakdown_on_space Breakdown.breakdown_on_torus Breakdown.breakdown_on_space_of_weak"
+        CERT=$(python3 -c "import json;print(' '.join(json.load(open('comparator-certificate.json'))['theorem_names']))")
+        CELL=$(python3 -c "import json;print(' '.join(json.load(open('comparator-cell-layer.json'))['theorem_names']))")
+        mkdir -p "$RUNNER_TEMP/x"
+        ex() { echo "== $1"; /usr/bin/time -v lake env "$X" "$1" -- Quot Quot.mk Quot.lift Quot.ind $2 $PRELUDE > "$RUNNER_TEMP/x/$3.export" 2> "$OUT/export-$3.time"; tail -3 "$OUT/export-$3.time"; }
+        ex Challenge "$HEAD" challenge
+        ex ControlChallenge "Breakdown.breakdown_on_space" control
+        ex ExtendedCoerciveChallenge "$CERT" certificate
+        ex CellLayerTheorems "$CELL" cell-layer
+        ex Solution "$HEAD $CERT $CELL" solution
+        ls -l "$RUNNER_TEMP/x"; (cd "$RUNNER_TEMP/x" && sha256sum *.export) | tee "$OUT/exports.sha256"
+        df -h / | tail -1
+    - name: Install the sandbox Comparator uses, and Lean v4.36.0
+      run: |
+        sudo apt-get update -qq && sudo apt-get install -y -qq bubblewrap
+        sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+        mkdir -p "$RUNNER_TEMP/judge" && cd "$RUNNER_TEMP/judge"
+        echo 'leanprover/lean4:v4.36.0' > lean-toolchain
+        lake --version
+        lake comparator --help > "$OUT/comparator-help.txt"
+        head -12 "$OUT/comparator-help.txt"
+    - name: Comparator on the control and the three statement files
+      timeout-minutes: 195
+      working-directory: ${{ runner.temp }}/judge
+      run: |
+        kernels='"external_kernels": {"Lean paranoid": ["leanchecker-paranoid", "--silent", "--from-export"], "nanoda": ["nanoda_bin"], "con-leche": ["con-leche"], "con-ron": ["con-ron"]}'
+        axioms='"permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]'
+        names() { python3 -c "import json,sys;print(json.dumps(json.load(open(sys.argv[1]))['theorem_names']))" "$NS/lean/$1"; }
+        cfg() { echo "{\"challenge_module\": \"$1\", \"solution_module\": \"Solution\", \"theorem_names\": $2, $axioms, $kernels}" > "$3.json"; cat "$3.json"; }
+        cfg ControlChallenge '["Breakdown.breakdown_on_space"]' control
+        cfg Challenge "$(names comparator.json)" challenge
+        cfg ExtendedCoerciveChallenge "$(names comparator-certificate.json)" certificate
+        cfg CellLayerTheorems "$(names comparator-cell-layer.json)" cell-layer
+        cp *.json "$OUT/"
+        lake --version > "$OUT/judge-lean.txt"; bwrap --version >> "$OUT/judge-lean.txt"
+        run() {
+          echo "== $1"; local start=$(date +%s)
+          local limit=60m
+          [ "$1" != control ] || limit=10m
+          if /usr/bin/time -v timeout --kill-after=60s "$limit" lake comparator --config "$1.json" --challenge-from-export "$RUNNER_TEMP/x/$1.export" --solution-from-export "$RUNNER_TEMP/x/solution.export" > "$OUT/$1.log" 2>&1; then echo 0 > "$OUT/$1.exit"; else echo $? > "$OUT/$1.exit"; fi
+          tail -25 "$OUT/$1.log"; echo "exit $(cat "$OUT/$1.exit") after $(( $(date +%s) - start ))s"
+        }
+        run control
+        run challenge
+        run certificate
+        run cell-layer
+        python3 - <<'PYJUDGE'
+        import json, os
+        from pathlib import Path
+        out = Path(os.environ["OUT"])
+        names = ["control", "challenge", "certificate", "cell-layer"]
+        codes = {name: int((out / f"{name}.exit").read_text()) for name in names}
+        control_log = (out / "control.log").read_text(errors="replace")
+        expected = "Challenge and solution theorem statement do not match: 'Breakdown.breakdown_on_space'"
+        control_ok = codes["control"] == 1 and expected in control_log
+        positives_ok = all(codes[name] == 0 for name in names if name != "control")
+        accepted = control_ok and positives_ok
+        report = {
+            "status": "accepted_selected_conditional_statements" if accepted else "no_verified_pass",
+            "authors_commit": os.environ["NS_COMMIT"],
+            "compiled_build_cache_key": os.environ["BUILD_CACHE_KEY"],
+            "exit_codes": codes,
+            "control_rejected_for_expected_statement_mismatch": control_ok,
+            "all_positive_comparisons_accepted": positives_ok,
+            "certificate_instantiated": False,
+            "scope": "Three supplied configurations, 15 named theorems; no numerical certificate check.",
+        }
+        (out / "judgment.json").write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report, indent=2))
+        if not accepted:
+            raise SystemExit("No verified pass: inspect build/comparator logs; infrastructure failure is not a mathematical refutation.")
+        PYJUDGE
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: navier-stokes-comparator
+        path: ${{ env.OUT }}
+        if-no-files-found: error
