@@ -1,5 +1,7 @@
 # Finite-time singularity for the Euler equations on the torus: what the Lean states
 
+*Kept as a record of the reading made at the authors' first commit `36d3961`, against the frozen manuscript. The current page is [the companion at `fd3a158`](../README.md).*
+
 **Review snapshot: 20 November 2026, commit
 [`36d3961`](https://github.com/mcoiculescu/EulerBlowupPublic/tree/36d3961161f8e7bba9cc8f671e5d0c4a27281239).**
 
@@ -144,7 +146,7 @@ against Mathlib definitions alone, and we did not give it to Comparator.
 ## 5. Checking workflow and status
 
 The workflow
-[`euler-comparator.yml`](../../.github/workflows/euler-comparator.yml) runs on
+[`euler-comparator.yml`](../../../.github/workflows/euler-comparator.yml) runs on
 public GitHub Actions.
 
 1. **Build.** It fetches the authors' repository at the pinned commit, takes
@@ -153,7 +155,7 @@ public GitHub Actions.
    `leanprover/lean4:v4.34.0-rc2`. It then checks that no tracked author file
    changed.
 2. **Challenge files.** At run time, a short script
-   ([`write_harness.py`](../../.github/euler/write_harness.py)) copies the
+   ([`write_harness.py`](../../../.github/euler/write_harness.py)) copies the
    pinned `Statement.lean` and adds one line, the theorem
    `TorusEuler.theorem11 : TorusEuler.Theorem11` with `sorry` for its proof.
    This challenge depends only on Mathlib and the statement definitions, never
@@ -185,9 +187,17 @@ statement-mismatch message, the second to be rejected, and the challenge to
 be accepted. An infrastructure failure, such as a timeout, is not a
 mathematical refutation.
 
-**Status at the snapshot.** Run
+**Result.** Run
 [44826207811](https://github.com/wcook04/proof-reader/actions/runs/44826207811)
-is building. Its result will be recorded here.
+passed. The control stating the negation was rejected with "Challenge and solution theorem
+statement do not match: 'TorusEuler.theorem11'". The control without the $\partial_tu$
+clause was rejected with "Const does not match between challenge and target
+'TorusEuler.EulerSingularityWitness'". The challenge was accepted by Lean's kernel and by
+Lean paranoid, nanoda, con-leche and con-ron. `#print axioms` gives `propext`,
+`Classical.choice` and `Quot.sound` for `theorem11`, `auxiliaryTerminalSmoothness` and
+`IsEulerSolution.velocity_eq_on_common_interval`, and the authors' `Verify.lean` checked the
+axioms of 10,389 `TorusEuler` declarations. The authors' `VerifyPaper.lean` failed as
+expected, because it reads TeX at paths this public copy renamed.
 
 What a pass would establish: the proof term `TorusEuler.theorem11`, checked by
 five independent kernels with only the standard axioms, proves the

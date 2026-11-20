@@ -1,0 +1,122 @@
+# Compile the authors' torus Euler package at its own toolchain and commit, and read the
+# Paper layer's declarations, dependencies and axioms from the compiled files.
+# The authors' repository has no licence, so their files are fetched on the runner and
+# never committed here, and the uploaded report keeps no Lean text: names, kinds, modules,
+# line numbers, dependencies and axioms only. The full extractor output stays on the runner.
+name: Extract the Euler Paper layer from Lean
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/euler-*']
+    paths:
+      - '.github/workflows/euler-extract.yml'
+      - 'papers/euler/notes/extract.toml'
+permissions:
+  contents: read
+concurrency:
+  group: euler-extract-v1
+  cancel-in-progress: false
+jobs:
+  extract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 355
+    defaults:
+      run:
+        shell: bash
+    env:
+      EULER_COMMIT: fd3a1588967810b9abe42a1dcf46ee662d6434e2
+      EU: /home/runner/euler
+      OUT: /home/runner/out
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          df -h / | tail -1
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch the authors' repository at the pinned commit
+        run: |
+          mkdir -p "$OUT"
+          git init -q "$EU" && cd "$EU"
+          git remote add origin https://github.com/mcoiculescu/EulerBlowupPublic.git
+          git fetch -q --depth 1 origin "$EULER_COMMIT" && git checkout -q FETCH_HEAD
+          git rev-parse HEAD | tee "$OUT/euler-commit.txt"
+          cat formalization/lean/lean-toolchain
+      - name: Restore earlier compiled files of this package
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.EU }}/formalization/lean/.lake/build
+          key: euler-extract-v1-${{ env.EULER_COMMIT }}-${{ github.run_id }}
+          restore-keys: |
+            euler-extract-v1-${{ env.EULER_COMMIT }}-
+            euler-build-v1-
+      - name: Fetch Mathlib's compiled files (official cache, never built here)
+        working-directory: ${{ env.EU }}/formalization/lean
+        run: lake exe cache get
+      - name: Compile the package (at most 300 minutes)
+        id: build
+        working-directory: ${{ env.EU }}/formalization/lean
+        run: |
+          set -o pipefail
+          code=0
+          timeout --kill-after=60s 300m lake build 2>&1 | tee "$RUNNER_TEMP/build.log" | { grep -v '^✔' || true; } || code=$?
+          echo "build exit $code" | tee "$OUT/build.exit"
+          # Messages only, each cut short, so no Lean source leaves the runner.
+          grep -E '^(error|warning|✖)' "$RUNNER_TEMP/build.log" | cut -c1-300 > "$OUT/build-messages.txt" || true
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          exit "$code"
+      - name: Save the compiled files, finished or not
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ env.EU }}/formalization/lean/.lake/build
+          key: euler-extract-v1-${{ env.EULER_COMMIT }}-${{ github.run_id }}
+      - name: Read the Paper layer from the compiled modules (no Lean text leaves the runner)
+        run: |
+          set -o pipefail
+          git -C "$EU" diff --exit-code
+          # The page's copy of the Lean and its paper.toml exist only on this runner.
+          cp papers/euler/notes/extract.toml papers/euler/paper.toml
+          cp -R "$EU/formalization/lean" papers/euler/lean
+          rm -rf papers/euler/lean/.lake
+          mkdir -p papers/euler/generated
+          python3 tools/extract_built.py euler --project "$EU/formalization/lean" 2>&1 | tail -5 | tee "$OUT/extract.log"
+          python3 - <<'PYFACTS'
+          import json, os
+          from pathlib import Path
+          out = Path(os.environ["OUT"])
+          d = json.loads(Path("papers/euler/generated/lean.json").read_text())
+          keep = ["name", "kind", "module", "line", "end_line", "type_dependencies",
+                  "value_dependencies", "structural_dependencies", "axioms", "is_class"]
+          rows = [{k: r.get(k) for k in keep} for r in d["declarations"]]
+          standard = {"propext", "Classical.choice", "Quot.sound"}
+          odd = [r["name"] for r in rows if not set(r["axioms"] or []) <= standard]
+          facts = {"authors_commit": os.environ["EULER_COMMIT"], "lean_version": d["lean_version"],
+                   "modules": d["modules"], "declarations": rows,
+                   "note": "Facts read from the compiled modules. Types, doc comments and source text are omitted."}
+          (out / "lean-facts.json").write_text(json.dumps(facts, indent=1, sort_keys=True) + "\n")
+          summary = {"declarations": len(rows), "nonstandard_axioms": odd}
+          (out / "axiom-summary.json").write_text(json.dumps(summary, indent=1) + "\n")
+          print(summary)
+          assert not odd, odd
+          PYFACTS
+      - name: The authors' spine check
+        working-directory: ${{ env.EU }}/formalization/lean
+        run: |
+          if lake env lean VerifySpine.lean > "$RUNNER_TEMP/verify-spine.log" 2>&1; then echo 0 > "$OUT/verify-spine.exit"; else echo $? > "$OUT/verify-spine.exit"; fi
+          tail -20 "$RUNNER_TEMP/verify-spine.log" | cut -c1-300 | tee "$OUT/verify-spine-tail.txt"; echo "VerifySpine.lean exit $(cat "$OUT/verify-spine.exit")"
+          test "$(cat "$OUT/verify-spine.exit")" = 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: euler-lean-reports
+          path: ${{ env.OUT }}
+          if-no-files-found: error

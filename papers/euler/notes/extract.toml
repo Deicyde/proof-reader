@@ -1,0 +1,35 @@
+[paper]
+title = "Finite-Time Singularity Formation for the 3-D Euler Equations"
+short_title = "Euler singularity"
+authors = ["Levent Alpöge", "Tristan Buckmaster", "Matei P. Coiculescu"]
+venue = "Manuscript, arXiv version, in the authors' repository at fd3a158"
+url = "https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/paper.pdf"
+markdown = "paper.md"
+licence = "No licence stated in the authors' repository"
+licence_url = "https://github.com/mcoiculescu/EulerBlowupPublic/tree/fd3a1588967810b9abe42a1dcf46ee662d6434e2"
+
+[credit]
+text = "Paper and Lean: Levent Alpöge, Tristan Buckmaster and Matei P. Coiculescu, EulerBlowupPublic at fd3a158. The reading copy is set from the authors' TeX of the arXiv version. Links between the paper and the Lean follow the authors' own result map; plain titles were made with AI and have not been reviewed by the authors"
+
+[lean]
+project = "lean"
+modules = [
+  "TorusEuler.Statement",
+  "TorusEuler.MainTheorem",
+  "TorusEuler.Paper.Spine",
+  "TorusEuler.Paper.S2.Vocabulary", "TorusEuler.Paper.S2.Statements",
+  "TorusEuler.Paper.S34A.Vocabulary", "TorusEuler.Paper.S34A.Statements",
+  "TorusEuler.Paper.S5.Vocabulary", "TorusEuler.Paper.S5.Statements", "TorusEuler.Paper.S5.TextStatements",
+  "TorusEuler.Paper.S678.Vocabulary", "TorusEuler.Paper.S678.Statements", "TorusEuler.Paper.S678.StepData",
+  "TorusEuler.Paper.SBD.Vocabulary", "TorusEuler.Paper.SBD.Statements", "TorusEuler.Paper.SBD.Library.Words",
+  "TorusEuler.Paper.Auxiliary.Vocabulary", "TorusEuler.Paper.Auxiliary.Statements",
+]
+source = "https://github.com/mcoiculescu/EulerBlowupPublic/tree/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean"
+source_name = "EulerBlowupPublic at fd3a158, formalization/lean"
+source_label = "TorusEuler"
+source_lines = "https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/{path}#L{line}-L{end}"
+licence = "No licence stated in the authors' repository; part adapted from an Apache-2.0 development"
+scope = "The page reads the authors' Paper layer: one statement and one spine theorem for each numbered result of the arXiv version and each display a later proof cites, the vocabulary they use, and the headline statement. The proofs of the results are in the authors' Paper.Proofs modules, which this page links to but does not list."
+
+[reading]
+language = "lean"
