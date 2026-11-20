@@ -476,8 +476,10 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (cur.pin?.passage === id && !cur.pin.decl && (wide || cur.sheet)) return;
     // The sheet takes the lower part of a small screen: keep the statement above it.
     const target = !wide && !cur.sheet ? { passage: id } : null;
-    open({ record: `@${id}`, pin: { passage: id, decl: null, at: null }, target });
-  }, [open, wide]);
+    // The pane keeps the mode the reader chose: a click on the Graph shows the sentence's
+    // cards there, a click on the Lean shows its Lean.
+    open({ record: `@${id}`, pin: { passage: id, decl: null, at: null }, target, lean: plain || layoutRef.current.lean });
+  }, [open, plain, wide]);
 
   /** A Lean name: the Lean page walks there and the paper stays put. */
   const walk = useCallback((name: string, from: "paper" | "right" = "right") => {
