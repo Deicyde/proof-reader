@@ -30,11 +30,11 @@ jobs:
       NS_COMMIT: ad53419de079eb8f95f60313473374624a348546
       EXPORT_COMMIT: 15f6055e299ad5b89345e533cc2192f4cc00f659
       NS: ${{ github.workspace }}/../ns
-      OUT: ${{ github.workspace }}/../out
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
       - name: Free disk space
         run: |
+          echo "OUT=$RUNNER_TEMP/out" >> "$GITHUB_ENV"
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
           sudo apt-get install -y -qq time >/dev/null
           df -h / | tail -1
@@ -87,6 +87,10 @@ jobs:
         with:
           path: ${{ env.NS }}/lean/.lake/build
           key: ns-build-${{ env.NS_COMMIT }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Compile the control, which is not a default target
+        if: steps.build.outputs.code == '0'
+        working-directory: ${{ env.NS }}/lean
+        run: lake build ControlChallenge 2>&1 | tail -5
       - name: Axioms of every theorem, from the authors' script
         if: steps.build.outputs.code == '0'
         working-directory: ${{ env.NS }}/lean
@@ -152,4 +156,4 @@ jobs:
         if: always()
         with:
           name: navier-stokes-comparator
-          path: ${{ env.OUT }}
+          path: ${{ runner.temp }}/out
