@@ -47,7 +47,7 @@ Each item below follows from a definition in the source. None is a claim
 that the authors' program makes the mistake; they are the tests to run on it.
 
 **Quadratic forms are required on a larger space than the cell's
-coordinates.** `InRowRange` (`CellLayerChallenge.lean:6547`) constrains only
+coordinates.** `InRowRange` ([`CellLayerChallenge.lean:6547`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6547)) constrains only
 the coordinates whose row reason is not `.unused`, and only up to gauge and
 pressure-head terms with complex coefficients; unused coordinates and port
 coordinates are free complex numbers; the two actuator blocks are free real
@@ -73,25 +73,25 @@ negative on the second.
 
 **Missing table entries need the right continuation, which is not always
 zero.** For sparse spline and jet coefficients, `VanishesBeyond`
-(`CellLayerChallenge.lean:6853`) reads an out-of-range breakpoint as the
+([`CellLayerChallenge.lean:6853`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6853)) reads an out-of-range breakpoint as the
 support radius, which makes its guard true, so every coefficient past the
 stored list must be exactly zero. For the infinite orthonormal cell bases,
 zero is wrong: the bases need positive leading coefficients at every degree.
 The library already proves the right continuation
 (`FracCell.extendBases_of` with `orthoFamily_spec`), and a decoder must use
 it or prove that its own agrees. `actuator_model_regular`
-(`CellLayerChallenge.lean:6050`) quantifies over every natural index, not
+([`CellLayerChallenge.lean:6050`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6050)) quantifies over every natural index, not
 only those below the number of actuators.
 
 **Scales may be zero.** `ScaledJetAxis.convert`
-(`CellLayerChallenge.lean:4140`) inverts `scale.getD k 1`, and
+([`CellLayerChallenge.lean:4140`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4140)) inverts `scale.getD k 1`, and
 `HasSymmetricScale` requires only the right length and symmetry. At a zero
 scale Lean's inverse is zero and the positive-order entries vanish; the
 bubble terms likewise divide by breakpoint gaps. A decoder must reproduce
 this behaviour or establish that scales and gaps are nonzero.
 
 **Active harmonics can be over-approximated instead of decided.**
-`modelLabels` (`CellLayerChallenge.lean:5753`) keeps a label when some model
+`modelLabels` ([`CellLayerChallenge.lean:5753`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5753)) keeps a label when some model
 coefficient is nonzero somewhere on the cell, and its three users
 (`group_link`, `groups_cover`, `rows_groups_cover`) demand coverage for every
 kept label. Checking coverage for every label in the four declared support
@@ -102,7 +102,7 @@ vorticity-gradient components); a small value, or an interval containing
 zero, is not exact vanishing.
 
 **Mode triples must be distinct.** `AzimuthalBounded`
-(`CellLayerChallenge.lean:3576`) asks for an injective family of
+([`CellLayerChallenge.lean:3576`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3576)) asks for an injective family of
 (component, frequency, order) triples. Two equal amplitudes $g$ in one channel
 contribute $\|2g\|^2=4\|g\|^2$, not $2\|g\|^2$, so duplicates must be merged
 before the norm is formed. The weight is $1/(|m|+\tfrac12)^2$, which differs
@@ -139,7 +139,7 @@ affine and need their own enclosures.
 **Several conditions share work.** The enclosure constants checked at the
 root are the ones the continuum branch needs. `IsBoxUniform.bounds_eq`
 transports the support object across the parameter set. On this path
-`AdjointEntryLinks.fitted_empty` (`CellLayerChallenge.lean:4022`) makes the
+`AdjointEntryLinks.fitted_empty` ([`CellLayerChallenge.lean:4022`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4022)) makes the
 fitted adjoint set empty, so the fitted bounds hold vacuously. The step
 profile's tail condition reduces to the last cell polynomial being identically
 one.
@@ -154,13 +154,13 @@ constructions, potential-series derivatives and decay, and the azimuthal dual
 estimate (`AdjointDefect.remainderAzimuthalHolds_proof`).
 
 Some routes take implications as arguments. `ScalarShape.isWeightValues_of_conditions`
-(`Breakdown/CertCell/ShapeScalarStatements.lean:369`) assumes six:
+([`Breakdown/CertCell/ShapeScalarStatements.lean:369`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeScalarStatements.lean#L369)) assumes six:
 `MeshOfRational`, `JoinsOfCoefficients`, `NonnegOfCoefficients`,
 `CoreOfCoefficients`, `FlatOfCoefficients` and `StepPositiveOfEntries`. We
 found no closed proofs of them under those names, so the bridge from a
 rational representation to these properties is a decoder obligation unless
 it is proved. `ExtendSegmentStatement` is declared in
-`ReductionPointwiseDefs.lean` and neither proved nor used.
+[`ReductionPointwiseDefs.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/ReductionPointwiseDefs.lean) and neither proved nor used.
 
 ## 4. A schema before the release
 
@@ -259,8 +259,8 @@ checks possible before the full certificate.
 | [van den Berg–Breden–Lessard–van Veen](https://arxiv.org/abs/1902.00384) | preprint 2019 | A posteriori validation of forced Navier–Stokes periodic orbits, at 6 to 95 CPU-days per orbit. |
 | [Shavit–Wang–Buckmaster](https://arxiv.org/abs/2611.07395), the paper's [82] | November 2026 | A Lean argument that keeps its numerical inputs as explicit hypotheses. |
 
-Sources: `CellLayerChallenge.lean` at the lines given; `Breakdown/FracCell/`,
-`Breakdown/CertCell/ShapeScalarStatements.lean`; paper Appendix B.1, (B.16),
+Sources: [`CellLayerChallenge.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean) at the lines given; `Breakdown/FracCell/`,
+[`Breakdown/CertCell/ShapeScalarStatements.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeScalarStatements.lean); paper Appendix B.1, (B.16),
 the paragraph after Proposition B.14, Appendix C. The derivations in §§2, 4
 and 5 are hand mathematics checked with exact arithmetic or symbolic
 computation; none of them is a Lean proof.

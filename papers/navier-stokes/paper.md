@@ -30,7 +30,7 @@ which of them have been obtained.
 
 ## 1. The equations and the Clay conclusions
 
-The statement file `Challenge.lean` uses Mathlib derivatives on
+The statement file [`Challenge.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Challenge.lean) uses Mathlib derivatives on
 `EuclideanSpace ℝ (Fin 3)`. `IsSmoothSolution` asks for joint smoothness on
 $[0,\infty)\times\mathbb R^3$, the prescribed initial value, and
 
@@ -64,7 +64,7 @@ also excludes that corrected class. “Take $\nu>0$” in the official statement
 already means arbitrary positive viscosity, so there is no additional
 viscosity-quantifier advantage.
 
-Sources: `Challenge.lean:10–45`;
+Sources: [`Challenge.lean:10–45`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Challenge.lean#L10-L45);
 [official Clay statement, (4)–(11), (C), (D), and Errata](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf).
 This implication is a mathematical interpretation of the definitions, not
 a newly checked Lean translation of Fefferman.
@@ -131,7 +131,7 @@ The coefficients $-1$ and $-1/2$ in its weak drift terms follow by integration
 by parts in three dimensions. A modification of zero on a null set is not
 a witness.
 
-Sources: `Challenge.lean:47–108`; `Solution.lean:17–24`;
+Sources: [`Challenge.lean:47–108`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Challenge.lean#L47-L108); [`Solution.lean:17–24`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Solution.lean#L17-L24);
 `README.md:23–53`; paper Theorem 1.1, Remark 1.2, Proposition 2.1,
 Proposition 7.11.
 
@@ -139,7 +139,7 @@ Proposition 7.11.
 
 The exported nonexistence statements are coarser than the paper's theorem,
 but they do not exhaust the mathematical content of `Breakdown/`.
-`Base/Framework.lean:66–73` defines `TransferHolds`: an admissible nonzero
+[`Base/Framework.lean:66–73`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Base/Framework.lean#L66-L73) defines `TransferHolds`: an admissible nonzero
 recurrent mild orbit, any dense data submodule and any positive approximation
 tolerance give a mild solution on `[0,1)` whose initial datum belongs to that
 submodule, with
@@ -148,18 +148,18 @@ $$
 \|D_{1-t}u(t)-w(-\log(1-t))\|\le C(1-t)^\kappa,\qquad \kappa>0.
 $$
 
-`Transfer/Exports.lean:53–55` proves the transfer from the dichotomy, and
-`Weak/OrbitBreakdown.lean:13–28` uses it in the actual breakdown route.
-`Uniqueness/Restrict.lean:53–63` also records the quantitative blow-up datum.
+[`Transfer/Exports.lean:53–55`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Transfer/Exports.lean#L53-L55) proves the transfer from the dichotomy, and
+[`Weak/OrbitBreakdown.lean:13–28`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Weak/OrbitBreakdown.lean#L13-L28) uses it in the actual breakdown route.
+[`Uniqueness/Restrict.lean:53–63`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Uniqueness/Restrict.lean#L53-L63) also records the quantitative blow-up datum.
 The realization, dilation, `RegEmbed` and `RegGlue` declarations connect the
 abstract space to physical velocity and its homogeneous gradient norm.
 `OrbitBoundStatement` and `OrbitNormStatement` give upper and positive lower
 bounds on the recurrent orbit's norm.
 
 The finite-dimensional correction appears in `StepDataStatement`
-(`Transfer/StatementsFrame.lean:55–69`), the section construction
-(`Transfer/Section.lean:31–59`), and the nonlinear fixed point
-(`Transfer/Contraction.lean:123–132`). Thus there is formal support for
+([`Transfer/StatementsFrame.lean:55–69`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Transfer/StatementsFrame.lean#L55-L69)), the section construction
+([`Transfer/Section.lean:31–59`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Transfer/Section.lean#L31-L59)), and the nonlinear fixed point
+([`Transfer/Contraction.lean:123–132`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Transfer/Contraction.lean#L123-L132)). Thus there is formal support for
 quantitative convergence and finite-dimensional correction ingredients.
 We have not found a single exported, independently
 replayed theorem carrying every clause of printed Theorem 1.1 and its
@@ -248,14 +248,14 @@ bounds for each fixed parameter**, then proves the resulting multiplier map
 continuous. Its contraction factor is $2c_Lc_wM<1$, exactly (7.25).
 Condition **(7.26), explicitly unused in the paper's proof, controls the
 supremum part of Lean's contraction distance**. It is used in
-`Breakdown/Cert/ExtendedHeldContracts.lean:97–128`; the contraction and
+[`Breakdown/Cert/ExtendedHeldContracts.lean:97–128`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedHeldContracts.lean#L97-L128); the contraction and
 uniqueness statements are `Cert.extendedHeldContractsHolds_of` and
 `Cert.extendedHeldExistsUniqueHolds_of`.
 
 The parameter step uses the coordinate and remaining-coordinate bounds in
 (7.35) and (7.37). `Cert.extendedExistsZeroHeldHolds_of` applies
 `Held.testSetZero` to the mixed box/ellipsoid; that theorem reduces a compact
-convex set to the box fixed-point theorem in `Cert/FixedPointBox.lean`.
+convex set to the box fixed-point theorem in [`Cert/FixedPointBox.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/FixedPointBox.lean).
 It finds a parameter where the approximate and correcting force coefficients
 sum to **zero exactly**. `Cert.extendedHeldWeakEquationHolds_of` cancels their
 auxiliary fields in the weak equation. Non-strict parameter inclusions are
@@ -267,9 +267,9 @@ sufficient; this step does not require the fixed point to lie in the interior.
 exact pin constraints, the weighted bound $\leq2\varepsilon$, the gradient
 supremum bound $\leq M$, and invariance. The zero-finding stage also retains
 the chosen parameter. The proof in
-`Breakdown/Cert/ExtendedSigmaProfileOfHeld.lean:237–251` constructs the sum of
+[`Breakdown/Cert/ExtendedSigmaProfileOfHeld.lean:237–251`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedSigmaProfileOfHeld.lean#L237-L251) constructs the sum of
 the approximate profile and this correction, with the chosen period.
-`Breakdown/Cert/Rescale.lean:85–115` rescales time and explicitly chooses the
+[`Breakdown/Cert/Rescale.lean:85–115`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Rescale.lean#L85-L115) rescales time and explicitly chooses the
 identity isometry. The subsequent existential statement hides those data.
 
 The smoothing construction retains related information too:
@@ -343,14 +343,14 @@ It does not leave Proposition 7.11 as an external premise. The chain remains
 conditional on a formal certificate; it supplies no numerical witness.
 The chain was traced in the source; the build and axiom results are in §5.
 
-Sources: `Breakdown/Cert/ExtendedStatement.lean:96–225`;
-`Breakdown/Cert/ExtendedNodes.lean:68–75,209–265`;
-`Breakdown/Cert/ExtendedMain.lean:56–93`;
-`Breakdown/Cert/ExtendedExistsZeroHeld.lean:102–118`;
-`Breakdown/Weak/Main.lean:31–40`;
-`Breakdown/CertTorus/Defs.lean:62–67`;
-`Breakdown/CertTorus/TopStatements.lean:26–56`;
-`Breakdown/CertTorus/Main.lean:8–15`; paper §7, especially
+Sources: [`Breakdown/Cert/ExtendedStatement.lean:96–225`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedStatement.lean#L96-L225);
+[`Breakdown/Cert/ExtendedNodes.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedNodes.lean):[68–75](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedNodes.lean#L68-L75), [209–265](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedNodes.lean#L209-L265);
+[`Breakdown/Cert/ExtendedMain.lean:56–93`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedMain.lean#L56-L93);
+[`Breakdown/Cert/ExtendedExistsZeroHeld.lean:102–118`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedExistsZeroHeld.lean#L102-L118);
+[`Breakdown/Weak/Main.lean:31–40`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Weak/Main.lean#L31-L40);
+[`Breakdown/CertTorus/Defs.lean:62–67`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/Defs.lean#L62-L67);
+[`Breakdown/CertTorus/TopStatements.lean:26–56`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/TopStatements.lean#L26-L56);
+[`Breakdown/CertTorus/Main.lean:8–15`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/Main.lean#L8-L15); paper §7, especially
 Propositions 7.8–7.11 and Theorem 7.1.
 
 **The three `…_of_cell_system_condition` theorems.** Seven data/entry
@@ -390,9 +390,9 @@ $(|m|+\tfrac12)^2=m^2+|m|+\tfrac14$, the new weight can only reduce each
 term, to $5/9$ of the old one at $|m|=1$; the analytic estimate behind it is
 correspondingly stronger, and the current proof chain carries it.
 
-The comparator target `CellLayerTheorems.lean` imports
+The comparator target [`CellLayerTheorems.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerTheorems.lean) imports
 `Breakdown.CertCell.StatementDefs`, rather than the standalone
-`CellLayerChallenge.lean` used for reading. A source comparison, which we
+[`CellLayerChallenge.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean) used for reading. A source comparison, which we
 reran and which reproduces byte for byte, finds agreement for **all 787 non-theorem declaration commands**,
 including complete bodies, embedded proofs and recorded scope. Across the
 six readable statement modules, all **967 non-theorem commands** match
@@ -403,8 +403,8 @@ they are inventoried separately. This establishes source agreement for the
 displayed definitions, not an independent comparison of elaborated theorem
 dependencies or their mathematical meaning.
 
-Sources: `CellLayerChallenge.lean:3854,4832–4839,5193–5194,5752–5760,5814–5816,5890–5891,6042–6043,7007–7046`;
-`CellLayerTheorems.lean:1–29`; paper Appendix B, especially (B.51)–(B.56)
+Sources: [`CellLayerChallenge.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean):[3854](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3854), [4832–4839](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4832-L4839), [5193–5194](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5193-L5194), [5752–5760](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5752-L5760), [5814–5816](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5814-L5816), [5890–5891](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5890-L5891), [6042–6043](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6042-L6043), [7007–7046](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L7007-L7046);
+[`CellLayerTheorems.lean:1–29`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerTheorems.lean#L1-L29); paper Appendix B, especially (B.51)–(B.56)
 and the closing qualification on omitted conditions.
 
 ## 4. The outstanding certificate bridge
@@ -485,7 +485,7 @@ statements about source text; they do not authenticate compiled files.
 The published package, with the 20 November patch, compiled on a
 GitHub-hosted ubuntu-24.04 runner: `lake build` of every default target
 exited 0 after 7,735 seconds, with Mathlib from its official cache. The
-authors' script `scripts/PrintAxioms.lean` then reported only `propext`,
+authors' script [`scripts/PrintAxioms.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/scripts/PrintAxioms.lean) then reported only `propext`,
 `Classical.choice` and `Quot.sound` for each of its 27 names. That is
 diagnostic output for those names, not an enforcing audit of every theorem.
 The run then failed at export, before Comparator.
