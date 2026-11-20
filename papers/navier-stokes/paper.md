@@ -1,7 +1,9 @@
 # Finite-time blow-up for Navier–Stokes: what the Lean states
 
-**Review snapshot: 20 November 2026, commit
+**20 November 2026, commit
 [`ad53419`](https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546).**
+For the argument itself, read the [specialist digest](digest.md) first; this
+page compares each Lean statement with the paper.
 
 Levent Alpöge and Tristan Buckmaster's paper presents a construction of
 finite-time blow-up for the three-dimensional **unforced** Navier–Stokes
@@ -406,6 +408,34 @@ dependencies or their mathematical meaning.
 Sources: [`CellLayerChallenge.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean):[3854](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3854), [4832–4839](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4832-L4839), [5193–5194](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5193-L5194), [5752–5760](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5752-L5760), [5814–5816](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5814-L5816), [5890–5891](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5890-L5891), [6042–6043](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6042-L6043), [7007–7046](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L7007-L7046);
 [`CellLayerTheorems.lean:1–29`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerTheorems.lean#L1-L29); paper Appendix B, especially (B.51)–(B.56)
 and the closing qualification on omitted conditions.
+
+### Trying to satisfy the hypotheses with cheap data
+
+If any hypothesis of these implications could be met by trivial data, the
+Lean would prove blow-up from that data, and the endpoints would say less than
+they appear to. A systematic attempt recorded 101 routes against the two
+endpoints, the two profile predicates, the extended certificate and the cell
+condition: 90 are blocked by an identified clause and 11 remain open in the
+sense that a cheap local choice is allowed but no complete witness exists.
+None reached a complete hypothesis. The blocking clauses fall into ten
+groups, among them joint regularity and a finite real energy bound in the
+solution class ([`Breakdown/Defs.lean:26–45`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L26-L45)), nontriviality almost everywhere
+in the weak profile ([`Breakdown/Defs.lean:99`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L99)), a strict lower bound on the
+approximate profile's energy with positive weight, universal coercivity with a
+positive multiplier weight, and coverage of every cell, every omitted mode and
+the exterior.
+
+One consequence is new (a deduction from the source, checked by hand). An empty mesh is not excluded by the per-cell
+conditions, and earlier readings left it open. But if the full
+`CellSystemCondition` holds with zero cells, the number of multipliers $k$ is
+zero: every actuator then vanishes by the support theorem, and the coercive
+estimate applied to the zero perturbation gives
+$\omega^2\sum_i\kappa_i^2\le0$ for every multiplier vector, with
+$\omega>0$. With $k=0$ the exterior still has to be covered by the
+exterior conditions, so the empty mesh moves all the work to the exterior and
+removes none of it. Whether a complete certificate with $k=0$ and no cells can
+exist is open. The probes behind these findings are being compiled against
+the library.
 
 ## 4. The outstanding certificate bridge
 
