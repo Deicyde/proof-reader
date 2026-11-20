@@ -17,6 +17,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = workerUrl;
 
 /** The space above each page; app.css sets the same 20px. */
 const PAGE_GAP = 20;
+/** Room at the right for the ruler that shows where in the whole document the links are. */
+const RULER_SPACE = 22;
+/** Zoom steps, as a share of the width that fits the pane. */
+const ZOOMS = [0.5, 0.67, 0.8, 1, 1.25, 1.5, 2, 2.5, 3];
 
 interface Props {
   url: string;
@@ -47,7 +51,11 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
   const scroller = useRef<HTMLDivElement>(null);
   const [pdf, setPdf] = useState<PDFDocumentProxy | null>(null);
   const [failed, setFailed] = useState(false);
-  const [width, setWidth] = useState(0);
+  const [fit, setFit] = useState(0);
+  const [zoom, setZoom] = useState(1);
+  const width = Math.round(fit * zoom);
+  const anchor = useRef<number | null>(null);
+  const [view, setView] = useState<[number, number]>([0, 0]);
   const [hover, setHover] = useState<string | null>(null);
   const [hoverName, setHoverName] = useState<string | null>(null);
   // The statement under the line, drawn at once; the right page hears after a hold.
@@ -95,7 +103,7 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
     const el = scroller.current;
     if (!el) return;
     const measure = () => {
-      if (el.clientWidth) setWidth(el.clientWidth - PAGE_GAP);
+      if (el.clientWidth) setFit(el.clientWidth - PAGE_GAP - RULER_SPACE);
     };
     measure();
     const observer = new ResizeObserver(measure);
@@ -240,6 +248,59 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
     return false;
   }, [followSoon, pageHeight, passageTop, passages, scrollTo, width]);
 
+  /** Zoom about the reading line: the same place in the document stays under it. */
+  const zoomTo = useCallback((next: number) => {
+    const el = scroller.current;
+    if (!el || !pageHeight) return;
+    anchor.current = (el.scrollTop + el.clientHeight * READING_LINE - PAGE_GAP) / (pageHeight + PAGE_GAP);
+    setZoom(Math.min(ZOOMS[ZOOMS.length - 1], Math.max(ZOOMS[0], next)));
+  }, [pageHeight]);
+  const zoomStep = useCallback((dir: 1 | -1) => {
+    const i = ZOOMS.findIndex((z) => z >= zoom - 1e-6);
+    zoomTo(ZOOMS[Math.min(ZOOMS.length - 1, Math.max(0, (dir > 0 ? (ZOOMS[i] > zoom + 1e-6 ? i : i + 1) : i - 1)))]);
+  }, [zoom, zoomTo]);
+
+  useLayoutEffect(() => {
+    const el = scroller.current;
+    if (!el || anchor.current === null) return;
+    el.scrollTop = PAGE_GAP + anchor.current * (pageHeight + PAGE_GAP) - el.clientHeight * READING_LINE;
+    el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
+    anchor.current = null;
+  }, [pageHeight]);
+
+  // A trackpad pinch arrives as a wheel event with Ctrl held, as does Ctrl or Cmd with a wheel.
+  useEffect(() => {
+    const el = scroller.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      if (!e.ctrlKey && !e.metaKey) return;
+      e.preventDefault();
+      zoomTo(zoom * Math.exp(-e.deltaY / 300));
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [zoom, zoomTo]);
+
+  // Which stretch of the document is on screen, for the ruler.
+  useEffect(() => {
+    const el = scroller.current;
+    if (!el) return;
+    // Straight from the scroll event: a frame callback may never run in a background tab.
+    const update = () => setView([el.scrollTop, el.clientHeight]);
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    return () => el.removeEventListener("scroll", update);
+  }, [width]);
+
+  const pagesHeight = PAGE_GAP + sizes.length * (pageHeight + PAGE_GAP);
+  const marks = useMemo(() => passages.filter((p) => p.page !== null).map((p) => ({
+    id: p.id,
+    at: passageTop(p) / Math.max(1, pagesHeight),
+    span: Math.max(0, (p.rects[p.rects.length - 1][3] - p.rects[0][1]) * scale) / Math.max(1, pagesHeight),
+    kind: rulerKind(p),
+    label: `Page ${p.page}${p.title ? `, ${p.title}` : ""}: ${RULER_WORDS[rulerKind(p)]}`,
+  })), [passages, passageTop, pagesHeight, scale]);
+
   useImperativeHandle(ref, (): PaperHandle => ({
     place,
     top: () => scroller.current?.scrollTop ?? 0,
@@ -334,8 +395,53 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
   };
 
   return (
+    <>
+    {!hidden && width > 0 && (
+      <div className="pdfzoom" role="group" aria-label="Zoom the PDF">
+        <button type="button" onClick={() => zoomStep(-1)} disabled={zoom <= ZOOMS[0] + 1e-6} aria-label="Zoom out">−</button>
+        <button type="button" className="pdfzoom__fit" onClick={() => zoomTo(1)} aria-label="Fit the page to the pane" title="Fit the page to the pane">{Math.round(zoom * 100)}%</button>
+        <button type="button" onClick={() => zoomStep(1)} disabled={zoom >= ZOOMS[ZOOMS.length - 1] - 1e-6} aria-label="Zoom in">+</button>
+      </div>
+    )}
+    {!hidden && width > 0 && marks.length > 0 && (
+      <div
+        className="ruler"
+        aria-label="Where the linked passages are in the whole document"
+        title="Each mark is a linked passage; click one to open it, or anywhere to go there"
+        onClick={(e) => {
+          const el = scroller.current;
+          if (!el) return;
+          const box = e.currentTarget.getBoundingClientRect();
+          const at = (e.clientY - box.top) / box.height;
+          const near = marks.reduce<{ id: string; gap: number } | null>((best, m) => {
+            const gap = Math.abs((m.at - at) * box.height);
+            return gap < 5 && (!best || gap < best.gap) ? { id: m.id, gap } : best;
+          }, null);
+          if (near) {
+            // Go to the passage, then open it, as clicking it on the page would.
+            const target = marks.find((m) => m.id === near.id);
+            userInput();
+            if (target) scrollTo(target.at * pagesHeight - el.clientHeight * READING_LINE, false, false);
+            latest.current.onPin(near.id);
+          } else {
+            userInput();
+            scrollTo(at * pagesHeight - el.clientHeight * READING_LINE, false, true);
+          }
+        }}
+      >
+        <span className="ruler__view" style={{ top: `${(view[0] / Math.max(1, pagesHeight)) * 100}%`, height: `${Math.max(1, (view[1] / Math.max(1, pagesHeight)) * 100)}%` }} />
+        {marks.map((m) => (
+          <span
+            key={m.id}
+            className={`ruler__mark ruler__mark--${m.kind}${m.id === pin?.passage || m.id === active ? " is-active" : ""}`}
+            style={{ top: `${m.at * 100}%`, height: `max(3px, ${m.span * 100}%)` }}
+            title={m.label}
+          />
+        ))}
+      </div>
+    )}
     <div
-      className="pdf"
+      className={`pdf${marks.length ? " pdf--ruled" : ""}${zoom > 1 ? " pdf--wide" : ""}`}
       data-paper-pane={hidden ? undefined : ""}
       hidden={hidden}
       ref={scroller}
@@ -355,7 +461,7 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
             key={page}
             className={`pdf__page${hover || hoverName ? " has-hover" : ""}`}
             data-page={page}
-            style={{ width, height: pageHeight }}
+            style={{ width, height: pageHeight, ...(zoom < 1 ? { marginRight: "auto" } : {}) }}
             onMouseMove={(e) => {
               const name = nameAt(e, page);
               const key = name ? `${page}:${name.rect[0]}:${name.rect[1]}` : null;
@@ -411,8 +517,24 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
       })}
       {props.foot}
     </div>
+    </>
   );
 });
+
+type RulerKind = "agree" | "found" | "missed" | "linked";
+const RULER_WORDS: Record<RulerKind, string> = {
+  agree: "found by the matcher, and the authors cite it",
+  found: "found by the matcher; the authors cite it elsewhere or not at all",
+  missed: "the authors cite it; the matcher did not find it",
+  linked: "linked",
+};
+function rulerKind(p: Passage): RulerKind {
+  const all = Object.values(p.match ?? {});
+  if (!all.length) return "linked";
+  if (all.some((m) => m.found_by.length && m.authors === "cites")) return "agree";
+  if (all.some((m) => m.found_by.length)) return "found";
+  return "missed";
+}
 
 function PageCanvas({ pdf, page, width, root }: { pdf: PDFDocumentProxy; page: number; width: number; root: React.RefObject<HTMLDivElement | null> }) {
   const holder = useRef<HTMLDivElement>(null);

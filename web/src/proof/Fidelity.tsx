@@ -250,10 +250,60 @@ export function MatchSummary({ edition, passage }: { edition: Edition; passage: 
 const share = (pair: [number, number] | null) => (pair ? `${pair[0]} of ${pair[1]}` : "");
 
 /** A matcher's results against the authors' own citations, beside its controls. */
+/** The few figures a reader sees first. */
+export function Headline({ evaluation }: { evaluation: Evaluation }) {
+  if (!evaluation.headline?.length) return null;
+  return (
+    <dl className="headline">
+      {evaluation.headline.map((h) => (
+        <div key={h.label} className="headline__tile">
+          <dt>{h.label.charAt(0).toUpperCase() + h.label.slice(1)}</dt>
+          <dd><strong>{h.value[0]}</strong> of {h.value[1]}<span className="headline__compare">{h.compare}</span></dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
+const RULER_KEY = [
+  { kind: "agree", words: "found by the matcher and cited by the authors" },
+  { kind: "found", words: "found by the matcher, cited elsewhere or not at all" },
+  { kind: "missed", words: "cited by the authors, missed by the matcher" },
+] as const;
+
+/** A standard's first screen on the right: how to read it, where the links are, and the results. */
+export function StandardStart({ edition, onPassage, onResults }: { edition: Edition; onPassage(id: string): void; onResults(): void }) {
+  const first = edition.passages[0];
+  const counts = { agree: 0, found: 0, missed: 0 } as Record<string, number>;
+  for (const p of edition.passages) {
+    const all = Object.values(p.match ?? {});
+    const kind = all.some((m) => m.found_by.length && m.authors === "cites") ? "agree" : all.some((m) => m.found_by.length) ? "found" : "missed";
+    counts[kind] += 1;
+  }
+  return (
+    <div className="standardstart">
+      <p className="standardstart__lead">Click a highlighted passage of the standard to open the Lean definition that states it, with the authors' comment beside it.</p>
+      <p>The strip beside the pages marks all {edition.passages.length} linked passages in the whole document:</p>
+      <ul className="standardstart__key">
+        {RULER_KEY.filter((k) => counts[k.kind] > 0).map((k) => <li key={k.kind}><span className={`ruler__swatch ruler__mark--${k.kind}`} aria-hidden="true" />{counts[k.kind]} {k.words}</li>)}
+      </ul>
+      {first && <p><button type="button" className="standardstart__go" onClick={() => onPassage(first.id)}>Go to the first linked passage, {sectionLabel(first.section)}, page {first.page}</button></p>}
+      {edition.evaluation && (
+        <>
+          <h3>{edition.evaluation.matcher} against the authors' own citations</h3>
+          <Headline evaluation={edition.evaluation} />
+          <p><button type="button" className="standardstart__go" onClick={onResults}>All results and how they were measured</button></p>
+        </>
+      )}
+    </div>
+  );
+}
+
 export function EvaluationResults({ evaluation }: { evaluation: Evaluation }) {
   return (
     <section className="evaluation" id="how-well-the-matching-worked" aria-labelledby="evaluation-title">
       <h3 id="evaluation-title">How well the matching worked</h3>
+      <Headline evaluation={evaluation} />
       {evaluation.method.map((line, i) => <p key={i}>{line}</p>)}
       <table>
         <thead>
@@ -263,7 +313,15 @@ export function EvaluationResults({ evaluation }: { evaluation: Evaluation }) {
           {evaluation.rows.map((row) => (
             <tr key={row.measure}>
               <th scope="row">{row.measure}{row.about && <span className="evaluation__about">{row.about}</span>}</th>
-              {evaluation.columns.map((c) => <td key={c.id}>{share(row.counts[c.id] ?? null)}</td>)}
+              {evaluation.columns.map((c) => {
+                const pair = row.counts[c.id] ?? null;
+                return (
+                  <td key={c.id} title={pair ? `${Math.round((100 * pair[0]) / Math.max(1, pair[1]))}%` : undefined}>
+                    {share(pair)}
+                    {pair && <span className="evaluation__bar" aria-hidden="true"><span style={{ width: `${(100 * pair[0]) / Math.max(1, pair[1])}%` }} /></span>}
+                  </td>
+                );
+              })}
             </tr>
           ))}
         </tbody>
