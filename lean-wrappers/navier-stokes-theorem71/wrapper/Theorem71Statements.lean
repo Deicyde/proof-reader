@@ -48,7 +48,7 @@ def gradient (v : ℝ → Space → Space) :
 The explicit finiteness clause prevents a divergent extended integral from
 being hidden by `ENNReal.toReal`. Matrix norms use `matSq`, not operator norm. -/
 def CorrectionBounds {k : ℕ} (Γ : Set Symmetry) (P : ℝ)
-    (Wa : ℝ → Space → Space) (ω : ℝ) (β : Fin k → ℝ)
+    (Wa : ℝ → Space → Space) (mw : ℝ) (β : Fin k → ℝ)
     (pin : Fin k → ℝ → Space → (Space →L[ℝ] Space)) (barℓ : Fin k → ℝ)
     (w : Space → ℝ) (ε M : ℝ) (W : ℝ → Space → Space) : Prop :=
   let v := correction P Wa W
@@ -58,7 +58,7 @@ def CorrectionBounds {k : ℕ} (Γ : Set Symmetry) (P : ℝ)
     IsPerturbation Γ P v G H g ∧
     periodLIntegral (fun θ y =>
       ‖secondDerivTrace (H θ y)‖ ^ 2 + w y * matSq (G θ y)) < ⊤ ∧
-    weightedEnergy w G H + ω ^ 2 * (∑ i, β i ^ 2) ≤ 4 * ε ^ 2 ∧
+    weightedEnergy w G H + mw ^ 2 * (∑ i, β i ^ 2) ≤ 4 * ε ^ 2 ∧
     (∀ θ : ℝ, ∫⁻ y, ENNReal.ofReal (matSq (G θ y)) ≤ ENNReal.ofReal (M ^ 2)) ∧
     (∀ i, pinValue (pin i) G = barℓ i)
 
@@ -94,7 +94,7 @@ theorem IsIdentityProfile.profileExists {P : ℝ}
   rcases h with ⟨hP, hW, hq, heq, hdiv, hper, hne, C, hdec, hpress⟩
   refine ⟨W, q, P, LinearIsometryEquiv.refl ℝ Space, C,
     hP, hW, hq, heq, hdiv, ?_, hne, hdec, hpress⟩
-  simpa using hper
+  exact fun s y => (hper s y).trans rfl
 
 theorem ExtendedConclusion.profileExists {k : ℕ} {d : ExtendedCertificateData k}
     (h : ExtendedConclusion d) : PeriodicSimilarityProfileExists := by

@@ -1,8 +1,10 @@
 --- a/Breakdown/Cert/ExtendedSigmaProfileOfHeld.lean
 +++ b/Breakdown/Cert/ExtendedSigmaProfileOfHeld.lean
-@@ -229,14 +229,17 @@
+@@ -228,15 +228,19 @@
+ 
  end Internal.ExtendedSigmaProfileOfHeld
  
++set_option maxHeartbeats 1600000 in
  open Internal.ExtendedSigmaProfileOfHeld in
 -theorem extendedSigmaProfileOfHeldHolds_of (h1 : SliceReadingHolds)
 +theorem extendedSigmaProfileOfHeld_keep (h1 : SliceReadingHolds)
@@ -23,7 +25,7 @@
      max (2 ^ 6 * (∫ y : Space, d.decay ^ 6 * (1 + ‖y‖) ^ (-(6 : ℝ))) + 2 ^ 6 * max B 0)
        (2 ^ 2 * (∫ y : Space, d.decay ^ 2 * (1 + ‖y‖) ^ (-(4 : ℝ))) + 2 ^ 2 * max B 0), ?_⟩
    exact
-@@ -265,4 +268,12 @@
+@@ -265,4 +269,12 @@
        weak_equation := fun φ hφ => h2 d hd q hq f κ hf hκ v G H hr φ hφ
        nonzero := h3 d hd q hq f κ hf v G H hr }
  
@@ -83,7 +85,7 @@
  import Breakdown.Weak.StatementsOrbit
  import Breakdown.Profile.Orbit
  
-@@ -161,11 +162,23 @@
+@@ -161,11 +162,24 @@
      rw [exp_timeChange (a - 1) t ht1', sub_sub_cancel, ht ⟨by linarith, htr⟩]
      exact dilX_inv_cancel h1t _
  
@@ -92,6 +94,7 @@
 -    hGR hTCN hPCM hex
 -  obtain ⟨W, G, H, P, R, C, hP, hWm, hGm, hHm, hper, hgrad, hHgrad, hdiv, hsix, htwo, hHint,
 -    hweak, hne⟩ := hex
++set_option maxHeartbeats 1600000 in
 +theorem weakOrbitOfParts_keep
 +    (hPV : PairingVelocity) (hVWG : VelocityWeakGradient) (hZG : ZeroGradientSix)
 +    (hGF : GradientFreqTr) (hSE : SliceEmbedding) (hAdv : AdvectionByParts)
@@ -112,7 +115,7 @@
    have hslice : ∀ s, IsSlice (W s) (G s) C := fun s => ⟨hgrad s, hdiv s, hsix s, htwo s⟩
    choose x hxv hxp hxn using fun s => hSE hPV hVWG hZG hGF (W s) (G s) C (hslice s)
    have hx : IsSliceCurve x W G (Real.sqrt (3 * max C 0)) := ⟨hxv, hxp, fun s => by
-@@ -186,7 +199,7 @@
+@@ -186,7 +200,7 @@
      rw [hWP] at h1
      exact h1.trans ((pushForward_ae_congr R (hx.vel s).symm).trans
        (velocityCov_holds.1 R (x s)).symm)
@@ -121,7 +124,7 @@
    · by_contra hzero
      push Not at hzero
      have hx0 : ∀ᵐ s, x s = 0 := by
-@@ -262,4 +275,18 @@
+@@ -262,4 +276,18 @@
            (hzm 0 _ ht₀0.le hT0 (by linarith))
        exact flowOfMild_unconditional X realization.F w _ s' s hlt hmild (fun r _ => rfl)
  
