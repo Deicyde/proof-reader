@@ -117,7 +117,16 @@ jobs:
     - name: Diagnostic axiom output for the authors' 27 named declarations
       if: steps.build.outputs.code == '0'
       working-directory: ${{ env.NS }}/lean
-      run: lake env lean scripts/PrintAxioms.lean 2>&1 | tee "$OUT/axioms.txt"
+      run: |
+        lake env lean scripts/PrintAxioms.lean 2>&1 | tee "$OUT/axioms.txt"
+        # The weak-to-smooth step of the certificate route is not among the 27 names above.
+        # Diagnostic only: a failure here is recorded, not fatal.
+        printf 'import Breakdown.CertTorus.Main\n#print axioms Breakdown.FarField.periodicLerayProfileExists_of_weak\n#print axioms Breakdown.FarField.breakdownOnTorus_of_weak\n' > "$RUNNER_TEMP/WeakToSmoothAxioms.lean"
+        lake env lean "$RUNNER_TEMP/WeakToSmoothAxioms.lean" > "$OUT/axioms-weak-to-smooth.txt" 2>&1 || echo "exit $?" >> "$OUT/axioms-weak-to-smooth.txt"
+        cat "$OUT/axioms-weak-to-smooth.txt"
+        # Hashes of the package's compiled files, so the judge job can check what it restores.
+        find .lake/build/lib/lean -name '*.olean' | LC_ALL=C sort | xargs sha256sum > "$OUT/package-oleans.sha256"
+        wc -l < "$OUT/package-oleans.sha256"
     - uses: actions/upload-artifact@v4
       if: always()
       with:
@@ -187,6 +196,20 @@ jobs:
     - name: Fetch Mathlib's compiled files (official cache, never built here)
       working-directory: ${{ env.NS }}/lean
       run: lake exe cache get
+    - name: Fetch the build job's record of its compiled files
+      uses: actions/download-artifact@v4
+      with:
+        name: navier-stokes-build
+        path: ${{ runner.temp }}/buildout
+    - name: Check the restored compiled files are the ones the build job made
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        sha256sum --check --quiet "$RUNNER_TEMP/buildout/package-oleans.sha256"
+        echo "package .olean files match the build job: $(wc -l < "$RUNNER_TEMP/buildout/package-oleans.sha256")"
+        cp "$RUNNER_TEMP/buildout/package-oleans.sha256" "$OUT/"
+        # Dependencies come from Mathlib's official cache; record exactly which bytes were read.
+        find .lake/packages -path '*/.lake/build/lib/lean/*' -name '*.olean' | LC_ALL=C sort | xargs sha256sum > "$OUT/dependency-oleans.sha256"
+        echo "dependency .olean files: $(wc -l < "$OUT/dependency-oleans.sha256"), digest $(sha256sum "$OUT/dependency-oleans.sha256" | cut -c1-64)"
     - name: Build lean4export with Lean v4.33.1
       run: |
         git init -q "$RUNNER_TEMP/export" && cd "$RUNNER_TEMP/export"
@@ -216,6 +239,8 @@ jobs:
         ex ExtendedCoerciveChallenge "$CERT" certificate
         ex CellLayerTheorems "$CELL" cell-layer
         ex Solution "$HEAD $CERT $CELL" solution
+        # Diagnostic: the readable cell file (and the readable chain it imports) as the challenge.
+        ex CellLayerChallenge "$CELL" cell-readable || echo "readable cell export failed: $?" | tee "$OUT/cell-readable.export-failed"
         ls -l "$RUNNER_TEMP/x"; (cd "$RUNNER_TEMP/x" && sha256sum *.export) | tee "$OUT/exports.sha256"
         df -h / | tail -1
     - name: Install the sandbox Comparator uses, and Lean v4.36.0
@@ -233,8 +258,8 @@ jobs:
         for k in leanchecker-paranoid nanoda_bin con-leche con-ron; do command -v "$k" || { echo "missing $k"; exit 1; }; done | tee "$OUT/kernels.txt"
         lake comparator --help > "$OUT/comparator-help.txt"
         head -12 "$OUT/comparator-help.txt"
-    - name: Comparator on the control and the three statement files
-      timeout-minutes: 195
+    - name: Comparator on the control, the three statement files, and the readable cell file
+      timeout-minutes: 230
       working-directory: ${{ runner.temp }}/judge
       run: |
         kernels='"external_kernels": {"Lean paranoid": ["leanchecker-paranoid", "--silent", "--from-export"], "nanoda": ["nanoda_bin"], "con-leche": ["con-leche"], "con-ron": ["con-ron"]}'
@@ -245,12 +270,14 @@ jobs:
         cfg Challenge "$(names comparator.json)" challenge
         cfg ExtendedCoerciveChallenge "$(names comparator-certificate.json)" certificate
         cfg CellLayerTheorems "$(names comparator-cell-layer.json)" cell-layer
+        cfg CellLayerChallenge "$(names comparator-cell-layer.json)" cell-readable
         cp *.json "$OUT/"
         lake --version > "$OUT/judge-lean.txt"; bwrap --version >> "$OUT/judge-lean.txt"
         run() {
           echo "== $1"; local start=$(date +%s)
           local limit=60m
           [ "$1" != control ] || limit=10m
+          [ "$1" != cell-readable ] || limit=30m
           if /usr/bin/time -v timeout --kill-after=60s "$limit" lake comparator --config "$1.json" --challenge-from-export "$RUNNER_TEMP/x/$1.export" --solution-from-export "$RUNNER_TEMP/x/solution.export" > "$OUT/$1.log" 2>&1; then echo 0 > "$OUT/$1.exit"; else echo $? > "$OUT/$1.exit"; fi
           tail -25 "$OUT/$1.log"; echo "exit $(cat "$OUT/$1.exit") after $(( $(date +%s) - start ))s"
         }
@@ -258,6 +285,9 @@ jobs:
         run challenge
         run certificate
         run cell-layer
+        # Diagnostic, outside the gate: a rejection here can come from proof-term differences
+        # in shared definitions, so it needs reading, not an automatic verdict.
+        if [ -s "$RUNNER_TEMP/x/cell-readable.export" ]; then run cell-readable; else echo none > "$OUT/cell-readable.exit"; fi
         python3 - <<'PYJUDGE'
         import json, os
         from pathlib import Path
@@ -276,6 +306,7 @@ jobs:
             "exit_codes": codes,
             "control_rejected_for_expected_statement_mismatch": control_ok,
             "all_positive_comparisons_accepted": positives_ok,
+            "readable_cell_challenge_exit (diagnostic, not gated)": (out / "cell-readable.exit").read_text().strip(),
             "certificate_instantiated": False,
             "scope": "Three supplied configurations, 15 named theorems; no numerical certificate check.",
         }
