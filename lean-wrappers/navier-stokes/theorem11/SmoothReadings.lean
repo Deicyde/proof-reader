@@ -27,7 +27,7 @@ theorem partial_reading_of_smooth (x : X) (f : Space → Space)
   have hdf : Continuous (fun y => fderiv ℝ f y (unitVector i)) :=
     (hf.continuous_fderiv (by simp)).clm_apply continuous_const
   refine ae_eq_of_integral_contDiff_smul_eq
-    ((Lp.memLp (partialX i x)).locallyIntegrable (by norm_num))
+    ((Lp.memLp (partialX i x)).locallyIntegrable (by first | exact one_le_two | norm_num))
     hdf.locallyIntegrable fun φ hφ hc => ?_
   calc
     (∫ y, φ y • (partialX i x : Space → Space) y)
@@ -35,7 +35,9 @@ theorem partial_reading_of_smooth (x : X) (f : Space → Space)
       Breakdown.WeakProfile.velocityWeakGradient_holds x φ ⟨hφ, hc⟩ i
     _ = -∫ y, fderiv ℝ φ y (unitVector i) • f y := by
       congr 1
-      exact integral_congr_ae (hvel.mono fun y hy => by rw [hy])
+      refine integral_congr_ae ?_
+      filter_upwards [hvel] with y hy
+      rw [hy]
     _ = ∫ y, φ y • fderiv ℝ f y (unitVector i) := by
       symm
       apply integral_smul_fderiv_eq_neg_fderiv_smul_of_integrable
@@ -54,15 +56,18 @@ theorem gradient_reading_of_smooth (x : X) (f : Space → Space)
   gradient_reading x f (partial_reading_of_smooth x f hf hvel)
 
 theorem smooth_dilateField (μ : ℝ) (f : Space → Space) (hf : ContDiff ℝ ∞ f) :
-    ContDiff ℝ ∞ (dilateField μ f) :=
-  (hf.comp (contDiff_const.smul contDiff_id)).const_smul (Real.sqrt μ)
+    ContDiff ℝ ∞ (dilateField μ f) := by
+  have hs : ContDiff ℝ ∞ (fun y : Space => Real.sqrt μ • y) := contDiff_const.smul contDiff_id
+  have hc : ContDiff ℝ ∞ (fun y : Space => f (Real.sqrt μ • y)) := hf.comp hs
+  exact hc.const_smul (Real.sqrt μ)
 
 theorem dilateField_ae {f g : Space → Space} (hfg : f =ᵐ[volume] g)
     {μ : ℝ} (hμ : 0 < μ) : dilateField μ f =ᵐ[volume] dilateField μ g := by
   have hmap : Measure.QuasiMeasurePreserving (fun y : Space => Real.sqrt μ • y)
       volume volume :=
     Measure.quasiMeasurePreserving_smul (μ := volume) (Real.sqrt_pos.2 hμ).ne'
-  exact (hmap.ae_eq_comp hfg).mono fun y hy => congrArg (fun v => Real.sqrt μ • v) hy
+  filter_upwards [hmap.ae_eq hfg] with y hy
+  exact congrArg (fun v => Real.sqrt μ • v) hy
 
 theorem rescaled_gradient_reading (x : X) (f g : Space → Space) (μ : ℝ)
     (hμ : 0 < μ) (hf : ContDiff ℝ ∞ f) (hg : IsDecayField g)

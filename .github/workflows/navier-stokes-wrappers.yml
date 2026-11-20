@@ -70,7 +70,7 @@ jobs:
     - name: Compile each module and record its exit code
       working-directory: ${{ env.NS }}/lean
       run: |
-        mods="Theorem11Challenge Theorem11ContractFacts Theorem11Rate Theorem11GeometricRate Theorem11NormAssembly Theorem11PhysicalBridges SpaceCore SmoothReadings Theorem11Solution Theorem11TorusHelpers Theorem11TorusRates Theorem11TorusConvergence Theorem11TorusMildExport Theorem11RateReplay PrintAxiomsTheorem11 DegenerateWitnessProbes"
+        mods="Theorem11Challenge Theorem11ContractFacts Theorem11Rate Theorem11GeometricRate Theorem11NormAssembly Theorem11PhysicalBridges SpaceCore SmoothReadings Theorem11Solution Theorem11TorusHelpers Theorem11TorusRates Theorem11TorusConvergence Theorem11TorusMildExport Theorem11RateReplay PrintAxiomsTheorem11 PrintAxiomsTheorem11Torus DegenerateWitnessProbes"
         for m in $mods; do
           start=$(date +%s)
           if timeout --kill-after=60s 90m lake build "$m" > "$OUT/build-$m.log" 2>&1; then c=0; else c=$?; fi
@@ -81,11 +81,14 @@ jobs:
     - name: Print the wrapper theorems' axioms
       working-directory: ${{ env.NS }}/lean
       run: |
-        if [ "$(cat "$OUT/build-PrintAxiomsTheorem11.exit")" = 0 ]; then
-          lake env lean PrintAxiomsTheorem11.lean 2>&1 | tee "$OUT/axioms-theorem11.txt"
-        else
-          echo "PrintAxiomsTheorem11 did not build; axioms not printed" | tee "$OUT/axioms-theorem11.txt"
-        fi
+        for pair in "PrintAxiomsTheorem11:axioms-theorem11.txt" "PrintAxiomsTheorem11Torus:axioms-theorem11-torus.txt"; do
+          m="${pair%%:*}"; f="${pair#*:}"
+          if [ "$(cat "$OUT/build-$m.exit")" = 0 ]; then
+            lake env lean "$m.lean" 2>&1 | tee "$OUT/$f"
+          else
+            echo "$m did not build; axioms not printed" | tee "$OUT/$f"
+          fi
+        done
         python3 - <<'PY'
         import json, os
         from pathlib import Path

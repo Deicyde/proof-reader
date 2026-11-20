@@ -102,7 +102,10 @@ theorem smooth_before_of_library {T : ℝ} {φ : VectorField} {U : Velocity} {p 
   · intro z hz
     exact ⟨⟨hz.1.1, hz.1.2.le⟩, hz.2⟩
   · intro t ht x
-    simpa only [one_smul] using hs.momentum t ht x
+    -- `simpa` compares at reducible transparency, which does not unfold the
+    -- two vocabularies; they agree by unfolding, so `exact` closes the goal.
+    rw [one_smul]
+    exact hs.momentum t ht x
   · intro t ht x
     exact hs.incompressible t ⟨ht.1, ht.2.le⟩ x
 

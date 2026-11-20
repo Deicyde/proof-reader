@@ -40,7 +40,7 @@ theorem similarityTime_eq_log_ratio {T t : ℝ} (hT : 0 < T) (ht : t < T) :
 /-- Translating the library's cell center to the origin removes the spatial
 center from the self-similar formula. This is only a formula identity. -/
 theorem selfSimilar_translate_center (W : ℝ → Space → Space) (T t : ℝ) (x : Space) :
-    selfSimilar W T t (center + x) =
+    selfSimilar W T t (Periodic.center + x) =
       (T - t) ^ (-(1 / 2 : ℝ)) •
         W (similarityTime T t) ((T - t) ^ (-(1 / 2 : ℝ)) • x) := by
   simp only [selfSimilar, add_sub_cancel_left]
@@ -61,7 +61,7 @@ its chosen fundamental cube. -/
 theorem approxField_eq_selfSimilar_on_innerBall
     {W : ℝ → Space → Space} {q : ℝ → Space → ℝ} {C T t : ℝ}
     (hW : IsSimilarityProfile W q C) (hT : 0 < T) (ht : t < T)
-    {x : Space} (hx : dist x center ≤ (1 / 16 : ℝ)) :
+    {x : Space} (hx : dist x Periodic.center ≤ (1 / 16 : ℝ)) :
     approxField W T t x = selfSimilar W T t x := by
   apply ((approximation_properties W q C T hW hT).2.2 t ht x).2.2
   have hr : centralRadius / 4 = (1 / 16 : ℝ) := by norm_num [centralRadius]
@@ -71,15 +71,15 @@ theorem approxField_eq_selfSimilar_on_innerBall
 theorem approxPeriodic_eq_selfSimilar_on_innerBall
     {W : ℝ → Space → Space} {q : ℝ → Space → ℝ} {C T t : ℝ}
     (hW : IsSimilarityProfile W q C) (hT : 0 < T) (ht : t < T)
-    {x : Space} (hx : dist x center ≤ (1 / 16 : ℝ)) :
+    {x : Space} (hx : dist x Periodic.center ≤ (1 / 16 : ℝ)) :
     approxPeriodic W T t x = selfSimilar W T t x := by
   have he : approxField W T t (wrap x) = approxField W T t (x - freq (0 : Lattice)) := by
     apply ApproxLinks.Internal.wrap_eq_shift
       (ApproxLinks.Internal.approxField_far approximation_properties hW hT ht)
     intro j
-    have hc := Transplant.Internal.abs_apply_le (x - center) j
+    have hc := Transplant.Internal.abs_apply_le (x - Periodic.center) j
     rw [PiLp.sub_apply, Transplant.Internal.center_apply] at hc
-    have hx' : ‖x - center‖ ≤ (1 / 16 : ℝ) := by
+    have hx' : ‖x - Periodic.center‖ ≤ (1 / 16 : ℝ) := by
       simpa only [dist_eq_norm] using hx
     simp only [Pi.zero_apply, Int.cast_zero, sub_zero]
     linarith
@@ -94,13 +94,13 @@ The open ball is enough for the local H¹ estimate. -/
 theorem fderiv_approxPeriodic_eq_on_innerBall
     {W : ℝ → Space → Space} {q : ℝ → Space → ℝ} {C T t : ℝ}
     (hW : IsSimilarityProfile W q C) (hT : 0 < T) (ht : t < T)
-    {x : Space} (hx : dist x center < (1 / 16 : ℝ)) :
+    {x : Space} (hx : dist x Periodic.center < (1 / 16 : ℝ)) :
     fderiv ℝ (approxPeriodic W T t) x = fderiv ℝ (selfSimilar W T t) x := by
   have he : approxPeriodic W T t =ᶠ[𝓝 x] selfSimilar W T t :=
     Filter.eventually_of_mem
-      (Metric.isOpen_ball.mem_nhds (show x ∈ Metric.ball center (1 / 16 : ℝ) from hx))
+      (Metric.isOpen_ball.mem_nhds (show x ∈ Metric.ball Periodic.center (1 / 16 : ℝ) from hx))
       (fun y hy => approxPeriodic_eq_selfSimilar_on_innerBall hW hT ht
-        (show dist y center ≤ (1 / 16 : ℝ) from le_of_lt hy))
+        (show dist y Periodic.center ≤ (1 / 16 : ℝ) from le_of_lt hy))
   exact he.fderiv_eq
 
 /-- The local error against the true profile has exactly the same derivative
@@ -109,26 +109,28 @@ an estimate or an additional tail term. -/
 theorem fderiv_error_eq_on_innerBall
     {W : ℝ → Space → Space} {q : ℝ → Space → ℝ} {C T t : ℝ}
     (hW : IsSimilarityProfile W q C) (hT : 0 < T) (ht : t < T)
-    (v : Space → Space) {x : Space} (hx : dist x center < (1 / 16 : ℝ)) :
+    (v : Space → Space) {x : Space} (hx : dist x Periodic.center < (1 / 16 : ℝ)) :
     fderiv ℝ (fun y => v y - approxPeriodic W T t y) x =
       fderiv ℝ (fun y => v y - selfSimilar W T t y) x := by
   have he : (fun y => v y - approxPeriodic W T t y) =ᶠ[𝓝 x]
       (fun y => v y - selfSimilar W T t y) :=
     Filter.eventually_of_mem
-      (Metric.isOpen_ball.mem_nhds (show x ∈ Metric.ball center (1 / 16 : ℝ) from hx))
-      (fun y hy => by rw [approxPeriodic_eq_selfSimilar_on_innerBall hW hT ht
-        (show dist y center ≤ (1 / 16 : ℝ) from le_of_lt hy)])
+      (Metric.isOpen_ball.mem_nhds (show x ∈ Metric.ball Periodic.center (1 / 16 : ℝ) from hx))
+      (fun y hy => by
+        try dsimp only
+        rw [approxPeriodic_eq_selfSimilar_on_innerBall hW hT ht
+          (show dist y Periodic.center ≤ (1 / 16 : ℝ) from le_of_lt hy)])
   exact he.fderiv_eq
 
 def localGradientNorm (f : Space → Space) : ℝ :=
-  Real.sqrt (∫ x in Metric.ball center (1 / 16 : ℝ),
+  Real.sqrt (∫ x in Metric.ball Periodic.center (1 / 16 : ℝ),
     ∑ i : Fin 3, ‖fderiv ℝ f x (unitVector i)‖ ^ 2)
 
-theorem innerBall_subset_cell : Metric.ball center (1 / 16 : ℝ) ⊆ cell := by
+theorem innerBall_subset_cell : Metric.ball Periodic.center (1 / 16 : ℝ) ⊆ cell := by
   intro x hx i
-  have hb := Transplant.Internal.abs_apply_le (x - center) i
+  have hb := Transplant.Internal.abs_apply_le (x - Periodic.center) i
   rw [PiLp.sub_apply, Transplant.Internal.center_apply, abs_le] at hb
-  have hx' : ‖x - center‖ < (1 / 16 : ℝ) := by
+  have hx' : ‖x - Periodic.center‖ < (1 / 16 : ℝ) := by
     simpa only [Metric.mem_ball, dist_eq_norm] using hx
   constructor <;> linarith [hb.1, hb.2]
 
@@ -142,7 +144,7 @@ theorem localGradientNorm_le_toV {f : Space → Space}
       (fun x => ‖fderiv ℝ f x (unitVector i)‖ ^ 2) cell := fun i =>
     ((FreqTrSeries.Internal.contDiff_partialD i hf).continuous.norm.pow 2).continuousOn.integrableOn_compact
       FreqTrSeries.Internal.isCompact_cell
-  have hlocal : (∫ x in Metric.ball center (1 / 16 : ℝ),
+  have hlocal : (∫ x in Metric.ball Periodic.center (1 / 16 : ℝ),
       ∑ i : Fin 3, ‖fderiv ℝ f x (unitVector i)‖ ^ 2) ≤
       ∑ i : Fin 3, ∫ x in cell, ‖fderiv ℝ f x (unitVector i)‖ ^ 2 := by
     rw [integral_finsetSum _ (fun i _ => (hi i).mono_set innerBall_subset_cell)]
@@ -150,7 +152,7 @@ theorem localGradientNorm_le_toV {f : Space → Space}
       (Filter.Eventually.of_forall fun x => sq_nonneg _) innerBall_subset_cell.eventuallyLE
   have hnorm := Transplant.Internal.norm_toV_sq hf hp hd
   have hmass : 0 ≤ ∫ x in cell, ‖f x‖ ^ 2 := integral_nonneg fun x => sq_nonneg _
-  have hbound : (∫ x in Metric.ball center (1 / 16 : ℝ),
+  have hbound : (∫ x in Metric.ball Periodic.center (1 / 16 : ℝ),
       ∑ i : Fin 3, ‖fderiv ℝ f x (unitVector i)‖ ^ 2) ≤ ‖toV f‖ ^ 2 := by
     linarith
   unfold localGradientNorm
@@ -174,8 +176,9 @@ theorem local_profile_error_le_periodic_error
       localGradientNorm (fun y => v y - approxPeriodic W T t y) := by
     unfold localGradientNorm
     congr 1
-    apply setIntegral_congr_fun Metric.isOpen_ball.measurableSet
+    refine setIntegral_congr_fun measurableSet_ball ?_
     intro x hx
+    try dsimp only
     rw [fderiv_error_eq_on_innerBall hW hT ht v hx]
   rw [he]
   exact localGradientNorm_le_toV hf hp hd
@@ -185,8 +188,8 @@ term is the sum of squared basis derivatives (the Frobenius norm).
 Use the explicit integrability conclusions/arguments of the lemmas below
 when interpreting these real-valued integrals. -/
 def localH1Norm (f : Space → Space) : ℝ :=
-  Real.sqrt ((∫ x in Metric.ball center (1 / 16 : ℝ), ‖f x‖ ^ 2) +
-    ∑ i : Fin 3, ∫ x in Metric.ball center (1 / 16 : ℝ),
+  Real.sqrt ((∫ x in Metric.ball Periodic.center (1 / 16 : ℝ), ‖f x‖ ^ 2) +
+    ∑ i : Fin 3, ∫ x in Metric.ball Periodic.center (1 / 16 : ℝ),
       ‖fderiv ℝ f x (unitVector i)‖ ^ 2)
 
 /-- Explicit cell integrability guards for the physical full H¹ norm. -/
@@ -208,11 +211,11 @@ theorem localH1Norm_le_toV {f : Space → Space}
     (hL2 : IntegrableOn (fun x => ‖f x‖ ^ 2) cell)
     (hD2 : ∀ i : Fin 3, IntegrableOn (fun x => ‖fderiv ℝ f x (unitVector i)‖ ^ 2) cell) :
     localH1Norm f ≤ ‖toV f‖ := by
-  have hvalue : (∫ x in Metric.ball center (1 / 16 : ℝ), ‖f x‖ ^ 2) ≤
+  have hvalue : (∫ x in Metric.ball Periodic.center (1 / 16 : ℝ), ‖f x‖ ^ 2) ≤
       ∫ x in cell, ‖f x‖ ^ 2 :=
     setIntegral_mono_set hL2 (Filter.Eventually.of_forall fun x => sq_nonneg _)
       innerBall_subset_cell.eventuallyLE
-  have hgradient : (∑ i : Fin 3, ∫ x in Metric.ball center (1 / 16 : ℝ),
+  have hgradient : (∑ i : Fin 3, ∫ x in Metric.ball Periodic.center (1 / 16 : ℝ),
       ‖fderiv ℝ f x (unitVector i)‖ ^ 2) ≤
       ∑ i : Fin 3, ∫ x in cell, ‖fderiv ℝ f x (unitVector i)‖ ^ 2 :=
     Finset.sum_le_sum fun i _ => setIntegral_mono_set (hD2 i)
@@ -236,14 +239,16 @@ theorem localH1_profile_error_eq_periodic_error
   unfold localH1Norm
   apply congrArg Real.sqrt
   apply congrArg₂ (fun a b : ℝ => a + b)
-  · apply setIntegral_congr_fun Metric.isOpen_ball.measurableSet
+  · refine setIntegral_congr_fun measurableSet_ball ?_
     intro x hx
+    try dsimp only
     rw [approxPeriodic_eq_selfSimilar_on_innerBall hW hT ht
-      (show dist x center ≤ (1 / 16 : ℝ) from le_of_lt hx)]
+      (show dist x Periodic.center ≤ (1 / 16 : ℝ) from le_of_lt hx)]
   · apply Finset.sum_congr rfl
     intro i hi
-    apply setIntegral_congr_fun Metric.isOpen_ball.measurableSet
+    refine setIntegral_congr_fun measurableSet_ball ?_
     intro x hx
+    try dsimp only
     rw [fderiv_error_eq_on_innerBall hW hT ht v hx]
 
 /-- The guarded FULL H¹ local error bridge. Smoothness of the periodic error
@@ -258,25 +263,27 @@ theorem local_fullH1_profile_error_le_periodic_error
     (hp : IsPeriodic (fun y => v y - approxPeriodic W T t y))
     (hd : ∀ x, divergenceAt (fun y => v y - approxPeriodic W T t y) x = 0) :
     IntegrableOn (fun x => ‖v x - selfSimilar W T t x‖ ^ 2)
-        (Metric.ball center (1 / 16 : ℝ)) ∧
+        (Metric.ball Periodic.center (1 / 16 : ℝ)) ∧
       (∀ i : Fin 3, IntegrableOn
         (fun x => ‖fderiv ℝ (fun y => v y - selfSimilar W T t y) x (unitVector i)‖ ^ 2)
-        (Metric.ball center (1 / 16 : ℝ))) ∧
+        (Metric.ball Periodic.center (1 / 16 : ℝ))) ∧
       localH1Norm (fun y => v y - selfSimilar W T t y) ≤
         ‖toV (fun y => v y - approxPeriodic W T t y)‖ := by
   obtain ⟨hL2, hD2⟩ := physicalH1_integrableOn_cell hf
   have hvalue : IntegrableOn (fun x => ‖v x - selfSimilar W T t x‖ ^ 2)
-      (Metric.ball center (1 / 16 : ℝ)) := by
+      (Metric.ball Periodic.center (1 / 16 : ℝ)) := by
     refine (hL2.mono_set innerBall_subset_cell).congr_fun (fun x hx => ?_)
-      Metric.isOpen_ball.measurableSet
+      measurableSet_ball
+    try dsimp only
     rw [approxPeriodic_eq_selfSimilar_on_innerBall hW hT ht
-      (show dist x center ≤ (1 / 16 : ℝ) from le_of_lt hx)]
+      (show dist x Periodic.center ≤ (1 / 16 : ℝ) from le_of_lt hx)]
   have hgradient : ∀ i : Fin 3, IntegrableOn
       (fun x => ‖fderiv ℝ (fun y => v y - selfSimilar W T t y) x (unitVector i)‖ ^ 2)
-      (Metric.ball center (1 / 16 : ℝ)) := by
+      (Metric.ball Periodic.center (1 / 16 : ℝ)) := by
     intro i
     refine ((hD2 i).mono_set innerBall_subset_cell).congr_fun (fun x hx => ?_)
-      Metric.isOpen_ball.measurableSet
+      measurableSet_ball
+    try dsimp only
     rw [fderiv_error_eq_on_innerBall hW hT ht v hx]
   refine ⟨hvalue, hgradient, ?_⟩
   rw [localH1_profile_error_eq_periodic_error hW hT ht v]

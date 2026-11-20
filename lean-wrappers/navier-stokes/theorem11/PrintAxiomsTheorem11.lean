@@ -1,11 +1,10 @@
 /-
-NOT COMPILED at authoring. Run only after every imported wrapper builds.
+Axiom report for the space-side Theorem 1.1 wrapper and the helper modules that
+compile on their own. The torus modules have their own report in
+`PrintAxiomsTheorem11Torus.lean`, so a torus failure cannot hide these lines.
 The full physical endpoints are deliberately absent: they are not proved here.
 -/
 import Theorem11Solution
-import Theorem11TorusHelpers
-import Theorem11TorusRates
-import Theorem11TorusConvergence
 import Theorem11TorusMildExport
 import Theorem11ContractFacts
 import Theorem11GeometricRate
@@ -31,12 +30,6 @@ import Theorem11NormAssembly
 #print axioms Theorem11.theorem11SpaceCore
 #print axioms Theorem11.theorem11SpaceLocal
 #print axioms Theorem11.theorem11SpaceSlabs
-#print axioms Breakdown.Theorem11.Torus.norm_toV_eq_physicalH1
-#print axioms Breakdown.Theorem11.Torus.approxPeriodic_eq_selfSimilar_on_innerBall
-#print axioms Breakdown.Theorem11.Torus.local_fullH1_profile_error_le_periodic_error
-#print axioms Breakdown.Theorem11.Torus.glued_eventual_two_sided_rate
-#print axioms Breakdown.Theorem11.Torus.glued_approx_error_le_power
-#print axioms Breakdown.Theorem11.Torus.rescaled_glued_approx_error_le_power
 #print axioms Breakdown.Theorem11.Torus.torus_mild_blowup_of_profile
 #print axioms Theorem11.comparisonField_one_zero
 #print axioms Theorem11.rescaleAtOne_zero

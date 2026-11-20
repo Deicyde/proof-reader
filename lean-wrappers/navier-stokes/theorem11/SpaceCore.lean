@@ -90,6 +90,7 @@ theorem norm_sq_eq_sum_partial (x : X) :
     have hi : ∀ i : Fin 3, Integrable
         (fun y => ‖fderiv ℝ φ y (unitVector i)‖ ^ 2) volume := fun i =>
       ((Lp.memLp (partialX i (embedX φ))).integrable_norm_pow two_ne_zero).congr (he i)
+    show ‖embedX φ‖ ^ 2 = ∑ i : Fin 3, ‖partialX i (embedX φ)‖ ^ 2
     rw [embedNormLinear_holds.1 φ hd, integral_finsetSum _ (fun i _ => hi i)]
     apply Finset.sum_congr rfl
     intro i _
@@ -262,14 +263,27 @@ theorem space_core (W : ℝ → Space → Space) (q : ℝ → Space → ℝ)
       (fun t ht hn => (hlate t ht hn).1)
   obtain ⟨a, b, ha, hb, hrates⟩ := Theorem11Rate.globalize_rate u hu.1 hne
     (c / 2) (M + c / 2) δ (half_pos hc) hδ hlate
-  refine ⟨{ datum := φ, state := u, errorConstant := C, exponent := κ',
-    lowerConstant := a, upperConstant := b, datum_test := hφ, initial := hφu.symm,
-    initial_gradient_finite := gradientSquare_integrable _ hdiff,
-    initial_gradient_close := hphysicalClose, initial_abstract_close := hclose,
-    mild := hu, errorConstant_nonneg := hC, exponent_pos := hκ',
-    exponent_lt_quarter := hκ'quarter,
-    lowerConstant_pos := ha, upperConstant_pos := hb,
-    convergence := herror', norm_rate := hrates, local_physical := ?_ }⟩
+  refine ⟨{
+    datum := φ
+    state := u
+    errorConstant := C
+    exponent := κ'
+    lowerConstant := a
+    upperConstant := b
+    datum_test := hφ
+    initial := hφu.symm
+    initial_gradient_finite := gradientSquare_integrable _ hdiff
+    initial_gradient_close := hphysicalClose
+    initial_abstract_close := hclose
+    mild := hu
+    errorConstant_nonneg := hC
+    exponent_pos := hκ'
+    exponent_lt_quarter := hκ'quarter
+    lowerConstant_pos := ha
+    upperConstant_pos := hb
+    convergence := herror'
+    norm_rate := hrates
+    local_physical := ?_ }⟩
   intro T hT hT1
   exact realization_mildRegular φ hφ u T hT
     (realization.F.isMildOnIcc_of_isMildOn hu hT.le hT1) hφu.symm
