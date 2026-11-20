@@ -109,7 +109,24 @@ this comparison was made by reading. We have not repeated it.
 `CellSystemCondition`, fifteen conditions on finitely many functions and
 numbers, give `BreakdownOnSpace` and `BreakdownOnTorus`. This is the Lean
 form of Appendix B with Theorem 7.1 and Corollary 7.2. The definitions run to
-about 300 KB; we have not yet compared them with Appendix B.
+about 7,000 lines.
+
+Where Appendix B writes a condition out, the Lean matches it term for term:
+(B.11), (B.19), (B.22), (B.25), (B.27), (B.29) to (B.31), (B.38) to (B.43),
+Lemmas B.9, B.10, B.12 and B.13, and (7.21) and (7.24) to (7.37). We found no
+condition the Lean states more strongly than the paper, and no junk value
+(a derivative at a kink, a division by zero, an empty sum) that makes a Lean
+condition easier in a way that matters. Appendix B does not write out every
+condition: it ends by saying that the conditions it has not written out are
+of the same kinds as those it has. For those, which include the coefficient
+bounds of each cell and the fields $G_j$, $U_j$, $F_j$, $q_j$, only the form
+can be compared. Of the three changes in the patch of 20 November, the weight
+$(|m|+\tfrac12)^2$ (`AzimuthalBounded`) and the constant that may be zero
+(`curlHessFloor_nonneg`, our identification) appear in Appendix B; the
+restriction to harmonics that do not vanish in a cell (`modelLabels`) does
+not appear explicitly. The comparison read all of Appendix B and §7.3 and
+about 1,500 of the Lean lines; `cell-layer-fidelity.md` gives the table and
+its coverage, condition by condition.
 
 ## 4. What the public evidence covers
 
@@ -123,7 +140,9 @@ about 300 KB; we have not yet compared them with Appendix B.
 
 The unconditional theorem rests on the last row. Once the certificate is
 released, the step to check is that the conditions the computation verifies
-are those of `CellSystemCondition` as the Lean states them. The authors'
+are those of `CellSystemCondition` as the Lean states them. Since Appendix B
+leaves some conditions unwritten, that check needs the computation's own
+source as well as the certificate. The authors'
 README also says that a patch of 20 November 2026 changed the cell-layer
 statements and the proofs that depend on them, and that the patched package
 was not rebuilt before the repository was assembled.
