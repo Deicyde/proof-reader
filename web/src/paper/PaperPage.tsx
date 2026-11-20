@@ -711,7 +711,9 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (shown.mode === "between") return <><b>No statement at this line.</b> The last was {name}.</>;
     if (shown.mode === "start") return markdown
       ? <><b>Main claim</b> {name}</>
-      : <><b>Before the first statement,</b> in {sectionLabel(edition.coverage.sections[0])}. Showing the main claim.</>;
+      : edition.paper.standard
+        ? <><b>Before the first linked passage,</b> in {sectionLabel(edition.coverage.sections[0])}.</>
+        : <><b>Before the first statement,</b> in {sectionLabel(edition.coverage.sections[0])}. Showing the main claim.</>;
     // The statement by its plain name and section; its exact place is under "In the paper".
     return <><b>Following the {noun(edition)}:</b> {name && stepView.passage ? `${name}, ${sectionLabel(stepView.passage.section)}` : stepView.title}</>;
   })();

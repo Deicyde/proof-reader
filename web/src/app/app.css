@@ -146,6 +146,22 @@ button:disabled { cursor: default; }
 .pdf { position: relative; min-height: 0; overflow-y: auto; overflow-x: hidden; scrollbar-gutter: stable; scrollbar-width: thin; padding: 20px 0 20px 20px; outline-offset: -2px;
   /* The authors' page stays paper-coloured at night. */
   --highlight: #ffdf8e; --highlight-soft: #fff0c7; --thread: #b4650a; --tie-rest: #b09a78; }
+/* Zoom, and a ruler showing where in the whole document the links are (as an editor
+   marks problems in a long file beside its scroll bar). */
+.pdf--ruled { padding-right: 22px; }
+.pdf--wide { overflow-x: auto; }
+.pdfzoom { position: absolute; left: 28px; bottom: 14px; z-index: 6; display: flex; align-items: stretch; border: 1px solid var(--rule-strong); border-radius: 999px; background: var(--surface); box-shadow: 0 2px 10px rgb(0 0 0 / 0.18); overflow: hidden; font-size: var(--fs-sm); }
+.pdfzoom button { min-width: 34px; height: 30px; padding: 0 8px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.pdfzoom button:hover:not(:disabled) { background: var(--lit-wash); }
+.pdfzoom button:disabled { color: var(--rule-control); }
+.pdfzoom__fit { min-width: 54px; border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+.ruler { position: absolute; top: 20px; bottom: 20px; right: 13px; z-index: 5; width: 9px; cursor: pointer; border-radius: 3px; background: color-mix(in srgb, var(--rule) 55%, transparent); }
+.ruler__view { position: absolute; left: -3px; right: -3px; min-height: 6px; border: 1px solid var(--rule-control); border-radius: 3px; background: color-mix(in srgb, var(--ink) 8%, transparent); pointer-events: none; }
+.ruler__mark { position: absolute; left: 0; right: 0; border-radius: 2px; pointer-events: none; }
+.ruler__mark--agree, .ruler__mark--linked { background: var(--lit-line); }
+.ruler__mark--found { background: var(--rule-control); }
+.ruler__mark--missed { background: transparent; box-shadow: inset 0 0 0 1.5px var(--lit-line); }
+.ruler__mark.is-active { left: -3px; right: -3px; background: var(--lit); box-shadow: none; }
 .pdf__page { position: relative; isolation: isolate; overflow: hidden; margin: 0 0 20px auto; background: var(--paper-white); box-shadow: 0 0 0 1px rgb(70 50 20 / 0.07), 0 1px 3px rgb(70 50 20 / 0.08); }
 .pdf__whole { position: absolute; }
 .pdf__failed { margin: 0; padding: 40px 20px; font-size: var(--fs-base); color: var(--ink-2); }
@@ -406,6 +422,22 @@ button:disabled { cursor: default; }
 .matchsummary { margin: 6px 0 0; font-size: var(--fs-sm); line-height: 1.4; color: var(--ink-2); }
 .alsostate { margin: 4px 0 0; font-size: var(--fs-sm); line-height: 1.5; color: var(--ink-2); }
 .alsostate__link { color: var(--lit); }
+.headline { display: grid; grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr)); gap: 10px; margin: 10px 0 14px; }
+.headline__tile { padding: 12px 14px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); }
+.headline dt { font-size: var(--fs-sm); line-height: 1.35; color: var(--ink-2); }
+.headline dd { margin: 6px 0 0; font-size: var(--fs-sm); color: var(--ink-2); }
+.headline dd strong { font-family: var(--font-serif); font-size: 1.9rem; font-weight: 500; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
+.headline__compare { display: block; margin-top: 4px; font-size: var(--fs-xs); }
+.evaluation__bar { display: block; width: 100%; max-width: 7rem; height: 3px; margin-top: 3px; border-radius: 2px; background: var(--rule); overflow: hidden; }
+.evaluation__bar > span { display: block; height: 100%; border-radius: 2px; background: var(--lit-line); }
+.standardstart { padding: 18px 20px 8px; font-size: var(--fs-ui); line-height: 1.55; color: var(--ink); }
+.standardstart p { margin: 0 0 10px; max-width: 44rem; }
+.standardstart__lead { font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.45; }
+.standardstart h3 { margin: 18px 0 2px; font-family: var(--font-serif); font-size: 1.1rem; font-weight: 500; }
+.standardstart__key { margin: 0 0 12px; padding: 0; list-style: none; font-size: var(--fs-sm); color: var(--ink-2); }
+.standardstart__key li { display: flex; align-items: center; gap: 10px; margin: 0 0 4px; }
+.ruler__swatch { position: static; display: inline-block; flex: none; width: 9px; height: 14px; border-radius: 2px; }
+.standardstart__go { min-height: 28px; color: var(--lit); text-decoration: underline; text-underline-offset: 3px; }
 .evaluation { margin: 14px 0 12px; font-size: var(--fs-ui); line-height: 1.5; color: var(--ink); }
 .evaluation p, .evaluation li { max-width: 52rem; }
 .evaluation table { margin: 6px 0 8px; }

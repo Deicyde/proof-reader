@@ -49,6 +49,8 @@ export interface Evaluation {
   misses: { declaration: string; citation: string }[];
   /** Where the full records are. */
   records: string;
+  /** The few figures a reader sees first, each [found, of] with what it counts. */
+  headline?: { value: [number, number]; label: string; compare: string }[];
 }
 
 export interface OutlineEntry {
