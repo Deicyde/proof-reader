@@ -1,8 +1,9 @@
 # Compile the authors' torus Euler package at its own toolchain and commit, and read the
 # Paper layer's declarations, dependencies and axioms from the compiled files.
-# The authors' repository has no licence, so their files are fetched on the runner and
-# never committed here, and the uploaded report keeps no Lean text: names, kinds, modules,
-# line numbers, dependencies and axioms only. The full extractor output stays on the runner.
+# The authors' files are fetched on the runner and never committed here. Will decided on
+# 20 November 2026 that the reader may host the authors' paper and Lean with clear credit to
+# Levent Alpöge, Tristan Buckmaster, Matei P. Coiculescu, Anthropic and their repository, so the
+# full extractor output (lean.json, with types and doc comments) is uploaded beside the facts.
 name: Extract the Euler Paper layer from Lean
 on:
   workflow_dispatch:
@@ -109,6 +110,7 @@ jobs:
                    "modules": d["modules"], "declarations": rows,
                    "note": "Facts read from the compiled modules. Types, doc comments and source text are omitted."}
           (out / "lean-facts.json").write_text(json.dumps(facts, indent=1, sort_keys=True) + "\n")
+          (out / "lean.json").write_text(Path("papers/euler/generated/lean.json").read_text())
           summary = {"declarations": len(rows), "nonstandard_axioms": odd}
           (out / "axiom-summary.json").write_text(json.dumps(summary, indent=1) + "\n")
           print(summary)
