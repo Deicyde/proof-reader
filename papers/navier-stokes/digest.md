@@ -1,5 +1,7 @@
 # From a recurrent profile to unforced Navier–Stokes blow-up
 
+> **Paper and Lean by Levent Alpöge and Tristan Buckmaster**, [github.com/tristanbuckmaster/navier-stokes](https://github.com/tristanbuckmaster/navier-stokes) (commit [`ad53419`](https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546)). This page and the wrapper Lean in [`lean-wrappers/`](https://github.com/wcook04/proof-reader/tree/claude/navier-stokes-20261120/lean-wrappers) were prepared by Will Cook with AI assistance and are released under the [MIT licence](LICENSE); they have not been reviewed by the authors.
+
 **A specialist digest of the paper by Levent Alpöge and Tristan Buckmaster**  
 20 November 2026 · Lean at commit [`ad53419`](https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546) · companion pages: [statements](paper.md), [cell layer](cell-layer-fidelity.md), [certificate checker](certificate-checker.md)
 

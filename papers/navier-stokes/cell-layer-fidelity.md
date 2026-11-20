@@ -1,5 +1,7 @@
 # Cell-layer fidelity: the Lean condition and Appendix B
 
+> **Paper and Lean by Levent Alpöge and Tristan Buckmaster**, [github.com/tristanbuckmaster/navier-stokes](https://github.com/tristanbuckmaster/navier-stokes) (commit [`ad53419`](https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546)). This page and the wrapper Lean in [`lean-wrappers/`](https://github.com/wcook04/proof-reader/tree/claude/navier-stokes-20261120/lean-wrappers) were prepared by Will Cook with AI assistance and are released under the [MIT licence](LICENSE); they have not been reviewed by the authors.
+
 **Snapshot:** the Alpöge–Buckmaster repository at `ad53419de079eb8f95f60313473374624a348546`, dated 20 November 2026. References below use [`lean/CellLayerChallenge.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean) unless another file is named and the printed pages and equation numbers of the paper in that commit.
 
 **Status:** a source-level comparison of the paper's Appendix B with the Lean condition. The patched package builds (Actions run [44774695098](https://github.com/wcook04/proof-reader/actions/runs/44774695098), `lake build` exit 0 after 7,735 seconds) and its 27-name axiom diagnostic reports only `propext`, `Quot.sound` and `Classical.choice`. Independent replay with Comparator is running; see [the companion page](paper.md#5-checking-workflow-and-status). The numerical certificate and its checker are not public.
