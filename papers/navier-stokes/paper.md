@@ -160,4 +160,15 @@ states `breakdown_on_space` without its hypothesis, and Comparator must
 reject it. The route is the one used for the same Mathlib in the mirror of
 the Riemann Hypothesis submission at `Deicyde/riemann-hypothesis`.
 
-Results: pending.
+**Build (Actions run 44774695098, 20 November 2026).** The package as
+published, with the patch of 20 November, compiled on a GitHub-hosted
+ubuntu-24.04 runner: `lake build` of every default target exited 0 after
+7,735 seconds. Mathlib's compiled files came from its official cache. The
+authors' script `scripts/PrintAxioms.lean` then reported that each of the 27
+theorems it lists, among them `breakdown_on_space`, `breakdown_on_torus`,
+`breakdown_on_space_of_weak`, `extended_certificate_orbit` and the three
+`…_of_cell_system_condition` theorems, depends on the axioms `propext`,
+`Classical.choice` and `Quot.sound` and on no others. This is the check of
+Lean v4.33.1's own kernel.
+
+**Comparator.** Pending (run 44796269901).
