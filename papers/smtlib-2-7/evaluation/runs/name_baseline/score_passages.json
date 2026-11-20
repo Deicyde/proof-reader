@@ -1,0 +1,94 @@
+{
+ "label": "name baseline, reversed",
+ "scored_passages": 63,
+ "found": [
+  55,
+  63
+ ],
+ "targets_agree": [
+  123,
+  145
+ ],
+ "statuses": {
+  "not_formalised": 227,
+  "formalised": 125
+ },
+ "misses": [
+  {
+   "passage": "2.7-p024-10",
+   "authors_attach": [
+    "BSmtLibSpec.Lexicon.binary"
+   ],
+   "matcher_named": [],
+   "status": "not_formalised"
+  },
+  {
+   "passage": "2.7-p026-08",
+   "authors_attach": [
+    "BSmtLibSpec.Grammar.Syntax.IsSExpr",
+    "BSmtLibSpec.Grammar.Tree.SExpr",
+    "BSmtLibSpec.Grammar.Tree.SExpr.Valid",
+    "BSmtLibSpec.Grammar.Tree.SExpr.tokens"
+   ],
+   "matcher_named": [
+    "BSmtLibSpec.Parser.Traversal.sExpr"
+   ],
+   "status": "formalised"
+  },
+  {
+   "passage": "2.7-p030-03",
+   "authors_attach": [
+    "BSmtLibSpec.Grammar.Tree.Term.bindingTokens"
+   ],
+   "matcher_named": [],
+   "status": "not_formalised"
+  },
+  {
+   "passage": "2.7-p030-07",
+   "authors_attach": [
+    "BSmtLibSpec.Grammar.Tree.Term.caseTokens"
+   ],
+   "matcher_named": [],
+   "status": "not_formalised"
+  },
+  {
+   "passage": "2.7-p105-09",
+   "authors_attach": [
+    "BSmtLibSpec.Lexicon.quotedSymbol"
+   ],
+   "matcher_named": [
+    "BSmtLibSpec.Grammar.Tree.Symbol"
+   ],
+   "status": "formalised"
+  },
+  {
+   "passage": "2.7-p105-13",
+   "authors_attach": [
+    "BSmtLibSpec.Grammar.Syntax.IsSExpr",
+    "BSmtLibSpec.Grammar.Tree.SExpr",
+    "BSmtLibSpec.Grammar.Tree.SExpr.Valid",
+    "BSmtLibSpec.Grammar.Tree.SExpr.tokens"
+   ],
+   "matcher_named": [
+    "BSmtLibSpec.Parser.Traversal.sExpr"
+   ],
+   "status": "formalised"
+  },
+  {
+   "passage": "2.7-p106-05",
+   "authors_attach": [
+    "BSmtLibSpec.Grammar.Tree.Term.bindingTokens"
+   ],
+   "matcher_named": [],
+   "status": "not_formalised"
+  },
+  {
+   "passage": "2.7-p106-09",
+   "authors_attach": [
+    "BSmtLibSpec.Grammar.Tree.Term.caseTokens"
+   ],
+   "matcher_named": [],
+   "status": "not_formalised"
+  }
+ ]
+}

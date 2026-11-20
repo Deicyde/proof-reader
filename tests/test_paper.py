@@ -36,6 +36,19 @@ class FindQuote(unittest.TestCase):
         self.assertEqual(paper.find_quote("the foxes", words("the", "fox")), [])
 
 
+class WrittenNames(unittest.TestCase):
+    """A written name must meet the name Lean compiled, or the declaration drops out of the page."""
+
+    def test_guillemets_only_quote_a_name(self):
+        self.assertEqual(paper.written_name("«Sort»"), "Sort")
+
+    def test_root_only_places_a_name(self):
+        self.assertEqual(paper.written_name("_root_.BSmtLibSpec.Lexer.Handed.received"), "BSmtLibSpec.Lexer.Handed.received")
+
+    def test_an_ordinary_name_is_unchanged(self):
+        self.assertEqual(paper.written_name("Term.Valid"), "Term.Valid")
+
+
 class Statements(unittest.TestCase):
     def test_a_theorem_ends_at_its_assignment(self):
         lines = ["theorem a {x : Nat}", "  : x = x := by", "  rfl"]

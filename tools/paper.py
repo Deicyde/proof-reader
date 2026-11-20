@@ -232,6 +232,11 @@ def declaration_line(lines: list[str], first: int, last: int) -> int:
     return line
 
 
+def written_name(declared: str) -> str:
+    """The name Lean gives a written declaration: `_root_.` only places it, and «» only quote."""
+    return declared.removeprefix("_root_.").replace("«", "").replace("»", "")
+
+
 def shards(folder: Path, config: dict) -> tuple[dict, dict]:
     """The declarations people wrote, each with the rest folded into it."""
     report = json.loads((folder / "generated" / "lean.json").read_text(encoding="utf-8"))
@@ -249,7 +254,7 @@ def shards(folder: Path, config: dict) -> tuple[dict, dict]:
             continue
         # Lean gives Ty.rec and Ty.casesOn the lines of `inductive Ty`, so the
         # declared name has to agree. An instance may have no written name.
-        keyword, declared = match.group(1).split()[0], match.group(2)
+        keyword, declared = match.group(1).split()[0], written_name(match.group(2))
         if name == declared or name.endswith(f".{declared}") or (keyword == "instance" and not declared):
             written[name] = {**row, "line": at, "keyword": keyword}
 
@@ -635,7 +640,9 @@ def resolve(slug: str) -> dict:
         passages.append(resolved)
     passages.sort(key=lambda p: p["order"])
     claims = links.get("claims", [])
-    if not claims:
+    # A claim is the top of a map, so a page without a graph (a standard, an index of
+    # definitions) may have none.
+    if not claims and config["paper"].get("graph", True):
         errors.append("links.json needs at least one claim: each claim is the top of a map")
     for claim in claims:
         for name in claim.get("lean", []):
@@ -838,6 +845,22 @@ def comparator_evidence(folder: Path, config: dict) -> dict | None:
     }
 
 
+def evaluation_summary(folder: Path, config: dict) -> dict | None:
+    """A matcher's results against the authors' own links, when the paper keeps them:
+    `[evaluation] summary` names a JSON file in the paper's folder."""
+    name = config.get("evaluation", {}).get("summary")
+    if not name:
+        return None
+    path = folder / name
+    if not path.is_file():
+        raise PaperError(f"[evaluation] summary is missing: {name}")
+    summary = json.loads(path.read_text(encoding="utf-8"))
+    for key in ("matcher", "method", "columns", "rows", "findings", "misses", "records"):
+        if key not in summary:
+            raise PaperError(f"{name}: needs {key!r}")
+    return summary
+
+
 def edition(slug: str) -> dict:
     data = resolve(slug)
     config, shard_info, links = data["config"], data["shards"], data["links"]
@@ -945,6 +968,7 @@ def edition(slug: str) -> dict:
         "shelf": {"example": examples[0] if examples else None, "examples": examples},
         "sheets": statement_sheets(links.get("claims", []), declarations, data["passages"], shard_info),
         "coverage": {"sections": tied_sections, "ties": len(data["passages"])},
+        "evaluation": evaluation_summary(data["folder"], config),
         "reading": {k: v for k, v in setting.items() if k != "html"} if setting else None,
         "reading_html": setting["html"] if setting else None,
         "analytics": {

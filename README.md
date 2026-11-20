@@ -23,6 +23,7 @@ a graph of the other declarations that code uses.
 | [Checking a long proof by reading a few bits](https://wcook04.github.io/proof-reader/#/pcp-exposition) | The same proof through worked examples that follow one colouring constraint down to the bits the verifier reads | Troy Lee |
 | [The minimum of the coupled spring potential](https://wcook04.github.io/proof-reader/#/coupled-spring) | The coupled spring potential U(x₀, x₁) = x₀² + x₀x₁ + x₁² and its minimum at the origin, beside the PhyslibAlpha proof that the origin is a local minimum | Bjørn Kjos-Hanssen |
 | [Gauge theory](https://wcook04.github.io/proof-reader/#/physlib-gauge-theory) | Physlib's own API map for gauge theory, beside the Lean files it cites | Physlib contributors |
+| [SMT-LIB 2.7 and BSmtLib](https://wcook04.github.io/proof-reader/#/smtlib-2-7) | The SMT-LIB 2.7 standard by Barrett, Fontaine and Tinelli, as its PDF, beside BSmtLib's formalised reading of its syntax. GPT-6.1 found the links without seeing the authors' citations, and a program scored them against those citations ([the evaluation](papers/smtlib-2-7/evaluation/)) | Jan Onderka, Armin Biere and Henrik Böving |
 
 The algebraic PCP proof is due to Amireddy, Behera, Srinivasan, Sudan and Willumsgaard.
 Will Cook prepared the three PCP accounts with AI assistance, and AI agents wrote the

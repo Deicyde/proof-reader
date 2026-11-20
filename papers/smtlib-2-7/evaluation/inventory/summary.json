@@ -1,0 +1,30 @@
+{
+ "2.7": {
+  "passages": 538,
+  "anchored": 460,
+  "first_line_only": 13,
+  "start_only": 30,
+  "unanchored": 35
+ },
+ "2.6": {
+  "passages": 348,
+  "anchored": 270,
+  "first_line_only": 15,
+  "start_only": 29,
+  "unanchored": 34
+ },
+ "2.5": {
+  "passages": 313,
+  "anchored": 261,
+  "first_line_only": 3,
+  "start_only": 27,
+  "unanchored": 22
+ },
+ "2.0": {
+  "passages": 204,
+  "anchored": 173,
+  "first_line_only": 2,
+  "start_only": 15,
+  "unanchored": 14
+ }
+}

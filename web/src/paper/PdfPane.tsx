@@ -423,13 +423,23 @@ function PageCanvas({ pdf, page, width, root }: { pdf: PDFDocumentProxy; page: n
   useEffect(() => {
     const el = holder.current;
     if (!el) return;
-    const observer = new IntersectionObserver(([entry]) => entry.isIntersecting && setNear(true), { root: root.current, rootMargin: "1200px 0px" });
+    // Near enough to read soon, or far enough to give the memory back: a long standard has
+    // over a hundred pages, and every drawn page holds a canvas of two pixels to a point.
+    const observer = new IntersectionObserver(([entry]) => setNear(entry.isIntersecting), { root: root.current, rootMargin: "1200px 0px" });
     observer.observe(el);
     return () => observer.disconnect();
   }, [root]);
 
   useEffect(() => {
-    if (!near) return;
+    if (!near) {
+      // Keep the page's place on screen, drop what it drew.
+      if (canvas.current) {
+        canvas.current.width = 0;
+        canvas.current.height = 0;
+      }
+      text.current?.replaceChildren();
+      return;
+    }
     let cancelled = false;
     let renderTask: { cancel(): void; promise: Promise<void> } | null = null;
     void (async () => {

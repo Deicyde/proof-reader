@@ -1,0 +1,10 @@
+{
+ "frozen": "2026-11-20",
+ "sha256": "9ebb05e0fbeffe92d2201f5317fa329f11bcbfecd2527d0172a02c7cbbe5270a",
+ "passages": 1403,
+ "unanchored_2_7_by_kind": {
+  "example": 11,
+  "prose": 23,
+  "production": 1
+ }
+}

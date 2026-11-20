@@ -26,6 +26,29 @@ export interface Passage {
   anchor?: { heading: string; block: number };
   /** The exact Lean lines this passage describes, when it is narrower than the declaration. */
   lines?: [number, number];
+  /** For a standard read against a formalisation made from it: for each linked declaration,
+   * the runs of a matcher that found the link (empty when only the authors cite it), and
+   * whether the formalisation's authors cite this passage for it ("cites"), cite another
+   * passage of the standard ("elsewhere"), or cite none ("uncited"). */
+  match?: Record<string, { found_by: string[]; authors: "cites" | "other_release" | "elsewhere" | "uncited"; releases?: string[] }>;
+}
+
+/** How well a matcher found the links that a formalisation's authors wrote, with controls. */
+export interface Evaluation {
+  /** The matcher, as a reader should see it named, such as "GPT-6.1". */
+  matcher: string;
+  /** Plain sentences, in order, saying what was run and how it was scored. */
+  method: string[];
+  /** One column per run or control: its label and what it is. */
+  columns: { id: string; label: string; about: string }[];
+  /** One row per measure: what it counts, and the count [found, of] in each column. */
+  rows: { measure: string; about: string; counts: Record<string, [number, number] | null> }[];
+  /** Short findings, each a plain sentence. */
+  findings: string[];
+  /** The authors' citations no run found, one line each. */
+  misses: { declaration: string; citation: string }[];
+  /** Where the full records are. */
+  records: string;
 }
 
 export interface OutlineEntry {
@@ -159,6 +182,8 @@ export interface Edition {
     films?: boolean;
     /** False when the proof is one statement: the right page is then the Lean alone. */
     graph?: boolean;
+    /** A standard read against its formalisation: an entry shows the one declaration stating it. */
+    standard?: boolean;
     pages: number;
     sizes: [number, number][];
     crop: [number, number, number, number] | null;
@@ -189,6 +214,7 @@ export interface Edition {
   comparator?: ComparatorEvidence | null;
   /** Which sections hold ties, in reading order. */
   coverage: { sections: string[]; ties: number };
+  evaluation?: Evaluation | null;
   /** Present when the paper has a reading copy, which reading.html holds. */
   reading: { outline: OutlineEntry[]; heading_aliases?: Record<string, string>; words: number; formulas: number; pages: number } | null;
   analytics: {

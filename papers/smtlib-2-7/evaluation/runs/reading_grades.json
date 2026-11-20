@@ -1,0 +1,33 @@
+{
+ "graded_by": "Claude (Opus 5.5), with the authors' Readings (lean/BSmtLibSpec.lean) and reference/readings_rubric.json visible. A reviewed judgement, not a blind measurement.",
+ "rule": "Graded on the tension and notes the run gave for the declarations the authors attach the Reading to directly. recovered: names what the standard leaves open and what the Lean decides. in_part: names some of the decision (for M1, two of its three parts) or the decision without the gap. missed: nothing, or something else.",
+ "caveat_docs_kept": "In the documentation-kept run, the authors' own sentences that cite nothing stay in the code. Some state a choice: modeAfter's comment says 'Every other command, reset among them, leaves the mode as it is.' That run partly reads the authors' choices rather than finding them.",
+ "code_only": {
+  "L1": {"grade": "recovered", "why": "No general token-adjacency or maximal-munch rule in the standard; the model requires whitespace, a parenthesis, a semicolon or the end after every non-parenthesis token."},
+  "L2": {"grade": "recovered", "why": "The standard does not cover a comment with no line break at the end of input; the formalisation accepts it."},
+  "L3": {"grade": "missed", "why": "No tension on letter."},
+  "L4": {"grade": "missed", "why": "No tension on simpleSymbol."},
+  "L5": {"grade": "recovered", "why": ":<simple_symbol> forbids leading digits and reserved words, :56 is an example, the code accepts both, following the broader 2.0 rule."},
+  "L6": {"grade": "recovered", "why": "Appendix B's reserved-command list omits define-funs-rec although the prose reserves every command name; the formalisation reserves it."},
+  "L7": {"grade": "missed", "why": "No tension on string20."},
+  "L8": {"grade": "missed", "why": "No tension on SourceFile."},
+  "G1": {"grade": "missed", "why": "No tension on SExpr.Valid."},
+  "M1": {"grade": "in_part", "why": "No mid-stream version switch in the standard; the model changes the language of later commands, and an unsupported declaration has no successor mode. It does not say the switch comes after the closing parenthesis, or that 2.0 and 2.5 honour the declaration too."},
+  "M2": {"grade": "in_part", "why": "Its notes say exit stops parsing, without saying what the standard leaves open."},
+  "M3": {"grade": "missed", "why": "Nothing about reset."}
+ },
+ "docs_kept": {
+  "L1": {"grade": "recovered", "why": "No general adjacency rule; the formalism requires the end, whitespace, a parenthesis or a comment after every non-parenthesis token."},
+  "L2": {"grade": "recovered", "why": "The text ends a comment at the next line break and does not say what happens at the end of input; the formalism accepts an unterminated final comment."},
+  "L3": {"grade": "missed", "why": "No tension on letter."},
+  "L4": {"grade": "missed", "why": "No tension on simpleSymbol."},
+  "L5": {"grade": "recovered", "why": "colon followed by a simple_symbol excludes digit-initial and reserved suffixes, :56 violates it, the regex permits both."},
+  "L6": {"grade": "recovered", "why": "Appendix B omits define-funs-rec from the reserved-command list; the formalism follows the prose and the production."},
+  "L7": {"grade": "recovered", "why": "2.0 restricts strings to printable ASCII; the regex also admits the white-space controls."},
+  "L8": {"grade": "missed", "why": "Its tension is about later versions leaving encoding validity outside the model, not about 2.0's ASCII limit falling on the input rather than the lexicon."},
+  "G1": {"grade": "recovered", "why": "The 2.5 prose calls every non-parenthesis token an S-expression but the production omits reserved words; the predicate follows the production."},
+  "M1": {"grade": "in_part", "why": "No mid-stream switch or switch point in the standard; the model switches after the closing parenthesis and rejects unsupported declarations. It does not say 2.0 and 2.5 honour the declaration too."},
+  "M2": {"grade": "in_part", "why": "Its notes say reading stops after exit, without saying what the standard leaves open."},
+  "M3": {"grade": "recovered", "why": "The standard's reset does not distinguish a lexer version; the model keeps its reading version through reset."}
+ }
+}

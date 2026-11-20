@@ -1,0 +1,34 @@
+{
+ "label": "GPT-6.1 passages, code only",
+ "scored_passages": 63,
+ "found": [
+  62,
+  63
+ ],
+ "targets_agree": [
+  98,
+  105
+ ],
+ "statuses": {
+  "not_a_rule": 143,
+  "partly_formalised": 21,
+  "formalised": 82,
+  "not_formalised": 106
+ },
+ "misses": [
+  {
+   "passage": "2.7-p028-01",
+   "authors_attach": [
+    "BSmtLibSpec.Grammar.Syntax.IsAttribute",
+    "BSmtLibSpec.Grammar.Tree.Attribute",
+    "BSmtLibSpec.Grammar.Tree.Attribute.Valid",
+    "BSmtLibSpec.Grammar.Tree.Attribute.tokens",
+    "BSmtLibSpec.Grammar.Tree.AttributeValue",
+    "BSmtLibSpec.Grammar.Tree.AttributeValue.Valid",
+    "BSmtLibSpec.Grammar.Tree.AttributeValue.tokens"
+   ],
+   "matcher_named": [],
+   "status": "not_a_rule"
+  }
+ ]
+}

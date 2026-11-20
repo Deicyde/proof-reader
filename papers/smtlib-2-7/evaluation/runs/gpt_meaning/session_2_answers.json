@@ -1,0 +1,98 @@
+[
+  {
+    "item": "item-01",
+    "verdict": "differs",
+    "difference": "Read literally as supplied, the cited production excludes uppercase B through Z, while Lean accepts them; for example Lean accepts B as a letter. This judgment does not silently correct the printed uppercase endpoint A to Z.",
+    "evidence": "lean/Spec/Lexicon.lean:34 defines letter := alt (range 65 90) (range 97 122); lean/Spec/Regex.lean:15 makes range inclusive. The cited 2.5-p086-06 says \"hletter i ::= A | ··· | A | a | ··· | z\", with A as both uppercase endpoints. There is an apparent source typo: the separate prose 2.5-p022-05 explicitly says \"65dec to 90dec (English alphabet letters A through Z)\" and agrees with Lean. Against that prose the declaration is exact, but against the cited production as printed it differs."
+  },
+  {
+    "item": "item-02",
+    "verdict": "differs",
+    "difference": "At version 2.5, Lean rejects let (and assert) as a simple symbol, although the cited 2.5 appendix production allows these nonempty, letter-only sequences. At version 2.7, the reserved-word exclusion agrees with the cited prose.",
+    "evidence": "lean/Spec/Lexicon.lean:101-103 subtracts reserved version from the nonempty sequences not starting with a digit. Lines 74-81, 83-97 reserve let and assert in version 2.5. But 2.5-p087-08 requires only \"a non-empty sequence of letters, digits and the characters ... that does not start with a digit\", without a reserved-word exception. By contrast 2.7-p025-09 and 2.7-p025-11 explicitly require \"not a reserved word\", matching Lean for 2.7. The separate 2.5 prose 2.5-p023-13 also excludes reserved words; this discrepancy concerns the cited 2.5 appendix production."
+  },
+  {
+    "item": "item-03",
+    "verdict": "exact",
+    "difference": "",
+    "evidence": "lean/Spec/Lexicon.lean:46 defines numeral := alt (lit \"0\") (minus (plus digit) (startsWith (lit \"0\"))). digit at line 32 is exactly 0 through 9. lean/Spec/Regex.lean:37,39,41 defines plus as one or more occurrences, minus as exclusion, and startsWith as the given prefix followed by anything. Thus precisely the singleton 0 or a nonempty digit sequence not starting with 0 is accepted, as stated in 2.7-p105-03 and 2.7-p024-06: \"the digit 0 or a non-empty sequence of digits not starting with 0\"."
+  },
+  {
+    "item": "item-04",
+    "verdict": "exact",
+    "difference": "",
+    "evidence": "lean/Spec/Lexicon.lean:83-91 lists command names by the version that adds them; the 2.7 additions are declare-sort-parameter and define-const. Lines 18-22 and 93-94 accumulate all additions through the selected version, and lines 96-97 include every accumulated command name in reserved. This realizes 2.7-p025-08: \"each command name in the scripting language defined in Section 3.11 ... is also a reserved word\", in addition to the basic words described in 2.7-p025-05. The referenced Section 3.11 production, supplied as 2.7-p051-07 (also 2.7-p109-07), contains exactly the same 32 command names as the accumulated Lean lists."
+  },
+  {
+    "item": "item-05",
+    "verdict": "exact",
+    "difference": "",
+    "evidence": "lean/Spec/Lexicon.lean:32 defines digit := range 48 57. lean/Spec/Regex.lean:15 requires a single character with inclusive bounds lo <= c.toNat <= hi. This is exactly 2.7-p104-05, \"0 | ··· | 9\", and 2.7-p024-04, \"any character from 48dec to 57dec (0 through 9)\"."
+  },
+  {
+    "item": "item-06",
+    "verdict": "differs",
+    "difference": "Lean accepts #b2 (and #b102) as a binary literal; both cited passages exclude the digit 2.",
+    "evidence": "lean/Spec/Lexicon.lean:52 defines binary := seq (lit \"#b\") (plus (oneOf \"012\")). lean/Spec/Regex.lean:21,37 makes this one or more characters from 0, 1, and 2. In contrast 2.7-p105-06 says \"#b followed by a non-empty sequence of 0 and 1 characters\", and 2.7-p024-10 says \"a non-empty sequence of the characters 0 and 1\"."
+  },
+  {
+    "item": "item-07",
+    "verdict": "exact",
+    "difference": "",
+    "evidence": "lean/Spec/Lexicon.lean:50 defines hexadecimal := seq (lit \"#x\") (plus (altAll [digit, range 65 70, range 97 102])). Lines 32 and lean/Spec/Regex.lean:15,23,29,33,37 give an exact lowercase #x prefix followed by one or more characters from 0-9, A-F, or a-f. This matches 2.7-p105-05, \"#x followed by a non-empty sequence of digits and letters from A to F, capitalized or not\", and 2.7-p024-08, which explicitly makes #x case sensitive."
+  },
+  {
+    "item": "item-08",
+    "verdict": "differs",
+    "difference": "At version 2.5, Lean rejects (echo \"\"), which the cited 2.5 command production allows.",
+    "evidence": "lean/Spec/Grammar/Syntax.lean:308,331 defines Command.Valid with the branch \".echo _ => versionAtLeast version .v2_6\". lean/Spec/Grammar.lean:13-14 defines versionAtLeast by membership in version.upTo, and lean/Spec/Lexicon.lean:20 gives v2_5.upTo = [v2_0, v2_5], so the branch is false at v2_5. Syntax.lean:177 renders this constructor as the echo command with a string. But 2.5-p090-04 explicitly includes \"( echo hstring i )\". The earlier 2.0-p075-01 omits echo, so its absence in 2.0 does not justify excluding it in 2.5."
+  },
+  {
+    "item": "item-09",
+    "verdict": "exact",
+    "difference": "",
+    "evidence": "lean/Spec/Lexicon.lean:28 defines whiteSpaceChar := altAll [code 9, code 10, code 13, code 32]. lean/Spec/Regex.lean:15,17,33 makes this exactly one character with one of those four codes. Both 2.7-p104-03 (\"9dec | 10dec | 13dec | 32dec\") and 2.7-p024-02 (tab, line feed, carriage return, space) specify exactly that set."
+  },
+  {
+    "item": "item-10",
+    "verdict": "differs",
+    "difference": "Lean rejects the valid four-double-quote token (character codes [34,34,34,34]), which denotes a string containing one double quote. It instead accepts the token with codes [34,92,34,34] (opening quote, backslash, quote, closing quote), which is not a complete valid literal under the passages' doubled-quote rule.",
+    "evidence": "lean/Spec/Lexicon.lean:54-57 surrounds a repetition with double quotes; line 56 excludes an individual double quote from the ordinary characters and instead admits a two-character literal consisting of backslash followed by double quote. The constituent printableChar and whiteSpaceChar are defined at lines 28-30. In contrast 2.7-p024-12 says the quote can occur within a literal \"only if duplicated\" and names the sequence \"\"\"\"; 2.7-p105-07 specifies that same escape sequence. 2.7-p025-04 says strings \"have only one escape sequence: \"\"\". The doubled-quote unescape function at Lean lines 59-61 does not change the language accepted by string."
+  },
+  {
+    "item": "item-11",
+    "verdict": "differs",
+    "difference": "Lean accepts :1 as a keyword, while the passages require a simple-symbol suffix, which cannot start with a digit. It also accepts :let, whose suffix is a reserved word and therefore is not a simple symbol in version 2.7.",
+    "evidence": "lean/Spec/Lexicon.lean:108 defines keyword := seq (lit \":\") (plus (altAll [letter, digit, symbolPunctuation])). This includes digit-initial suffixes and does not subtract reserved words. The restrictions on simpleSymbol appear separately at lines 101-103, and let is reserved by lines 74-81. Both 2.7-p105-10 and 2.7-p026-04 specify \":<simple_symbol>\". The definition of that referenced category in the supplied 2.7-p025-09 and 2.7-p025-11 requires a nonempty sequence \"that does not start with a digit and is not a reserved word\"."
+  },
+  {
+    "item": "item-12",
+    "verdict": "differs",
+    "difference": "At version 2.7, Lean accepts (let () 0), while the cited term production requires at least one variable binding.",
+    "evidence": "lean/Spec/Grammar/Syntax.lean:254,259-260 validates a let with Term.ValidBindings version bindings and a valid body, without requiring bindings to be nonempty. Lines 276-278 give Term.ValidBindings version [] = True, and line 255 validates the constant body 0. Lines 95-96 and 114-116 render the empty list as (let () 0). In contrast 2.7-p106-10 specifies \"( let ( <var_binding>+ ) <term> )\", where + requires one or more bindings."
+  },
+  {
+    "item": "item-13",
+    "verdict": "differs",
+    "difference": "Lean accepts a quoted symbol containing a backslash, for example the five-character token |a\\b| (codes [124,97,92,98,124]); the passages forbid backslash inside quoted symbols.",
+    "evidence": "lean/Spec/Lexicon.lean:105-106 defines quotedSymbol using star (minus (alt whiteSpaceChar printableChar) (oneOf \"|\")) between bars. printableChar at line 30 includes code 92, and only | is subtracted, so backslash remains allowed. In contrast 2.7-p105-09 says the interior \"does not otherwise include | or \\\" and 2.7-p025-14 likewise says \"does not contain | or \\\". The simple-symbol discussion in 2.7-p025-09 and 2.7-p025-11 does not relax this quoted-symbol restriction."
+  },
+  {
+    "item": "item-14",
+    "verdict": "differs",
+    "difference": "Lean accepts ;abc at end of input, with no following line feed or carriage return, as a comment. The cited definition requires the comment to end with a subsequent line-breaking character and supplies no end-of-file exception.",
+    "evidence": "lean/Spec/Lexicon.lean:40 defines commentAtEnd := seq (lit \";\") (star (minus anyChar lineBreak)); lineBreak at line 36 is code 10 or 13. This accepts ;abc and even the lone semicolon, without consuming a line break. Lines 38 and 44 distinguish ordinary newline-terminated comment from the additional commentAtEnd alternative. But 2.7-p023-02 says a comment \"begins with the semi-colon character ; and ends with the first subsequent\", continued by 2.7-p024-01 as \"line-breaking character, i.e., 10dec or 13dec\"."
+  },
+  {
+    "item": "item-15",
+    "verdict": "unsure",
+    "difference": "",
+    "evidence": "The cited 2.5 passages disagree about reserved tokens. lean/Spec/Grammar/Syntax.lean:198-203 allows .reserved w only when versionAtLeast version .v2_6; at v2_5 it therefore rejects reserved let, both alone and inside a list (lines 205-207). Other token constructors and empty lists are allowed. This matches the alternatives in 2.5-p087-13 and 2.5-p024-11: \"<spec_constant> | <symbol> | <keyword> | ( <s_expr>* )\", which omit <reserved>. However, 2.5-p024-09 says \"An S-expression is either a non-parenthesis token or a (possibly empty) sequence of S-expressions enclosed in parentheses\" and says every syntactic category specializes s_expr; that wording includes reserved let. The supplied 2.5-p023-09 and 2.5-p023-13 confirm that let is reserved and is not a simple symbol. 2.5-p024-10 lists the five special-constant categories; 2.5-p024-12/13 concerns equivalent symbol spellings, and 2.5-p025-01 concerns theory-dependent constant semantics, so none resolves the reserved-token conflict. Lean matches the productions but excludes a case allowed by the prose; without a rule choosing between the conflicting descriptions, a single exact allowed set is unclear."
+  },
+  {
+    "item": "item-16",
+    "verdict": "differs",
+    "difference": "Lean rejects 1.1 and 0.0 as decimals, although both passages allow them: choose zero occurrences of the optional fractional-prefix zero, then the numeral 1 or 0 respectively.",
+    "evidence": "lean/Spec/Lexicon.lean:48 defines decimal := seq numeral (seq (lit \".\") (seq (plus (lit \"0\")) numeral)). lean/Spec/Regex.lean:37 defines plus as at least one occurrence, and numeral at Lexicon.lean:46 is nonempty. Lean therefore requires at least one zero before an additional fractional numeral, rejecting fractional 1 and a lone fractional 0. Both 2.7-p105-04 and 2.7-p024-07 instead specify \"<numeral>.0* <numeral>\", where 0* permits zero occurrences."
+  }
+]

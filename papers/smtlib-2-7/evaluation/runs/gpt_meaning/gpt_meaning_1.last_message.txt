@@ -1,0 +1,1 @@
+Wrote [out/answers.json](out/answers.json) and validated one record per item: 12 `differs`, 2 `exact`, and 2 `unsure`.

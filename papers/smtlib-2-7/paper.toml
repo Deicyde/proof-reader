@@ -1,0 +1,27 @@
+[paper]
+title = "The SMT-LIB Standard: Version 2.7"
+short_title = "SMT-LIB 2.7 and BSmtLib"
+authors = ["Clark Barrett", "Pascal Fontaine", "Cesare Tinelli"]
+venue = "Reference document, release 2026-09-09"
+url = "https://smt-lib.org/papers/smt-lib-reference-v2.7-r2026-09-09.pdf"
+pdf = "paper.pdf"
+noun = "standard"
+graph = false
+# A standard read against its formalisation: each entry shows the one declaration stating it.
+standard = true
+pdf_source = "https://smt-lib.org/papers/smt-lib-reference-v2.7-r2026-09-09.pdf"
+licence = "Verbatim copies only; the copyright and permission notice is on page 2 of the PDF"
+licence_url = "https://smt-lib.org/papers/smt-lib-reference-v2.7-r2026-09-09.pdf"
+
+[lean]
+project = "lean"
+modules = ["BSmtLibSpec.Regex", "BSmtLibSpec.Lexicon", "BSmtLibSpec.Lexicon.Tokenization", "BSmtLibSpec.Lexicon.Properties", "BSmtLibSpec.Grammar", "BSmtLibSpec.Grammar.Tree", "BSmtLibSpec.Grammar.Syntax", "BSmtLibSpec.Grammar.File", "BSmtLibSpec.Grammar.Script", "BSmtLibSpec.Grammar.Properties", "BSmtLibSpec.Lexer", "BSmtLibSpec.Parser", "BSmtLibSpec.Parser.VersionPolicy", "BSmtLibSpec.Parser.Traversal", "BSmtLibSpec.Parser.Properties", "BSmtLibSpec.Reader"]
+source = "https://github.com/onderjan/blazing-smtlib/tree/42b45c20b0045495a40b9eaf0a717e0f1c976bed/lean"
+source_name = "BSmtLib at 42b45c2"
+source_label = "BSmtLibSpec"
+source_lines = "https://github.com/onderjan/blazing-smtlib/blob/42b45c20b0045495a40b9eaf0a717e0f1c976bed/lean/{path}#L{line}-L{end}"
+licence = "MIT OR Apache-2.0"
+scope = "Lean 4.34.1 compiled the BSmtLibSpec library of BSmtLib, by Jan Onderka, Armin Biere and Henrik Böving, unchanged at 42b45c2. The example proofs under BSmtLibSpec/Facts are shown as source."
+
+[evaluation]
+summary = "evaluation/summary.json"
