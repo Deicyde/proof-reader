@@ -225,6 +225,12 @@ jobs:
         mkdir -p "$RUNNER_TEMP/judge" && cd "$RUNNER_TEMP/judge"
         echo 'leanprover/lean4:v4.36.0' > lean-toolchain
         lake --version
+        # Comparator finds each external kernel by a PATH lookup. The four ship in the toolchain's
+        # bin directory, which elan does not put on PATH (it adds only its own proxies).
+        bin="$(dirname "$(elan which lake)")"
+        export PATH="$bin:$PATH"
+        echo "$bin" >> "$GITHUB_PATH"
+        for k in leanchecker-paranoid nanoda_bin con-leche con-ron; do command -v "$k" || { echo "missing $k"; exit 1; }; done | tee "$OUT/kernels.txt"
         lake comparator --help > "$OUT/comparator-help.txt"
         head -12 "$OUT/comparator-help.txt"
     - name: Comparator on the control and the three statement files
