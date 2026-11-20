@@ -1,0 +1,142 @@
+--- a/Breakdown/Cert/ExtendedSigmaProfileOfHeld.lean
++++ b/Breakdown/Cert/ExtendedSigmaProfileOfHeld.lean
+@@ -229,14 +229,17 @@
+ end Internal.ExtendedSigmaProfileOfHeld
+ 
+ open Internal.ExtendedSigmaProfileOfHeld in
+-theorem extendedSigmaProfileOfHeldHolds_of (h1 : SliceReadingHolds)
++theorem extendedSigmaProfileOfHeld_keep (h1 : SliceReadingHolds)
+     (h2 : ExtendedHeldWeakEquationHolds) (h3 : ExtendedHeldNonzeroHolds) :
+-    ExtendedSigmaProfileOfHeldHolds := by
++    ∀ {k : ℕ} (d : ExtendedCertificateData k), IsExtendedCertificate d →
++      ∀ q ∈ d.params, ∀ f κ, d.IsHeldSolution q f κ → d.multiplier q + κ = 0 →
++        ∃ v G H, IsReadingOf (freeInv (d.period q) f) v G H ∧
++          ∃ C, IsSigmaProfile (d.period q) (fun σ y => d.profile q σ y + v σ y)
++            (fun σ y => fderiv ℝ (d.profile q σ) y + G σ y)
++            (fun σ y => d.profileSecondDeriv q σ y + H σ y) C := by
+   intro k d hd q hq f κ hf hκ
+   obtain ⟨v, G, H, hr, hgrad, hdiv, ⟨B, hB⟩, hH⟩ := h1 (d.period q) (hd.period_pos q hq) f
+-  refine ⟨d.period q, fun σ y => d.profile q σ y + v σ y,
+-    fun σ y => fderiv ℝ (d.profile q σ) y + G σ y,
+-    fun σ y => d.profileSecondDeriv q σ y + H σ y,
++  refine ⟨v, G, H, hr,
+     max (2 ^ 6 * (∫ y : Space, d.decay ^ 6 * (1 + ‖y‖) ^ (-(6 : ℝ))) + 2 ^ 6 * max B 0)
+       (2 ^ 2 * (∫ y : Space, d.decay ^ 2 * (1 + ‖y‖) ^ (-(4 : ℝ))) + 2 ^ 2 * max B 0), ?_⟩
+   exact
+@@ -265,4 +268,12 @@
+       weak_equation := fun φ hφ => h2 d hd q hq f κ hf hκ v G H hr φ hφ
+       nonzero := h3 d hd q hq f κ hf v G H hr }
+ 
++/-- Backward-compatible original existential export. -/
++theorem extendedSigmaProfileOfHeldHolds_of (h1 : SliceReadingHolds)
++    (h2 : ExtendedHeldWeakEquationHolds) (h3 : ExtendedHeldNonzeroHolds) :
++    ExtendedSigmaProfileOfHeldHolds := by
++  intro k d hd q hq f κ hf hκ
++  obtain ⟨v, G, H, _, C, hσ⟩ := extendedSigmaProfileOfHeld_keep h1 h2 h3 d hd q hq f κ hf hκ
++  exact ⟨d.period q, _, _, _, C, hσ⟩
++
+ end Breakdown.Cert
+--- a/Breakdown/Cert/Rescale.lean
++++ b/Breakdown/Cert/Rescale.lean
+@@ -1,3 +1,4 @@
++import Theorem71KeepTypes
+ import Breakdown.Cert.StConclusion
+ import Mathlib
+ 
+@@ -82,14 +83,16 @@
+ end Internal.Rescale
+ 
+ open Internal.Rescale in
+-theorem weakPeriodicSimilarityProfileExists_of_sigma {P C : ℝ} {W : ℝ → Space → Space}
++theorem weakPeriodicSimilarityProfileOf_sigma_keep {P C : ℝ} {W : ℝ → Space → Space}
+     {G : ℝ → Space → (Space →L[ℝ] Space)} {H : ℝ → Space → (Space →L[ℝ] Space →L[ℝ] Space)}
+-    (h : IsSigmaProfile P W G H C) : WeakPeriodicSimilarityProfileExists := by
++    (h : IsSigmaProfile P W G H C) :
++    Theorem71.WeakProfileAt (fun s y => W (P⁻¹ * s) y)
++      (fun s y => G (P⁻¹ * s) y) (fun s y => H (P⁻¹ * s) y)
++      P (LinearIsometryEquiv.refl ℝ Space) C := by
+   have hP := h.period_pos
+   have hP0 : P ≠ 0 := hP.ne'
+   have hPi : P⁻¹ ≠ 0 := inv_ne_zero hP0
+-  refine ⟨fun s y => W (P⁻¹ * s) y, fun s y => G (P⁻¹ * s) y, fun s y => H (P⁻¹ * s) y, P,
+-    LinearIsometryEquiv.refl ℝ Space, C, hP, ?_, ?_, ?_, ?_, fun s => h.weak_gradient _,
++  refine ⟨hP, ?_, ?_, ?_, ?_, fun s => h.weak_gradient _,
+     ?_, fun s => h.divergence_free _, fun s => h.sixth_power _, fun s => h.gradient_bound _,
+     ?_, ?_, ?_⟩
+   · exact h.measurable_velocity.comp_quasiMeasurePreserving (quasiMeasurePreserving_timeScale _ hPi)
+@@ -114,4 +117,11 @@
+     filter_upwards [(quasiMeasurePreserving_timeScale P hP0).ae hW] with z hz
+     simpa [inv_mul_cancel_left₀ hP0] using hz
+ 
++/-- Backward-compatible original existential export. -/
++theorem weakPeriodicSimilarityProfileExists_of_sigma {P C : ℝ} {W : ℝ → Space → Space}
++    {G : ℝ → Space → (Space →L[ℝ] Space)}
++    {H : ℝ → Space → (Space →L[ℝ] Space →L[ℝ] Space)}
++    (h : IsSigmaProfile P W G H C) : WeakPeriodicSimilarityProfileExists :=
++  (weakPeriodicSimilarityProfileOf_sigma_keep h).forget
++
+ end Breakdown
+--- a/Breakdown/Weak/OrbitOfParts.lean
++++ b/Breakdown/Weak/OrbitOfParts.lean
+@@ -1,3 +1,4 @@
++import Theorem71KeepTypes
+ import Breakdown.Weak.StatementsOrbit
+ import Breakdown.Profile.Orbit
+ 
+@@ -161,11 +162,23 @@
+     rw [exp_timeChange (a - 1) t ht1', sub_sub_cancel, ht ⟨by linarith, htr⟩]
+     exact dilX_inv_cancel h1t _
+ 
+-theorem weakOrbitOfParts_holds : WeakOrbitOfParts := by
+-  intro hPV hVWG hZG hGF hSE hAdv hPD hTD hSM hSTF hSInt hSI hPI hDBR hGT hBI hDI hDG hCD hMG
+-    hGR hTCN hPCM hex
+-  obtain ⟨W, G, H, P, R, C, hP, hWm, hGm, hHm, hper, hgrad, hHgrad, hdiv, hsix, htwo, hHint,
+-    hweak, hne⟩ := hex
++theorem weakOrbitOfParts_keep
++    (hPV : PairingVelocity) (hVWG : VelocityWeakGradient) (hZG : ZeroGradientSix)
++    (hGF : GradientFreqTr) (hSE : SliceEmbedding) (hAdv : AdvectionByParts)
++    (hPD : PairingDilate) (hTD : TrilinearDilate) (hSM : SliceMeasurable)
++    (hSTF : ScaledTestField) (hSInt : SliceIntegrand) (hSI : SimilarityIdentity)
++    (hPI : PhysicalIdentity) (hDBR : ConstOfWeakDeriv) (hGT : GoodTimes)
++    (hBI : BilinIntegrable) (hDI : VarConstInner) (hDG : VarConstGood)
++    (hCD : ContinuousVarConst) (hMG : MildFromGood) (hGR : GlobalRepresentative)
++    (hTCN : TimeChangeNull) (hPCM : PhysicalCurveMeasurable)
++    {W : ℝ → Space → Space} {G : ℝ → Space → (Space →L[ℝ] Space)}
++    {H : ℝ → Space → (Space →L[ℝ] Space →L[ℝ] Space)}
++    {P : ℝ} {R : Space ≃ₗᵢ[ℝ] Space} {C : ℝ}
++    (h : Theorem71.WeakProfileAt W G H P R C) :
++    ∃ w : ℝ → X, realization.F.IsOrbit (realization.rot R) w P ∧
++      ∀ᵐ s, ∀ᵐ y, (velocity (w s) : Space → Space) y = W s y := by
++  obtain ⟨hP, hWm, hGm, hHm, hper, hgrad, hHgrad, hdiv, hsix, htwo, hHint,
++    hweak, hne⟩ := h
+   have hslice : ∀ s, IsSlice (W s) (G s) C := fun s => ⟨hgrad s, hdiv s, hsix s, htwo s⟩
+   choose x hxv hxp hxn using fun s => hSE hPV hVWG hZG hGF (W s) (G s) C (hslice s)
+   have hx : IsSliceCurve x W G (Real.sqrt (3 * max C 0)) := ⟨hxv, hxp, fun s => by
+@@ -186,7 +199,7 @@
+     rw [hWP] at h1
+     exact h1.trans ((pushForward_ae_congr R (hx.vel s).symm).trans
+       (velocityCov_holds.1 R (x s)).symm)
+-  refine ⟨w, P, R, ⟨hwc, ?_, hP, ?_, ?_⟩⟩
++  refine ⟨w, ⟨hwc, ?_, hP, ?_, ?_⟩, ?_⟩
+   · by_contra hzero
+     push Not at hzero
+     have hx0 : ∀ᵐ s, x s = 0 := by
+@@ -262,4 +275,18 @@
+           (hzm 0 _ ht₀0.le hT0 (by linarith))
+       exact flowOfMild_unconditional X realization.F w _ s' s hlt hmild (fun r _ => rfl)
+ 
++  · filter_upwards [hwx] with s hs
++    rw [hs]
++    exact hx.vel s
++
++/-- Backward-compatible original existential export. -/
++theorem weakOrbitOfParts_holds : WeakOrbitOfParts := by
++  intro hPV hVWG hZG hGF hSE hAdv hPD hTD hSM hSTF hSInt hSI hPI hDBR hGT hBI hDI hDG hCD hMG
++    hGR hTCN hPCM hex
++  obtain ⟨W, G, H, P, R, C, h⟩ := hex
++  obtain ⟨w, hw, _⟩ := weakOrbitOfParts_keep hPV hVWG hZG hGF hSE hAdv hPD hTD hSM hSTF
++    hSInt hSI hPI hDBR hGT hBI hDI hDG hCD hMG hGR hTCN hPCM
++    (W := W) (G := G) (H := H) (P := P) (R := R) (C := C) h
++  exact ⟨w, P, R, hw⟩
++
+ end Breakdown.WeakProfile

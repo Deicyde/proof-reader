@@ -1,0 +1,111 @@
+# Compiles new Lean modules that state the paper's Theorem 7.1 with its chosen witness kept, against
+# the authors' package at the pinned commit. Three of the authors' files get a small patch, applied
+# here only after their SHA-256 hashes match, that adds "keeping" variants of three existential
+# lemmas and restates the originals as corollaries with unchanged types. The package's compiled
+# files come from the Comparator workflow's cache; the patched files and their dependents are
+# rebuilt. Artifacts hold logs and exit codes only.
+name: Compile the Navier–Stokes Theorem 7.1 wrapper
+'on':
+  workflow_dispatch: {}
+  push:
+    branches:
+    - claude/navier-stokes-*
+    paths:
+    - .github/workflows/navier-stokes-theorem71.yml
+    - lean-wrappers/navier-stokes-theorem71/**
+permissions:
+  contents: read
+concurrency:
+  group: navier-stokes-theorem71
+  cancel-in-progress: false
+jobs:
+  compile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 355
+    defaults:
+      run:
+        shell: bash
+    env:
+      NS_COMMIT: ad53419de079eb8f95f60313473374624a348546
+      NS: /home/runner/ns
+      OUT: /home/runner/out
+      WRAP: lean-wrappers/navier-stokes-theorem71
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - name: Free disk space
+      run: |
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+        df -h / | tail -1
+    - name: Install elan
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+        echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+    - name: Fetch the authors' repository at the pinned commit
+      run: |
+        mkdir -p "$OUT"
+        git init -q "$NS" && cd "$NS"
+        git remote add origin https://github.com/tristanbuckmaster/navier-stokes.git
+        git fetch -q --depth 1 origin "$NS_COMMIT" && git checkout -q FETCH_HEAD
+        git rev-parse HEAD | tee "$OUT/ns-commit.txt"
+    - name: Restore the package's compiled files from the Comparator build
+      uses: actions/cache/restore@v4
+      with:
+        path: ${{ env.NS }}/lean/.lake/build
+        key: ns-t71-${{ env.NS_COMMIT }}-${{ github.run_id }}
+        restore-keys: |
+          ns-build-v3-${{ env.NS_COMMIT }}-
+    - name: Fetch Mathlib's compiled files (official cache)
+      working-directory: ${{ env.NS }}/lean
+      run: lake exe cache get
+    - name: Check the three original files, apply the patch, add the modules
+      run: |
+        python3 "$WRAP/scripts/install_wrapper.py" "$NS/lean" | tee "$OUT/install-dry-run.json"
+        python3 "$WRAP/scripts/install_wrapper.py" "$NS/lean" --apply | tee "$OUT/install.json"
+        git -C "$NS" diff --stat | tee "$OUT/patched-files.txt"
+    - name: Rebuild the patched library files and their dependents
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        start=$(date +%s)
+        if timeout --kill-after=60s 240m lake build Breakdown > "$OUT/build-Breakdown.log" 2>&1; then c=0; else c=$?; fi
+        echo "$c" > "$OUT/build-Breakdown.exit"
+        echo "Breakdown exit $c after $(( $(date +%s) - start ))s"
+        grep -E '^error' "$OUT/build-Breakdown.log" | head -10 || true
+    - name: Compile each new module and record its exit code
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        mods="Theorem71KeepTypes Theorem71Statements Theorem71Norms Theorem71Keep Theorem71Transport Theorem71Smooth Theorem71GradientBound Theorem71Assembly Theorem71Cells Theorem71Solution Theorem71Challenge Theorem71Control Theorem71Axioms"
+        for m in $mods; do
+          start=$(date +%s)
+          if timeout --kill-after=60s 60m lake build "$m" > "$OUT/build-$m.log" 2>&1; then c=0; else c=$?; fi
+          echo "$c" > "$OUT/build-$m.exit"
+          echo "$m exit $c after $(( $(date +%s) - start ))s"
+          grep -E '^error' "$OUT/build-$m.log" | head -5 || true
+        done
+    - name: Print the endpoints' axioms
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        if [ "$(cat "$OUT/build-Theorem71Axioms.exit")" = 0 ]; then
+          lake env lean Theorem71Axioms.lean > "$OUT/axioms-theorem71.txt" 2>&1 || true
+          python3 "$GITHUB_WORKSPACE/$WRAP/scripts/check_axioms.py" "$OUT/axioms-theorem71.txt" | tee "$OUT/axiom-check.json" || true
+        else
+          echo "Theorem71Axioms did not build; axioms not printed" | tee "$OUT/axioms-theorem71.txt"
+        fi
+        python3 - <<'PY'
+        import json, os
+        from pathlib import Path
+        out = Path(os.environ["OUT"])
+        codes = {p.name[len("build-"):-len(".exit")]: p.read_text().strip() for p in sorted(out.glob("build-*.exit"))}
+        report = {"authors_commit": os.environ["NS_COMMIT"], "module_exit_codes": codes,
+                  "all_compiled": all(c == "0" for c in codes.values())}
+        (out / "theorem71-build.json").write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report, indent=2))
+        PY
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: navier-stokes-theorem71-wrapper
+        path: ${{ env.OUT }}
+        retention-days: 7
+        if-no-files-found: error
