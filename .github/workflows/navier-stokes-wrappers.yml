@@ -1,0 +1,105 @@
+# Compiles new Lean modules that state the paper's Theorem 1.1 in physical terms, against the
+# authors' package at the pinned commit. The modules live in lean-wrappers/navier-stokes/ and only
+# import the authors' library; no author file is edited. The package's compiled files come from the
+# cache saved by the Comparator workflow's build job. Artifacts hold logs and exit codes only.
+name: Compile the Navier–Stokes Theorem 1.1 wrapper
+'on':
+  workflow_dispatch: {}
+  push:
+    branches:
+    - claude/navier-stokes-*
+    paths:
+    - .github/workflows/navier-stokes-wrappers.yml
+    - lean-wrappers/navier-stokes/**
+permissions:
+  contents: read
+concurrency:
+  group: navier-stokes-wrappers
+  cancel-in-progress: false
+jobs:
+  compile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 355
+    defaults:
+      run:
+        shell: bash
+    env:
+      NS_COMMIT: ad53419de079eb8f95f60313473374624a348546
+      NS: /home/runner/ns
+      OUT: /home/runner/out
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - name: Free disk space
+      run: |
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+        df -h / | tail -1
+    - name: Install elan
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+        echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+    - name: Fetch the authors' repository at the pinned commit
+      run: |
+        mkdir -p "$OUT"
+        git init -q "$NS" && cd "$NS"
+        git remote add origin https://github.com/tristanbuckmaster/navier-stokes.git
+        git fetch -q --depth 1 origin "$NS_COMMIT" && git checkout -q FETCH_HEAD
+        git rev-parse HEAD | tee "$OUT/ns-commit.txt"
+    - name: Restore the package's compiled files from the Comparator build
+      uses: actions/cache/restore@v4
+      with:
+        path: ${{ env.NS }}/lean/.lake/build
+        key: ns-wrap-${{ env.NS_COMMIT }}-${{ github.run_id }}
+        restore-keys: |
+          ns-build-v3-${{ env.NS_COMMIT }}-
+    - name: Fetch Mathlib's compiled files (official cache)
+      working-directory: ${{ env.NS }}/lean
+      run: lake exe cache get
+    - name: Add the wrapper modules as libraries
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        for f in "$GITHUB_WORKSPACE"/lean-wrappers/navier-stokes/theorem11/*.lean; do
+          m=$(basename "$f" .lean)
+          test ! -e "$m.lean"
+          cp "$f" .
+          printf '\n[[lean_lib]]\nname = "%s"\n' "$m" >> lakefile.toml
+        done
+        git diff --stat
+        (sha256sum "$GITHUB_WORKSPACE"/lean-wrappers/navier-stokes/theorem11/*.lean) > "$OUT/wrapper-sources.sha256"
+    - name: Compile each module and record its exit code
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        mods="Theorem11Challenge Theorem11ContractFacts Theorem11Rate Theorem11GeometricRate Theorem11NormAssembly Theorem11PhysicalBridges SpaceCore SmoothReadings Theorem11Solution Theorem11TorusHelpers Theorem11TorusRates Theorem11TorusConvergence Theorem11TorusMildExport Theorem11RateReplay PrintAxiomsTheorem11"
+        for m in $mods; do
+          start=$(date +%s)
+          if timeout --kill-after=60s 90m lake build "$m" > "$OUT/build-$m.log" 2>&1; then c=0; else c=$?; fi
+          echo "$c" > "$OUT/build-$m.exit"
+          echo "$m exit $c after $(( $(date +%s) - start ))s"
+          grep -E '^(error|warning: declaration uses .sorry.)' "$OUT/build-$m.log" | head -5 || true
+        done
+    - name: Print the wrapper theorems' axioms
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        if [ "$(cat "$OUT/build-PrintAxiomsTheorem11.exit")" = 0 ]; then
+          lake env lean PrintAxiomsTheorem11.lean 2>&1 | tee "$OUT/axioms-theorem11.txt"
+        else
+          echo "PrintAxiomsTheorem11 did not build; axioms not printed" | tee "$OUT/axioms-theorem11.txt"
+        fi
+        python3 - <<'PY'
+        import json, os
+        from pathlib import Path
+        out = Path(os.environ["OUT"])
+        codes = {p.name[len("build-"):-len(".exit")]: p.read_text().strip() for p in sorted(out.glob("build-*.exit"))}
+        report = {"authors_commit": os.environ["NS_COMMIT"], "module_exit_codes": codes,
+                  "all_compiled": all(c == "0" for c in codes.values())}
+        (out / "wrapper-build.json").write_text(json.dumps(report, indent=2) + "\n")
+        print(json.dumps(report, indent=2))
+        PY
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: navier-stokes-theorem11-wrapper
+        path: ${{ env.OUT }}
+        retention-days: 7
+        if-no-files-found: error
