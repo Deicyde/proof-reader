@@ -93,7 +93,7 @@ export interface Insets {
 export interface MapViewHandle {
   fitAll(animate?: boolean): void;
   /** Proof Reader: `dur` sets the move's length, so a re-fit on a new subject can be quick. */
-  fitNodes(ids: Iterable<string>, animate?: boolean, dur?: number): void;
+  fitNodes(ids: Iterable<string>, animate?: boolean, dur?: number, pad?: number): void;
   zoomBy(factor: number): void;
   focusNode(id: string): void;
   expandAll(): void;
@@ -1558,10 +1558,10 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
         const anchor = (selected && pick(l, selected)) || goal;
         moveCamera(frameBox(box, viewport(), { min: k, max: k, anchor: boxOf(l, anchor, 24), top: true }), animate);
       },
-      fitNodes: (ids, animate = true, dur = MOVE_MS) => {
+      fitNodes: (ids, animate = true, dur = MOVE_MS, pad?: number) => {
         const list = [...ids];
         const fn = (l: Layout) => {
-          const b = boundsOf(l, list, compact ? 24 : 40);
+          const b = boundsOf(l, list, pad ?? (compact ? 24 : 40));
           // Proof Reader: up to the map's own fitting scale, never below reading size.
           return b ? fitBounds(b, viewport(), { max: Math.max(1, fitMaxRef.current), min: compact ? COMPACT_FLOOR : floor }) : null;
         };
