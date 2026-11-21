@@ -1,10 +1,14 @@
-# Finite-time singularity for the Euler equations on the torus: the paper and its Lean, result by result
+# Finite-time singularity for the Euler equations on the torus: the paper and its Lean
+
+**[Read the paper beside its Lean](https://wcook04.github.io/proof-reader/#/euler)**
 
 > **Credit.** The paper and its Lean formalization are the work of Levent Alpöge, Tristan
 > Buckmaster and Matei P. Coiculescu, in their repository
 > [mcoiculescu/EulerBlowupPublic](https://github.com/mcoiculescu/EulerBlowupPublic). Their paper
-> thanks Anthropic for supporting the collaboration from which it grew. Everything else here
-> (these pages, the links, titles and notes, and the tools) is ours, under the [MIT licence](LICENSE).
+> thanks Anthropic for supporting the collaboration from which it grew. Their text (the reading
+> copy `paper.md` is set from their TeX) and their Lean (`lean/`) are theirs, hosted with this
+> credit; their repository states no licence. Everything else here (the links, titles, notes,
+> comparisons, checks and tools) is ours, under the [MIT licence](LICENSE).
 
 **Snapshot: 20 November 2026, the authors' commit
 [`fd3a158`](https://github.com/mcoiculescu/EulerBlowupPublic/tree/fd3a1588967810b9abe42a1dcf46ee662d6434e2).**
@@ -35,14 +39,33 @@ was prepared by AI agents under Will Cook's direction and has not been reviewed 
 
 | Item | State |
 | --- | --- |
+| A reading copy beside the Lean on the Proof Reader site | Done: [the page](https://wcook04.github.io/proof-reader/#/euler), set from the authors' TeX of the arXiv version with their own numbering (231 labels of the paper and 11 of the auxiliary note checked against their compiled TeX) |
+| Sentence-level links | Done: 972 phrases tied to 1,039 Lean declarations. 255 of the 361 paragraphs and displays carry a tie; the other 106 are headings, history, surveys, bibliography entries, acknowledgements, figures and road maps, each with a stated reason. Every proof paragraph is tied |
 | Each numbered result linked to its Lean statement and theorem | Done, for all 42 rows of the authors' map (below) |
+| A same, stronger, weaker or different comparison of each result with its Lean | Done for all 42: 8 same, 28 stronger, 1 weaker (the Section 8 setting) and 5 different (5.3, 5.5, 7.1, 8.1, D.2), each with its reason on the page. Made with AI and not reviewed by the authors |
+| A title and a note on every declaration of the Lean | Done: every named declaration of the 729 modules carries a plain title and a reading note, typeset on the page; the 8,072 declarations are all in the page's index |
+| Axioms of every declaration at `fd3a158` | Done: all 19,939 constants of the 729 compiled modules use only `propext`, `Classical.choice` and `Quot.sound` ([run 44905597526](https://github.com/wcook04/proof-reader/actions/runs/44905597526)) |
+| The authors' spine check `VerifySpine.lean` at `fd3a158` | Passed in the same run: "42 nodes, standard axioms; frontiers equal to the TeX citations and no bypass", with Remark 1.2 the stated library exception |
+| Our two checks beside the authors' Lean (`checks/`) | Compiled with the standard axioms only ([run 44887791276](https://github.com/wcook04/proof-reader/actions/runs/44887791276)); shown beside the Section 8 setting and Lemma 5.3 |
 | Comparator on the headline `TorusEuler.theorem11` | Accepted at the earlier commit `36d3961` ([run 44826207811](https://github.com/wcook04/proof-reader/actions/runs/44826207811)). At `fd3a158`: **pending** |
 | Comparator on the revised headline `TorusEuler.Paper.theorem_1_1` | **Pending** |
-| Axioms of every Paper-layer declaration at `fd3a158` | Done: all 669 declarations of the statement layer, the spine and `MainTheorem` use only `propext`, `Classical.choice` and `Quot.sound`, read from the compiled files ([run 44836591468](https://github.com/wcook04/proof-reader/actions/runs/44836591468)) |
-| The authors' spine check `VerifySpine.lean` at `fd3a158` | Passed in the same run: "42 nodes, standard axioms; frontiers equal to the TeX citations and no bypass", with Remark 1.2 the stated library exception |
-| A same, stronger or weaker comparison of each result with its Lean | **Pending**. Theorem 1.1 is compared below |
-| Sentence-level links inside each result and proof | **Pending** |
-| A reading copy and the Lean beside it on the Proof Reader site | **Pending**: being built from the authors' TeX and Lean at `fd3a158` |
+
+## How the page is built
+
+The authors' files are hosted unchanged: `lean/` is their `formalization/lean` at `fd3a158`.
+Everything else in this folder is ours.
+
+- `tools/reading_copy.py UPSTREAM TIES` flattens the authors' TeX, compiles it with Tectonic to
+  read their numbers, sets `paper.md` with Pandoc and carries each phrase tie into it as an
+  exact quotation (`generated/reading-ties.json`). The figures are converted to SVG.
+- `generated/lean.json.gz` is the extractor's report on all 729 modules, from
+  [`euler-extract.yml`](../../.github/workflows/euler-extract.yml) (the package takes hours to
+  build, so it is compiled on GitHub Actions); `notes/extract.toml` lists the modules.
+- `tools/record_checks.py RUN ARTIFACT` records a run of
+  [`euler-checks.yml`](../../.github/workflows/euler-checks.yml) as `generated/checks.json`.
+- `tools/build_links.py` writes `links.json` from the reviewed AI returns (kept privately): the
+  phrase ties, the 42 results and their comparisons, a reading note on every declaration with
+  its long title, and a card title of at most 40 characters.
 
 ## Theorem 1.1
 
