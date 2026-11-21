@@ -32,6 +32,12 @@ const USERS_SHOWN = 3;
 const LIST_BELOW = 440;
 /** A re-fit on a new subject: quick, so the eye follows it. None under reduced motion. */
 const FIT_MS = 250;
+/** The scale at which card text is readable: the map's own floor. */
+const READING_K = 0.85;
+/** The margin, in drawing pixels, the camera keeps round the cards it fits. */
+const FIT_PAD = 14;
+/** Long enough for any camera move of the map to settle before cut cards are hidden. */
+const MOVE_SETTLE = 420;
 /** Neighbourhood tiles are wider, and each is as tall as its title needs, up to four lines. */
 const NEAR_W = 140;
 const tileHeight = (title: string, width: number, raw = "") => {
@@ -289,18 +295,87 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
   // graph has, never below reading size. A manual pan is kept until the next change.
   const graphRef = useRef(graph);
   graphRef.current = graph;
+  // How many of the subject's neighbours did not fit at reading size, for the "+N more" chip.
+  const [more, setMore] = useState<{ n: number; subject: string } | null>(null);
+  const clipTimer = useRef(0);
   const refit = useCallback((animate = true) => {
     const g = graphRef.current;
     const drawn = litRef.current.filter((id) => g.nodes.has(id) && g.nodes.get(id)!.kind !== "goal");
-    if (!drawn.length || !body.current?.clientHeight) return false;
-    const near = new Set(drawn);
-    for (const id of drawn) {
-      for (const e of g.out.get(id) ?? []) near.add(e.to);
-      for (const e of g.in.get(id) ?? []) near.add(e.from);
+    const canvas = body.current;
+    if (!drawn.length || !canvas?.clientHeight) {
+      // Nothing to frame: the caller fits the whole map, and the cut cards are hidden after it.
+      setMore(null);
+      window.clearTimeout(clipTimer.current);
+      clipTimer.current = window.setTimeout(() => clipCards(), MOVE_SETTLE);
+      return false;
     }
-    tree.current?.fitNodes(near, animate, FIT_MS);
+    const near = new Set(drawn);
+    // The claim's plate is not a neighbour: it heads the whole map and is not a declaration.
+    for (const id of drawn) {
+      for (const e of g.out.get(id) ?? []) if (g.nodes.get(e.to)?.kind !== "goal") near.add(e.to);
+      for (const e of g.in.get(id) ?? []) if (g.nodes.get(e.from)?.kind !== "goal") near.add(e.from);
+    }
+    // Where each card stands in the drawing, read from the cards as drawn now: the world is one
+    // transform, so screen offsets divided by the scale are drawing offsets.
+    const world = canvas.querySelector<HTMLElement>(".tree__world");
+    const k = Number(/scale\(([^)]+)\)/.exec(world?.style.transform ?? "")?.[1] ?? 1) || 1;
+    const boxOf = (id: string) => {
+      const el = canvas.querySelector<HTMLElement>(`.card[data-record="${CSS.escape(id)}"]`);
+      if (!el) return null;
+      const r = el.getBoundingClientRect();
+      return { x0: r.left / k, y0: r.top / k, x1: r.right / k, y1: r.bottom / k };
+    };
+    // The room at reading size, less the margin the camera keeps round what it frames.
+    const roomW = (canvas.clientWidth - INSETS.left - INSETS.right) / READING_K - 2 * FIT_PAD;
+    const roomH = (canvas.clientHeight - INSETS.top - INSETS.bottom) / READING_K - 2 * FIT_PAD;
+    const fits = (ids: string[]) => {
+      const boxes = ids.map(boxOf).filter((b) => !!b);
+      if (!boxes.length) return true;
+      const w = Math.max(...boxes.map((b) => b.x1)) - Math.min(...boxes.map((b) => b.x0));
+      const h = Math.max(...boxes.map((b) => b.y1)) - Math.min(...boxes.map((b) => b.y0));
+      return w <= roomW && h <= roomH;
+    };
+    let shown = [...near];
+    if (!fits(shown)) {
+      // Too many to read at once: the subject and the nearest whole neighbours that fit with it.
+      const centre = boxOf(drawn[0]);
+      const at = (id: string) => {
+        const b = boxOf(id);
+        return b && centre ? Math.hypot((b.x0 + b.x1 - centre.x0 - centre.x1) / 2, (b.y0 + b.y1 - centre.y0 - centre.y1) / 2) : Infinity;
+      };
+      shown = [...drawn];
+      for (const id of [...near].filter((id) => !drawn.includes(id)).sort((a, b) => at(a) - at(b)))
+        if (fits([...shown, id])) shown.push(id);
+    }
+    const hidden = near.size - shown.length;
+    setMore(hidden > 0 ? { n: hidden, subject: drawn[0] } : null);
+    tree.current?.fitNodes(shown, animate, FIT_MS, FIT_PAD);
+    window.clearTimeout(clipTimer.current);
+    clipTimer.current = window.setTimeout(() => clipCards(), (animate ? FIT_MS : 0) + 60);
     return true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // While the graph follows its subject, a card the frame would cut in half is not drawn:
+  // every card on show is whole. A reader who moves the graph sees everything again.
+  const clipCards = useCallback(() => {
+    const canvas = body.current;
+    if (!canvas) return;
+    const view = canvas.getBoundingClientRect();
+    const following = !pausedRef.current;
+    canvas.querySelectorAll<HTMLElement>(".card[data-record]").forEach((card) => {
+      const r = card.getBoundingClientRect();
+      const whole = r.left >= view.left - 0.5 && r.right <= view.right + 0.5 && r.top >= view.top - 0.5 && r.bottom <= view.bottom + 0.5;
+      const outside = r.right <= view.left || r.left >= view.right || r.bottom <= view.top || r.top >= view.bottom;
+      card.classList.toggle("is-cut", following && !whole && !outside);
+    });
+  }, []);
+  useEffect(() => {
+    if (paused) {
+      setMore(null);
+      clipCards();
+    }
+  }, [paused, clipCards]);
 
   // A click is a new subject even while following is paused: it un-pauses and re-fits.
   const heldWas = useRef(heldKey);
@@ -356,6 +431,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
       tree.current?.restoreScene(scene);
       window.setTimeout(() => {
         restoring.current = false;
+        clipCards();
       }, 80);
     },
   }), []);
@@ -571,8 +647,15 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
             />
           )
           : <>
-            <div className="graph__canvas" ref={body}>{map}</div>
+            <div className="graph__canvas" ref={body}>
+              {map}
+            </div>
             <p className="graph__key">
+              {more && !paused && (
+                big
+                  ? <button type="button" className="graph__morechip" onClick={() => { setWhole(false); setCentre(more.subject); }} title="Show this card with everything it uses">+{more.n} more</button>
+                  : <span className="graph__morechip">+{more.n} more</span>
+              )}
               Square cards are definitions, round cards theorems{edition.analytics.axioms.length ? " and the violet box an axiom" : ""}.
               {" "}A line runs down from a declaration to one it uses: dashed when only its statement uses it, solid when its proof or definition body does.
             </p>

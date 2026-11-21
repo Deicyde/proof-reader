@@ -369,6 +369,32 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
     });
     if (grow.size) setNeeded((was) => new Map([...was, ...grow]));
   }, [drawing]);
+  // A card the pane would cut in half is not drawn until it is scrolled wholly into view, and
+  // a chip counts the cards below the fold.
+  const [below, setBelow] = useState(0);
+  useEffect(() => {
+    const el = frame.current;
+    if (!el || !drawing) return;
+    const clip = () => {
+      const view = el.getBoundingClientRect();
+      let under = 0;
+      el.querySelectorAll<HTMLElement>(".nearmap__card").forEach((card) => {
+        const r = card.getBoundingClientRect();
+        const whole = r.top >= view.top - 0.5 && r.bottom <= view.bottom + 0.5;
+        const outside = r.bottom <= view.top || r.top >= view.bottom;
+        card.classList.toggle("is-cut", !whole && !outside);
+        if (!whole && r.top > view.top) under += 1;
+      });
+      setBelow(under);
+    };
+    const later = window.setTimeout(clip, 260);
+    clip();
+    el.addEventListener("scroll", clip, { passive: true });
+    return () => {
+      window.clearTimeout(later);
+      el.removeEventListener("scroll", clip);
+    };
+  }, [drawing, fit, paneH]);
   const near = (id: string) => !!hot && (id === hot || !!drawing?.edges.some((e) => (e.from === hot && e.to === id) || (e.to === hot && e.from === id)));
   const point = (id: string | null) => {
     setHot(id);
@@ -422,6 +448,11 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
           })}
         </div>
         </div>
+      )}
+      {below > 0 && (
+        <button type="button" className="graph__morechip nearmap__more" onClick={() => frame.current?.scrollBy({ top: frame.current.clientHeight * 0.7, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })}>
+          +{below} more below
+        </button>
       )}
       {drawing && drawing.edges.length === 0 && alone && <p className="nearmap__alone" ref={tail}>{alone}</p>}
       {drawing && drawing.edges.length > 0 && (

@@ -585,3 +585,9 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
 .graph__key { flex: none; margin: 0; padding: 4px 16px 6px; border-top: 1px solid var(--rule); font-size: var(--fs-micro); line-height: 1.35; color: var(--ink-3); }
 .proof[data-lean] .graph__key { display: none; }
 .maplist__title code, .maplist code { overflow-wrap: anywhere; }
+/* While the graph follows, a card the frame would cut is not drawn; a chip counts the neighbours left out. */
+.graph .tree .card.is-cut, .nearmap__card.is-cut { visibility: hidden; }
+.graph__morechip { float: right; margin: 0 0 2px 10px; padding: 3px 10px; border: 1px solid var(--rule-strong); border-radius: 999px; background: var(--sheet); font-size: var(--fs-xs); color: var(--ink-2); }
+button.graph__morechip { cursor: pointer; }
+button.graph__morechip:hover { color: var(--ink); border-color: var(--ink-3); }
+.nearmap__more { position: sticky; float: right; bottom: 10px; margin: -34px 12px 0 0; }
