@@ -66,6 +66,13 @@ Everything else in this folder is ours.
 - `tools/build_links.py` writes `links.json` from the reviewed AI returns (kept privately): the
   phrase ties, the 42 results and their comparisons, a reading note on every declaration with
   its long title, and a card title of at most 40 characters.
+- `tools/apply_rewrites.py` applies the round-four rewrites, written for a reader who knows
+  incompressible Euler but has never read Lean, to the comparison notes, the linked
+  declarations' titles and notes, and the result comparisons.
+- The review's 14 topics, grouped in seven colour families, were restored after its return was
+  lost: 879 phrases from their section, whose review topic is unique, and the 93 phrases of
+  §1.1 and §5.6 from their phrase ids, the linked Lean modules and a reading of each phrase.
+  Those 93 are reconstructed, not reviewed; the totals of every topic match the review's.
 
 ## Theorem 1.1
 

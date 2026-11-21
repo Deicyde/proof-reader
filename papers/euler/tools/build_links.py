@@ -84,6 +84,37 @@ def instance_title(tail: str) -> str | None:
     return cls.format(typ) if cls and typ else None
 
 
+# The reviewed return names 14 topics; the page's colour key takes nine, named by the paper's
+# own section titles. Each reviewed topic folds into one of them. A version that keeps the 14
+# topics in seven families waits in the private Euler annex until the reviewed returns are restored.
+TOPICS = {
+    "singularity": ("The singular Euler solution",
+                    "The smooth odd periodic initial data, the maximal Euler solution and the conclusions of Theorem 1.1."),
+    "wave": ("The wave and its amplification",
+             "The Craik–Criminale wave over a linear background, its preceding frame, the strong shear limit, the couplings and the crossing of Section 2."),
+    "localized-wave": ("Localized waves over a smooth parent",
+                       "The transported phase, the localized amplitude, the narrow periodic profile and its curl completion in Section 3."),
+    "endpoint": ("Selecting initial data by the endpoint problem",
+                 "The displacement with two end conditions, coercivity and the Hölder inverse of Section 4 and Appendix A."),
+    "approximate": ("From a localized wave to an approximate solution",
+                    "The truncated parent and its coefficients, the estimates for the mean, pressure and flow, and the approximate Euler solution of Section 5."),
+    "hierarchy": ("The finite expansion",
+                  "The transverse equation, the leading oscillation and the finite hierarchy of profiles with their bounds at every order."),
+    "induction": ("The initial wave and the common sequence",
+                  "The first wave over a stationary shear, the choice of the next wave and the common sequence of approximate solutions in Sections 6 and 7."),
+    "terminal": ("The limit and its terminal behavior",
+                 "Convergence before the accumulation time, the central vorticity and the maximal time, and smooth terminal regularity away from the origin in Section 8 and the auxiliary note."),
+    "supporting": ("The frequency cutoff and finite norms",
+                   "The Fourier cutoff, the parameter inequalities and the finite norms and coefficient estimates of Appendices B to D."),
+}
+FOLD = {"singularity": "singularity", "affine-wave": "wave", "amplification": "wave", "localized-wave": "localized-wave",
+        "endpoint-inverse": "endpoint", "parent-step": "approximate", "mean-estimates": "approximate",
+        "approximate": "approximate", "pressure-flow": "approximate", "hierarchy": "hierarchy",
+        "induction": "induction", "terminal": "terminal", "auxiliary-smoothness": "terminal",
+        "supporting-estimates": "supporting"}
+RANK = {"same": 0, "stronger": 1, "weaker": 2, "different": 3}
+
+
 def balanced(quote: str) -> bool:
     """A quotation holds whole formulas: an even number of unescaped $ signs."""
     return len(re.findall(r"(?<!\\)\$", quote)) % 2 == 0
@@ -173,7 +204,21 @@ def main() -> int:
                 if len(names) == 1 and row.get("lines"):
                     lines = row["lines"]
         item = {"id": tie["id"], "section": section_of(block["heading"]), "role": ROLE[tie["role"]],
-                "quote": text[start:stop], "lean": names, "anchor": {"heading": block["heading"], "block": block["block"]}}
+                "quote": text[start:stop], "lean": names, "anchor": {"heading": block["heading"], "block": block["block"]},
+                "topic": FOLD[tie["topic"]]}
+        # One comparison per declaration: where the review compared two rows of the tie with
+        # the same declaration, the one that differs more from the words is kept.
+        compared: dict[str, dict] = {}
+        for row in tie["lean"]:
+            name = resolve(row["name"], row["file"]) if not row["file"].startswith("checks/") else None
+            if name not in names:
+                continue
+            entry = {"lean": name, "fidelity": row["fidelity"], "note": str(row.get("fidelity_note", "")).strip()}
+            held = compared.get(name)
+            if not held or RANK[entry["fidelity"]] > RANK[held["fidelity"]]:
+                compared[name] = entry
+        if compared:
+            item["comparisons"] = [compared[n] for n in names if n in compared]
         if lines:
             item["lines"] = lines
         if used_checks:
@@ -265,7 +310,9 @@ def main() -> int:
             untitled.append(f"{row['keyword']} {name}")
     if untitled:
         raise SystemExit("no title for:\n" + "\n".join(untitled))
-    links = {"schema": 1, "claims": claims, "passages": passages, "plain": dict(sorted(plain.items())),
+    first_seen = list(dict.fromkeys(p["topic"] for p in passages))
+    topics = [{"id": t, "name": TOPICS[t][0], "description": TOPICS[t][1]} for t in first_seen]
+    links = {"schema": 1, "topics": topics, "claims": claims, "passages": passages, "plain": dict(sorted(plain.items())),
              "notes": dict(sorted(notes.items())), "fidelity": dict(sorted(fidelity.items())),
              # Every declaration with a reading note is on the page, linked from the paper or not.
              "show_also": sorted(n for n in notes if n not in linked)}
