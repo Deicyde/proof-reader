@@ -36,3 +36,7 @@ language = "lean"
 "../navier-stokes/certificate-checker.md" = "navier-stokes-certificate-checker"
 "../navier-stokes/digest.md" = "navier-stokes-digest"
 "../navier-stokes/paper.md" = "navier-stokes"
+
+[shelf]
+with = "navier-stokes-paper"
+place = 10

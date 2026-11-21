@@ -36,3 +36,7 @@ language = "lean"
 "cell-layer-fidelity.md" = "navier-stokes-cell-fidelity"
 "certificate-checker.md" = "navier-stokes-certificate-checker"
 "digest.md" = "navier-stokes-digest"
+
+[shelf]
+with = "navier-stokes-paper"
+place = 6
