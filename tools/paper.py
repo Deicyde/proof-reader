@@ -1171,6 +1171,8 @@ def write_shelf() -> None:
         if listing.get("with"):
             entry["with"] = listing["with"]
             entry["place"] = int(listing.get("place", 0))
+        if listing.get("group"):
+            entry["group"] = str(listing["group"])
         shelf.append(entry)
     parents = {e["slug"] for e in shelf if "with" not in e}
     for e in shelf:

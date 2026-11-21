@@ -2250,6 +2250,3703 @@
     "heading": "1.2 Dictionary",
     "block": 2
    }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0001",
+   "section": "1.3 What the formal endpoints retain",
+   "role": "explains",
+   "quote": "The authors' declaration `Breakdown.extended_certificate_orbit_proved` proves that an extended certificate yields an existential weak periodic profile.",
+   "lean": [
+    "Breakdown.extended_certificate_orbit_proved"
+   ],
+   "anchor": {
+    "heading": "1.3 What the formal endpoints retain",
+    "block": 1
+   },
+   "title": "Extended certificate gives weak profile"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0002",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "The density input is the solenoidal test-field density used in [P, (7.3), p.30]; its formal counterpart is `Breakdown.Cert.testDenseHolds_proof`.",
+   "lean": [
+    "Breakdown.Cert.testDenseHolds_proof"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 8
+   },
+   "title": "Periodic tests separate fields"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0003",
+   "section": "3.1 Lemma II.3: the energy identity at graph-domain regularity",
+   "role": "explains",
+   "quote": "The hypotheses of these modular results are supplied in `Breakdown.extended_certificate_orbit_proved`.",
+   "lean": [
+    "Breakdown.extended_certificate_orbit_proved"
+   ],
+   "anchor": {
+    "heading": "3.1 Lemma II.3: the energy identity at graph-domain regularity",
+    "block": 20
+   },
+   "title": "Extended certificate gives weak profile"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0004",
+   "section": "3.2 Proposition II.4: construction of the free inverse",
+   "role": "explains",
+   "quote": "`Breakdown.Cert.exists_gradInvSpec` supplies the integral operator, `Breakdown.Cert.freeInvHolds_of` supplies the graph inverse, and `Breakdown.Cert.freeEquivariantHolds_of` proves preservation of symmetry.",
+   "lean": [
+    "Breakdown.Cert.exists_gradInvSpec",
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.freeEquivariantHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0005",
+   "section": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+   "role": "explains",
+   "quote": "The formal route separates period continuity from local compactness in `Breakdown.Cert.periodContinuityHolds_of` and `Breakdown.Cert.localCompactnessHolds_of`.",
+   "lean": [
+    "Breakdown.Cert.periodContinuityHolds_of",
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0006",
+   "section": "4.1 Lemma II.6: the exact product constant",
+   "role": "explains",
+   "quote": "The formal proof uses its Fourier graph, through `Breakdown.Cert.sliceSupBoundHolds_of` and `Breakdown.Cert.productBoundHolds_of`.",
+   "lean": [
+    "Breakdown.Cert.sliceSupBoundHolds_of",
+    "Breakdown.Cert.productBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.1 Lemma II.6: the exact product constant",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0007",
+   "section": "5.1 Lemma II.8: transfer the reference estimate",
+   "role": "explains",
+   "quote": "`Breakdown.Cert.extendedAtProfileHolds` implements the normalised transfer, while `Breakdown.Cert.extendedCoerciveBorderedHolds_of` applies the estimate to the physically interpreted graph solution under the formal certificate's hypotheses.",
+   "lean": [
+    "Breakdown.Cert.extendedAtProfileHolds",
+    "Breakdown.Cert.extendedCoerciveBorderedHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.1 Lemma II.8: transfer the reference estimate",
+    "block": 7
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0008",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "The formal compact-operator step is `Breakdown.Cert.Internal.BorderedInvertible.exists_inverse_of_compact_bordered`; `Breakdown.Cert.extendedBorderedInvertibleHolds_of` supplies its hypotheses for this problem.",
+   "lean": [
+    "Breakdown.Cert.Internal.BorderedInvertible.exists_inverse_of_compact_bordered",
+    "Breakdown.Cert.extendedBorderedInvertibleHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0009",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "The formal bridge from the reference frozen form is `Breakdown.Cert.extendedFrozenBridgeHolds_of`.",
+   "lean": [
+    "Breakdown.Cert.extendedFrozenBridgeHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 15
+   },
+   "title": "Transfer the frozen-form bound"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0010",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "The formal ambient space `Breakdown.Cert.XX` is $L^2$ in period-one time over a closed spatial Fourier graph.",
+   "lean": [
+    "Breakdown.Cert.XX"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 11
+   },
+   "title": "Periodic fields in the spatial graph"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0011",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "`Breakdown.Cert.mem_halfOrderGraph_iff` proves that taking the graph closure introduced no additional pairs.",
+   "lean": [
+    "Breakdown.Cert.mem_halfOrderGraph_iff"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 11
+   },
+   "title": "Identify the closed derivative graph"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0012",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "`Breakdown.Cert.extendedHeldMetricHolds_of` provides the closed-set, ambient-norm and limit properties used in the contraction theorem.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 11
+   },
+   "title": "The metric on the held correction set"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0013",
+   "section": "9.2 The adjoint coordinates",
+   "role": "explains",
+   "quote": "The formal estimate is `Breakdown.Cert.extendedAdjointEnclosureHolds_of`, supported by `Breakdown.Cert.extendedAdjointPairingHolds_of` and the representative-independent pairing condition.",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointEnclosureHolds_of",
+    "Breakdown.Cert.extendedAdjointPairingHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.2 The adjoint coordinates",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0014",
+   "section": "9.3 The remaining coordinates and the fixed point",
+   "role": "explains",
+   "quote": "The formal composition is `Breakdown.Cert.extendedExistsZeroHeldHolds_of`; its topological input is supplied through `Breakdown.Held.testSetZero_of`, `Breakdown.Held.convexCompactFixedPoint` and `Breakdown.exists_fixedPoint_box`.",
+   "lean": [
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of",
+    "Breakdown.Held.testSetZero_of",
+    "Breakdown.Held.convexCompactFixedPoint",
+    "Breakdown.exists_fixedPoint_box"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 7
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0015",
+   "section": "11.2 From the similarity equation to a physical mild solution",
+   "role": "explains",
+   "quote": "The formal construction `Breakdown.WeakProfile.weakOrbitOfParts_holds` proves the corresponding weak-to-mild orbit step through its own representative interfaces.",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.2 From the similarity equation to a physical mild solution",
+    "block": 10
+   },
+   "title": "Turn a weak profile into a mild orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0016",
+   "section": "11.6 How the formal regularity proof is organised",
+   "role": "explains",
+   "quote": "`Breakdown.WeakProfile.weakOrbitOfParts_holds` produces a continuous mild orbit from the weak profile data.",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 2
+   },
+   "title": "Turn a weak profile into a mild orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0017",
+   "section": "11.6 How the formal regularity proof is organised",
+   "role": "explains",
+   "quote": "`Breakdown.FarField.smoothFieldOfOrbit_holds` uses Fourier Sobolev bootstrapping and Picard estimates to obtain a smooth velocity and pressure representing that orbit.",
+   "lean": [
+    "Breakdown.FarField.smoothFieldOfOrbit_holds"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 2
+   },
+   "title": "Smooth field for a specified orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0018",
+   "section": "11.6 How the formal regularity proof is organised",
+   "role": "explains",
+   "quote": "`Breakdown.FarField.farFieldDecay_holds` then proves spatial decay by weighted integral estimates and a small-tail inverse argument.",
+   "lean": [
+    "Breakdown.FarField.farFieldDecay_holds"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 3
+   },
+   "title": "Spatial decay of the smooth profile"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0019",
+   "section": "11.6 How the formal regularity proof is organised",
+   "role": "explains",
+   "quote": "The public theorem `Breakdown.FarField.periodicLerayProfileExists_of_weak` packages this route as weak-to-smooth profile existence.",
+   "lean": [
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 4
+   },
+   "title": "Weak profile gives a smooth profile"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0020",
+   "section": "12.3 Corollary II.18: apply Part I to this profile",
+   "role": "explains",
+   "quote": "The public declaration `Breakdown.extended_certificate_breakdown_on_space` gives the whole-space breakdown endpoint directly from an extended certificate hypothesis.",
+   "lean": [
+    "Breakdown.extended_certificate_breakdown_on_space"
+   ],
+   "anchor": {
+    "heading": "12.3 Corollary II.18: apply Part I to this profile",
+    "block": 9
+   },
+   "title": "Extended certificate gives space blow-up"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0021",
+   "section": "13.2 What is represented differently in the formal certificate",
+   "role": "explains",
+   "quote": "The top-level `Breakdown.extended_certificate_orbit_proved` assembles these nodes from the extended certificate hypothesis.",
+   "lean": [
+    "Breakdown.extended_certificate_orbit_proved"
+   ],
+   "anchor": {
+    "heading": "13.2 What is represented differently in the formal certificate",
+    "block": 3
+   },
+   "title": "Extended certificate gives weak profile"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0022",
+   "section": "Part II. A certificate produces a nonzero periodic profile",
+   "role": "explains",
+   "quote": "We first solve the nonlinear equation for each fixed parameter by contraction.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of",
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of"
+   ],
+   "anchor": {
+    "heading": "Part II. A certificate produces a nonzero periodic profile",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0023",
+   "section": "Part II. A certificate produces a nonzero periodic profile",
+   "role": "explains",
+   "quote": "We then choose the parameter by a finite-dimensional fixed-point theorem.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of",
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of"
+   ],
+   "anchor": {
+    "heading": "Part II. A certificate produces a nonzero periodic profile",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0024",
+   "section": "Part II. A certificate produces a nonzero periodic profile",
+   "role": "explains",
+   "quote": "This follows the extended-certificate route in Lean and explains the purpose of (7.26).",
+   "lean": [
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of",
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of"
+   ],
+   "anchor": {
+    "heading": "Part II. A certificate produces a nonzero periodic profile",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0025",
+   "section": "1.2 Dictionary",
+   "role": "explains",
+   "quote": "The pin translation is $\\bar\\ell_i(\\alpha)=d.\\mathrm{target}(\\alpha)_i-\\ell_i(W^a_\\alpha)$.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.targetGap",
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0026",
+   "section": "1.2 Dictionary",
+   "role": "explains",
+   "quote": "Thus a statement about the correction's pin and a statement about the full field's pin express the same constraint only after this subtraction.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.targetGap",
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0027",
+   "section": "1.2 Dictionary",
+   "role": "explains",
+   "quote": "Likewise, the stored transport field in `IsPerturbation` includes the dilation and time derivative before subtracting the Laplacian.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.targetGap",
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0028",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "Let $H$ be the real Hilbert space of period-one vector fields square integrable on one time period and all of space.",
+   "lean": [
+    "Breakdown.IsPerturbation",
+    "Breakdown.Cert.HH"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0029",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "for every compactly supported smooth space-time test field $\\varphi$ that is divergence-free in space.",
+   "lean": [
+    "Breakdown.IsPerturbation",
+    "Breakdown.Cert.HH"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0030",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "This definition also applies to locally integrable fields whose individual terms have no global $H$ norm.",
+   "lean": [
+    "Breakdown.IsPerturbation",
+    "Breakdown.Cert.HH"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0031",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "It is the appropriate formulation of an equation whose pressure has been removed.",
+   "lean": [
+    "Breakdown.IsPerturbation",
+    "Breakdown.Cert.HH"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0032",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "The parameter set $K$ is the compact convex set specified in §2.5.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0033",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "On it, $S$ is continuous and $0<S(\\alpha)\\le S_{\\max}$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0034",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "The approximate fields are period-one and solenoidal; $W^a$, $\\partial_\\theta W^a$ and $\\nabla W^a$ depend continuously on $(\\alpha,\\theta,y)\\in K\\times\\mathbb R\\times\\mathbb R^3$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0035",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "Their weak second spatial derivatives are locally integrable.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0036",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "For a constant $C_a$ independent of the parameter,",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0037",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "They have every prescribed symmetry pointwise.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0038",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "The forcing directions $b_1,\\ldots,b_n\\in H$ are invariant, with $\\sum_i\\|b_i\\|_H^2\\le b_*^2$, where $b_*\\ge0$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0039",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "A continuous coefficient map $\\beta^a:K\\to\\mathbb R^n$ and chosen residuals $F^a_\\alpha\\in H$ satisfy",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0040",
+   "section": "2.3 Norms and the finite-row measurement",
+   "role": "explains",
+   "quote": "Let $w$ be measurable and bounded, with $0<w_*\\le w(y)\\le w^{\\max}$, and let $\\omega>0$.",
+   "lean": [
+    "Breakdown.weightedEnergy",
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "2.3 Norms and the finite-row measurement",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0041",
+   "section": "2.3 Norms and the finite-row measurement",
+   "role": "explains",
+   "quote": "Take pairwise orthogonal fields $e_1,\\ldots,e_N\\in H$ with $\\|e_a\\|_H\\le c_0$, where $c_0\\ge0$, and put",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.rows",
+    "Breakdown.Cert.rowNormHolds"
+   ],
+   "anchor": {
+    "heading": "2.3 Norms and the finite-row measurement",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0042",
+   "section": "2.4 Analytic inequalities required of a certificate",
+   "role": "explains",
+   "quote": "The following estimates hold uniformly for every $\\alpha\\in K$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 1
+   },
+   "title": "Reference-profile inverse estimate"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0043",
+   "section": "2.4 Analytic inequalities required of a certificate",
+   "role": "explains",
+   "quote": "The reference field $W^r_\\alpha$ is $C^1$ and periodic, and $C^r_\\alpha v=(W^r_\\alpha\\cdot\\nabla)v+(v\\cdot\\nabla)W^r_\\alpha$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 1
+   },
+   "title": "Reference-profile inverse estimate"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0044",
+   "section": "2.4 Analytic inequalities required of a certificate",
+   "role": "explains",
+   "quote": "The reference error obeys $\\|(C_\\alpha-C^r_\\alpha)v\\|_H\\le c_r\\|v\\|_w$, with $c_r\\ge0$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0045",
+   "section": "2.5 The parameter enclosure",
+   "role": "explains",
+   "quote": "Zero radii and an empty-interior parameter set are allowed.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.params"
+   ],
+   "anchor": {
+    "heading": "2.5 The parameter enclosure",
+    "block": 13
+   },
+   "title": "Admissible parameter set"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0046",
+   "section": "2.6 The two normalisations used in Lean",
+   "role": "explains",
+   "quote": "Then $\\sum_i\\widetilde\\beta_i\\widetilde b_i=\\sum_i\\beta_i b_i$ and $|\\widetilde\\beta|^2=\\omega^2|\\beta|^2$.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.withUnitWeight",
+    "Breakdown.Cert.extendedUnitWeightHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0047",
+   "section": "2.6 The two normalisations used in Lean",
+   "role": "explains",
+   "quote": "Moreover $\\widetilde V^{\\mathsf T}(\\widetilde\\beta^a+\\widetilde\\beta)=V^{\\mathsf T}(\\beta^a+\\beta)$, so the raw parameter map is identical.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.withUnitWeight",
+    "Breakdown.Cert.extendedUnitWeightHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0048",
+   "section": "2.6 The two normalisations used in Lean",
+   "role": "explains",
+   "quote": "The actuator-pairing error scales by $1/\\omega$; the adjoint fields, their linear and quadratic defect constants, and the affine offsets stay unchanged.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.withUnitWeight",
+    "Breakdown.Cert.extendedUnitWeightHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0049",
+   "section": "2.6 The two normalisations used in Lean",
+   "role": "explains",
+   "quote": "`Breakdown.Cert.extendedUnitWeightHolds` proves this transformation.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.withUnitWeight",
+    "Breakdown.Cert.extendedUnitWeightHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0050",
+   "section": "2.6 The two normalisations used in Lean",
+   "role": "explains",
+   "quote": "We retain $\\omega$ in the mathematics so the final multiplier term remains visible.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.withUnitWeight",
+    "Breakdown.Cert.extendedUnitWeightHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0051",
+   "section": "3.1 Lemma II.3: the energy identity at graph-domain regularity",
+   "role": "explains",
+   "quote": "The formal construction proves the graph equation, a continuous scalar energy representative, and its physical interpretation in separate declarations.",
+   "lean": [
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.freeEnergyLocalHolds_of",
+    "Breakdown.Cert.freePerturbationHolds_of",
+    "Breakdown.Cert.readingEnergyHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.1 Lemma II.3: the energy identity at graph-domain regularity",
+    "block": 20
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0052",
+   "section": "3.1 Lemma II.3: the energy identity at graph-domain regularity",
+   "role": "explains",
+   "quote": "The relevant steps are `Breakdown.Cert.freeInvHolds_of`, `Breakdown.Cert.freeEnergyLocalHolds_of`, `Breakdown.Cert.freePerturbationHolds_of` and `Breakdown.Cert.readingEnergyHolds_of`.",
+   "lean": [
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.freeEnergyLocalHolds_of",
+    "Breakdown.Cert.freePerturbationHolds_of",
+    "Breakdown.Cert.readingEnergyHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.1 Lemma II.3: the energy identity at graph-domain regularity",
+    "block": 20
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0053",
+   "section": "3.2 Proposition II.4: construction of the free inverse",
+   "role": "explains",
+   "quote": "Injectivity follows at once from (II.23): if $T_Sv=0$, then $\\nabla v=0$.",
+   "lean": [
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.exists_gradInvSpec"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0054",
+   "section": "3.2 Proposition II.4: construction of the free inverse",
+   "role": "explains",
+   "quote": "The $L^6$ realisation of $X$ excludes a nonzero constant field, hence $v=0$.",
+   "lean": [
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.exists_gradInvSpec"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0055",
+   "section": "3.2 Proposition II.4: construction of the free inverse",
+   "role": "explains",
+   "quote": "For surjectivity, begin with a dense collection of right sides $f(\\theta,y)=a(\\theta)\\psi(y)$, where $a$ is smooth and period-one and $\\psi$ is smooth, compactly supported and solenoidal.",
+   "lean": [
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.exists_gradInvSpec"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0056",
+   "section": "3.2 Proposition II.4: construction of the free inverse",
+   "role": "explains",
+   "quote": "The Fourier implementation constructs the gradient inverse before assembling the graph-domain inverse.",
+   "lean": [
+    "Breakdown.Cert.exists_gradInvSpec",
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.freeEquivariantHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0057",
+   "section": "3.2 Proposition II.4: construction of the free inverse",
+   "role": "explains",
+   "quote": "The proof above and the formal proof use the same contracting heat-dilation evolution, with different representations of its domain.",
+   "lean": [
+    "Breakdown.Cert.exists_gradInvSpec",
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.freeEquivariantHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0058",
+   "section": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+   "role": "explains",
+   "quote": "The limiting distributional equation is $T_S\\widetilde v=f$.",
+   "lean": [
+    "Breakdown.Cert.periodContinuityHolds_of",
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0059",
+   "section": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+   "role": "explains",
+   "quote": "The limit lies in $D_S$, and injectivity from Proposition II.4 identifies it with $v$.",
+   "lean": [
+    "Breakdown.Cert.periodContinuityHolds_of",
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0060",
+   "section": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+   "role": "explains",
+   "quote": "Every subsequence has a further subsequence with this same limit, so the stated convergence holds for the entire sequence.",
+   "lean": [
+    "Breakdown.Cert.periodContinuityHolds_of",
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0061",
+   "section": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+   "role": "explains",
+   "quote": "This proves the last assertion of Proposition 7.5.",
+   "lean": [
+    "Breakdown.Cert.periodContinuityHolds_of",
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0062",
+   "section": "4.1 Lemma II.6: the exact product constant",
+   "role": "explains",
+   "quote": "The paper obtains this constant from Xie's inequality.",
+   "lean": [
+    "Breakdown.Cert.sliceSupBoundHolds_of",
+    "Breakdown.Cert.productBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.1 Lemma II.6: the exact product constant",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0063",
+   "section": "4.1 Lemma II.6: the exact product constant",
+   "role": "explains",
+   "quote": "The proof just given is our derivation of the same analytic inequality; it is not an additional Lean proof.",
+   "lean": [
+    "Breakdown.Cert.sliceSupBoundHolds_of",
+    "Breakdown.Cert.productBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.1 Lemma II.6: the exact product constant",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0064",
+   "section": "4.2 Lemma II.7: bounded and compact convection",
+   "role": "explains",
+   "quote": "The coefficient in parentheses is finite at $R=0$ and tends to zero as $R\\to\\infty$.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionHolds_of",
+    "Breakdown.Cert.extendedInvarianceHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0065",
+   "section": "4.2 Lemma II.7: bounded and compact convection",
+   "role": "explains",
+   "quote": "Integrating its square in time proves boundedness and uniform control of tails.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionHolds_of",
+    "Breakdown.Cert.extendedInvarianceHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0066",
+   "section": "4.2 Lemma II.7: bounded and compact convection",
+   "role": "explains",
+   "quote": "The covariance of the bilinear expression proves invariance.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionHolds_of",
+    "Breakdown.Cert.extendedInvarianceHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0067",
+   "section": "4.2 Lemma II.7: bounded and compact convection",
+   "role": "explains",
+   "quote": "For compactness, take $f_j\\rightharpoonup0$ and set $v_j=T_S^{-1}f_j$.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionCompactHolds_of",
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 7
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0068",
+   "section": "4.2 Lemma II.7: bounded and compact convection",
+   "role": "explains",
+   "quote": "Proposition II.5 gives strong local convergence of $v_j$ to zero, while (II.23) bounds its derivatives.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionCompactHolds_of",
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 7
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0069",
+   "section": "4.2 Lemma II.7: bounded and compact convection",
+   "role": "explains",
+   "quote": "Choose a smooth spatial cutoff $\\chi$ supported in $B_{2R}$ and equal to one on $B_R$.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionCompactHolds_of",
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 7
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0070",
+   "section": "5.1 Lemma II.8: transfer the reference estimate",
+   "role": "explains",
+   "quote": "This proof allows the paper's real $c_2$: the pin term is kept unchanged, and it is zero in (II.30).",
+   "lean": [
+    "Breakdown.Cert.extendedAtProfileHolds",
+    "Breakdown.Cert.extendedCoerciveBorderedHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.1 Lemma II.8: transfer the reference estimate",
+    "block": 7
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0071",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "is a bijection from $D_S^\\Gamma\\times\\mathbb R^n$ to $H_{\\rm div}^\\Gamma\\times\\mathbb R^n$.",
+   "lean": [
+    "Breakdown.Cert.extendedBorderedInvertibleHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 3
+   },
+   "title": "Invert the constrained linear problem"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0072",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "Equivalently, every $F\\in H$ with $PF\\in H_{\\rm div}^\\Gamma$, and every prescribed pin vector, determine exactly one pair solving the linear equation modulo gradients with those pins.",
+   "lean": [
+    "Breakdown.Cert.extendedBorderedInvertibleHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 3
+   },
+   "title": "Invert the constrained linear problem"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0073",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "The map takes values in the indicated invariant space by Propositions II.4 and Lemma II.7.",
+   "lean": [
+    "Breakdown.Cert.extendedBorderedInvertibleHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 4
+   },
+   "title": "Invert the constrained linear problem"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0074",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "If its output is zero, (II.29) with zero forcing and zero pins implies $A(v,\\beta)=0$.",
+   "lean": [
+    "Breakdown.Cert.extendedBorderedInvertibleHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 4
+   },
+   "title": "Invert the constrained linear problem"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0075",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "Positivity of $w_*$ and $\\omega$ gives $\\beta=0$ and $\\nabla v=0$, hence $v=0$.",
+   "lean": [
+    "Breakdown.Cert.extendedBorderedInvertibleHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 4
+   },
+   "title": "Invert the constrained linear problem"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0076",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "Use $f=T_Sv$ as the velocity coordinate.",
+   "lean": [
+    "Breakdown.Cert.Internal.BorderedInvertible.exists_inverse_of_compact_bordered"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 5
+   },
+   "title": "Invert the compact bordered operator"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0077",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "On the Hilbert space $\\mathcal H_0=H_{\\rm div}^\\Gamma\\times\\mathbb R^n$, the transformed map is $I+Q$, where",
+   "lean": [
+    "Breakdown.Cert.Internal.BorderedInvertible.exists_inverse_of_compact_bordered"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 5
+   },
+   "title": "Invert the compact bordered operator"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0078",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "The convection block is compact by Lemma II.7.",
+   "lean": [
+    "Breakdown.Cert.Internal.BorderedInvertible.exists_inverse_of_compact_bordered"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 7
+   },
+   "title": "Invert the compact bordered operator"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0079",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "The remaining blocks are bounded and finite rank; for instance",
+   "lean": [
+    "Breakdown.Cert.Internal.BorderedInvertible.exists_inverse_of_compact_bordered"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 7
+   },
+   "title": "Invert the compact bordered operator"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0080",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Its input is a global $L^2$ right-side bound.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 3
+   },
+   "title": "Uniform gradient bound"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0081",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "The proof does not require a pointwise-in-time bound on that forcing.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 3
+   },
+   "title": "Uniform gradient bound"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0082",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Choose a minimum point $\\theta_*$ of the continuous periodic function $E$.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0083",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Its minimum is at most its mean, so $E(\\theta_*)\\le\\|v\\|_w^2/w_*$.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0084",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "The scalar function $E$ has period $1/m$: a half-period spatial isometry preserves the $X$ norm.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0085",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "For $\\theta\\in[\\theta_*,\\theta_*+1/m]$, integrate $E'\\le2S\\Lambda$ on each of the intervals",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0086",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Their interiors are disjoint and their union lies inside one full period.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0087",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Every increment on the left equals $E(\\theta)-E(\\theta_*)$.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0088",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Nonnegativity of $\\Lambda$ consequently gives",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0089",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Its `twist` is one or two; the nineteenfold spatial rotation in the proposed certificate is not the value of $m$.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 15
+   },
+   "title": "Uniform gradient bound"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0090",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "In its Fourier convention the graph relation is $h(\\xi)=2\\pi|\\xi|g(\\xi)$, where $g$ represents the homogeneous first derivative and $h$ the negative Laplacian.",
+   "lean": [
+    "Breakdown.Cert.XX",
+    "Breakdown.Cert.halfOrderGraph",
+    "Breakdown.Cert.mem_halfOrderGraph_iff"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0091",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "This is the formal counterpart of the completeness argument above.",
+   "lean": [
+    "Breakdown.Cert.XX",
+    "Breakdown.Cert.halfOrderGraph",
+    "Breakdown.Cert.mem_halfOrderGraph_iff"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0092",
+   "section": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+   "role": "explains",
+   "quote": "Then $\\mathcal F_\\alpha$ maps $\\mathcal B$ into itself.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 3
+   },
+   "title": "The nonlinear step keeps both bounds"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0093",
+   "section": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+   "role": "explains",
+   "quote": "The input coefficient $\\gamma$ is not used by the map; including it in the state keeps the output multiplier inside the same joint norm as the velocity.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 3
+   },
+   "title": "The nonlinear step keeps both bounds"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0094",
+   "section": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+   "role": "explains",
+   "quote": "The residual relation implies $PF^a_\\alpha\\in H_{\\rm div}^\\Gamma$: applying a symmetry to (II.4) leaves its left side unchanged modulo gradients, so the projected residual is fixed by that symmetry.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 4
+   },
+   "title": "The nonlinear step keeps both bounds"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0095",
+   "section": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+   "role": "explains",
+   "quote": "Hence Proposition II.9 gives the required solve.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 4
+   },
+   "title": "The nonlinear step keeps both bounds"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0096",
+   "section": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+   "role": "explains",
+   "quote": "Its output already belongs to $D_{S(\\alpha)}^\\Gamma$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 4
+   },
+   "title": "The nonlinear step keeps both bounds"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0097",
+   "section": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+   "role": "explains",
+   "quote": "For the second bound, insert $\\|v\\|_w\\le\\rho$, $|\\beta|\\le\\rho/\\omega$, $S(\\alpha)\\le S_{\\max}$ and $\\|F^a_\\alpha+N(u)\\|_H\\le\\delta_{\\max}+c_w\\rho M$ into (II.33).",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of",
+    "Breakdown.Cert.extendedSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 7
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0098",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "Let $z=(u,\\gamma)$ and $z'=(u',\\gamma')$ be held inputs.",
+   "lean": [
+    "Breakdown.Cert.productSubHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 3
+   },
+   "title": "Expand the quadratic difference"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0099",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "Write $(h,\\eta)=\\mathcal F_\\alpha z-\\mathcal F_\\alpha z'$ and $f=\\|N(u)-N(u')\\|_H$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 8
+   },
+   "title": "Contraction at a fixed parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0100",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "Apply (II.33) to that difference, and use $\\|h\\|_w\\le c_Lf$ and $|\\eta|\\le c_Lf/\\omega$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 8
+   },
+   "title": "Contraction at a fixed parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0101",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "The two components of the output metric therefore obey the same inverse estimate.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 12
+   },
+   "title": "Contraction at a fixed parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0102",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "This calculation explains the use of (7.26) in Lean's proof.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 14
+   },
+   "title": "Contraction at a fixed parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0103",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "The paper's Schauder proof does not need it.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 14
+   },
+   "title": "Contraction at a fixed parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0104",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "At the Appendix B value $w_*=39/50$ and its forced $c_L>98.3$, the same calculation imposes the small upper bound on $M$ stated in §2.4.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 14
+   },
+   "title": "Contraction at a fixed parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0105",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "To finish the existence proof, set $z_0=0$ and $z_{r+1}=\\mathcal F_\\alpha z_r$.",
+   "lean": [
+    "Breakdown.Cert.contractionFixedPointHolds_proof"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 15
+   },
+   "title": "Contraction in a closed held set"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0106",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "Proposition II.12 keeps every iterate in $\\mathcal B$.",
+   "lean": [
+    "Breakdown.Cert.contractionFixedPointHolds_proof"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 15
+   },
+   "title": "Contraction in a closed held set"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0107",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "If $D_0=d(z_0,z_1)$, induction and summation give",
+   "lean": [
+    "Breakdown.Cert.contractionFixedPointHolds_proof"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 15
+   },
+   "title": "Contraction in a closed held set"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0108",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "The fixed point solves (II.5), belongs to $D_{S(\\alpha)}^\\Gamma$, has the prescribed pins, and satisfies both bounds.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 18
+   },
+   "title": "Unique correction at each parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0109",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "Uniqueness is within this held class at a fixed parameter.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 18
+   },
+   "title": "Unique correction at each parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0110",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "No assertion of uniqueness of all periodic solutions, or of the parameter eventually selected, is made.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 18
+   },
+   "title": "Unique correction at each parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0111",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "The formal steps are `Breakdown.Cert.extendedHeldContractsHolds_of`, `Breakdown.Cert.contractionFixedPointHolds_proof` and `Breakdown.Cert.extendedHeldExistsUniqueHolds_of`.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 18
+   },
+   "title": "Unique correction at each parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0112",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "A parameter-dependent contraction theorem requiring norm continuity of the raw residual would add a hypothesis absent from the certificate.",
+   "lean": [
+    "Breakdown.Cert.extendedDataContinuityHolds_of",
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0113",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Instead, we use compactness and uniqueness.",
+   "lean": [
+    "Breakdown.Cert.extendedDataContinuityHolds_of",
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0114",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "First, for every compactly supported smooth solenoidal test $\\varphi$, the residual relation gives continuity of",
+   "lean": [
+    "Breakdown.Cert.extendedDataContinuityHolds_of",
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0115",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Take $\\alpha_j\\to\\alpha$ and abbreviate the held solutions by $(v_j,\\beta_j)$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 5
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0116",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Their joint and supremum bounds control $v_j$ in $\\mathcal E$, the multipliers in $\\mathbb R^n$, and $N(v_j)$ in $H$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 5
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0117",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "The residual bound and the uniform convection bound then control",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 5
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0118",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "From any subsequence extract a further subsequence on which $f_j\\rightharpoonup f$ and $\\beta_j\\to\\widetilde\\beta$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 7
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0119",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Since $S(\\alpha_j)\\to S(\\alpha)>0$, Proposition II.5 gives weak convergence of gradients and Laplacians and strong local $L^2$ convergence to $\\widetilde v=T_{S(\\alpha)}^{-1}f$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 7
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0120",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "We pass the nonlinear equation to the limit against compact solenoidal tests.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 8
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0121",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "The free term passes by weak convergence.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 8
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0122",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "The coefficients of convection converge uniformly on compact sets; its two terms pass using weak gradient convergence and strong local velocity convergence.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 8
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0123",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "The multiplier term passes in finite dimension.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 8
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0124",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Finally, because $v_j$ is solenoidal, $N(v_j)=\\operatorname{div}(v_j\\otimes v_j)$ in distributions.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 8
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0125",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Strong local $L^2$ convergence makes $v_j\\otimes v_j$ converge in local $L^1$, so the nonlinear term passes against every compact smooth vector test, whether solenoidal or not.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 8
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0126",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Its uniform global $H$ bound identifies the limit with $N(\\widetilde v)$ and permits the same identification against all $H$ tests by density.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 8
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0127",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Every subsequence has a further subsequence with this same multiplier limit.",
+   "lean": [
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 10
+   },
+   "title": "Continuous total forcing multiplier"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0128",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Since the multipliers lie in a bounded finite-dimensional set, this proves convergence of the full sequence and hence continuity.",
+   "lean": [
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 10
+   },
+   "title": "Continuous total forcing multiplier"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0129",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "The approximate adjoints and their coupling matrices enter no definition of this map; their possible discontinuity is harmless.",
+   "lean": [
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 12
+   },
+   "title": "Continuous total forcing multiplier"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0130",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "The formal counterparts are `Breakdown.Cert.extendedDataContinuityHolds_of`, `Breakdown.Cert.extendedHeldLimitHolds_of` and `Breakdown.Cert.extendedMultiplierContinuityHolds_of`.",
+   "lean": [
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 12
+   },
+   "title": "Continuous total forcing multiplier"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0131",
+   "section": "9.1 Proposition II.15: the raw update stays in the parameter set",
+   "role": "explains",
+   "quote": "Its fixed points satisfy $\\Phi(\\alpha)=0$.",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointEnclosureHolds_of",
+    "Breakdown.Cert.extendedStiffEnclosureHolds"
+   ],
+   "anchor": {
+    "heading": "9.1 Proposition II.15: the raw update stays in the parameter set",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0132",
+   "section": "9.1 Proposition II.15: the raw update stays in the parameter set",
+   "role": "explains",
+   "quote": "The transpose in this formula records that $V_j$ is column $j$.",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointEnclosureHolds_of",
+    "Breakdown.Cert.extendedStiffEnclosureHolds"
+   ],
+   "anchor": {
+    "heading": "9.1 Proposition II.15: the raw update stays in the parameter set",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0133",
+   "section": "9.1 Proposition II.15: the raw update stays in the parameter set",
+   "role": "explains",
+   "quote": "We prove the box and weighted-ball inclusions separately, using the same held solution at the current parameter.",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointEnclosureHolds_of",
+    "Breakdown.Cert.extendedStiffEnclosureHolds"
+   ],
+   "anchor": {
+    "heading": "9.1 Proposition II.15: the raw update stays in the parameter set",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0134",
+   "section": "9.2 The adjoint coordinates",
+   "role": "explains",
+   "quote": "The field $F'=-F^a_\\alpha-N(v_\\alpha)-\\sum_i\\beta_{\\alpha,i}b_i$ belongs to $H$ and represents $T_Sv_\\alpha+C_\\alpha v_\\alpha$.",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointPairingHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.2 The adjoint coordinates",
+    "block": 2
+   },
+   "title": "Pair the equation with an adjoint"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0135",
+   "section": "9.2 The adjoint coordinates",
+   "role": "explains",
+   "quote": "Insert it into (II.17), use the pin identity and (II.16), and set $e_j=\\langle b,\\psi\\rangle_H-V_j$.",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointPairingHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.2 The adjoint coordinates",
+    "block": 2
+   },
+   "title": "Pair the equation with an adjoint"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0136",
+   "section": "9.2 The adjoint coordinates",
+   "role": "explains",
+   "quote": "Adding the affine offset bound (II.18), and using $A\\le2\\varepsilon$ and (II.19), yields",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointEnclosureHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.2 The adjoint coordinates",
+    "block": 6
+   },
+   "title": "Enclose the adjoint coordinates"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0137",
+   "section": "9.2 The adjoint coordinates",
+   "role": "explains",
+   "quote": "Since $d_j\\mathcal T_j(\\alpha)=d_j\\alpha_j-V_j\\cdot\\Phi(\\alpha)$ and $d_j\\ne0$, this is the required coordinate inclusion $|\\mathcal T_j(\\alpha)|\\le\\rho_j$.",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointEnclosureHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.2 The adjoint coordinates",
+    "block": 8
+   },
+   "title": "Enclose the adjoint coordinates"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0138",
+   "section": "9.3 The remaining coordinates and the fixed point",
+   "role": "explains",
+   "quote": "For coordinates outside $J$, the Euclidean triangle inequality, (II.20), and $|\\beta_\\alpha|\\le2\\varepsilon/\\omega$ give",
+   "lean": [
+    "Breakdown.Cert.extendedStiffEnclosureHolds"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 1
+   },
+   "title": "Enclose the remaining coordinates"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0139",
+   "section": "9.3 The remaining coordinates and the fixed point",
+   "role": "explains",
+   "quote": "Equation (II.46) gives $V^{\\mathsf T}\\Phi(\\alpha_*)=0$.",
+   "lean": [
+    "Breakdown.Held.testSetZero_of",
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0140",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "Every term in this distributional equation is represented by a locally integrable function.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 3
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0141",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "The correction is continuous in $X$ by Lemma II.3.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 5
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0142",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "For the approximate profile, continuity of the gradient and (II.3) permit dominated convergence in $L^2_y$: the square is bounded by a constant times $(1+|y|)^{-4}$, integrable in dimension three.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 5
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0143",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "Its velocities are likewise continuous in $L^6$, using $(1+|y|)^{-6}$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 5
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0144",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "Thus the sum is a continuous periodic $X$ curve.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 5
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0145",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "For local integrability of the correction's time derivative, solve the graph identity for it:",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 6
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0146",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "On bounded spatial sets the last two are locally square integrable, by $v\\in L^2_\\theta L^6_y$ and the gradient bound.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 8
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0147",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "Thus the time derivative is locally square integrable.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 8
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0148",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "The approximate field has the required local derivatives by hypothesis, and the quadratic and cross terms have the bounds from §4.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 8
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0149",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "This verifies all local-integrability requirements without separating the time and dilation terms globally.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 8
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0150",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "If $\\mathcal W$ vanished, then $\\nabla v=-\\nabla W^a_{\\alpha_*}$, so",
+   "lean": [
+    "Breakdown.Cert.extendedHeldNonzeroHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 9
+   },
+   "title": "The corrected profile is nonzero"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0151",
+   "section": "11.2 From the similarity equation to a physical mild solution",
+   "role": "explains",
+   "quote": "Continuity of dilation on $X$ gives $u\\in C((-\\infty,1);X)$, and the Sobolev embedding gives continuity in $L^6$.",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.2 From the similarity equation to a physical mild solution",
+    "block": 3
+   },
+   "title": "Turn a weak profile into a mild orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0152",
+   "section": "11.2 From the similarity equation to a physical mild solution",
+   "role": "explains",
+   "quote": "Periodicity of $\\mathcal W$ implies the uniform scaling bound",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.2 From the similarity equation to a physical mild solution",
+    "block": 3
+   },
+   "title": "Turn a weak profile into a mild orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0153",
+   "section": "11.2 From the similarity equation to a physical mild solution",
+   "role": "explains",
+   "quote": "Changing variables in the weak similarity equation gives the physical weak Navier–Stokes equation against solenoidal tests.",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.2 From the similarity equation to a physical mild solution",
+    "block": 5
+   },
+   "title": "Turn a weak profile into a mild orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0154",
+   "section": "11.2 From the similarity equation to a physical mild solution",
+   "role": "explains",
+   "quote": "In particular, for a compactly supported smooth solenoidal spatial field $\\psi$,",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.2 From the similarity equation to a physical mild solution",
+    "block": 5
+   },
+   "title": "Turn a weak profile into a mild orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0155",
+   "section": "11.2 From the similarity equation to a physical mild solution",
+   "role": "explains",
+   "quote": "Initially this is an identity in time distributions.",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.2 From the similarity equation to a physical mild solution",
+    "block": 7
+   },
+   "title": "Turn a weak profile into a mild orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0156",
+   "section": "11.2 From the similarity equation to a physical mild solution",
+   "role": "explains",
+   "quote": "Both integrals on the right depend continuously on $t$, by $u\\in C_tL^6_x$ and the compact support of $\\psi$.",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.2 From the similarity equation to a physical mild solution",
+    "block": 7
+   },
+   "title": "Turn a weak profile into a mild orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0157",
+   "section": "11.2 From the similarity equation to a physical mild solution",
+   "role": "explains",
+   "quote": "The left pairing is therefore continuously differentiable and (II.54) holds at every time.",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.2 From the similarity equation to a physical mild solution",
+    "block": 7
+   },
+   "title": "Turn a weak profile into a mild orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0158",
+   "section": "11.2 From the similarity equation to a physical mild solution",
+   "role": "explains",
+   "quote": "We use the weak-to-mild statement proved in Part I, corresponding to the paper's Lemma 3.6: an $X$-continuous solenoidal curve on a compact interval that satisfies (II.54) for every such spatial test is its mild Navier–Stokes evolution from its value at the left endpoint.",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.2 From the similarity equation to a physical mild solution",
+    "block": 8
+   },
+   "title": "Turn a weak profile into a mild orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0159",
+   "section": "11.6 How the formal regularity proof is organised",
+   "role": "explains",
+   "quote": "That existential interface is insufficient as a direct statement of (II.1).",
+   "lean": [
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 4
+   },
+   "title": "Weak profile gives a smooth profile"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0160",
+   "section": "11.6 How the formal regularity proof is organised",
+   "role": "explains",
+   "quote": "The proof in the next section retains the relation to the originally constructed orbit throughout.",
+   "lean": [
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 4
+   },
+   "title": "Weak profile gives a smooth profile"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0161",
+   "section": "13.2 What is represented differently in the formal certificate",
+   "role": "explains",
+   "quote": "The formal `twist` may be one even when a half-period symmetry is available, which gives a conservative version of the same inequalities.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "13.2 What is represented differently in the formal certificate",
+    "block": 2
+   },
+   "title": "Conditions of an extended certificate"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0162",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "Here $X$ consists of divergence-free $L^6(\\mathbb R^3;\\mathbb R^3)$ fields with weak gradient in $L^2$, equipped with the gradient norm.",
+   "lean": [
+    "Breakdown.Freq.X",
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0163",
+   "section": "2.6 The two normalisations used in Lean",
+   "role": "explains",
+   "quote": "Divide $c_1$, $c_2$ and $c_0$ by $1-\\vartheta$, divide the row weights by $(1-\\vartheta)^2$, set the reference gap to zero, and use the transferred frozen-form bound.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.atProfile",
+    "Breakdown.Cert.extendedAtProfileHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0164",
+   "section": "2.6 The two normalisations used in Lean",
+   "role": "explains",
+   "quote": "This is `Breakdown.Cert.extendedAtProfileHolds`.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.atProfile",
+    "Breakdown.Cert.extendedAtProfileHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0165",
+   "section": "2.6 The two normalisations used in Lean",
+   "role": "explains",
+   "quote": "Section 5 proves the absorption directly.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.atProfile",
+    "Breakdown.Cert.extendedAtProfileHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0166",
+   "section": "2.6 The two normalisations used in Lean",
+   "role": "explains",
+   "quote": "Neither normalisation selects a different approximate field, parameter, period or pin target.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.atProfile",
+    "Breakdown.Cert.extendedAtProfileHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0167",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "It is complete: a Cauchy sequence gives a limit in $L^2_\\theta X$ and a separate $H$ limit of its Laplacians; passage against compact tests identifies the latter with the distributional Laplacian of the former.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0168",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "The bounds on $w$ make $\\|\\cdot\\|_w$ an equivalent Hilbert norm.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0169",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "Symmetry is a closed constraint, since each action is bounded in the unweighted norm and hence in the equivalent weighted norm.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0170",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "The difference supremum is finite, at most $2M$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0171",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "Both terms satisfy the triangle inequality, and the first controls the ambient norm by the positive constant $\\min\\{1,\\sqrt{w_*},\\omega\\}$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0172",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "If a sequence is $d$-Cauchy, it has an ambient limit in the closed set $\\mathcal B$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0173",
+   "section": "9.3 The remaining coordinates and the fixed point",
+   "role": "explains",
+   "quote": "Its formal counterpart is `Breakdown.Cert.extendedStiffEnclosureHolds`.",
+   "lean": [
+    "Breakdown.Held.testSetZero_of",
+    "Breakdown.Held.convexCompactFixedPoint"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0174",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "All derivatives in this definition are distributional, and $D_S^\\Gamma$ is its invariant subspace.",
+   "lean": [
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 6
+   },
+   "title": "Weak perturbation domain"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0175",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "It is the combined expression $S^{-1}\\partial_\\theta v+\\frac12v+\\frac12y\\cdot\\nabla v$ that is square integrable globally.",
+   "lean": [
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 6
+   },
+   "title": "Weak perturbation domain"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0176",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "To prove this, periodicise a compact test field in time.",
+   "lean": [
+    "Breakdown.Cert.testPairingHolds_proof",
+    "Breakdown.Cert.testDenseHolds_proof",
+    "Breakdown.Cert.exists_projSpec"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0177",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "Its pairing with a period-one field over all time becomes a pairing in $H$ over one period.",
+   "lean": [
+    "Breakdown.Cert.testPairingHolds_proof",
+    "Breakdown.Cert.testDenseHolds_proof",
+    "Breakdown.Cert.exists_projSpec"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0178",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "Finite sums of products $a(\\theta)\\psi(y)$, with $a$ smooth and periodic and $\\psi$ smooth, compactly supported and solenoidal, are dense in $H_{\\rm div}$.",
+   "lean": [
+    "Breakdown.Cert.testPairingHolds_proof",
+    "Breakdown.Cert.testDenseHolds_proof",
+    "Breakdown.Cert.exists_projSpec"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0179",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "Conversely, $P(F-G)=0$ annihilates every such test because $P$ fixes it.",
+   "lean": [
+    "Breakdown.Cert.testPairingHolds_proof",
+    "Breakdown.Cert.testDenseHolds_proof",
+    "Breakdown.Cert.exists_projSpec"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0180",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "An invariant field is fixed by every action listed in $\\Gamma$.",
+   "lean": [
+    "Breakdown.Cert.freeEquivariantHolds_of",
+    "Breakdown.Cert.extendedInvarianceHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0181",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "Orthogonal change of variables preserves the $H$ and $X$ norms.",
+   "lean": [
+    "Breakdown.Cert.freeEquivariantHolds_of",
+    "Breakdown.Cert.extendedInvarianceHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0182",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "The chain rule shows that the action commutes with $T_S$ and with $P$, and that it carries $(u\\cdot\\nabla)v$ to $(\\rho u\\cdot\\nabla)\\rho v$.",
+   "lean": [
+    "Breakdown.Cert.freeEquivariantHolds_of",
+    "Breakdown.Cert.extendedInvarianceHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0183",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "The set of prescribed symmetries can be empty.",
+   "lean": [
+    "Breakdown.Symmetry",
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0184",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "Define $m=2$ if some $(R,1/2)$ belongs to $\\Gamma$, and $m=1$ otherwise.",
+   "lean": [
+    "Breakdown.Symmetry",
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0185",
+   "section": "2.1 Equations modulo gradients and symmetry",
+   "role": "explains",
+   "quote": "Only the norm of an invariant slice is then asserted to have period $1/m$.",
+   "lean": [
+    "Breakdown.Symmetry",
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0186",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "Choose matrix fields $\\Xi_i\\in H$ and a continuous map $\\bar\\ell:K\\to\\mathbb R^n$.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData",
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0187",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "Adding (II.4) and (II.5) gives the exact nonlinear equation for $W^a_\\alpha+v$, with force coefficients $\\beta^a(\\alpha)+\\beta$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 10
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0188",
+   "section": "2.2 Approximate fields, residuals and pins",
+   "role": "explains",
+   "quote": "This equality of dimensions is used in the bordered Fredholm argument, and the coefficients will be cancelled exactly in §9.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 10
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0189",
+   "section": "2.3 Norms and the finite-row measurement",
+   "role": "explains",
+   "quote": "Indeed, discard zero rows, divide each remaining row by its norm, apply Bessel's inequality to this orthonormal family, and restore each norm using its upper bound $c_0$.",
+   "lean": [
+    "Breakdown.Cert.rowNormHolds",
+    "Breakdown.ExtendedCertificateData.rows"
+   ],
+   "anchor": {
+    "heading": "2.3 Norms and the finite-row measurement",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0190",
+   "section": "2.3 Norms and the finite-row measurement",
+   "role": "explains",
+   "quote": "In Lean the normalised row fields and their nonnegative squared weights are stored separately.",
+   "lean": [
+    "Breakdown.Cert.rowNormHolds",
+    "Breakdown.ExtendedCertificateData.rows"
+   ],
+   "anchor": {
+    "heading": "2.3 Norms and the finite-row measurement",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0191",
+   "section": "2.3 Norms and the finite-row measurement",
+   "role": "explains",
+   "quote": "This is a change of representation of the same finite sum.",
+   "lean": [
+    "Breakdown.Cert.rowNormHolds",
+    "Breakdown.ExtendedCertificateData.rows"
+   ],
+   "anchor": {
+    "heading": "2.3 Norms and the finite-row measurement",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0192",
+   "section": "2.4 Analytic inequalities required of a certificate",
+   "role": "explains",
+   "quote": "for every $v\\in D_{S(\\alpha)}^\\Gamma$, every $\\beta\\in\\mathbb R^n$, and every $F\\in H$ with the displayed relation.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0193",
+   "section": "2.4 Analytic inequalities required of a certificate",
+   "role": "explains",
+   "quote": "Here $c_1\\ge0$ and the paper allows $c_2\\in\\mathbb R$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0194",
+   "section": "2.4 Analytic inequalities required of a certificate",
+   "role": "explains",
+   "quote": "The extended formal predicate additionally requires $c_2\\ge0$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0195",
+   "section": "2.4 Analytic inequalities required of a certificate",
+   "role": "explains",
+   "quote": "In particular, the quantifier in (II.7) cannot be replaced by a statement solely about a projected right side.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0196",
+   "section": "2.4 Analytic inequalities required of a certificate",
+   "role": "explains",
+   "quote": "The formal route first bounds the reference form, then transfers it by a form error; `d.formBound` bounds their sum.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0197",
+   "section": "2.5 The parameter enclosure",
+   "role": "explains",
+   "quote": "Let $J\\subseteq\\{1,\\ldots,n\\}$, let $\\rho_j\\ge0$ for $j\\in J$, let $\\rho_*\\ge0$, and require $d_j\\ne0$ for every coordinate.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.5 The parameter enclosure",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0198",
+   "section": "2.5 The parameter enclosure",
+   "role": "explains",
+   "quote": "Take an invertible matrix $V$ with columns $V_j$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.5 The parameter enclosure",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0199",
+   "section": "2.5 The parameter enclosure",
+   "role": "explains",
+   "quote": "For $j\\in J$ and $\\alpha\\in K$, choose $\\psi_{\\alpha,j}\\in H$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.5 The parameter enclosure",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0200",
+   "section": "2.5 The parameter enclosure",
+   "role": "explains",
+   "quote": "and, for every $F\\in H$ equivalent modulo gradients to $T_{S(\\alpha)}v+C_\\alpha v$,",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.5 The parameter enclosure",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0201",
+   "section": "2.5 The parameter enclosure",
+   "role": "explains",
+   "quote": "Both statements are quantified over $v\\in D_{S(\\alpha)}^\\Gamma$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.5 The parameter enclosure",
+    "block": 7
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0202",
+   "section": "2.5 The parameter enclosure",
+   "role": "explains",
+   "quote": "The affine offset and inclusion conditions are",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.5 The parameter enclosure",
+    "block": 7
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0203",
+   "section": "3.2 Proposition II.4: construction of the free inverse",
+   "role": "explains",
+   "quote": "Now approximate an arbitrary $f\\in H_{\\rm div}$ by finite sums of these products.",
+   "lean": [
+    "Breakdown.Cert.Internal.FreeInv.exists_extension",
+    "Breakdown.Cert.freeInvHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0204",
+   "section": "3.2 Proposition II.4: construction of the free inverse",
+   "role": "explains",
+   "quote": "For their inverse images $v_j$, (II.23) applied to differences makes $\\nabla v_j$ and $\\Delta v_j$ Cauchy in $H$.",
+   "lean": [
+    "Breakdown.Cert.Internal.FreeInv.exists_extension",
+    "Breakdown.Cert.freeInvHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0205",
+   "section": "3.2 Proposition II.4: construction of the free inverse",
+   "role": "explains",
+   "quote": "Their limits give a period-one $v\\in L^2_\\theta X$ with $\\Delta v\\in H$.",
+   "lean": [
+    "Breakdown.Cert.Internal.FreeInv.exists_extension",
+    "Breakdown.Cert.freeInvHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0206",
+   "section": "3.2 Proposition II.4: construction of the free inverse",
+   "role": "explains",
+   "quote": "If $f$ is invariant, applying any prescribed symmetry to $v$ gives a second solution of the same equation.",
+   "lean": [
+    "Breakdown.Cert.freeEquivariantHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 12
+   },
+   "title": "The free inverse preserves symmetry"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0207",
+   "section": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+   "role": "explains",
+   "quote": "The free energy estimate therefore bounds both derivative norms of $v_j$; the Sobolev inequality bounds $v_j$ in $L^2_\\theta L^6_y$.",
+   "lean": [
+    "Breakdown.Cert.localCompactnessHolds_of",
+    "Breakdown.Cert.freeInvHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0208",
+   "section": "4.1 Lemma II.6: the exact product constant",
+   "role": "explains",
+   "quote": "At almost every time apply (II.26) and use $|(a\\cdot\\nabla)b|\\le |a|\\,|\\nabla b|_{\\rm F}$.",
+   "lean": [
+    "Breakdown.Cert.productBoundHolds_of",
+    "Breakdown.Cert.readingEnergyHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.1 Lemma II.6: the exact product constant",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0209",
+   "section": "4.1 Lemma II.6: the exact product constant",
+   "role": "explains",
+   "quote": "For $a=b=v\\in D_S$, the essential supremum is the ordinary supremum of its continuous $X$ representative.",
+   "lean": [
+    "Breakdown.Cert.productBoundHolds_of",
+    "Breakdown.Cert.readingEnergyHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.1 Lemma II.6: the exact product constant",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0210",
+   "section": "4.1 Lemma II.6: the exact product constant",
+   "role": "explains",
+   "quote": "In particular $N(v)\\in H$ and $\\|N(v)\\|_H\\le c_w\\|v\\|_w\\sup_\\theta\\|\\nabla v(\\theta)\\|_2$.",
+   "lean": [
+    "Breakdown.Cert.productBoundHolds_of",
+    "Breakdown.Cert.readingEnergyHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.1 Lemma II.6: the exact product constant",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0211",
+   "section": "4.2 Lemma II.7: bounded and compact convection",
+   "role": "explains",
+   "quote": "Both right-hand terms tend to zero: the local $L^2$ norm of $v_j$ tends to zero, and the relevant derivative norms remain bounded.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionCompactHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 9
+   },
+   "title": "Compact convection after free inversion"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0212",
+   "section": "4.2 Lemma II.7: bounded and compact convection",
+   "role": "explains",
+   "quote": "Thus gradients also converge strongly on bounded cylinders.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionCompactHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 9
+   },
+   "title": "Compact convection after free inversion"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0213",
+   "section": "4.2 Lemma II.7: bounded and compact convection",
+   "role": "explains",
+   "quote": "The bounded local coefficients imply $C_\\alpha v_j\\to0$ locally in $L^2$.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionCompactHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 9
+   },
+   "title": "Compact convection after free inversion"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0214",
+   "section": "4.2 Lemma II.7: bounded and compact convection",
+   "role": "explains",
+   "quote": "This proves convergence in $H$, and hence compactness.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionCompactHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 9
+   },
+   "title": "Compact convection after free inversion"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0215",
+   "section": "5.1 Lemma II.8: transfer the reference estimate",
+   "role": "explains",
+   "quote": "The reference equation has right side $F-G$, so (II.7), the two triangle inequalities and $[G]\\le c_0\\|G\\|_H$ give",
+   "lean": [
+    "Breakdown.Cert.extendedAtProfileHolds",
+    "Breakdown.Cert.extendedCoerciveBorderedHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.1 Lemma II.8: transfer the reference estimate",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0216",
+   "section": "5.1 Lemma II.8: transfer the reference estimate",
+   "role": "explains",
+   "quote": "Since $\\|v\\|_w\\le A(v,\\beta)$, subtract $\\vartheta A(v,\\beta)$ and use $\\vartheta<1$.",
+   "lean": [
+    "Breakdown.Cert.extendedAtProfileHolds",
+    "Breakdown.Cert.extendedCoerciveBorderedHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.1 Lemma II.8: transfer the reference estimate",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0217",
+   "section": "5.1 Lemma II.8: transfer the reference estimate",
+   "role": "explains",
+   "quote": "This proves (II.29), which is (7.52) on p.39.",
+   "lean": [
+    "Breakdown.Cert.extendedAtProfileHolds",
+    "Breakdown.Cert.extendedCoerciveBorderedHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.1 Lemma II.8: transfer the reference estimate",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0218",
+   "section": "5.2 Proposition II.9: bijectivity of the bordered map",
+   "role": "explains",
+   "quote": "The resulting identity plus compact operator is generally not self-adjoint.",
+   "lean": [
+    "Breakdown.isUnit_one_add_of_isCompactOperator_of_injective"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0219",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Let $E(\\theta)=\\|\\nabla v(\\theta)\\|_2^2$.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0220",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "The Leray projection drops out when paired with the solenoidal field $\\Delta v(\\theta)$.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0221",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "This is a nonnegative, period-one integrable function.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0222",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Cauchy–Schwarz in the finite coefficient vector and then in time gives",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0223",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Every value of $E$ is attained in this shorter interval.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0224",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "Combining this estimate with (II.34) proves (II.33).",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0225",
+   "section": "6.1 Proposition II.10: the supremum estimate",
+   "role": "explains",
+   "quote": "This distinction explains the factor $1/m$ without adding a symmetry assumption.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0226",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "The set contains zero and is closed in the ambient Hilbert space.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0227",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "For the supremum constraint, convergence in $\\mathcal E$ implies convergence of velocities in $L^2_\\theta X$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0228",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "A subsequence converges in $X$ at almost every time, so the slice bound passes to the limit.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0229",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "This argument remains valid when $\\rho=0$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0230",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "The pins and the condition $T_Sv\\in H$ are imposed by each linear solve, and will therefore hold at its fixed point.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0231",
+   "section": "7.1 Lemma II.11: a complete space for the iteration",
+   "role": "explains",
+   "quote": "Completeness of $D_S$ in the weighted norm would not justify this iteration, because that norm omits $T_Sv$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0232",
+   "section": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+   "role": "explains",
+   "quote": "The bilinear estimate gives $\\|N(u)\\|_H\\le c_w\\rho M$.",
+   "lean": [
+    "Breakdown.Cert.productBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 5
+   },
+   "title": "Quadratic-term norm estimate"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0233",
+   "section": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+   "role": "explains",
+   "quote": "The continuous $X$ representative supplied by the free solve makes this a bound at every time.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of",
+    "Breakdown.Cert.readingEnergyHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0234",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "It never divides by $\\rho$, so it remains valid at zero radius.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 7
+   },
+   "title": "Contraction at a fixed parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0235",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "The term $1/c_L$ comes from the factor $f\\|h\\|_w$ in the forcing contribution; it must be retained.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 10
+   },
+   "title": "Contraction at a fixed parameter"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0236",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "Completeness from Lemma II.11 supplies a limit $z_*$.",
+   "lean": [
+    "Breakdown.Cert.contractionFixedPointHolds_proof",
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 17
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0237",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "If $z_*'$ were another fixed point, (II.43) would give $d(z_*,z_*')\\le\\kappa_{\\rm ctr}d(z_*,z_*')$, forcing equality of the points.",
+   "lean": [
+    "Breakdown.Cert.contractionFixedPointHolds_proof",
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 17
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0238",
+   "section": "7.3 Proposition II.13: contraction and a unique held solution",
+   "role": "explains",
+   "quote": "For $\\varepsilon=0$, the self-map property directly forces the singleton zero pair to solve the equation.",
+   "lean": [
+    "Breakdown.Cert.contractionFixedPointHolds_proof",
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 17
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0239",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Only $W^a_\\alpha$, $\\partial_\\theta W^a_\\alpha$, $\\nabla W^a_\\alpha$, $1/S(\\alpha)$ and $\\beta^a(\\alpha)$ remain, together with fixed test and actuator integrals.",
+   "lean": [
+    "Breakdown.Cert.Internal.ExtendedDataContinuity.defect_pairing_eq",
+    "Breakdown.Cert.Internal.ExtendedDataContinuity.continuousOn_defect"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0240",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Their dependence is continuous on the compact support, and $S>0$, so the pairing is continuous.",
+   "lean": [
+    "Breakdown.Cert.Internal.ExtendedDataContinuity.defect_pairing_eq",
+    "Breakdown.Cert.Internal.ExtendedDataContinuity.continuousOn_defect"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0241",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "The pin pairings pass by weak convergence of gradients and continuity of $\\bar\\ell$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 9
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0242",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "The bound $A\\le\\rho$ passes by weak lower semicontinuity.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 9
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0243",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "The symmetry subspace is weakly closed as well.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 9
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0244",
+   "section": "8.1 Proposition II.14: continuity of the multiplier",
+   "role": "explains",
+   "quote": "Thus $(\\widetilde v,\\widetilde\\beta)$ is a held solution at $\\alpha$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 9
+   },
+   "title": "Pass held solutions to a limit"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0245",
+   "section": "9.2 The adjoint coordinates",
+   "role": "explains",
+   "quote": "Thus the forthcoming pairing is justified even though $\\psi$ was specified as an $H$ field rather than as a compact solenoidal test.",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointPairingHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.2 The adjoint coordinates",
+    "block": 1
+   },
+   "title": "Pair the equation with an adjoint"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0246",
+   "section": "9.3 The remaining coordinates and the fixed point",
+   "role": "explains",
+   "quote": "The set $K$ contains zero, is closed, and is bounded: outside $J$, each nonzero $d_j$ gives $|\\alpha_j|\\le\\rho_*/|d_j|$.",
+   "lean": [
+    "Breakdown.Held.Internal.zero_mem_testSet",
+    "Breakdown.Held.Internal.isClosed_testSet",
+    "Breakdown.Held.Internal.isBounded_testSet",
+    "Breakdown.Held.Internal.convex_testSet"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0247",
+   "section": "9.3 The remaining coordinates and the fixed point",
+   "role": "explains",
+   "quote": "It is convex as an intersection of slabs and the inverse image of a Euclidean ball under a linear map.",
+   "lean": [
+    "Breakdown.Held.Internal.zero_mem_testSet",
+    "Breakdown.Held.Internal.isClosed_testSet",
+    "Breakdown.Held.Internal.isBounded_testSet",
+    "Breakdown.Held.Internal.convex_testSet"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0248",
+   "section": "9.3 The remaining coordinates and the fixed point",
+   "role": "explains",
+   "quote": "We use the finite-dimensional fixed-point theorem in this exact form: every continuous self-map of a nonempty compact convex subset of a real finite-dimensional space has a fixed point.",
+   "lean": [
+    "Breakdown.Held.convexCompactFixedPoint"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 4
+   },
+   "title": "A fixed point on a compact convex set"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0249",
+   "section": "9.3 The remaining coordinates and the fixed point",
+   "role": "explains",
+   "quote": "Enclose $K$ in a box and compose $\\mathcal T$ with the nearest-point projection onto $K$; the box fixed-point theorem gives a point whose image lies in $K$, so the point itself lies in $K$ and is a fixed point of $\\mathcal T$.",
+   "lean": [
+    "Breakdown.Held.convexCompactFixedPoint"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 4
+   },
+   "title": "A fixed point on a compact convex set"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0250",
+   "section": "9.3 The remaining coordinates and the fixed point",
+   "role": "explains",
+   "quote": "This argument also covers $n=0$, empty $J$, zero radii and boundary fixed points.",
+   "lean": [
+    "Breakdown.Held.testSetZero_of"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 7
+   },
+   "title": "Zero of the parameter multiplier"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0251",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "To prove the equation, add the approximate relation (II.4) to the correction equation (II.5).",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 4
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0252",
+   "section": "10.1 Proposition II.16: cancellation and nontriviality",
+   "role": "explains",
+   "quote": "The quadratic expansion contributes precisely the two cross terms $C_\\alpha v$ and $N(v)$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 4
+   },
+   "title": "Cancel the auxiliary forcing"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0253",
+   "section": "11.1 Proposition II.17: the precise regularity statement",
+   "role": "explains",
+   "quote": "Its hypotheses are much more specific than unrestricted weak Navier–Stokes solvability.",
+   "lean": [
+    "Breakdown.WeakPeriodicSimilarityProfileExists",
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ],
+   "anchor": {
+    "heading": "11.1 Proposition II.17: the precise regularity statement",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0254",
+   "section": "11.1 Proposition II.17: the precise regularity statement",
+   "role": "explains",
+   "quote": "They already provide a continuous periodic homogeneous $H^1$ orbit.",
+   "lean": [
+    "Breakdown.WeakPeriodicSimilarityProfileExists",
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ],
+   "anchor": {
+    "heading": "11.1 Proposition II.17: the precise regularity statement",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0255",
+   "section": "11.6 How the formal regularity proof is organised",
+   "role": "explains",
+   "quote": "These are the facts needed to keep the selected orbit through smoothing.",
+   "lean": [
+    "Breakdown.FarField.IsVelocityOf",
+    "Breakdown.FarField.IsSmoothOrbitField"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0256",
+   "section": "11.6 How the formal regularity proof is organised",
+   "role": "explains",
+   "quote": "Those extra conclusions do not, by themselves, retain a certificate parameter or its correction.",
+   "lean": [
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 3
+   },
+   "title": "Weak profile gives a smooth profile"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0257",
+   "section": "13.2 What is represented differently in the formal certificate",
+   "role": "explains",
+   "quote": "Some differences are explicit encodings: its finite rows are normalised, it stores full-profile pin targets and subtracts the approximate pins, and it stores a weak Hessian and pressure-gradient representative.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData",
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "13.2 What is represented differently in the formal certificate",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0258",
+   "section": "Part II. A certificate produces a nonzero periodic profile",
+   "role": "explains",
+   "quote": "The input to this part is a certificate: approximate periodic fields, a finite-dimensional parameter set, and inequalities that control every admissible perturbation.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "Part II. A certificate produces a nonzero periodic profile",
+    "block": 3
+   },
+   "title": "Conditions of an extended certificate"
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0259",
+   "section": "1.1 Theorem II.1: the full conclusion of Theorem 7.1",
+   "role": "explains",
+   "quote": "Spatial second derivatives of the correction are weak derivatives.",
+   "lean": [
+    "Breakdown.IsPerturbation",
+    "Breakdown.matSq"
+   ],
+   "anchor": {
+    "heading": "1.1 Theorem II.1: the full conclusion of Theorem 7.1",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0260",
+   "section": "1.1 Theorem II.1: the full conclusion of Theorem 7.1",
+   "role": "explains",
+   "quote": "The approximate field is only required to have the regularity stated in the certificate, so subtracting it from a smooth field does not make its Hessian classical.",
+   "lean": [
+    "Breakdown.IsPerturbation",
+    "Breakdown.matSq"
+   ],
+   "anchor": {
+    "heading": "1.1 Theorem II.1: the full conclusion of Theorem 7.1",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0261",
+   "section": "1.1 Theorem II.1: the full conclusion of Theorem 7.1",
+   "role": "explains",
+   "quote": "The norm in (II.1) is finite, and its gradient integrand uses the Frobenius matrix norm.",
+   "lean": [
+    "Breakdown.IsPerturbation",
+    "Breakdown.matSq"
+   ],
+   "anchor": {
+    "heading": "1.1 Theorem II.1: the full conclusion of Theorem 7.1",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0262",
+   "section": "2.4 Analytic inequalities required of a certificate",
+   "role": "explains",
+   "quote": "Choose $M>0$ and set $c_w=(4\\pi\\sqrt{w_*})^{-1/2}$.",
+   "lean": [
+    "Breakdown.supBoundFactor",
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part2-0263",
+   "section": "12.3 Corollary II.18: apply Part I to this profile",
+   "role": "explains",
+   "quote": "For the torus, compose `Breakdown.extended_certificate_orbit_proved` with `Breakdown.FarField.breakdownOnTorus_of_weak`.",
+   "lean": [
+    "Breakdown.extended_certificate_orbit_proved",
+    "Breakdown.FarField.breakdownOnTorus_of_weak"
+   ],
+   "anchor": {
+    "heading": "12.3 Corollary II.18: apply Part I to this profile",
+    "block": 9
+   }
   }
  ],
  "plain": {
@@ -2265,88 +5962,88 @@
   "Breakdown.Cert.XBar": "The spatial derivative graph",
   "Breakdown.Cert.XX": "Periodic fields in the spatial graph",
   "Breakdown.Cert.contractionFixedPointHolds_proof": "Contraction in a closed held set",
-  "Breakdown.Cert.exists_gradInvSpec": "Construct the free gradient inverse",
+  "Breakdown.Cert.exists_gradInvSpec": "Build the free gradient inverse",
   "Breakdown.Cert.exists_projSpec": "Construct the Leray projection",
   "Breakdown.Cert.extendedAdjointEnclosureHolds_of": "Enclose the adjoint coordinates",
   "Breakdown.Cert.extendedAdjointPairingHolds_of": "Pair the equation with an adjoint",
-  "Breakdown.Cert.extendedAtProfileHolds": "Transfer to the approximate profile",
-  "Breakdown.Cert.extendedBorderedInvertibleHolds_of": "Invert the bordered linear equation",
+  "Breakdown.Cert.extendedAtProfileHolds": "Absorb the reference-profile error",
+  "Breakdown.Cert.extendedBorderedInvertibleHolds_of": "Invert the constrained linear problem",
   "Breakdown.Cert.extendedCoerciveBorderedHolds_of": "Apply the bordered coercive bound",
-  "Breakdown.Cert.extendedConvectionCompactHolds_of": "Compactness of linearised convection",
-  "Breakdown.Cert.extendedConvectionHolds_of": "Bound the linearised convection",
+  "Breakdown.Cert.extendedConvectionCompactHolds_of": "Compact convection after free inversion",
+  "Breakdown.Cert.extendedConvectionHolds_of": "Bounded linearised convection",
   "Breakdown.Cert.extendedDataContinuityHolds_of": "Continuity of tested residual data",
-  "Breakdown.Cert.extendedExistsZeroHeldHolds_of": "Choose a parameter with zero force",
+  "Breakdown.Cert.extendedExistsZeroHeldHolds_of": "Choose a force-free parameter",
   "Breakdown.Cert.extendedFrozenBridgeHolds_of": "Transfer the frozen-form bound",
-  "Breakdown.Cert.extendedHeldContractsHolds_of": "Contract the nonlinear correction map",
-  "Breakdown.Cert.extendedHeldExistsUniqueHolds_of": "The unique held correction",
+  "Breakdown.Cert.extendedHeldContractsHolds_of": "Contraction at a fixed parameter",
+  "Breakdown.Cert.extendedHeldExistsUniqueHolds_of": "Unique correction at each parameter",
   "Breakdown.Cert.extendedHeldLimitHolds_of": "Pass held solutions to a limit",
-  "Breakdown.Cert.extendedHeldMapsToHolds_of": "Preserve both correction bounds",
+  "Breakdown.Cert.extendedHeldMapsToHolds_of": "The nonlinear step keeps both bounds",
   "Breakdown.Cert.extendedHeldMetricHolds_of": "The metric on the held correction set",
-  "Breakdown.Cert.extendedHeldNonzeroHolds_of": "The corrected field is nonzero",
-  "Breakdown.Cert.extendedHeldWeakEquationHolds_of": "The corrected field is unforced",
-  "Breakdown.Cert.extendedInvarianceHolds_of": "Invariance of the linearised terms",
-  "Breakdown.Cert.extendedMultiplierContinuityHolds_of": "Continuity of the correction multiplier",
+  "Breakdown.Cert.extendedHeldNonzeroHolds_of": "The corrected profile is nonzero",
+  "Breakdown.Cert.extendedHeldWeakEquationHolds_of": "Cancel the auxiliary forcing",
+  "Breakdown.Cert.extendedInvarianceHolds_of": "Symmetry of the projected data",
+  "Breakdown.Cert.extendedMultiplierContinuityHolds_of": "Continuous total forcing multiplier",
   "Breakdown.Cert.extendedStiffEnclosureHolds": "Enclose the remaining coordinates",
-  "Breakdown.Cert.extendedSupBoundHolds_of": "Control the gradient at every time",
-  "Breakdown.Cert.extendedUnitWeightHolds": "Preserve the unit-weight certificate",
-  "Breakdown.Cert.freeEnergyLocalHolds_of": "Continuous energy and its identity",
-  "Breakdown.Cert.freeEquivariantHolds_of": "The free inverse preserves symmetries",
+  "Breakdown.Cert.extendedSupBoundHolds_of": "Uniform gradient bound",
+  "Breakdown.Cert.extendedUnitWeightHolds": "Normalise the multiplier weight",
+  "Breakdown.Cert.freeEnergyLocalHolds_of": "Local energy identity",
+  "Breakdown.Cert.freeEquivariantHolds_of": "The free inverse preserves symmetry",
   "Breakdown.Cert.freeInv": "The periodic free inverse",
-  "Breakdown.Cert.freeInvHolds_of": "Invert the free periodic equation",
+  "Breakdown.Cert.freeInvHolds_of": "Free inverse and energy bound",
   "Breakdown.Cert.freePerturbationHolds_of": "Read the free solve as a perturbation",
   "Breakdown.Cert.halfOrderGraph": "The closed spatial derivative graph",
-  "Breakdown.Cert.localCompactnessHolds_of": "Local compactness of the free inverse",
+  "Breakdown.Cert.localCompactnessHolds_of": "Compactness on bounded cylinders",
   "Breakdown.Cert.mem_halfOrderGraph_iff": "Identify the closed derivative graph",
-  "Breakdown.Cert.periodContinuityHolds_of": "Vary the period in the free inverse",
+  "Breakdown.Cert.periodContinuityHolds_of": "Weak continuity as the period varies",
   "Breakdown.Cert.physToHH": "Project a physical forcing field",
-  "Breakdown.Cert.productBoundHolds_of": "Bound the bilinear convection term",
+  "Breakdown.Cert.productBoundHolds_of": "Quadratic-term norm estimate",
   "Breakdown.Cert.productSubHolds_of": "Expand the quadratic difference",
-  "Breakdown.Cert.readingEnergyHolds_of": "Read energy and pins in physical space",
-  "Breakdown.Cert.readingExistsHolds_proof": "Read the spatial Fourier graph",
-  "Breakdown.Cert.rowNormHolds": "Bound the finite-row seminorm",
-  "Breakdown.Cert.sizeZ": "Joint correction and multiplier size",
-  "Breakdown.Cert.sliceReadingHolds_of": "Read the derivative graph at a time",
-  "Breakdown.Cert.sliceSupBoundHolds_of": "Bound a velocity slice in supremum",
+  "Breakdown.Cert.readingEnergyHolds_of": "Physical and graph energies agree",
+  "Breakdown.Cert.readingExistsHolds_proof": "Read graph elements as weak fields",
+  "Breakdown.Cert.rowNormHolds": "Bounds for the row seminorm",
+  "Breakdown.Cert.sizeZ": "Correction and multiplier norm",
+  "Breakdown.Cert.sliceReadingHolds_of": "Choose bounded time representatives",
+  "Breakdown.Cert.sliceSupBoundHolds_of": "Velocity bound from two derivatives",
   "Breakdown.Cert.solProj": "The solenoidal projection",
   "Breakdown.Cert.supGrad": "Essential gradient supremum",
-  "Breakdown.Cert.testDenseHolds_proof": "Density of solenoidal tests",
+  "Breakdown.Cert.testDenseHolds_proof": "Periodic tests separate fields",
   "Breakdown.Cert.testPairingHolds_proof": "Physical pairings against tests",
   "Breakdown.ExtendedCertificateData": "Extended certificate data",
   "Breakdown.ExtendedCertificateData.atProfile": "Use the approximate field as reference",
-  "Breakdown.ExtendedCertificateData.defect": "The chosen residual field",
-  "Breakdown.ExtendedCertificateData.params": "The box and weighted-ball parameters",
-  "Breakdown.ExtendedCertificateData.rows": "Finite-row forcing seminorm",
-  "Breakdown.ExtendedCertificateData.targetGap": "Pins required of the correction",
-  "Breakdown.ExtendedCertificateData.transferLoss": "Loss from the reference field",
+  "Breakdown.ExtendedCertificateData.defect": "Residual of the approximate profile",
+  "Breakdown.ExtendedCertificateData.params": "Admissible parameter set",
+  "Breakdown.ExtendedCertificateData.rows": "Row seminorm",
+  "Breakdown.ExtendedCertificateData.targetGap": "Constraint target for perturbation",
+  "Breakdown.ExtendedCertificateData.transferLoss": "Loss in the profile transfer",
   "Breakdown.ExtendedCertificateData.withUnitWeight": "Normalise the multiplier weight",
-  "Breakdown.FarField.DecayBounds": "Velocity and pressure-gradient decay",
+  "Breakdown.FarField.DecayBounds": "Profile and pressure decay bounds",
   "Breakdown.FarField.IsSmoothOrbitField": "A smooth periodic similarity field",
-  "Breakdown.FarField.IsVelocityOf": "Velocity equality at every time",
-  "Breakdown.FarField.breakdownOnTorus_of_weak": "Conditional torus breakdown",
-  "Breakdown.FarField.farFieldDecay_holds": "Decay of the smooth orbit",
+  "Breakdown.FarField.IsVelocityOf": "Same velocity at every time",
+  "Breakdown.FarField.breakdownOnTorus_of_weak": "Weak profile gives torus blow-up",
+  "Breakdown.FarField.farFieldDecay_holds": "Spatial decay of the smooth profile",
   "Breakdown.FarField.integralEquationOfOrbit_holds": "The orbit satisfies the Oseen equation",
-  "Breakdown.FarField.periodicLerayProfileExists_of_weak": "A smooth profile from a weak profile",
-  "Breakdown.FarField.smoothFieldOfOrbit_holds": "A smooth representative of the orbit",
-  "Breakdown.Freq.X": "Solenoidal homogeneous Fourier symbols",
+  "Breakdown.FarField.periodicLerayProfileExists_of_weak": "Weak profile gives a smooth profile",
+  "Breakdown.FarField.smoothFieldOfOrbit_holds": "Smooth field for a specified orbit",
+  "Breakdown.Freq.X": "The solenoidal Fourier space",
   "Breakdown.Held.convexCompactFixedPoint": "A fixed point on a compact convex set",
-  "Breakdown.Held.testSetZero_of": "Cancel the finite-dimensional force",
+  "Breakdown.Held.testSetZero_of": "Zero of the parameter multiplier",
   "Breakdown.IsExtendedCertificate": "Conditions of an extended certificate",
-  "Breakdown.IsPerturbation": "The correction and its weak derivatives",
-  "Breakdown.IsRightSide": "The linear equation modulo gradients",
-  "Breakdown.PeriodicSimilarityProfileExists": "Existence of a smooth periodic profile",
-  "Breakdown.Space": "Three-dimensional space",
+  "Breakdown.IsPerturbation": "Weak perturbation domain",
+  "Breakdown.IsRightSide": "Equality modulo gradients",
+  "Breakdown.PeriodicSimilarityProfileExists": "A nonzero recurrent profile",
+  "Breakdown.Space": "Euclidean three-space",
   "Breakdown.Symmetry": "An isometry with a time shift",
-  "Breakdown.WeakProfile.weakOrbitOfParts_holds": "Build the mild orbit from weak data",
+  "Breakdown.WeakProfile.weakOrbitOfParts_holds": "Turn a weak profile into a mild orbit",
   "Breakdown.exists_fixedPoint_box": "A fixed point on a box",
-  "Breakdown.extended_certificate_breakdown_on_space": "Conditional whole-space breakdown",
-  "Breakdown.extended_certificate_orbit_proved": "A weak orbit from a certificate",
+  "Breakdown.extended_certificate_breakdown_on_space": "Extended certificate gives space blow-up",
+  "Breakdown.extended_certificate_orbit_proved": "Extended certificate gives weak profile",
   "Breakdown.matSq": "Squared Frobenius gradient norm",
   "Breakdown.periodLIntegral": "Nonnegative integral over one period",
   "Breakdown.periodNorm": "Forcing norm over one period",
-  "Breakdown.pinValue": "Gradient pairing with a pin",
-  "Breakdown.stationaryEnergy": "Weighted energy at one time",
-  "Breakdown.supBoundFactor": "The exact slice supremum constant",
-  "Breakdown.weightedEnergy": "Weighted correction energy",
+  "Breakdown.pinValue": "Pin functional",
+  "Breakdown.stationaryEnergy": "Weighted energy of one time slice",
+  "Breakdown.supBoundFactor": "Define the uniform-norm constant",
+  "Breakdown.weightedEnergy": "Weighted perturbation energy",
   "Breakdown.sumSecondPartialsAt": "Laplacian",
   "Breakdown.frozenForm": "Frozen-time quadratic form",
   "Breakdown.Freq.embedX": "Embed a physical velocity field",
@@ -2449,7 +6146,19 @@
   "Breakdown.FarField.heatKernel": "Heat kernel",
   "Breakdown.Freq.conjVec": "Conjugate of a complex vector",
   "Breakdown.Cert.smoothH": "Heat smoothing on slices",
-  "Breakdown.Freq.L2R": "Real square-integrable fields"
+  "Breakdown.Freq.L2R": "Real square-integrable fields",
+  "Breakdown.Cert.Internal.FreeInv.exists_extension": "Extend the dense inverse estimate",
+  "Breakdown.isUnit_one_add_of_isCompactOperator_of_injective": "Invert an injective compact perturbation",
+  "Breakdown.Cert.Internal.ExtendedDataContinuity.defect_pairing_eq": "Rewrite the residual test pairing",
+  "Breakdown.Cert.Internal.ExtendedDataContinuity.continuousOn_defect": "Residual test pairings are continuous",
+  "Breakdown.Held.Internal.zero_mem_testSet": "The parameter set contains zero",
+  "Breakdown.Held.Internal.isClosed_testSet": "The parameter set is closed",
+  "Breakdown.Held.Internal.isBounded_testSet": "The parameter set is bounded",
+  "Breakdown.Held.Internal.convex_testSet": "The parameter set is convex",
+  "Breakdown.Cert.Internal.ExtendedDataContinuity.firstOrderPart": "The first-order defect expression",
+  "Breakdown.Cert.Internal.ExtendedDataContinuity.gradientPairing": "A tested gradient-energy term",
+  "Breakdown.Cert.periodize": "Periodise a compact test field",
+  "Breakdown.Cert.testInHH": "Periodized test field as a state"
  },
  "notes": {
   "Breakdown.IsPerturbation": {

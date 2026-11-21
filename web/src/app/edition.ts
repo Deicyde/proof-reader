@@ -291,6 +291,8 @@ export interface ShelfItem {
   with?: string;
   /** Its position among the entries listed under the same paper. */
   place?: number;
+  /** Companions sharing a group are listed as one numbered row. */
+  group?: string;
 }
 
 const base = import.meta.env.BASE_URL;

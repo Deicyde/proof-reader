@@ -1,0 +1,74 @@
+[paper]
+title = "Library guide 24: Breakdown/FracCert"
+short_title = "Navier–Stokes blow-up: library guide 24"
+authors = ["Prepared by Will Cook with AI assistance"]
+venue = "Part 24 of 30 of a guide to every declaration in Alpöge and Buckmaster’s Lean at ad53419"
+markdown = "paper.md"
+url = "https://github.com/wcook04/proof-reader/blob/main/papers/navier-stokes-library-24/paper.md"
+noun = "guide"
+licence = "MIT"
+
+[credit]
+text = "Paper and Lean: Levent Alpöge and Tristan Buckmaster, github.com/tristanbuckmaster/navier-stokes at ad53419. Text, links, plain titles, notes and comparisons prepared by Will Cook with AI assistance, MIT licence"
+
+[lean]
+project = "../navier-stokes-paper/lean"
+modules = ["Breakdown.FracCert.KernelDyadicPiece", "Breakdown.FracCert.KernelDyadicPieceFar", "Breakdown.FracCert.KernelDyadicPieceFarBound", "Breakdown.FracCert.KernelDyadicPieceFarParts", "Breakdown.FracCert.KernelDyadicSplit", "Breakdown.FracCert.KernelDyadicSum", "Breakdown.FracCert.KernelExports", "Breakdown.FracCert.KernelMultiplier", "Breakdown.FracCert.KernelPiece", "Breakdown.FracCert.KernelRingCutoff", "Breakdown.FracCert.KernelScaling", "Breakdown.FracCert.LinearSolve", "Breakdown.FracCert.LinearSolveCore", "Breakdown.FracCert.LinearStateClosed", "Breakdown.FracCert.Main", "Breakdown.FracCert.MildAnnihilator", "Breakdown.FracCert.MildBilinPairing", "Breakdown.FracCert.MildNiceHeat", "Breakdown.FracCert.MildPowerSim", "Breakdown.FracCert.MildProfileMoments", "Breakdown.FracCert.MildProfileOrbit", "Breakdown.FracCert.MildSimCompose", "Breakdown.FracCert.MildSimMoments", "Breakdown.FracCert.NiceClassDense", "Breakdown.FracCert.PowerSymbol", "Breakdown.FracCert.PowerSymbolRapid", "Breakdown.FracCert.PowerSymbolSplit", "Breakdown.FracCert.PressureGradientSquare", "Breakdown.FracCert.ProductClass", "Breakdown.FracCert.ProductCompact", "Breakdown.FracCert.ProductSquare", "Breakdown.FracCert.ProfileMildForm", "Breakdown.FracCert.ProfileMildFormParts", "Breakdown.FracCert.ProfileSymbolEquation", "Breakdown.FracCert.ProfileSymbolSix", "Breakdown.FracCert.QuadraticSquare", "Breakdown.FracCert.ResidualGradient", "Breakdown.FracCert.ResidualNice", "Breakdown.FracCert.SecondOrderComplete", "Breakdown.FracCert.SecondOrderWeakLimit", "Breakdown.FracCert.SecondPairRapid", "Breakdown.FracCert.SecondSymbol", "Breakdown.FracCert.SecondTraceSolenoidal", "Breakdown.FracCert.SixthGradientBound", "Breakdown.FracCert.SmoothAssembly", "Breakdown.FracCert.SmoothFirstGain", "Breakdown.FracCert.SmoothMomentStep", "Breakdown.FracCert.SmoothMomentStepAux", "Breakdown.FracCert.SmoothMomentStepSymbol", "Breakdown.FracCert.SmoothSupGain", "Breakdown.FracCert.SolenoidalSplit", "Breakdown.FracCert.SplitFormBounds", "Breakdown.FracCert.StDecay", "Breakdown.FracCert.StFree", "Breakdown.FracCert.StFreeNice", "Breakdown.FracCert.StFreeNiceParts", "Breakdown.FracCert.StGradientAdd", "Breakdown.FracCert.StHeld", "Breakdown.FracCert.StHeldParts", "Breakdown.FracCert.StKernel", "Breakdown.FracCert.StMildProfile", "Breakdown.FracCert.StQuadratic", "Breakdown.FracCert.StWeak", "Breakdown.FracCert.StWeakRegular", "Breakdown.FracCert.StatementsSmooth", "Breakdown.FracCert.StiffEnclosure", "Breakdown.FracCert.WeakFieldSmooth", "Breakdown.FracCert.WeakLowFrequency", "Breakdown.FracCert.WeakNiceDrift", "Breakdown.FracCert.WeakNiceSim", "Breakdown.FracCert.WeakPowerLimit", "Breakdown.FracCert.WeakPowerSub", "Breakdown.FracCert.WeakRegular", "Breakdown.FracCert.WeakRegularParts", "Breakdown.FracCert.WeakSimDeriv", "Breakdown.FracCert.WeakSimPair", "Breakdown.FracCert.WeakSymbolL1", "Breakdown.FracCert.WeakToProfile"]
+source = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546/lean"
+source_name = "navier-stokes at ad53419"
+source_lines = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/{path}#L{line}-L{end}"
+licence = "none stated by the authors; hosted with credit"
+scope = "Lean 4.33.1 compiled the authors' package, unchanged at ad53419, on GitHub Actions; this page reads the library (Breakdown and Solution). Each declaration's statement, dependencies and axioms shown here are Lean's own report from those compiled modules. The links from the text to the Lean, the plain titles and the notes were made with AI and have not been reviewed by the authors."
+
+[reading]
+language = "lean"
+
+[reading.companions]
+"../navier-stokes-appendix-b/paper.md" = "navier-stokes-appendix-b"
+"../navier-stokes-cell-guide/paper.md" = "navier-stokes-cell-guide"
+"../navier-stokes-cell-reference/paper.md" = "navier-stokes-cell-reference"
+"../navier-stokes-index/paper.md" = "navier-stokes-index"
+"../navier-stokes-library-01/paper.md" = "navier-stokes-library-01"
+"../navier-stokes-library-02/paper.md" = "navier-stokes-library-02"
+"../navier-stokes-library-03/paper.md" = "navier-stokes-library-03"
+"../navier-stokes-library-04/paper.md" = "navier-stokes-library-04"
+"../navier-stokes-library-05/paper.md" = "navier-stokes-library-05"
+"../navier-stokes-library-06/paper.md" = "navier-stokes-library-06"
+"../navier-stokes-library-07/paper.md" = "navier-stokes-library-07"
+"../navier-stokes-library-08/paper.md" = "navier-stokes-library-08"
+"../navier-stokes-library-09/paper.md" = "navier-stokes-library-09"
+"../navier-stokes-library-10/paper.md" = "navier-stokes-library-10"
+"../navier-stokes-library-11/paper.md" = "navier-stokes-library-11"
+"../navier-stokes-library-12/paper.md" = "navier-stokes-library-12"
+"../navier-stokes-library-13/paper.md" = "navier-stokes-library-13"
+"../navier-stokes-library-14/paper.md" = "navier-stokes-library-14"
+"../navier-stokes-library-15/paper.md" = "navier-stokes-library-15"
+"../navier-stokes-library-16/paper.md" = "navier-stokes-library-16"
+"../navier-stokes-library-17/paper.md" = "navier-stokes-library-17"
+"../navier-stokes-library-18/paper.md" = "navier-stokes-library-18"
+"../navier-stokes-library-19/paper.md" = "navier-stokes-library-19"
+"../navier-stokes-library-20/paper.md" = "navier-stokes-library-20"
+"../navier-stokes-library-21/paper.md" = "navier-stokes-library-21"
+"../navier-stokes-library-22/paper.md" = "navier-stokes-library-22"
+"../navier-stokes-library-23/paper.md" = "navier-stokes-library-23"
+"../navier-stokes-library-25/paper.md" = "navier-stokes-library-25"
+"../navier-stokes-library-26/paper.md" = "navier-stokes-library-26"
+"../navier-stokes-library-27/paper.md" = "navier-stokes-library-27"
+"../navier-stokes-library-28/paper.md" = "navier-stokes-library-28"
+"../navier-stokes-library-29/paper.md" = "navier-stokes-library-29"
+"../navier-stokes-library-30/paper.md" = "navier-stokes-library-30"
+"../navier-stokes-paper/paper.pdf" = "navier-stokes-paper"
+"../navier-stokes-part-1/paper.md" = "navier-stokes-part-1"
+"../navier-stokes-part-2/paper.md" = "navier-stokes-part-2"
+"../navier-stokes-route-details/paper.md" = "navier-stokes-route-details"
+"../navier-stokes-routes/paper.md" = "navier-stokes-routes"
+"../navier-stokes-statement-files/paper.md" = "navier-stokes-statement-files"
+"../navier-stokes/cell-layer-fidelity.md" = "navier-stokes-cell-fidelity"
+"../navier-stokes/certificate-checker.md" = "navier-stokes-certificate-checker"
+"../navier-stokes/digest.md" = "navier-stokes-digest"
+"../navier-stokes/paper.md" = "navier-stokes"
+
+[shelf]
+with = "navier-stokes-paper"
+place = 44
+group = "Library guide"

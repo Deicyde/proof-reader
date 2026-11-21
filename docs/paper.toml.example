@@ -58,6 +58,9 @@ page_label = "{page}"         # how the paper numbers its pages, such as "191:{p
 # `with` names a paper that is not listed on its own.
 # with = "navier-stokes-paper"
 # place = 2
+# Companions that share a `group` are listed as one numbered row ("Library guide: 1 2 3"),
+# at the place of the first of them.
+# group = "Library guide"
 
 # A Comparator run on some of the Lean's theorems. Name the folder of the run's files:
 # Challenge.lean, Solution.lean, the configuration, the rejected control and receipt.json.

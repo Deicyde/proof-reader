@@ -553,62 +553,214 @@
     "heading": "1. What the final condition says",
     "block": 2
    }
+  },
+  {
+   "id": "r5-cell-layer-guide-0001",
+   "section": "Reading the cell certificate",
+   "role": "mentions",
+   "quote": "Start with the fifteen fields of `CellSystemCondition`, then follow the objects that those fields constrain.",
+   "lean": [
+    "Breakdown.CellLayerSystem.CellSystemCondition"
+   ],
+   "anchor": {
+    "heading": "Reading the cell certificate",
+    "block": 3
+   },
+   "title": "The fifteen cell conditions"
+  },
+  {
+   "id": "r5-cell-layer-guide-0002",
+   "section": "Reading the cell certificate",
+   "role": "explains",
+   "quote": "`FracCellData` also inherits the 46 fields of `FracCertData`; the catalogue records that inheritance separately.",
+   "lean": [
+    "Breakdown.CellCert.FracCellData",
+    "Breakdown.SteadyCert.FracCertData"
+   ],
+   "anchor": {
+    "heading": "Reading the cell certificate",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-cell-layer-guide-0003",
+   "section": "1. What the final condition says",
+   "role": "explains",
+   "quote": "`CellSystemCondition` requires all fifteen fields for the same seven arguments: the certificate data, their concrete field instances, the cell-calculus data, the tree, the assembly entries, the coercivity numbers and the reduction entries. Existential witnesses inside one field retain their original scope. Rechecking an inequality with a fresh witness does not establish a conjunction that requires one shared witness.",
+   "lean": [
+    "Breakdown.CellLayerSystem.CellSystemCondition"
+   ],
+   "anchor": {
+    "heading": "1. What the final condition says",
+    "block": 1
+   },
+   "title": "The fifteen cell conditions"
+  },
+  {
+   "id": "r5-cell-layer-guide-0004",
+   "section": "2. The notation to keep separate",
+   "role": "explains",
+   "quote": "Do not confuse it with an azimuthal wave number.",
+   "lean": [
+    "Breakdown.CertCell.CellLayerData"
+   ],
+   "anchor": {
+    "heading": "2. The notation to keep separate",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-cell-layer-guide-0005",
+   "section": "2. The notation to keep separate",
+   "role": "explains",
+   "quote": "The final cell hypothesis requires at least 3. The value 19 belongs to the reported numerical construction, not to this generic declaration.",
+   "lean": [
+    "Breakdown.CertCell.CellLayerData",
+    "Breakdown.CertCell.CellHypothesis"
+   ],
+   "anchor": {
+    "heading": "2. The notation to keep separate",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-cell-layer-guide-0006",
+   "section": "2. The notation to keep separate",
+   "role": "explains",
+   "quote": "Its temporal frequency is \\(2\\iota_2-\\iota_1\\); its azimuthal frequency is \\(\\kappa\\iota_1\\).",
+   "lean": [
+    "Breakdown.CertCell.labelTime",
+    "Breakdown.CertCell.labelAzimuth"
+   ],
+   "anchor": {
+    "heading": "2. The notation to keep separate",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-cell-layer-guide-0007",
+   "section": "2. The notation to keep separate",
+   "role": "explains",
+   "quote": "Time has period one at this layer.",
+   "lean": [
+    "Breakdown.IsTimePeriodic"
+   ],
+   "anchor": {
+    "heading": "2. The notation to keep separate",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-cell-layer-guide-0009",
+   "section": "2. The notation to keep separate",
+   "role": "explains",
+   "quote": "`cylRadius` or the first component of a cell point",
+   "lean": [
+    "Breakdown.CellCert.CellAnalysis.cylRadius"
+   ],
+   "anchor": {
+    "heading": "2. The notation to keep separate",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-cell-layer-guide-0011",
+   "section": "2. The notation to keep separate",
+   "role": "explains",
+   "quote": "Nine gradient entries precede three velocity entries. The gradient block is not automatically symmetric.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.gradOf"
+   ],
+   "anchor": {
+    "heading": "2. The notation to keep separate",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-cell-layer-guide-0012",
+   "section": "2. The notation to keep separate",
+   "role": "explains",
+   "quote": "Cell rows are complex, with separate reality constraints on the two actuator blocks.",
+   "lean": [
+    "Breakdown.CertCell.TreeEntry"
+   ],
+   "anchor": {
+    "heading": "2. The notation to keep separate",
+    "block": 1
+   },
+   "title": "The matrix tree data"
+  },
+  {
+   "id": "r5-cell-layer-guide-0013",
+   "section": "2. The notation to keep separate",
+   "role": "mentions",
+   "quote": "The label conventions implement (B.2), while the cell and chart conventions implement (B.3), (B.10) and the discussion preceding (B.26). [Source: lines 214–255, 331–337, 1700–1759 and 5589–5622; exact declarations are linked in the catalogue.]",
+   "lean": [
+    "Breakdown.CertCell.labelTime",
+    "Breakdown.CertCell.labelAzimuth",
+    "Breakdown.CellCert.CellAnalysis.CellBox",
+    "Breakdown.CellCert.GivenFields.ChartParams"
+   ],
+   "anchor": {
+    "heading": "2. The notation to keep separate",
+    "block": 2
+   }
   }
  ],
  "plain": {
-  "Breakdown.AdjointDefect.AzimuthalBounded": "Azimuthal dual bound",
-  "Breakdown.AdjointDefect.PotentialData": "Adjoint potential fields",
+  "Breakdown.AdjointDefect.AzimuthalBounded": "Record the azimuthal dual bound",
+  "Breakdown.AdjointDefect.PotentialData": "Name the four potential fields",
   "Breakdown.CellCert.CellAnalysis.CellBox": "Meridian rectangle",
   "Breakdown.CellCert.CellAnalysis.IsCellBox": "Valid meridian rectangle",
   "Breakdown.CellCert.FracCellData": "Abstract cell approximation data",
   "Breakdown.CellCert.GivenFields.Spline.VanishesFrom": "Zero spline pieces after a cutoff",
-  "Breakdown.CellLayerSystem.CellSystemCondition": "The fifteen certificate conditions",
-  "Breakdown.CellLayerSystem.CertificateClauses": "Numerical certificate inequalities",
-  "Breakdown.CellLayerSystem.PotentialEntriesBounded": "Potentials match the adjoint data",
-  "Breakdown.CellLayerSystem.ReductionEntries": "Data reducing cells to a certificate",
-  "Breakdown.CellLayerSystem.breakdownOnSpaceAndTorus_of_cell_system_condition": "Cell conditions imply both conclusions",
-  "Breakdown.CellReduction.Instantiation.InstantiationBounded": "Profile, pressure and adjoint links",
-  "Breakdown.CertCell.Assembly.EliminationConditions": "Comparison with the eliminated forms",
+  "Breakdown.CellLayerSystem.CellSystemCondition": "The fifteen cell conditions",
+  "Breakdown.CellLayerSystem.CertificateClauses": "Remaining certificate inequalities",
+  "Breakdown.CellLayerSystem.PotentialEntriesBounded": "Admissible potential and pin data",
+  "Breakdown.CellLayerSystem.ReductionEntries": "Profile and adjoint reduction data",
+  "Breakdown.CellLayerSystem.breakdownOnSpaceAndTorus_of_cell_system_condition": "Obtain both conditional conclusions",
+  "Breakdown.CellReduction.Instantiation.InstantiationBounded": "Identify profile, pressure and adjoints",
+  "Breakdown.CertCell.Assembly.EliminationConditions": "Local elimination comparison",
   "Breakdown.CertCell.Assembly.FarFieldConditions": "Exterior field bounds and charges",
-  "Breakdown.CertCell.Assembly.InRowRange": "Allowed vectors for local inequalities",
-  "Breakdown.CertCell.Assembly.IsExteriorCover": "Exterior cover for every harmonic",
+  "Breakdown.CertCell.Assembly.InRowRange": "All compatible local row vectors",
+  "Breakdown.CertCell.Assembly.IsExteriorCover": "Coverage of the unbounded exterior",
   "Breakdown.CertCell.Assembly.IsOffModeCover": "Every unresolved mode is covered",
   "Breakdown.CertCell.Assembly.PairingConditions": "Conditions for the pairing form",
-  "Breakdown.CertCell.Assembly.PotentialConditions": "Conditions for the potential form",
+  "Breakdown.CertCell.Assembly.PotentialConditions": "Potential coupling conditions",
   "Breakdown.CertCell.Assembly.PotentialData": "Potential coupling data",
   "Breakdown.CertCell.Assembly.RowFunctionalConditions": "Conditions for tested row formulas",
-  "Breakdown.CertCell.Assembly.TreeRowConditions": "Global rows satisfy the tree setup",
-  "Breakdown.CertCell.Assembly.modelLabels": "Model harmonics active on this cell",
+  "Breakdown.CertCell.Assembly.TreeRowConditions": "Global row and matrix conditions",
+  "Breakdown.CertCell.Assembly.modelLabels": "Model harmonics active in a cell",
   "Breakdown.CertCell.CellCalculus.CellCalculusConditions": "Consistency of local calculus data",
-  "Breakdown.CertCell.CellCalculus.IsLeafValues": "Resolved leaf inequalities",
-  "Breakdown.CertCell.CellLayerEntryConditions": "Conditions joining all cell entries",
-  "Breakdown.CertCell.CellMesh": "Cells and their harmonic sets",
+  "Breakdown.CertCell.CellCalculus.IsLeafValues": "The local analytic leaf inequalities",
+  "Breakdown.CertCell.CellLayerEntryConditions": "Assembly entries and exterior bounds",
+  "Breakdown.CertCell.CellMesh": "Physical cylindrical cells",
   "Breakdown.CertCell.CellPoly": "Polynomial in cell coordinates",
   "Breakdown.CertCell.Coupling.inverseWeightedSq": "Inverse-matrix quadratic form",
   "Breakdown.CertCell.Coupling.quadForm": "Real complex quadratic form",
-  "Breakdown.CertCell.GivenShape.HasSymmetricScale": "Reflection symmetry of node scales",
-  "Breakdown.CertCell.GivenShape.IsJoinedSpline": "Anisotropic spline joins",
-  "Breakdown.CertCell.GivenShape.IsScaledJetEntry": "Identify the scaled reference field",
+  "Breakdown.CertCell.GivenShape.HasSymmetricScale": "Symmetric node scales",
+  "Breakdown.CertCell.GivenShape.IsJoinedSpline": "Spline joins in both variables",
+  "Breakdown.CertCell.GivenShape.IsScaledJetEntry": "Bind the scaled reference-field jets",
   "Breakdown.CertCell.GivenShape.JetAxis": "One-dimensional jet axis",
   "Breakdown.CertCell.GivenShape.ScaledJetAxis": "Scaled Hermite and bubble axis",
-  "Breakdown.CertCell.GivenShape.ScaledJetAxis.convert": "Convert scaled jet coordinates",
-  "Breakdown.CertCell.GivenShape.ShapeValuesFacts": "Periods, weights and support sets",
+  "Breakdown.CertCell.GivenShape.ScaledJetAxis.convert": "Conversion from scaled jet data",
+  "Breakdown.CertCell.GivenShape.ShapeValuesFacts": "Positive values and harmonic closure",
   "Breakdown.CertCell.GivenShape.shapeKnots": "All exceptional shape knots",
   "Breakdown.CertCell.Instance.IsInstanceEntry": "Validity of the decoded instance",
-  "Breakdown.CertCell.Instance.IsRowValues": "Complete independent polynomial rows",
+  "Breakdown.CertCell.Instance.IsRowValues": "Polynomial row-field conditions",
   "Breakdown.CertCell.Instance.SplineJoins": "Polynomial joins of a chosen order",
-  "Breakdown.CertCell.IsCellMesh": "Valid cell and harmonic mesh",
+  "Breakdown.CertCell.IsCellMesh": "Cell geometry and mode sets",
   "Breakdown.CertCell.RowValues": "Polynomial tests for the rows",
   "Breakdown.CertCell.TreeConditionsGiven": "Tree enclosure and pivot count",
-  "Breakdown.CertCell.TreeEntry": "Cell matrices on a rooted tree",
-  "Breakdown.CertCell.flipLabel": "Reflection of a frequency pair",
-  "Breakdown.CertCell.labelAzimuth": "Azimuthal harmonic integer",
-  "Breakdown.CertCell.labelFlip": "Reflection of a lattice label",
-  "Breakdown.CertCell.labelTime": "Temporal harmonic integer",
-  "Breakdown.PotentialShape.IsPotentialSeries": "Sufficient potential shape conditions",
+  "Breakdown.CertCell.TreeEntry": "The matrix tree data",
+  "Breakdown.CertCell.flipLabel": "Reflection of frequency pairs",
+  "Breakdown.CertCell.labelAzimuth": "Azimuthal frequency",
+  "Breakdown.CertCell.labelFlip": "Reflection of paper labels",
+  "Breakdown.CertCell.labelTime": "Temporal frequency",
+  "Breakdown.PotentialShape.IsPotentialSeries": "Potential joins and endpoint conditions",
   "Breakdown.PotentialShape.PinShapeEntry": "Pin fields and compact generators",
   "Breakdown.PotentialShape.PotentialSeries": "Finite harmonic potential series",
-  "Breakdown.PotentialShape.VanishesBeyond": "Zero coefficients beyond support",
+  "Breakdown.PotentialShape.VanishesBeyond": "Jet coefficients beyond the support",
   "Breakdown.SteadyCert.FracCertData": "Abstract steady certificate data",
   "Breakdown.CertCell.GaugeKey.RealLabelOmitted": "Omit the imaginary zero mode",
   "Breakdown.CertCell.Assembly.rowGram": "Gram matrix of tested row fields",
@@ -1343,7 +1495,19 @@
   "Breakdown.CellCert.CellAnalysis.axialUnit": "Axial frame vector",
   "Breakdown.CertCell.GaugeKey.GaugeKeyValues.Conditions": "Valid pressure gauge data",
   "Breakdown.CellCert.GivenFields.Spline.evalHalf": "Evaluation of one spline chart",
-  "Breakdown.CertCell.CellCalculus.sideTestMoment": "Test moment on one face segment"
+  "Breakdown.CertCell.CellCalculus.sideTestMoment": "Test moment on one face segment",
+  "Breakdown.IsTimePeriodic": "Normalized time periodicity",
+  "Breakdown.IsPerturbation": "Weak perturbation domain",
+  "Breakdown.IsRightSide": "Equation modulo pressure gradients",
+  "Breakdown.IsSpaceTimeTestVector": "Unrestricted space-time test",
+  "Breakdown.Symmetry": "Orthogonal map and time shift",
+  "Breakdown.matInner": "Gradient matrix pairing",
+  "Breakdown.matSq": "Squared Frobenius gradient norm",
+  "Breakdown.periodLIntegral": "Nonnegative integral over one period",
+  "Breakdown.pinValue": "Pin functional",
+  "Breakdown.secondDerivTrace": "Trace of the weak Hessian",
+  "Breakdown.supBoundFactor": "Define the uniform-norm constant",
+  "Breakdown.vecNorm": "Euclidean norm of coefficients"
  },
  "notes": {},
  "fidelity": {

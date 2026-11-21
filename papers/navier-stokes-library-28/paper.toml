@@ -1,0 +1,74 @@
+[paper]
+title = "Library guide 28: Breakdown/Uniqueness, Breakdown/Weak, Solution"
+short_title = "Navier–Stokes blow-up: library guide 28"
+authors = ["Prepared by Will Cook with AI assistance"]
+venue = "Part 28 of 30 of a guide to every declaration in Alpöge and Buckmaster’s Lean at ad53419"
+markdown = "paper.md"
+url = "https://github.com/wcook04/proof-reader/blob/main/papers/navier-stokes-library-28/paper.md"
+noun = "guide"
+licence = "MIT"
+
+[credit]
+text = "Paper and Lean: Levent Alpöge and Tristan Buckmaster, github.com/tristanbuckmaster/navier-stokes at ad53419. Text, links, plain titles, notes and comparisons prepared by Will Cook with AI assistance, MIT licence"
+
+[lean]
+project = "../navier-stokes-paper/lean"
+modules = ["Breakdown.Uniqueness.Basic", "Breakdown.Uniqueness.CubicTerm", "Breakdown.Uniqueness.CutoffBounds", "Breakdown.Uniqueness.CutoffHs", "Breakdown.Uniqueness.DifferenceEstimate", "Breakdown.Uniqueness.DifferenceEstimateAux", "Breakdown.Uniqueness.EnergyDefs", "Breakdown.Uniqueness.FundSolByParts", "Breakdown.Uniqueness.FundSolByPartsRadial", "Breakdown.Uniqueness.FundSolDecay", "Breakdown.Uniqueness.FundSolDefs", "Breakdown.Uniqueness.FundSolEnergy", "Breakdown.Uniqueness.FundSolEnergyAux", "Breakdown.Uniqueness.FundSolKernel", "Breakdown.Uniqueness.FundSolMeanValue", "Breakdown.Uniqueness.FundSolMeanValueAux", "Breakdown.Uniqueness.FundSolPointwise", "Breakdown.Uniqueness.FundSolPointwiseAux", "Breakdown.Uniqueness.FundSolPointwiseAux2", "Breakdown.Uniqueness.FundSolPointwiseAux3", "Breakdown.Uniqueness.FundSolPointwiseAux4", "Breakdown.Uniqueness.FundSolPotential", "Breakdown.Uniqueness.LocalBlowup", "Breakdown.Uniqueness.LocalEnergy", "Breakdown.Uniqueness.LocalEnergyAuxIbp", "Breakdown.Uniqueness.LocalEnergyAuxTime", "Breakdown.Uniqueness.MildUnique", "Breakdown.Uniqueness.MixedStress", "Breakdown.Uniqueness.PressureAverage", "Breakdown.Uniqueness.PressureAverageAuxBound", "Breakdown.Uniqueness.PressureAverageAuxField", "Breakdown.Uniqueness.PressureAverageAuxIdentity", "Breakdown.Uniqueness.PressureAverageAuxStress", "Breakdown.Uniqueness.PressureAverageAuxStress2", "Breakdown.Uniqueness.PressureAverageAuxTime", "Breakdown.Uniqueness.PressureContinuity", "Breakdown.Uniqueness.PressureIdentity", "Breakdown.Uniqueness.PressureMollify", "Breakdown.Uniqueness.PressureMollifyAux", "Breakdown.Uniqueness.PressureMollifyAux2", "Breakdown.Uniqueness.PressureReplace", "Breakdown.Uniqueness.PressureSumSecondPartials", "Breakdown.Uniqueness.ProductBound", "Breakdown.Uniqueness.RegApriori", "Breakdown.Uniqueness.RegAprioriAuxCont", "Breakdown.Uniqueness.RegAprioriAuxEnergy", "Breakdown.Uniqueness.RegAprioriAuxEnergyPart1", "Breakdown.Uniqueness.RegAprioriAuxEnergyPart2", "Breakdown.Uniqueness.RegAprioriAuxEnergyPart3", "Breakdown.Uniqueness.RegAprioriAuxIntegralIneq", "Breakdown.Uniqueness.RegAprioriAuxMild", "Breakdown.Uniqueness.RegAprioriAuxMildPart1", "Breakdown.Uniqueness.RegAprioriAuxMildPart2", "Breakdown.Uniqueness.RegAprioriAuxMildPart3", "Breakdown.Uniqueness.RegAprioriAuxMildPart4", "Breakdown.Uniqueness.RegBounds", "Breakdown.Uniqueness.RegConcat", "Breakdown.Uniqueness.RegCurve", "Breakdown.Uniqueness.RegCurveAuxBilin", "Breakdown.Uniqueness.RegCurveAuxMeasure", "Breakdown.Uniqueness.RegCurveAuxMult", "Breakdown.Uniqueness.RegCurveAuxPartition", "Breakdown.Uniqueness.RegCurveAuxPointwise", "Breakdown.Uniqueness.RegDefs", "Breakdown.Uniqueness.RegEmbed", "Breakdown.Uniqueness.RegEmbedAux", "Breakdown.Uniqueness.RegGlue", "Breakdown.Uniqueness.RegGlueAux", "Breakdown.Uniqueness.RegIdentify", "Breakdown.Uniqueness.RegIdentifyAux", "Breakdown.Uniqueness.RegIdentifyAuxAdvect", "Breakdown.Uniqueness.RegIdentifyAuxBilin", "Breakdown.Uniqueness.RegIdentifyAuxCont", "Breakdown.Uniqueness.RegIdentifyAuxDivFree", "Breakdown.Uniqueness.RegIdentifyAuxHeat", "Breakdown.Uniqueness.RegIdentifyAuxSwap", "Breakdown.Uniqueness.RegIdentifyAuxSymbol", "Breakdown.Uniqueness.RegIdentifyAuxTime", "Breakdown.Uniqueness.RegIdentifyAuxVecIntegral", "Breakdown.Uniqueness.RegInitial", "Breakdown.Uniqueness.RegLocal", "Breakdown.Uniqueness.RegLocalAuxCurve", "Breakdown.Uniqueness.RegLocalAuxCurvePart1", "Breakdown.Uniqueness.RegLocalAuxCurvePart2", "Breakdown.Uniqueness.RegLocalAuxCurvePart3", "Breakdown.Uniqueness.RegLocalAuxCurvePart4", "Breakdown.Uniqueness.RegLocalAuxCurvePart5", "Breakdown.Uniqueness.RegLocalAuxEst", "Breakdown.Uniqueness.RegLocalAuxEstPart1", "Breakdown.Uniqueness.RegLocalAuxEstPart2", "Breakdown.Uniqueness.RegLocalAuxEstPart3", "Breakdown.Uniqueness.RegLocalAuxEstPart4", "Breakdown.Uniqueness.RegLocalAuxFix", "Breakdown.Uniqueness.RegLocalAuxHs", "Breakdown.Uniqueness.RegLocalAuxLimit", "Breakdown.Uniqueness.RegLocalAuxSymm", "Breakdown.Uniqueness.RegPersist", "Breakdown.Uniqueness.RegPersistAux", "Breakdown.Uniqueness.RegPersistAuxDefs", "Breakdown.Uniqueness.RegPersistAuxGain", "Breakdown.Uniqueness.RegPersistAuxHeat", "Breakdown.Uniqueness.RegPersistAuxMeas", "Breakdown.Uniqueness.RegPersistAuxNonlin", "Breakdown.Uniqueness.RegPersistAuxProductBound", "Breakdown.Uniqueness.RegPhysAux", "Breakdown.Uniqueness.RegPhysAuxBasic", "Breakdown.Uniqueness.RegPhysAuxDeriv", "Breakdown.Uniqueness.RegPhysAuxEval", "Breakdown.Uniqueness.RegPhysAuxPressure", "Breakdown.Uniqueness.RegPhysAuxPressurePart1", "Breakdown.Uniqueness.RegPhysAuxPressurePart2", "Breakdown.Uniqueness.RegPhysAuxPressurePart3", "Breakdown.Uniqueness.RegPhysAuxProduct", "Breakdown.Uniqueness.RegPhysAuxProductPart1", "Breakdown.Uniqueness.RegPhysAuxProductPart2", "Breakdown.Uniqueness.RegPhysAuxSmooth", "Breakdown.Uniqueness.RegToolkit", "Breakdown.Uniqueness.RegToolkitAuxSupBound", "Breakdown.Uniqueness.RegToolkitAuxTame", "Breakdown.Uniqueness.RegUnique", "Breakdown.Uniqueness.RegUniqueAux1", "Breakdown.Uniqueness.RegUniqueAux2", "Breakdown.Uniqueness.RegUniqueAux3", "Breakdown.Uniqueness.RegUniqueAux4", "Breakdown.Uniqueness.Restrict", "Breakdown.Uniqueness.Scaling", "Breakdown.Uniqueness.SelfStress", "Breakdown.Uniqueness.SimpleTerms", "Breakdown.Uniqueness.SmoothUniqueness", "Breakdown.Uniqueness.StressFar", "Breakdown.Uniqueness.StressFarAux", "Breakdown.Uniqueness.StressFarAux2", "Breakdown.Uniqueness.StressFarAux3", "Breakdown.Uniqueness.StressNear", "Breakdown.Uniqueness.StressSplit", "Breakdown.Weak.AdvectionByParts", "Breakdown.Weak.Basic", "Breakdown.Weak.BilinIntegrable", "Breakdown.Weak.ConstOfWeakDeriv", "Breakdown.Weak.ContinuousVarConst", "Breakdown.Weak.GoodTimes", "Breakdown.Weak.GradientFreqTr", "Breakdown.Weak.OrbitOfParts", "Breakdown.Weak.PairingDilate", "Breakdown.Weak.PairingVelocity", "Breakdown.Weak.PhysicalIdentity", "Breakdown.Weak.Representative", "Breakdown.Weak.ScaledTestField", "Breakdown.Weak.SliceEmbedding", "Breakdown.Weak.SliceIntegrand", "Breakdown.Weak.SliceMeasurable", "Breakdown.Weak.StatementsOrbit", "Breakdown.Weak.StatementsSlice", "Breakdown.Weak.StatementsTime", "Breakdown.Weak.TrilinearDilate", "Breakdown.Weak.VarConstGood", "Breakdown.Weak.VarConstInner", "Breakdown.Weak.VelocityWeakGradient", "Breakdown.Weak.ZeroGradient", "Solution"]
+source = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546/lean"
+source_name = "navier-stokes at ad53419"
+source_lines = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/{path}#L{line}-L{end}"
+licence = "none stated by the authors; hosted with credit"
+scope = "Lean 4.33.1 compiled the authors' package, unchanged at ad53419, on GitHub Actions; this page reads the library (Breakdown and Solution). Each declaration's statement, dependencies and axioms shown here are Lean's own report from those compiled modules. The links from the text to the Lean, the plain titles and the notes were made with AI and have not been reviewed by the authors."
+
+[reading]
+language = "lean"
+
+[reading.companions]
+"../navier-stokes-appendix-b/paper.md" = "navier-stokes-appendix-b"
+"../navier-stokes-cell-guide/paper.md" = "navier-stokes-cell-guide"
+"../navier-stokes-cell-reference/paper.md" = "navier-stokes-cell-reference"
+"../navier-stokes-index/paper.md" = "navier-stokes-index"
+"../navier-stokes-library-01/paper.md" = "navier-stokes-library-01"
+"../navier-stokes-library-02/paper.md" = "navier-stokes-library-02"
+"../navier-stokes-library-03/paper.md" = "navier-stokes-library-03"
+"../navier-stokes-library-04/paper.md" = "navier-stokes-library-04"
+"../navier-stokes-library-05/paper.md" = "navier-stokes-library-05"
+"../navier-stokes-library-06/paper.md" = "navier-stokes-library-06"
+"../navier-stokes-library-07/paper.md" = "navier-stokes-library-07"
+"../navier-stokes-library-08/paper.md" = "navier-stokes-library-08"
+"../navier-stokes-library-09/paper.md" = "navier-stokes-library-09"
+"../navier-stokes-library-10/paper.md" = "navier-stokes-library-10"
+"../navier-stokes-library-11/paper.md" = "navier-stokes-library-11"
+"../navier-stokes-library-12/paper.md" = "navier-stokes-library-12"
+"../navier-stokes-library-13/paper.md" = "navier-stokes-library-13"
+"../navier-stokes-library-14/paper.md" = "navier-stokes-library-14"
+"../navier-stokes-library-15/paper.md" = "navier-stokes-library-15"
+"../navier-stokes-library-16/paper.md" = "navier-stokes-library-16"
+"../navier-stokes-library-17/paper.md" = "navier-stokes-library-17"
+"../navier-stokes-library-18/paper.md" = "navier-stokes-library-18"
+"../navier-stokes-library-19/paper.md" = "navier-stokes-library-19"
+"../navier-stokes-library-20/paper.md" = "navier-stokes-library-20"
+"../navier-stokes-library-21/paper.md" = "navier-stokes-library-21"
+"../navier-stokes-library-22/paper.md" = "navier-stokes-library-22"
+"../navier-stokes-library-23/paper.md" = "navier-stokes-library-23"
+"../navier-stokes-library-24/paper.md" = "navier-stokes-library-24"
+"../navier-stokes-library-25/paper.md" = "navier-stokes-library-25"
+"../navier-stokes-library-26/paper.md" = "navier-stokes-library-26"
+"../navier-stokes-library-27/paper.md" = "navier-stokes-library-27"
+"../navier-stokes-library-29/paper.md" = "navier-stokes-library-29"
+"../navier-stokes-library-30/paper.md" = "navier-stokes-library-30"
+"../navier-stokes-paper/paper.pdf" = "navier-stokes-paper"
+"../navier-stokes-part-1/paper.md" = "navier-stokes-part-1"
+"../navier-stokes-part-2/paper.md" = "navier-stokes-part-2"
+"../navier-stokes-route-details/paper.md" = "navier-stokes-route-details"
+"../navier-stokes-routes/paper.md" = "navier-stokes-routes"
+"../navier-stokes-statement-files/paper.md" = "navier-stokes-statement-files"
+"../navier-stokes/cell-layer-fidelity.md" = "navier-stokes-cell-fidelity"
+"../navier-stokes/certificate-checker.md" = "navier-stokes-certificate-checker"
+"../navier-stokes/digest.md" = "navier-stokes-digest"
+"../navier-stokes/paper.md" = "navier-stokes"
+
+[shelf]
+with = "navier-stokes-paper"
+place = 48
+group = "Library guide"

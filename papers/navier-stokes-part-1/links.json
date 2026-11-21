@@ -44,7 +44,7 @@
   },
   {
    "id": "claim-a-mild-endpoint",
-   "title": "Continuity of the Duhamel integral",
+   "title": "Integrate the bilinear term",
    "section": "2",
    "passage": "a-mild-endpoint",
    "lean": [
@@ -182,7 +182,7 @@
   },
   {
    "id": "claim-a-global-space-endpoint",
-   "title": "Conditional whole-space breakdown",
+   "title": "A profile excludes global smoothness",
    "section": "7",
    "passage": "a-global-space-endpoint",
    "lean": [
@@ -209,7 +209,7 @@
   },
   {
    "id": "torus-shell-inverse-lemma-claim",
-   "title": "Transferring the restricted inverse",
+   "title": "Construct the periodic right inverse",
    "section": "8.6",
    "passage": "torus-shell-inverse-lemma",
    "lean": [
@@ -218,7 +218,7 @@
   },
   {
    "id": "torus-moving-frame-claim",
-   "title": "Making the pressure periodic",
+   "title": "Choose a periodic pressure frame",
    "section": "9.3",
    "passage": "torus-moving-frame",
    "lean": [
@@ -236,7 +236,7 @@
   },
   {
    "id": "torus-conditional-endpoint-claim",
-   "title": "A profile implies periodic breakdown",
+   "title": "A profile gives torus breakdown",
    "section": "9.3",
    "passage": "torus-conditional-endpoint",
    "lean": [
@@ -245,7 +245,7 @@
   },
   {
    "id": "torus-glued-unboundedness-claim",
-   "title": "The glued norm is unbounded",
+   "title": "Prove the glued norm is unbounded",
    "section": "9.4",
    "passage": "torus-glued-unboundedness",
    "lean": [
@@ -2945,149 +2945,3615 @@
     "heading": "Lemma A.6. Recovering the pressure-gradient bound",
     "block": 22
    }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0001",
+   "section": "Lemma 6.2. Correcting an approximate solution",
+   "role": "explains",
+   "quote": "The full declaration `Breakdown.contraction` applies this lemma to a bounded sequence of interval variables.",
+   "lean": [
+    "Breakdown.contraction"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.2. Correcting an approximate solution",
+    "block": 18
+   },
+   "title": "Solve the quadratic correction"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0002",
+   "section": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+   "role": "explains",
+   "quote": "The input to this argument is one nonzero smooth solution of the similarity equations which returns after a positive time, possibly after an orthogonal change of coordinates.",
+   "lean": [
+    "Breakdown.PeriodicSimilarityProfileExists"
+   ],
+   "anchor": {
+    "heading": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+    "block": 3
+   },
+   "title": "A nonzero recurrent profile"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0003",
+   "section": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+   "role": "explains",
+   "quote": "Its spatial decay is just strong enough to put it in the homogeneous Sobolev space with norm $\\|\\nabla u\\|_2$.",
+   "lean": [
+    "Breakdown.Freq.velocityDecay_holds",
+    "Breakdown.Freq.X"
+   ],
+   "anchor": {
+    "heading": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0004",
+   "section": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+   "role": "explains",
+   "quote": "In that space, heat evolution followed by rescaling contracts.",
+   "lean": [
+    "Breakdown.Freq.heat_holds",
+    "Breakdown.Freq.dilation_holds"
+   ],
+   "anchor": {
+    "heading": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0005",
+   "section": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+   "role": "explains",
+   "quote": "The linearised return map differs from this contraction by a compact operator.",
+   "lean": [
+    "Breakdown.monodromy",
+    "Breakdown.MonodromyStatement"
+   ],
+   "anchor": {
+    "heading": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0006",
+   "section": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+   "role": "explains",
+   "quote": "Only finitely many directions can therefore obstruct a chosen decay rate.",
+   "lean": [
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+    "block": 3
+   },
+   "title": "Prove the real spectral splitting"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0007",
+   "section": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+   "role": "explains",
+   "quote": "Choosing the initial datum along a finite-dimensional space of compactly supported fields removes those obstructions.",
+   "lean": [
+    "Breakdown.exists_section"
+   ],
+   "anchor": {
+    "heading": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+    "block": 3
+   },
+   "title": "Choose compactly supported lifts"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0008",
+   "section": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+   "role": "explains",
+   "quote": "A nonlinear correction then produces the whole-space solution.",
+   "lean": [
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+    "block": 3
+   },
+   "title": "Transfer from spectral splitting"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0009",
+   "section": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+   "role": "explains",
+   "quote": "A second construction transfers the correction to a large torus and removes its localisation error exactly.",
+   "lean": [
+    "Breakdown.Periodic.breakdownOnTorus_of_profile"
+   ],
+   "anchor": {
+    "heading": "From a recurrent profile to compact-data Navier–Stokes blow-up",
+    "block": 3
+   },
+   "title": "A profile gives torus breakdown"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0010",
+   "section": "1.1 The profile hypothesis",
+   "role": "explains",
+   "quote": "**Definition 1.1 (recurrent similarity profile; paper (1.2)–(1.3), p. 2).** A profile consists of smooth fields $W:\\mathbb R\\times\\mathbb R^3\\to\\mathbb R^3$ and $q:\\mathbb R\\times\\mathbb R^3\\to\\mathbb R$, a number $S>0$, and an orthogonal map $R:\\mathbb R^3\\to\\mathbb R^3$, satisfying",
+   "lean": [
+    "Breakdown.PeriodicSimilarityProfileExists"
+   ],
+   "anchor": {
+    "heading": "1.1 The profile hypothesis",
+    "block": 3
+   },
+   "title": "A nonzero recurrent profile"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0011",
+   "section": "1.1 The profile hypothesis",
+   "role": "explains",
+   "quote": "An orthogonal map here may reverse orientation.",
+   "lean": [
+    "Breakdown.pushForward",
+    "Breakdown.Freq.rotation_holds"
+   ],
+   "anchor": {
+    "heading": "1.1 The profile hypothesis",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0012",
+   "section": "1.1 The profile hypothesis",
+   "role": "explains",
+   "quote": "Define its action on fields by $\\rho_Rf(y)=R f(R^{-1}y)$.",
+   "lean": [
+    "Breakdown.pushForward",
+    "Breakdown.Freq.rotation_holds"
+   ],
+   "anchor": {
+    "heading": "1.1 The profile hypothesis",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0013",
+   "section": "1.1 The profile hypothesis",
+   "role": "explains",
+   "quote": "The gradient norm and the Navier–Stokes equation are invariant under this action.",
+   "lean": [
+    "Breakdown.pushForward",
+    "Breakdown.Freq.rotation_holds"
+   ],
+   "anchor": {
+    "heading": "1.1 The profile hypothesis",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0014",
+   "section": "1.3 What the linked formal endpoints state",
+   "role": "explains",
+   "quote": "Those endpoints do not display all the rates, profile comparisons and simultaneous choices in Theorem A.",
+   "lean": [
+    "Breakdown.BreakdownOnSpace",
+    "Breakdown.BreakdownOnTorus"
+   ],
+   "anchor": {
+    "heading": "1.3 What the linked formal endpoints state",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0015",
+   "section": "1.3 What the linked formal endpoints state",
+   "role": "explains",
+   "quote": "The whole-space endpoint follows from the constructed solution and finite-energy uniqueness; the periodic endpoint also uses a moving change of frame to handle a pressure with an affine part.",
+   "lean": [
+    "Breakdown.breakdownOnSpace_of_profile",
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "1.3 What the linked formal endpoints state",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0016",
+   "section": "2. The analytic space and the mild equation",
+   "role": "explains",
+   "quote": "The construction needs a norm in which the profile is finite, smooth compact data are dense, and the free evolution contracts after a similarity period.",
+   "lean": [
+    "Breakdown.Freq.X",
+    "Breakdown.Freq.testDense_holds",
+    "Breakdown.Freq.heat_holds",
+    "Breakdown.Freq.dilation_holds"
+   ],
+   "anchor": {
+    "heading": "2. The analytic space and the mild equation",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0017",
+   "section": "Lemma 2.1. The space and its compactly supported dense subspace",
+   "role": "explains",
+   "quote": "The space $X$ is a real Hilbert space, the inequality $\\|u\\|_6\\le C_S\\|u\\|_X$ holds on it, and $C^\\infty_{c,\\mathrm{div}}(\\mathbb R^3)$ is dense in it.",
+   "lean": [
+    "Breakdown.Freq.X",
+    "Breakdown.Freq.gradSixDecay",
+    "Breakdown.Freq.testDense_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.1. The space and its compactly supported dense subspace",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0018",
+   "section": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+   "role": "explains",
+   "quote": "Products give the semigroup identity; its magnitude is at most one.",
+   "lean": [
+    "Breakdown.Freq.heat_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+    "block": 8
+   },
+   "title": "Prove the heat semigroup properties"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0019",
+   "section": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+   "role": "explains",
+   "quote": "Dominated convergence in the weighted $L^2$ norm gives strong continuity including $t=0$.",
+   "lean": [
+    "Breakdown.Freq.heat_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+    "block": 8
+   },
+   "title": "Prove the heat semigroup properties"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0020",
+   "section": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+   "role": "explains",
+   "quote": "Direct differentiation gives $\\nabla D_\\mu u(x)=\\mu\\nabla u(\\sqrt\\mu x)$, so changing variables in its squared norm gives the factor $\\mu^{1/2}$, and hence the stated norm factor.",
+   "lean": [
+    "Breakdown.Freq.dilation_holds",
+    "Breakdown.Freq.dilationCont_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0021",
+   "section": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+   "role": "explains",
+   "quote": "The algebra and heat covariance follow by substituting the definitions.",
+   "lean": [
+    "Breakdown.Freq.dilation_holds",
+    "Breakdown.Freq.dilationCont_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0022",
+   "section": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+   "role": "explains",
+   "quote": "Continuity of $\\mu\\mapsto D_\\mu u$ follows first for a compactly supported smooth approximation and then for $u$ by the norm law, uniformly when $\\mu$ stays in a compact subinterval of $(0,\\infty)$.",
+   "lean": [
+    "Breakdown.Freq.dilation_holds",
+    "Breakdown.Freq.dilationCont_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0023",
+   "section": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+   "role": "explains",
+   "quote": "Orthogonality preserves lengths, measure and the trace defining divergence, and gives all statements about $\\rho_R$.",
+   "lean": [
+    "Breakdown.Freq.rotation_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+    "block": 8
+   },
+   "title": "Orthogonal coordinate changes"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0024",
+   "section": "Lemma 2.3. The bilinear heat estimate",
+   "role": "explains",
+   "quote": "The map $K$ is symmetric and bilinear, is strongly continuous for positive $\\tau$, and obeys",
+   "lean": [
+    "Breakdown.Freq.bilin_holds",
+    "Breakdown.Freq.bilinCont_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.3. The bilinear heat estimate",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0025",
+   "section": "Lemma 2.3. The bilinear heat estimate",
+   "role": "explains",
+   "quote": "The semigroup identity follows in frequency space.",
+   "lean": [
+    "Breakdown.Freq.bilinShift_holds",
+    "Breakdown.Freq.bilinDilate_holds",
+    "Breakdown.Freq.bilinRotate_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.3. The bilinear heat estimate",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0026",
+   "section": "Lemma 2.3. The bilinear heat estimate",
+   "role": "explains",
+   "quote": "Near any $\\tau_0>0$, factor off heat time $\\tau_0/2$ and use strong continuity of $H_t$ to prove continuity in $\\tau$.",
+   "lean": [
+    "Breakdown.Freq.bilinShift_holds",
+    "Breakdown.Freq.bilinDilate_holds",
+    "Breakdown.Freq.bilinRotate_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.3. The bilinear heat estimate",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0027",
+   "section": "Lemma 2.3. The bilinear heat estimate",
+   "role": "explains",
+   "quote": "Finally, the multiplier $P_\\xi$ is homogeneous of degree zero and satisfies $P_{R\\xi}R=RP_\\xi$; substitution proves the two covariance identities.",
+   "lean": [
+    "Breakdown.Freq.bilinShift_holds",
+    "Breakdown.Freq.bilinDilate_holds",
+    "Breakdown.Freq.bilinRotate_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.3. The bilinear heat estimate",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0028",
+   "section": "Lemma 2.4. Compactness for a fixed coefficient",
+   "role": "explains",
+   "quote": "For each $u\\in X$ and each $\\tau>0$, the linear operator $v\\mapsto K(\\tau)(u,v)$ is compact on $X$.",
+   "lean": [
+    "Breakdown.Freq.bilinCompact_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.4. Compactness for a fixed coefficient",
+    "block": 2
+   },
+   "title": "Prove test-input compactness"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0029",
+   "section": "Lemma 2.5. Duhamel integrals and the mild equation",
+   "role": "explains",
+   "quote": "On $[a,b)$, impose this identity on every compact subinterval.",
+   "lean": [
+    "Breakdown.MildFramework.IsMildOnIcc",
+    "Breakdown.varConstIntegral"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.5. Duhamel integrals and the mild equation",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0030",
+   "section": "Lemma 2.5. Duhamel integrals and the mild equation",
+   "role": "explains",
+   "quote": "The value assigned to $K(0)$ at the single integration endpoint does not affect the integral.",
+   "lean": [
+    "Breakdown.MildFramework.IsMildOnIcc",
+    "Breakdown.varConstIntegral"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.5. Duhamel integrals and the mild equation",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0031",
+   "section": "Lemma 2.7. Restarting and uniqueness",
+   "role": "explains",
+   "quote": "The uniqueness class here is the continuous $X$-valued mild class.",
+   "lean": [
+    "Breakdown.mildUnique"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.7. Restarting and uniqueness",
+    "block": 5
+   },
+   "title": "Prove mild uniqueness"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0032",
+   "section": "Proposition 3.1. A profile supplies a recurrent mild solution",
+   "role": "explains",
+   "quote": "On any compact time interval below $T$, the second bound supplies one $L^2$ majorant for the gradients.",
+   "lean": [
+    "Breakdown.sliceGradientContinuous_holds",
+    "Breakdown.physicalMild_unconditional"
+   ],
+   "anchor": {
+    "heading": "Proposition 3.1. A profile supplies a recurrent mild solution",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0033",
+   "section": "Proposition 3.1. A profile supplies a recurrent mild solution",
+   "role": "explains",
+   "quote": "Dominated convergence makes the trajectory continuous in $X$.",
+   "lean": [
+    "Breakdown.sliceGradientContinuous_holds",
+    "Breakdown.physicalMild_unconditional"
+   ],
+   "anchor": {
+    "heading": "Proposition 3.1. A profile supplies a recurrent mild solution",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0034",
+   "section": "Proposition 3.1. A profile supplies a recurrent mild solution",
+   "role": "explains",
+   "quote": "Multiply the momentum equation by a compact solenoidal test, integrate by parts, and use Lemma 2.8.",
+   "lean": [
+    "Breakdown.sliceGradientContinuous_holds",
+    "Breakdown.physicalMild_unconditional"
+   ],
+   "anchor": {
+    "heading": "Proposition 3.1. A profile supplies a recurrent mild solution",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0035",
+   "section": "Proposition 3.1. A profile supplies a recurrent mild solution",
+   "role": "explains",
+   "quote": "This gives the mild equation on every compact interval.",
+   "lean": [
+    "Breakdown.sliceGradientContinuous_holds",
+    "Breakdown.physicalMild_unconditional"
+   ],
+   "anchor": {
+    "heading": "Proposition 3.1. A profile supplies a recurrent mild solution",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0036",
+   "section": "Proposition 3.1. A profile supplies a recurrent mild solution",
+   "role": "explains",
+   "quote": "Nontriviality persists: if the physical field vanished for $0\\le t<1$, then $W$ would vanish for $s\\ge0$ and recurrence would make it vanish at every similarity time.",
+   "lean": [
+    "Breakdown.embeddedProfileOrbit_holds"
+   ],
+   "anchor": {
+    "heading": "Proposition 3.1. A profile supplies a recurrent mild solution",
+    "block": 13
+   },
+   "title": "The embedded profile is an orbit"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0037",
+   "section": "Proposition 3.1. A profile supplies a recurrent mild solution",
+   "role": "explains",
+   "quote": "The formal profile premise writes the second-derivative and pressure-gradient bounds explicitly.",
+   "lean": [
+    "Breakdown.IsSimilarityProfile"
+   ],
+   "anchor": {
+    "heading": "Proposition 3.1. A profile supplies a recurrent mild solution",
+    "block": 15
+   },
+   "title": "Smooth profile with decay"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0038",
+   "section": "Lemma 3.2. The orbit norm stays away from zero",
+   "role": "explains",
+   "quote": "**Proof.** Continuity in $X$ and the isometric recurrence make $s\\mapsto\\|W(s)\\|_X$ continuous and $S$-periodic, so it has a finite upper bound.",
+   "lean": [
+    "Breakdown.orbitBound",
+    "Breakdown.mildSmallData"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.2. The orbit norm stays away from zero",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0039",
+   "section": "Lemma 3.2. The orbit norm stays away from zero",
+   "role": "explains",
+   "quote": "To obtain a positive lower bound by the formal route, use the small-data statement proved in Lemma A.2: there is $\\varepsilon>0$ such that every $x\\in X$ with $\\|x\\|_X\\le\\varepsilon$ generates a mild solution $v$ on $[0,1]$ with $\\sup_t\\|v(t)\\|_X\\le2\\|x\\|_X$.",
+   "lean": [
+    "Breakdown.orbitBound",
+    "Breakdown.mildSmallData"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.2. The orbit norm stays away from zero",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0040",
+   "section": "Lemma 3.2. The orbit norm stays away from zero",
+   "role": "explains",
+   "quote": "Its physical profile starting at this phase has initial value $W(s_0)$, so mild uniqueness identifies it with $v$ on $[0,1)$.",
+   "lean": [
+    "Breakdown.mildUnique"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.2. The orbit norm stays away from zero",
+    "block": 4
+   },
+   "title": "Prove mild uniqueness"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0041",
+   "section": "Lemma 3.2. The orbit norm stays away from zero",
+   "role": "explains",
+   "quote": "For $\\sigma=nS$, the left-hand norm equals $\\|W(s_0)\\|_X$.",
+   "lean": [
+    "Breakdown.orbitNorm"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.2. The orbit norm stays away from zero",
+    "block": 6
+   },
+   "title": "Keep the profile norm positive"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0042",
+   "section": "Lemma 3.2. The orbit norm stays away from zero",
+   "role": "explains",
+   "quote": "Taking $n$ large enough that $2e^{-nS/4}<1$ forces $W(s_0)=0$.",
+   "lean": [
+    "Breakdown.orbitNorm"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.2. The orbit norm stays away from zero",
+    "block": 6
+   },
+   "title": "Keep the profile norm positive"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0043",
+   "section": "Lemma 3.2. The orbit norm stays away from zero",
+   "role": "explains",
+   "quote": "The same estimate then makes every later slice zero; recurrence transports any earlier slice into that future region.",
+   "lean": [
+    "Breakdown.orbitNorm"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.2. The orbit norm stays away from zero",
+    "block": 6
+   },
+   "title": "Keep the profile norm positive"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0044",
+   "section": "Lemma 3.2. The orbit norm stays away from zero",
+   "role": "explains",
+   "quote": "Thus every slice has norm greater than $\\varepsilon$, and one may take $m=\\varepsilon$.",
+   "lean": [
+    "Breakdown.orbitNorm"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.2. The orbit norm stays away from zero",
+    "block": 6
+   },
+   "title": "Keep the profile norm positive"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0045",
+   "section": "Corollary 3.3. The background has the required rate",
+   "role": "explains",
+   "quote": "**Proof.** The identity $u^*(t)=D_{(1-t)^{-1}}W(-\\log(1-t))$ and the dilation norm law give this directly from Lemma 3.2.",
+   "lean": [
+    "Breakdown.Freq.dilation_holds",
+    "Breakdown.orbitNorm",
+    "Breakdown.orbitBound"
+   ],
+   "anchor": {
+    "heading": "Corollary 3.3. The background has the required rate",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0046",
+   "section": "Corollary 3.3. The background has the required rate",
+   "role": "explains",
+   "quote": "The pointwise profile bound alone only supplies upper estimates.",
+   "lean": [
+    "Breakdown.orbitNorm",
+    "Breakdown.mildUnique"
+   ],
+   "anchor": {
+    "heading": "Corollary 3.3. The background has the required rate",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0047",
+   "section": "Corollary 3.3. The background has the required rate",
+   "role": "explains",
+   "quote": "The lower estimate uses the equation through uniqueness, as the preceding proof makes explicit.",
+   "lean": [
+    "Breakdown.orbitNorm",
+    "Breakdown.mildUnique"
+   ],
+   "anchor": {
+    "heading": "Corollary 3.3. The background has the required rate",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0048",
+   "section": "4. The monodromy and the exceptional directions",
+   "role": "explains",
+   "quote": "Thus $h_\\chi=U(G(\\cdot)\\chi)$ is the linearized solution with initial value $\\chi$.",
+   "lean": [
+    "Breakdown.MonodromyStatement",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "4. The monodromy and the exceptional directions",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0049",
+   "section": "4. The monodromy and the exceptional directions",
+   "role": "explains",
+   "quote": "Its value at the end of the period must be returned to the original scale and orientation.",
+   "lean": [
+    "Breakdown.MonodromyStatement",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "4. The monodromy and the exceptional directions",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0050",
+   "section": "Lemma 4.1. Compactness of the endpoint interaction",
+   "role": "explains",
+   "quote": "**Proof.** Lemma 2.4 gives compactness of $K(r)(v,\\cdot)$ for every $r>0$ and every $v\\in X$.",
+   "lean": [
+    "Breakdown.compactSimple",
+    "Breakdown.compactPiece"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.1. Compactness of the endpoint interaction",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0051",
+   "section": "Lemma 4.1. Compactness of the endpoint interaction",
+   "role": "explains",
+   "quote": "To use it inside an integral, we also need control of the time endpoint.",
+   "lean": [
+    "Breakdown.compactSimple",
+    "Breakdown.compactPiece"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.1. Compactness of the endpoint interaction",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0052",
+   "section": "Lemma 4.1. Compactness of the endpoint interaction",
+   "role": "explains",
+   "quote": "For $0<\\varepsilon<T$, the contribution from $[T-\\varepsilon,T]$ has operator norm at most",
+   "lean": [
+    "Breakdown.compactSimple",
+    "Breakdown.compactPiece"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.1. Compactness of the endpoint interaction",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0053",
+   "section": "Lemma 4.1. Compactness of the endpoint interaction",
+   "role": "explains",
+   "quote": "Choose a finite partition so that replacing this map on each partition interval $I_j$ by its value $C_j$ at one point changes it uniformly by at most $\\delta$.",
+   "lean": [
+    "Breakdown.compactSimple",
+    "Breakdown.compactPiece"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.1. Compactness of the endpoint interaction",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0054",
+   "section": "Lemma 4.1. Compactness of the endpoint interaction",
+   "role": "explains",
+   "quote": "The resulting approximation to the integral operator is",
+   "lean": [
+    "Breakdown.compactSimple",
+    "Breakdown.compactPiece"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.1. Compactness of the endpoint interaction",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0055",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "The twisted recurrence of $W$ gives $a_{n+k}=\\rho a_n$.",
+   "lean": [
+    "Breakdown.MonodromyStatement",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 24
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0056",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "The covariance of $G,K,D$ then implies $S_{n+k}=\\rho S_n\\rho^{-1}$.",
+   "lean": [
+    "Breakdown.MonodromyStatement",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 24
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0057",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "After $k$ short intervals the linearized evolution has traversed one similarity period, so",
+   "lean": [
+    "Breakdown.MonodromyStatement",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 24
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0058",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "To verify that this is the operator in (4.1), solve the linearized equation successively on the short intervals, undo each dilation, and join the solutions at their common endpoints.",
+   "lean": [
+    "Breakdown.stepMap",
+    "Breakdown.stepData",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 26
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0059",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "The dilation identities for $G$ and $K$ turn every local integral equation into the linearized equation about $u^*$.",
+   "lean": [
+    "Breakdown.stepMap",
+    "Breakdown.stepData",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 26
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0060",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "The endpoint definition in (4.6) makes the values agree.",
+   "lean": [
+    "Breakdown.stepMap",
+    "Breakdown.stepData",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 26
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0061",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "Uniqueness of the linear Volterra equation on $[0,t_1]$ identifies the joined solution with $h_\\chi$.",
+   "lean": [
+    "Breakdown.stepMap",
+    "Breakdown.stepData",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 26
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0062",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "The final inverse twist is $\\rho^{-1}$ in both definitions.",
+   "lean": [
+    "Breakdown.stepMap",
+    "Breakdown.stepData",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 26
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0063",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "For example, the induction step uses $G(t)D_\\mu=D_\\mu G(\\mu t)$ and the geometric sum $(1-\\mu)(1+\\mu+\\cdots+\\mu^{k-1})=1-\\mu^k$.",
+   "lean": [
+    "Breakdown.Freq.heat_holds",
+    "Breakdown.Freq.dilation_holds",
+    "Breakdown.MonodromyStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 29
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0064",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "Equations (4.10)–(4.11) prove compactness in (4.4).",
+   "lean": [
+    "Breakdown.Freq.heat_holds",
+    "Breakdown.Freq.dilation_holds",
+    "Breakdown.MonodromyStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 29
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0065",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "explains",
+   "quote": "Finally $\\rho^{-1}$ is an isometry, $\\|D_\\lambda x\\|_X=\\lambda^{1/4}\\|x\\|_X$, and $G(t)$ is a contraction.",
+   "lean": [
+    "Breakdown.Freq.heat_holds",
+    "Breakdown.Freq.dilation_holds",
+    "Breakdown.MonodromyStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 29
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0066",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "There is a finite-dimensional subspace $E\\subset C^\\infty_{c,\\mathrm{div}}(\\mathbb R^3)$ such that $P_u|_E:E\\to V$ is an isomorphism.",
+   "lean": [
+    "Breakdown.exists_section",
+    "Breakdown.SectionInternal.exists_preimage_of_dense"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0067",
+   "section": "Lemma 6.4. A divergence-free cutoff with uniform bounds",
+   "role": "explains",
+   "quote": "Choose a smooth scalar function $\\eta$ with $0\\leq\\eta\\leq1$, equal to one on $B_{1/2}$ and zero outside $B_1$.",
+   "lean": [
+    "Breakdown.Periodic.homotopyPotential",
+    "Breakdown.Periodic.cutoffField"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.4. A divergence-free cutoff with uniform bounds",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0068",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "Let a real Hilbert space carry the heat, dilation, bilinear and compactness properties stated in Section 2, let a surjective linear isometry $\\rho$ commute with these operations, and let $w$ be a nonzero continuous twisted-periodic mild orbit.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0069",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "For every dense linear subspace $\\mathcal D\\subset X$ and every $\\varepsilon>0$, there is a mild solution $u$ on $[0,1)$ with $u(0)\\in\\mathcal D$, $\\|u(0)-w(0)\\|_X<\\varepsilon$, and constants $C,\\kappa>0$ such that",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0070",
+   "section": "8.6. The inverse argument in the formal sequence spaces",
+   "role": "explains",
+   "quote": "In the maximum norm on $E\\times Z$, the two comparison assumptions give\n$\\|\\mathcal H_L-\\mathcal H\\|\\le2\\delta$.",
+   "lean": [
+    "Breakdown.Periodic.rightInversePerturb"
+   ],
+   "anchor": {
+    "heading": "8.6. The inverse argument in the formal sequence spaces",
+    "block": 31
+   },
+   "title": "Perturbing a right inverse"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0071",
+   "section": "8.6. The inverse argument in the formal sequence spaces",
+   "role": "explains",
+   "quote": "Thus\n$\\|\\mathcal H_L-\\mathcal H\\|\\|R_H\\|\\le1/2$.",
+   "lean": [
+    "Breakdown.Periodic.rightInversePerturb"
+   ],
+   "anchor": {
+    "heading": "8.6. The inverse argument in the formal sequence spaces",
+    "block": 31
+   },
+   "title": "Perturbing a right inverse"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0072",
+   "section": "8.6. The inverse argument in the formal sequence spaces",
+   "role": "explains",
+   "quote": "Lemma 8.9 supplies a right inverse $R_{H,L}$ of norm at most $2C_\\circ$.",
+   "lean": [
+    "Breakdown.Periodic.rightInversePerturb"
+   ],
+   "anchor": {
+    "heading": "8.6. The inverse argument in the formal sequence spaces",
+    "block": 31
+   },
+   "title": "Perturbing a right inverse"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0073",
+   "section": "8.6. The inverse argument in the formal sequence spaces",
+   "role": "explains",
+   "quote": "The sequence contraction then produces exact mild pieces of the form",
+   "lean": [
+    "Breakdown.Periodic.seqPerturbation"
+   ],
+   "anchor": {
+    "heading": "8.6. The inverse argument in the formal sequence spaces",
+    "block": 39
+   },
+   "title": "Solve the periodic nonlinear correction"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0074",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "The solution constructed above has periodic pressure.",
+   "lean": [
+    "Breakdown.BreakdownOnTorus",
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0075",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "The exported formal nonexistence statement quantifies over smooth solutions whose velocity is periodic, while imposing no periodicity on their pressure.",
+   "lean": [
+    "Breakdown.BreakdownOnTorus",
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0076",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "The next calculation explains that additional step.",
+   "lean": [
+    "Breakdown.BreakdownOnTorus",
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0077",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "**Proof.** The momentum equation expresses $\\nabla p$ in terms of $v$ and its derivatives, all of which are periodic.",
+   "lean": [
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 3
+   },
+   "title": "Choose a periodic pressure frame"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0078",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "Therefore, for each coordinate vector $e_j$, the gradient of",
+   "lean": [
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 3
+   },
+   "title": "Choose a periodic pressure frame"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0079",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "Put $a_j(t)=p(t,e_j)-p(t,0)$ and $a(t)=(a_1(t),a_2(t),a_3(t))$.",
+   "lean": [
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 5
+   },
+   "title": "Choose a periodic pressure frame"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0080",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "The identity at $t=0$ follows by continuity from positive times if the differential equation is initially stated only for $t>0$.",
+   "lean": [
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 7
+   },
+   "title": "Choose a periodic pressure frame"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0081",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "The pressure is a spatial translate of $p_0$, so it is periodic; the velocity is periodic as well.",
+   "lean": [
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 12
+   },
+   "title": "Choose a periodic pressure frame"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0082",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "Both are smooth, and $g(0)=b(0)=0$ preserves the datum.",
+   "lean": [
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 12
+   },
+   "title": "Choose a periodic pressure frame"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0083",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "This calculation is the moving-frame reduction carried by the formal proof.",
+   "lean": [
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 14
+   },
+   "title": "Choose a periodic pressure frame"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0084",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "It also gives a direct proof of the pressure adjustment described by Tao's Lemma 4.1(ii) and Galilean transformation (33).",
+   "lean": [
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 14
+   },
+   "title": "Choose a periodic pressure frame"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0085",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "When $v_0$ has mean zero, integrating the transformed equation over a cell shows that $\\widetilde v$ keeps mean zero.",
+   "lean": [
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 14
+   },
+   "title": "Choose a periodic pressure frame"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0086",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "A hypothetical global solution $(v,p)$ with viscosity $\\nu$ and this datum yields a viscosity-one solution",
+   "lean": [
+    "Breakdown.Periodic.breakdownOnTorus_of_torusBlowup"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 17
+   },
+   "title": "Blow-up excludes global solutions"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0087",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "Substitution into the equation verifies the scaling term by term.",
+   "lean": [
+    "Breakdown.Periodic.breakdownOnTorus_of_torusBlowup"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 19
+   },
+   "title": "Blow-up excludes global solutions"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0088",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "The viscosity-one contradiction applies.",
+   "lean": [
+    "Breakdown.Periodic.breakdownOnTorus_of_torusBlowup"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 19
+   },
+   "title": "Blow-up excludes global solutions"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0089",
+   "section": "9.4. The final norm contradiction in the formal pieces",
+   "role": "explains",
+   "quote": "**Proof.** Since $\\theta^nZ\\to0$, choose $N$ so that $\\theta^nZ\\le c_0/2$ for $n\\ge N$.",
+   "lean": [
+    "Breakdown.Periodic.glueUnbounded"
+   ],
+   "anchor": {
+    "heading": "9.4. The final norm contradiction in the formal pieces",
+    "block": 9
+   },
+   "title": "Prove the glued norm is unbounded"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0090",
+   "section": "9.4. The final norm contradiction in the formal pieces",
+   "role": "explains",
+   "quote": "The reverse triangle inequality gives $\\|u_n(0)\\|\\ge c_0/2$.",
+   "lean": [
+    "Breakdown.Periodic.glueUnbounded"
+   ],
+   "anchor": {
+    "heading": "9.4. The final norm contradiction in the formal pieces",
+    "block": 9
+   },
+   "title": "Prove the glued norm is unbounded"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0091",
+   "section": "9.4. The final norm contradiction in the formal pieces",
+   "role": "explains",
+   "quote": "All $t_n$ lie in $[0,T)$, which proves unboundedness.",
+   "lean": [
+    "Breakdown.Periodic.glueUnbounded"
+   ],
+   "anchor": {
+    "heading": "9.4. The final norm contradiction in the formal pieces",
+    "block": 11
+   },
+   "title": "Prove the glued norm is unbounded"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0092",
+   "section": "Lemma A.1. Integrability at the moving time endpoint",
+   "role": "explains",
+   "quote": "The formal abstract assumptions bound the kernel near time zero; larger intervals are handled by the heat shift law or by subdivision.",
+   "lean": [
+    "Breakdown.varConstIntegral"
+   ],
+   "anchor": {
+    "heading": "Lemma A.1. Integrability at the moving time endpoint",
+    "block": 6
+   },
+   "title": "Integrate the bilinear term"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0093",
+   "section": "Lemma A.1. Integrability at the moving time endpoint",
+   "role": "explains",
+   "quote": "Our physical estimate is available for every positive $\\tau$.",
+   "lean": [
+    "Breakdown.varConstIntegral"
+   ],
+   "anchor": {
+    "heading": "Lemma A.1. Integrability at the moving time endpoint",
+    "block": 6
+   },
+   "title": "Integrate the bilinear term"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0094",
+   "section": "Lemma A.2. Linear evolution, small data and restarting",
+   "role": "explains",
+   "quote": "On an interval of length $\\delta$, Lemma A.1 bounds the linear operator by $8C_KF\\delta^{1/4}$.",
+   "lean": [
+    "Breakdown.pieceOperator",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma A.2. Linear evolution, small data and restarting",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0095",
+   "section": "Lemma A.2. Linear evolution, small data and restarting",
+   "role": "explains",
+   "quote": "Choose this below one, solve on the first interval, restart at its endpoint, and repeat finitely many times.",
+   "lean": [
+    "Breakdown.pieceOperator",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma A.2. Linear evolution, small data and restarting",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0096",
+   "section": "Lemma A.2. Linear evolution, small data and restarting",
+   "role": "explains",
+   "quote": "This produces the same unique solution as the exponentially weighted argument and explains how the formal piece construction covers a large background on a long interval.",
+   "lean": [
+    "Breakdown.pieceOperator",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma A.2. Linear evolution, small data and restarting",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0097",
+   "section": "Lemma A.2. Linear evolution, small data and restarting",
+   "role": "explains",
+   "quote": "**Proof of small-data existence.** For $\\delta\\le1$, consider $\\Phi(u)(t)=H_t x+B_0(u,u)(t)$ on $C([0,\\delta];X)$ with the ball $\\|u\\|_\\infty\\le2\\|x\\|_X$.",
+   "lean": [
+    "Breakdown.mildSmallData"
+   ],
+   "anchor": {
+    "heading": "Lemma A.2. Linear evolution, small data and restarting",
+    "block": 9
+   },
+   "title": "Small data through time one"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0098",
+   "section": "Lemma A.2. Linear evolution, small data and restarting",
+   "role": "explains",
+   "quote": "**Proof of restarting.** Apply $H_{t-m}$ to the integral equation at $m$.",
+   "lean": [
+    "Breakdown.concat",
+    "Breakdown.restrict"
+   ],
+   "anchor": {
+    "heading": "Lemma A.2. Linear evolution, small data and restarting",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0099",
+   "section": "Lemma A.2. Linear evolution, small data and restarting",
+   "role": "explains",
+   "quote": "The bounded operator passes through the Bochner integral.",
+   "lean": [
+    "Breakdown.concat",
+    "Breakdown.restrict"
+   ],
+   "anchor": {
+    "heading": "Lemma A.2. Linear evolution, small data and restarting",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0100",
+   "section": "Lemma A.2. Linear evolution, small data and restarting",
+   "role": "explains",
+   "quote": "The semigroup law and $H_{t-m}K(m-r)=K(t-r)$ give",
+   "lean": [
+    "Breakdown.concat",
+    "Breakdown.restrict"
+   ],
+   "anchor": {
+    "heading": "Lemma A.2. Linear evolution, small data and restarting",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0101",
+   "section": "Lemma A.2. Linear evolution, small data and restarting",
+   "role": "explains",
+   "quote": "**Proof of uniqueness.** If $u$ and $v$ have the same datum, their difference satisfies",
+   "lean": [
+    "Breakdown.mildUnique"
+   ],
+   "anchor": {
+    "heading": "Lemma A.2. Linear evolution, small data and restarting",
+    "block": 17
+   },
+   "title": "Prove mild uniqueness"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0102",
+   "section": "Lemma A.2. Linear evolution, small data and restarting",
+   "role": "explains",
+   "quote": "Apply the proved linear uniqueness with zero source.",
+   "lean": [
+    "Breakdown.mildUnique"
+   ],
+   "anchor": {
+    "heading": "Lemma A.2. Linear evolution, small data and restarting",
+    "block": 19
+   },
+   "title": "Prove mild uniqueness"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0103",
+   "section": "Lemma A.2. Linear evolution, small data and restarting",
+   "role": "explains",
+   "quote": "This works on closed intervals and, by restriction, on any half-open interval.",
+   "lean": [
+    "Breakdown.mildUnique"
+   ],
+   "anchor": {
+    "heading": "Lemma A.2. Linear evolution, small data and restarting",
+    "block": 19
+   },
+   "title": "Prove mild uniqueness"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0104",
+   "section": "Lemma A.4. Periodic Sobolev and heat estimates",
+   "role": "explains",
+   "quote": "The named formal bound is stated for $0<\\tau\\le1$ on the unit-period space; the comparison table therefore does not equate it with the whole all-period statement of Lemma 2.9.",
+   "lean": [
+    "Breakdown.Periodic.kernelSharpBound_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma A.4. Periodic Sobolev and heat estimates",
+    "block": 12
+   },
+   "title": "Periodic short-time bilinear bound"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0105",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "There are numbers $r_1,\\Theta,r_2$ and a bounded real projection $P_u$ such that",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0106",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "the range $V=\\operatorname{ran}P_u$ is finite dimensional, the restriction $\\mathcal M_u=\\mathcal M|_V$ is invertible, and, for suitable finite constants $C_s,C_u$,",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0107",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "For each $r>a$, only finitely many spectral points satisfy $|z|\\geq r$.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0108",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "Otherwise the bounded spectrum would contain an accumulation point in that region, contrary to the isolation of its points there.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0109",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "Choose $\\Theta\\in(a,1)$ whose circle misses the spectrum.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0110",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "Let $P_u$ first denote the complex Riesz projection for the part with $|z|>\\Theta$.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0111",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "It has finite rank and commutes with $\\mathcal M$.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0112",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "Equivalently, $I-P_u$ is the resolvent integral around $|z|=\\Theta$.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0113",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "The spectrum is invariant under conjugation because $\\mathcal M$ is real.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0114",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "The contour formula therefore commutes with conjugation.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0115",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "The restricted spectrum on $V$ is contained in $\\{|z|>\\Theta\\}$, so $0$ is excluded and $\\mathcal M_u$ is invertible.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0116",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "The stable restricted spectrum is compact and contained in $\\{|z|<\\Theta\\}$, so its radius is strictly less than $\\Theta$.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0117",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "Choose $r_1$ between that radius and $\\Theta$, also requiring $r_1>a$.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0118",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "On $V$, the inverse has spectral radius strictly less than $\\Theta^{-1}$.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0119",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "Choose $r_2\\in(\\Theta,1)$ whose inverse exceeds this radius.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0120",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "If $V=\\{0\\}$, any such $r_2$ works and the inverse bound is vacuous.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0121",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "The spectral radius formula supplies constants that bound all powers by $r_1^n$ and $r_2^{-n}$, respectively; enlarging them covers the finitely many powers preceding the eventual bound.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0122",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "Composing with the bounded projections gives (4.12).",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0123",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "The exceptional space contains every mode outside the chosen circle.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0124",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "This includes any neutral modes and any decaying modes whose decay is slower than the chosen rate.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0125",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "The argument computes neither the dimension of this space nor its eigenvalues.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0126",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "explains",
+   "quote": "Repeated eigenvalues and Jordan blocks are allowed, since the estimates use a strict gap between the chosen radii.",
+   "lean": [
+    "Breakdown.Spectral.exists_dichotomy",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0127",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "**Proof.** Let $\\mathcal D=C^\\infty_{c,\\mathrm{div}}(\\mathbb R^3)$.",
+   "lean": [
+    "Breakdown.SectionInternal.exists_preimage_of_dense"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 3
+   },
+   "title": "Dense data cover the finite range"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0128",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "Its density in $X$ implies density of $P_u\\mathcal D$ in $V$: approximate any preimage in $X$ by elements of $\\mathcal D$ and apply the continuous map $P_u$.",
+   "lean": [
+    "Breakdown.SectionInternal.exists_preimage_of_dense"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 3
+   },
+   "title": "Dense data cover the finite range"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0129",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "The image $P_u\\mathcal D$ is a linear subspace of the finite-dimensional space $V$.",
+   "lean": [
+    "Breakdown.SectionInternal.exists_preimage_of_dense"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 3
+   },
+   "title": "Dense data cover the finite range"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0130",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "Choose a basis $b_1,\\ldots,b_d$ of $V$ and choose $e_j\\in\\mathcal D$ with $P_ue_j=b_j$.",
+   "lean": [
+    "Breakdown.exists_section"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 4
+   },
+   "title": "Choose compactly supported lifts"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0131",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "Set $E=\\operatorname{span}\\{e_1,\\ldots,e_d\\}$.",
+   "lean": [
+    "Breakdown.exists_section"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 4
+   },
+   "title": "Choose compactly supported lifts"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0132",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "A relation among the $e_j$ projects to the same relation among the basis vectors, so the $e_j$ are independent.",
+   "lean": [
+    "Breakdown.exists_section"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 4
+   },
+   "title": "Choose compactly supported lifts"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0133",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "Its inverse is bounded because its domain is finite dimensional.",
+   "lean": [
+    "Breakdown.exists_section"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 4
+   },
+   "title": "Choose compactly supported lifts"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0134",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "Taking $E=J(V)$ gives the formulation above.",
+   "lean": [
+    "Breakdown.exists_section"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 5
+   },
+   "title": "Choose compactly supported lifts"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0135",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "The range $E$ need not be invariant under $\\mathcal M$; its elements need not be eigenfunctions.",
+   "lean": [
+    "Breakdown.exists_section"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 5
+   },
+   "title": "Choose compactly supported lifts"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0136",
+   "section": "Lemma 5.2. A compactly supported transversal",
+   "role": "explains",
+   "quote": "In particular $(I-P_u)\\gamma$ must be kept when evolving a correction $\\gamma\\in E$.",
+   "lean": [
+    "Breakdown.exists_section"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.2. A compactly supported transversal",
+    "block": 5
+   },
+   "title": "Choose compactly supported lifts"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0137",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "Retain the operators $A_n,\\Gamma,\\operatorname{Ev},S_n$ of Section 4 and set $\\theta=\\Theta^{1/k}$.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0138",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "Let $J:X\\to X$ be a bounded linear section with $P_uJ=P_u$.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0139",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "**Proof.** Set $H_n=(I-A_n)^{-1}$ and $c_n=\\operatorname{Ev}H_ng_n$.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0140",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "The second formula immediately gives (5.13), provided these sequences are bounded.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0141",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "The uniform bound $\\|H_n\\|\\leq4/3$ ensures that $c$ is bounded.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0142",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "The conjugacy $S_{n+k}=\\rho S_n\\rho^{-1}$ makes all the $S_n$ uniformly bounded as well.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0143",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "Group $k$ updates at a time and put $y_m=\\rho^{-m}x_{mk}$.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0144",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "The product is the identity when $j=k-1$.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0145",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "This formula follows by multiplying the $k$-step recurrence by $\\theta^k=\\Theta$ before untwisting it.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0146",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "Choose $e\\in V$ by the normalized version of the tail sum (5.8):",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0147",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "Since $P_uy_0=P_uJe=e$, the same forward and backward estimates used in Proposition 5.3 show that $y$ is bounded, with a bound linear in $\\|g\\|_\\infty$.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 16
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0148",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "The remaining $k-1$ values inside each block are controlled by the finite recurrence (5.14).",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 16
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0149",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "This proves boundedness of $x$, and then of $z$.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 16
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0150",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "All the formulas are linear in $g$ and all the displayed estimates are uniform, giving a bounded linear operator $\\mathcal R_d$.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 16
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0151",
+   "section": "Lemma 5.4. The inverse used for the short-interval sequence",
+   "role": "explains",
+   "quote": "This is `Breakdown.periodicInverse`, with proposition `Breakdown.PeriodicInverseStatement`.",
+   "lean": [
+    "Breakdown.periodicInverse",
+    "Breakdown.PeriodicInverseStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.4. The inverse used for the short-interval sequence",
+    "block": 17
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0152",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "Let $N:Y\\times Y\\to Y$ be the continuous bilinear Duhamel operator on one short interval.",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.ContractionStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0153",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "Use $\\mathcal R_d$ from Lemma 5.4 and $0<\\theta<1$.",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.ContractionStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0154",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "Every sufficiently small $\\xi\\in X$ admits a correction $e\\in V$ and a bounded sequence $z$ satisfying",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.ContractionStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0155",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "**Proof.** On $Z=\\ell^\\infty(\\mathbb N;Y)$, define",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.ContractionStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 5
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0156",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "Because $\\theta^n\\leq1$, bilinearity gives",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.ContractionStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 7
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0157",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "Put $B_d=\\|\\mathcal R_d\\|\\|\\Gamma\\|$ and $K_d=\\|\\mathcal R_d\\|\\|N\\|$.",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.ContractionStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0158",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "The argument in Lemma 6.2 applies whenever $8K_dB_d\\|\\xi\\|\\leq1$, yielding a fixed point with $\\|z\\|_Z\\leq2B_d\\|\\xi\\|$.",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.ContractionStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0159",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "The right-inverse identity is (6.7), and",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.ContractionStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0160",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "since $\\|z\\|_Z^2\\leq\\|z\\|_Z\\leq2B_d\\|\\xi\\|$.",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.ContractionStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0161",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "The range property of $\\mathcal R_d$ also gives $e\\in V$.",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.ContractionStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0162",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "Multiplication of (6.7) by $\\theta^n$ and bilinearity of $N$ turn its right side into $N(v_n,v_n)$.",
+   "lean": [
+    "Breakdown.piecePerturbation"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 15
+   },
+   "title": "The corrected piece solves the equation"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0163",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "For $n\\geq1$, the preceding endpoint becomes $\\Gamma\\operatorname{Ev}v_{n-1}$.",
+   "lean": [
+    "Breakdown.piecePerturbation"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 15
+   },
+   "title": "The corrected piece solves the equation"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0164",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "The corrected pieces $a_n+\\theta^nz_n$ join to a mild solution on $[0,1)$ with datum $W(0)+\\xi+Je$, and its rescaled distance from $W$ decays like $(1-t)^\\kappa$.",
+   "lean": [
+    "Breakdown.glue",
+    "Breakdown.GlueStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0165",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "For $t=1-\\mu^n+\\mu^n\\sigma$, $0\\leq\\sigma<1-\\mu$, define the global field by",
+   "lean": [
+    "Breakdown.glue",
+    "Breakdown.GlueStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 16
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0166",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "The endpoint identities give continuity.",
+   "lean": [
+    "Breakdown.glue",
+    "Breakdown.GlueStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 18
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0167",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "The covariance identities transform each local equation to the physical equation.",
+   "lean": [
+    "Breakdown.glue",
+    "Breakdown.GlueStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 18
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0168",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "Finally $1-t=\\mu^n(1-\\sigma)$ and $\\theta=\\mu^\\kappa$, with $0<\\kappa<1/4$ because $\\mu^{1/4}<\\theta<1$.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 19
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0169",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "The background part of (6.10), after application of $D_{1-t}$, is $W(-\\log(1-t))$.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 19
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0170",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "explains",
+   "quote": "The last inequality uses $1-\\sigma\\geq\\mu$.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 21
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0171",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "**Proof.** Apply the compact-section construction with $\\mathcal D$ in place of smooth compactly supported fields.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0172",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "The inverse in Lemma 5.4 has a section $J$ taking values in $\\mathcal D$.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0173",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "Choose $f_0\\in\\mathcal D$ so close to $w(0)$ that",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0174",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "where $\\rho_0$ and $C_d$ are from Lemma 6.3.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0175",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "Set $\\xi=f_0-w(0)$ and carry out that construction.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0176",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "The rescaled estimate is (6.11), and the mild equation follows from the gluing argument there.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0177",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "All uses of the physical space in the construction were through the stated framework properties, so the proof applies to the abstract Hilbert space as claimed.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0178",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "This theorem still requires a recurrent nonzero orbit.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0179",
+   "section": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+   "role": "explains",
+   "quote": "It supplies no concrete profile or numerical certificate.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Theorem 6.6. The dense-data transfer retained by the formal theorem",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0180",
+   "section": "9.4. The final norm contradiction in the formal pieces",
+   "role": "explains",
+   "quote": "**Lemma 9.5 (unboundedness after gluing).** Let $0<\\lambda,\\theta<1$, $T>0$, and set",
+   "lean": [
+    "Breakdown.Periodic.GlueUnbounded",
+    "Breakdown.Periodic.glueUnbounded"
+   ],
+   "anchor": {
+    "heading": "9.4. The final norm contradiction in the formal pieces",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0181",
+   "section": "9.4. The final norm contradiction in the formal pieces",
+   "role": "explains",
+   "quote": "Suppose continuous $V$-valued pieces on $0\\le s\\le1-\\lambda$ have the form",
+   "lean": [
+    "Breakdown.Periodic.GlueUnbounded",
+    "Breakdown.Periodic.glueUnbounded"
+   ],
+   "anchor": {
+    "heading": "9.4. The final norm contradiction in the formal pieces",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0182",
+   "section": "9.4. The final norm contradiction in the formal pieces",
+   "role": "explains",
+   "quote": "This is the formal gluing-to-unboundedness statement used in the construction.",
+   "lean": [
+    "Breakdown.Periodic.GlueUnbounded",
+    "Breakdown.Periodic.glueUnbounded"
+   ],
+   "anchor": {
+    "heading": "9.4. The final norm contradiction in the formal pieces",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0183",
+   "section": "9.4. The final norm contradiction in the formal pieces",
+   "role": "explains",
+   "quote": "This is an elementary deduction from the retained piece bounds and the gluing identity.",
+   "lean": [
+    "Breakdown.Periodic.GlueUnbounded",
+    "Breakdown.Periodic.glueUnbounded"
+   ],
+   "anchor": {
+    "heading": "9.4. The final norm contradiction in the formal pieces",
+    "block": 14
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0184",
+   "section": "2. The analytic space and the mild equation",
+   "role": "explains",
+   "quote": "Derivatives and divergence in this definition are distributional.",
+   "lean": [
+    "Breakdown.Freq.X",
+    "Breakdown.Freq.embedNormLinear_holds"
+   ],
+   "anchor": {
+    "heading": "2. The analytic space and the mild equation",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0185",
+   "section": "2. The analytic space and the mild equation",
+   "role": "explains",
+   "quote": "The gradient norm uses the Euclidean norm on the full matrix of first derivatives.",
+   "lean": [
+    "Breakdown.Freq.X",
+    "Breakdown.Freq.embedNormLinear_holds"
+   ],
+   "anchor": {
+    "heading": "2. The analytic space and the mild equation",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0186",
+   "section": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+   "role": "explains",
+   "quote": "**Proof.** In Fourier variables, $H_t$ multiplies by $e^{-4\\pi^2t|\\xi|^2}$.",
+   "lean": [
+    "Breakdown.Freq.heatX",
+    "Breakdown.Freq.heat_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.2. Heat, dilation and orthogonal changes of coordinates",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0187",
+   "section": "Lemma 2.5. Duhamel integrals and the mild equation",
+   "role": "explains",
+   "quote": "For continuous $f,g:[a,b]\\to X$, the Bochner integral",
+   "lean": [
+    "Breakdown.varConstIntegral"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.5. Duhamel integrals and the mild equation",
+    "block": 2
+   },
+   "title": "Integrate the bilinear term"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0188",
+   "section": "Lemma 2.5. Duhamel integrals and the mild equation",
+   "role": "explains",
+   "quote": "is defined for every $t\\in[a,b]$, is continuous in $t$, and satisfies",
+   "lean": [
+    "Breakdown.varConstIntegral"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.5. Duhamel integrals and the mild equation",
+    "block": 4
+   },
+   "title": "Integrate the bilinear term"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0189",
+   "section": "Lemma 2.6. Finite-interval linearized evolution",
+   "role": "explains",
+   "quote": "The bound may depend on $b-a$ and $\\sup\\|f\\|_X$.",
+   "lean": [
+    "Breakdown.pieceOperator",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.6. Finite-interval linearized evolution",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0190",
+   "section": "Lemma 2.6. Finite-interval linearized evolution",
+   "role": "explains",
+   "quote": "No smallness of the background on the whole interval is required.",
+   "lean": [
+    "Breakdown.pieceOperator",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.6. Finite-interval linearized evolution",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0191",
+   "section": "Lemma 2.6. Finite-interval linearized evolution",
+   "role": "explains",
+   "quote": "Lemma A.2 proves the assertion and explains the formal library's construction by short time pieces.",
+   "lean": [
+    "Breakdown.pieceOperator",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.6. Finite-interval linearized evolution",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0192",
+   "section": "Lemma 2.7. Restarting and uniqueness",
+   "role": "explains",
+   "quote": "If $u(t)=H_{t-a}u(a)+B_a(f,h)(t)$ and $a\\le m\\le t\\le b$, then",
+   "lean": [
+    "Breakdown.concat",
+    "Breakdown.restrict"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.7. Restarting and uniqueness",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0193",
+   "section": "Lemma 2.8. From solenoidal tests to the mild equation",
+   "role": "explains",
+   "quote": "Solenoidal tests remove the pressure term by integration by parts; they do not assume that pressure vanishes.",
+   "lean": [
+    "Breakdown.gradientPairingZero_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.8. From solenoidal tests to the mild equation",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0194",
+   "section": "Lemma 2.9. The periodic estimate has a uniform constant",
+   "role": "explains",
+   "quote": "With Fourier coefficients indexed by $k\\in L^{-1}\\mathbb Z^3$, heat flow multiplies by $e^{-4\\pi^2t|k|^2}$.",
+   "lean": [
+    "Breakdown.Periodic.heat"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.9. The periodic estimate has a uniform constant",
+    "block": 4
+   },
+   "title": "Periodic heat flow"
+  },
+  {
+   "id": "r5-gap-rewrite-part1-0195",
+   "section": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+   "role": "explains",
+   "quote": "**Lemma 9.3 (removing the affine part of the pressure).** Suppose $(v,p)$ is a smooth unforced solution of viscosity one on $[0,\\infty)\\times\\mathbb R^3$, with velocity periodic of period one and with datum $v_0$.",
+   "lean": [
+    "Breakdown.Periodic.movingFrameReduction"
+   ],
+   "anchor": {
+    "heading": "9.3. Arbitrary periodic-velocity competitors and their pressure",
+    "block": 2
+   },
+   "title": "Choose a periodic pressure frame"
+  },
+  {
+   "id": "r5-part1-second-0010",
+   "section": "Torus transfer and its local notation",
+   "role": "defines",
+   "quote": "Test fields are real, smooth, compactly supported and divergence-free unless another test class is specified.",
+   "lean": [
+    "Breakdown.IsTestField"
+   ],
+   "anchor": {
+    "heading": "Torus transfer and its local notation",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-part1-second-0043",
+   "section": "1.3 What the linked formal endpoints state",
+   "role": "mentions",
+   "quote": "These are the predicates `Breakdown.BreakdownOnSpace` and `Breakdown.BreakdownOnTorus`.",
+   "lean": [
+    "Breakdown.BreakdownOnSpace",
+    "Breakdown.BreakdownOnTorus"
+   ],
+   "anchor": {
+    "heading": "1.3 What the linked formal endpoints state",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-part1-second-0052",
+   "section": "Lemma 2.1. The space and its compactly supported dense subspace",
+   "role": "explains",
+   "quote": "For a general field with $u\\in L^6$ and $\\nabla u\\in L^2$, choose a smooth cutoff $\\chi_R$ equal to one on $B_R$ and zero outside $B_{2R}$.",
+   "lean": [
+    "Breakdown.Freq.Internal.GradSixDecay.cutoff",
+    "Breakdown.Freq.Internal.GradSixDecay.cutoff_contDiff",
+    "Breakdown.Freq.Internal.GradSixDecay.cutoff_eq_one",
+    "Breakdown.Freq.Internal.GradSixDecay.cutoff_eq_zero"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.1. The space and its compactly supported dense subspace",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-part1-second-0061",
+   "section": "Lemma 2.1. The space and its compactly supported dense subspace",
+   "role": "explains",
+   "quote": "Approximate the weighted transform in $L^2$ by smooth functions supported on compact annuli, apply the orthogonal projection",
+   "lean": [
+    "Breakdown.Freq.Internal.NiceDense.smooth_annulus",
+    "Breakdown.Freq.Internal.NiceDense.projField"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.1. The space and its compactly supported dense subspace",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-part1-second-0062",
+   "section": "Lemma 2.1. The space and its compactly supported dense subspace",
+   "role": "explains",
+   "quote": "and impose the reality symmetry by averaging.",
+   "lean": [
+    "Breakdown.Freq.Internal.NiceDense.symField",
+    "Breakdown.Freq.Internal.NiceDense.nice_symField_projField"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.1. The space and its compactly supported dense subspace",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-part1-second-0063",
+   "section": "Lemma 2.1. The space and its compactly supported dense subspace",
+   "role": "explains",
+   "quote": "Projection is bounded and smooth on each annulus, so these operations preserve convergence.",
+   "lean": [
+    "Breakdown.Freq.Internal.NiceDense.norm_proj_le",
+    "Breakdown.Freq.Internal.NiceDense.contDiff_projField",
+    "Breakdown.Freq.Internal.NiceDense.eLpNorm_symField_sub_le"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.1. The space and its compactly supported dense subspace",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-part1-second-0065",
+   "section": "Lemma 2.1. The space and its compactly supported dense subspace",
+   "role": "explains",
+   "quote": "The resulting $f_n$ are solenoidal Schwartz fields with Fourier support away from zero",
+   "lean": [
+    "Breakdown.Freq.Internal.NiceApprox.symbol_rapid",
+    "Breakdown.Freq.Internal.NiceApprox.symbol_curl_embed"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.1. The space and its compactly supported dense subspace",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-part1-second-0066",
+   "section": "Lemma 2.1. The space and its compactly supported dense subspace",
+   "role": "explains",
+   "quote": "Therefore $\\operatorname{curl}(\\chi_RA_n)$ is smooth, compactly supported and solenoidal; the Schwartz bounds show that its gradient converges in $L^2$ to $\\nabla f_n$ as $R\\to\\infty$.",
+   "lean": [
+    "Breakdown.Freq.Internal.NiceApprox.cutoff_isTestField",
+    "Breakdown.Freq.Internal.NiceApprox.cutoff_tendsto"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.1. The space and its compactly supported dense subspace",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-part1-second-0067",
+   "section": "Lemma 2.1. The space and its compactly supported dense subspace",
+   "role": "explains",
+   "quote": "Choosing $R$ successively for each $n$ completes the approximation.",
+   "lean": [
+    "Breakdown.Freq.Internal.NiceApprox.cutoff_approx"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.1. The space and its compactly supported dense subspace",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-part1-second-0069",
+   "section": "Lemma 2.3. The bilinear heat estimate",
+   "role": "explains",
+   "quote": "where $\\mathbb P$ has Fourier symbol $P_\\xi$.",
+   "lean": [
+    "Breakdown.Freq.longitudinal",
+    "Breakdown.Freq.Internal.NiceDense.projField"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.3. The bilinear heat estimate",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-part1-second-0071",
+   "section": "Lemma 2.3. The bilinear heat estimate",
+   "role": "explains",
+   "quote": "$\\|P_\\xi\\|\\le1$",
+   "lean": [
+    "Breakdown.Freq.Internal.NiceDense.norm_proj_le"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.3. The bilinear heat estimate",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-part1-second-0075",
+   "section": "Lemma 2.3. The bilinear heat estimate",
+   "role": "explains",
+   "quote": "The multiplier kills the longitudinal part, so the output is solenoidal.",
+   "lean": [
+    "Breakdown.Freq.Internal.NiceDense.div_proj"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.3. The bilinear heat estimate",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-part1-second-0076",
+   "section": "Lemma 2.3. The bilinear heat estimate",
+   "role": "explains",
+   "quote": "Symmetry and bilinearity follow from the definition.",
+   "lean": [
+    "Breakdown.Freq.Internal.BilinExists.bilinForm_symm",
+    "Breakdown.Freq.bilinX",
+    "Breakdown.Freq.bilinExistsBound"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.3. The bilinear heat estimate",
+    "block": 11
+   }
+  },
+  {
+   "id": "r5-part1-second-0077",
+   "section": "Lemma 2.3. The bilinear heat estimate",
+   "role": "explains",
+   "quote": "This definition avoids assigning a pointwise Fourier transform to every nonlinear product.",
+   "lean": [
+    "Breakdown.Freq.BilinSpec",
+    "Breakdown.Freq.bilinForm"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.3. The bilinear heat estimate",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-part1-second-0087",
+   "section": "Lemma 2.4. Compactness for a fixed coefficient",
+   "role": "explains",
+   "quote": "An operator-norm limit of compact operators is compact",
+   "lean": [
+    "Breakdown.compactPiece_of"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.4. Compactness for a fixed coefficient",
+    "block": 8
+   },
+   "lines": [
+    84,
+    88
+   ]
+  },
+  {
+   "id": "r5-part1-second-0103",
+   "section": "Proposition 3.1. A profile supplies a recurrent mild solution",
+   "role": "explains",
+   "quote": "Their sixth and second powers, respectively, are integrable in space",
+   "lean": [
+    "Breakdown.Freq.Internal.GradSixDecay.memLp_six_of_le",
+    "Breakdown.Freq.Internal.GradSixDecay.integrable_sum_sq_fderiv"
+   ],
+   "anchor": {
+    "heading": "Proposition 3.1. A profile supplies a recurrent mild solution",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-part1-second-0129",
+   "section": "Lemma 4.1. Compactness of the endpoint interaction",
+   "role": "mentions",
+   "quote": "The declarations are `Breakdown.compactSimple` and `Breakdown.compactPiece`.",
+   "lean": [
+    "Breakdown.compactSimple",
+    "Breakdown.compactPiece"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.1. Compactness of the endpoint interaction",
+    "block": 16
+   }
+  },
+  {
+   "id": "r5-part1-second-0130",
+   "section": "Lemma 4.1. Compactness of the endpoint interaction",
+   "role": "explains",
+   "quote": "The latter assumes the abstract compact-kernel property, which the Fourier realization supplies through the dense test-field subspace.",
+   "lean": [
+    "Breakdown.HeatBilinear.HasCompactKernel",
+    "Breakdown.Freq.bilinCompact_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.1. Compactness of the endpoint interaction",
+    "block": 16
+   }
+  },
+  {
+   "id": "r5-part1-second-0139",
+   "section": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+   "role": "mentions",
+   "quote": "It is `Breakdown.monodromy`, whose precise proposition is `Breakdown.MonodromyStatement`.",
+   "lean": [
+    "Breakdown.monodromy",
+    "Breakdown.MonodromyStatement"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2. The monodromy is a compact perturbation of a contraction",
+    "block": 30
+   }
+  },
+  {
+   "id": "r5-part1-second-0156",
+   "section": "Lemma 4.3. A finite-dimensional exceptional space",
+   "role": "mentions",
+   "quote": "The exported declaration is `Breakdown.dichotomyHolds`.",
+   "lean": [
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.3. A finite-dimensional exceptional space",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-part1-second-0195",
+   "section": "Proposition 5.3. A weighted right inverse",
+   "role": "mentions",
+   "quote": "The relevant declarations are `Breakdown.DiscreteDichotomyInternal.tailSum`, `Breakdown.DiscreteDichotomyInternal.norm_tailSum_le`, `Breakdown.DiscreteDichotomyInternal.rec_formula` and `Breakdown.discreteDichotomy`.",
+   "lean": [
+    "Breakdown.DiscreteDichotomyInternal.tailSum",
+    "Breakdown.DiscreteDichotomyInternal.norm_tailSum_le",
+    "Breakdown.DiscreteDichotomyInternal.rec_formula",
+    "Breakdown.discreteDichotomy"
+   ],
+   "anchor": {
+    "heading": "Proposition 5.3. A weighted right inverse",
+    "block": 25
+   }
+  },
+  {
+   "id": "r5-part1-second-0224",
+   "section": "Lemma 6.2. Correcting an approximate solution",
+   "role": "mentions",
+   "quote": "It is `Breakdown.ContractionInternal.exists_small_fixed`.",
+   "lean": [
+    "Breakdown.ContractionInternal.exists_small_fixed"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.2. Correcting an approximate solution",
+    "block": 18
+   }
+  },
+  {
+   "id": "r5-part1-second-0225",
+   "section": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+   "role": "mentions",
+   "quote": "These steps are `Breakdown.contraction`, `Breakdown.piecePerturbation` and `Breakdown.glue`.",
+   "lean": [
+    "Breakdown.contraction",
+    "Breakdown.piecePerturbation",
+    "Breakdown.glue"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3. Nonlinear gluing in the formal sequence variables",
+    "block": 22
+   }
+  },
+  {
+   "id": "r5-part1-second-0228",
+   "section": "Lemma 6.4. A divergence-free cutoff with uniform bounds",
+   "role": "explains",
+   "quote": "Differentiation under the integral is therefore legitimate to every order, proving smoothness.",
+   "lean": [
+    "Breakdown.Periodic.Cutoff.Internal.hasFDerivAt_integral_unit",
+    "Breakdown.Periodic.Cutoff.Internal.contDiff_integral_unit_infty"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.4. A divergence-free cutoff with uniform bounds",
+    "block": 6
+   }
+  },
+  {
+   "id": "r5-part1-second-0229",
+   "section": "Lemma 6.4. A divergence-free cutoff with uniform bounds",
+   "role": "explains",
+   "quote": "Integrating from zero to one gives $\\operatorname{curl}A=u$.",
+   "lean": [
+    "Breakdown.Periodic.homotopyCurl"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.4. A divergence-free cutoff with uniform bounds",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-part1-second-0234",
+   "section": "Lemma 6.4. A divergence-free cutoff with uniform bounds",
+   "role": "explains",
+   "quote": "The endpoint $\\sigma=0$ causes no singularity in the actual integrand, which is smooth.",
+   "lean": [
+    "Breakdown.Periodic.Cutoff.Internal.contDiff_potentialIntegrand"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.4. A divergence-free cutoff with uniform bounds",
+    "block": 15
+   }
+  },
+  {
+   "id": "r5-part1-second-0241",
+   "section": "Lemma 6.4. A divergence-free cutoff with uniform bounds",
+   "role": "mentions",
+   "quote": "This is `Breakdown.Periodic.homotopyCurl`.",
+   "lean": [
+    "Breakdown.Periodic.homotopyCurl"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.4. A divergence-free cutoff with uniform bounds",
+    "block": 19
+   }
+  },
+  {
+   "id": "r5-part1-second-0253",
+   "section": "Proposition 6.5. The family of corrected whole-space data",
+   "role": "explains",
+   "quote": "Since $\\gamma\\in E$ and $E$ consists of compactly supported smooth divergence-free fields, the sum $w_0+\\gamma$ remains in this class.",
+   "lean": [
+    "Breakdown.Freq.Internal.VelocityExists.isTestField_add"
+   ],
+   "anchor": {
+    "heading": "Proposition 6.5. The family of corrected whole-space data",
+    "block": 12
+   }
+  },
+  {
+   "id": "r5-part1-second-0262",
+   "section": "Proposition 7.1. A compact-data mild solution is a smooth finite-energy solution",
+   "role": "explains",
+   "quote": "smooth velocity and pressure, including at the initial time.",
+   "lean": [
+    "Breakdown.SmoothFlow.smooth_physField_curve",
+    "Breakdown.SmoothFlow.smooth_pressure_curve"
+   ],
+   "anchor": {
+    "heading": "Proposition 7.1. A compact-data mild solution is a smooth finite-energy solution",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-part1-second-0286",
+   "section": "Corollary 7.2. Completion of the whole-space construction",
+   "role": "explains",
+   "quote": "Its correction $\\gamma$ lies in the fixed finite-dimensional subspace $E\\subset C^\\infty_{c,\\mathrm{div}}$, so $u_0=w_0+\\gamma$ is smooth, compactly supported and solenoidal.",
+   "lean": [
+    "Breakdown.Freq.Internal.VelocityExists.isTestField_add"
+   ],
+   "anchor": {
+    "heading": "Corollary 7.2. Completion of the whole-space construction",
+    "block": 2
+   }
+  },
+  {
+   "id": "r5-part1-second-0319",
+   "section": "Proposition 7.4. Excluding global smooth competitors at every positive viscosity",
+   "role": "explains",
+   "quote": "Scalar multiplication preserves smoothness, compact support and divergence zero of the datum.",
+   "lean": [
+    "Breakdown.Freq.Internal.VelocityExists.isTestField_smul"
+   ],
+   "anchor": {
+    "heading": "Proposition 7.4. Excluding global smooth competitors at every positive viscosity",
+    "block": 9
+   }
+  },
+  {
+   "id": "r5-part1-second-0356",
+   "section": "8.2. Comparing heat flows with pressure included",
+   "role": "explains",
+   "quote": "the heat multiplier followed by the orthogonal projection onto $\\xi^\\perp$.",
+   "lean": [
+    "Breakdown.Freq.heatDivFree",
+    "Breakdown.Freq.projX",
+    "Breakdown.Freq.phiFactor"
+   ],
+   "anchor": {
+    "heading": "8.2. Comparing heat flows with pressure included",
+    "block": 13
+   }
+  },
+  {
+   "id": "r5-part1-second-0357",
+   "section": "8.2. Comparing heat flows with pressure included",
+   "role": "explains",
+   "quote": "The value at $\\xi=0$ is irrelevant for whole-space integrals.",
+   "lean": [
+    "Breakdown.Freq.Internal.NiceApprox.symbol_curl_embed"
+   ],
+   "anchor": {
+    "heading": "8.2. Comparing heat flows with pressure included",
+    "block": 13
+   },
+   "lines": [
+    1083,
+    1085
+   ]
+  },
+  {
+   "id": "r5-part1-second-0377",
+   "section": "8.2. Comparing heat flows with pressure included",
+   "role": "explains",
+   "quote": "The boundary of the cube has measure zero and does not affect the norms.",
+   "lean": [
+    "Breakdown.Periodic.ShellTorus.Internal.volume_coord_eq",
+    "Breakdown.Periodic.ShellTorus.Internal.ae_wrap_eq"
+   ],
+   "anchor": {
+    "heading": "8.2. Comparing heat flows with pressure included",
+    "block": 38
+   }
+  },
+  {
+   "id": "r5-part1-second-0404",
+   "section": "8.4. Restricting the interaction to one ball",
+   "role": "explains",
+   "quote": "The radius-dependent estimate $\\|\\zeta\\|_2\\le |B|^{1/3}\\|\\zeta\\|_6$ will be used only where its factor $O(L)$ is included explicitly.",
+   "lean": [
+    "Breakdown.Periodic.ShellDefs.Internal.advect_bound",
+    "Breakdown.Periodic.ShellDefs.Internal.advK"
+   ],
+   "anchor": {
+    "heading": "8.4. Restricting the interaction to one ball",
+    "block": 5
+   },
+   "lines": [
+    455,
+    469
+   ]
+  },
+  {
+   "id": "r5-part1-second-0428",
+   "section": "8.5. Building an exact right inverse on the torus",
+   "role": "explains",
+   "quote": "The product norm is the maximum of the two component norms.",
+   "lean": [
+    "Breakdown.Periodic.shellInverseTransfer"
+   ],
+   "anchor": {
+    "heading": "8.5. Building an exact right inverse on the torus",
+    "block": 10
+   },
+   "lines": [
+    228,
+    242
+   ]
+  },
+  {
+   "id": "r5-part1-second-0446",
+   "section": "$$\n\\zeta-z|_B",
+   "role": "explains",
+   "quote": "Multiplication by $I-Q=\\mathcal L_L\\mathcal R_L^a$ telescopes.",
+   "lean": [
+    "Breakdown.Periodic.InverseAlgebra.Internal.sub_apply_inverse_one_sub"
+   ],
+   "anchor": {
+    "heading": "8.5. Building an exact right inverse on the torus",
+    "block": 36
+   }
+  },
+  {
+   "id": "r5-part1-second-0470",
+   "section": "8.6. The inverse argument in the formal sequence spaces",
+   "role": "explains",
+   "quote": "For given $\\eta\\in Z$, choose $(e,y)=R_f(B\\eta)$ and set $\\zeta=\\eta+Dy$.",
+   "lean": [
+    "Breakdown.Periodic.shellInverseTransfer"
+   ],
+   "anchor": {
+    "heading": "8.6. The inverse argument in the formal sequence spaces",
+    "block": 25
+   },
+   "lines": [
+    92,
+    105
+   ]
+  },
+  {
+   "id": "r5-part1-second-0472",
+   "section": "8.6. The inverse argument in the formal sequence spaces",
+   "role": "explains",
+   "quote": "This constructs a right inverse $R_H$ for $\\mathcal H$.",
+   "lean": [
+    "Breakdown.Periodic.shellInverseTransfer"
+   ],
+   "anchor": {
+    "heading": "8.6. The inverse argument in the formal sequence spaces",
+    "block": 27
+   },
+   "lines": [
+    95,
+    117
+   ]
+  },
+  {
+   "id": "r5-part1-second-0473",
+   "section": "8.6. The inverse argument in the formal sequence spaces",
+   "role": "explains",
+   "quote": "Substitution proves $\\mathcal C_L(e,y_L)=h$.",
+   "lean": [
+    "Breakdown.Periodic.shellInverseTransfer"
+   ],
+   "anchor": {
+    "heading": "8.6. The inverse argument in the formal sequence spaces",
+    "block": 34
+   },
+   "lines": [
+    170,
+    195
+   ]
+  },
+  {
+   "id": "r5-part1-second-0475",
+   "section": "8.6. The inverse argument in the formal sequence spaces",
+   "role": "explains",
+   "quote": "The geometric series gives $\\|\\mathsf Q_L\\|\\le c$, so",
+   "lean": [
+    "Breakdown.Periodic.InverseAlgebra.Internal.norm_inverse_one_sub_le"
+   ],
+   "anchor": {
+    "heading": "8.6. The inverse argument in the formal sequence spaces",
+    "block": 35
+   }
+  },
+  {
+   "id": "r5-part1-second-0476",
+   "section": "8.6. The inverse argument in the formal sequence spaces",
+   "role": "explains",
+   "quote": "Because $c\\ge1$, both components are bounded by\n$c[1+(\\|B_L^\\circ\\|+\\|G_L^\\circ\\|+1)a]\\|h\\|$.",
+   "lean": [
+    "Breakdown.Periodic.shellInverseTransfer"
+   ],
+   "anchor": {
+    "heading": "8.6. The inverse argument in the formal sequence spaces",
+    "block": 37
+   },
+   "lines": [
+    196,
+    252
+   ]
+  },
+  {
+   "id": "r5-part1-second-0536",
+   "section": "Lemma A.1. Integrability at the moving time endpoint",
+   "role": "explains",
+   "quote": "**Proof.** Bilinearity, the bound, and continuity in $\\tau>0$ imply joint continuity of $(\\tau,x,y)\\mapsto K(\\tau)(x,y)$ away from zero.",
+   "lean": [
+    "Breakdown.VarConstIntegralInternal.tendsto_K",
+    "Breakdown.VarConstIntegralInternal.continuousOn_K"
+   ],
+   "anchor": {
+    "heading": "Lemma A.1. Integrability at the moving time endpoint",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-part1-second-0537",
+   "section": "Lemma A.1. Integrability at the moving time endpoint",
+   "role": "explains",
+   "quote": "For fixed $t$, the integrand is strongly measurable on $[a,t)$ and bounded in norm by $C_KM_fM_g(t-r)^{-3/4}$.",
+   "lean": [
+    "Breakdown.VarConstIntegralInternal.kern_intervalIntegrable",
+    "Breakdown.VarConstIntegralInternal.norm_kern_le_small"
+   ],
+   "anchor": {
+    "heading": "Lemma A.1. Integrability at the moving time endpoint",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-part1-second-0538",
+   "section": "Lemma A.1. Integrability at the moving time endpoint",
+   "role": "explains",
+   "quote": "Its norm integral is at most $4C_KM_fM_g(t-a)^{1/4}$, proving Bochner integrability and the estimate.",
+   "lean": [
+    "Breakdown.VarConstIntegralInternal.integral_rpow_three_quarters",
+    "Breakdown.varConstIntegral"
+   ],
+   "anchor": {
+    "heading": "Lemma A.1. Integrability at the moving time endpoint",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-part1-second-0545",
+   "section": "Lemma A.1. Integrability at the moving time endpoint",
+   "role": "explains",
+   "quote": "At $t_0=a$, the displayed integral estimate alone gives continuity.",
+   "lean": [
+    "Breakdown.varConstIntegral"
+   ],
+   "anchor": {
+    "heading": "Lemma A.1. Integrability at the moving time endpoint",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-part1-second-0568",
+   "section": "Lemma A.3. The weak identity fixes the integral solution and its initial trace",
+   "role": "defines",
+   "quote": "Its hypothesis packages the extra decay and time-difference properties already mentioned after Lemma 2.8.",
+   "lean": [
+    "Breakdown.Freq.IsWeakSolution"
+   ],
+   "anchor": {
+    "heading": "Lemma A.3. The weak identity fixes the integral solution and its initial trace",
+    "block": 10
+   }
+  },
+  {
+   "id": "r5-part1-second-0579",
+   "section": "Lemma A.4. Periodic Sobolev and heat estimates",
+   "role": "explains",
+   "quote": "$re^{-r}\\le C$",
+   "lean": [
+    "Breakdown.Periodic.ShellTorus.Internal.exp_mul_bound"
+   ],
+   "anchor": {
+    "heading": "Lemma A.4. Periodic Sobolev and heat estimates",
+    "block": 6
+   },
+   "lines": [
+    21,
+    27
+   ]
+  },
+  {
+   "id": "r5-part1-second-0580",
+   "section": "Lemma A.4. Periodic Sobolev and heat estimates",
+   "role": "explains",
+   "quote": "Interpolate $L^3$ between $L^2$ and $L^6$",
+   "lean": [
+    "Breakdown.Periodic.ShellTorus.Internal.eLpNorm_three_le"
+   ],
+   "anchor": {
+    "heading": "Lemma A.4. Periodic Sobolev and heat estimates",
+    "block": 8
+   }
+  },
+  {
+   "id": "r5-part1-second-0581",
+   "section": "Lemma A.4. Periodic Sobolev and heat estimates",
+   "role": "explains",
+   "quote": "Divide if $z\\ne0$; if $z=0$ the bound is immediate.",
+   "lean": [
+    "Breakdown.Periodic.ShellTorus.Internal.sourceOp_threeHalves"
+   ],
+   "anchor": {
+    "heading": "Lemma A.4. Periodic Sobolev and heat estimates",
+    "block": 10
+   },
+   "lines": [
+    50,
+    61
+   ]
   }
  ],
  "plain": {
-  "Breakdown.Freq.X": "Solenoidal Fourier space",
+  "Breakdown.Freq.X": "The solenoidal Fourier space",
   "Breakdown.Freq.isClosed_sig": "Closed solenoidal subspace",
-  "Breakdown.Freq.velocity": "Physical velocity",
-  "Breakdown.Freq.velocity_holds": "Existence of the velocity map",
+  "Breakdown.Freq.velocity": "Recover the velocity in L6",
+  "Breakdown.Freq.velocity_holds": "Construct the L6 velocity map",
   "Breakdown.Freq.velocityDecay_holds": "Reading a decaying field",
-  "Breakdown.Freq.embedNormLinear_holds": "Embedding and gradient norm",
-  "Breakdown.Freq.gradSixDecay": "Sobolev bound for decaying fields",
+  "Breakdown.Freq.embedNormLinear_holds": "Gradient norm and linear embedding",
+  "Breakdown.Freq.gradSixDecay": "Prove the decaying-field Sobolev bound",
   "Breakdown.Freq.testDense_holds": "Density of compact test fields",
   "Breakdown.Freq.testSpan_holds": "A test field for each span element",
   "Breakdown.Freq.niceApprox": "Compact approximation by a potential",
-  "Breakdown.Freq.heat_holds": "Heat flow on the homogeneous space",
-  "Breakdown.Freq.dilation_holds": "Dilation and its norm",
-  "Breakdown.Freq.dilationCont_holds": "Continuity of dilation",
+  "Breakdown.Freq.heat_holds": "Prove the heat semigroup properties",
+  "Breakdown.Freq.dilation_holds": "Prove the dilation identities",
+  "Breakdown.Freq.dilationCont_holds": "Continuity of dilations",
   "Breakdown.Freq.rotation_holds": "Orthogonal coordinate changes",
-  "Breakdown.Freq.bilinX": "Symmetric bilinear interaction",
-  "Breakdown.Freq.bilin_holds": "The bilinear smoothing bound",
-  "Breakdown.Freq.bilinShift_holds": "Shifting heat time",
-  "Breakdown.Freq.bilinDilate_holds": "Scaling the bilinear interaction",
-  "Breakdown.Freq.bilinRotate_holds": "Rotating the bilinear interaction",
-  "Breakdown.Freq.bilinCont_holds": "Continuity at positive heat time",
-  "Breakdown.Freq.bilinCompact_holds": "Compactness for a test coefficient",
-  "Breakdown.MildFramework": "Heat, dilation and compactness data",
+  "Breakdown.Freq.bilinX": "Symmetric Navier–Stokes bilinear term",
+  "Breakdown.Freq.bilin_holds": "Construct and bound the bilinear term",
+  "Breakdown.Freq.bilinShift_holds": "Heat shift of the bilinear term",
+  "Breakdown.Freq.bilinDilate_holds": "Dilation of the bilinear term",
+  "Breakdown.Freq.bilinRotate_holds": "Rotation of the bilinear term",
+  "Breakdown.Freq.bilinCont_holds": "Continuity of the bilinear term",
+  "Breakdown.Freq.bilinCompact_holds": "Prove test-input compactness",
+  "Breakdown.MildFramework": "Abstract blow-up transfer framework",
   "Breakdown.MildFramework.IsMildOnIcc": "Mild solution on a closed interval",
-  "Breakdown.varConstIntegral": "Continuity of the Duhamel integral",
-  "Breakdown.pieceOperator": "Duhamel operator on a time piece",
-  "Breakdown.monodromy": "Linear evolution over one period",
-  "Breakdown.mildUnique": "Uniqueness of mild solutions",
-  "Breakdown.restrict": "Restarting a mild solution",
+  "Breakdown.varConstIntegral": "Integrate the bilinear term",
+  "Breakdown.pieceOperator": "Prove the time-piece operator bounds",
+  "Breakdown.monodromy": "Prove the monodromy decomposition",
+  "Breakdown.mildUnique": "Prove mild uniqueness",
+  "Breakdown.restrict": "Restart the integral equation",
   "Breakdown.concat": "Concatenating mild solutions",
   "Breakdown.mildSmallData": "Small data through time one",
-  "Breakdown.Freq.IsWeakSolution": "The formal weak-solution premises",
-  "Breakdown.Freq.mild_holds": "From weak tests to the mild equation",
-  "Breakdown.Periodic.V": "Periodic solenoidal Fourier space",
+  "Breakdown.Freq.IsWeakSolution": "Weak solution for the profile route",
+  "Breakdown.Freq.mild_holds": "Pass from weak to mild form",
+  "Breakdown.Periodic.V": "Periodic Fourier velocity space",
   "Breakdown.Periodic.heat": "Periodic heat flow",
-  "Breakdown.Periodic.kernel": "Periodic bilinear interaction",
+  "Breakdown.Periodic.kernel": "Periodic bilinear term",
   "Breakdown.Periodic.kernelSharpBound_holds": "Periodic short-time bilinear bound",
-  "Breakdown.physicalField": "The profile in physical variables",
+  "Breakdown.physicalField": "Profile in physical variables",
   "Breakdown.physicalPressure": "Pressure in physical variables",
   "Breakdown.physicalTimeDeriv_holds": "The time derivative after rescaling",
-  "Breakdown.physicalMild_unconditional": "The physical profile is mild",
-  "Breakdown.embeddedProfileOrbit_holds": "The profile gives an abstract orbit",
-  "Breakdown.orbitBound": "Upper bound for a recurrent orbit",
-  "Breakdown.orbitNorm": "Positive lower bound for the orbit",
-  "Breakdown.MildRegular": "A smooth reading of a mild path",
-  "Breakdown.mildRegular_realization": "Smoothness for compact initial data",
-  "Breakdown.EnergyBoundedOn": "Energy bounded on a closed interval",
-  "Breakdown.TransferHolds": "Compact data approaching the orbit",
-  "Breakdown.transferHolds_of_dichotomy": "Transfer from a spectral dichotomy",
+  "Breakdown.physicalMild_unconditional": "Build the physical mild profile",
+  "Breakdown.embeddedProfileOrbit_holds": "The embedded profile is an orbit",
+  "Breakdown.orbitBound": "Bound the recurrent profile",
+  "Breakdown.orbitNorm": "Keep the profile norm positive",
+  "Breakdown.MildRegular": "Smooth representatives of mild flow",
+  "Breakdown.mildRegular_realization": "Smooth whole-space mild flow",
+  "Breakdown.EnergyBoundedOn": "Energy on a fixed time interval",
+  "Breakdown.TransferHolds": "Compact data approaching the profile",
+  "Breakdown.transferHolds_of_dichotomy": "Transfer from spectral splitting",
   "Breakdown.Periodic.smoothPeriodicIsMild_holds": "A smooth periodic solution is mild",
-  "Breakdown.breakdownOnSpace_of_profile": "Conditional whole-space breakdown",
+  "Breakdown.breakdownOnSpace_of_profile": "A profile excludes global smoothness",
   "Breakdown.physicalDifference_holds": "Decay of physical time differences",
   "Breakdown.physicalL2_holds": "Square-integrable time differences",
-  "Breakdown.IsSimilarityProfile": "The formal similarity profile",
+  "Breakdown.IsSimilarityProfile": "Smooth profile with decay",
   "Breakdown.compactSimple": "Compactness for a simple coefficient",
   "Breakdown.compactPiece": "Compact endpoint interaction",
-  "Breakdown.MildFramework.profilePiece": "Profile on a short interval",
-  "Breakdown.MildFramework.stepOp": "Linearized interval operator",
+  "Breakdown.MildFramework.profilePiece": "One rescaled piece of the profile",
+  "Breakdown.MildFramework.stepOp": "Linearization on one time piece",
   "Breakdown.MildFramework.stepFree": "Free evolution on one interval",
   "Breakdown.MildFramework.stepEnd": "Rescaled endpoint of one interval",
-  "Breakdown.stepMap": "Evolution to the rescaled endpoint",
+  "Breakdown.stepMap": "Linear flow across one time piece",
   "Breakdown.StepDataInternal.exists_step_count": "Choose sufficiently short intervals",
-  "Breakdown.stepData": "Choose the linear correction data",
-  "Breakdown.MonodromyStatement": "Monodromy compactness and free bound",
+  "Breakdown.stepData": "Construct the correction data",
+  "Breakdown.MonodromyStatement": "Monodromy is a compact perturbation",
   "Breakdown.Spectral.exists_dichotomy": "Real finite-dimensional dichotomy",
-  "Breakdown.dichotomyHolds": "Dichotomy for a compact perturbation",
-  "Breakdown.orbitSeq": "Recurrence with a decay factor",
-  "Breakdown.exists_section": "Lift the exceptional component",
+  "Breakdown.dichotomyHolds": "Prove the real spectral splitting",
+  "Breakdown.orbitSeq": "Weighted discrete forced recurrence",
+  "Breakdown.exists_section": "Choose compactly supported lifts",
   "Breakdown.SectionInternal.exists_preimage_of_dense": "Dense data cover the finite range",
   "Breakdown.DiscreteDichotomyInternal.tailSum": "Exceptional tail correction",
   "Breakdown.DiscreteDichotomyInternal.norm_tailSum_le": "Geometric bound for the tail",
   "Breakdown.DiscreteDichotomyInternal.rec_formula": "Forward recurrence formula",
   "Breakdown.DiscreteDichotomyInternal.step_tailSum": "The tail satisfies the recurrence",
-  "Breakdown.discreteDichotomy": "Bounded normalized recurrence",
-  "Breakdown.periodicInverse": "Right inverse for the interval system",
-  "Breakdown.PeriodicInverseStatement": "Normalized interval inverse",
+  "Breakdown.discreteDichotomy": "Choose the decaying recurrence data",
+  "Breakdown.periodicInverse": "Assemble the periodic right inverse",
+  "Breakdown.PeriodicInverseStatement": "A right inverse across repeated pieces",
   "Breakdown.ContractionInternal.exists_small_fixed": "Small quadratic fixed point",
-  "Breakdown.contraction": "Nonlinear correction of the pieces",
-  "Breakdown.piecePerturbation": "An exact perturbed local solution",
+  "Breakdown.contraction": "Solve the quadratic correction",
+  "Breakdown.piecePerturbation": "The corrected piece solves the equation",
   "Breakdown.glue": "Join the rescaled local solutions",
-  "Breakdown.Periodic.homotopyPotential": "Vector potential along radial segments",
-  "Breakdown.Periodic.homotopyCurl": "The vector potential recovers the field",
-  "Breakdown.Periodic.cutoffField": "Cut off the vector potential",
-  "Breakdown.Periodic.cutoffDivergenceFree": "The cutoff remains divergence free",
-  "Breakdown.Periodic.cutoffGradientClose": "Small cutoff error after rescaling",
-  "Breakdown.Periodic.cutoffMassBound": "Mass of the rescaled cutoff",
-  "Breakdown.Periodic.TorusBlowup": "A periodic mild blow-up trajectory",
+  "Breakdown.Periodic.homotopyPotential": "Vector potential for the cutoff",
+  "Breakdown.Periodic.homotopyCurl": "Recover the divergence-free field",
+  "Breakdown.Periodic.cutoffField": "Divergence-free cutoff field",
+  "Breakdown.Periodic.cutoffDivergenceFree": "Prove the cutoff is divergence-free",
+  "Breakdown.Periodic.cutoffGradientClose": "Gradient error from the cutoff",
+  "Breakdown.Periodic.cutoffMassBound": "L2 mass of the cutoff",
+  "Breakdown.Periodic.TorusBlowup": "A torus mild solution is unbounded",
   "Breakdown.Periodic.approxClose": "Cutoff pieces and compact approximants",
-  "Breakdown.Periodic.approxFieldProperties_holds": "Properties of the cutoff field",
+  "Breakdown.Periodic.approxFieldProperties_holds": "Prove support and profile agreement",
   "Breakdown.Periodic.approxLinks_holds": "Matching approximate endpoints",
-  "Breakdown.Periodic.approxResidualSmall": "Small residual on time pieces",
-  "Breakdown.Periodic.approxSizes": "Uniform size of approximate pieces",
-  "Breakdown.Periodic.breakdownOnTorus_of_profile": "A profile implies periodic breakdown",
+  "Breakdown.Periodic.approxResidualSmall": "Bound the residual of each piece",
+  "Breakdown.Periodic.approxSizes": "Bound approximate-profile pieces",
+  "Breakdown.Periodic.breakdownOnTorus_of_profile": "A profile gives torus breakdown",
   "Breakdown.Periodic.breakdownOnTorus_of_torusBlowup": "Blow-up excludes global solutions",
   "Breakdown.Periodic.center": "Centre of the periodic cell",
-  "Breakdown.Periodic.comparisonSmall": "Small restricted operator errors",
+  "Breakdown.Periodic.comparisonSmall": "Prove inverse data become close",
   "Breakdown.Periodic.fieldSpace": "Real solenoidal Fourier sequences",
-  "Breakdown.Periodic.freeHeatComparison": "Comparing free heat flows",
+  "Breakdown.Periodic.freeHeatComparison": "Prove free heat-flow convergence",
   "Breakdown.Periodic.glueMild": "Gluing mild time pieces",
   "Breakdown.Periodic.gluePieces": "The path from its time pieces",
-  "Breakdown.Periodic.glueUnbounded": "The glued norm is unbounded",
-  "Breakdown.Periodic.heatDivFreeComparison": "Comparing projected heat flows",
-  "Breakdown.Periodic.movingFrameReduction": "Making the pressure periodic",
-  "Breakdown.Periodic.operatorNormBounds_holds": "Bounds for the sequence operators",
+  "Breakdown.Periodic.glueUnbounded": "Prove the glued norm is unbounded",
+  "Breakdown.Periodic.heatDivFreeComparison": "Prove projected heat-flow convergence",
+  "Breakdown.Periodic.movingFrameReduction": "Choose a periodic pressure frame",
+  "Breakdown.Periodic.operatorNormBounds_holds": "Prove the sequence operator bounds",
   "Breakdown.Periodic.r3Factor": "Whole-space local interaction",
   "Breakdown.Periodic.rightInversePerturb": "Perturbing a right inverse",
-  "Breakdown.Periodic.seqPerturbation": "Correcting the time pieces",
-  "Breakdown.Periodic.shellInverseTransfer": "Transferring the restricted inverse",
+  "Breakdown.Periodic.seqPerturbation": "Solve the periodic nonlinear correction",
+  "Breakdown.Periodic.shellInverseTransfer": "Construct the periodic right inverse",
   "Breakdown.Periodic.stepScale": "Remaining scale of a time piece",
   "Breakdown.Periodic.stepStart": "Starting time of a piece",
   "Breakdown.Periodic.toV": "A field in periodic Fourier space",
-  "Breakdown.Periodic.torusBlowup_of_parts": "Assembling periodic blow-up",
+  "Breakdown.Periodic.torusBlowup_of_parts": "Assemble the torus mild solution",
   "Breakdown.Periodic.torusFactor": "Periodic local interaction",
   "Breakdown.Periodic.transplantField": "Rescaled periodic transplant",
-  "Breakdown.Periodic.transplantNorm": "Norm of the periodic transplant",
+  "Breakdown.Periodic.transplantNorm": "Prove the transferred norm identity",
   "Breakdown.Periodic.transplantSmooth": "Smooth periodic transplantation",
-  "Breakdown.Periodic.weight": "Periodic Fourier norm weight",
+  "Breakdown.Periodic.weight": "Inhomogeneous Fourier weight",
   "Breakdown.breakdown_on_space": "Conditional whole-space breakdown",
   "Breakdown.breakdown_on_torus": "Conditional periodic breakdown",
   "Breakdown.Space": "Euclidean three-space",
-  "Breakdown.PeriodicSimilarityProfileExists": "Recurrent profile premise",
+  "Breakdown.PeriodicSimilarityProfileExists": "A nonzero recurrent profile",
   "Breakdown.IsSmoothSolution": "Smooth Navier–Stokes solution",
-  "Breakdown.SimilarityResidual": "Similarity equation residual",
+  "Breakdown.SimilarityResidual": "Residual in similarity variables",
   "Breakdown.BreakdownOnSpace": "Whole-space breakdown condition",
   "Breakdown.BreakdownOnTorus": "Periodic breakdown condition",
-  "Breakdown.MildFramework.IsOrbit": "Recurrent mild profile orbit",
-  "Breakdown.Freq.heatX": "Whole-space heat flow",
-  "Breakdown.dilateField": "Physical field dilation",
+  "Breakdown.MildFramework.IsOrbit": "A recurrent mild profile",
+  "Breakdown.Freq.heatX": "Heat flow on the Fourier space",
+  "Breakdown.dilateField": "Navier–Stokes dilation",
   "Breakdown.Freq.dilX": "Dilation in the Fourier space",
-  "Breakdown.pushForward": "Orthogonal action on fields",
+  "Breakdown.pushForward": "Rotate a vector field",
   "Breakdown.Freq.rotX": "Orthogonal action in Fourier space",
-  "Breakdown.HeatBilinear.pieceBil": "Bilinear integral on a time piece",
-  "Breakdown.HeatBilinear": "Heat and bilinear operations",
+  "Breakdown.HeatBilinear.pieceBil": "Duhamel operator on one time piece",
+  "Breakdown.HeatBilinear": "Abstract heat and bilinear operators",
   "Breakdown.physicalTime": "Similarity time from physical time",
   "Breakdown.physicalScale": "Similarity spatial scale",
   "Breakdown.MildFramework.stepLength": "Length of a short time interval",
-  "Breakdown.Piece": "Continuous functions on a time piece",
-  "Breakdown.SectionStatement": "Section through a dense subspace",
-  "Breakdown.StepDataStatement": "Data for the short-interval inverse",
-  "Breakdown.ContractionStatement": "Nonlinear correction by short pieces",
-  "Breakdown.DichotomyHolds": "Finite-dimensional spectral dichotomy",
+  "Breakdown.Piece": "Continuous curves on one time piece",
+  "Breakdown.SectionStatement": "Lift the finite-dimensional correction",
+  "Breakdown.StepDataStatement": "Finite-dimensional correction data",
+  "Breakdown.ContractionStatement": "Quadratic correction on time pieces",
+  "Breakdown.DichotomyHolds": "Finite-rank spectral splitting",
   "Breakdown.Freq.PartialDecay": "Recover the spatial derivatives",
   "Breakdown.gradientAt": "Pressure gradient",
   "Breakdown.unitVector": "Coordinate unit vectors",
@@ -3274,7 +6740,77 @@
   "Breakdown.MildFramework.Commutes": "Isometry commutes with every operator",
   "_private.Breakdown.Torus.Lattice.0.Breakdown.Periodic.Internal.kernelV_smul_right": "Torus kernel scales on the right",
   "Breakdown.Periodic.selfSimilarPressure": "Self-similar pressure",
-  "Breakdown.Freq.L2R": "Real square-integrable fields"
+  "Breakdown.Freq.L2R": "Real square-integrable fields",
+  "Breakdown.sliceGradientContinuous_holds": "Continuous profile slices in X proof",
+  "Breakdown.gradientPairingZero_holds": "Pressure vanishes against tests proof",
+  "Breakdown.Freq.Internal.BilinExists.bilinForm_symm": "The dual interaction is symmetric",
+  "Breakdown.Freq.Internal.GradSixDecay.cutoff": "Smooth cutoff at radius R",
+  "Breakdown.Freq.Internal.GradSixDecay.cutoff_contDiff": "The radial cutoff is smooth",
+  "Breakdown.Freq.Internal.GradSixDecay.cutoff_eq_one": "The cutoff is one inside the ball",
+  "Breakdown.Freq.Internal.GradSixDecay.cutoff_eq_zero": "The cutoff vanishes beyond twice R",
+  "Breakdown.Freq.Internal.GradSixDecay.integrable_sum_sq_fderiv": "Derivative decay gives L2 gradients",
+  "Breakdown.Freq.Internal.GradSixDecay.memLp_six_of_le": "Inverse-radius decay gives L6",
+  "Breakdown.Freq.Internal.NiceApprox.cutoff_approx": "Approximate a curl by a test field",
+  "Breakdown.Freq.Internal.NiceApprox.cutoff_isTestField": "The cutoff curl is a test field",
+  "Breakdown.Freq.Internal.NiceApprox.cutoff_tendsto": "The cutoff curl converges in gradient",
+  "Breakdown.Freq.Internal.NiceApprox.symbol_curl_embed": "Embed the curl of a Schwartz field",
+  "Breakdown.Freq.Internal.NiceApprox.symbol_rapid": "A Schwartz potential for a symbol",
+  "Breakdown.Freq.Internal.NiceDense.contDiff_projField": "Projection is smooth away from zero",
+  "Breakdown.Freq.Internal.NiceDense.div_proj": "Projection has zero Fourier divergence",
+  "Breakdown.Freq.Internal.NiceDense.eLpNorm_symField_sub_le": "Reality averaging decreases L2 error",
+  "Breakdown.Freq.Internal.NiceDense.nice_symField_projField": "Make a smooth solenoidal symbol",
+  "Breakdown.Freq.Internal.NiceDense.norm_proj_le": "Projection decreases the norm",
+  "Breakdown.Freq.Internal.NiceDense.projField": "Remove the longitudinal component",
+  "Breakdown.Freq.Internal.NiceDense.smooth_annulus": "Smooth approximation on an annulus",
+  "Breakdown.Freq.Internal.NiceDense.symField": "Average the Fourier reality symmetry",
+  "Breakdown.Freq.Internal.VelocityExists.isTestField_add": "Adding test fields preserves the class",
+  "Breakdown.Freq.Internal.VelocityExists.isTestField_smul": "Scale a test field by a real number",
+  "Breakdown.Freq.bilinExistsBound": "Construct and bound the interaction",
+  "Breakdown.HeatBilinear.HasCompactKernel": "Compact interaction on a dense set",
+  "Breakdown.Periodic.Cutoff.Internal.contDiff_integral_unit_infty": "The parameter integral is smooth",
+  "Breakdown.Periodic.Cutoff.Internal.contDiff_potentialIntegrand": "The potential integrand is smooth",
+  "Breakdown.Periodic.Cutoff.Internal.hasFDerivAt_integral_unit": "Differentiate the potential integral",
+  "Breakdown.Periodic.InverseAlgebra.Internal.norm_inverse_one_sub_le": "Bound for the geometric-series inverse",
+  "Breakdown.Periodic.InverseAlgebra.Internal.sub_apply_inverse_one_sub": "Apply one minus T to its inverse",
+  "Breakdown.Periodic.ShellDefs.Internal.advK": "The local transport bound constant",
+  "Breakdown.Periodic.ShellDefs.Internal.advect_bound": "Bound the local transport in L2",
+  "Breakdown.Periodic.ShellTorus.Internal.ae_wrap_eq": "Wrapping fixes almost every cell point",
+  "Breakdown.Periodic.ShellTorus.Internal.eLpNorm_three_le": "Interpolate L3 between L2 and L6",
+  "Breakdown.Periodic.ShellTorus.Internal.exp_mul_bound": "A scalar exponential decay bound",
+  "Breakdown.Periodic.ShellTorus.Internal.sourceOp_threeHalves": "Bound projected torus forcing",
+  "Breakdown.Periodic.ShellTorus.Internal.volume_coord_eq": "Coordinate planes have zero volume",
+  "Breakdown.SmoothFlow.smooth_physField_curve": "Smooth velocity from all Sobolev orders",
+  "Breakdown.SmoothFlow.smooth_pressure_curve": "Smooth pressure from all Sobolev orders",
+  "Breakdown.VarConstIntegralInternal.continuousOn_K": "Compose the continuous heat interaction",
+  "Breakdown.VarConstIntegralInternal.integral_rpow_three_quarters": "Integrate the minus three-fourths power",
+  "Breakdown.VarConstIntegralInternal.kern_intervalIntegrable": "Integrability of the Duhamel kernel",
+  "Breakdown.VarConstIntegralInternal.norm_kern_le_small": "Bound the kernel for time at most one",
+  "Breakdown.VarConstIntegralInternal.tendsto_K": "Joint continuity at positive heat time",
+  "Breakdown.compactPiece_of": "Extend compactness by density",
+  "Breakdown.Freq.Internal.GradSixDecay.unitBump": "A smooth cutoff between two balls",
+  "Breakdown.Freq.Internal.NiceApprox.crossL": "Cross product as a linear map",
+  "Breakdown.Freq.Internal.NiceApprox.curlField": "Curl from coordinate derivatives",
+  "Breakdown.Freq.Internal.NiceApprox.cutField": "Cut off a vector potential",
+  "Breakdown.Freq.Internal.NiceApprox.pd": "A fixed directional derivative",
+  "Breakdown.Freq.Internal.NiceApprox.stdBump": "The standard smooth radial bump",
+  "Breakdown.Freq.PhiBounds": "The two heat smoothing bounds",
+  "Breakdown.Periodic.Cutoff.Internal.partialSecond": "Spatial derivative at fixed time",
+  "Breakdown.Periodic.Cutoff.Internal.potentialIntegrand": "Integrand of the curl potential",
+  "Breakdown.Periodic.IsShellScale": "Admissible shell scale and radius",
+  "Breakdown.Periodic.ShellData": "Restricted gradients and velocities",
+  "Breakdown.Periodic.ShellDefs.Internal.advIntegrand": "Linearized advection on shell data",
+  "Breakdown.Periodic.ShellDefs.Internal.cut_add": "Ball cutoff is additive",
+  "Breakdown.Periodic.ShellDefs.Internal.cut_norm_le": "Ball cutoff does not raise the norm",
+  "Breakdown.Periodic.ShellDefs.Internal.cut_smul": "Ball cutoff commutes with scaling",
+  "Breakdown.Periodic.ShellDefs.Internal.sourceFun_add": "Torus source is additive",
+  "Breakdown.Periodic.ShellDefs.Internal.sourceFun_smul": "Torus source commutes with scaling",
+  "Breakdown.Periodic.cutLp": "Ball cutoff on an Lp space",
+  "Breakdown.Periodic.restrictR3": "Whole-space field data on a ball",
+  "Breakdown.Periodic.restrictTorusFun": "Torus field data on a ball",
+  "Breakdown.Periodic.sourceFun": "Torus source from a rescaled field",
+  "Breakdown.Periodic.sourceFun_bound": "Torus source bounded by the input",
+  "Breakdown.Periodic.sourceOp": "Torus source as a linear map",
+  "Breakdown.VarConstIntegralInternal.kern": "Duhamel kernel with clamped inputs"
  },
  "notes": {
   "Breakdown.Freq.X": {
@@ -3390,10 +6926,13 @@
    ]
   },
   "Breakdown.Periodic.shellInverseTransfer": {
-   "text": "The formal spaces hold sequences of short time pieces and their restrictions. Lemma 8.10 writes the complete elimination and reconstruction in that notation.",
+   "text": "The source uses abstract Banach spaces and maps: Rr is the restriction D, Sop is the reduced operator, and RS is its right inverse. The selected lines also show the max-product norm bound; identifying the component spaces with continuous weighted spaces is a separate analytic step.",
    "because": [
-    "torus-shell-inverse-lemma",
-    "torus-actual-sequence-route"
+    "r5-part1-second-0428",
+    "r5-part1-second-0470",
+    "r5-part1-second-0472",
+    "r5-part1-second-0473",
+    "r5-part1-second-0476"
    ]
   },
   "Breakdown.Periodic.TorusBlowup": {
@@ -3408,6 +6947,200 @@
    "because": [
     "torus-moving-frame",
     "torus-moving-frame-cancellation"
+   ]
+  },
+  "Breakdown.Freq.Internal.GradSixDecay.cutoff": {
+   "text": "These declarations construct the cutoff. They do not alone prove completion for every distributional-gradient field in the surrounding paragraph.",
+   "because": [
+    "r5-part1-second-0052"
+   ]
+  },
+  "Breakdown.Freq.Internal.NiceDense.smooth_annulus": {
+   "text": "The smoothing helper assumes annular support. The preceding truncation and the subsequent convergence argument remain separate steps.",
+   "because": [
+    "r5-part1-second-0061"
+   ]
+  },
+  "Breakdown.Freq.Internal.NiceDense.symField": {
+   "text": "The source uses complex Fourier symbols for real physical fields.",
+   "because": [
+    "r5-part1-second-0062"
+   ]
+  },
+  "Breakdown.Freq.Internal.NiceDense.norm_proj_le": {
+   "text": "The projection smoothness premise excludes a neighborhood of zero; the averaging estimate assumes the target has the reality symmetry.",
+   "because": [
+    "r5-part1-second-0063",
+    "r5-part1-second-0071"
+   ]
+  },
+  "Breakdown.Freq.Internal.NiceApprox.symbol_rapid": {
+   "text": "This link identifies each approximating field. The displayed sequence convergence also uses the preceding approximation estimates and the embedding interfaces.",
+   "because": [
+    "r5-part1-second-0065"
+   ]
+  },
+  "Breakdown.Freq.Internal.NiceApprox.cutoff_isTestField": {
+   "text": "cutoff_tendsto also controls the gradient of the negative Laplacian error, which is stronger than the gradient convergence used here.",
+   "because": [
+    "r5-part1-second-0066"
+   ]
+  },
+  "Breakdown.Freq.Internal.NiceApprox.cutoff_approx": {
+   "text": "The source makes an individual epsilon choice; applying it successively to a sequence is the prose organization of those choices.",
+   "because": [
+    "r5-part1-second-0067"
+   ]
+  },
+  "Breakdown.Freq.longitudinal": {
+   "text": "This identifies the pointwise Fourier projection formula. Projection of the full encoded real Fourier space also imposes reality symmetry.",
+   "because": [
+    "r5-part1-second-0069"
+   ]
+  },
+  "Breakdown.Freq.Internal.NiceDense.div_proj": {
+   "text": "This is the Fourier algebra that enforces the solenoidal constraint; the realization of the heat output as a physical field is a separate bridge.",
+   "because": [
+    "r5-part1-second-0075"
+   ]
+  },
+  "Breakdown.Freq.Internal.BilinExists.bilinForm_symm": {
+   "text": "The source defines the interaction by its dual pairings and proves existence under TrilinearBound and PhiBounds. The physical multiplier formula is a separate identification.",
+   "because": [
+    "r5-part1-second-0076"
+   ]
+  },
+  "Breakdown.Freq.BilinSpec": {
+   "text": "The sentence describes the encoding: its defining expression does not take a pointwise Fourier transform of an arbitrary nonlinear product.",
+   "because": [
+    "r5-part1-second-0077"
+   ]
+  },
+  "Breakdown.compactPiece_of": {
+   "text": "The linked lines use Mathlib closedness. The following diagonal-subsequence explanation is the reading text proof of that general fact.",
+   "because": [
+    "r5-part1-second-0087"
+   ]
+  },
+  "Breakdown.Freq.Internal.GradSixDecay.memLp_six_of_le": {
+   "text": "The linked clause is the integrability step; membership in the encoded space also uses the embedding construction.",
+   "because": [
+    "r5-part1-second-0103"
+   ]
+  },
+  "Breakdown.HeatBilinear.HasCompactKernel": {
+   "text": "The Fourier compactness proof uses Fourier restriction, Arzela-Ascoli, and tail bounds; the earlier physical-space Rellich proof is a different route.",
+   "because": [
+    "r5-part1-second-0130"
+   ]
+  },
+  "Breakdown.Periodic.Cutoff.Internal.hasFDerivAt_integral_unit": {
+   "text": "These helpers concern the spatial parameter. They do not by themselves state joint smoothness in the extra physical-time parameter of the surrounding construction.",
+   "because": [
+    "r5-part1-second-0228"
+   ]
+  },
+  "Breakdown.Periodic.homotopyCurl": {
+   "text": "The declaration is a spatial identity for any center x0; it is applied to each time slice in the reading text.",
+   "because": [
+    "r5-part1-second-0229"
+   ]
+  },
+  "Breakdown.Periodic.Cutoff.Internal.contDiff_potentialIntegrand": {
+   "text": "The source takes a smooth spatial field g. In the time-dependent construction this fact applies to each fixed physical-time slice.",
+   "because": [
+    "r5-part1-second-0234"
+   ]
+  },
+  "Breakdown.Freq.Internal.VelocityExists.isTestField_add": {
+   "text": "Membership of the selected correction in the test-field subspace is supplied by the preceding finite-dimensional construction.",
+   "because": [
+    "r5-part1-second-0253",
+    "r5-part1-second-0286"
+   ]
+  },
+  "Breakdown.SmoothFlow.smooth_physField_curve": {
+   "text": "Their input is a curve in every Sobolev order. Smooth initial data alone are not the hypotheses of these two declarations, and they do not assert the preceding full H1 continuation alternative.",
+   "because": [
+    "r5-part1-second-0262"
+   ]
+  },
+  "Breakdown.Freq.heatDivFree": {
+   "text": "The encoded output is the weighted-gradient X variable, so phiFactor includes 2*pi*norm xi. These definitions alone do not identify the physical Oseen tensor displayed in the reading text.",
+   "because": [
+    "r5-part1-second-0356"
+   ]
+  },
+  "Breakdown.Freq.Internal.NiceApprox.symbol_curl_embed": {
+   "text": "The theorem applies this measure-zero observation to the weighted curl Fourier identity; the observation itself is independent of that application.",
+   "because": [
+    "r5-part1-second-0357"
+   ]
+  },
+  "Breakdown.Periodic.ShellTorus.Internal.volume_coord_eq": {
+   "text": "The source uses the unit cell and treats its upper faces explicitly; coordinate-hyperplane nullity covers every face.",
+   "because": [
+    "r5-part1-second-0377"
+   ]
+  },
+  "Breakdown.Periodic.ShellDefs.Internal.advect_bound": {
+   "text": "This realizes the local norm factor for ShellData. It does not assert the neighboring general H1 radial-extension construction or the complete continuous weighted C_kappa estimate.",
+   "because": [
+    "r5-part1-second-0404"
+   ]
+  },
+  "Breakdown.Periodic.InverseAlgebra.Internal.sub_apply_inverse_one_sub": {
+   "text": "The source expresses the cancellation through Ring.inverse and unit algebra; the reading text describes the same cancellation by telescoping a geometric series.",
+   "because": [
+    "r5-part1-second-0446"
+   ]
+  },
+  "Breakdown.Periodic.InverseAlgebra.Internal.norm_inverse_one_sub_le": {
+   "text": "The source proves the general Banach-space operator estimate used for the periodic inverse; it assumes the displayed norm bound on T.",
+   "because": [
+    "r5-part1-second-0475"
+   ]
+  },
+  "Breakdown.VarConstIntegralInternal.kern_intervalIntegrable": {
+   "text": "The formal framework assumes the pure power bound only up to unit time. For longer intervals it uses C_K*(r^(-3/4)+1); the reading-text estimate has a broader time range.",
+   "because": [
+    "r5-part1-second-0537"
+   ]
+  },
+  "Breakdown.VarConstIntegralInternal.integral_rpow_three_quarters": {
+   "text": "Bochner integrability and continuity hold on arbitrary compact intervals in the formal statement. The displayed pure-power norm estimate there has the additional t-a<=1 premise.",
+   "because": [
+    "r5-part1-second-0538"
+   ]
+  },
+  "Breakdown.varConstIntegral": {
+   "text": "The formal pure-power Duhamel norm estimate assumes t-a<=1, while integrability and continuity hold on arbitrary compact intervals. The source proves continuity by a fixed-domain indicator integral and dominated convergence.",
+   "because": [
+    "r5-part1-second-0545"
+   ]
+  },
+  "Breakdown.Freq.IsWeakSolution": {
+   "text": "These are extra premises of the formal bridge relative to the more general distributional statement quoted earlier.",
+   "because": [
+    "r5-part1-second-0568"
+   ]
+  },
+  "Breakdown.Periodic.ShellTorus.Internal.exp_mul_bound": {
+   "text": "The other scalar r^(1/2)*exp(-r) bound in this sentence is outside this link.",
+   "because": [
+    "r5-part1-second-0579"
+   ]
+  },
+  "Breakdown.Periodic.ShellTorus.Internal.eLpNorm_three_le": {
+   "text": "The following all-period uniform Sobolev application is a separate part of the sentence; this link covers interpolation only.",
+   "because": [
+    "r5-part1-second-0580"
+   ]
+  },
+  "Breakdown.Periodic.ShellTorus.Internal.sourceOp_threeHalves": {
+   "text": "This is the analogous duality cancellation for compactly supported L2 forcing in the scaled unit-torus source estimate, assuming TrigHs and mu*tau<=1. It is not the full all-period L3/2-domain theorem of the reading text.",
+   "because": [
+    "r5-part1-second-0581"
    ]
   }
  },
