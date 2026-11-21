@@ -86,7 +86,15 @@ jobs:
           mods=$(python3 -c "import json,sys; print(json.dumps([l.strip() for l in open(sys.argv[1]) if l.strip()]))" "papers/navier-stokes-paper/extract/$set.txt")
           printf '[paper]\ntitle = "superset"\n\n[lean]\nproject = "../navier-stokes-paper/lean"\nmodules = %s\n' "$mods" > "papers/ns-superset-$set/paper.toml"
         done
-        slugs=$(grep -l -E '^project = "(\.\./navier-stokes-paper/)?lean"' papers/navier-stokes*/paper.toml papers/ns-superset-*/paper.toml | xargs -n1 dirname | xargs -n1 basename)
+        slugs=$(python3 - <<'PY'
+        import tomllib
+        from pathlib import Path
+        for t in sorted(Path("papers").glob("*/paper.toml")):
+            project = tomllib.loads(t.read_text()).get("lean", {}).get("project", "lean")
+            if (t.parent / project).resolve() == Path("papers/navier-stokes-paper/lean").resolve():
+                print(t.parent.name)
+        PY
+        )
         echo "$slugs" | tee "$OUT/slugs.txt"
         for slug in $slugs; do
           start=$(date +%s)
