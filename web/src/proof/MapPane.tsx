@@ -30,10 +30,16 @@ const MANY_CLAIMS = 4;
 /** How many users of a card are named before "and N more". */
 const USERS_SHOWN = 3;
 const LIST_BELOW = 440;
+/** A re-fit on a new subject: quick, so the eye follows it. None under reduced motion. */
+const FIT_MS = 250;
 /** Neighbourhood tiles are wider, and each is as tall as its title needs, up to four lines. */
 const NEAR_W = 140;
-const tileHeight = (title: string, width: number) => {
-  const perLine = Math.max(8, Math.floor((width - 14) / 6.6));
+const tileHeight = (title: string, width: number, raw = "") => {
+  // Proof Reader: the map keeps its type a constant size on screen, so at the reading floor
+  // (k = 0.85) a 13px title is about 15px of the drawing and a 10.5px name about 12px. The
+  // tile is sized for the whole title and the whole Lean name at that floor: neither is cut.
+  const room = width - 2 * 9.5;
+  const perLine = Math.max(6, Math.floor(room / 8.2));
   const words = title.split(/\s+/);
   let lines = 1;
   let used = 0;
@@ -42,8 +48,13 @@ const tileHeight = (title: string, width: number) => {
       lines += 1;
       used = w.length;
     } else used += (used ? 1 : 0) + w.length;
+    while (used > perLine) {
+      lines += 1;
+      used -= perLine;
+    }
   }
-  return 30 + Math.min(4, lines) * 17;
+  const rawLines = raw ? Math.max(1, Math.ceil((raw.length * 7.6) / room)) : 0;
+  return Math.ceil(22 + lines * 19 + (rawLines ? 6 + rawLines * 15 : 0) + 4);
 };
 
 /**
@@ -143,12 +154,14 @@ interface Props {
   stay: boolean;
   /** The Lean has the lower part of the page, so the graph has a band. */
   leanOpen: boolean;
+  /** What the reader opened by a click, if anything: a new one re-fits the graph even when paused. */
+  held?: string | null;
   onSelect(id: string): void;
   onHover(id: string | null): void;
   onPauseChange(paused: boolean): void;
 }
 
-export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, lit, pointed, passed, reached, selected, stay, leanOpen, onSelect, onHover, onPauseChange }: Props) {
+export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, lit, pointed, passed, reached, selected, stay, leanOpen, held: heldKey = null, onSelect, onHover, onPauseChange }: Props) {
   const tree = useRef<MapViewHandle>(null);
   const body = useRef<HTMLDivElement>(null);
   const section = useRef<HTMLElement>(null);
@@ -192,7 +205,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
     onHover(id);
   }, [onHover]);
   const root = near ? centre : goal;
-  const heightOf = useCallback((id: string) => tileHeight(fullGraph.nodes.get(id)?.label ?? "", near ? NEAR_W : TILE_W), [fullGraph, near]);
+  const heightOf = useCallback((id: string) => Math.max(TILE_H, tileHeight(fullGraph.nodes.get(id)?.label ?? "", near ? NEAR_W : TILE_W, fullGraph.nodes.get(id)?.rawName ?? "")), [fullGraph, near]);
   // A narrow pane, a phone: the cards as a list, which is also the keyboard's way through.
   const [narrow, setNarrow] = useState(false);
   useEffect(() => {
@@ -241,6 +254,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
     const item = row?.querySelector<HTMLElement>(".is-lit");
     if (row && item) row.scrollLeft = Math.max(0, item.offsetLeft - row.offsetLeft - 8);
   }, [litKey]);
+  const restoring = useRef(false);
   const stayRef = useRef(stay);
   stayRef.current = stay;
   const leanRef = useRef(leanOpen);
@@ -270,8 +284,40 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
     });
   }, []);
 
+  // The graph's subject is what is lit: the card in hand or under the reading line. Whenever it
+  // changes, the camera centres it with its neighbours and zooms to fit them in the room the
+  // graph has, never below reading size. A manual pan is kept until the next change.
+  const graphRef = useRef(graph);
+  graphRef.current = graph;
+  const refit = useCallback((animate = true) => {
+    const g = graphRef.current;
+    const drawn = litRef.current.filter((id) => g.nodes.has(id) && g.nodes.get(id)!.kind !== "goal");
+    if (!drawn.length || !body.current?.clientHeight) return false;
+    const near = new Set(drawn);
+    for (const id of drawn) {
+      for (const e of g.out.get(id) ?? []) near.add(e.to);
+      for (const e of g.in.get(id) ?? []) near.add(e.from);
+    }
+    tree.current?.fitNodes(near, animate, FIT_MS);
+    return true;
+  }, []);
+
+  // A click is a new subject even while following is paused: it un-pauses and re-fits.
+  const heldWas = useRef(heldKey);
   useEffect(() => {
-    if (pausedRef.current || stayRef.current || !lit.length) return;
+    if (heldWas.current === heldKey) return;
+    heldWas.current = heldKey;
+    if (!heldKey) return;
+    if (pausedRef.current) {
+      pausedRef.current = false;
+      setPaused(false);
+      onPauseChange(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [heldKey]);
+
+  useEffect(() => {
+    if (pausedRef.current || restoring.current || !lit.length) return;
     // Out of sight in Lean mode: catch up on the way back.
     if (!body.current?.clientHeight) {
       missed.current = true;
@@ -279,10 +325,10 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
     }
     const drawn = lit.filter((id) => graph.nodes.has(id));
     if (drawn.length && leanRef.current && (body.current?.clientHeight ?? 0) < BAND) tree.current?.panTo(drawn, { centre: true });
-    else if (drawn.length && !inView(drawn)) tree.current?.panTo(drawn);
-    // Only when what is lit changes: the map re-centres itself when its room changes.
+    else if (drawn.length) refit();
+    // Only when what is lit changes: the map re-fits itself when its room changes.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [litKey]);
+  }, [litKey, heldKey]);
 
   const setPause = useCallback((next: boolean) => {
     if (pausedRef.current === next) return;
@@ -299,7 +345,6 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
     setHeld(litRef.current.find((x) => edition.declarations.some((d) => d.id === x)) ?? "");
   }, [claims, edition]);
 
-  const restoring = useRef(false);
   useImperativeHandle(ref, (): MapPaneHandle => ({
     scene: () => tree.current?.getScene() ?? null,
     paused: () => pausedRef.current,
@@ -336,8 +381,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
           if (!pausedRef.current && !leanRef.current) tree.current?.restoreScene(scene);
         }, 400);
       } else {
-        tree.current?.fitAll(false);
-        if (!pausedRef.current && litRef.current.length && !inView(litRef.current)) tree.current?.panTo(litRef.current);
+        if (pausedRef.current || !refit(false)) tree.current?.fitAll(false);
       }
     }, 80);
     return () => {
@@ -363,7 +407,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
     if (leanOpen) return;
     const timer = window.setTimeout(() => {
       before.current = null;
-      if (missed.current && !pausedRef.current && !restoring.current && litRef.current.length && !inView(litRef.current)) tree.current?.panTo(litRef.current);
+      if (missed.current && !pausedRef.current && !restoring.current && litRef.current.length) refit();
       missed.current = false;
     }, 240);
     return () => window.clearTimeout(timer);
@@ -392,10 +436,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
         } else if (before.current) {
           tree.current?.restoreScene(before.current);
           before.current = null;
-        } else {
-          tree.current?.fitAll(false);
-          if (litRef.current.length && !inView(litRef.current)) tree.current?.panTo(litRef.current);
-        }
+        } else if (pausedRef.current || !refit(false)) tree.current?.fitAll(false);
       }, 140);
     });
     observer.observe(el);
@@ -428,7 +469,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
         mode="overview"
         tileWidth={near ? NEAR_W : TILE_W}
         tileHeight={TILE_H}
-        tileHeightOf={big ? heightOf : undefined}
+        tileHeightOf={heightOf}
         rootLabel={root === goal ? undefined : "In view"}
         oneCardEach
         fitMax={1.8}
@@ -529,7 +570,13 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
               onHover={hover}
             />
           )
-          : <div className="graph__canvas" ref={body}>{map}</div>}
+          : <>
+            <div className="graph__canvas" ref={body}>{map}</div>
+            <p className="graph__key">
+              Square cards are definitions, round cards theorems{edition.analytics.axioms.length ? " and the violet box an axiom" : ""}.
+              {" "}A line runs down from a declaration to one it uses: dashed when only its statement uses it, solid when its proof or definition body does.
+            </p>
+          </>}
     </section>
   );
 });
@@ -538,11 +585,19 @@ export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, l
 function MapList({ graph, goal, lit, onSelect, onHover }: { graph: ArgGraph; goal: string; lit: readonly string[]; onSelect(id: string): void; onHover(id: string | null): void }) {
   const label = (id: string) => graph.nodes.get(id)?.label ?? id;
   const ids = graph.order.filter((id) => id !== goal);
+  // The list follows its subject as the graph does: the lit card comes to the top of the list.
+  const list = useRef<HTMLOListElement>(null);
+  const litKey = lit.join("|");
+  useEffect(() => {
+    const el = list.current;
+    const item = el?.querySelector<HTMLElement>("li.is-lit");
+    if (el && item) el.scrollTo({ top: Math.max(0, item.offsetTop - 4), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }, [litKey]);
   const card = (id: string) => (
     <button type="button" onClick={() => onSelect(id)} onFocus={() => onHover(id)} onBlur={() => onHover(null)}>{label(id)}</button>
   );
   return (
-    <ol className="maplist" aria-label="The declarations of the proof, as a list">
+    <ol className="maplist" ref={list} aria-label="The declarations of the proof, as a list">
       {ids.map((id) => {
         const uses = (graph.out.get(id) ?? []).map((e) => e.to);
         const users = (graph.in.get(id) ?? []).map((e) => e.from).filter((u) => u !== goal);

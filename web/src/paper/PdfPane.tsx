@@ -5,6 +5,7 @@
 // is as large as the page allows. Scrolling reports the passage at the reading
 // line. It stays paper-coloured at night: it is the authors' page.
 
+import { selecting } from "./clickIntent";
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import * as pdfjs from "pdfjs-dist";
 import workerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
@@ -481,7 +482,7 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
               pointSoon(null);
             }}
             onClick={(e) => {
-              if (window.getSelection()?.toString()) return;
+              if (selecting(e)) return;
               const name = nameAt(e, page);
               if (name) return latest.current.onName(name.name);
               const id = hit(e, page);
