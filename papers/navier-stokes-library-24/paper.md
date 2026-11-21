@@ -34,25 +34,25 @@ Source: `lean/Breakdown/FracCert/KernelDyadicPieceFar.lean`. Imported by the fra
 
 **Source namespace:** `Breakdown.FracInternal.KernelDyadicPieceFar`.
 
-**Comparable radii have comparable weights.** Proved result `weight_shift`: Under the stated hypotheses, comparable radii have comparable weights.
+**Comparable radii have comparable weights.** Proved result `weight_shift`: For nonnegative radii a and b with 1+b≤2(1+a), the decay weights satisfy (1+a)⁻⁴≤16(1+b)⁻⁴.
 
 **Convolution derivatives reach the kernel.** Proved result `conv_iteratedFDeriv`: Under the stated hypotheses, convolution derivatives act on the kernel.
 
-**Inverse powers compare by scale.** Proved result `rpow_neg_four_le`: Under the stated hypotheses, inverse powers compare by scale.
+**Inverse powers compare by scale.** Proved result `rpow_neg_four_le`: If a, b and c are positive and b≤ca, then a⁻⁴≤c⁴b⁻⁴; this transfers a fourth-order decay estimate between comparable distances.
 
-**The annular cutoff vanishes near zero.** Proved result `ring_zero_small`: Under the stated hypotheses, the annular cutoff vanishes near zero.
+**The annular cutoff vanishes near zero.** Proved result `ring_zero_small`: An annular cutoff θ vanishes at every frequency with |ξ|≤1/2, including the inner boundary.
 
-**The annular cutoff vanishes far away.** Proved result `ring_zero_large`: Under the stated hypotheses, the annular cutoff vanishes far away.
+**The annular cutoff vanishes far away.** Proved result `ring_zero_large`: An annular cutoff θ vanishes at every frequency with |ξ|≥2, including the outer boundary.
 
-**An annularly localized symbol is smooth.** Proved result `ring_symbol_contDiff`: Under the stated hypotheses, an annularly localized symbol is smooth.
+**An annularly localized symbol is smooth.** Proved result `ring_symbol_contDiff`: If σ is smooth away from zero and homogeneous, multiplying it by the annular cutoff θ gives a smooth function on all of ℝ³.
 
-**The localized symbol has compact support.** Proved result `ring_symbol_hasCompactSupport`: Under the stated hypotheses, the localized symbol has compact support.
+**The localized symbol has compact support.** Proved result `ring_symbol_hasCompactSupport`: For any symbol σ, the product θσ has compact support whenever θ is an annular cutoff.
 
-**Annular symbol derivatives are bounded.** Proved result `ring_symbol_bound`: Under the stated hypotheses, annular symbol derivatives are bounded.
+**Annular symbol derivatives are bounded.** Proved result `ring_symbol_bound`: For a homogeneous symbol σ smooth away from zero and annular cutoff θ, every finite collection of derivatives of θσ has a common bound uniform over ℝ³.
 
-**Annular kernels and derivatives decay.** Proved result `ring_kernel_props`: Under the stated hypotheses, annular kernels and derivatives decay.
+**Annular kernels and derivatives decay.** Proved result `ring_kernel_props`: Assuming the estimate for an annular Fourier kernel, the inverse Fourier transform of θσ is smooth and each of its derivatives is bounded by Aⱼ(1+|y|)⁻⁴, for a constant depending on the derivative order.
 
-**Scaled kernels have derivative bounds.** Proved result `scaled_deriv_le`: Under the stated hypotheses, scaled kernels have derivative bounds.
+**Scaled kernels have derivative bounds.** Proved result `scaled_deriv_le`: For smooth K and s>0, the jth derivative of y↦cK(sy) has norm at most |c|sʲ times the norm of the jth derivative of K at sy.
 
 **Radial convolution weights are L¹.** Proved result `near_integral`: Under the stated hypotheses, radial convolution weights are integrable.
 
@@ -84,57 +84,57 @@ Source: `lean/Breakdown/FracCert/KernelDyadicPieceFarParts.lean`. Imported by th
 
 **Finite derivative orders are bounded.** Proved result `natCast_le_infty`: Under the stated hypotheses, finite derivative orders are below infinity.
 
-**A smooth cutoff with bounds exists.** Proved result `cutoff_exists`: Under the stated hypotheses, a smooth cutoff with bounds exists.
+**A smooth cutoff with bounds exists.** Proved result `cutoff_exists`: There is a smooth cutoff ψ with 0≤ψ≤1, equal to one on |u|≤1/4 and zero on |u|≥1/2, whose derivatives of every order are bounded. Every positive-order derivative vanishes on |u|<1/4.
 
-**Dyadic exponents combine exactly.** Proved result `exp_identity`: Under the stated hypotheses, dyadic exponents combine exactly.
+**Dyadic exponents combine exactly.** Proved result `exp_identity`: For X>0, integer l and nonnegative integers m,n, the scaling factor 2^((3+d)l)·2^(ln)·X^(3−β)/(2ˡX)^(4+m+n) equals 2^((d−1−m)l)X^(−1−β−m−n).
 
-**Localized symbols stay inside an annulus.** Proved result `ring_supp`: Under the stated hypotheses, localized symbols stay inside an annulus.
+**Localized symbols stay inside an annulus.** Proved result `ring_supp`: If the annularly truncated symbol θ(ξ)σ(ξ) is nonzero, then 1/4≤|ξ|≤4; this places its support in the larger annulus used by the kernel estimate.
 
-**inner convolution has the required decay.** Proved result `inner_est`: Under the stated hypotheses, the inner convolution has the required decay.
+**inner convolution has the required decay.** Proved result `inner_est`: Assuming the annular kernel estimate, let σ be smooth away from zero and homogeneous of degree d≥0, let Kₗ be its kernel for a smooth annular dyadic partition, and let smooth f satisfy |Dʲf(y)|≤Cⱼ(1+|y|)^(−β−j) for every j, with 0<β<3. For any smooth 0≤ψ≤1 vanishing on |u|≥1/2, the integral ∫ψ(w/|x|)f(w)DⁿKₗ(x−w)dw has norm at most C·2^((d−1−⌈d⌉)l)|x|^(−1−β−⌈d⌉−n) whenever |x|≥2 and 2ˡ|x|>1.
 
-**Scaled kernel derivatives retain decay.** Proved result `scaled_kernel_decay`: Under the stated hypotheses, scaled kernel derivatives retain decay.
+**Scaled kernel derivatives retain decay.** Proved result `scaled_kernel_decay`: If K is smooth and every derivative decays as (1+|y|)⁻⁴, then y↦cK(sy) has the same property for each fixed s>0 and real c, with new derivative bounds.
 
-**Each dyadic kernel derivative decays.** Proved result `dyadic_kernel_decay`: Under the stated hypotheses, each dyadic kernel derivative decays.
+**Each dyadic kernel derivative decays.** Proved result `dyadic_kernel_decay`: Assuming the annular kernel estimate, every fixed dyadic kernel associated with a homogeneous symbol smooth away from zero and an annular cutoff is smooth, with every derivative bounded by a constant times (1+|y|)⁻⁴.
 
-**A decaying scalar times a kernel is L¹.** Proved result `integrable_smul_decay`: Under the stated hypotheses, a decaying scalar times a kernel is L¹.
+**A decaying scalar times a kernel is L¹.** Proved result `integrable_smul_decay`: If g is bounded and continuous and the continuous, possibly vector-valued kernel k satisfies |k(y)|≤A(1+|y|)⁻⁴, then w↦g(w)k(x−w) is integrable on ℝ³ for every x.
 
-**The reversed decaying product is L¹.** Proved result `integrable_decay_smul`: Under the stated hypotheses, the reversed decaying product is L¹.
+**The reversed decaying product is L¹.** Proved result `integrable_decay_smul`: If the continuous scalar kernel k decays as (1+|y|)⁻⁴ and g is bounded and continuous, then z↦k(z)g(x−z) is integrable on ℝ³ for every x.
 
 **The Laplacian-divided annular symbol.** Definition `quotSymbol`: This defines the quotient symbol obtained by dividing a cutoff symbol by the Fourier factor for p applications of the Laplacian.
 
-**The divided symbol is smooth.** Proved result `quot_contDiff`: Under the stated hypotheses, the divided symbol is smooth.
+**The divided symbol is smooth.** Proved result `quot_contDiff`: For a homogeneous symbol σ smooth away from zero and annular cutoff θ, the symbol θ(ξ)σ(ξ)/[(-2πi)^(2p)|ξ|^(2p)] extends smoothly through ξ=0 for each nonnegative integer p.
 
-**The divided symbol stays in the annulus.** Proved result `quot_supp`: Under the stated hypotheses, the divided symbol stays in the annulus.
+**The divided symbol stays in the annulus.** Proved result `quot_supp`: The symbol θ(ξ)σ(ξ)/[(-2πi)^(2p)|ξ|^(2p)] can be nonzero only when 1/4≤|ξ|≤4, for every nonnegative integer p.
 
-**The divided symbol has compact support.** Proved result `quot_hasCompactSupport`: Under the stated hypotheses, the divided symbol has compact support.
+**The divided symbol has compact support.** Proved result `quot_hasCompactSupport`: Dividing the annularly truncated symbol θσ by (-2πi)^(2p)|ξ|^(2p) preserves compact support for every nonnegative integer p.
 
-**divided symbol has bounded derivatives.** Proved result `quot_bound`: Under the stated hypotheses, the divided symbol has bounded derivatives.
+**divided symbol has bounded derivatives.** Proved result `quot_bound`: For a homogeneous symbol σ smooth away from zero and annular cutoff θ, the derivatives through any prescribed order K of θσ/[(-2πi)^(2p)|ξ|^(2p)] have a common global bound.
 
-**The divided inverse kernel decays.** Proved result `quot_kernel_props`: Under the stated hypotheses, the divided inverse kernel decays.
+**The divided inverse kernel decays.** Proved result `quot_kernel_props`: Assuming the annular kernel estimate, the inverse Fourier transform of θσ/[(-2πi)^(2p)|ξ|^(2p)] is smooth, and each derivative decays as (1+|y|)⁻⁴.
 
-**Coordinate products expand radial powers.** Proved result `sum_prod_coord`: Under the stated hypotheses, coordinate products expand radial powers.
+**Coordinate products expand radial powers.** Proved result `sum_prod_coord`: For v∈ℝ³ and a nonnegative integer p, summing the products of paired coordinate factors over all p coordinate choices gives (|v|²)ᵖ.
 
 **Inverse derivatives have symbol formulas.** Proved result `deriv_eq_integral`: Under the stated hypotheses, inverse derivatives have Fourier formulas.
 
-**Annular kernels split into derivatives.** Proved result `ring_factor`: Under the stated hypotheses, annular kernels split into derivatives.
+**Annular kernels split into derivatives.** Proved result `ring_factor`: Assuming the annular kernel estimate, for every p≥0 the inverse Fourier transform of θσ is a finite sum of directional derivatives of order 2p of smooth kernels. Each derivative of those kernels decays as (1+|y|)⁻⁴.
 
 **Convolution differentiates the field.** Proved result `conv_deriv_right`: Under the stated hypotheses, convolution derivatives move to the field.
 
-**Iterating derivatives adds the orders.** Proved result `norm_iter_iter`: Under the stated hypotheses, iterating derivatives adds the orders.
+**Iterating derivatives adds the orders.** Proved result `norm_iter_iter`: For any complex-valued H, the operator norm of its nth derivative after q differentiations equals the norm of its derivative of order n+q at the same point.
 
 **Derivative evaluations have a norm bound.** Proved result `apply_deriv`: Under the stated hypotheses, evaluating derivatives has a product bound.
 
-**Dilation rescales evaluated derivatives.** Proved result `scale_apply`: Under the stated hypotheses, dilation rescales evaluated derivatives.
+**Dilation rescales evaluated derivatives.** Proved result `scale_apply`: For smooth K and s>0, evaluating its qth derivative at sy is the same as evaluating the qth derivative of z↦K(sz) at y and multiplying by s⁻ᑫ.
 
 **The outer core has a derivative bound.** Proved result `outer_core`: Under the stated hypotheses, derivative transfer bounds the outer core.
 
-**Cutoff powers simplify by scaling.** Proved result `cutoff_identity`: Under the stated hypotheses, cutoff powers simplify by scaling.
+**Cutoff powers simplify by scaling.** Proved result `cutoff_identity`: For X>0 and integers 0≤i≤j, the cutoff factor X⁻ⁱ/(X/4)^(β+j−i) equals 4^(β+j−i)X^(−β−j).
 
-**Outer cutoff derivatives have decay.** Proved result `outer_cutoff`: Under the stated hypotheses, outer cutoff derivatives have decay.
+**Outer cutoff derivatives have decay.** Proved result `outer_cutoff`: Let β>0 and let smooth f satisfy |Dʲf(w)|≤Cⱼ(1+|w|)^(−β−j); take a smooth ψ equal to one on |u|≤1/4, with bounded derivatives that vanish there at positive order. Then (1−ψ(w/|x|))f(w) is smooth in w, and its jth derivative is bounded uniformly in w by C|x|^(−β−j) whenever |x|≥2.
 
-**Outer dyadic exponents combine exactly.** Proved result `exp_identity_outer`: Under the stated hypotheses, outer dyadic exponents combine exactly.
+**Outer dyadic exponents combine exactly.** Proved result `exp_identity_outer`: For X>0, integer l and nonnegative integers m,n, the factor 2^((3+d)l)·2^(−l(2m+5))·X^(−β−n−2m−2) equals 2^((d−1−m)l)X^(−1−β−m−n)(2ˡX)^(−m−1).
 
-**outer convolution has the required decay.** Proved result `outer_est`: Under the stated hypotheses, the outer convolution has the required decay.
+**outer convolution has the required decay.** Proved result `outer_est`: Assuming the annular kernel estimate, let σ be smooth away from zero and homogeneous of degree d≥0, let Kₗ be its kernel for a smooth annular dyadic partition, and let smooth f satisfy |Dʲf(y)|≤Cⱼ(1+|y|)^(−β−j) for every j, with 0<β<3. If smooth ψ equals one on |u|≤1/4 and zero on |u|≥1/2, takes values in [0,1], and has bounded derivatives, then ∫(1−ψ(w/|x|))f(w)DⁿKₗ(x−w)dw has norm at most C·2^((d−1−⌈d⌉)l)|x|^(−1−β−⌈d⌉−n) for |x|≥2 and 2ˡ|x|>1.
 
 ### Breakdown.FracCert.KernelDyadicSplit
 
@@ -146,27 +146,27 @@ Source: `lean/Breakdown/FracCert/KernelDyadicSplit.lean`. Imported by the fracti
 
 **Source namespace:** `Breakdown.FracCert`.
 
-**nonzero scaled cutoff locates an annulus.** Proved result `cut_support`: Under the stated hypotheses, a nonzero scaled cutoff locates an annulus.
+**nonzero scaled cutoff locates an annulus.** Proved result `cut_support`: For c>0, a nonzero value of θ(cξ) forces 1/2< c|ξ|<2, locating the scaled cutoff in its open annulus.
 
-**The cutoff vanishes at the origin.** Proved result `cut_zero`: Under the stated hypotheses, the cutoff vanishes at the origin.
+**The cutoff vanishes at the origin.** Proved result `cut_zero`: Every annular cutoff takes the value zero at ξ=0.
 
-**A scaled localized symbol is smooth.** Proved result `cut_smooth`: Under the stated hypotheses, a scaled localized symbol is smooth.
+**A scaled localized symbol is smooth.** Proved result `cut_smooth`: For c>0, a homogeneous symbol σ smooth away from zero becomes smooth on all of ℝ³ after multiplication by the scaled annular cutoff ξ↦θ(cξ).
 
-**A scaled localized symbol is compact.** Proved result `cut_compact`: Under the stated hypotheses, a scaled localized symbol is compact.
+**A scaled localized symbol is compact.** Proved result `cut_compact`: For c>0 and any σ, the product θ(cξ)σ(ξ) has compact support when θ is an annular cutoff.
 
 **Convolution is inverse multiplication.** Proved result `conv_eq`: Under the stated hypotheses, convolution equals inverse multiplication.
 
 **The dyadically rescaled cutoff.** Definition `scaledCut`: This defines the dyadic cutoff at index l by evaluating the base cutoff at 2^(−l)ξ.
 
-**Dyadic kernels are localized inverses.** Proved result `kernel_eq`: Under the stated hypotheses, dyadic kernels are localized inverses.
+**Dyadic kernels are localized inverses.** Proved result `kernel_eq`: The dyadic kernel at level l for a homogeneous symbol σ equals the inverse Fourier transform of ξ↦θ(2⁻ˡξ)σ(ξ).
 
 **Bounded weights preserve moments.** Proved result `moments_mul`: Under the stated hypotheses, bounded weights preserve integrable moments.
 
-**Reflection preserves integrable moments.** Proved result `moments_neg`: Under the stated hypotheses, reflection preserves integrable moments.
+**Reflection preserves integrable moments.** Proved result `moments_neg`: If G is measurable and all its absolute polynomial moments are integrable, then ∫|v|ⁿ|G(−v)|dv is finite for every n≥0.
 
-**Reflection preserves measurability.** Proved result `meas_neg`: Under the stated hypotheses, reflection preserves measurability.
+**Reflection preserves measurability.** Proved result `meas_neg`: If G has integrable absolute moments of every order, its reflected function v↦G(−v) is measurable up to a null set.
 
-**All moments give a smooth inverse.** Proved result `smooth_inv`: Under the stated hypotheses, all moments give a smooth inverse.
+**All moments give a smooth inverse.** Proved result `smooth_inv`: A measurable Fourier-side function with integrable absolute moments of every order has a smooth inverse Fourier transform.
 
 **Fourier formulas for inverse derivatives.** Proved result `iter_inv`: Under the stated hypotheses, inverse derivatives have integral formulas.
 
@@ -186,17 +186,17 @@ Source: `lean/Breakdown/FracCert/KernelDyadicSum.lean`. Imported by the fraction
 
 **The model dyadic summand.** Definition `baseTerm`: This defines the model dyadic summand 2^(am)(1+2^m)^(−N).
 
-**The dyadic summand is nonnegative.** Proved result `baseTerm_nonneg`: Under the stated hypotheses, the dyadic summand is nonnegative.
+**The dyadic summand is nonnegative.** Proved result `baseTerm_nonneg`: The dyadic weight 2^(am)(1+2ᵐ)^(−N) is nonnegative for every real a,N and integer m.
 
-**The model dyadic series converges.** Proved result `baseTerm_summable`: Under the stated hypotheses, the model dyadic series converges.
+**The model dyadic series converges.** Proved result `baseTerm_summable`: The two-sided series ∑ₘ2^(am)(1+2ᵐ)^(−N) converges whenever 0< a< N.
 
-**A dyadic shift normalizes the radius.** Proved result `term_le`: Under the stated hypotheses, a dyadic shift normalizes the radius.
+**A dyadic shift normalizes the radius.** Proved result `term_le`: If 0< a< N, r>0 and 1≤2ᵏr≤2, then 2^(al)(1+2ˡr)^(−N)≤2ᵃr⁻ᵃ·2^(a(l−k))(1+2^(l−k))^(−N) for every integer l.
 
-**A unit-scale dyadic shift exists.** Proved result `exists_shift`: Under the stated hypotheses, a unit-scale dyadic shift exists.
+**A unit-scale dyadic shift exists.** Proved result `exists_shift`: For every r>0 there is an integer k with 1≤2ᵏr≤2, allowing a radial dyadic sum to be shifted to unit scale.
 
 **Source namespace:** `Breakdown.FracCert`.
 
-**Dyadic power sums have radial decay.** Proved result `dyadicSum`: Under the stated assumptions, this establishes that for 0<a<N, the two-sided dyadic series ∑2^(al)(1+2^l r)^(−N) is summable and bounded by Cr^(−a) for every r>0.
+**Dyadic power sums have radial decay.** Proved result `dyadicSum`: Under the stated assumptions, this establishes that for 0< a< N, the two-sided dyadic series ∑2^(al)(1+2^l r)^(−N) is summable and bounded by Cr^(−a) for every r>0.
 
 ### Breakdown.FracCert.KernelExports
 
@@ -220,15 +220,15 @@ Source: `lean/Breakdown/FracCert/KernelMultiplier.lean`. Imported by the fractio
 
 **Source namespace:** `Breakdown.FracInternal.KernelMultiplier`.
 
-**Far-scale powers fit a summable weight.** Proved result `far_le`: Under the stated hypotheses, far-scale powers fit a summable weight.
+**Far-scale powers fit a summable weight.** Proved result `far_le`: If N≥0, ρ>0 and 2ˡρ>1, then 2^(el)≤2ᴺρᴺ·2^((e+N)l)(1+2ˡρ)^(−N); this inserts a summable radial weight in the far-scale estimate.
 
-**Near-scale powers fit a summable weight.** Proved result `near_le`: Under the stated hypotheses, near-scale powers fit a summable weight.
+**Near-scale powers fit a summable weight.** Proved result `near_le`: If N≥0, ρ>0 and 2ˡρ≤1, then 2^(al)≤2ᴺ·2^(al)(1+2ˡρ)^(−N), which inserts the same radial weight at near scales.
 
-**Three majorants control the whole sum.** Proved result `combine`: Under the stated hypotheses, three majorants control the whole sum.
+**Three majorants control the whole sum.** Proved result `combine`: If a nonnegative sequence f is bounded termwise by c₁T₁+c₂T₂+c₃T₃ and each Tᵢ is summable, then f is summable and ∑f≤c₁∑T₁+c₂∑T₂+c₃∑T₃.
 
-**The piecewise bound has three majorants.** Proved result `pointwise`: Under the stated hypotheses, the piecewise bound has three majorants.
+**The piecewise bound has three majorants.** Proved result `pointwise`: For a>0, e₁,e₂<0 and ρ>0, the sequence equal to 2^(al) when 2ˡρ≤1 and to 2^(e₁l)ρ^p₁+2^(e₂l)ρ^p₂ otherwise is bounded by three weighted dyadic terms. Their pairs of exponents are (a,a+1), (1,1−e₁) and (1,1−e₂), with coefficients 2^(a+1), 2^(1−e₁)ρ^(1−e₁+p₁) and 2^(1−e₂)ρ^(1−e₂+p₂), respectively.
 
-**Far-field dyadic sums have radial decay.** Proved result `far_sum`: Under the stated hypotheses, far-field dyadic sums have radial decay.
+**Far-field dyadic sums have radial decay.** Proved result `far_sum`: Assuming the dyadic summation estimate, if a>0, e₁,e₂<0 and p₁−e₁=p₂−e₂=−a, then the sequence with near part 2^(al) and far part 2^(e₁l)ρ^p₁+2^(e₂l)ρ^p₂ is summable for every ρ>0. Its sum is at most Kρ⁻ᵃ for one K independent of ρ.
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -244,7 +244,7 @@ Source: `lean/Breakdown/FracCert/KernelPiece.lean`. Imported by the fractional c
 
 **Source namespace:** `Breakdown.FracCert.KernelPieceInternal`.
 
-**Compact symbol derivatives have moments.** Proved result `moment_integrable`: Under the stated hypotheses, compact symbol derivatives have moments.
+**Compact symbol derivatives have moments.** Proved result `moment_integrable`: For a smooth compactly supported complex function f on ℝ³, the integral ∫|v|ᵏ|Dⁿf(v)|dv is finite for every k,n≥0.
 
 **Compact derivatives have moment bounds.** Proved result `moment_le`: Under the stated hypotheses, support and derivative bounds control moments.
 
@@ -252,9 +252,9 @@ Source: `lean/Breakdown/FracCert/KernelPiece.lean`. Imported by the fractional c
 
 **The kernel decay constant.** Definition `const`: This defines the kernel-bound constant as 2^N times the sum of the zeroth and Nth auxiliary derivative constants.
 
-**The moment constant is nonnegative.** Proved result `term_nonneg`: Under the stated hypotheses, the moment constant is nonnegative.
+**The moment constant is nonnegative.** Proved result `term_nonneg`: The coefficient (2π)ʲ(2j+2)ⁿ∑₀≤p≤j,₀≤q≤n4ᵖ vol(B₄), used in the Fourier derivative bound, is nonnegative for all j,n≥0.
 
-**Fourier derivatives have weighted decay.** Proved result `transform_bound`: Under the stated hypotheses, Fourier derivatives have weighted decay.
+**Fourier derivatives have weighted decay.** Proved result `transform_bound`: If smooth f vanishes outside |ξ|≤4 and its derivatives through order N are bounded by B, then (1+|x|)ᴺ|Dʲf̂(x)|≤C(N,j)B for the explicitly chosen constant depending only on N and j.
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -272,19 +272,19 @@ Source: `lean/Breakdown/FracCert/KernelRingCutoff.lean`. Imported by the fractio
 
 **The difference of two radial cutoffs.** Definition `ringProfile`: This defines an annular cutoff as the radius-one radial cutoff minus the radius-one-half cutoff.
 
-**The ring cutoff has a transition formula.** Proved result `ringProfile_eq`: Under the stated hypotheses, the ring cutoff has a transition formula.
+**The ring cutoff has a transition formula.** Proved result `ringProfile_eq`: Writing η for the smooth transition from zero to one, the radial annular cutoff is θ(ξ)=η(2−|ξ|)−η(2−2|ξ|).
 
-**The ring cutoff is smooth.** Proved result `ringProfile_contDiff`: Under the stated hypotheses, the ring cutoff is smooth.
+**The ring cutoff is smooth.** Proved result `ringProfile_contDiff`: The radial cutoff θ(ξ)=η(2−|ξ|)−η(2−2|ξ|) is smooth on ℝ³, including the origin.
 
-**ring cutoff lies between zero and one.** Proved result `ringProfile_bounds`: Under the stated hypotheses, the ring cutoff lies between zero and one.
+**ring cutoff lies between zero and one.** Proved result `ringProfile_bounds`: The radial annular cutoff θ takes values in [0,1] at every frequency.
 
-**Nonzero ring values lie in an annulus.** Proved result `ringProfile_support`: Under the stated hypotheses, nonzero ring values lie in an annulus.
+**Nonzero ring values lie in an annulus.** Proved result `ringProfile_support`: The radial cutoff θ(ξ)=η(2−|ξ|)−η(2−2|ξ|) can be nonzero only for 1/2<|ξ|<2.
 
-**Ring cutoffs obey radial scaling.** Proved result `ringProfile_smul`: Under the stated hypotheses, ring cutoffs obey radial scaling.
+**Ring cutoffs obey radial scaling.** Proved result `ringProfile_smul`: For c>0, radial scaling gives θ(cξ)=η(2−c|ξ|)−η(2−2c|ξ|), where η is the smooth transition defining θ.
 
-**Negative dyadic powers are reciprocals.** Proved result `two_rpow_neg_int`: Under the stated hypotheses, negative dyadic powers are reciprocals.
+**Negative dyadic powers are reciprocals.** Proved result `two_rpow_neg_int`: For every integer l, the real power 2⁻ˡ equals the reciprocal of the integer power 2ˡ.
 
-**Dyadic ring cutoffs sum to one.** Proved result `ringProfile_hasSum`: Under the stated hypotheses, dyadic ring cutoffs sum to one.
+**Dyadic ring cutoffs sum to one.** Proved result `ringProfile_hasSum`: At every nonzero frequency, the scaled annular cutoffs form a partition of unity: ∑ₗ∈ℤθ(2⁻ˡξ)=1.
 
 **The annular partition exists.** Proved result `ringCutoff`: Under the stated assumptions, this establishes that a smooth annular cutoff satisfying the dyadic partition requirements exists.
 
@@ -298,15 +298,15 @@ Source: `lean/Breakdown/FracCert/KernelScaling.lean`. Imported by the fractional
 
 **Source namespace:** `Breakdown.FracCert`.
 
-**The heat symbol rescales its time.** Proved result `symbol_scale`: Under the stated hypotheses, the heat symbol rescales its time.
+**The heat symbol rescales its time.** Proved result `symbol_scale`: If c>0 and c^(2α)=t, the Fourier multiplier of the projected heat-divergence operator satisfies mα,₁(cξ)=c·mα,ₜ(ξ), component by component.
 
-**The heat symbol has conjugate symmetry.** Proved result `symbol_neg`: Under the stated hypotheses, the heat symbol has conjugate symmetry.
+**The heat symbol has conjugate symmetry.** Proved result `symbol_neg`: The projected heat-divergence multiplier satisfies mα,ₜ(−ξ)=overline(mα,ₜ(ξ)) for every real α,t, which is the Fourier symmetry of a real kernel.
 
-**The heat kernel obeys spatial scaling.** Proved result `kernel_scale`: Under the stated hypotheses, the heat kernel obeys spatial scaling.
+**The heat kernel obeys spatial scaling.** Proved result `kernel_scale`: For α>0 and t>0, each component of the projected heat-divergence kernel satisfies Kα,ₜ(x)=t^(−2/α)Kα,₁(t^(−1/(2α))x).
 
-**The heat-divergence kernel is real.** Proved result `kernel_real`: Under the stated hypotheses, the heat-divergence kernel is real.
+**The heat-divergence kernel is real.** Proved result `kernel_real`: Every component of the inverse Fourier kernel of the projected heat-divergence multiplier has zero imaginary part for all real α,t.
 
-**Real powers commute with cubing.** Proved result `rpow_pow_three`: Under the stated hypotheses, real powers commute with cubing.
+**Real powers commute with cubing.** Proved result `rpow_pow_three`: For t>0 and real a, cubing the real power tᵃ gives (tᵃ)³=t^(3a).
 
 **The kernel scaling interface follows.** Proved result `kernelScaling_of`: Under the stated assumptions, this establishes that for α>0 and t>0, the projected kernel is real, integrable and in L³⁄², obeys the t^(−2/α) spatial rescaling, and has L¹ and L³⁄² norms scaling respectively by t^(−1/(2α)) and t^(−1/α).
 
@@ -320,11 +320,11 @@ Source: `lean/Breakdown/FracCert/LinearSolve.lean`. Imported by the fractional c
 
 **Source namespace:** `Breakdown.SteadyCert.LinearSolveInternal`.
 
-**Negatives of gradients are gradients.** Proved result `gradient_neg`: Under the stated hypotheses, negatives of gradients are gradients. Source: `Breakdown.FracCert.LinearSolve:14`.
+**Negatives of gradients are gradients.** Proved result `gradient_neg`: If Q is the weak gradient of a locally square-integrable scalar potential and is locally square-integrable itself, then −Q is the weak gradient of the negated potential with the same integrability. Source: `Breakdown.FracCert.LinearSolve:14`.
 
-**Almost-zero fields have zero L² norm.** Proved result `l2Norm_ae_zero`: Under the stated hypotheses, almost-zero fields have zero L² norm.
+**Almost-zero fields have zero L² norm.** Proved result `l2Norm_ae_zero`: If F vanishes almost everywhere, its square-integral size (∫|F|²)¹ᐟ² is zero.
 
-**Almost-zero fields have zero pairings.** Proved result `l2Pair_ae_zero`: Under the stated hypotheses, almost-zero fields have zero pairings.
+**Almost-zero fields have zero pairings.** Proved result `l2Pair_ae_zero`: If F=0 almost everywhere, then ∫F·E=0 for every field E.
 
 **The matching gradient cancels the field.** Proved result `sub_ae_zero`: Under the stated hypotheses, subtracting the matching gradient vanishes.
 
@@ -332,11 +332,11 @@ Source: `lean/Breakdown/FracCert/LinearSolve.lean`. Imported by the fractional c
 
 **Gradients have zero row seminorm.** Proved result `rowSeminorm_zero`: Any field equal almost everywhere to a weak gradient field has row seminorm zero for every finite row family and every choice of row weights.
 
-**Zero basis values give the zero map.** Proved result `clm_eq_zero`: Under the stated hypotheses, zero basis values give the zero map.
+**Zero basis values give the zero map.** Proved result `clm_eq_zero`: A linear map on ℝ³ is zero if it sends each of the three coordinate unit vectors to zero.
 
-**Matrix-entry energy is nonnegative.** Proved result `entrySq_nonneg`: Under the stated hypotheses, matrix-entry energy is nonnegative. Source: `Breakdown.FracCert.LinearSolve:79`.
+**Matrix-entry energy is nonnegative.** Proved result `entrySq_nonneg`: For every linear map L on ℝ³, the sum ∑ⱼ|Leⱼ|² of its squared column lengths is nonnegative. Source: `Breakdown.FracCert.LinearSolve:79`.
 
-**Zero matrix energy gives the zero map.** Proved result `eq_zero_of_entrySq`: Under the stated hypotheses, zero matrix energy gives the zero map.
+**Zero matrix energy gives the zero map.** Proved result `eq_zero_of_entrySq`: If ∑ⱼ|Leⱼ|²=0 for a linear map L on ℝ³, then L is the zero map.
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
@@ -360,41 +360,41 @@ Source: `lean/Breakdown/FracCert/LinearSolveCore.lean`. Imported by the ordinary
 
 **Source namespace:** `Breakdown.SteadyCert.LinearSolveCore`.
 
-**The discrete turn has three coordinates.** Proved result `turnStep_apply`: Under the stated hypotheses, the discrete turn has three coordinates.
+**The discrete turn has three coordinates.** Proved result `turnStep_apply`: For m>0, the discrete rotation about the third axis sends (y₁,y₂,y₃) to (cos(2π/m)y₁−sin(2π/m)y₂, sin(2π/m)y₁+cos(2π/m)y₂, y₃). At m=0 the chosen angle is zero, so the map is the identity.
 
-**Reflection negates the third coordinate.** Proved result `mirror_apply`: Under the stated hypotheses, reflection negates the third coordinate. Source: `Breakdown.FracCert.LinearSolveCore:35`.
+**Reflection negates the third coordinate.** Proved result `mirror_apply`: Reflection in the horizontal plane sends (y₁,y₂,y₃) to (y₁,y₂,−y₃), leaving the first two coordinates fixed. Source: `Breakdown.FracCert.LinearSolveCore:35`.
 
 **The discrete turn as a linear map.** Definition `turnStepLinear`: This equips the discrete axial turn with its real linear map structure.
 
 **Reflection as a linear map.** Definition `mirrorLinear`: This equips reflection of the third coordinate with its real linear map structure.
 
-**The discrete turn preserves norms.** Proved result `norm_turnStep`: Under the stated hypotheses, the discrete turn preserves norms.
+**The discrete turn preserves norms.** Proved result `norm_turnStep`: Rotation through 2π/m about the third axis preserves the Euclidean norm of every vector.
 
-**Reflection preserves norms.** Proved result `norm_mirror`: Under the stated hypotheses, reflection preserves norms. Source: `Breakdown.FracCert.LinearSolveCore:65`.
+**Reflection preserves norms.** Proved result `norm_mirror`: Reflection in the horizontal plane preserves the Euclidean norm of every vector. Source: `Breakdown.FracCert.LinearSolveCore:65`.
 
 **The discrete turn as an isometry.** Definition `turnStepIsometry`: This equips the discrete axial turn with its norm-preserving linear equivalence structure.
 
 **Reflection as an isometry.** Definition `mirrorIsometry`: This equips reflection of the third coordinate with its norm-preserving linear equivalence structure.
 
-**The discrete turn preserves volume.** Proved result `turnStep_measurePreserving`: Under the stated hypotheses, the discrete turn preserves volume.
+**The discrete turn preserves volume.** Proved result `turnStep_measurePreserving`: Rotation through 2π/m about the third axis preserves Lebesgue measure on ℝ³.
 
-**Reflection preserves volume.** Proved result `mirror_measurePreserving`: Under the stated hypotheses, reflection preserves volume.
+**Reflection preserves volume.** Proved result `mirror_measurePreserving`: Reflection in the horizontal plane preserves Lebesgue measure on ℝ³.
 
-**Matrix-entry energy is nonnegative.** Proved result `entrySq_nonneg'`: Under the stated hypotheses, matrix-entry energy is nonnegative. Source: `Breakdown.FracCert.LinearSolveCore:87`.
+**Matrix-entry energy is nonnegative.** Proved result `entrySq_nonneg'`: The squared matrix size ∑ⱼ|Leⱼ|² is nonnegative for every linear map L:ℝ³→ℝ³. Source: `Breakdown.FracCert.LinearSolveCore:87`.
 
-**Basis images control linear-map action.** Proved result `norm_apply_le_entries`: Under the stated hypotheses, basis images control linear-map action.
+**Basis images control linear-map action.** Proved result `norm_apply_le_entries`: For a linear map L on ℝ³, |Lx|≤|x|∑ᵢ|Leᵢ|; the sum of the column lengths therefore bounds its action on any vector.
 
-**Derivative columns lie in L².** Proved result `entry_memLp`: Under the stated hypotheses, derivative columns lie in L².
+**Derivative columns lie in L².** Proved result `entry_memLp`: For a field whose first weak derivative G has finite squared matrix integral, each column y↦G(y)eᵢ belongs to L²(ℝ³).
 
-**Decaying profile products lie in L².** Proved result `symProduct_memLp`: Under the stated hypotheses, decaying profile products lie in L².
+**Decaying profile products lie in L².** Proved result `symProduct_memLp`: Assuming the inverse-square estimate, let W be C¹ with |W(y)|≤C(1+|y|)⁻¹ and |∇W(y)|≤C(1+|y|)⁻². If v∈L⁶ has first and second weak derivatives in L² and the prescribed divergence and symmetries, then ½[(W·∇)v+(v·∇)W] belongs to L².
 
 **The real vector-field L² space.** Abbreviation `FieldL2`: This abbreviates the real Hilbert space L² of spatial vector fields.
 
-**Test gradients are continuous.** Proved result `gradientAt_continuous`: Under the stated hypotheses, test gradients are continuous.
+**Test gradients are continuous.** Proved result `gradientAt_continuous`: The gradient of a smooth compactly supported scalar test function is continuous on ℝ³.
 
-**Test gradients have compact support.** Proved result `gradientAt_hasCompactSupport`: Under the stated hypotheses, test gradients have compact support.
+**Test gradients have compact support.** Proved result `gradientAt_hasCompactSupport`: The gradient of a smooth compactly supported scalar test function also has compact support.
 
-**Test gradients lie in L².** Proved result `gradientAt_memLp`: Under the stated hypotheses, test gradients lie in L².
+**Test gradients lie in L².** Proved result `gradientAt_memLp`: For every smooth compactly supported scalar φ, the field ∇φ belongs to L²(ℝ³).
 
 **The pairing against a test gradient.** Definition `solPair`: This defines the continuous linear functional pairing an L² field with the gradient of a scalar test function.
 
@@ -402,39 +402,39 @@ Source: `lean/Breakdown/FracCert/LinearSolveCore.lean`. Imported by the ordinary
 
 **The solenoidal symmetry subspace.** Definition `solClass`: This defines the solenoidal symmetry subspace by intersecting the kernels of every scalar-gradient pairing with the kernels of the discrete-turn and reflection defects.
 
-**The solenoidal class subspace is closed.** Proved result `solClass_isClosed`: Under the stated hypotheses, the solenoidal class subspace is closed.
+**The solenoidal class subspace is closed.** Proved result `solClass_isClosed`: The divergence-free L² fields with the prescribed m-fold rotational and horizontal-reflection symmetries form a closed subspace of L².
 
-**Kernel membership means zero pairing.** Proved result `mem_ker_solPair_iff`: Under the stated hypotheses, kernel membership means zero pairing.
+**Kernel membership means zero pairing.** Proved result `mem_ker_solPair_iff`: An L² field lies in the kernel of testing against ∇φ precisely when ∫f·∇φ=0, for the chosen smooth compactly supported scalar φ.
 
-**Zero class defect means equivariance.** Proved result `mem_ker_classDefect_iff`: Under the stated hypotheses, zero class defect means equivariance.
+**Zero class defect means equivariance.** Proved result `mem_ker_classDefect_iff`: For a linear isometry T, the symmetry defect f(Ty)−Tf(y) is zero in L² precisely when f(Ty)=Tf(y) almost everywhere.
 
 **Subspace means solenoidal and symmetric.** Proved result `mem_solClass_iff`: An L² field belongs to the constructed solution subspace exactly when it is solenoidal and belongs to the prescribed discrete rotation and reflection class.
 
 **solenoidal class subspace is complete.** Instance `anonymous completeness instance`: This supplies completeness for the solenoidal symmetry subspace because it is a closed subspace of L².
 
-**Negation preserves weak powers.** Proved result `weakPower_neg`: Under the stated hypotheses, negation preserves weak powers.
+**Negation preserves weak powers.** Proved result `weakPower_neg`: If P represents (−Δ)ᵅu weakly and belongs to L², then −P represents (−Δ)ᵅ(−u) weakly and belongs to L² as well.
 
-**Drift fields preserve differences.** Proved result `drift_sub`: Under the stated hypotheses, drift fields preserve differences. Source: `Breakdown.FracCert.LinearSolveCore:264`.
+**Drift fields preserve differences.** Proved result `drift_sub`: The similarity drift, including rotation, is linear under subtraction: its value on (v−u,G−K) equals its value on (v,G) minus its value on (u,K). Source: `Breakdown.FracCert.LinearSolveCore:264`.
 
-**Free states are unique almost everywhere.** Proved result `state_unique`: Under the stated hypotheses, free states are unique almost everywhere.
+**Free states are unique almost everywhere.** Proved result `state_unique`: Assuming uniqueness for the homogeneous free equation and the stated linearity and difference properties, two admissible second-order fields with 1<α<5/4, L² fractional powers and L² drifts have equal velocity, gradient, Hessian and fractional power almost everywhere whenever their free-equation right-hand sides agree.
 
-**Scaling preserves weak powers.** Proved result `weakPower_smul`: Under the stated hypotheses, scaling preserves weak powers.
+**Scaling preserves weak powers.** Proved result `weakPower_smul`: If P=(−Δ)ᵅu weakly in L², then cP=(−Δ)ᵅ(cu) weakly in L² for every real scalar c.
 
-**Addition preserves weak powers.** Proved result `weakPower_add`: Under the stated hypotheses, addition preserves weak powers.
+**Addition preserves weak powers.** Proved result `weakPower_add`: Assuming closure of the second-order class under linear combinations and the weak fractional-power difference identity, the sum of two admissible fields has fractional power P+R whenever their fractional powers are P and R and 1<α<5/4.
 
-**Drift respects linear combinations.** Proved result `drift_add_smul`: Under the stated hypotheses, drift respects linear combinations.
+**Drift respects linear combinations.** Proved result `drift_add_smul`: The similarity drift of v+cu with gradient G+cK equals the drift of v plus c times the drift of u, for every real c.
 
-**Every class datum has a free state.** Proved result `freeState`: Under the stated hypotheses, every class datum has a free state.
+**Every class datum has a free state.** Proved result `freeState`: Assuming existence for the free equation, each divergence-free L² forcing with the prescribed symmetries admits, for 1<α<5/4, a velocity v∈L⁶ with first and second weak derivatives in L² and the same symmetries. Its fractional power P and drift belong to L² and satisfy drift+P=f almost everywhere.
 
-**Free states respect linear combinations.** Proved result `state_lin`: Under the stated hypotheses, free states respect linear combinations.
+**Free states respect linear combinations.** Proved result `state_lin`: Assuming uniqueness for the free equation, closure of the second-order class under linear combinations, and compatibility of weak fractional powers with differences, let v,u,w be divergence-free fields in the same prescribed symmetry class, lying in L⁶ with weak first and second derivatives in L². If 1<α<5/4, their fractional powers and similarity drifts lie in L², and they solve the same free operator with L² right-hand sides f,g,f+cg, respectively, then w=v+cu and ∇w=∇v+c∇u almost everywhere.
 
 **A free solution with its analytic data.** Structure `FreeSol`: This structure bundles a second-order velocity field, its weak fractional power and its L² drift together with the almost-everywhere free equation drift plus power equals the forcing.
 
 **A chosen solution of the free equation.** Definition `freeSol`: Assuming the free-existence interface and the fractional exponent bounds, this chooses one bundled free solution for each forcing in the solenoidal symmetry subspace.
 
-**The chosen free solution is linear.** Proved result `freeSol_lin`: Under the stated hypotheses, the chosen free solution is linear.
+**The chosen free solution is linear.** Proved result `freeSol_lin`: Assuming free existence and uniqueness, closure of the second-order class under linear combinations, and compatibility of weak fractional powers with differences, fix 1<α<5/4 and the rotation and symmetry parameters. For L² forcing fields f,g in that divergence-free symmetry class and c∈ℝ, the chosen free solutions satisfy v_{f+cg}=v_f+c v_g and ∇v_{f+cg}=∇v_f+c∇v_g almost everywhere.
 
-**Symmetric products respect linearity.** Proved result `symProduct_add_smul`: Under the stated hypotheses, symmetric products respect linearity.
+**Symmetric products respect linearity.** Proved result `symProduct_add_smul`: For fixed W and its specified derivative DW, the symmetrized product ½[G W+DW v] sends (v+cu,G+cK) to the corresponding product for (v,G) plus c times that for (u,K).
 
 **Zero data give zero fields.** Proved result `freeSol_zero`: Under the stated hypotheses, zero data have zero velocity and gradient.
 
@@ -444,9 +444,9 @@ Source: `lean/Breakdown/FracCert/LinearSolveCore.lean`. Imported by the ordinary
 
 **Derivative energy bounds convection.** Proved result `symProduct_sq_bound`: Under the stated hypotheses, derivative energy controls convection in L².
 
-**L² norms square to integrals.** Proved result `fieldL2_norm_sq`: Under the stated hypotheses, L² norms square to integrals.
+**L² norms square to integrals.** Proved result `fieldL2_norm_sq`: For an element F of L²(ℝ³;ℝ³), its squared norm equals ∫|F(y)|²dy for any representative.
 
-**Representative norms square to integrals.** Proved result `toLp_norm_sq`: Under the stated hypotheses, representative norms square to integrals.
+**Representative norms square to integrals.** Proved result `toLp_norm_sq`: For a square-integrable field F, passing to its L² equivalence class preserves the squared norm ∫|F(y)|²dy.
 
 **The bounded convection operator.** Definition `prodCLM`: Under the stated free bounds and profile decay, this equips the symmetric-product map with a continuous linear structure on the forcing subspace.
 
@@ -454,37 +454,37 @@ Source: `lean/Breakdown/FracCert/LinearSolveCore.lean`. Imported by the ordinary
 
 **The bounded gradient-column operator.** Definition `entryCLM`: Under the stated free bounds, this equips the map to a gradient column of the free solution with a continuous linear structure.
 
-**Finite matrix energy gives L² columns.** Proved result `entry_memLp_of`: Under the stated hypotheses, finite matrix energy gives L² columns.
+**Finite matrix energy gives L² columns.** Proved result `entry_memLp_of`: If a measurable matrix field χ satisfies ∫∑ⱼ|χ(y)eⱼ|²dy<∞, every column χeⱼ belongs to L².
 
 **The pinning functional on free solutions.** Definition `pinCLM`: This defines a continuous pin functional by summing the L² pairings of the free solution's gradient columns with the supplied pin field.
 
-**The pin functional gives the stated pin.** Proved result `pinCLM_apply`: Under the stated hypotheses, the pin functional gives the stated pin.
+**The pin functional gives the stated pin.** Proved result `pinCLM_apply`: Assuming the free existence, uniqueness, bounds and linearity results for 1<α<5/4, the bounded pin functional associated with an L² matrix field χ evaluates a forcing f as ∫∇v:χ, where v is the chosen free solution for f.
 
-**Sequential compactness gives compactness.** Proved result `isCompactOperator_of_seq`: Under the stated hypotheses, sequential compactness gives compactness.
+**Sequential compactness gives compactness.** Proved result `isCompactOperator_of_seq`: A bounded linear operator between normed spaces is compact if the image of every sequence in the open unit ball has a convergent subsequence.
 
-**The convection operator is compact.** Proved result `prodCLM_compact`: Under the stated hypotheses, the convection operator is compact.
+**The convection operator is compact.** Proved result `prodCLM_compact`: Assuming the free existence, uniqueness and bounds, inverse-square estimate, profile-product compactness and linearity properties, the map sending f to ½[(W·∇)v+(v·∇)W] is compact for 1<α<5/4. Here v is the free solution for f and the C¹ field W satisfies the respective first- and second-power spatial decay bounds.
 
-**The bordered perturbation is compact.** Proved result `compact_perturbation`: Under the stated hypotheses, the bordered perturbation is compact.
+**The bordered perturbation is compact.** Proved result `compact_perturbation`: Let S be the closed subspace of divergence-free L² fields with the prescribed rotational and reflection symmetries, and let Π be its orthogonal projection. If B:S→L² is compact and linear and A:ℝᵏ→L² and p:S→ℝᵏ are bounded linear maps, then (f,κ)↦(Π(Bf+Aκ),p(f)−κ) is a compact linear operator on S×ℝᵏ.
 
-**Injectivity gives surjectivity.** Proved result `surj_of_inj`: Under the stated hypotheses, injectivity gives surjectivity.
+**Injectivity gives surjectivity.** Proved result `surj_of_inj`: On a Banach space, I+K is surjective whenever K is compact and the homogeneous equation x+Kx=0 has only the zero solution.
 
-**Symmetry respects almost equality.** Proved result `class_congr`: Under the stated hypotheses, symmetry respects almost equality.
+**Symmetry respects almost equality.** Proved result `class_congr`: The prescribed rotation and reflection identities remain valid almost everywhere after replacing a field by an almost-everywhere equal field.
 
-**Solenoidality respects almost equality.** Proved result `sol_congr`: Under the stated hypotheses, solenoidality respects almost equality.
+**Solenoidality respects almost equality.** Proved result `sol_congr`: An almost-everywhere replacement of a divergence-free L² field remains divergence-free and belongs to L².
 
-**Orthogonal projection leaves a gradient.** Proved result `proj_split`: Under the stated hypotheses, orthogonal projection leaves a gradient.
+**Orthogonal projection leaves a gradient.** Proved result `proj_split`: Assuming the solenoidal decomposition and gradient orthogonality, a symmetric L² field X splits almost everywhere as ΠX+Q, where Π projects onto divergence-free fields with the prescribed symmetries and Q is an L² weak gradient.
 
 **The symmetry class is linear.** Proved result `class_comb`: Under the stated hypotheses, the symmetry class admits linear combinations.
 
-**Actuator sums retain symmetry.** Proved result `class_sum`: Under the stated hypotheses, actuator sums retain symmetry.
+**Actuator sums retain symmetry.** Proved result `class_sum`: Any finite real linear combination of fields satisfying the prescribed rotation and reflection identities almost everywhere satisfies those same identities.
 
-**Negatives of gradients are gradients.** Proved result `gradient_neg'`: Under the stated hypotheses, negatives of gradients are gradients. Source: `Breakdown.FracCert.LinearSolveCore:833`.
+**Negatives of gradients are gradients.** Proved result `gradient_neg'`: Negating a locally square-integrable weak gradient again gives a locally square-integrable weak gradient, with the negated scalar potential. Source: `Breakdown.FracCert.LinearSolveCore:833`.
 
 **The finite-dimensional actuator map.** Definition `actMap`: For a finite family of L² actuator fields, this defines the linear map sending coefficients κ to the field ∑κᵢbᵢ.
 
 **The actuator map sums κᵢbᵢ.** Proved result `actMap_ae`: For square-integrable actuator fields, the L² class produced by the actuator map equals the field ∑κᵢbᵢ almost everywhere.
 
-**The full field splits into three parts.** Proved result `fullField_split`: Under the stated hypotheses, the full field splits into three parts.
+**The full field splits into three parts.** Proved result `fullField_split`: The full linearized field equals the similarity drift plus the fractional power, the finite actuator sum and twice the symmetrized convection product with the profile; the auxiliary Laplacian terms cancel in this expansion.
 
 **trivial kernel gives the linear inverse.** Proved result `linearSolve_of_kernel'`: Under the stated assumptions, this establishes that for a valid fractional certificate, every L² symmetry-class forcing and finite target pin vector admit a linear correction state and multiplier whose bordered field equals the forcing modulo a weak gradient and whose pins equal the target.
 
@@ -504,59 +504,59 @@ Source: `lean/Breakdown/FracCert/LinearStateClosed.lean`. Imported by the ordina
 
 **Source namespace:** `Breakdown.SteadyCert.LinearStateClosedInternal`.
 
-**Almost every spatial point is nonzero.** Proved result `ae_ne_zero'`: Under the stated hypotheses, almost every spatial point is nonzero.
+**Almost every spatial point is nonzero.** Proved result `ae_ne_zero'`: Lebesgue-almost every point of ℝ³ is different from the origin.
 
-**Matrix-vector evaluation is measurable.** Proved result `app_meas`: Under the stated hypotheses, matrix-vector evaluation is measurable.
+**Matrix-vector evaluation is measurable.** Proved result `app_meas`: Applying a measurable matrix field A(y) to a measurable vector field x(y) produces a field y↦A(y)x(y) that is measurable up to a null set.
 
-**Matrix energy controls squared action.** Proved result `clm_sq_le`: Under the stated hypotheses, matrix energy controls squared action.
+**Matrix energy controls squared action.** Proved result `clm_sq_le`: For a linear map K on ℝ³, |Kx|²≤(∑ⱼ|Keⱼ|²)|x|², so the squared matrix size controls every directional value.
 
-**Matrix energy controls each column.** Proved result `entry_le`: Under the stated hypotheses, matrix energy controls each column. Source: `Breakdown.FracCert.LinearStateClosed:56`.
+**Matrix energy controls each column.** Proved result `entry_le`: Each column of a linear map K satisfies |Keᵢ|²≤∑ⱼ|Keⱼ|². Source: `Breakdown.FracCert.LinearStateClosed:56`.
 
-**Finite matrix energy gives L² columns.** Proved result `col_memLp`: Under the stated hypotheses, finite matrix energy gives L² columns. Source: `Breakdown.FracCert.LinearStateClosed:61`.
+**Finite matrix energy gives L² columns.** Proved result `col_memLp`: Every column of a measurable matrix field K belongs to L² when ∫∑ⱼ|K(y)eⱼ|²dy is finite. Source: `Breakdown.FracCert.LinearStateClosed:61`.
 
-**Cauchy-Schwarz bounds the L² pairing.** Proved result `l2_pair_le`: Under the stated hypotheses, Cauchy-Schwarz bounds the L² pairing.
+**Cauchy-Schwarz bounds the L² pairing.** Proved result `l2_pair_le`: For f,g∈L²(ℝ³;ℝ³), the pairing satisfies ∫f·g≤‖f‖₂‖g‖₂.
 
-**L² norms square to integrals.** Proved result `sq_l2Norm`: Under the stated hypotheses, L² norms square to integrals.
+**L² norms square to integrals.** Proved result `sq_l2Norm`: The square of the quantity defined as (∫|f|²)¹ᐟ² is ∫|f|², using the convention that a nonintegrable integrand has real integral zero.
 
-**Matrix-entry energy is nonnegative.** Proved result `entrySq_nonneg`: Under the stated hypotheses, matrix-entry energy is nonnegative. Source: `Breakdown.FracCert.LinearStateClosed:83`.
+**Matrix-entry energy is nonnegative.** Proved result `entrySq_nonneg`: The sum of squared column lengths of a linear map K on ℝ³ is nonnegative. Source: `Breakdown.FracCert.LinearStateClosed:83`.
 
-**mean square is bounded by mean energy.** Proved result `half_sq`: Under the stated hypotheses, the mean square is bounded by mean energy.
+**mean square is bounded by mean energy.** Proved result `half_sq`: For real a,b, the square of their average satisfies ((a+b)/2)²≤(a²+b²)/2.
 
-**Vector sum squares have a two-term bound.** Proved result `add_sq_le_two`: Under the stated hypotheses, vector sum squares have a two-term bound.
+**Vector sum squares have a two-term bound.** Proved result `add_sq_le_two`: For vectors a,b∈ℝ³, |a+b|²≤2|a|²+2|b|².
 
-**Strong L² limits preserve addition.** Proved result `l2_add`: Under the stated hypotheses, strong L² limits preserve addition.
+**Strong L² limits preserve addition.** Proved result `l2_add`: If fₙ→f₀ and gₙ→g₀ in L² and all the fields lie in L², then fₙ+gₙ→f₀+g₀ in L².
 
-**Strong L² limits preserve fixed scaling.** Proved result `l2_smul`: Under the stated hypotheses, strong L² limits preserve fixed scaling.
+**Strong L² limits preserve fixed scaling.** Proved result `l2_smul`: If ∫|fₙ−f₀|² tends to zero, multiplying every field by a fixed real c preserves this limit, since the integral is multiplied by c².
 
-**Strong L² limits preserve negation.** Proved result `l2_neg`: Under the stated hypotheses, strong L² limits preserve negation.
+**Strong L² limits preserve negation.** Proved result `l2_neg`: If ∫|fₙ−f₀|² tends to zero, then ∫|−fₙ−(−f₀)|² tends to zero as well.
 
-**Converging scalars give L² convergence.** Proved result `l2_scal`: Under the stated hypotheses, converging scalars give L² convergence.
+**Converging scalars give L² convergence.** Proved result `l2_scal`: If cₙ→c, then ∫|cₙA−cA|² tends to zero for any fixed field A, with the convention that a nonintegrable squared norm has real integral zero. For A∈L² this is the usual convergence in L².
 
-**Scaling preserves L² membership.** Proved result `smul_memLp`: Under the stated hypotheses, scaling preserves L² membership.
+**Scaling preserves L² membership.** Proved result `smul_memLp`: Multiplying a square-integrable vector field by a real constant preserves membership in L².
 
-**Negation preserves L² membership.** Proved result `neg_memLp`: Under the stated hypotheses, negation preserves L² membership.
+**Negation preserves L² membership.** Proved result `neg_memLp`: The negative of a square-integrable vector field belongs to L².
 
-**Finite scalar sums converge in L².** Proved result `l2_sum`: Under the stated hypotheses, finite scalar sums converge in L².
+**Finite scalar sums converge in L².** Proved result `l2_sum`: For finitely many fixed L² fields Aᵢ, convergence of their coefficient vectors cₙ→c implies ∑ᵢcₙ,ᵢAᵢ→∑ᵢcᵢAᵢ in L², including sums over any subset of the indices.
 
 **Lp limits give integral convergence.** Proved result `l2_of_lp`: Under the stated hypotheses, quotient convergence gives integral convergence.
 
 **Integral limits give Lp convergence.** Proved result `lp_of_l2`: Under the stated hypotheses, integral convergence gives quotient convergence.
 
-**Symmetric products preserve differences.** Proved result `sym_sub`: Under the stated hypotheses, symmetric products preserve differences.
+**Symmetric products preserve differences.** Proved result `sym_sub`: For fixed W,DW, the symmetrized convection expression ½[G W+DW v] commutes with subtraction in the pair (v,G).
 
-**Energy controls the symmetric product.** Proved result `sym_bound`: Under the stated hypotheses, energy controls the symmetric product.
+**Energy controls the symmetric product.** Proved result `sym_bound`: Assuming the inverse-square estimate, let continuous W,DW satisfy |W(y)|≤C(1+|y|)⁻¹ and |DW(y)|≤C(1+|y|)⁻². For an admissible second-order field u with gradient K, the product ½[K W+DW u] belongs to L² and has squared integral at most (5/2)C²∫∑ᵢ|Keᵢ|².
 
-**Weighted energy controls gradient energy.** Proved result `entry_le_energy`: Under the stated hypotheses, weighted energy controls gradient energy.
+**Weighted energy controls gradient energy.** Proved result `entry_le_energy`: If the measurable weight satisfies 0< wₘᵢₙ≤w≤wₘₐₓ and K has integrable squared matrix size, then ∫|K|²≤wₘᵢₙ⁻¹Ew(K,L), where Ew(K,L)=∫|tr L|²+∫w|K|².
 
-**Weighted energy is nonnegative.** Proved result `energy_nonneg`: Under the stated hypotheses, weighted energy is nonnegative.
+**Weighted energy is nonnegative.** Proved result `energy_nonneg`: The weighted energy ∫|tr L|²+∫w|K|² is nonnegative whenever w has a positive lower bound.
 
-**Pins pass to strong energy limits.** Proved result `pin_tendsto`: Under the stated hypotheses, pins pass to strong energy limits.
+**Pins pass to strong energy limits.** Proved result `pin_tendsto`: If χ and Gₙ,G₀ are measurable L² matrix fields and ∫|Gₙ−G₀|²→0, then the pin pairings converge: ∫Gₙ:χ→∫G₀:χ.
 
 **The full field has three terms.** Proved result `full_eq`: The full bordered field equals drift plus fractional power, plus twice the symmetric profile-correction convection, plus the multiplier-weighted actuator sum.
 
-**Almost equality preserves L² convergence.** Proved result `l2_congr`: Under the stated hypotheses, almost equality preserves L² convergence.
+**Almost equality preserves L² convergence.** Proved result `l2_congr`: If two sequences have identical pointwise differences from their respective limits, convergence to zero of one sequence of squared difference integrals implies the same for the other.
 
-**Squared bounds imply nonnegative bounds.** Proved result `sq_le_of`: Under the stated hypotheses, squared bounds imply nonnegative bounds.
+**Squared bounds imply nonnegative bounds.** Proved result `sq_le_of`: If a,b≥0 and a²≤ba, then a≤b; this extracts a size bound from a quadratic estimate.
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
@@ -706,7 +706,7 @@ Source: `lean/Breakdown/FracCert/Main.lean`. Imported by the fractional cell end
 
 **Similarity operators compose.** Proved result `simOpCompose_holds`: Under the stated assumptions, this establishes that for α>1, the similarity operator at scale one is the identity and composition at positive scales μ and ν equals the operator at scale μν.
 
-**Weak profiles yield mild trajectories.** Proved result `mildOfWeakProfile_holds`: For 1<α<5/4, the backward similarity orbit of a weak rotating profile is a mild solution on every interval [0,t] with 0<t<1 in any concrete scaled mild framework.
+**Weak profiles yield mild trajectories.** Proved result `mildOfWeakProfile_holds`: For 1<α<5/4, the backward similarity orbit of a weak rotating profile is a mild solution on every interval [0,t] with 0< t<1 in any concrete scaled mild framework.
 
 **Mild trajectories gain regularity.** Proved result `mildFirstGain_holds`: Under the stated assumptions, this establishes that for 1<α<5/4, a mild solution in a concrete framework has uniformly bounded homogeneous squared norm of order α+1/2 on every closed time interval separated from zero.
 
@@ -738,9 +738,9 @@ Source: `lean/Breakdown/FracCert/Main.lean`. Imported by the fractional cell end
 
 **The heat kernel obeys its scaling law.** Proved result `kernelScaling_holds`: Under the stated assumptions, this establishes that for α>0 and t>0, the projected kernel is real, integrable and in L³⁄², obeys the t^(−2/α) spatial rescaling, and has L¹ and L³⁄² norms scaling respectively by t^(−1/(2α)) and t^(−1/α).
 
-**Heat-divergence pointwise bounds.** Proved result `heatDivBound_holds`: Under the stated assumptions, this establishes that for 1<α<5/4, 0≤β<3 and 0≤b≤β+1+j, weighted bounds A and B on a tensor and its jth derivative imply a weighted jth heat-divergence bound Ct^(−1/(2α))(A+B) for 0<t≤1.
+**Heat-divergence pointwise bounds.** Proved result `heatDivBound_holds`: Under the stated assumptions, this establishes that for 1<α<5/4, 0≤β<3 and 0≤b≤β+1+j, weighted bounds A and B on a tensor and its jth derivative imply a weighted jth heat-divergence bound Ct^(−1/(2α))(A+B) for 0< t≤1.
 
-**Heat-divergence preserves regularity.** Proved result `heatDivRegular_holds`: Under the stated assumptions, this establishes that for 1<α<5/4 and 0≤β<3, a Cʲ tensor with bounded jth derivative and a β-weighted value bound has Cʲ heat-divergence convolutions, jointly continuous derivatives through order j and bounds Ct^(−1/(2α))(A+B) for 0<t≤1.
+**Heat-divergence preserves regularity.** Proved result `heatDivRegular_holds`: Under the stated assumptions, this establishes that for 1<α<5/4 and 0≤β<3, a Cʲ tensor with bounded jth derivative and a β-weighted value bound has Cʲ heat-divergence convolutions, jointly continuous derivatives through order j and bounds Ct^(−1/(2α))(A+B) for 0< t≤1.
 
 **Far-field terms satisfy decay bounds.** Proved result `farFieldBound_holds`: Under the stated assumptions, this establishes that under the stated fractional and tensor-decay assumptions with b≠2α−1+j, the far-field operator is Cʲ and its jth derivative decays with weight exponent min(b,2α−1+j).
 
@@ -770,7 +770,7 @@ Source: `lean/Breakdown/FracCert/Main.lean`. Imported by the fractional cell end
 
 **The dyadic piece estimate holds.** Proved result `dyadicPieceBound_holds`: Under the stated assumptions, this establishes that for a nonnegative homogeneous degree d and a weighted smooth input of exponent 0<β<3, the nth derivative of each dyadic convolution obeys the stated near-region bound 2^((d+n+β)l) and the two explicit far-region power bounds for ‖x‖≥2.
 
-**Dyadic power sums have radial decay.** Proved result `dyadicSum_holds`: Under the stated assumptions, this establishes that for 0<a<N, the two-sided dyadic series ∑2^(al)(1+2^l r)^(−N) is summable and bounded by Cr^(−a) for every r>0.
+**Dyadic power sums have radial decay.** Proved result `dyadicSum_holds`: Under the stated assumptions, this establishes that for 0< a< N, the two-sided dyadic series ∑2^(al)(1+2^l r)^(−N) is summable and bounded by Cr^(−a) for every r>0.
 
 **Homogeneous multipliers improve decay.** Proved result `homogeneousMultiplier_holds`: A smooth-away-from-zero homogeneous multiplier of degree d≥0 raises a weighted smooth decay exponent β to β+d when 0<β<3, the stated Fourier transform relation holds, and the multiplied symbol has all integrable absolute moments.
 
@@ -810,7 +810,7 @@ Source: `lean/Breakdown/FracCert/MildAnnihilator.lean`. Imported by the fraction
 
 **Source namespace:** `Breakdown.FracCert.Internal.MildAnnihilator`.
 
-**Energy pairings have a physical formula.** Proved result `inner_embed_nice`: Under the stated hypotheses, energy pairings have a physical formula.
+**Energy pairings have a physical formula.** Proved result `inner_embed_nice`: For a field x in the homogeneous energy space and a smooth divergence-free test field φ with Fourier support compact and away from zero, the energy pairing with φ equals ∫u·(−Δφ), where u is the physical velocity of x.
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -826,23 +826,23 @@ Source: `lean/Breakdown/FracCert/MildBilinPairing.lean`. Imported by the fractio
 
 **Source namespace:** `Breakdown.FracCert`.
 
-**Nice symbols vanish at the origin.** Proved result `nice_zero`: Under the stated hypotheses, nice symbols vanish at the origin.
+**Nice symbols vanish at the origin.** Proved result `nice_zero`: A smooth Fourier symbol compactly supported away from zero takes value zero at the origin.
 
-**Laplacian factor is positive off zero.** Proved result `sqFactor_pos`: Under the stated hypotheses, the Laplacian factor is positive off zero.
+**Laplacian factor is positive off zero.** Proved result `sqFactor_pos`: For ξ≠0, the Laplacian frequency factor 4π²|ξ|² is strictly positive.
 
 **Inverse Laplacians preserve niceness.** Proved result `nice_inv`: Under the stated hypotheses, inverting the Laplacian preserves niceness.
 
-**The inverse symbol cancels the Laplacian.** Proved result `secondOrder_inv`: Under the stated hypotheses, the inverse symbol cancels the Laplacian.
+**The inverse symbol cancels the Laplacian.** Proved result `secondOrder_inv`: For a smooth admissible Fourier symbol m supported away from zero, applying −Δ to the inverse transform of m/(4π²|ξ|²) recovers the inverse transform of m.
 
-**Heat multipliers preserve nice symbols.** Proved result `nice_heat`: Under the stated hypotheses, heat multipliers preserve nice symbols.
+**Heat multipliers preserve nice symbols.** Proved result `nice_heat`: Multiplying a smooth, compactly supported divergence-free Fourier symbol away from zero by exp[−τ(2π|ξ|)^(2α)] preserves its smoothness, support, reality symmetry and divergence condition for every real α,τ.
 
-**Nice heat fields have explicit symbols.** Proved result `heatField_nice`: Under the stated hypotheses, nice heat fields have explicit symbols.
+**Nice heat fields have explicit symbols.** Proved result `heatField_nice`: For a smooth admissible symbol m supported away from zero, applying the fractional heat operator to its inverse transform gives the inverse transform of exp[−τ(2π|ξ|)^(2α)]m(ξ), for every real α,τ.
 
-**The inverse Laplacian cancels its factor.** Proved result `scalar_eq`: Under the stated hypotheses, the inverse Laplacian cancels its factor.
+**The inverse Laplacian cancels its factor.** Proved result `scalar_eq`: For an admissible symbol m vanishing near zero, multiplying m by (2π|ξ|)exp[−τ(2π|ξ|)^(2α)], then by 2π|ξ| and by (4π²|ξ|²)⁻¹ leaves exactly the fractional heat multiplier times m, including at ξ=0.
 
 **The auxiliary heat map damps the symbol.** Proved result `phi_nice`: For α>1 and positive time, the auxiliary heat map applied to the inverse-second-factor embedding of a nice symbol equals almost everywhere the nice field with symbol exp(−τ(2π‖ξ‖)^(2α)) times that symbol.
 
-**Energy pairings have a physical formula.** Proved result `nice_pairing`: Under the stated hypotheses, energy pairings have a physical formula.
+**Energy pairings have a physical formula.** Proved result `nice_pairing`: For a smooth admissible symbol m supported away from zero, the energy pairing of x with its inverse transform φ equals ∫u·(−Δφ), where u is the physical velocity of x.
 
 **Bilinear terms have physical pairings.** Proved result `bilinPairing`: Under the stated assumptions, this establishes that for α>1 and positive time, pairing the fractional bilinear Duhamel term with a nice test gives minus the trilinear pairing against the heat-evolved test.
 
@@ -860,17 +860,17 @@ Source: `lean/Breakdown/FracCert/MildNiceHeat.lean`. Imported by the fractional 
 
 **The inverse Laplacian multiplier.** Definition `traceInv`: This defines the reciprocal of the Fourier second-order factor.
 
-**Heating preserves nice symbols.** Proved result `isNiceSymbol_heat`: Under the stated hypotheses, heating preserves nice symbols.
+**Heating preserves nice symbols.** Proved result `isNiceSymbol_heat`: The fractional heat multiplier exp[−τ(2π|ξ|)^(2α)] preserves the class of smooth compactly supported symbols away from zero satisfying the reality and divergence constraints, for every real α,τ.
 
-**Inverse Laplacians preserve nice symbols.** Proved result `isNiceSymbol_traceInv`: Under the stated hypotheses, inverse Laplacians preserve nice symbols.
+**Inverse Laplacians preserve nice symbols.** Proved result `isNiceSymbol_traceInv`: Dividing an admissible smooth Fourier symbol supported away from zero by 4π²|ξ|² preserves its smoothness, support, reality symmetry and divergence condition.
 
-**Inverse Laplacians cancel their trace.** Proved result `negTrace_traceInv`: Under the stated hypotheses, inverse Laplacians cancel their trace.
+**Inverse Laplacians cancel their trace.** Proved result `negTrace_traceInv`: The inverse transform of m/(4π²|ξ|²) solves −Δφ=𝓕⁻¹m for every admissible smooth symbol m compactly supported away from zero.
 
-**Nice heat fields have explicit symbols.** Proved result `heatField_niceField`: Under the stated hypotheses, nice heat fields have explicit symbols.
+**Nice heat fields have explicit symbols.** Proved result `heatField_niceField`: On a real divergence-free field obtained from an admissible symbol m supported away from zero, fractional heat evolution acts by multiplying m by exp[−τ(2π|ξ|)^(2α)].
 
-**Energy pairings have a physical formula.** Proved result `pairing_nice`: Under the stated hypotheses, energy pairings have a physical formula.
+**Energy pairings have a physical formula.** Proved result `pairing_nice`: For a smooth divergence-free test field ψ with Fourier support compact and away from zero, its homogeneous energy pairing with x is ∫u·(−Δψ), where u is the physical velocity of x.
 
-**Heat evolution commutes with embedding.** Proved result `heat_embed`: Under the stated hypotheses, heat evolution commutes with embedding.
+**Heat evolution commutes with embedding.** Proved result `heat_embed`: For τ≥0, fractional heat evolution in the homogeneous energy space commutes with the embedding of a field whose smooth Fourier symbol is compactly supported away from zero: both give the symbol exp[−τ(2π|ξ|)^(2α)]n(ξ).
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -886,7 +886,7 @@ Source: `lean/Breakdown/FracCert/MildPowerSim.lean`. Imported by the fractional 
 
 **Source namespace:** `Breakdown.FracCert.MildPowerSimInternal`.
 
-**Nice fields are twice differentiable.** Proved result `contDiff_two_of_nice`: Under the stated hypotheses, nice fields are twice differentiable.
+**Nice fields are twice differentiable.** Proved result `contDiff_two_of_nice`: A real divergence-free field with a smooth Fourier symbol compactly supported away from zero is twice continuously differentiable.
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -918,31 +918,31 @@ Source: `lean/Breakdown/FracCert/MildProfileOrbit.lean`. Imported by the fractio
 
 **Velocity pairings preserve scaling.** Proved result `vpair_smul`: Under the stated hypotheses, velocity pairings preserve scalar factors.
 
-**Nice fields admit an inverse Laplacian.** Proved result `exists_negTrace_eq`: Under the stated hypotheses, nice fields admit an inverse Laplacian.
+**Nice fields admit an inverse Laplacian.** Proved result `exists_negTrace_eq`: Every real divergence-free test field ρ with smooth Fourier support compact and away from zero can be written as −Δρ′ for another test field in the same class.
 
-**Laplacian pairings equal energy pairings.** Proved result `vpair_negTrace`: Under the stated hypotheses, laplacian pairings equal energy pairings.
+**Laplacian pairings equal energy pairings.** Proved result `vpair_negTrace`: Pairing the physical velocity of x with −Δρ equals the energy inner product of x with ρ, whenever ρ is a real divergence-free test field with smooth Fourier support compact and away from zero.
 
 **Fractional tests have energy vectors.** Proved result `rep_frac`: Under the stated hypotheses, fractional test pairings have energy vectors.
 
-**The fractional operator value is unique.** Proved result `isFracOf_unique`: Under the stated hypotheses, the fractional operator value is unique.
+**The fractional operator value is unique.** Proved result `isFracOf_unique`: For a fixed energy-space field χ and real exponent α, its fractional power, when it exists in that space, is unique.
 
 **Trilinear pairings preserve scaling.** Proved result `tri_smul`: Under the stated hypotheses, trilinear pairings preserve scalar factors.
 
-**Trilinear pairings obey dilation.** Proved result `tri_dil`: Under the stated hypotheses, trilinear pairings obey dilation.
+**Trilinear pairings obey dilation.** Proved result `tri_dil`: For α>1 and l>0, the convection trilinear form obeys T(Dₗu,Dₗv,w)=l^(2−1/(2α))l^(−3/(2α))T(u,v,w(l^(−1/(2α))·)), where Dₗ is the fractional similarity dilation.
 
-**Trilinear pairings obey similarity.** Proved result `tri_sim`: Under the stated hypotheses, trilinear pairings obey similarity.
+**Trilinear pairings obey similarity.** Proved result `tri_sim`: For α>1 and μ>0, applying the adjoint similarity transformation S*μ to a test field gives T(U,U,S*μψ)=μT(SμU,SμU,ψ), with the same rotation rate in both transformations.
 
 **Similarity equals the frequency flow.** Proved result `simOp_coe`: Under the stated hypotheses, similarity agrees with the frequency flow.
 
-**Similarity trajectories are continuous.** Proved result `simOp_cont`: Under the stated hypotheses, similarity trajectories are continuous.
+**Similarity trajectories are continuous.** Proved result `simOp_cont`: For α>1 and any rotation rate a, the similarity orbit t↦S₁₋ₜx is continuous in the homogeneous energy space throughout t<1.
 
-**The scalar balance rearranges.** Proved result `alg_step`: Under the stated hypotheses, the scalar balance rearranges.
+**The scalar balance rearranges.** Proved result `alg_step`: If μ≠0, D+μI+μQ=0 and K=−Q, then μ⁻¹D+I=K.
 
-**The mild residual annihilates nice tests.** Proved result `mild_identity`: Under the stated hypotheses, the mild residual annihilates nice tests.
+**The mild residual annihilates nice tests.** Proved result `mild_identity`: Assuming the heat and bilinear pairing formulas and the adjoint similarity, differentiation and composition identities, let U be a nonzero weak rotating profile with 1<α<5/4 and let u(t)=S₁₋ₜU. If 0≤T<1 and its Duhamel term is integrable, then the mild-equation residual at T pairs to zero with every real divergence-free test field whose Fourier transform is smooth and compactly supported away from zero.
 
 **Source namespace:** `Breakdown.FracCert`.
 
-**Weak profiles generate mild trajectories.** Proved result `mildOfWeakProfile_of`: Under the stated assumptions, this establishes that for 1<α<5/4, the shrinking similarity orbit of a weak rotating profile is a mild solution on every interval [0,t] with 0<t<1 in any concrete fractional mild framework.
+**Weak profiles generate mild trajectories.** Proved result `mildOfWeakProfile_of`: Under the stated assumptions, this establishes that for 1<α<5/4, the shrinking similarity orbit of a weak rotating profile is a mild solution on every interval [0,t] with 0< t<1 in any concrete fractional mild framework.
 
 ### Breakdown.FracCert.MildSimCompose
 
@@ -954,11 +954,11 @@ Source: `lean/Breakdown/FracCert/MildSimCompose.lean`. Imported by the fractiona
 
 **Source namespace:** `Breakdown.FracCert.FracInternal.SimCompose`.
 
-**Complex rotations obey composition.** Proved result `rotC_comp`: Under the stated hypotheses, complex rotations obey composition.
+**Complex rotations obey composition.** Proved result `rotC_comp`: If linear isometries satisfy T=R∘S, their complex-linear extensions satisfy Tz=R(Sz) for every complex vector z.
 
-**Energy-space rotations obey composition.** Proved result `rotX_comp`: Under the stated hypotheses, energy-space rotations obey composition.
+**Energy-space rotations obey composition.** Proved result `rotX_comp`: If T=R∘S for linear isometries on ℝ³, pushing an energy-space field forward by S and then R equals pushing it forward by T.
 
-**identity rotation fixes energy vectors.** Proved result `rotX_refl`: Under the stated hypotheses, the identity rotation fixes energy vectors.
+**identity rotation fixes energy vectors.** Proved result `rotX_refl`: The identity spatial isometry acts as the identity on the homogeneous energy space.
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -976,11 +976,11 @@ Source: `lean/Breakdown/FracCert/MildSimMoments.lean`. Imported by the fractiona
 
 **Similarity has its a.e. formula.** Proved result `simOp_ae`: Under the stated hypotheses, similarity has an almost-everywhere formula.
 
-**Extended squared norms convert to reals.** Proved result `ofReal_mul_enorm_sq`: Under the stated hypotheses, extended squared norms convert to reals.
+**Extended squared norms convert to reals.** Proved result `ofReal_mul_enorm_sq`: For r≥0 and a complex vector v, the nonnegative extended value of r times that of |v|² equals the nonnegative extended value of the real number r|v|².
 
-**Weighted scaling factors simplify.** Proved result `real_identity`: Under the stated hypotheses, weighted scaling factors simplify.
+**Weighted scaling factors simplify.** Proved result `real_identity`: For k≥1, s>0 and t≥0, t^(2k)(|(2πt)⁻¹|cA)² equals c²s^(2−2k)(st)^(2k)(|(2πst)⁻¹|A)²; this is the radial scaling identity for the kth Fourier moment.
 
-**Rotation and dilation change volume.** Proved result `lintegral_comp_rot_smul`: Under the stated hypotheses, rotation and dilation change volume.
+**Rotation and dilation change volume.** Proved result `lintegral_comp_rot_smul`: For an orthogonal transformation R and s≠0, the nonnegative integral of G(R(sξ)) over ℝ³ is |s|⁻³∫G, allowing the value +∞ on either side.
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -996,49 +996,49 @@ Source: `lean/Breakdown/FracCert/NiceClassDense.lean`. Imported by the fractiona
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
-**Integral pairings equal L² pairings.** Proved result `integral_inner_eq`: Under the stated hypotheses, integral pairings equal L² pairings.
+**Integral pairings equal L² pairings.** Proved result `integral_inner_eq`: For an L² field R and a square-integrable representative b, ∫R·b equals their L² inner product.
 
-**Fields give solenoidal symbols.** Proved result `transform_mem_sig`: Under the stated hypotheses, solenoidal fields give solenoidal symbols.
+**Fields give solenoidal symbols.** Proved result `transform_mem_sig`: The Fourier transform of a real divergence-free L² field satisfies the reality symmetry and is orthogonal to the frequency vector almost everywhere.
 
-**Nice symbols approximate in L².** Proved result `symbol_close`: Under the stated hypotheses, nice symbols approximate in L².
+**Nice symbols approximate in L².** Proved result `symbol_close`: Every L² symbol satisfying the reality symmetry and the divergence constraint almost everywhere can be approximated within any positive L² error by a smooth compactly supported symbol away from zero satisfying those constraints everywhere.
 
-**Complexification preserves norms.** Proved result `norm_complexify_eq`: Under the stated hypotheses, complexification preserves norms.
+**Complexification preserves norms.** Proved result `norm_complexify_eq`: Viewing a real L² vector field as complex-valued preserves its L² norm.
 
 **L² energy equals squared norm.** Proved result `integral_sq_eq`: Under the stated hypotheses, representative energy equals L² norm squared.
 
-**Nice fields transform to their symbols.** Proved result `transform_field`: Under the stated hypotheses, nice fields transform to their symbols.
+**Nice fields transform to their symbols.** Proved result `transform_field`: For an admissible smooth symbol m with compact support away from zero, the L² Fourier transform of its real inverse-transform field is the L² class represented by m.
 
 **Nice approximation of solenoidal fields.** Proved result `dense_of_mem_sig`: Under the stated hypotheses, solenoidal fields admit nice approximants.
 
 **The explicit axial rotation.** Definition `turnFun`: This defines axial rotation on real vectors by its sine and cosine coordinate formula.
 
-**Axial rotation has three coordinates.** Proved result `turnFun_apply`: Under the stated hypotheses, axial rotation has three coordinates.
+**Axial rotation has three coordinates.** Proved result `turnFun_apply`: Rotation Rθ about the third axis has coordinates Rθ(y₁,y₂,y₃)=(cosθ y₁−sinθ y₂, sinθ y₁+cosθ y₂, y₃).
 
-**Reflection negates the third coordinate.** Proved result `mirror_apply`: Under the stated hypotheses, reflection negates the third coordinate. Source: `Breakdown.FracCert.NiceClassDense:208`.
+**Reflection negates the third coordinate.** Proved result `mirror_apply`: The horizontal-plane reflection M fixes y₁,y₂ and sends y₃ to −y₃. Source: `Breakdown.FracCert.NiceClassDense:208`.
 
-**Coordinates determine spatial vectors.** Proved result `space_ext`: Under the stated hypotheses, coordinates determine spatial vectors. Source: `Breakdown.FracCert.NiceClassDense:211`.
+**Coordinates determine spatial vectors.** Proved result `space_ext`: Two vectors in ℝ³ are equal when all three of their coordinates are equal. Source: `Breakdown.FracCert.NiceClassDense:211`.
 
-**Rotation angles add under composition.** Proved result `turnFun_comp`: Under the stated hypotheses, rotation angles add under composition.
+**Rotation angles add under composition.** Proved result `turnFun_comp`: Successive rotations about the third axis add their angles: Ra(Rb y)=Ra+b y.
 
-**Zero-angle rotation is the identity.** Proved result `turnFun_zero`: Under the stated hypotheses, zero-angle rotation is the identity.
+**Zero-angle rotation is the identity.** Proved result `turnFun_zero`: Rotation through angle zero fixes every point of ℝ³.
 
-**Full turns preserve the rotation.** Proved result `turnFun_period`: Under the stated hypotheses, full turns preserve the rotation.
+**Full turns preserve the rotation.** Proved result `turnFun_period`: Adding 2πj to a rotation angle leaves the rotation unchanged for every nonnegative integer j.
 
-**Axial rotations preserve norms.** Proved result `norm_turnFun`: Under the stated hypotheses, axial rotations preserve norms.
+**Axial rotations preserve norms.** Proved result `norm_turnFun`: Rotation through any angle about the third axis preserves |y|.
 
-**Reflection preserves norms.** Proved result `norm_mirror`: Under the stated hypotheses, reflection preserves norms. Source: `Breakdown.FracCert.NiceClassDense:253`.
+**Reflection preserves norms.** Proved result `norm_mirror`: Horizontal-plane reflection preserves |y| for every y∈ℝ³. Source: `Breakdown.FracCert.NiceClassDense:253`.
 
-**Axial rotations preserve sums.** Proved result `turnFun_add`: Under the stated hypotheses, axial rotations preserve sums.
+**Axial rotations preserve sums.** Proved result `turnFun_add`: A rotation Rθ about the third axis distributes over vector addition: Rθ(y+z)=Rθy+Rθz.
 
-**Axial rotations preserve scaling.** Proved result `turnFun_smul`: Under the stated hypotheses, axial rotations preserve scaling.
+**Axial rotations preserve scaling.** Proved result `turnFun_smul`: For real c, rotation about the third axis satisfies Rθ(cy)=cRθy.
 
-**Reflection preserves sums.** Proved result `mirror_add`: Under the stated hypotheses, reflection preserves sums. Source: `Breakdown.FracCert.NiceClassDense:275`.
+**Reflection preserves sums.** Proved result `mirror_add`: Horizontal-plane reflection distributes over addition: M(y+z)=My+Mz. Source: `Breakdown.FracCert.NiceClassDense:275`.
 
-**Reflection preserves scaling.** Proved result `mirror_smul`: Under the stated hypotheses, reflection preserves scaling. Source: `Breakdown.FracCert.NiceClassDense:284`.
+**Reflection preserves scaling.** Proved result `mirror_smul`: For every real c, horizontal-plane reflection satisfies M(cy)=cMy. Source: `Breakdown.FracCert.NiceClassDense:284`.
 
-**Reflection is an involution.** Proved result `mirror_mirror`: Under the stated hypotheses, reflection is an involution.
+**Reflection is an involution.** Proved result `mirror_mirror`: Applying horizontal-plane reflection twice returns the original vector: M²y=y.
 
-**Reflection commutes with axial rotation.** Proved result `mirror_turnFun`: Under the stated hypotheses, reflection commutes with axial rotation.
+**Reflection commutes with axial rotation.** Proved result `mirror_turnFun`: Horizontal-plane reflection commutes with every rotation about the third axis: MRθy=RθMy.
 
 **Axial rotation as an isometry.** Definition `turnIso`: This equips axial rotation with a linear isometry equivalence whose inverse is rotation through the negative angle.
 
@@ -1054,17 +1054,17 @@ Source: `lean/Breakdown/FracCert/NiceClassDense.lean`. Imported by the fractiona
 
 **Explicit action of symmetry elements.** Proved result `elem_apply`: Under the stated hypotheses, symmetry elements have an explicit action.
 
-**Successive angles give one discrete turn.** Proved result `angle_succ`: Under the stated hypotheses, successive angles give one discrete turn.
+**Successive angles give one discrete turn.** Proved result `angle_succ`: In the cyclic family of n+1 rotations, advancing the index by one, modulo n+1, is equivalent to composing with rotation through 2π/(n+1).
 
-**Index shifting gives a discrete turn.** Proved result `elem_turn`: Under the stated hypotheses, index shifting gives a discrete turn.
+**Index shifting gives a discrete turn.** Proved result `elem_turn`: In the finite rotation-reflection family, incrementing the cyclic index modulo n+1 composes the represented isometry with rotation through 2π/(n+1), without changing the reflection choice.
 
-**Flipping the index gives reflection.** Proved result `elem_mirror`: Under the stated hypotheses, flipping the index gives reflection.
+**Flipping the index gives reflection.** Proved result `elem_mirror`: Toggling the reflection choice in the finite rotation-reflection family composes the represented isometry with horizontal-plane reflection.
 
-**Inverses cancel a composed action.** Proved result `symm_of_comp`: Under the stated hypotheses, inverses cancel a composed action.
+**Inverses cancel a composed action.** Proved result `symm_of_comp`: If isometries L,K and a map T satisfy L=T∘K, then L⁻¹(Ty)=K⁻¹y for every y.
 
-**Real parts commute with rotation.** Proved result `realVec_rotC`: Under the stated hypotheses, real parts commute with rotation.
+**Real parts commute with rotation.** Proved result `realVec_rotC`: Taking real parts commutes with the complex extension of a real linear isometry: Re(Rz)=R(Re z).
 
-**Rotation transfers across divergence.** Proved result `div_rotC`: Under the stated hypotheses, rotation transfers across divergence.
+**Rotation transfers across divergence.** Proved result `div_rotC`: For an orthogonal map R and complex vector z, the Fourier divergence satisfies ξ·Rz=(R⁻¹ξ)·z.
 
 **The finite symmetry average of a symbol.** Definition `avgSym`: This defines the invariant symbol by averaging its rotated pullbacks over all n+1 discrete rotations and both reflection choices.
 
@@ -1078,23 +1078,23 @@ Source: `lean/Breakdown/FracCert/NiceClassDense.lean`. Imported by the fractiona
 
 **Reflection-index reversal.** Definition `flipEquiv`: This defines the permutation of symmetry indices that retains the rotation index and exchanges the reflection choice.
 
-**average has discrete rotational symmetry.** Proved result `avg_turn`: Under the stated hypotheses, the average has discrete rotational symmetry.
+**average has discrete rotational symmetry.** Proved result `avg_turn`: Averaging an admissible symbol over the finite rotation-reflection family gives a field satisfying u(Ry)=Ru(y) for rotation R through 2π/(n+1), at every y.
 
-**The average has reflection symmetry.** Proved result `avg_mirror`: Under the stated hypotheses, the average has reflection symmetry.
+**The average has reflection symmetry.** Proved result `avg_mirror`: The field obtained by averaging an admissible symbol over the finite rotation-reflection family satisfies u(My)=Mu(y) for horizontal-plane reflection M, at every y.
 
-**Equivariance survives composition.** Proved result `equiv_comp`: Under the stated hypotheses, equivariance survives composition.
+**Equivariance survives composition.** Proved result `equiv_comp`: If a field commutes almost everywhere with A and with a linear isometry B, it also commutes almost everywhere with their composition A∘B.
 
-**Equivariance survives integer turns.** Proved result `equiv_turn_pow`: Under the stated hypotheses, equivariance survives integer turns.
+**Equivariance survives integer turns.** Proved result `equiv_turn_pow`: If a field is equivariant almost everywhere under rotation through θ, it is equivariant almost everywhere under rotation through jθ for every nonnegative integer j.
 
 **Class fields respect symmetry averages.** Proved result `equiv_elem`: Under the stated hypotheses, class fields respect all averaging actions.
 
 **Symmetry averaging decreases error.** Proved result `avg_le`: Under the stated hypotheses, symmetry averaging does not increase error.
 
-**discrete turn is the explicit rotation.** Proved result `turnStep_eq`: Under the stated hypotheses, the discrete turn is the explicit rotation.
+**discrete turn is the explicit rotation.** Proved result `turnStep_eq`: The discrete rotational symmetry generator of order m is exactly rotation through 2π/m about the third axis.
 
-**A full rotation is the identity.** Proved result `turnFun_full`: Under the stated hypotheses, a full rotation is the identity.
+**A full rotation is the identity.** Proved result `turnFun_full`: The single-element rotational family acts by rotation through 2π, which fixes every vector.
 
-**A class-preserving average exists.** Proved result `classAverage`: Under the stated hypotheses, a class-preserving average exists.
+**A class-preserving average exists.** Proved result `classAverage`: Any admissible smooth Fourier symbol supported away from zero can be averaged to produce a field with the prescribed m-fold rotation and reflection symmetries. For every L² field F with those symmetries, this averaging does not increase the squared L² distance to F.
 
 **Nice class fields are dense.** Proved result `niceClassDense`: Under the stated assumptions, this establishes that every solenoidal L² field in the symmetry class can be approximated arbitrarily well in squared L² error by nice fields in that class.
 
@@ -1108,15 +1108,15 @@ Source: `lean/Breakdown/FracCert/PowerSymbol.lean`. Imported by the fractional c
 
 **Source namespace:** `Breakdown.SteadyCert.PowerSymbolInternal`.
 
-**Complex conjugation is an involution.** Proved result `conjVec_conjVec`: Under the stated hypotheses, complex conjugation is an involution. Source: `Breakdown.FracCert.PowerSymbol:20`.
+**Complex conjugation is an involution.** Proved result `conjVec_conjVec`: Complex-conjugating each coordinate of a complex vector twice returns the original vector. Source: `Breakdown.FracCert.PowerSymbol:20`.
 
 **Conjugation preserves real pairings.** Proved result `inner_conjVec`: Under the stated hypotheses, conjugation preserves real inner products.
 
-**Compact tests pair integrably.** Proved result `integrable_inner_of_compact`: Under the stated hypotheses, compact tests pair integrably.
+**Compact tests pair integrably.** Proved result `integrable_inner_of_compact`: If f is locally integrable and m is continuous with compact support, the real scalar pairing ξ↦⟨f(ξ),m(ξ)⟩ is integrable.
 
 **Symmetric scalar tests give band symbols.** Proved result `band_of_scalar`: Under the stated hypotheses, symmetrized scalar tests are band symbols.
 
-**Symmetric band pairings double.** Proved result `integral_band_scalar`: Under the stated hypotheses, symmetric band pairings double.
+**Symmetric band pairings double.** Proved result `integral_band_scalar`: If f is locally integrable and f(−ξ)=overline(f(ξ)) almost everywhere, then for any smooth compactly supported real g and complex vector w, pairing f with g(ξ)w+g(−ξ)overline(w) gives twice the integral of ⟨g(ξ)f(ξ),w⟩.
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
@@ -1130,11 +1130,11 @@ Source: `lean/Breakdown/FracCert/PowerSymbol.lean`. Imported by the fractional c
 
 **Source namespace:** `Breakdown.SteadyCert.PowerSymbolInternal`.
 
-**Band symbols realize Schwartz fields.** Proved result `band_field`: Under the stated hypotheses, band symbols realize Schwartz fields.
+**Band symbols realize Schwartz fields.** Proved result `band_field`: A smooth compactly supported Fourier symbol away from zero with the reality symmetry is the Fourier transform of a real Schwartz field, whose pointwise value is its inverse transform.
 
 **Fourier uniqueness of band fields.** Proved result `band_eq_of_transform`: Under the stated hypotheses, Fourier transforms determine the band field.
 
-**The negative trace multiplies the symbol.** Proved result `band_negSecondTrace`: Under the stated hypotheses, the negative trace multiplies the symbol.
+**The negative trace multiplies the symbol.** Proved result `band_negSecondTrace`: For a smooth compactly supported symbol m away from zero with the reality symmetry, −Δ(𝓕⁻¹m)=𝓕⁻¹(4π²|ξ|²m), provided the multiplied symbol belongs to the same class.
 
 **Fractional powers weight band symbols.** Proved result `band_power`: Under the stated hypotheses, fractional powers multiply the band symbol.
 
@@ -1144,7 +1144,7 @@ Source: `lean/Breakdown/FracCert/PowerSymbol.lean`. Imported by the fractional c
 
 **Band tests identify the weak power.** Proved result `weakPowerSymbol_of_band`: Under the stated assumptions, this establishes that for 1<α<3/2, the Fourier symbol of the weak fractional power of a second-order field equals (2π‖ξ‖)^(2α−2) times its negative-second-trace symbol almost everywhere.
 
-**Negative second traces lie in L².** Proved result `memLp_trace_of`: Under the stated hypotheses, negative second traces lie in L².
+**Negative second traces lie in L².** Proved result `memLp_trace_of`: If v∈L⁶ has first and second weak derivatives in L² and the prescribed divergence and symmetries, its negative Hessian trace −Δv belongs to L².
 
 **Rapid tests give band power pairings.** Proved result `bandWeakPower_of`: Under the stated assumptions, this establishes that for 1<α<3/2, the weak fractional-power pairing holds against physical fields whose smooth Fourier symbols are compactly supported away from zero and have real conjugation symmetry.
 
@@ -1164,57 +1164,57 @@ Source: `lean/Breakdown/FracCert/PowerSymbolRapid.lean`. Imported by the ordinar
 
 **The near-and-far remainder weight.** Definition `edgeWeight`: This defines the radial dominating weight as the minimum of ‖z‖^(−2α) and ‖z‖^(−1−2α).
 
-**The remainder weight is nonnegative.** Proved result `edgeWeight_nonneg`: Under the stated hypotheses, the remainder weight is nonnegative.
+**The remainder weight is nonnegative.** Proved result `edgeWeight_nonneg`: The weight min(|z|^(−2α),|z|^(−1−2α)) is nonnegative for every α and z, with the specified value at the origin.
 
-**Far translations compare radial weights.** Proved result `one_add_le_of_far`: Under the stated hypotheses, far translations compare radial weights.
+**Far translations compare radial weights.** Proved result `one_add_le_of_far`: If |z|≥1, then 1+|x|≤2|z|(1+|x+z|), transferring spatial decay from x+z to x in the far region.
 
-**Nearby points compare radial weights.** Proved result `one_add_le_of_near`: Under the stated hypotheses, nearby points compare radial weights.
+**Nearby points compare radial weights.** Proved result `one_add_le_of_near`: If |y−x|≤1, then 1+|x|≤2(1+|y|), so the two local decay weights are comparable.
 
-**Comparable radii compare decay weights.** Proved result `weight_shift`: Under the stated hypotheses, comparable radii compare decay weights.
+**Comparable radii compare decay weights.** Proved result `weight_shift`: If a>0 and a≤2c, then c⁻¹⁰≤2¹⁰a⁻¹⁰.
 
-**Far weights split into two factors.** Proved result `far_weight`: Under the stated hypotheses, far weights split into two factors.
+**Far weights split into two factors.** Proved result `far_weight`: For 1<α<3/2 and a,b,t≥1 with a≤2tb, one has t^(−3−2α)b⁻¹⁰≤2^(3+2α)a^(−3−2α)b⁻⁴.
 
-**The fractional remainder has a majorant.** Proved result `pointwise_bound`: Under the stated hypotheses, the fractional remainder has a majorant.
+**The fractional remainder has a majorant.** Proved result `pointwise_bound`: For 1<α<3/2, suppose f is C³ and each derivative of orders zero through three is bounded by B(1+|y|)⁻¹⁰ with B≥0. Its quadratic Taylor remainder Rf satisfies |z|^(−3−2α)|Rf(x,z)|≤(2¹⁰+3+2^(3+2α))B(1+|x|)^(−3−2α)[min(|z|^(−2α),|z|^(−1−2α))+(1+|x+z|)⁻⁴].
 
-**Near and far power bounds give L¹.** Proved result `integrable_near_far`: Under the stated hypotheses, near and far power bounds give L¹.
+**Near and far power bounds give L¹.** Proved result `integrable_near_far`: A measurable scalar f on ℝ³ is integrable if |f(z)|≤C|z|⁻ᵃ for |z|≤1 with a<3 and |f(z)|≤C|z|⁻ᵇ for |z|≥1 with b>3.
 
-**The remainder weight is integrable.** Proved result `edgeWeight_integrable`: Under the stated hypotheses, the remainder weight is integrable.
+**The remainder weight is integrable.** Proved result `edgeWeight_integrable`: For 1<α<3/2, the weight min(|z|^(−2α),|z|^(−1−2α)) is integrable on ℝ³.
 
 **The fractional-power dominating function.** Definition `domFun`: This defines the two-variable bound (1+‖x‖)^(−3−2α) times the sum of the radial edge weight and (1+‖x+z‖)^(−4).
 
 **The mass of the dominating kernel.** Definition `domTotal`: This defines the integrated dominating constant as the sum of the edge-weight integral and the integral of (1+‖z‖)^(−4).
 
-**Fourth-order radial decay is integrable.** Proved result `integrable_four`: Under the stated hypotheses, fourth-order radial decay is integrable.
+**Fourth-order radial decay is integrable.** Proved result `integrable_four`: The spatial decay weight (1+|z|)⁻⁴ is integrable over ℝ³.
 
-**The dominating function is integrable.** Proved result `domFun_integrable`: Under the stated hypotheses, the dominating function is integrable.
+**The dominating function is integrable.** Proved result `domFun_integrable`: For 1<α<3/2 and fixed x, the function (1+|x|)^(−3−2α)[min(|z|^(−2α),|z|^(−1−2α))+(1+|x+z|)⁻⁴] is integrable in z.
 
 **The integral factors its spatial weight.** Proved result `domFun_integral`: Under the stated hypotheses, its integral separates the spatial weight.
 
 **Radial weights factor from norms.** Proved result `kernel_norm`: Under the stated hypotheses, positive radial weights factor from norms.
 
-**Fractional powers of rapid fields decay.** Proved result `power_bound`: Under the stated hypotheses, fractional powers of rapid fields decay.
+**Fractional powers of rapid fields decay.** Proved result `power_bound`: For 1<α<3/2, a C³ field whose derivatives through order three are bounded by B(1+|y|)⁻¹⁰ satisfies |(−Δ)ᵅf(x)|≤CαB(1+|x|)^(−3−2α). The specified Cα is the reciprocal absolute normalization factor times (2¹⁰+3+2^(3+2α)) times the sum of the integrals of min(|z|^(−2α),|z|^(−1−2α)) and (1+|z|)⁻⁴.
 
-**Weighted bounds imply pointwise decay.** Proved result `le_weight`: Under the stated hypotheses, weighted bounds imply pointwise decay.
+**Weighted bounds imply pointwise decay.** Proved result `le_weight`: If (1+|y|)¹⁰a≤S, then a≤S(1+|y|)⁻¹⁰.
 
 **Finite derivative orders are bounded.** Proved result `nat_le_top`: Under the stated hypotheses, finite derivative orders are below infinity.
 
-**Scaled bump derivatives stay bounded.** Proved result `bump_bound`: Under the stated hypotheses, scaled bump derivatives stay bounded.
+**Scaled bump derivatives stay bounded.** Proved result `bump_bound`: For the fixed smooth bump ψ, each derivative of y↦ψ(y/R) is bounded by a nonnegative constant depending only on its order, uniformly over R≥1 and y∈ℝ³.
 
 **Cutoff derivatives retain rapid decay.** Proved result `cut_weight`: Under the stated hypotheses, cutoff fields retain rapid derivative bounds.
 
 **One bound covers four derivative orders.** Proved result `cut_hyps`: Under the stated hypotheses, one constant bounds four derivative orders.
 
-**Cutoff remainders eventually agree.** Proved result `remainder_eventually`: Under the stated hypotheses, cutoff remainders eventually agree.
+**Cutoff remainders eventually agree.** Proved result `remainder_eventually`: For a Schwartz field A and fixed x,z, the quadratic Taylor remainder of the spatially truncated field agrees exactly with that of A once the truncation radius n+1 is sufficiently large.
 
-**The second-order remainder is continuous.** Proved result `continuous_remainder`: Under the stated hypotheses, the second-order remainder is continuous.
+**The second-order remainder is continuous.** Proved result `continuous_remainder`: For a continuous field f and fixed x, the expression f(x+z)−f(x)−Df(x)z−½D²f(x)[z,z] is continuous in z, with the derivative coefficients at x held fixed.
 
-**Cutoff fractional powers converge.** Proved result `power_tendsto`: Under the stated hypotheses, cutoff fractional powers converge.
+**Cutoff fractional powers converge.** Proved result `power_tendsto`: For 1<α<3/2 and a Schwartz field A, the fractional powers of its expanding spatial cutoffs converge pointwise to (−Δ)ᵅA.
 
 **Fractional powers are continuous.** Proved result `power_continuous`: Under the stated hypotheses, fractional powers of smooth fields are continuous.
 
-**The dominating mass is nonnegative.** Proved result `domTotal_nonneg`: Under the stated hypotheses, the dominating mass is nonnegative.
+**The dominating mass is nonnegative.** Proved result `domTotal_nonneg`: The sum of the real integrals of min(|z|^(−2α),|z|^(−1−2α)) and (1+|z|)⁻⁴ is nonnegative, with the adopted zero value for a nonintegrable real integrand.
 
-**L⁶ fields pair with the decay majorant.** Proved result `product_integrable`: Under the stated hypotheses, L⁶ fields pair with the decay majorant.
+**L⁶ fields pair with the decay majorant.** Proved result `product_integrable`: If α>1, v∈L⁶ and K≥0, then |v(x)|K(1+|x|)^(−3−2α) is integrable on ℝ³.
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
@@ -1266,7 +1266,7 @@ Source: `lean/Breakdown/FracCert/PressureGradientSquare.lean`. Imported by the f
 
 **An L¹-L² complex convolution is in L².** Proved result `memLp_convC`: The convolution of strongly measurable complex functions belongs to L² when the first is integrable and the second belongs to L².
 
-**Coordinate norms bound the vector norm.** Proved result `norm_le_sum_coord`: Under the stated hypotheses, coordinate norms bound the vector norm.
+**Coordinate norms bound the vector norm.** Proved result `norm_le_sum_coord`: The Euclidean norm of a complex three-vector is at most the sum of the absolute values of its three coordinates.
 
 **Frequency contraction is a pairing.** Proved result `inner_freqVec_eq`: Under the stated hypotheses, frequency contraction is an inner product.
 
@@ -1286,15 +1286,15 @@ Source: `lean/Breakdown/FracCert/ProductClass.lean`. Imported by the fractional 
 
 **Source namespace:** `Breakdown.SteadyCert.ProductClassInternal`.
 
-**Continuous symmetry holds at every point.** Proved result `equivariant_everywhere`: Under the stated hypotheses, continuous symmetry holds at every point.
+**Continuous symmetry holds at every point.** Proved result `equivariant_everywhere`: For a continuous field W and a linear isometry L, the almost-everywhere identity W(Ly)=LW(y) holds at every point.
 
-**Derivatives preserve spatial symmetry.** Proved result `deriv_equivariant`: Under the stated hypotheses, derivatives preserve spatial symmetry.
+**Derivatives preserve spatial symmetry.** Proved result `deriv_equivariant`: If W is C¹ and W(Ly)=LW(y) for a linear isometry L, then DW(Ly)(Lw)=L(DW(y)w) for every y,w.
 
-**Symmetric products preserve equivariance.** Proved result `product_at`: Under the stated hypotheses, symmetric products preserve equivariance.
+**Symmetric products preserve equivariance.** Proved result `product_at`: If W,v and their specified derivatives transform covariantly under an isometry L at y, then the symmetrized convection product ½[G W+(DW)v] also transforms covariantly there.
 
-**turn isometry equals the discrete turn.** Proved result `turn_coe`: Under the stated hypotheses, the turn isometry equals the discrete turn.
+**turn isometry equals the discrete turn.** Proved result `turn_coe`: The isometry used for the discrete rotational symmetry acts pointwise as rotation through 2π/m about the third axis.
 
-**The mirror isometry equals reflection.** Proved result `mirror_coe`: Under the stated hypotheses, the mirror isometry equals reflection.
+**The mirror isometry equals reflection.** Proved result `mirror_coe`: The isometry used for reflection acts pointwise as reflection in the horizontal plane.
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
@@ -1318,53 +1318,53 @@ Source: `lean/Breakdown/FracCert/ProductCompact.lean`. Imported by the fractiona
 
 **Source namespace:** `Breakdown.SteadyCert.ProductCompactInternal`.
 
-**Integral distance equals L² distance.** Proved result `integral_sq_dist`: Under the stated hypotheses, integral distance equals L² distance.
+**Integral distance equals L² distance.** Proved result `integral_sq_dist`: If f,g represent the L² classes u,w almost everywhere, then ∫|f−g|² equals ‖u−w‖₂².
 
 **Finite L² nets give subsequences.** Proved result `subseq_of_net`: Under the stated hypotheses, finite L² nets give convergent subsequences.
 
-**Matrix-entry energy is nonnegative.** Proved result `entrySq_nonneg`: Under the stated hypotheses, matrix-entry energy is nonnegative. Source: `Breakdown.FracCert.ProductCompact:77`.
+**Matrix-entry energy is nonnegative.** Proved result `entrySq_nonneg`: The squared matrix size ∑ⱼ|Geⱼ|² is nonnegative for every linear map G on ℝ³. Source: `Breakdown.FracCert.ProductCompact:77`.
 
-**Matrix energy controls squared action.** Proved result `apply_sq_le`: Under the stated hypotheses, matrix energy controls squared action.
+**Matrix energy controls squared action.** Proved result `apply_sq_le`: For any linear map G and vector w in ℝ³, |Gw|²≤(∑ⱼ|Geⱼ|²)|w|².
 
-**Profile decay controls product energy.** Proved result `sym_sq_le`: Under the stated hypotheses, profile decay controls product energy.
+**Profile decay controls product energy.** Proved result `sym_sq_le`: If |W(y)|≤C(1+|y|)⁻¹ and |DW(y)|≤C(1+|y|)⁻², then for y≠0 the squared symmetrized product is at most C²(1+|y|)⁻²[|G(y)|²+|v(y)|²/|y|²], using the sum of squared column lengths for |G|².
 
 **Local nets and tails give global nets.** Proved result `net_of_split`: Under the stated hypotheses, local nets and small tails give global nets.
 
-**Almost every spatial point is nonzero.** Proved result `ae_ne_zero`: Under the stated hypotheses, almost every spatial point is nonzero. Source: `Breakdown.FracCert.ProductCompact:176`.
+**Almost every spatial point is nonzero.** Proved result `ae_ne_zero`: The set consisting only of the origin has zero Lebesgue measure in ℝ³. Source: `Breakdown.FracCert.ProductCompact:176`.
 
-**product has L² bounds and small tails.** Proved result `field_bounds`: Under the stated hypotheses, the product has L² bounds and small tails.
+**product has L² bounds and small tails.** Proved result `field_bounds`: Assuming the inverse-square estimate, let C¹ profile W satisfy |W(y)|≤C(1+|y|)⁻¹ and |∇W(y)|≤C(1+|y|)⁻², and let v be an admissible second-order field. Then ½[(W·∇)v+(v·∇)W] lies in L², and its squared integral outside B_R is at most 5C²R⁻²∫|∇v|² for R>0.
 
-**Uniform radial bounds give small tails.** Proved result `tail_of_bound`: Under the stated hypotheses, uniform radial bounds give small tails.
+**Uniform radial bounds give small tails.** Proved result `tail_of_bound`: If a family of fields has squared tails bounded by K/R² for every R>0, with K≥0 independent of the field, then for each ε>0 one radius makes all those tails smaller than ε.
 
-**Symmetric products preserve differences.** Proved result `diff_apply`: Under the stated hypotheses, symmetric products preserve differences.
+**Symmetric products preserve differences.** Proved result `diff_apply`: The difference of the symmetrized products of (v,G) and (u,K), against fixed W,DW, equals the symmetrized product of (v−u,G−K).
 
 **Local energy of product differences.** Proved result `diff_sq_le`: Under the stated hypotheses, product differences have local energy bounds.
 
-**Matrix-entry energy is continuous.** Proved result `entrySq_continuous`: Under the stated hypotheses, matrix-entry energy is continuous. Source: `Breakdown.FracCert.ProductCompact:311`.
+**Matrix-entry energy is continuous.** Proved result `entrySq_continuous`: The sum of the squared column lengths depends continuously on a linear map G:ℝ³→ℝ³. Source: `Breakdown.FracCert.ProductCompact:311`.
 
-**Matrix differences have an energy bound.** Proved result `entrySq_sub_le`: Under the stated hypotheses, matrix differences have an energy bound.
+**Matrix differences have an energy bound.** Proved result `entrySq_sub_le`: For matrices A,K, the squared matrix size satisfies |A−K|²≤2|A|²+2|K|², where |A|²=∑ⱼ|Aeⱼ|².
 
-**Local difference energies are integrable.** Proved result `ball_integrable`: Under the stated hypotheses, local difference energies are integrable.
+**Local difference energies are integrable.** Proved result `ball_integrable`: For two admissible second-order fields v,u, the local difference energy |v−u|²+|∇v−∇u|² is integrable over every ball.
 
-**Two finite nets combine into one.** Proved result `net_add`: Under the stated hypotheses, two finite nets combine into one.
+**Two finite nets combine into one.** Proved result `net_add`: If two symmetric real-valued distance expressions each satisfy the squared triangle inequality d(n,k)≤2d(n,j)+2d(j,k) and each admits finite ε-nets, then their sum also admits finite ε-nets.
 
-**Squared integral distances obey a bound.** Proved result `sq_tri`: Under the stated hypotheses, squared integral distances obey a bound.
+**Squared integral distances obey a bound.** Proved result `sq_tri`: For square-integrable fields with respect to any measure, ∫|fₙ−fₖ|²≤2∫|fₙ−fⱼ|²+2∫|fⱼ−fₖ|².
 
-**Squared integral distance is symmetric.** Proved result `sq_symm`: Under the stated hypotheses, squared integral distance is symmetric.
+**Squared integral distance is symmetric.** Proved result `sq_symm`: The squared difference integral is symmetric: ∫|fₙ−fₖ|²=∫|fₖ−fₙ|² for any measure.
 
-**Matrix energy controls each column.** Proved result `entry_le`: Under the stated hypotheses, matrix energy controls each column. Source: `Breakdown.FracCert.ProductCompact:391`.
+**Matrix energy controls each column.** Proved result `entry_le`: The squared length of each column Geᵢ is bounded by the sum ∑ⱼ|Geⱼ|². Source: `Breakdown.FracCert.ProductCompact:391`.
 
-**Full Hessian energy controls columns.** Proved result `col_entrySq_le`: Under the stated hypotheses, full Hessian energy controls columns.
+**Full Hessian energy controls columns.** Proved result `col_entrySq_le`: For a bilinear second-derivative tensor H, the squared matrix size of x↦H(x,eᵢ) is at most ∑ⱼ,ₖ|H(eⱼ,eₖ)|².
 
 **Tensor transposition is continuous.** Proved result `flip_cont`: Under the stated hypotheses, flipping derivative tensors is continuous.
 
-**Evaluating linear maps is continuous.** Proved result `apply_cont`: Under the stated hypotheses, evaluating linear maps is continuous.
+**Evaluating linear maps is continuous.** Proved result `apply_cont`: For fixed w∈ℝ³, the map sending a linear operator G to Gw is continuous.
 
 **Source namespace:** `Breakdown.SteadyCert.ShiftInternal`.
 
-**A constant time slice removes the period.** Proved result `period_const`: Under the stated hypotheses, a constant time slice removes the period.
+**A constant time slice removes the period.** Proved result `period_const`: For a real spatial integrand f independent of time, integrating its nonnegative part max(f,0) over one unit time period and a closed ball equals the spatial integral of max(f,0) over that ball.
 
-**Failure of finite nets gives separation.** Proved result `separated`: Under the stated hypotheses, failure of finite nets gives separation.
+**Failure of finite nets gives separation.** Proved result `separated`: If no finite subset of a sequence can approximate every index within ε for a distance expression d, one can select indices sⱼ with d(sⱼ,sᵢ)≥ε whenever i< j.
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
@@ -1396,23 +1396,23 @@ Source: `lean/Breakdown/FracCert/ProfileMildForm.lean`. Imported by the fraction
 
 **Source namespace:** `Breakdown.FracCert.ProfileMildFormInternal`.
 
-**Unit similarity leaves tests unchanged.** Proved result `simAdj_one`: Under the stated hypotheses, unit similarity leaves tests unchanged.
+**Unit similarity leaves tests unchanged.** Proved result `simAdj_one`: At similarity scale μ=1, the adjoint similarity transformation fixes every test field, for all α and rotation rates a.
 
-**Zero heat time leaves fields unchanged.** Proved result `heatField_zero`: Under the stated hypotheses, zero heat time leaves fields unchanged.
+**Zero heat time leaves fields unchanged.** Proved result `heatField_zero`: At elapsed time zero, the fractional heat operator fixes every real divergence-free test field with smooth Fourier support compact and away from zero.
 
-**The orbit starts at the original pairing.** Proved result `orbit_zero`: Under the stated hypotheses, the orbit starts at the original pairing.
+**The orbit starts at the original pairing.** Proved result `orbit_zero`: At orbit time zero, the pairing obtained from heat evolution and adjoint similarity reduces to the ordinary spatial pairing ∫u·φ.
 
-**The heated test orbit remains nice.** Proved result `nice_orbit`: Under the stated hypotheses, the heated test orbit remains nice.
+**The heated test orbit remains nice.** Proved result `nice_orbit`: For α>1 and τ≥0, applying the adjoint similarity transformation at scale exp(τ) and then fractional heat flow for time 1−exp(−τ) preserves the real divergence-free test class with smooth Fourier support compact and away from zero.
 
-**Physical pairings become symbol pairings.** Proved result `pairing_symbol`: Under the stated hypotheses, physical pairings become symbol pairings.
+**Physical pairings become symbol pairings.** Proved result `pairing_symbol`: Pairing the physical velocity u of an energy-space field x with the inverse transform of an admissible symbol n gives ∫⟨x(ξ),n(ξ)/(2π|ξ|)⟩dξ.
 
 **Heat and similarity preserve nice fields.** Proved result `orbit_field`: The heat-evolved similarity-adjoint image of a nice field is the nice field of the explicitly defined orbit symbol, and that orbit symbol remains nice.
 
-**Drift preserves nice symbols.** Proved result `nice_drift`: Under the stated hypotheses, drift preserves nice symbols.
+**Drift preserves nice symbols.** Proved result `nice_drift`: The Fourier expression for the adjoint similarity drift preserves smooth compact support away from zero, the reality symmetry and the divergence condition, for every α and rotation rate a.
 
 **Physical and Fourier orbit pairings.** Proved result `orbitPairing_eq`: Under the stated hypotheses, orbit pairings agree in physical and Fourier form.
 
-**Orbit generators agree in both forms.** Proved result `orbitGenerator_eq`: Under the stated hypotheses, orbit generators agree in both forms.
+**Orbit generators agree in both forms.** Proved result `orbitGenerator_eq`: For 1<α<5/4, the generator of the heat-similarity orbit pairing equals its Fourier expression: the negative pairing with the transformed drift symbol plus the negative pairing with its fractional-power multiplier.
 
 **Differentiating symbol pairings.** Proved result `orbitPairingDeriv_of`: Under the stated assumptions, this establishes that for 1<α<5/4, the velocity pairing with the heat and similarity orbit of a nice test has the stated generator as its derivative at each nonnegative time.
 
@@ -1420,13 +1420,13 @@ Source: `lean/Breakdown/FracCert/ProfileMildForm.lean`. Imported by the fraction
 
 **Symbol decay gives pairing decay.** Proved result `orbitPairingLimit_of`: Under the stated assumptions, this establishes that for 1<α<5/4, the velocity pairing with the heat and similarity orbit of a nice test tends to zero as time tends to infinity.
 
-**heat multiplier has inverse-square decay.** Proved result `heat_le`: Under the stated hypotheses, the heat multiplier has inverse-square decay.
+**heat multiplier has inverse-square decay.** Proved result `heat_le`: For α>1 and τ≥1, exp[−(1−exp(−τ))(2π|ξ|)^(2α)]≤4(1+|ξ|)⁻².
 
-**Similarity coefficients are at most one.** Proved result `coef_le`: Under the stated hypotheses, similarity coefficients are at most one.
+**Similarity coefficients are at most one.** Proved result `coef_le`: For α>1 and τ≥0, the similarity amplitude multiplied by the inverse spatial Jacobian is at most one: exp(τ(2/α−1))exp(−3τ/(2α))≤1.
 
-**The orbit symbol has a spatial majorant.** Proved result `symbol_bound`: Under the stated hypotheses, the orbit symbol has a spatial majorant.
+**The orbit symbol has a spatial majorant.** Proved result `symbol_bound`: If |m|≤M and m vanishes on |ξ|< r with r>0, then for α>1 and τ≥1 the transformed heat-similarity symbol mτ satisfies |mτ(ξ)/(2π|ξ|)|≤4M(2πr)⁻¹(1+|ξ|)⁻², independently of the rotation rate.
 
-**Dilated band symbols eventually vanish.** Proved result `symbol_eventually_zero`: Under the stated hypotheses, dilated band symbols eventually vanish.
+**Dilated band symbols eventually vanish.** Proved result `symbol_eventually_zero`: If m vanishes in a ball about the origin and α>1, then at each fixed ξ its value at the rotated, exponentially contracted frequency eventually becomes exactly zero as τ→∞.
 
 **The drift symbol uses radial and turn.** Proved result `driftSym_eq`: The drift symbol is (1−1/(2α))n+Dn(ξ)/(2α)−a(Dn(Jξ)−Jn).
 
@@ -1434,39 +1434,39 @@ Source: `lean/Breakdown/FracCert/ProfileMildForm.lean`. Imported by the fraction
 
 **Complex turns commute with rotation.** Proved result `turnC_rotC`: Under the stated hypotheses, complex turns commute with axial rotation.
 
-**The radial power has a quadratic form.** Proved result `rpow_form`: Under the stated hypotheses, the radial power has a quadratic form.
+**The radial power has a quadratic form.** Proved result `rpow_form`: The fractional multiplier can be written in either radial form: (2π|ξ|)^(2α)=(4π²|ξ|²)ᵅ.
 
 **Orbit derivatives obey the product rule.** Proved result `fderiv_orbit`: For α>1 and differentiable input symbol, the spatial derivative of the orbit symbol is the transported derivative of the input times the heat factor plus the transported input times the derivative of that heat factor.
 
 **An explicit formula for orbit drift.** Proved result `driftSym_orbit`: Under the stated hypotheses, drift of the orbit has an explicit formula.
 
-**Complex rotation splits through the turn.** Proved result `rot_decomp`: Under the stated hypotheses, complex rotation splits through the turn.
+**Complex rotation splits through the turn.** Proved result `rot_decomp`: Writing J for the complex extension of the axial infinitesimal rotation, rotation through θ decomposes as −cosθ J²+sinθ J+I+J².
 
-**Complex rotation has the turn derivative.** Proved result `rot_hasDeriv`: Under the stated hypotheses, complex rotation has the turn derivative.
+**Complex rotation has the turn derivative.** Proved result `rot_hasDeriv`: The derivative with respect to θ of the complex axial rotation Rθ is JRθ, where J is its infinitesimal generator.
 
-**orbit derivative is minus its generator.** Proved result `orbit_hasDeriv`: Under the stated hypotheses, the orbit derivative is minus its generator.
+**orbit derivative is minus its generator.** Proved result `orbit_hasDeriv`: For α>1 and differentiable m, the heat-similarity symbol mτ satisfies ∂τmτ=−D*α,a mτ−(2π|ξ|)^(2α)mτ at every frequency, where D*α,a is the Fourier adjoint drift operator.
 
 **L² pairs with the inverse-square weight.** Proved result `weight_integrable`: Under the stated hypotheses, L² fields pair with the inverse-square weight.
 
-**Weighted symbol pairings have a bound.** Proved result `pair_le`: Under the stated hypotheses, weighted symbol pairings have a bound.
+**Weighted symbol pairings have a bound.** Proved result `pair_le`: If f∈L² and measurable g satisfies |g(ξ)/(2π|ξ|)|≤K(1+|ξ|)⁻², then their weighted Fourier pairing is integrable and its absolute value is at most K∫|f(ξ)|(1+|ξ|)⁻²dξ.
 
-**The orbit symbol is measurable.** Proved result `orbit_meas`: Under the stated hypotheses, the orbit symbol is measurable.
+**The orbit symbol is measurable.** Proved result `orbit_meas`: For an admissible smooth symbol m compactly supported away from zero, each heat-similarity transformed symbol is measurable in ξ for every real orbit time and every α,a.
 
-**Drift of the orbit symbol is measurable.** Proved result `drift_meas`: Under the stated hypotheses, drift of the orbit symbol is measurable.
+**Drift of the orbit symbol is measurable.** Proved result `drift_meas`: Applying the Fourier adjoint drift operator to a heat-similarity transformed admissible symbol gives a measurable function of ξ.
 
-**The orbit power term is measurable.** Proved result `power_meas`: Under the stated hypotheses, the orbit power term is measurable.
+**The orbit power term is measurable.** Proved result `power_meas`: Multiplying a heat-similarity transformed admissible symbol by (2π|ξ|)^(2α) gives a measurable function of ξ.
 
 **Symbols and derivatives share an annulus.** Proved result `support_facts`: Under the stated hypotheses, nice symbols and derivatives share an annulus.
 
-**The generator bracket has a scalar bound.** Proved result `bracket_le`: Under the stated hypotheses, the generator bracket has a scalar bound.
+**The generator bracket has a scalar bound.** Proved result `bracket_le`: For α>1, P≥0, |t|≤2, |w|≤M and |u|‖L‖≤M₂ with M,M₂≥0, the vector (1−1/(2α)−tP)w+(2α)⁻¹Lu−a[LJu−Jw] has norm at most (1+2P)[M+M₂+|a|(M₂+‖J‖M)].
 
 **A time envelope for the orbit generator.** Definition `decayEnvelope`: This defines an explicit radial envelope combining exponential orbit scaling, polynomial factors and the damping at the inner and outer radii of a frequency annulus.
 
-**scalar envelope bounds the orbit factor.** Proved result `scalar_le`: Under the stated hypotheses, the scalar envelope bounds the orbit factor.
+**scalar envelope bounds the orbit factor.** Proved result `scalar_le`: For α>1 and 0< r≤R, the weighted heat-similarity factor at radius ρ between re^(s/(2α)) and Re^(s/(2α)) is bounded by the explicit scalar envelope formed from r,R,s. This envelope combines (2πr)⁻¹e⁻ˢ(1+Re^(s/(2α)))²[1+2(2πR)^(2α)eˢ] with the two exponential damping factors at radii r and R.
 
-**Exponential decay controls a cubic.** Proved result `cube_exp_le`: Under the stated hypotheses, exponential decay controls a cubic.
+**Exponential decay controls a cubic.** Proved result `cube_exp_le`: For A>0 and u≥0, u³e^(−Au)≤6/A³.
 
-**The time envelope decays exponentially.** Proved result `bnd_le`: Under the stated hypotheses, the time envelope decays exponentially.
+**The time envelope decays exponentially.** Proved result `bnd_le`: For α>1, 0< r≤R and s≥0, the orbit envelope is bounded by Ce⁻ˢ, where C=12(2πr)⁻¹(1+R)²[1+2(2πR)^(2α)]exp[(2πr)^(2α)]/(2πr)^(6α).
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -1536,17 +1536,17 @@ Source: `lean/Breakdown/FracCert/ProfileSymbolEquation.lean`. Imported by the fr
 
 **Source namespace:** `Breakdown.SteadyCert.ProfileSymbolEquationInternal`.
 
-**Continuity off zero gives measurability.** Proved result `aesm_of_continuousOn`: Under the stated hypotheses, continuity off zero gives measurability.
+**Continuity off zero gives measurability.** Proved result `aesm_of_continuousOn`: A normed-space-valued function continuous on ℝ³ away from the origin is measurable up to a Lebesgue-null set.
 
-**Compact power bounds give integrability.** Proved result `integrable_of_rpow_bound`: Under the stated hypotheses, compact power bounds give integrability.
+**Compact power bounds give integrability.** Proved result `integrable_of_rpow_bound`: A measurable function supported in a bounded ball is integrable if |g(ξ)|≤C|ξ|ᵝ away from zero and β>−3.
 
-**power-bound constant can be nonnegative.** Proved result `bound_max`: Under the stated hypotheses, the power-bound constant can be nonnegative.
+**power-bound constant can be nonnegative.** Proved result `bound_max`: Replacing the coefficient C in |g(ξ)|≤C|ξ|ᵝ by max(C,0) preserves the bound at every nonzero frequency.
 
 **Rescaling preserves power bounds.** Proved result `comp_bound`: Under the stated hypotheses, linear rescaling preserves the power bound.
 
-**Fourier characters are continuous.** Proved result `char_continuous`: Under the stated hypotheses, Fourier characters are continuous.
+**Fourier characters are continuous.** Proved result `char_continuous`: For fixed y, the Fourier phase ξ↦exp(2πi ξ·y) is continuous.
 
-**Characters preserve integrability.** Proved result `integrable_char_smul`: Under the stated hypotheses, characters preserve integrability.
+**Characters preserve integrability.** Proved result `integrable_char_smul`: Multiplying an integrable Fourier symbol by the phase exp(2πi ξ·y) preserves integrability for every fixed y.
 
 **Linear motion differentiates integrals.** Proved result `param_hasDerivAt`: Under the stated hypotheses, linear motion differentiates under the integral.
 
@@ -1564,19 +1564,19 @@ Source: `lean/Breakdown/FracCert/ProfileSymbolEquation.lean`. Imported by the fr
 
 **The derivative of the rotation operator.** Definition `rotMapDeriv`: This defines the derivative of the rotation matrix as negative sine times the plane projection plus cosine times the turn map.
 
-**Coordinates determine spatial vectors.** Proved result `space_ext`: Under the stated hypotheses, coordinates determine spatial vectors. Source: `Breakdown.FracCert.ProfileSymbolEquation:235`.
+**Coordinates determine spatial vectors.** Proved result `space_ext`: Equality of all three coordinates implies equality of two vectors in ℝ³. Source: `Breakdown.FracCert.ProfileSymbolEquation:235`.
 
-**rotation has three coordinate formulas.** Proved result `rot_apply`: Under the stated hypotheses, the rotation has three coordinate formulas.
+**rotation has three coordinate formulas.** Proved result `rot_apply`: The axial rotation of η has coordinates (cos t η₁−sin t η₂, sin t η₁+cos t η₂, η₃).
 
 **Rotation derivatives mix sine and cosine.** Proved result `rotDeriv_apply`: Applied to (x₁,x₂,x₃), the rotation derivative is (−sin t x₁−cos t x₂, cos t x₁−sin t x₂, 0).
 
-**The turn operator equals the axial turn.** Proved result `turnMap_eq`: Under the stated hypotheses, the turn operator equals the axial turn.
+**The turn operator equals the axial turn.** Proved result `turnMap_eq`: The linear map generating axial rotation sends η to (−η₂,η₁,0).
 
-**Zero-angle rotation is the identity.** Proved result `rotMap_zero`: Under the stated hypotheses, zero-angle rotation is the identity.
+**Zero-angle rotation is the identity.** Proved result `rotMap_zero`: The axial rotation at angle zero fixes every vector η.
 
-**The initial derivative is the axial turn.** Proved result `rotMapDeriv_zero`: Under the stated hypotheses, the initial derivative is the axial turn.
+**The initial derivative is the axial turn.** Proved result `rotMapDeriv_zero`: The derivative at angle zero of the axial rotation sends η to (−η₂,η₁,0).
 
-**The rotation operator preserves norms.** Proved result `rotMap_norm`: Under the stated hypotheses, the rotation operator preserves norms.
+**The rotation operator preserves norms.** Proved result `rotMap_norm`: The axial rotation preserves the Euclidean norm for every real angle.
 
 **Axial rotation has the matrix derivative.** Proved result `rotMap_hasDerivAt`: The time derivative of the rotated vector is the rotation-derivative matrix applied to that vector, with coordinates (−sin t x₁−cos t x₂, cos t x₁−sin t x₂, 0).
 
@@ -1584,9 +1584,9 @@ Source: `lean/Breakdown/FracCert/ProfileSymbolEquation.lean`. Imported by the fr
 
 **Rotation derivatives transfer to symbols.** Proved result `rot_identity`: Under the stated hypotheses, rotational differentiation transfers to Fourier space.
 
-**Inverse transforms preserve sums.** Proved result `finv_add`: Under the stated hypotheses, inverse transforms preserve sums.
+**Inverse transforms preserve sums.** Proved result `finv_add`: For integrable symbols f and g, the inverse Fourier transform of f+g is the sum of their inverse transforms at every spatial point.
 
-**Inverse transforms preserve differences.** Proved result `finv_sub`: Under the stated hypotheses, inverse transforms preserve differences.
+**Inverse transforms preserve differences.** Proved result `finv_sub`: For integrable symbols f and g, the inverse Fourier transform of f−g is the difference of their inverse transforms at every spatial point.
 
 **Inverse transforms preserve scaling.** Proved result `finv_smul`: Under the stated hypotheses, inverse transforms preserve scalar factors.
 
@@ -1594,11 +1594,11 @@ Source: `lean/Breakdown/FracCert/ProfileSymbolEquation.lean`. Imported by the fr
 
 **The complex turn is (−z₂,z₁,0).** Proved result `turnCL_apply`: The bundled continuous complex turn sends (z₁,z₂,z₃) to (−z₂,z₁,0), agreeing with the complex axial generator.
 
-**Inverse transforms commute with the turn.** Proved result `finv_turn`: Under the stated hypotheses, inverse transforms commute with the turn.
+**Inverse transforms commute with the turn.** Proved result `finv_turn`: The complex axial generator commutes with inverse Fourier transformation of an integrable vector-valued symbol.
 
-**Taking real parts commutes with the turn.** Proved result `turn_real`: Under the stated hypotheses, taking real parts commutes with the turn.
+**Taking real parts commutes with the turn.** Proved result `turn_real`: Taking the real part of a complex vector commutes with the axial generator: Re(Jz)=J(Re z).
 
-**Squaring doubles the power bound.** Proved result `sq_bound`: Under the stated hypotheses, squaring doubles the power bound. Source: `Breakdown.FracCert.ProfileSymbolEquation:367`.
+**Squaring doubles the power bound.** Proved result `sq_bound`: The pointwise bound |g(ξ)|≤C|ξ|ᵝ implies |g(ξ)|²≤C²|ξ|^(2β) at each ξ≠0. Source: `Breakdown.FracCert.ProfileSymbolEquation:367`.
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
@@ -1614,33 +1614,33 @@ Source: `lean/Breakdown/FracCert/ProfileSymbolSix.lean`. Imported by the fractio
 
 **Source namespace:** `Breakdown.SteadyCert.Internal.SymbolSix`.
 
-**Integrable symbol derivatives give decay.** Proved result `decay_of_deriv`: Under the stated hypotheses, integrable symbol derivatives give decay.
+**Integrable symbol derivatives give decay.** Proved result `decay_of_deriv`: If g and its derivative are integrable and g is differentiable, then 2π|y||𝓕⁻¹g(y)|≤∫|Dg(ξ)|dξ for every y.
 
-**Profile symbols have two power bounds.** Proved result `profile_bounds`: Under the stated hypotheses, profile symbols have two power bounds.
+**Profile symbols have two power bounds.** Proved result `profile_bounds`: For a profile symbol w whose jth derivative obeys the prescribed |ξ|^(2α−4−j) bound, one nonnegative constant C bounds both |w(ξ)|≤C|ξ|^(2α−4) and |Dw(ξ)|≤C|ξ|^(2α−5) away from zero.
 
-**The near-zero majorant is integrable.** Proved result `majorant_integrable`: Under the stated hypotheses, the near-zero majorant is integrable.
+**The near-zero majorant is integrable.** Proved result `majorant_integrable`: For α>1, the function |ξ|^(2α−5) restricted to any ball is integrable on ℝ³.
 
-**Profile symbols are measurable.** Proved result `profile_aesm`: Under the stated hypotheses, profile symbols are measurable. Source: `Breakdown.FracCert.ProfileSymbolSix:66`.
+**Profile symbols are measurable.** Proved result `profile_aesm`: A profile symbol, smooth away from zero with the specified bounded support and derivative growth, is measurable up to a null set. Source: `Breakdown.FracCert.ProfileSymbolSix:66`.
 
-**One radius separates the two powers.** Proved result `rpow_split`: Under the stated hypotheses, one radius separates the two powers.
+**One radius separates the two powers.** Proved result `rpow_split`: For ξ≠0, |ξ|^(2α−4)=|ξ|·|ξ|^(2α−5), separating one frequency factor from the singular bound.
 
 **Inverse-radius bounds for cutoff slopes.** Proved result `fderiv_cutoff_le`: Under the stated hypotheses, cutoff derivatives have inverse-radius bounds.
 
 **A cutoff symbol obeys the product rule.** Proved result `smooth_part_hasFDerivAt`: Away from zero frequency, the derivative of (1−χ)w is (1−χ)Dw−Dχ⊗w for an admissible profile symbol and the specified cutoff.
 
-**regularized symbol vanishes near zero.** Proved result `smooth_part_zero_near`: Under the stated hypotheses, the regularized symbol vanishes near zero.
+**regularized symbol vanishes near zero.** Proved result `smooth_part_zero_near`: For ε>0 and |ξ|<ε, the symbol obtained by removing the standard low-frequency cutoff is identically zero on a neighborhood of ξ.
 
-**The regularized symbol is differentiable.** Proved result `smooth_part_differentiable`: Under the stated hypotheses, the regularized symbol is differentiable.
+**The regularized symbol is differentiable.** Proved result `smooth_part_differentiable`: Removing a positive-radius low-frequency cutoff from a profile symbol gives a differentiable function on all of ℝ³, including zero.
 
-**regularized derivative has a majorant.** Proved result `smooth_part_fderiv_le`: Under the stated hypotheses, the regularized derivative has a majorant.
+**regularized derivative has a majorant.** Proved result `smooth_part_fderiv_le`: If w vanishes outside radius R, |w|≤C|ξ|^(2α−4), |Dw|≤C|ξ|^(2α−5), and the ε-cutoff has derivative bounded by K/ε with C,K≥0, then the derivative after removing that cutoff is bounded by (C+2KC)|ξ|^(2α−5) on |ξ|<|R|+1 and is zero outside that ball.
 
-**The small-frequency part has a majorant.** Proved result `cut_part_le`: Under the stated hypotheses, the small-frequency part has a majorant.
+**The small-frequency part has a majorant.** Proved result `cut_part_le`: If w vanishes outside radius R and |w(ξ)|≤C|ξ|^(2α−4) with C≥0, its ε-low-frequency part is bounded at ξ≠0 by 2εC|ξ|^(2α−5) on |ξ|<|R|+1 and is zero outside that ball.
 
-**The two-variable pairing is continuous.** Proved result `continuous_two_inner`: Under the stated hypotheses, the two-variable pairing is continuous.
+**The two-variable pairing is continuous.** Proved result `continuous_two_inner`: The negative real inner product depends continuously on its pair of vector arguments.
 
 **Inverse transforms respect the cutoff.** Proved result `inverseTransform_split`: Under the stated hypotheses, inverse transforms respect the cutoff split.
 
-**L¹ norms bound inverse transforms.** Proved result `norm_inverseTransform_le`: Under the stated hypotheses, l¹ norms bound inverse transforms.
+**L¹ norms bound inverse transforms.** Proved result `norm_inverseTransform_le`: The inverse Fourier integral satisfies |𝓕⁻¹a(y)|≤∫|a(ξ)|dξ, with the adopted real-integral convention; for a∈L¹ this is the usual L¹-to-L∞ estimate.
 
 **Inverse transforms decay as 1/r.** Proved result `transform_decay`: Under the stated hypotheses, the inverse transform has inverse-radius decay.
 
@@ -1658,15 +1658,15 @@ Source: `lean/Breakdown/FracCert/QuadraticSquare.lean`. Imported by the fraction
 
 **Source namespace:** `Breakdown.SteadyCert.QuadraticSquareInternal`.
 
-**Jensen bounds mollified norm powers.** Proved result `normPow_conv_le`: Under the stated hypotheses, jensen bounds mollified norm powers.
+**Jensen bounds mollified norm powers.** Proved result `normPow_conv_le`: For a normalized nonnegative smooth mollifier ρ and integer k≥1, integrability of |f|ᵏ gives |ρ*f(y)|ᵏ≤ρ*|f|ᵏ(y) at every y.
 
-**Mollification preserves weak derivatives.** Proved result `mollify_fderiv_apply`: Under the stated hypotheses, mollification preserves weak derivatives. Source: `Breakdown.FracCert.QuadraticSquare:72`.
+**Mollification preserves weak derivatives.** Proved result `mollify_fderiv_apply`: If g is locally integrable and cⱼ satisfies its jth weak derivative identity against smooth compactly supported scalar tests, then ∂ⱼ(ρ*g)=ρ*cⱼ pointwise for every normalized smooth mollifier ρ. Source: `Breakdown.FracCert.QuadraticSquare:72`.
 
 **The cutoff Sobolev boundary error.** Proved result `cutoff_six`: Under the stated hypotheses, cutoff Sobolev bounds include a boundary error.
 
 **Smooth fields obey the L⁶ Sobolev bound.** Proved result `smooth_six`: Under the stated hypotheses, smooth fields satisfy the L⁶ Sobolev bound.
 
-**Weak derivative bounds give L⁶.** Proved result `six_of_weak`: Under the stated hypotheses, weak derivative bounds give L⁶.
+**Weak derivative bounds give L⁶.** Proved result `six_of_weak`: An L² field g belongs to L⁶ if each specified weak derivative cⱼ has integrable squared norm and satisfies the integration-by-parts identity against every smooth compactly supported scalar test.
 
 **Sixth powers bound quadratic products.** Proved result `sq_mul_sq_le`: Under the stated hypotheses, quadratic products are bounded by sixth powers.
 
@@ -1684,25 +1684,25 @@ Source: `lean/Breakdown/FracCert/ResidualGradient.lean`. Imported by the fractio
 
 **Source namespace:** `Breakdown.FracCert.Internal.ResidualGradient`.
 
-**Conjugation conjugates scalar factors.** Proved result `conjVec_smul`: Under the stated hypotheses, conjugation conjugates scalar factors.
+**Conjugation conjugates scalar factors.** Proved result `conjVec_smul`: Complex conjugation of a scalar multiple satisfies overline(cz)=overline(c)·overline(z), coordinate by coordinate.
 
 **Real symmetry gives a real inverse.** Proved result `conj_invTransform`: Under the stated hypotheses, real symmetry makes the inverse transform real.
 
 **Real parts preserve real-field pairings.** Proved result `re_inner_realVec`: Under the stated hypotheses, real-vector pairings equal real complex parts.
 
-**Physical pairings satisfy Plancherel.** Proved result `pair_symbol`: Under the stated hypotheses, physical pairings satisfy Plancherel.
+**Physical pairings satisfy Plancherel.** Proved result `pair_symbol`: For an integrable symbol h and a Schwartz symbol Ψ satisfying the reality symmetry, the spatial pairing of Re(𝓕⁻¹h) with Re(𝓕⁻¹Ψ) equals the real Fourier pairing ∫⟨h,Ψ⟩.
 
 **Transverse vectors kill radial terms.** Proved result `inner_freqVec_zero`: Under the stated hypotheses, solenoidal vectors kill longitudinal terms.
 
 **Transport derivatives move across tests.** Proved result `transport_pair`: Under the stated hypotheses, transport derivatives move across pairings.
 
-**Drift transfers to the transport adjoint.** Proved result `drift_pair`: Under the stated hypotheses, drift transfers to the transport adjoint.
+**Drift transfers to the transport adjoint.** Proved result `drift_pair`: If v is smooth and both v and Dv are bounded, then its similarity drift pairs integrably with every real Schwartz test χ. Integration by parts transfers that drift to the adjoint transport operator on χ.
 
 **Radial fields have scalar coefficients.** Proved result `exists_coeff`: Under the stated hypotheses, longitudinal fields have scalar coefficients.
 
 **Adjoint flow preserves longitudinality.** Proved result `flowAdjoint_long`: Under the stated hypotheses, the flow adjoint preserves longitudinal fields.
 
-**The flow adjoint preserves real symmetry.** Proved result `flowAdjoint_conjSym`: Under the stated hypotheses, the flow adjoint preserves real symmetry.
+**The flow adjoint preserves real symmetry.** Proved result `flowAdjoint_conjSym`: For a differentiable symbol q satisfying q(−ξ)=overline(q(ξ)), the Fourier adjoint flow expression satisfies the same reality symmetry for all α and rotation rates a.
 
 **Complexification casts each coordinate.** Proved result `complexifyVec_apply`: The ith coordinate of a complexified real vector is the complex cast of its ith real coordinate.
 
@@ -1722,13 +1722,13 @@ Source: `lean/Breakdown/FracCert/ResidualNice.lean`. Imported by the fractional 
 
 **Operator norms bound matrix-entry energy.** Proved result `entrySq_le`: Under the stated hypotheses, operator norms control matrix-entry energy. Source: `Breakdown.FracCert.ResidualNice:17`.
 
-**Smooth pressure gradients are continuous.** Proved result `continuous_gradientAt`: Under the stated hypotheses, smooth pressure gradients are continuous.
+**Smooth pressure gradients are continuous.** Proved result `continuous_gradientAt`: The gradient of a smooth scalar function P is continuous on ℝ³.
 
 **Classical gradients are weak gradients.** Proved result `isGradientField_of`: Under the stated hypotheses, classical gradients are weak gradient fields.
 
-**Classical derivatives are weak gradients.** Proved result `isWeakGradient_of`: Under the stated hypotheses, classical derivatives are weak gradients.
+**Classical derivatives are weak gradients.** Proved result `isWeakGradient_of`: The classical derivative of a smooth vector field satisfies its weak gradient identities.
 
-**L² fields pair integrably.** Proved result `integrable_inner_pair`: Under the stated hypotheses, L² fields pair integrably.
+**L² fields pair integrably.** Proved result `integrable_inner_pair`: The pointwise inner product of two L² vector fields belongs to L¹.
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -1744,25 +1744,25 @@ Source: `lean/Breakdown/FracCert/SecondOrderComplete.lean`. Imported by the ordi
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
-**Linear combinations have a square bound.** Proved result `sq_add_smul_le`: Under the stated hypotheses, linear combinations have a square bound.
+**Linear combinations have a square bound.** Proved result `sq_add_smul_le`: In a real normed space, |a+cb|²≤2|a|²+2c²|b|² for every real c.
 
 **Discrete turns preserve linearity.** Proved result `turnStep_add_smul`: Under the stated hypotheses, discrete turns preserve linear combinations.
 
-**Reflections preserve linear combinations.** Proved result `mirror_add_smul`: Under the stated hypotheses, reflections preserve linear combinations.
+**Reflections preserve linear combinations.** Proved result `mirror_add_smul`: Horizontal-plane reflection is linear: M(a+cb)=Ma+cMb for every real c.
 
-**Matrix-entry energy is continuous.** Proved result `entrySq_continuous`: Under the stated hypotheses, matrix-entry energy is continuous. Source: `Breakdown.FracCert.SecondOrderComplete:29`.
+**Matrix-entry energy is continuous.** Proved result `entrySq_continuous`: The squared matrix size G↦∑ⱼ|Geⱼ|² is continuous. Source: `Breakdown.FracCert.SecondOrderComplete:29`.
 
-**Full Hessian energy is continuous.** Proved result `fullSq_continuous`: Under the stated hypotheses, full Hessian energy is continuous.
+**Full Hessian energy is continuous.** Proved result `fullSq_continuous`: The squared tensor size H↦∑ᵢ,ⱼ|H(eᵢ,eⱼ)|² is continuous.
 
-**Derivative columns lie in L².** Proved result `col_memLp`: Under the stated hypotheses, derivative columns lie in L². Source: `Breakdown.FracCert.SecondOrderComplete:38`.
+**Derivative columns lie in L².** Proved result `col_memLp`: For an admissible second-order field (v,G,H), every gradient column Geᵢ belongs to L². Source: `Breakdown.FracCert.SecondOrderComplete:38`.
 
-**Hessian entries lie in L².** Proved result `entry_memLp`: Under the stated hypotheses, hessian entries lie in L². Source: `Breakdown.FracCert.SecondOrderComplete:50`.
+**Hessian entries lie in L².** Proved result `entry_memLp`: For an admissible second-order field (v,G,H), every vector-valued Hessian entry H(eᵢ,eⱼ) belongs to L². Source: `Breakdown.FracCert.SecondOrderComplete:50`.
 
-**Compact tests pair integrably.** Proved result `test_integrable`: Under the stated hypotheses, compact tests pair integrably. Source: `Breakdown.FracCert.SecondOrderComplete:67`.
+**Compact tests pair integrably.** Proved result `test_integrable`: Multiplying an Lᵖ field, 1≤p≤∞, by a continuous compactly supported scalar function gives an integrable field. Source: `Breakdown.FracCert.SecondOrderComplete:67`.
 
-**Test derivatives are continuous.** Proved result `deriv_test_continuous`: Under the stated hypotheses, test derivatives are continuous. Source: `Breakdown.FracCert.SecondOrderComplete:72`.
+**Test derivatives are continuous.** Proved result `deriv_test_continuous`: Every coordinate derivative of a smooth compactly supported scalar test function is continuous. Source: `Breakdown.FracCert.SecondOrderComplete:72`.
 
-**Test derivatives have compact support.** Proved result `deriv_test_support`: Under the stated hypotheses, test derivatives have compact support. Source: `Breakdown.FracCert.SecondOrderComplete:76`.
+**Test derivatives have compact support.** Proved result `deriv_test_support`: Every coordinate derivative of a smooth compactly supported scalar test function has compact support. Source: `Breakdown.FracCert.SecondOrderComplete:76`.
 
 **Test integration preserves linearity.** Proved result `lin_integral`: Under the stated hypotheses, test integration preserves linear combinations.
 
@@ -1770,13 +1770,13 @@ Source: `lean/Breakdown/FracCert/SecondOrderComplete.lean`. Imported by the ordi
 
 **Gradient energy controls the L⁶ norm.** Proposition `SixthGradientBoundStatement`: This proposition requires that a universal constant bounds the sixth-power integral of a measurable L⁶ field by the cube of its square-integrable weak-gradient energy.
 
-**Each basis vector has unit norm.** Proved result `unitVector_norm`: Under the stated hypotheses, each basis vector has unit norm. Source: `Breakdown.FracCert.SecondOrderComplete:164`.
+**Each basis vector has unit norm.** Proved result `unitVector_norm`: Each coordinate unit vector in ℝ³ has Euclidean norm one. Source: `Breakdown.FracCert.SecondOrderComplete:164`.
 
-**Operator norms control column norms.** Proved result `col_le`: Under the stated hypotheses, operator norms control column norms.
+**Operator norms control column norms.** Proved result `col_le`: Each column of a linear map L satisfies |Leᵢ|≤‖L‖op.
 
-**Tensor norms control entry norms.** Proved result `entry_le`: Under the stated hypotheses, tensor norms control entry norms.
+**Tensor norms control entry norms.** Proved result `entry_le`: For a bilinear map B on ℝ³, every coordinate value satisfies |B(eᵢ,eⱼ)|≤‖B‖op.
 
-**Matrix entries control the operator norm.** Proved result `opNorm_le_sqrt_entrySq`: Under the stated hypotheses, matrix entries control the operator norm.
+**Matrix entries control the operator norm.** Proved result `opNorm_le_sqrt_entrySq`: For a linear map L:ℝ³→ℝ³, its operator norm satisfies ‖L‖op≤(∑ⱼ|Leⱼ|²)¹ᐟ².
 
 **Matrix energy bounds operator norms.** Proved result `opNorm_sq_le_entrySq`: Under the stated hypotheses, matrix energy controls squared operator norm.
 
@@ -1784,55 +1784,55 @@ Source: `lean/Breakdown/FracCert/SecondOrderComplete.lean`. Imported by the ordi
 
 **Hessian energy bounds tensor norms.** Proved result `opNorm_sq_le_full`: Under the stated hypotheses, hessian entries control squared tensor norm.
 
-**Tensor norms control full Hessian energy.** Proved result `full_le`: Under the stated hypotheses, tensor norms control full Hessian energy.
+**Tensor norms control full Hessian energy.** Proved result `full_le`: For a bilinear map B:ℝ³×ℝ³→ℝ³, ∑ᵢ,ⱼ|B(eᵢ,eⱼ)|²≤9‖B‖op².
 
-**Tensor norms control the second trace.** Proved result `trace_le`: Under the stated hypotheses, tensor norms control the second trace.
+**Tensor norms control the second trace.** Proved result `trace_le`: The vector trace of a bilinear map B satisfies |∑ᵢB(eᵢ,eᵢ)|²≤9‖B‖op².
 
-**Squared trace energy is continuous.** Proved result `trace_sq_continuous`: Under the stated hypotheses, squared trace energy is continuous.
+**Squared trace energy is continuous.** Proved result `trace_sq_continuous`: The squared norm of the vector trace depends continuously on the bilinear map B.
 
-**Integrable squares give L² membership.** Proved result `memLp_two_of_sq`: Under the stated hypotheses, integrable squares give L² membership.
+**Integrable squares give L² membership.** Proved result `memLp_two_of_sq`: A measurable normed-space-valued function f lies in L² if |f|² is bounded pointwise by an integrable scalar function.
 
 **A square majorant gives integrability.** Proved result `integrable_of_sq`: Under the stated hypotheses, a square-integrable majorant gives integrability.
 
-**The gradient tensor lies in L².** Proved result `gradient_memLp`: Under the stated hypotheses, the gradient tensor lies in L².
+**The gradient tensor lies in L².** Proved result `gradient_memLp`: The entire gradient matrix field G of an admissible second-order field belongs to L² when measured with its operator norm.
 
-**The Hessian tensor lies in L².** Proved result `second_memLp`: Under the stated hypotheses, the Hessian tensor lies in L².
+**The Hessian tensor lies in L².** Proved result `second_memLp`: The entire Hessian tensor H of an admissible second-order field belongs to L² when measured with its bilinear operator norm.
 
 **Compact tests admit Lp pairings.** Proved result `test_integrable_gen`: Under the stated hypotheses, compact tests pair with general Lp fields.
 
-**Lp Cauchy sequences have field limits.** Proved result `exists_lim`: Under the stated hypotheses, lp Cauchy sequences have field limits.
+**Lp Cauchy sequences have field limits.** Proved result `exists_lim`: For 1≤p<∞ and a complete target space, any sequence of Lᵖ fields that is Cauchy in the integrals ∫|fₙ−fₘ|ᵖ has an Lᵖ limit f₀. Both its Lᵖ distance and the pth-power difference integral tend to zero.
 
-**Lp limits preserve compact test pairings.** Proved result `pair_lim`: Under the stated hypotheses, lp limits preserve compact test pairings.
+**Lp limits preserve compact test pairings.** Proved result `pair_lim`: If fₙ→f₀ in Lᵖ, p≥1, and g is continuous with compact support, then ∫gfₙ→∫gf₀ in the complete target space, using a conjugate Hölder exponent for g.
 
 **Linear maps preserve test-pairing limits.** Proved result `pair_clm`: Under the stated hypotheses, linear maps preserve limiting test pairings.
 
-**Discrete turns preserve sums.** Proved result `turnStep_add`: Under the stated hypotheses, discrete turns preserve sums. Source: `Breakdown.FracCert.SecondOrderComplete:358`.
+**Discrete turns preserve sums.** Proved result `turnStep_add`: The discrete rotation R through 2π/m satisfies R(a+b)=Ra+Rb. Source: `Breakdown.FracCert.SecondOrderComplete:358`.
 
-**Discrete turns preserve scaling.** Proved result `turnStep_smul`: Under the stated hypotheses, discrete turns preserve scaling. Source: `Breakdown.FracCert.SecondOrderComplete:362`.
+**Discrete turns preserve scaling.** Proved result `turnStep_smul`: The discrete rotation R through 2π/m satisfies R(ca)=cRa for every real c. Source: `Breakdown.FracCert.SecondOrderComplete:362`.
 
-**Discrete turns preserve norms.** Proved result `turnStep_norm`: Under the stated hypotheses, discrete turns preserve norms. Source: `Breakdown.FracCert.SecondOrderComplete:366`.
+**Discrete turns preserve norms.** Proved result `turnStep_norm`: The discrete rotation through 2π/m preserves the Euclidean norm. Source: `Breakdown.FracCert.SecondOrderComplete:366`.
 
-**Reflection preserves sums.** Proved result `mirror_add`: Under the stated hypotheses, reflection preserves sums. Source: `Breakdown.FracCert.SecondOrderComplete:372`.
+**Reflection preserves sums.** Proved result `mirror_add`: Horizontal-plane reflection satisfies M(a+b)=Ma+Mb. Source: `Breakdown.FracCert.SecondOrderComplete:372`.
 
-**Reflection preserves scaling.** Proved result `mirror_smul`: Under the stated hypotheses, reflection preserves scaling. Source: `Breakdown.FracCert.SecondOrderComplete:376`.
+**Reflection preserves scaling.** Proved result `mirror_smul`: Horizontal-plane reflection satisfies M(ca)=cMa for every real c. Source: `Breakdown.FracCert.SecondOrderComplete:376`.
 
-**Reflection preserves norms.** Proved result `mirror_norm`: Under the stated hypotheses, reflection preserves norms. Source: `Breakdown.FracCert.SecondOrderComplete:380`.
+**Reflection preserves norms.** Proved result `mirror_norm`: Horizontal-plane reflection preserves the Euclidean norm. Source: `Breakdown.FracCert.SecondOrderComplete:380`.
 
 **The discrete turn as an isometry.** Definition `turnIso`: This equips the discrete axial turn with its norm-preserving linear equivalence structure. Source: `Breakdown.FracCert.SecondOrderComplete:385`.
 
 **Reflection as an isometry.** Definition `mirrorIso`: This equips reflection with its norm-preserving linear equivalence structure. Source: `Breakdown.FracCert.SecondOrderComplete:390`.
 
-**turn isometry equals the discrete turn.** Proved result `turnIso_coe`: Under the stated hypotheses, the turn isometry equals the discrete turn. Source: `Breakdown.FracCert.SecondOrderComplete:394`.
+**turn isometry equals the discrete turn.** Proved result `turnIso_coe`: The rotational isometry used in the completeness argument acts as rotation through 2π/m about the third axis. Source: `Breakdown.FracCert.SecondOrderComplete:394`.
 
-**The mirror isometry equals reflection.** Proved result `mirrorIso_coe`: Under the stated hypotheses, the mirror isometry equals reflection. Source: `Breakdown.FracCert.SecondOrderComplete:399`.
+**The mirror isometry equals reflection.** Proved result `mirrorIso_coe`: The reflection isometry used in the completeness argument acts as (y₁,y₂,y₃)↦(y₁,y₂,−y₃). Source: `Breakdown.FracCert.SecondOrderComplete:399`.
 
-**Almost-everywhere facts survive turns.** Proved result `turn_ae`: Under the stated hypotheses, almost-everywhere facts survive turns.
+**Almost-everywhere facts survive turns.** Proved result `turn_ae`: Any almost-everywhere property remains true almost everywhere after composing its argument with rotation through 2π/m.
 
 **Reflection preserves a.e. facts.** Proved result `mirror_ae`: Under the stated hypotheses, almost-everywhere facts survive reflection.
 
-**The discrete turn is continuous.** Proved result `turn_continuous`: Under the stated hypotheses, the discrete turn is continuous.
+**The discrete turn is continuous.** Proved result `turn_continuous`: Rotation through 2π/m about the third axis is a continuous map on ℝ³.
 
-**Reflection is continuous.** Proved result `mirror_continuous`: Under the stated hypotheses, reflection is continuous.
+**Reflection is continuous.** Proved result `mirror_continuous`: Reflection in the horizontal plane is a continuous map on ℝ³.
 
 **Completeness of second-order fields.** Proved result `secondOrderComplete_of`: Under the stated assumptions, this establishes that a Cauchy sequence of second-order fields for a measurable weight bounded above and bounded away from zero has a second-order limit with weighted derivative-energy convergence and strong L⁶ convergence.
 
@@ -1846,55 +1846,55 @@ Source: `lean/Breakdown/FracCert/SecondOrderWeakLimit.lean`. Imported by the fra
 
 **Source namespace:** `Breakdown.SteadyCert.SecondOrderWeakLimitInternal`.
 
-**Young bounds the sixth-power pairing.** Proved result `mul_pow_five_le`: Under the stated hypotheses, young bounds the sixth-power pairing.
+**Young bounds the sixth-power pairing.** Proved result `mul_pow_five_le`: For nonnegative a,c, Young's inequality gives ac⁵≤(a⁶+5c⁶)/6.
 
-**Almost every spatial point is nonzero.** Proved result `ae_ne_zero`: Under the stated hypotheses, almost every spatial point is nonzero. Source: `Breakdown.FracCert.SecondOrderWeakLimit:20`.
+**Almost every spatial point is nonzero.** Proved result `ae_ne_zero`: Almost every point of ℝ³ is nonzero with respect to Lebesgue measure. Source: `Breakdown.FracCert.SecondOrderWeakLimit:20`.
 
-**Each basis vector has unit norm.** Proved result `unitVector_norm`: Under the stated hypotheses, each basis vector has unit norm. Source: `Breakdown.FracCert.SecondOrderWeakLimit:25`.
+**Each basis vector has unit norm.** Proved result `unitVector_norm`: Each coordinate unit vector has norm one. Source: `Breakdown.FracCert.SecondOrderWeakLimit:25`.
 
-**Weighted weak limits give physical tests.** Proved result `pair_tendsto`: Under the stated hypotheses, weighted weak limits give physical tests.
+**Weighted weak limits give physical tests.** Proved result `pair_tendsto`: If uₙ/|y| converges to w₀ when paired with every L² test, then ∫uₙ·h→∫(|y|w₀)·h for each h with |y|h∈L².
 
-**Compact tests pair integrably.** Proved result `test_integrable`: Under the stated hypotheses, compact tests pair integrably. Source: `Breakdown.FracCert.SecondOrderWeakLimit:46`.
+**Compact tests pair integrably.** Proved result `test_integrable`: If f∈Lᵖ with p≥1 and g is continuous with compact support, the product gf is integrable. Source: `Breakdown.FracCert.SecondOrderWeakLimit:46`.
 
 **Inner products commute with integrals.** Proved result `inner_integral`: Under the stated hypotheses, inner products pass through vector integrals.
 
-**Constant-vector tests lie in L².** Proved result `test_memLp`: Under the stated hypotheses, constant-vector tests lie in L².
+**Constant-vector tests lie in L².** Proved result `test_memLp`: For a continuous compactly supported scalar c and fixed vector v, y↦c(y)v belongs to L².
 
-**Radius-weighted compact tests lie in L².** Proved result `test_memLp_weight`: Under the stated hypotheses, radius-weighted compact tests lie in L².
+**Radius-weighted compact tests lie in L².** Proved result `test_memLp_weight`: For a continuous compactly supported scalar c and fixed vector v, y↦|y|c(y)v belongs to L².
 
-**Test derivatives are continuous.** Proved result `deriv_test_continuous`: Under the stated hypotheses, test derivatives are continuous. Source: `Breakdown.FracCert.SecondOrderWeakLimit:69`.
+**Test derivatives are continuous.** Proved result `deriv_test_continuous`: The coordinate derivatives of a smooth compactly supported scalar test function are continuous. Source: `Breakdown.FracCert.SecondOrderWeakLimit:69`.
 
-**Test derivatives have compact support.** Proved result `deriv_test_support`: Under the stated hypotheses, test derivatives have compact support. Source: `Breakdown.FracCert.SecondOrderWeakLimit:73`.
+**Test derivatives have compact support.** Proved result `deriv_test_support`: The coordinate derivatives of a smooth compactly supported scalar test function have compact support. Source: `Breakdown.FracCert.SecondOrderWeakLimit:73`.
 
-**Derivative columns lie in L².** Proved result `col_memLp`: Under the stated hypotheses, derivative columns lie in L². Source: `Breakdown.FracCert.SecondOrderWeakLimit:77`.
+**Derivative columns lie in L².** Proved result `col_memLp`: Each gradient column of an admissible second-order field lies in L². Source: `Breakdown.FracCert.SecondOrderWeakLimit:77`.
 
-**Hessian entries lie in L².** Proved result `entry_memLp`: Under the stated hypotheses, hessian entries lie in L². Source: `Breakdown.FracCert.SecondOrderWeakLimit:89`.
+**Hessian entries lie in L².** Proved result `entry_memLp`: Each vector-valued Hessian entry of an admissible second-order field lies in L². Source: `Breakdown.FracCert.SecondOrderWeakLimit:89`.
 
-**Discrete turns preserve sums.** Proved result `turnStep_add`: Under the stated hypotheses, discrete turns preserve sums. Source: `Breakdown.FracCert.SecondOrderWeakLimit:106`.
+**Discrete turns preserve sums.** Proved result `turnStep_add`: The discrete rotation through 2π/m distributes over addition of vectors. Source: `Breakdown.FracCert.SecondOrderWeakLimit:106`.
 
-**Discrete turns preserve scaling.** Proved result `turnStep_smul`: Under the stated hypotheses, discrete turns preserve scaling. Source: `Breakdown.FracCert.SecondOrderWeakLimit:110`.
+**Discrete turns preserve scaling.** Proved result `turnStep_smul`: The discrete rotation through 2π/m commutes with multiplication by any real scalar. Source: `Breakdown.FracCert.SecondOrderWeakLimit:110`.
 
-**Discrete turns preserve norms.** Proved result `turnStep_norm`: Under the stated hypotheses, discrete turns preserve norms. Source: `Breakdown.FracCert.SecondOrderWeakLimit:114`.
+**Discrete turns preserve norms.** Proved result `turnStep_norm`: The discrete rotation through 2π/m preserves the Euclidean norm. Source: `Breakdown.FracCert.SecondOrderWeakLimit:114`.
 
-**Reflection preserves sums.** Proved result `mirror_add`: Under the stated hypotheses, reflection preserves sums. Source: `Breakdown.FracCert.SecondOrderWeakLimit:120`.
+**Reflection preserves sums.** Proved result `mirror_add`: Horizontal-plane reflection distributes over addition of vectors. Source: `Breakdown.FracCert.SecondOrderWeakLimit:120`.
 
-**Reflection preserves scaling.** Proved result `mirror_smul`: Under the stated hypotheses, reflection preserves scaling. Source: `Breakdown.FracCert.SecondOrderWeakLimit:124`.
+**Reflection preserves scaling.** Proved result `mirror_smul`: Horizontal-plane reflection commutes with multiplication by any real scalar. Source: `Breakdown.FracCert.SecondOrderWeakLimit:124`.
 
-**Reflection preserves norms.** Proved result `mirror_norm`: Under the stated hypotheses, reflection preserves norms. Source: `Breakdown.FracCert.SecondOrderWeakLimit:128`.
+**Reflection preserves norms.** Proved result `mirror_norm`: Horizontal-plane reflection preserves the Euclidean norm. Source: `Breakdown.FracCert.SecondOrderWeakLimit:128`.
 
 **The discrete turn as an isometry.** Definition `turnIso`: This equips the discrete axial turn with its norm-preserving linear equivalence structure. Source: `Breakdown.FracCert.SecondOrderWeakLimit:133`.
 
 **Reflection as an isometry.** Definition `mirrorIso`: This equips reflection with its norm-preserving linear equivalence structure. Source: `Breakdown.FracCert.SecondOrderWeakLimit:138`.
 
-**turn isometry equals the discrete turn.** Proved result `turnIso_coe`: Under the stated hypotheses, the turn isometry equals the discrete turn. Source: `Breakdown.FracCert.SecondOrderWeakLimit:142`.
+**turn isometry equals the discrete turn.** Proved result `turnIso_coe`: The isometry introduced for the weak-limit argument is the discrete rotation through 2π/m about the third axis. Source: `Breakdown.FracCert.SecondOrderWeakLimit:142`.
 
-**The mirror isometry equals reflection.** Proved result `mirrorIso_coe`: Under the stated hypotheses, the mirror isometry equals reflection. Source: `Breakdown.FracCert.SecondOrderWeakLimit:147`.
+**The mirror isometry equals reflection.** Proved result `mirrorIso_coe`: The reflection isometry introduced for the weak-limit argument is the map (y₁,y₂,y₃)↦(y₁,y₂,−y₃). Source: `Breakdown.FracCert.SecondOrderWeakLimit:147`.
 
-**Isometries move across inner products.** Proved result `inner_symm`: Under the stated hypotheses, isometries move across inner products.
+**Isometries move across inner products.** Proved result `inner_symm`: For an orthogonal map e, the inner products satisfy ⟨a,e⁻¹b⟩=⟨ea,b⟩.
 
-**Weak limits preserve spatial symmetry.** Proved result `sym_limit`: Under the stated hypotheses, weak limits preserve spatial symmetry.
+**Weak limits preserve spatial symmetry.** Proved result `sym_limit`: If each uₙ is equivariant almost everywhere under an isometry e and uₙ/|y| converges weakly against all L² tests to w₀∈L², then the reconstructed field |y|w₀ is equivariant almost everywhere under e.
 
-**Pairing bounds recover L⁶ membership.** Proved result `six_of_pairing`: Under the stated hypotheses, pairing bounds recover L⁶ membership.
+**Pairing bounds recover L⁶ membership.** Proved result `six_of_pairing`: Suppose uₙ∈L⁶ with ∫|uₙ|⁶ uniformly bounded, and their pairings converge to those of a measurable u₀ against every h with |y|h∈L². Then u₀ belongs to L⁶.
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
@@ -1912,21 +1912,21 @@ Source: `lean/Breakdown/FracCert/SecondPairRapid.lean`. Imported by the ordinary
 
 **Pairability with every integrable weight.** Definition `IsRapidPairable`: This predicate requires integrability of the norm of the field multiplied by every scalar weight that belongs to every Lᵖ space.
 
-**L² fields admit rapid pairings.** Proved result `pairable_two`: Under the stated hypotheses, L² fields admit rapid pairings.
+**L² fields admit rapid pairings.** Proved result `pairable_two`: If f∈L², then w|f| is integrable for every scalar weight w belonging to all Lᑫ spaces.
 
-**L⁶ fields admit rapid pairings.** Proved result `pairable_six`: Under the stated hypotheses, L⁶ fields admit rapid pairings.
+**L⁶ fields admit rapid pairings.** Proved result `pairable_six`: If f∈L⁶, then w|f| is integrable for every scalar weight w belonging to all Lᑫ spaces, by the conjugate exponent 6/5.
 
 **Rapid weights give vector integrals.** Proved result `integrable_smul`: Under the stated hypotheses, rapid scalar weights give vector integrals.
 
-**Rapid vector tests pair integrably.** Proved result `integrable_inner`: Under the stated hypotheses, rapid vector tests pair integrably.
+**Rapid vector tests pair integrably.** Proved result `integrable_inner`: If measurable f has integrable product w|f| for every weight w in all Lᑫ spaces, then its inner product with every Schwartz field is integrable.
 
 **A compact cutoff of a scalar test.** Definition `cut`: This defines a compact approximation to a rapidly decreasing test by multiplying it by the standard bump evaluated at y/R.
 
-**Smooth tests remain smooth after cutoff.** Proved result `contDiff_cut`: Under the stated hypotheses, smooth tests remain smooth after cutoff.
+**Smooth tests remain smooth after cutoff.** Proved result `contDiff_cut`: Multiplying a smooth scalar ψ by the rescaled fixed smooth bump χ(y/R) produces a smooth function; at R=0 the cutoff is defined to be identically one.
 
 **Cutoffs are test functions.** Proved result `test_cut`: Under the stated hypotheses, positive-radius cutoffs are test functions.
 
-**cutoff agrees inside its central ball.** Proved result `cut_eq`: Under the stated hypotheses, the cutoff agrees inside its central ball.
+**cutoff agrees inside its central ball.** Proved result `cut_eq`: For R>0 and |y|≤R, multiplying ψ(y) by the radius-R bump leaves its value unchanged.
 
 **Cutoff derivatives agree on inner balls.** Proved result `fderiv_cut_eq`: Under the stated hypotheses, cutoff derivatives agree in the central ball.
 
@@ -1936,7 +1936,7 @@ Source: `lean/Breakdown/FracCert/SecondPairRapid.lean`. Imported by the ordinary
 
 **Weak derivatives admit Schwartz tests.** Proved result `weak_ext`: Under the stated hypotheses, weak derivatives extend to Schwartz tests.
 
-**Inner products expand by coordinate.** Proved result `inner_expand`: Under the stated hypotheses, inner products expand by coordinate.
+**Inner products expand by coordinate.** Proved result `inner_expand`: For x,w∈ℝ³, the dot product expands as x·w=∑ᵢeᵢ·(wᵢx).
 
 **Vector weak identities admit rapid tests.** Proved result `weak_vec`: Under the stated hypotheses, vector weak identities extend to Schwartz tests.
 
@@ -1962,17 +1962,17 @@ Source: `lean/Breakdown/FracCert/SecondSymbol.lean`. Imported by the ordinary an
 
 **Complex tests preserve weak derivatives.** Proved result `cplx_deriv`: If real vector fields f and f′ lie in L² and satisfy the weak derivative identity in one coordinate against real scalar tests, their complexifications satisfy the same integration-by-parts identity against smooth compactly supported complex tests.
 
-**Cutoff derivative pairings converge.** Proved result `tendsto_cut_val`: Under the stated hypotheses, cutoff derivative pairings converge.
+**Cutoff derivative pairings converge.** Proved result `tendsto_cut_val`: For f′∈L² and a complex Schwartz test Θ, the integrals of f′ multiplied by expanding spatial cutoffs of Θ converge to ∫Θf′.
 
 **Schwartz tests preserve weak derivatives.** Proved result `rapid_deriv`: If the gradient columns and a proposed coordinate derivative lie in L² and satisfy the compact-test weak derivative identity, the same identity holds after complexification against every complex Schwartz test.
 
 **Weak differentiation multiplies by 2πiξ.** Proved result `hat_deriv`: For L² gradient columns and an L² weak coordinate derivative, the derivative's Fourier symbol equals 2πi times that frequency coordinate times the original column's symbol almost everywhere.
 
-**Gradient components lie in L².** Proved result `memLp_comp`: Under the stated hypotheses, gradient components lie in L².
+**Gradient components lie in L².** Proved result `memLp_comp`: If a measurable gradient field G has integrable squared matrix size, each vector component Geᵢ belongs to L².
 
-**Hessian entries lie in L².** Proved result `memLp_second`: Under the stated hypotheses, hessian entries lie in L².
+**Hessian entries lie in L².** Proved result `memLp_second`: If a measurable Hessian field H has finite integral of ∑ᵢ,ⱼ|H(eᵢ,eⱼ)|², each Hessian entry belongs to L².
 
-**Basis images bound the operator norm.** Proved result `norm_le_sum`: Under the stated hypotheses, basis images bound the operator norm.
+**Basis images bound the operator norm.** Proved result `norm_le_sum`: The operator norm of a linear map A on ℝ³ is at most the sum of its column lengths ∑ᵢ|Aeᵢ|.
 
 **Fourier transforms respect negative sums.** Proved result `hat_negSum`: Under the stated hypotheses, Fourier transforms preserve negative sums.
 
@@ -2000,67 +2000,67 @@ Source: `lean/Breakdown/FracCert/SecondTraceSolenoidal.lean`. Imported by the or
 
 **The sum of diagonal second derivatives.** Definition `diagSum`: This defines the sum of the three second coordinate derivatives of a scalar function.
 
-**Directional derivatives remain smooth.** Proved result `contDiff_dirDeriv`: Under the stated hypotheses, smooth directional derivatives are smooth.
+**Directional derivatives remain smooth.** Proved result `contDiff_dirDeriv`: Each coordinate directional derivative of a smooth scalar function is smooth.
 
 **Directional derivatives preserve tests.** Proved result `test_dirDeriv`: Under the stated hypotheses, directional derivatives preserve test fields.
 
-**Smooth functions are differentiable.** Proved result `differentiable_of_smooth`: Under the stated hypotheses, smooth functions are differentiable.
+**Smooth functions are differentiable.** Proved result `differentiable_of_smooth`: Every smooth scalar function on ℝ³ is differentiable.
 
 **Directional derivatives give Hessians.** Proved result `dirDeriv_dirDeriv`: Under the stated hypotheses, iterated directional derivatives are Hessian entries.
 
 **Smooth mixed derivatives commute.** Proved result `dirDeriv_comm`: Under the stated hypotheses, smooth mixed directional derivatives commute.
 
-**The diagonal sum has three terms.** Proved result `diagSum_eq`: Under the stated hypotheses, the diagonal sum has three terms.
+**The diagonal sum has three terms.** Proved result `diagSum_eq`: The diagonal sum of second directional derivatives is ∂₁²f+∂₂²f+∂₃²f, the scalar Laplacian.
 
-**The diagonal sum preserves tests.** Proved result `test_diagSum`: Under the stated hypotheses, the diagonal sum preserves tests.
+**The diagonal sum preserves tests.** Proved result `test_diagSum`: The Laplacian of a smooth compactly supported scalar test function is again smooth and compactly supported.
 
-**diagonal sum commutes with derivatives.** Proved result `diagSum_dirDeriv`: Under the stated hypotheses, the diagonal sum commutes with derivatives.
+**diagonal sum commutes with derivatives.** Proved result `diagSum_dirDeriv`: For smooth f, the Laplacian commutes with every coordinate derivative: Δ(∂ᵢf)=∂ᵢ(Δf).
 
-**Compact tests pair integrably.** Proved result `integrable_test_smul`: Under the stated hypotheses, compact tests pair integrably.
+**Compact tests pair integrably.** Proved result `integrable_test_smul`: For f∈Lᵖ, p≥1, multiplying f by a smooth compactly supported scalar test function gives an integrable field.
 
-**Derivative columns lie in L².** Proved result `memLp_column`: Under the stated hypotheses, derivative columns lie in L².
+**Derivative columns lie in L².** Proved result `memLp_column`: If measurable G has integrable squared matrix size, each column Geᵢ belongs to L².
 
-**Diagonal Hessian entries lie in L².** Proved result `memLp_entry`: Under the stated hypotheses, diagonal Hessian entries lie in L².
+**Diagonal Hessian entries lie in L².** Proved result `memLp_entry`: If a measurable Hessian H has integrable squared tensor size, every diagonal entry H(eⱼ,eⱼ) belongs to L².
 
-**Second traces lie in L².** Proved result `memLp_trace`: Under the stated hypotheses, second traces lie in L².
+**Second traces lie in L².** Proved result `memLp_trace`: For an admissible second-order field, the Hessian trace Δv belongs to L².
 
 **Weak second traces transfer to tests.** Proved result `weak_diag`: Under the stated hypotheses, weak second traces move onto scalar tests.
 
-**The negative second trace is solenoidal.** Proved result `solenoidal`: Under the stated hypotheses, the negative second trace is solenoidal.
+**The negative second trace is solenoidal.** Proved result `solenoidal`: The negative Hessian trace of an admissible divergence-free second-order field annihilates all scalar gradients: ∫(−Δv)·∇φ=0 for smooth compactly supported φ.
 
-**Orthogonal changes expand the trace.** Proved result `trace_iso_aux`: Under the stated hypotheses, orthogonal changes expand the trace.
+**Orthogonal changes expand the trace.** Proved result `trace_iso_aux`: For a scalar bilinear form B and orthogonal A, summing B(Aeⱼ,Aeⱼ) equals ∑ₖ,ₗ(eₖ·eₗ)B(eₖ,eₗ), expressing the cancellation of cross terms in an orthonormal basis.
 
-**Orthogonal changes preserve the trace.** Proved result `trace_iso`: Under the stated hypotheses, orthogonal changes preserve the trace.
+**Orthogonal changes preserve the trace.** Proved result `trace_iso`: The trace of a scalar bilinear form is invariant under an orthogonal change of coordinates: ∑ⱼB(Aeⱼ,Aeⱼ)=∑ⱼB(eⱼ,eⱼ).
 
-**Derivatives obey orthogonal composition.** Proved result `fderiv_comp_iso`: Under the stated hypotheses, derivatives obey orthogonal composition.
+**Derivatives obey orthogonal composition.** Proved result `fderiv_comp_iso`: For an orthogonal change of variables A, differentiation obeys D(g∘A)(y)w=Dg(Ay)(Aw), taking a derivative to be zero at points where it does not exist.
 
-**Laplacian respects orthogonal changes.** Proved result `diagSum_comp_iso`: Under the stated hypotheses, the Laplacian respects orthogonal changes.
+**Laplacian respects orthogonal changes.** Proved result `diagSum_comp_iso`: For smooth f and orthogonal A, the Laplacian satisfies Δ(f∘A)(y)=(Δf)(Ay).
 
-**Orthogonal changes preserve integrals.** Proved result `integral_comp_iso`: Under the stated hypotheses, orthogonal changes preserve integrals.
+**Orthogonal changes preserve integrals.** Proved result `integral_comp_iso`: Orthogonal changes of variables preserve the spatial integral: ∫g(Ay)dy=∫g(z)dz.
 
-**Isometries pass through vector integrals.** Proved result `integral_iso_smul`: Under the stated hypotheses, isometries pass through vector integrals.
+**Isometries pass through vector integrals.** Proved result `integral_iso_smul`: A linear isometry A can be moved outside a vector integral: ∫c(y)AF(y)dy=A(∫c(y)F(y)dy).
 
-**Second traces preserve spatial symmetry.** Proved result `trace_equivariant`: Under the stated hypotheses, second traces preserve spatial symmetry.
+**Second traces preserve spatial symmetry.** Proved result `trace_equivariant`: If an admissible second-order field v is equivariant almost everywhere under an isometry A, then its negative Hessian trace −Δv is equivariant almost everywhere under the same isometry.
 
-**Discrete turns preserve sums.** Proved result `turnStep_add`: Under the stated hypotheses, discrete turns preserve sums. Source: `Breakdown.FracCert.SecondTraceSolenoidal:278`.
+**Discrete turns preserve sums.** Proved result `turnStep_add`: The discrete axial rotation R through 2π/m satisfies R(a+b)=Ra+Rb. Source: `Breakdown.FracCert.SecondTraceSolenoidal:278`.
 
-**Discrete turns preserve scaling.** Proved result `turnStep_smul`: Under the stated hypotheses, discrete turns preserve scaling. Source: `Breakdown.FracCert.SecondTraceSolenoidal:282`.
+**Discrete turns preserve scaling.** Proved result `turnStep_smul`: The discrete axial rotation R through 2π/m satisfies R(ca)=cRa for every real c. Source: `Breakdown.FracCert.SecondTraceSolenoidal:282`.
 
-**Discrete turns preserve norms.** Proved result `turnStep_norm`: Under the stated hypotheses, discrete turns preserve norms. Source: `Breakdown.FracCert.SecondTraceSolenoidal:286`.
+**Discrete turns preserve norms.** Proved result `turnStep_norm`: The discrete axial rotation through 2π/m preserves the norm of every vector. Source: `Breakdown.FracCert.SecondTraceSolenoidal:286`.
 
-**Reflection preserves sums.** Proved result `mirror_add`: Under the stated hypotheses, reflection preserves sums. Source: `Breakdown.FracCert.SecondTraceSolenoidal:292`.
+**Reflection preserves sums.** Proved result `mirror_add`: Horizontal-plane reflection distributes over vector addition. Source: `Breakdown.FracCert.SecondTraceSolenoidal:292`.
 
-**Reflection preserves scaling.** Proved result `mirror_smul`: Under the stated hypotheses, reflection preserves scaling. Source: `Breakdown.FracCert.SecondTraceSolenoidal:296`.
+**Reflection preserves scaling.** Proved result `mirror_smul`: Horizontal-plane reflection commutes with real scalar multiplication. Source: `Breakdown.FracCert.SecondTraceSolenoidal:296`.
 
-**Reflection preserves norms.** Proved result `mirror_norm`: Under the stated hypotheses, reflection preserves norms. Source: `Breakdown.FracCert.SecondTraceSolenoidal:300`.
+**Reflection preserves norms.** Proved result `mirror_norm`: Horizontal-plane reflection preserves the Euclidean norm. Source: `Breakdown.FracCert.SecondTraceSolenoidal:300`.
 
 **The discrete turn as an isometry.** Definition `turnIso`: This equips the discrete axial turn with its norm-preserving linear equivalence structure. Source: `Breakdown.FracCert.SecondTraceSolenoidal:305`.
 
 **Reflection as an isometry.** Definition `mirrorIso`: This equips reflection with its norm-preserving linear equivalence structure. Source: `Breakdown.FracCert.SecondTraceSolenoidal:310`.
 
-**turn isometry equals the discrete turn.** Proved result `turnIso_coe`: Under the stated hypotheses, the turn isometry equals the discrete turn. Source: `Breakdown.FracCert.SecondTraceSolenoidal:314`.
+**turn isometry equals the discrete turn.** Proved result `turnIso_coe`: The rotational isometry used for the Hessian-trace argument is rotation through 2π/m about the third axis. Source: `Breakdown.FracCert.SecondTraceSolenoidal:314`.
 
-**The mirror isometry equals reflection.** Proved result `mirrorIso_coe`: Under the stated hypotheses, the mirror isometry equals reflection. Source: `Breakdown.FracCert.SecondTraceSolenoidal:319`.
+**The mirror isometry equals reflection.** Proved result `mirrorIso_coe`: The reflection isometry used for the Hessian-trace argument is (y₁,y₂,y₃)↦(y₁,y₂,−y₃). Source: `Breakdown.FracCert.SecondTraceSolenoidal:319`.
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
@@ -2082,17 +2082,17 @@ Source: `lean/Breakdown/FracCert/SixthGradientBound.lean`. Imported by the fract
 
 **Convolution preserves energy bounds.** Proved result `conv_sum_le`: Under the stated hypotheses, convolution preserves summed energy bounds.
 
-**Mollification preserves weak derivatives.** Proved result `mollify_fderiv_apply`: Under the stated hypotheses, mollification preserves weak derivatives. Source: `Breakdown.FracCert.SixthGradientBound:107`.
+**Mollification preserves weak derivatives.** Proved result `mollify_fderiv_apply`: For locally integrable g with specified weak derivative columns cⱼ, the normalized smooth mollification satisfies ∂ⱼ(ρ*g)=ρ*cⱼ pointwise. Source: `Breakdown.FracCert.SixthGradientBound:107`.
 
 **L⁶ means an integrable sixth power.** Proved result `memLp_six_iff`: Under the stated hypotheses, L⁶ membership means integrable sixth power.
 
-**The L⁶ tail bounds cutoff errors.** Proved result `cross_tail_le`: Under the stated hypotheses, the L⁶ tail bounds cutoff errors.
+**The L⁶ tail bounds cutoff errors.** Proved result `cross_tail_le`: If f is continuous and the radius-R cutoff has |DχR|≤K/R, with K≥0 and R>0, then ‖|DχR||f|‖₂≤2K·vol(B₁)¹ᐟ³‖1{|y|≥R}f‖₆.
 
-**The L⁶ tail tends to zero.** Proved result `tail_tendsto`: Under the stated hypotheses, the L⁶ tail tends to zero.
+**The L⁶ tail tends to zero.** Proved result `tail_tendsto`: For f∈L⁶, its L⁶ norm outside the ball of radius n+1 tends to zero as n→∞.
 
-**Smooth L⁶ fields obey the Sobolev bound.** Proved result `smooth_six_of_six`: Under the stated hypotheses, smooth L⁶ fields obey the Sobolev bound.
+**Smooth L⁶ fields obey the Sobolev bound.** Proved result `smooth_six_of_six`: For smooth f∈L⁶(ℝ³), the Sobolev estimate ‖f‖₆≤CS‖Df‖₂ holds with the selected dimension-three Sobolev constant CS, allowing an infinite derivative norm.
 
-**Weak gradient energy bounds the L⁶ norm.** Proved result `six_bound_of_weak`: Under the stated hypotheses, weak gradient energy bounds the L⁶ norm.
+**Weak gradient energy bounds the L⁶ norm.** Proved result `six_bound_of_weak`: If g∈L⁶ has weak derivative columns cⱼ with ∑ⱼ|cⱼ|²≤E and E∈L¹, then ‖g‖₆≤3CS(∫E)¹ᐟ², where CS is the selected Sobolev constant.
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
@@ -2108,11 +2108,11 @@ Source: `lean/Breakdown/FracCert/SmoothAssembly.lean`. Imported by the fractiona
 
 **Source namespace:** `Breakdown.FracCert`.
 
-**Extended L² energy equals squared norm.** Proved result `lintegral_enorm_sq_eq`: Under the stated hypotheses, extended L² energy equals squared norm.
+**Extended L² energy equals squared norm.** Proved result `lintegral_enorm_sq_eq`: For an energy-space element x represented by its L² frequency variable, the nonnegative integral of the squared frequency norm equals ‖x‖².
 
-**The first moment weight cancels radius.** Proved result `weight_sq_le`: Under the stated hypotheses, the first moment weight cancels radius.
+**The first moment weight cancels radius.** Proved result `weight_sq_le`: At every ξ, |ξ|²(|(2π|ξ|)⁻¹||v|)²≤(2π)⁻²|v|², including the specified zero-frequency value.
 
-**energy norm controls the first moment.** Proved result `homNormSq_one_le`: Under the stated hypotheses, the energy norm controls the first moment.
+**energy norm controls the first moment.** Proved result `homNormSq_one_le`: The first homogeneous moment of the physical Fourier symbol x(ξ)/(2π|ξ|) is at most (2π)⁻²‖x‖².
 
 **Mild trajectories become smooth.** Proved result `mildSmoothing_of`: Under the stated assumptions, this establishes that for 1<α<5/4, every positive-time value of a mild solution in a concrete framework has all Fourier moments.
 
@@ -2130,15 +2130,15 @@ Source: `lean/Breakdown/FracCert/SmoothFirstGain.lean`. Imported by the fraction
 
 **The weighted squared gain norm.** Definition `gainNormSq`: This defines the extended nonnegative integral of the gain weight times the squared norm of the Fourier field.
 
-**L² energy equals squared norm.** Proved result `lintegral_enorm_sq`: Under the stated hypotheses, L² energy equals squared norm.
+**L² energy equals squared norm.** Proved result `lintegral_enorm_sq`: For a complex L² field f, its squared L² norm equals the nonnegative integral ∫|f(ξ)|²dξ.
 
-**gain norm controls the Sobolev moment.** Proved result `fracHomSq_le`: Under the stated hypotheses, the gain norm controls the Sobolev moment.
+**gain norm controls the Sobolev moment.** Proved result `fracHomSq_le`: The squared homogeneous Fourier energy of order α+1/2 of the physical symbol x(ξ)/(2π|ξ|) is at most (2π)⁻²∫|ξ|^(2α−1)|x(ξ)|²dξ, with +∞ permitted.
 
-**Heat decay bounds the gain weight.** Proved result `heat_weight_le`: Under the stated hypotheses, heat decay bounds the gain weight.
+**Heat decay bounds the gain weight.** Proved result `heat_weight_le`: For α>1 and τ>0, the pointwise heat multiplier satisfies |ξ|^(2α−1)exp[−2τ(2π|ξ|)^(2α)]≤τ^(-(2α−1)/(2α)).
 
-**Heat evolution gains weighted regularity.** Proved result `heat_gain`: Under the stated hypotheses, heat evolution gains weighted regularity.
+**Heat evolution gains weighted regularity.** Proved result `heat_gain`: For α>1 and τ>0, fractional heat evolution satisfies ∫|ξ|^(2α−1)|Hτy(ξ)|²dξ≤τ^(-(2α−1)/(2α))‖y‖².
 
-**The gain weight is continuous.** Proved result `gainWeight_continuous`: Under the stated hypotheses, the gain weight is continuous.
+**The gain weight is continuous.** Proved result `gainWeight_continuous`: When α>1, the radial gain weight ξ↦|ξ|^(2α−1) is continuous on all of ℝ³.
 
 **The truncated square-root weight.** Definition `cutMul`: This defines the bounded multiplication field given by the square root of the gain weight truncated at N.
 
@@ -2148,21 +2148,21 @@ Source: `lean/Breakdown/FracCert/SmoothFirstGain.lean`. Imported by the fraction
 
 **Cutoff norm² equals weighted energy.** Proved result `cutOp_sq`: Under the stated hypotheses, cutoff norm squares equal weighted energy.
 
-**The full gain controls each cutoff.** Proved result `cutOp_le`: Under the stated hypotheses, the full gain controls each cutoff.
+**The full gain controls each cutoff.** Proved result `cutOp_le`: For α>1, multiplication by √min(|ξ|^(2α−1),N) has squared L² norm at most ∫|ξ|^(2α−1)|f|² for every N≥0.
 
-**The cutoffs recover the full gain.** Proved result `gainNormSq_le_iSup`: Under the stated hypotheses, the cutoffs recover the full gain.
+**The cutoffs recover the full gain.** Proved result `gainNormSq_le_iSup`: For α>1, the full weighted integral ∫|ξ|^(2α−1)|f|² is at most the supremum over N of the squared L² norms of √min(|ξ|^(2α−1),N)f, including the possibility of an infinite supremum.
 
-**Weighted energy bounds cutoff norms.** Proved result `cutOp_norm_le`: Under the stated hypotheses, weighted energy bounds cutoff norms.
+**Weighted energy bounds cutoff norms.** Proved result `cutOp_norm_le`: If α>1 and ∫|ξ|^(2α−1)|f|²≤B with B≥0, then every truncated multiplier √min(|ξ|^(2α−1),N)f has L² norm at most √B.
 
-**The bilinear term gains regularity.** Proved result `bilin_gain`: Under the stated hypotheses, the bilinear term gains regularity.
+**The bilinear term gains regularity.** Proved result `bilin_gain`: Assume α>1 and the bilinear estimate ‖Bτ(u,v)‖≤Cτ^(−3/(4α))‖u‖‖v‖ with C≥0. If τ>0 and ‖u‖≤M, then the gain integral of Bτ(u,u) is at most (τ/2)^(-(2α−1)/(2α))[C(τ/2)^(−3/(4α))M²]².
 
-**Halving time extracts a power of two.** Proved result `half_rpow_neg`: Under the stated hypotheses, halving time extracts a power of two.
+**Halving time extracts a power of two.** Proved result `half_rpow_neg`: For τ≥0 and real e, the real-power identity (τ/2)⁻ᵉ=2ᵉτ⁻ᵉ holds with the specified value at τ=0.
 
-**Bilinear cutoffs have a time bound.** Proved result `bilin_cut`: Under the stated hypotheses, bilinear cutoffs have a time bound.
+**Bilinear cutoffs have a time bound.** Proved result `bilin_cut`: Assuming the bilinear estimate with coefficient C≥0 and α>1, if τ>0 and ‖u‖≤M with M≥0, every truncated gain multiplier applied to Bτ(u,u) has norm at most CM²·2^((α+1)/(2α))τ^(-(α+1)/(2α)).
 
-**The time singularity is integrable.** Proved result `sub_rpow_integral`: Under the stated hypotheses, the time singularity is integrable.
+**The time singularity is integrable.** Proved result `sub_rpow_integral`: For e<1, the kernel (s−r)⁻ᵉ is integrable on the interval from 0 to s, and its oriented integral is s^(1−e)/(1−e), with the chosen real-power convention.
 
-**Mild evolution has uniform cutoff bounds.** Proved result `cut_bound`: Under the stated hypotheses, mild evolution has uniform cutoff bounds.
+**Mild evolution has uniform cutoff bounds.** Proved result `cut_bound`: Assume α>1 and the bilinear bound with coefficient C≥0, and let u satisfy the mild equation with an integrable Duhamel term, ‖u(r)‖≤M on [0,t], and 0<σ≤s≤t. Every truncated gain norm of u(s) is bounded by √[σ^(-(2α−1)/(2α))‖u(0)‖²]+CM²2ᵉt^(1−e)/(1−e), where e=(α+1)/(2α)<1.
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -2178,17 +2178,17 @@ Source: `lean/Breakdown/FracCert/SmoothMomentStep.lean`. Imported by the fractio
 
 **Source namespace:** `Breakdown.FracCert`.
 
-**The time power has a finite integral.** Proved result `lintegral_rpow_sub_le`: Under the stated hypotheses, the time power has a finite integral.
+**The time power has a finite integral.** Proved result `lintegral_rpow_sub_le`: If 0≤m≤s≤t and β<1, then ∫ₘˢ(s−r)⁻ᵝdr≤t^(1−β)/(1−β), also as a nonnegative extended integral.
 
-**Squaring reverses the square root.** Proved result `sq_rpow_half`: Under the stated hypotheses, squaring reverses the square root.
+**Squaring reverses the square root.** Proved result `sq_rpow_half`: Every nonnegative extended number z, including +∞, equals the square of its square root.
 
 **Mild solutions restart at positive time.** Proved result `restart_concrete`: Under the stated hypotheses, mild trajectories restart at positive time.
 
-**The heat part gains one moment.** Proved result `heat_part`: Under the stated hypotheses, the heat part gains one moment.
+**The heat part gains one moment.** Proved result `heat_part`: For α>1, suppose fractional heat flow bounds the squared homogeneous Fourier moment of order k+1 by C_H τ^(−1/α) times the input squared moment of order k. If τ≥m>0 and the input order-k moment is at most B′≥0, the square root of the evolved order-(k+1) moment is at most √(|C_H|m^(−1/α)B′).
 
-**bilinear moment has an integrable bound.** Proved result `bilin_pointwise`: Under the stated hypotheses, the bilinear moment has an integrable bound.
+**bilinear moment has an integrable bound.** Proved result `bilin_pointwise`: Assume the bilinear moment estimate has coefficient CBτ^(−2/α); if both the Fourier L¹ size and the squared order-k moment of x are at most B′≥0, then the square root of the order-(k+1) moment of Bτ(x,x) is at most √(|CB|B′³)τ^(−1/α) for τ>0.
 
-**integrated bilinear term gains a moment.** Proved result `bilin_part`: Under the stated hypotheses, the integrated bilinear term gains a moment.
+**integrated bilinear term gains a moment.** Proved result `bilin_part`: For α>1, assume the bilinear moment bound and uniform bounds B′≥0 on the Fourier L¹ size and squared order-k moment of u over [m,t], where 0≤m≤s≤t. If the Duhamel term is integrable, the square root of its order-(k+1) moment is at most √(|CB|B′³)t^(1−1/α)/(1−1/α).
 
 **Mild solutions gain the next moment.** Proved result `mildMomentStep`: Under the stated assumptions, this establishes that for 1<α<5/4 and k≥1, uniform Fourier L¹ and kth-moment energy bounds away from initial time for a mild solution imply uniform (k+1)st-moment energy bounds on the same type of intervals.
 
@@ -2202,31 +2202,31 @@ Source: `lean/Breakdown/FracCert/SmoothMomentStepAux.lean`. Imported by the frac
 
 **Source namespace:** `Breakdown.FracCert`.
 
-**The moment multiplier is measurable.** Proved result `momentWeight_measurable`: Under the stated hypotheses, the moment multiplier is measurable.
+**The moment multiplier is measurable.** Proved result `momentWeight_measurable`: For each nonnegative integer m, the radial moment weight |ξ|ᵐ/(2π|ξ|), with its specified zero-frequency value, is measurable.
 
-**The moment norm is a weighted L² norm.** Proved result `homNormSq_symbolX_eq`: Under the stated hypotheses, the moment norm is a weighted L² norm.
+**The moment norm is a weighted L² norm.** Proved result `homNormSq_symbolX_eq`: The square root of the mth homogeneous moment of the physical symbol x(ξ)/(2π|ξ|) equals the L² norm of |ξ|ᵐx(ξ)/(2π|ξ|), allowing +∞.
 
 **Moment norms obey the triangle bound.** Proved result `smoothMomentNorm_add`: Under the stated hypotheses, moment norms obey the triangle inequality.
 
-**Heat decay controls the extra weight.** Proved result `heat_weight_le`: Under the stated hypotheses, heat decay controls the extra weight.
+**Heat decay controls the extra weight.** Proved result `heat_weight_le`: For α>0 and τ>0, |ξ|²exp[−2τ(2π|ξ|)^(2α)]≤(1/α)^(1/α)τ^(−1/α).
 
-**Heat evolution gains one Fourier moment.** Proved result `smoothHeatMomentGain`: Under the stated hypotheses, heat evolution gains one Fourier moment.
+**Heat evolution gains one Fourier moment.** Proved result `smoothHeatMomentGain`: For α>1 and each k≥0, a constant C bounds the squared order-(k+1) Fourier moment after fractional heat evolution by Cτ^(−1/α) times the squared order-k moment, uniformly for τ>0 and every energy-space field.
 
 **Frequency powers split in convolution.** Proved result `norm_pow_le_split`: Under the stated hypotheses, a frequency power splits across convolution.
 
-**Convolution moments have an L¹-L² bound.** Proved result `lintegral_hom_conv_sq_le`: Under the stated hypotheses, convolution moments have an L¹-L² bound.
+**Convolution moments have an L¹-L² bound.** Proved result `lintegral_hom_conv_sq_le`: For a measurable nonnegative a and k≥0, the weighted square integral of its convolution satisfies ∫|ξ|^(2k)(a*a)(ξ)²dξ≤4^(k+1)(∫a)²∫|η|^(2k)a(η)²dη, with extended nonnegative integrals.
 
-**Symbol convolutions have moment bounds.** Proved result `smoothConvMomentBound`: Under the stated hypotheses, symbol convolutions have moment bounds.
+**Symbol convolutions have moment bounds.** Proved result `smoothConvMomentBound`: For every k≥0 there is Ck such that the weighted square integral of the sum of the absolute component convolutions is at most Ck‖f‖₁²∫|ξ|^(2k)|f(ξ)|²dξ for every measurable vector-valued symbol f.
 
-**Energy-space symbols are measurable.** Proved result `symbolX_aesm`: Under the stated hypotheses, energy-space symbols are measurable.
+**Energy-space symbols are measurable.** Proved result `symbolX_aesm`: The physical Fourier symbol x(ξ)/(2π|ξ|) associated with an energy-space element x is measurable up to a null set.
 
-**Zero higher moment forces zero L¹ mass.** Proved result `symbolL1_zero_of_hom_zero`: Under the stated hypotheses, zero higher moment forces zero L¹ mass.
+**Zero higher moment forces zero L¹ mass.** Proved result `symbolL1_zero_of_hom_zero`: If a measurable symbol has zero squared homogeneous moment of any nonnegative integer order k, then its Fourier L¹ size is also zero.
 
 **Symbol norms gain an inverse radius.** Proved result `enorm_symbolX_le`: If the underlying L² representative has extended norm at most c at a frequency, the energy symbol has extended norm at most the nonnegative reciprocal of 2π‖ξ‖ times c there.
 
-**The bilinear multiplier gains one moment.** Proved result `bilin_weight_le`: Under the stated hypotheses, the bilinear multiplier gains one moment.
+**The bilinear multiplier gains one moment.** Proved result `bilin_weight_le`: For α>0 and τ>0, the squared bilinear multiplier with one additional frequency factor is bounded by 4π²[(1/α)^(1/α)2^(1/α)]²τ^(−2/α).
 
-**Bilinear evolution gains one moment.** Proved result `smoothBilinMomentGain`: Under the stated hypotheses, bilinear evolution gains one moment.
+**Bilinear evolution gains one moment.** Proved result `smoothBilinMomentGain`: For α>1 and each k≥0, there is Ck such that the squared order-(k+1) moment of Bτ(x,x) is at most Ckτ^(−2/α) times the squared Fourier L¹ size of x times its squared order-k moment, for every τ>0.
 
 **The Fourier moment multiplier.** Definition `momentWeight`: This defines the moment weight ‖ξ‖^m/(2π‖ξ‖).
 
@@ -2234,23 +2234,23 @@ Source: `lean/Breakdown/FracCert/SmoothMomentStepAux.lean`. Imported by the frac
 
 **The bounded moment cutoff operator.** Definition `truncOp`: This defines the bounded L² operator multiplying by the truncated moment weight.
 
-**Moment weights are nonnegative.** Proved result `momentWeight_nonneg`: Under the stated hypotheses, moment weights are nonnegative.
+**Moment weights are nonnegative.** Proved result `momentWeight_nonneg`: The moment weight |ξ|ᵐ/(2π|ξ|) is nonnegative, with the specified value at ξ=0.
 
-**Capped moment weights are nonnegative.** Proved result `truncWeight_nonneg`: Under the stated hypotheses, capped moment weights are nonnegative.
+**Capped moment weights are nonnegative.** Proved result `truncWeight_nonneg`: Truncating the nonnegative moment weight |ξ|ᵐ/(2π|ξ|) at an integer level n preserves nonnegativity.
 
-**Capped moment weights are measurable.** Proved result `truncWeight_measurable`: Under the stated hypotheses, capped moment weights are measurable.
+**Capped moment weights are measurable.** Proved result `truncWeight_measurable`: The truncated weight min(|ξ|ᵐ/(2π|ξ|),n) is measurable in ξ.
 
-**The cutoff acts by the capped weight.** Proved result `truncOp_ae`: Under the stated hypotheses, the cutoff acts by the capped weight.
+**The cutoff acts by the capped weight.** Proved result `truncOp_ae`: The bounded truncation operator on L² acts almost everywhere by multiplication with min(|ξ|ᵐ/(2π|ξ|),n).
 
-**Extended L² norms square to integrals.** Proved result `enorm_sq_L2C`: Under the stated hypotheses, extended L² norms square to integrals.
+**Extended L² norms square to integrals.** Proved result `enorm_sq_L2C`: For a complex L² class, the square of its extended nonnegative norm equals the integral of its representative's squared norm.
 
 **Cutoff norm² equals weighted energy.** Proved result `truncOp_enorm_sq`: Under the stated hypotheses, cutoff norm squares equal weighted energy.
 
-**homogeneous moment is weighted energy.** Proved result `hom_lintegral`: Under the stated hypotheses, the homogeneous moment is weighted energy.
+**homogeneous moment is weighted energy.** Proved result `hom_lintegral`: The mth homogeneous moment of the physical symbol y(ξ)/(2π|ξ|) equals the nonnegative integral ∫||ξ|ᵐy(ξ)/(2π|ξ|)|²dξ.
 
-**The full moment bounds every cutoff.** Proved result `truncOp_le`: Under the stated hypotheses, the full moment bounds every cutoff.
+**The full moment bounds every cutoff.** Proved result `truncOp_le`: The L² norm after truncating the mth moment multiplier is at most the square root of the full mth homogeneous moment of the physical symbol.
 
-**Moment norms pass through time integrals.** Proved result `smoothMomentNorm_integral`: Under the stated hypotheses, moment norms pass through time integrals.
+**Moment norms pass through time integrals.** Proved result `smoothMomentNorm_integral`: If f is integrable in the energy space on [a,b] with a≤b, then the mth homogeneous moment norm of ∫ₐᵇf(r)dr is at most the nonnegative integral of the corresponding moment norms of f(r) over (a,b).
 
 ### Breakdown.FracCert.SmoothMomentStepSymbol
 
@@ -2262,11 +2262,11 @@ Source: `lean/Breakdown/FracCert/SmoothMomentStepSymbol.lean`. Imported by the f
 
 **Source namespace:** `Breakdown.FracCert`.
 
-**Coordinate norms bound the vector norm.** Proved result `norm_sum_le_components`: Under the stated hypotheses, coordinate norms bound the vector norm.
+**Coordinate norms bound the vector norm.** Proved result `norm_sum_le_components`: The norm of a complex three-vector is at most the sum of its coordinate absolute values.
 
-**Convolution bounds the advection symbol.** Proved result `enorm_advection_le`: Under the stated hypotheses, convolution bounds the advection symbol.
+**Convolution bounds the advection symbol.** Proved result `enorm_advection_le`: For a measurable divergence-free symbol with finite Fourier L¹ size, first L¹ moment and H¹ size, the advection symbol is bounded pointwise by 2π|ξ| times the sum of the absolute component convolutions.
 
-**Nice bilinear terms have a symbol bound.** Proved result `smoothBilinNiceBound`: Under the stated hypotheses, nice bilinear terms have a symbol bound.
+**Nice bilinear terms have a symbol bound.** Proved result `smoothBilinNiceBound`: For α>1 and τ>0, let measurable f satisfy ξ·f(ξ)=0 and f(−ξ)=overline(f(ξ)), have all integer Sobolev moments finite, and have finite zeroth and first absolute Fourier moments. The Fourier representative of the resulting bilinear term in the homogeneous H¹ state space is bounded almost everywhere by (2π|ξ|)²exp[−τ(2π|ξ|)^(2α)] times the sum of the convolutions of the absolute component values of f.
 
 **Source namespace:** `Breakdown.FracCert.SmoothMomentStepSymbol.Internal`.
 
@@ -2276,51 +2276,51 @@ Source: `lean/Breakdown/FracCert/SmoothMomentStepSymbol.lean`. Imported by the f
 
 **The symmetry-preserving annular cutoff.** Definition `cutSym`: This defines an annular symbol cutoff that retains h(ξ) only where ξ lies in the annulus and the pointwise solenoidal and conjugation conditions both hold, using zero elsewhere.
 
-**Conjugation acts by coordinate.** Proved result `conjVec_apply`: Under the stated hypotheses, conjugation acts by coordinate.
+**Conjugation acts by coordinate.** Proved result `conjVec_apply`: Coordinatewise conjugation of a complex vector conjugates each individual coordinate.
 
-**Complex conjugation is an involution.** Proved result `conjVec_conjVec`: Under the stated hypotheses, complex conjugation is an involution. Source: `Breakdown.FracCert.SmoothMomentStepSymbol:92`.
+**Complex conjugation is an involution.** Proved result `conjVec_conjVec`: Conjugating a complex vector twice returns the original vector. Source: `Breakdown.FracCert.SmoothMomentStepSymbol:92`.
 
-**Frequency annuli are measurable.** Proved result `measurableSet_ann`: Under the stated hypotheses, frequency annuli are measurable.
+**Frequency annuli are measurable.** Proved result `measurableSet_ann`: For every n≥0, the frequency annulus (n+1)⁻¹≤|ξ|≤n+1 is a measurable set.
 
-**Frequency annuli preserve negation.** Proved result `mem_ann_neg`: Under the stated hypotheses, frequency annuli preserve negation.
+**Frequency annuli preserve negation.** Proved result `mem_ann_neg`: If ξ lies in the annulus (n+1)⁻¹≤|ξ|≤n+1, then −ξ lies in the same annulus.
 
-**base symbol conditions preserve negation.** Proved result `isBase_neg`: Under the stated hypotheses, the base symbol conditions preserve negation.
+**base symbol conditions preserve negation.** Proved result `isBase_neg`: If ξ·h(ξ)=0 and h(−ξ)=overline(h(ξ)), then the same divergence and reality conditions hold at −ξ.
 
-**The cutoff symbol is solenoidal.** Proved result `cutSym_sol`: Under the stated hypotheses, the cutoff symbol is solenoidal.
+**The cutoff symbol is solenoidal.** Proved result `cutSym_sol`: Retaining h only at frequencies in (n+1)⁻¹≤|ξ|≤n+1 where its divergence and reality conditions hold, and setting it to zero elsewhere, produces a symbol satisfying those conditions everywhere.
 
 **Cutoffs equal annular restrictions.** Proved result `cutSym_of`: Under the stated hypotheses, admissible cutoffs equal annular restriction.
 
-**Cutting off cannot increase symbol norms.** Proved result `norm_cutSym_le`: Under the stated hypotheses, cutting off cannot increase symbol norms.
+**Cutting off cannot increase symbol norms.** Proved result `norm_cutSym_le`: The annular truncation that enforces the divergence and reality conditions never increases the pointwise norm of a symbol h.
 
-**Each cutoff coordinate is norm bounded.** Proved result `norm_cutSym_apply_le`: Under the stated hypotheses, each cutoff coordinate is norm bounded.
+**Each cutoff coordinate is norm bounded.** Proved result `norm_cutSym_apply_le`: Every coordinate of the annularly truncated symbol has absolute value at most the norm of the original h(ξ).
 
 **Expanding annuli cover nonzero points.** Proved result `eventually_ann`: Under the stated hypotheses, annuli eventually contain every nonzero point.
 
 **Energy symbols meet the base conditions.** Proved result `isBase_ae`: Under the stated hypotheses, energy symbols satisfy the base conditions.
 
-**Energy-space symbols are measurable.** Proved result `aesm_symbolX`: Under the stated hypotheses, energy-space symbols are measurable.
+**Energy-space symbols are measurable.** Proved result `aesm_symbolX`: The physical Fourier symbol x(ξ)/(2π|ξ|) of an energy-space field is measurable up to a null set.
 
-**Annular cutoff symbols are measurable.** Proved result `aesm_cutSym`: Under the stated hypotheses, annular cutoff symbols are measurable.
+**Annular cutoff symbols are measurable.** Proved result `aesm_cutSym`: If h is measurable and satisfies the Fourier divergence and reality conditions almost everywhere, its truncation to the admissible frequencies in the annulus (n+1)⁻¹≤|ξ|≤n+1 remains measurable up to a null set.
 
 **Annuli bound the inverse-radius weight.** Proved result `norm_symbolX_le`: Under the stated hypotheses, annuli bound the inverse-radius multiplier.
 
 **L² representatives have finite energy.** Proved result `lintegral_sq_ne_top`: Under the stated hypotheses, L² representatives have finite squared mass.
 
-**Weighted extended norms convert to reals.** Proved result `ofReal_mul_enorm_sq`: Under the stated hypotheses, weighted extended norms convert to reals.
+**Weighted extended norms convert to reals.** Proved result `ofReal_mul_enorm_sq`: For a≥0 and a complex vector v, multiplying their nonnegative extended values gives exactly the nonnegative extended value of a|v|².
 
 **Annular cutoffs have all Sobolev moments.** Proved result `hsNormSq_cutSym_lt_top`: Under the stated hypotheses, annular cutoffs have every Sobolev moment.
 
-**Annular cutoffs have finite L¹ mass.** Proved result `symbolL1_cutSym_lt_top`: Under the stated hypotheses, annular cutoffs have finite L¹ mass.
+**Annular cutoffs have finite L¹ mass.** Proved result `symbolL1_cutSym_lt_top`: If the Fourier L¹ size of h is finite, then the same is true after its admissible annular truncation at every level n.
 
 **Cutoff gradients have finite L¹ mass.** Proved result `gradSymbolL1_cutSym_lt_top`: Under the stated hypotheses, annular cutoff gradients have finite L¹ mass.
 
-**Almost every frequency avoids one point.** Proved result `ae_ne`: Under the stated hypotheses, almost every frequency avoids one point.
+**Almost every frequency avoids one point.** Proved result `ae_ne`: For any fixed a∈ℝ³, almost every frequency ξ is different from a.
 
-**The excluded-annulus energy vanishes.** Proved result `tendsto_lintegral_cut`: Under the stated hypotheses, the excluded-annulus energy vanishes.
+**The excluded-annulus energy vanishes.** Proved result `tendsto_lintegral_cut`: For an L² symbol x, the squared mass outside the expanding annuli (n+1)⁻¹≤|ξ|≤n+1 tends to zero.
 
 **Radius multiplication recovers vectors.** Proved result `smul_symbolX`: Under the stated hypotheses, multiplying by radius recovers the vector.
 
-**Cutoff realizations converge in energy.** Proved result `approx_tendsto`: Under the stated hypotheses, cutoff realizations converge in energy.
+**Cutoff realizations converge in energy.** Proved result `approx_tendsto`: Truncate the physical Fourier symbol of x to the expanding admissible annuli, take its real inverse-transform field, and embed it in the homogeneous energy space. The resulting fields converge to x in the energy norm.
 
 **Cutoff convolutions converge a.e..** Proved result `conv_tendsto_ae`: Under the stated hypotheses, cutoff convolutions converge almost everywhere.
 
@@ -2340,9 +2340,9 @@ Source: `lean/Breakdown/FracCert/SmoothSupGain.lean`. Imported by the fractional
 
 **Source namespace:** `Breakdown.FracCert.SmoothSupGainInternal`.
 
-**Weighted Cauchy-Schwarz bounds L¹ mass.** Proved result `weighted_bound`: Under the stated hypotheses, weighted Cauchy-Schwarz bounds L¹ mass.
+**Weighted Cauchy-Schwarz bounds L¹ mass.** Proved result `weighted_bound`: For a measurable symbol f, any set S and real a, weighted Cauchy–Schwarz gives ∫S|f|≤(∫S|ξ|^(−2a))¹ᐟ²(∫ℝ³|ξ|^(2a)|f|²)¹ᐟ², interpreted with nonnegative extended integrals.
 
-**Symbol norms are almost measurable.** Proved result `symbolX_enorm_aemeasurable`: Under the stated hypotheses, symbol norms are almost measurable.
+**Symbol norms are almost measurable.** Proved result `symbolX_enorm_aemeasurable`: The norm of the physical Fourier symbol x(ξ)/(2π|ξ|) is measurable up to a null set.
 
 **Source namespace:** `Breakdown.FracCert`.
 
@@ -2360,51 +2360,51 @@ Source: `lean/Breakdown/FracCert/SolenoidalSplit.lean`. Imported by the fraction
 
 **The real vector-field L² space.** Abbreviation `L2F`: This abbreviates the real Hilbert space L² of spatial vector fields.
 
-**Derivatives are pairings with gradients.** Proved result `fderiv_eq_inner`: Under the stated hypotheses, derivatives are pairings with gradients.
+**Derivatives are pairings with gradients.** Proved result `fderiv_eq_inner`: The scalar derivative is represented by the gradient: Dψ(y)w=∇ψ(y)·w; at a nondifferentiable point both are defined to be zero.
 
-**Gradient norms bound derivative norms.** Proved result `norm_fderiv_le`: Under the stated hypotheses, gradient norms bound derivative norms.
+**Gradient norms bound derivative norms.** Proved result `norm_fderiv_le`: The operator norm of the scalar derivative satisfies ‖Dψ(y)‖op≤|∇ψ(y)|.
 
 **Scalar tests are C¹.** Proved result `test_one`: Under the stated hypotheses, scalar tests are continuously differentiable.
 
-**Scalar tests are differentiable.** Proved result `test_diff`: Under the stated hypotheses, scalar tests are differentiable.
+**Scalar tests are differentiable.** Proved result `test_diff`: A smooth compactly supported scalar test function is differentiable everywhere.
 
-**Test gradients are continuous.** Proved result `continuous_grad`: Under the stated hypotheses, test gradients are continuous.
+**Test gradients are continuous.** Proved result `continuous_grad`: The gradient of a smooth compactly supported scalar test function is continuous.
 
-**Test gradients have compact support.** Proved result `support_grad`: Under the stated hypotheses, test gradients have compact support.
+**Test gradients have compact support.** Proved result `support_grad`: The gradient of a smooth compactly supported scalar test function has compact support.
 
-**Test gradients lie in every Lp.** Proved result `memLp_grad`: Under the stated hypotheses, test gradients lie in every Lp.
+**Test gradients lie in every Lp.** Proved result `memLp_grad`: The gradient of a smooth compactly supported scalar test function belongs to every Lᵖ space, including L∞.
 
-**Scalar tests lie in every Lp.** Proved result `memLp_test`: Under the stated hypotheses, scalar tests lie in every Lp.
+**Scalar tests lie in every Lp.** Proved result `memLp_test`: A smooth compactly supported scalar test function belongs to every Lᵖ space, including L∞.
 
-**The zero scalar function is a test.** Proved result `test_zero`: Under the stated hypotheses, the zero scalar function is a test.
+**The zero scalar function is a test.** Proved result `test_zero`: The zero scalar function is smooth and compactly supported, with empty support.
 
-**Scalar tests admit sums.** Proved result `test_add`: Under the stated hypotheses, scalar tests admit sums.
+**Scalar tests admit sums.** Proved result `test_add`: The sum of two smooth compactly supported scalar functions is again smooth and compactly supported.
 
-**Scalar tests admit differences.** Proved result `test_sub`: Under the stated hypotheses, scalar tests admit differences.
+**Scalar tests admit differences.** Proved result `test_sub`: The difference of two smooth compactly supported scalar functions is again smooth and compactly supported.
 
-**Scalar tests admit constant scaling.** Proved result `test_mul`: Under the stated hypotheses, scalar tests admit constant scaling.
+**Scalar tests admit constant scaling.** Proved result `test_mul`: Multiplying a smooth compactly supported scalar function by any real constant preserves those properties.
 
-**Orthogonal changes preserve scalar tests.** Proved result `test_comp`: Under the stated hypotheses, orthogonal changes preserve scalar tests.
+**Orthogonal changes preserve scalar tests.** Proved result `test_comp`: For a linear isometry R, composing a smooth compactly supported scalar φ with R⁻¹ preserves smoothness and compact support.
 
-**The zero field has zero gradient.** Proved result `grad_zero`: Under the stated hypotheses, the zero field has zero gradient.
+**The zero field has zero gradient.** Proved result `grad_zero`: The gradient of the zero scalar function vanishes at every point.
 
-**Gradients preserve sums.** Proved result `grad_add`: Under the stated hypotheses, gradients preserve sums.
+**Gradients preserve sums.** Proved result `grad_add`: For smooth compactly supported φ,ψ, the identity ∇(φ+ψ)=∇φ+∇ψ holds everywhere.
 
-**Gradients preserve differences.** Proved result `grad_sub`: Under the stated hypotheses, gradients preserve differences.
+**Gradients preserve differences.** Proved result `grad_sub`: For smooth compactly supported φ,ψ, the identity ∇(φ−ψ)=∇φ−∇ψ holds everywhere.
 
-**Gradients preserve constant scaling.** Proved result `grad_mul`: Under the stated hypotheses, gradients preserve constant scaling.
+**Gradients preserve constant scaling.** Proved result `grad_mul`: For real c and smooth compactly supported φ, ∇(cφ)=c∇φ everywhere.
 
-**Gradients respect orthogonal changes.** Proved result `grad_comp`: Under the stated hypotheses, gradients respect orthogonal changes.
+**Gradients respect orthogonal changes.** Proved result `grad_comp`: Under an orthogonal change of coordinates R, a smooth compactly supported scalar satisfies ∇(φ∘R⁻¹)(y)=R∇φ(R⁻¹y).
 
 **The subspace of compact test gradients.** Definition `grads`: This defines the linear subspace of L² classes represented almost everywhere by gradients of scalar test functions.
 
 **The L² closure of test gradients.** Definition `gradClosure`: This defines the norm closure of the test-gradient subspace in L².
 
-**Every test gradient lies in the closure.** Proved result `toLp_mem`: Under the stated hypotheses, every test gradient lies in the closure.
+**Every test gradient lies in the closure.** Proved result `toLp_mem`: The L² gradient of every smooth compactly supported scalar test function lies in the L² closure of such gradients.
 
 **Gradient pairings equal L² pairings.** Proved result `inner_toLp`: Under the stated hypotheses, gradient pairings equal L² inner products.
 
-**Orthogonal fields are solenoidal.** Proved result `solenoidal_of_mem`: Under the stated hypotheses, orthogonal fields are solenoidal.
+**Orthogonal fields are solenoidal.** Proved result `solenoidal_of_mem`: Every L² field orthogonal to the closure of smooth compactly supported scalar gradients is divergence-free in the weak sense.
 
 **Solenoidal fields are orthogonal.** Proved result `mem_orth_of`: Under the stated hypotheses, solenoidal fields lie in the orthogonal space.
 
@@ -2412,25 +2412,25 @@ Source: `lean/Breakdown/FracCert/SolenoidalSplit.lean`. Imported by the fraction
 
 **L² closure gives weak gradients.** Proved result `gradient_of_mem`: Every element of the L² closure of smooth compactly supported scalar-test gradients is a weak gradient field.
 
-**Discrete turns preserve sums.** Proved result `turnStep_add`: Under the stated hypotheses, discrete turns preserve sums. Source: `Breakdown.FracCert.SolenoidalSplit:272`.
+**Discrete turns preserve sums.** Proved result `turnStep_add`: Rotation through 2π/m distributes over vector addition. Source: `Breakdown.FracCert.SolenoidalSplit:272`.
 
-**Discrete turns preserve scaling.** Proved result `turnStep_smul`: Under the stated hypotheses, discrete turns preserve scaling. Source: `Breakdown.FracCert.SolenoidalSplit:276`.
+**Discrete turns preserve scaling.** Proved result `turnStep_smul`: Rotation through 2π/m commutes with real scalar multiplication. Source: `Breakdown.FracCert.SolenoidalSplit:276`.
 
-**Discrete turns preserve norms.** Proved result `turnStep_norm`: Under the stated hypotheses, discrete turns preserve norms. Source: `Breakdown.FracCert.SolenoidalSplit:280`.
+**Discrete turns preserve norms.** Proved result `turnStep_norm`: Rotation through 2π/m preserves the Euclidean norm. Source: `Breakdown.FracCert.SolenoidalSplit:280`.
 
-**Reflection preserves sums.** Proved result `mirror_add`: Under the stated hypotheses, reflection preserves sums. Source: `Breakdown.FracCert.SolenoidalSplit:286`.
+**Reflection preserves sums.** Proved result `mirror_add`: Horizontal-plane reflection distributes over vector addition. Source: `Breakdown.FracCert.SolenoidalSplit:286`.
 
-**Reflection preserves scaling.** Proved result `mirror_smul`: Under the stated hypotheses, reflection preserves scaling. Source: `Breakdown.FracCert.SolenoidalSplit:290`.
+**Reflection preserves scaling.** Proved result `mirror_smul`: Horizontal-plane reflection commutes with real scalar multiplication. Source: `Breakdown.FracCert.SolenoidalSplit:290`.
 
-**Reflection preserves norms.** Proved result `mirror_norm`: Under the stated hypotheses, reflection preserves norms. Source: `Breakdown.FracCert.SolenoidalSplit:294`.
+**Reflection preserves norms.** Proved result `mirror_norm`: Horizontal-plane reflection preserves the Euclidean norm. Source: `Breakdown.FracCert.SolenoidalSplit:294`.
 
 **The discrete turn as an isometry.** Definition `turnIso`: This equips the discrete axial turn with its norm-preserving linear equivalence structure. Source: `Breakdown.FracCert.SolenoidalSplit:299`.
 
 **Reflection as an isometry.** Definition `mirrorIso`: This equips reflection with its norm-preserving linear equivalence structure. Source: `Breakdown.FracCert.SolenoidalSplit:304`.
 
-**turn isometry equals the discrete turn.** Proved result `turnIso_coe`: Under the stated hypotheses, the turn isometry equals the discrete turn. Source: `Breakdown.FracCert.SolenoidalSplit:308`.
+**turn isometry equals the discrete turn.** Proved result `turnIso_coe`: The rotational isometry used in the solenoidal decomposition is rotation through 2π/m about the third axis. Source: `Breakdown.FracCert.SolenoidalSplit:308`.
 
-**The mirror isometry equals reflection.** Proved result `mirrorIso_coe`: Under the stated hypotheses, the mirror isometry equals reflection. Source: `Breakdown.FracCert.SolenoidalSplit:313`.
+**The mirror isometry equals reflection.** Proved result `mirrorIso_coe`: The reflection isometry used in the solenoidal decomposition is (y₁,y₂,y₃)↦(y₁,y₂,−y₃). Source: `Breakdown.FracCert.SolenoidalSplit:313`.
 
 **The induced isometry action on fields.** Definition `act`: This defines the L² action of a spatial isometry by composing the field with that isometry and applying its inverse to the field values.
 
@@ -2438,11 +2438,11 @@ Source: `lean/Breakdown/FracCert/SolenoidalSplit.lean`. Imported by the fraction
 
 **Orthogonal changes respect a.e. equality.** Proved result `comp_ae`: Under the stated hypotheses, almost equality survives orthogonal changes.
 
-**The action preserves test gradients.** Proved result `act_grads`: Under the stated hypotheses, the action preserves test gradients.
+**The action preserves test gradients.** Proved result `act_grads`: For an orthogonal R, the action g(y)↦R⁻¹g(Ry) preserves the space of gradients of smooth compactly supported scalar functions.
 
-**The action preserves their closure.** Proved result `act_closure`: Under the stated hypotheses, the action preserves their closure.
+**The action preserves their closure.** Proved result `act_closure`: The action g(y)↦R⁻¹g(Ry) also preserves the L² closure of smooth compactly supported scalar gradients.
 
-**action preserves the orthogonal space.** Proved result `act_orth`: Under the stated hypotheses, the action preserves the orthogonal space.
+**action preserves the orthogonal space.** Proved result `act_orth`: The action z(y)↦R⁻¹z(Ry) preserves the orthogonal complement of that gradient closure, hence the divergence-free part of the L² decomposition.
 
 **Equivariance means a fixed point.** Proved result `act_fix`: Under the stated hypotheses, equivariant fields are fixed by the action.
 
@@ -2466,27 +2466,27 @@ Source: `lean/Breakdown/FracCert/SplitFormBounds.lean`. Imported by the fraction
 
 **Source namespace:** `Breakdown.SteadyCert.Internal.SplitFormBounds`.
 
-**Matrix entries bound the squared trace.** Proved result `trace_sq_le`: Under the stated hypotheses, matrix entries bound the squared trace.
+**Matrix entries bound the squared trace.** Proved result `trace_sq_le`: For a vector-valued bilinear tensor B on ℝ³, the squared trace satisfies |∑ᵢB(eᵢ,eᵢ)|²≤3∑ᵢ,ⱼ|B(eᵢ,eⱼ)|².
 
-**Negative second traces lie in L².** Proved result `memLp_trace`: Under the stated hypotheses, negative second traces lie in L².
+**Negative second traces lie in L².** Proved result `memLp_trace`: The negative Hessian trace −Δv of an admissible second-order field belongs to L².
 
-**The L² representative equals its field.** Proved result `toLpOrZero_ae`: Under the stated hypotheses, the L² representative equals its field.
+**The L² representative equals its field.** Proved result `toLpOrZero_ae`: For f∈L², the representative chosen for its L² class agrees with f almost everywhere.
 
-**L² fields pair integrably.** Proved result `integrable_pair`: Under the stated hypotheses, L² fields pair integrably. Source: `Breakdown.FracCert.SplitFormBounds:49`.
+**L² fields pair integrably.** Proved result `integrable_pair`: The inner product of any two L² vector fields is integrable on ℝ³. Source: `Breakdown.FracCert.SplitFormBounds:49`.
 
-**Fourier transform preserves pairings.** Proved result `pair_symbol`: Under the stated hypotheses, Fourier transform preserves pairings.
+**Fourier transform preserves pairings.** Proved result `pair_symbol`: For F,E∈L²(ℝ³;ℝ³), the physical pairing ∫F·E equals the real inner-product integral of their L² Fourier transforms.
 
-**Almost every frequency is nonzero.** Proved result `ae_ne_zero`: Under the stated hypotheses, almost every frequency is nonzero. Source: `Breakdown.FracCert.SplitFormBounds:67`.
+**Almost every frequency is nonzero.** Proved result `ae_ne_zero`: The exceptional set {ξ=0} has Lebesgue measure zero in three dimensions. Source: `Breakdown.FracCert.SplitFormBounds:67`.
 
-**A pointwise linear bound integrates.** Proved result `comb_le`: Under the stated hypotheses, a pointwise linear bound integrates.
+**A pointwise linear bound integrates.** Proved result `comb_le`: If integrable f,g,h satisfy c₁f+c₂g+c₃h≤0 almost everywhere, then c₁∫f+c₂∫g+c₃∫h≤0 for any real coefficients.
 
 **The splitting power is 2(α−1).** Proved result `freqPow_eq`: The radial splitting frequency power is (2π‖ξ‖)^(2(α−1)).
 
-**The quadratic weight is a squared radius.** Proved result `freqPow_two_eq`: Under the stated hypotheses, the quadratic weight is a squared radius.
+**The quadratic weight is a squared radius.** Proved result `freqPow_two_eq`: At exponent two, the radial frequency multiplier is exactly (2π|ξ|)².
 
 **Source namespace:** `Breakdown.SteadyCert`.
 
-**The split form satisfies three bounds.** Proved result `splitFormBounds_of`: Under the stated hypotheses, the split form satisfies three bounds.
+**The split form satisfies three bounds.** Proved result `splitFormBounds_of`: Assuming the Hessian-energy and fractional-power Fourier identities, a valid certificate with 1<α<5/4 and an admissible field v with P=(−Δ)ᵅv give the following bounds, writing E=‖Δv‖₂²+wmin‖∇v‖₂² and B=∫(P+νΔv)·(−Δv). They are B≥−ℓE, B+cE≥0 and ‖Δv‖₂≤s√(B+cE), where ν,ℓ,c,s are the certificate's splitting viscosity, low-frequency loss, reduced coercivity and form-scale coefficient.
 
 **The split-form estimate interface holds.** Proved result `splitFormBounds`: Under the stated assumptions, this establishes that a valid fractional certificate bounds the splitting pairing below by minus the low-frequency loss times the base derivative energy, makes its coercivity-corrected expression nonnegative and controls the trace norm by the splitting energy.
 
@@ -2508,7 +2508,7 @@ Source: `lean/Breakdown/FracCert/StDecay.lean`. Imported by the fractional cell 
 
 **The physical profile from its symbol.** Definition `profileField`: This defines the physical profile by realizing the Fourier symbol of the energy-space element.
 
-**Weighted heat-divergence bounds.** Proposition `HeatDivBoundStatement`: This proposition requires that for 1<α<5/4, 0≤β<3 and 0≤b≤β+1+j, weighted bounds A and B on a tensor and its jth derivative imply a weighted jth heat-divergence bound Ct^(−1/(2α))(A+B) for 0<t≤1.
+**Weighted heat-divergence bounds.** Proposition `HeatDivBoundStatement`: This proposition requires that for 1<α<5/4, 0≤β<3 and 0≤b≤β+1+j, weighted bounds A and B on a tensor and its jth derivative imply a weighted jth heat-divergence bound Ct^(−1/(2α))(A+B) for 0< t≤1.
 
 **Weighted far-field derivative decay.** Proposition `FarFieldBoundStatement`: This proposition requires that under the stated fractional and tensor-decay assumptions with b≠2α−1+j, the far-field operator is Cʲ and its jth derivative decays with weight exponent min(b,2α−1+j).
 

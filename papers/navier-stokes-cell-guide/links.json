@@ -24,7 +24,20 @@
    "anchor": {
     "heading": "Analytic interfaces",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.SteadyCert.FracCertData",
+     "fidelity": "same",
+     "note": "The linked data specify a steady profile, forcing, constraints, adjoints and numerical bounds for the fractional setting. The paragraph correctly treats these as general analytic inputs that require further conditions."
+    },
+    {
+     "lean": "Breakdown.CellCert.FracCellData",
+     "fidelity": "same",
+     "note": "The linked data add cell geometry, reference model fields and approximation errors to the steady certificate data. These are the cell inputs described in the paragraph; a representation of the functions still has to be supplied."
+    }
+   ]
   },
   {
    "id": "guide-group-02",
@@ -39,7 +52,25 @@
    "anchor": {
     "heading": "Data representation",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Coupling.quadForm",
+     "fidelity": "same",
+     "note": "The quadratic form is the real part of the complex pairing of x with Ax. Its definition imposes no Hermitian or positivity condition on A, as the paragraph warns."
+    },
+    {
+     "lean": "Breakdown.CertCell.Coupling.inverseWeightedSq",
+     "fidelity": "same",
+     "note": "The expression applies the same quadratic form to the inverse matrix. Interpreting it as a positive weighted squared norm requires separate hypotheses on that matrix."
+    },
+    {
+     "lean": "Breakdown.CertCell.CellPoly",
+     "fidelity": "same",
+     "note": "The polynomial is specified by complex coefficients on a square array of degrees from zero to the chosen degree. The array alone supplies no positivity or geometric interpretation."
+    }
+   ]
   },
   {
    "id": "guide-group-03",
@@ -55,7 +86,30 @@
    "anchor": {
     "heading": "Mesh and cells",
     "block": 1
-   }
+   },
+   "topic": "cells-tails",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellCert.CellAnalysis.CellBox",
+     "fidelity": "same",
+     "note": "A cell is specified by four radial and vertical endpoints. The paragraph correctly assigns positive widths and position in the quarter plane to additional validity conditions."
+    },
+    {
+     "lean": "Breakdown.CellCert.CellAnalysis.IsCellBox",
+     "fidelity": "same",
+     "note": "The cell conditions require 0 ≤ r₁ < r₂ and 0 ≤ z₁ < z₂, exactly the genuine widths and quarter-plane geometry described."
+    },
+    {
+     "lean": "Breakdown.CertCell.CellMesh",
+     "fidelity": "same",
+     "note": "The mesh supplies finitely many rectangles, resolved, tested and eliminated harmonic sets, and polynomial degrees. The paragraph describes these data together with their separate validity conditions."
+    },
+    {
+     "lean": "Breakdown.CertCell.IsCellMesh",
+     "fidelity": "same",
+     "note": "The conditions require valid rectangles, overlaps of measure zero, the tested/resolved and eliminated-mode relations, conjugate symmetry and zero azimuthal order on axis cells. These are the mesh properties singled out in the paragraph."
+    }
+   ]
   },
   {
    "id": "guide-group-04",
@@ -72,7 +126,35 @@
    "anchor": {
     "heading": "Splines and jets",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Instance.SplineJoins",
+     "fidelity": "same",
+     "note": "The neighboring polynomial pieces must agree through the prescribed derivative order on every internal radial and polar seam. This is the joined-data requirement described."
+    },
+    {
+     "lean": "Breakdown.CertCell.GivenShape.IsJoinedSpline",
+     "fidelity": "same",
+     "note": "The two coordinate directions may have different joining orders, and the partition must cover the whole coordinate rectangle. This agrees with the paragraph’s account of joined splines."
+    },
+    {
+     "lean": "Breakdown.CertCell.GivenShape.JetAxis",
+     "fidelity": "same",
+     "note": "An axis of Hermite data specifies breakpoints, the number of endpoint derivatives and the number of interior bubble coefficients. The interpolation formulas are supplied separately."
+    },
+    {
+     "lean": "Breakdown.CertCell.GivenShape.ScaledJetAxis",
+     "fidelity": "same",
+     "note": "The scaled Hermite data add node scales and bubble normalisers to the same axis information. This supports the paragraph’s distinction between stored and unscaled coefficients."
+    },
+    {
+     "lean": "Breakdown.CertCell.GivenShape.IsScaledJetEntry",
+     "fidelity": "same",
+     "note": "The conditions identify the reference field and its chosen second derivatives with those reconstructed from the scaled Hermite data, and identify the forcing modes. The corresponding representations and symmetry conditions remain required."
+    }
+   ]
   },
   {
    "id": "guide-group-05",
@@ -89,7 +171,35 @@
    "anchor": {
     "heading": "Harmonics and symmetry",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.labelTime",
+     "fidelity": "same",
+     "note": "The temporal index associated with ι is 2ι₂ − ι₁, as in (B.2). It is distinct from the azimuthal index."
+    },
+    {
+     "lean": "Breakdown.CertCell.labelAzimuth",
+     "fidelity": "same",
+     "note": "The azimuthal index associated with ι is κι₁, as in (B.2). The integer κ is the symmetry order."
+    },
+    {
+     "lean": "Breakdown.CertCell.labelFlip",
+     "fidelity": "same",
+     "note": "Reflection sends the lattice label to (−ι₁, ι₂ − ι₁). Under (B.2) this preserves temporal frequency and reverses azimuthal frequency."
+    },
+    {
+     "lean": "Breakdown.CertCell.flipLabel",
+     "fidelity": "same",
+     "note": "Reflection of the physical frequency pair sends (n,m) to (n,−m). This agrees with the paragraph’s distinction between a lattice label and its physical frequencies."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.modelLabels",
+     "fidelity": "same",
+     "note": "An active label belongs to one of the four declared model supports and has a nonzero component somewhere in the cell. Covering the whole union of supports is therefore a sufficient conservative choice."
+    }
+   ]
   },
   {
    "id": "guide-group-06",
@@ -104,7 +214,25 @@
    "anchor": {
     "heading": "Shape bounds",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.GivenShape.ShapeValuesFacts",
+     "fidelity": "same",
+     "note": "The condition requires positive period and weight, constant weight, and closure and inclusion properties for the bounding harmonic set. These are the symmetry and parameter-wide parts of the description."
+    },
+    {
+     "lean": "Breakdown.CertCell.GivenShape.IsScaledJetEntry",
+     "fidelity": "same",
+     "note": "The conditions identify the reference field, its second derivatives away from the exceptional seams, and the forcing fields with their representations. They also require valid shape parameters and harmonic coverage."
+    },
+    {
+     "lean": "Breakdown.CertCell.GivenShape.shapeKnots",
+     "fidelity": "different",
+     "note": "The linked definition only identifies the exceptional set of axes, joining spheres and spline seams. The assertions about weak derivatives and replacement of second derivatives on that set require the separate regularity results mentioned in the paragraph."
+    }
+   ]
   },
   {
    "id": "guide-group-07",
@@ -120,7 +248,30 @@
    "anchor": {
     "heading": "Rows and pins",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.RowValues",
+     "fidelity": "same",
+     "note": "The row data attach each polynomial test to a cell, harmonic, real or imaginary component and weight. This is the raw information used in the orthogonalisation surrounding (B.11)."
+    },
+    {
+     "lean": "Breakdown.CertCell.Instance.IsRowValues",
+     "fidelity": "same",
+     "note": "The conditions require complete, distinct real row representatives, positive weights, conjugate tests, divergence-free tests, axis conditions and positive definite Gram blocks. They supply the normalisation prerequisites described."
+    },
+    {
+     "lean": "Breakdown.CertCell.Instance.IsInstanceEntry",
+     "fidelity": "same",
+     "note": "The instantiated data must satisfy the row, weight, forcing, pinning and symmetry conditions together. This connects the separately described objects to the same certificate."
+    },
+    {
+     "lean": "Breakdown.PotentialShape.PinShapeEntry",
+     "fidelity": "same",
+     "note": "The pinning data supply cell fields and generator representations with their shape parameters and proposed support edges. Compact support, validity and error estimates are imposed separately, as the paragraph indicates."
+    }
+   ]
   },
   {
    "id": "guide-group-08",
@@ -136,7 +287,30 @@
    "anchor": {
     "heading": "Potentials",
     "block": 1
-   }
+   },
+   "topic": "adjoint",
+   "comparisons": [
+    {
+     "lean": "Breakdown.AdjointDefect.PotentialData",
+     "fidelity": "same",
+     "note": "The four fields are the two vector potentials, a matrix flux and a scalar pressure correction. With the matrix convention stated, they are the objects used in (B.51) and (B.52)."
+    },
+    {
+     "lean": "Breakdown.PotentialShape.PotentialSeries",
+     "fidelity": "same",
+     "note": "The representation consists of finitely many harmonic keys and the associated potential coefficients. Its regularity is imposed by the separate conditions described in the paragraph."
+    },
+    {
+     "lean": "Breakdown.PotentialShape.IsPotentialSeries",
+     "fidelity": "same",
+     "note": "The conditions control joining, axis behavior and endpoint vanishing for the potentials, flux and pressure. They provide the explicit sufficient representation whose full coefficient format is omitted on p.67."
+    },
+    {
+     "lean": "Breakdown.CellLayerSystem.PotentialEntriesBounded",
+     "fidelity": "same",
+     "note": "The represented potentials and pins must be valid and must equal the fields used in the adjoint estimates. This is the identification required before applying (B.51) and (B.52)."
+    }
+   ]
   },
   {
    "id": "guide-group-09",
@@ -151,7 +325,25 @@
    "anchor": {
     "heading": "Local forms",
     "block": 1
-   }
+   },
+   "topic": "cells-tails",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.CellCalculus.IsLeafValues",
+     "fidelity": "same",
+     "note": "The local Hermitian matrix is measurable and bounded, and its two inequalities hold for every complex gradient and velocity vector. The second inequality excludes the cylindrical axis, matching the stated domain issue."
+    },
+    {
+     "lean": "Breakdown.CertCell.CellCalculus.CellCalculusConditions",
+     "fidelity": "same",
+     "note": "The conditions combine valid harmonic coordinates, local matrix inequalities, model errors, period errors and pressure placement. They express the cell information used before assembling (B.26) and (B.27)."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.EliminationConditions",
+     "fidelity": "same",
+     "note": "The local elimination inequality holds for every vector in the specified admissible set. Positive row weights and the separate zero-slack identity are also required, so checking selected coordinate vectors is insufficient."
+    }
+   ]
   },
   {
    "id": "guide-group-10",
@@ -166,7 +358,25 @@
    "anchor": {
     "heading": "The tree",
     "block": 1
-   }
+   },
+   "topic": "tree",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.TreeEntry",
+     "fidelity": "same",
+     "note": "The tree data include finite real global coordinates, complex cell embeddings, a distinguished root, pivots and real negative columns. These are the objects used by the matrix-tree argument."
+    },
+    {
+     "lean": "Breakdown.CertCell.TreeConditionsGiven",
+     "fidelity": "same",
+     "note": "One common family of front matrices must satisfy every node enclosure and the pivot-count condition, with a unique root. This matches the paragraph’s global consistency requirement."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.TreeRowConditions",
+     "fidelity": "same",
+     "note": "The cell embeddings must match the row representation, the global form must dominate the assembled leaf form, and pressure-head directions must lie in the required kernels. These conditions connect the tree to the actual cell rows."
+    }
+   ]
   },
   {
    "id": "guide-group-11",
@@ -183,7 +393,35 @@
    "anchor": {
     "heading": "Assembly",
     "block": 1
-   }
+   },
+   "topic": "cells-tails",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Assembly.PotentialData",
+     "fidelity": "same",
+     "note": "The data include a matrix selecting the retained component and a form for the additional coordinates, with coupling groups and numerical budgets. No orthogonality or idempotence is imposed merely by supplying the selection matrix."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.PotentialConditions",
+     "fidelity": "same",
+     "note": "The retained potential form and the coupling bounds are required on the specified admissible vectors, with all coverage, sign and error conditions. This is the local potential contribution described."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.PairingConditions",
+     "fidelity": "same",
+     "note": "The retained pairing form is bounded by the exact pairing on the same admissible vectors; its unresolved terms have separate Gram and error bounds. This matches the assembly role described."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.InRowRange",
+     "fidelity": "same",
+     "note": "Used row coordinates are determined by shared real unknowns plus complex gauge and pressure-head terms. Unused and port coordinates remain free complex values, while both actuator blocks are real."
+    },
+    {
+     "lean": "Breakdown.CertCell.CellLayerEntryConditions",
+     "fidelity": "same",
+     "note": "The complete assembly condition joins the potential, pairing, rows, tails, elimination, exterior and tree requirements for the same data. It also makes the required pressure and gauge invariances explicit."
+    }
+   ]
   },
   {
    "id": "guide-group-12",
@@ -198,7 +436,25 @@
    "anchor": {
     "heading": "Exterior and omitted modes",
     "block": 1
-   }
+   },
+   "topic": "angular",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Assembly.IsOffModeCover",
+     "fidelity": "same",
+     "note": "Every omitted harmonic on every cell must be covered by valid regions with sufficient charges, uniformly over the parameter set. A finite list of regions therefore still represents an infinite family of conditions."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.IsExteriorCover",
+     "fidelity": "same",
+     "note": "For every harmonic, the regions cover the whole exterior, have measurable geometry and overlaps of measure zero, and carry valid pointwise or ray estimates with common charges. The stated exterior obligations remain present."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.FarFieldConditions",
+     "fidelity": "same",
+     "note": "The far-field enclosures bound the reference strain and the mean and oscillating vorticity gradients at every exterior point, time and angle. They also identify the charges and require a positive common length."
+    }
+   ]
   },
   {
    "id": "guide-group-13",
@@ -214,7 +470,30 @@
    "anchor": {
     "heading": "The fifteen fields",
     "block": 1
-   }
+   },
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CertificateClauses",
+     "fidelity": "same",
+     "note": "The certificate conditions retain the residual, smallness, inclusion and nontriviality requirements. The pin-target cancellation comes from the specialised profile identities, so it cannot be read from this collection alone."
+    },
+    {
+     "lean": "Breakdown.CellLayerSystem.ReductionEntries",
+     "fidelity": "same",
+     "note": "The reduction data collect the profile, pressure, adjoints, offset expansion, profile-shift bounds and potential data. The final condition requires these choices to agree."
+    },
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "All fifteen conditions are imposed together on the same seven choices of data. This makes the condition the stated starting point for evaluating a candidate."
+    },
+    {
+     "lean": "Breakdown.CellReduction.Instantiation.InstantiationBounded",
+     "fidelity": "same",
+     "note": "The profile, pressure and adjoint representations must satisfy their respective identities. The profile identity for the target makes the specialised pin-target gap zero."
+    }
+   ]
   },
   {
    "id": "guide-condition-cell",
@@ -231,7 +510,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "cells-tails",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The first condition combines field instances, valid cells, local calculations, a common matrix tree, pairing errors, shape witnesses and the fixed constants. The table correctly describes its role rather than claiming a numerical instance."
+    }
+   ]
   },
   {
    "id": "guide-condition-shape_valueSets",
@@ -248,7 +535,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The second condition requires positive periods throughout K, positive constant weight and the stated closure and inclusion properties of the bounding harmonic sets."
+    }
+   ]
   },
   {
    "id": "guide-condition-entry_conditions",
@@ -265,7 +560,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "cells-tails",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The third condition simultaneously requires the local forms, all compatible row vectors, mode and exterior coverage, elimination bounds and tree identifications for the chosen data."
+    }
+   ]
   },
   {
    "id": "guide-condition-enclosure_numbers",
@@ -282,7 +585,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "coercive",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The enclosure bounds must hold for every parameter in K with the particular three constants used in the top-level coercivity formula. Existence of other enclosure constants is insufficient."
+    }
+   ]
   },
   {
    "id": "guide-condition-coerciveL2_ge",
@@ -299,7 +610,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "coercive",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The first scalar coercivity bound is the square root of the multiplier-bound expression divided by the square root of 3/50, and it must not exceed c₁. This is the first inequality of (B.22)."
+    }
+   ]
   },
   {
    "id": "guide-condition-coercivePin_ge",
@@ -316,7 +635,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "coercive",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The condition is c₂ ≥ √(1000·50/3), exactly the pinning lower bound in (B.22)."
+    }
+   ]
   },
   {
    "id": "guide-condition-certificate",
@@ -333,7 +660,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The seventh condition includes all residual bounds, three smallness inequalities, invertibility of the frame, parameter inclusion and a strict nonzero-profile bound. These are the roles listed in the table."
+    }
+   ]
   },
   {
    "id": "guide-condition-instantiation",
@@ -350,7 +685,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The eighth condition identifies the approximate profile, pressure gradient and selected adjoints with the specified shape formulas, including the pin-target identity."
+    }
+   ]
   },
   {
    "id": "guide-condition-offset_expansion",
@@ -367,7 +710,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The ninth condition requires the affine frequency and multiplier identities, all constant, linear and quadratic pairing enclosures, the exterior norm bounds and the exact total offset of (B.59)."
+    }
+   ]
   },
   {
    "id": "guide-condition-shift_numbers",
@@ -384,7 +735,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "profile-change",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The central error is controlled in the supremum and gradient L² norms, and the parameter variation in the supremum and gradient L³ norms. Their two stated combinations bound the convection gap and form shift."
+    }
+   ]
   },
   {
    "id": "guide-condition-frozen_form",
@@ -401,7 +760,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "profile-change",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "different",
+     "note": "This condition bounds the frozen reference form by a lower strain bound and a gradient L³ bound. The profile-shift estimates belong to the preceding condition and are added later in Lemma B.9."
+    }
+   ]
   },
   {
    "id": "guide-condition-adjoint_quadratic",
@@ -418,7 +785,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "adjoint",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "For each selected adjoint, the condition allows either a uniform L³ bound with coefficient 2/(√3 w*) or a uniform L² bound with coefficient c_w/√w*. This is the alternative in Lemma B.10."
+    }
+   ]
   },
   {
    "id": "guide-condition-adjoint_links",
@@ -435,7 +810,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "adjoint",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The field, coupling coefficients, central profile, parameter directions and reciprocal-period coefficients must agree with the reduction data. The fitted-direction set is required to be empty."
+    }
+   ]
   },
   {
    "id": "guide-condition-potential_entries",
@@ -452,7 +835,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "adjoint",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The potential representations and compact pin generators must satisfy their validity conditions and equal the fields used in the defect estimate."
+    }
+   ]
   },
   {
    "id": "guide-condition-adjoint_defect",
@@ -469,7 +860,15 @@
    "anchor": {
     "heading": "The fifteen required fields",
     "block": 1
-   }
+   },
+   "topic": "adjoint",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "Every selected adjoint must satisfy the potential norms, dual remainder bounds, parameter-direction estimates and pin-error budget culminating in (B.53)."
+    }
+   ]
   },
   {
    "id": "guide-decoder-1",
@@ -484,7 +883,25 @@
    "anchor": {
     "heading": "4. Five decoder decisions to make explicit",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellCert.GivenFields.Spline.VanishesFrom",
+     "fidelity": "same",
+     "note": "For this spline support condition, a missing radial breakpoint is read as 1. It forces an omitted piece to vanish whenever the support threshold is at most 1; the default is part of the condition."
+    },
+    {
+     "lean": "Breakdown.CertCell.GivenShape.ScaledJetAxis.convert",
+     "fidelity": "same",
+     "note": "The conversion uses default node scale 1, default bubble normaliser 0 and default missing breakpoints 0. These are distinct defaults, as the paragraph requires."
+    },
+    {
+     "lean": "Breakdown.PotentialShape.VanishesBeyond",
+     "fidelity": "same",
+     "note": "The missing-breakpoint default R makes each affected support guard true because R ≤ |R|. A node coefficient needs one guard and a bubble coefficient needs both endpoint guards; when both endpoints are absent, the bubble coefficient is therefore forced to zero."
+    }
+   ]
   },
   {
    "id": "guide-decoder-2",
@@ -498,7 +915,20 @@
    "anchor": {
     "heading": "4. Five decoder decisions to make explicit",
     "block": 2
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.GivenShape.ScaledJetAxis.convert",
+     "fidelity": "same",
+     "note": "A matching node coefficient is multiplied by the inverse scale to the derivative order. A zero scale gives zero for positive orders and one for order zero, agreeing with the stated interpretation."
+    },
+    {
+     "lean": "Breakdown.CertCell.GivenShape.HasSymmetricScale",
+     "fidelity": "same",
+     "note": "The scale condition requires only the correct list length and reflection symmetry. It supplies no nonzero or positive lower bound for a node scale."
+    }
+   ]
   },
   {
    "id": "guide-decoder-3",
@@ -511,7 +941,15 @@
    "anchor": {
     "heading": "4. Five decoder decisions to make explicit",
     "block": 3
-   }
+   },
+   "topic": "cells-tails",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Assembly.InRowRange",
+     "fidelity": "same",
+     "note": "The admissible vectors have shared real row parameters, arbitrary complex gauge and pressure-head coefficients, free complex unused and port coordinates, and real actuator coordinates. The full real-linear span is therefore the correct domain for the quadratic test."
+    }
+   ]
   },
   {
    "id": "guide-decoder-4",
@@ -526,7 +964,25 @@
    "anchor": {
     "heading": "4. Five decoder decisions to make explicit",
     "block": 4
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Assembly.modelLabels",
+     "fidelity": "same",
+     "note": "The active labels are a filtered subset of the union of the four declared supports. Requiring coverage for that whole union implies coverage for the active subset."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.PotentialConditions",
+     "fidelity": "same",
+     "note": "Both coupling-group coverage requirements quantify over the active model labels. Replacing that label set by a containing set makes these particular coverage obligations sufficient, although the other potential conditions still need checking."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.RowFunctionalConditions",
+     "fidelity": "same",
+     "note": "The row-group coverage requirement also quantifies over active model labels. Covering the entire declared support is sufficient for this clause, while every row identity and numerical bound remains a separate obligation."
+    }
+   ]
   },
   {
    "id": "guide-decoder-5",
@@ -539,7 +995,15 @@
    "anchor": {
     "heading": "4. Five decoder decisions to make explicit",
     "block": 5
-   }
+   },
+   "topic": "adjoint",
+   "comparisons": [
+    {
+     "lean": "Breakdown.AdjointDefect.AzimuthalBounded",
+     "fidelity": "same",
+     "note": "The finite expansion requires distinct component, temporal-frequency and azimuthal-order triples, with weights 1/2, 1/2, 1 and denominator (|m|+1/2)². These are exactly the orthogonality and normalisation requirements explained."
+    }
+   ]
   },
   {
    "id": "guide-conditional-endpoint",
@@ -552,7 +1016,15 @@
    "anchor": {
     "heading": "1. What the final condition says",
     "block": 2
-   }
+   },
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.breakdownOnSpaceAndTorus_of_cell_system_condition",
+     "fidelity": "same",
+     "note": "The displayed theorem states both whole-space and torus breakdown under the full cell condition. The readable statement file leaves its proof to the corresponding implementation; its conclusion remains conditional."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0001",
@@ -566,7 +1038,15 @@
     "heading": "Reading the cell certificate",
     "block": 3
    },
-   "title": "The fifteen cell conditions"
+   "title": "The fifteen cell conditions",
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The final condition has fifteen clauses, and each clause constrains one or more of the shared data choices. This is the proposed reading order."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0002",
@@ -580,7 +1060,20 @@
    "anchor": {
     "heading": "Reading the cell certificate",
     "block": 4
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellCert.FracCellData",
+     "fidelity": "same",
+     "note": "The cell data include the steady certificate data in full and add the cell-specific quantities. Counting the inherited information separately agrees with this definition."
+    },
+    {
+     "lean": "Breakdown.SteadyCert.FracCertData",
+     "fidelity": "same",
+     "note": "The steady certificate data have 46 directly specified quantities, including profiles, forcing, constraints, rows, bounds and adjoints. The numerical count in the sentence agrees with the source."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0003",
@@ -594,7 +1087,15 @@
     "heading": "1. What the final condition says",
     "block": 1
    },
-   "title": "The fifteen cell conditions"
+   "title": "The fifteen cell conditions",
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The fifteen clauses concern the same certificate, field instances, cell calculations, tree, assembly, constants and reduction data. In particular, the existential tree and enclosure choices must keep their stated common scope."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0004",
@@ -607,7 +1108,15 @@
    "anchor": {
     "heading": "2. The notation to keep separate",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.CellLayerData",
+     "fidelity": "same",
+     "note": "In the surrounding table, n is the number of parameter and constraint coordinates. The linked cell data keep that dimension separate from the symmetry order κ and the azimuthal frequency κι₁."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0005",
@@ -621,7 +1130,20 @@
    "anchor": {
     "heading": "2. The notation to keep separate",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.CellLayerData",
+     "fidelity": "same",
+     "note": "The data contain a natural-number symmetry order without fixing its value. The lower bound is imposed by the separate cell hypothesis, consistently with the sentence."
+    },
+    {
+     "lean": "Breakdown.CertCell.CellHypothesis",
+     "fidelity": "same",
+     "note": "The cell hypothesis requires κ ≥ 3. It does not specialise κ to the numerical example 19 described in Appendix C."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0006",
@@ -635,7 +1157,20 @@
    "anchor": {
     "heading": "2. The notation to keep separate",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.labelTime",
+     "fidelity": "same",
+     "note": "The temporal index is exactly 2ι₂ − ι₁, the coefficient of 2πθ in (B.2)."
+    },
+    {
+     "lean": "Breakdown.CertCell.labelAzimuth",
+     "fidelity": "same",
+     "note": "The azimuthal index is exactly κι₁, the coefficient of φ in (B.2)."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0007",
@@ -648,7 +1183,15 @@
    "anchor": {
     "heading": "2. The notation to keep separate",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.IsTimePeriodic",
+     "fidelity": "same",
+     "note": "The condition is f(θ+1,y)=f(θ,y) for every θ and y. It uses the normalised time of period one."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0009",
@@ -661,7 +1204,15 @@
    "anchor": {
     "heading": "2. The notation to keep separate",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellCert.CellAnalysis.cylRadius",
+     "fidelity": "same",
+     "note": "The cylindrical radius is √(y₁²+y₂²). This is the radial coordinate of a meridian cell, distinct from |y| in the compactified chart."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0011",
@@ -674,7 +1225,15 @@
    "anchor": {
     "heading": "2. The notation to keep separate",
     "block": 1
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Assembly.gradOf",
+     "fidelity": "same",
+     "note": "The gradient entries are selected in row order from the first nine coordinates. The formula imposes no symmetry on that 3 by 3 array; the remaining coordinates are available for velocity."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0012",
@@ -688,7 +1247,15 @@
     "heading": "2. The notation to keep separate",
     "block": 1
    },
-   "title": "The matrix tree data"
+   "title": "The matrix tree data",
+   "topic": "tree",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.TreeEntry",
+     "fidelity": "different",
+     "note": "The tree data specify complex cell embeddings of real global unknowns. The separate reality requirements for both actuator blocks are imposed in the compatible-row condition, which this linked declaration does not state."
+    }
+   ]
   },
   {
    "id": "r5-cell-layer-guide-0013",
@@ -704,7 +1271,30 @@
    "anchor": {
     "heading": "2. The notation to keep separate",
     "block": 2
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.labelTime",
+     "fidelity": "same",
+     "note": "The temporal frequency is 2ι₂ − ι₁, as in (B.2). The cell and chart references in the sentence concern other linked objects."
+    },
+    {
+     "lean": "Breakdown.CertCell.labelAzimuth",
+     "fidelity": "same",
+     "note": "The azimuthal frequency is κι₁, as in (B.2). The cell and chart references in the sentence concern other linked objects."
+    },
+    {
+     "lean": "Breakdown.CellCert.CellAnalysis.CellBox",
+     "fidelity": "same",
+     "note": "The cell stores the two radial and two vertical endpoints used in the quarter-plane construction surrounding (B.10) and (B.26)."
+    },
+    {
+     "lean": "Breakdown.CellCert.GivenFields.ChartParams",
+     "fidelity": "different",
+     "note": "The linked declaration only lists four chart parameters. The coordinate transformation and the geometric conditions needed to identify them with (B.3) occur in separate definitions."
+    }
+   ]
   }
  ],
  "plain": {
@@ -1513,10 +2103,138 @@
  "fidelity": {
   "Breakdown.CellLayerSystem.breakdownOnSpaceAndTorus_of_cell_system_condition": {
    "verdict": "same",
-   "text": "The guide retains the complete CellSystemCondition premise and describes the conjunction of space and torus breakdown in the challenge. This compares the guide with the conditional source statement; it neither supplies the numerical data nor establishes equivalence with every omitted paper condition.",
+   "text": "The guide states the complete cell-condition implication: satisfying the fifteen conditions gives both whole-space and torus breakdown. The statement itself supplies no numerical data satisfying those conditions.",
    "because": [
     "guide-conditional-endpoint"
    ]
   }
- }
+ },
+ "families": [
+  {
+   "id": "theorems",
+   "name": "The theorems"
+  },
+  {
+   "id": "profile-to-blowup",
+   "name": "From a profile to blow-up"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus"
+  },
+  {
+   "id": "certificate-to-profile",
+   "name": "From a certificate to a profile"
+  },
+  {
+   "id": "cell-data",
+   "name": "Cell data"
+  },
+  {
+   "id": "cell-estimates",
+   "name": "Cell estimates"
+  },
+  {
+   "id": "cell-certificate",
+   "name": "From cell data to the certificate"
+  }
+ ],
+ "topics": [
+  {
+   "id": "statement",
+   "name": "The blow-up statements",
+   "description": "Smooth solutions, breakdown on space and on the torus, and the theorems that state them (Theorem 1.1, Theorem 7.1).",
+   "family": "theorems"
+  },
+  {
+   "id": "fractional",
+   "name": "The fractional extension",
+   "description": "The authors' separate extension with dissipation exponent between 1 and 5/4, outside the classical paper.",
+   "family": "theorems"
+  },
+  {
+   "id": "mild",
+   "name": "Heat flow and mild solutions",
+   "description": "The heat semigroup, the bilinear Duhamel term, mild solutions, restarting and uniqueness (§3).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "profile",
+   "name": "Recurrent profiles",
+   "description": "Self-similar time-periodic profiles, their slices and orbits, and weak profiles read as physical fields (§2, §4.1, §7.11).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "monodromy",
+   "name": "Monodromy and the correction",
+   "description": "The period map, its compact-plus-small splitting, the spectral projection and the fixed point that corrects a profile to an exact solution (§4).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus",
+   "description": "The solenoidal cutoff, periodization and the periodic right inverse that move the construction onto the torus (§5–6).",
+   "family": "torus"
+  },
+  {
+   "id": "certificate",
+   "name": "From certificate to profile",
+   "description": "Certificate data, the free operator, convection, held solutions and the smoothing of the weak profile they produce (§7).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "coercive",
+   "name": "The coercive multiplier estimate",
+   "description": "The multiplier, its five density coefficients and lower bound, and the a priori estimate it gives (Appendix B.1 and B.2).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "encoding",
+   "name": "Encoded cell data",
+   "description": "The finitely represented inputs: coordinates and harmonics, the profile representation, splines and jets, physical cells, rows, weights and potentials.",
+   "family": "cell-data"
+  },
+  {
+   "id": "quarter-plane",
+   "name": "Reduction to the quarter plane",
+   "description": "Symmetry reduction of the density to the meridian quarter plane (B.3).",
+   "family": "cell-data"
+  },
+  {
+   "id": "cells-tails",
+   "name": "Cells, traces and tails",
+   "description": "Integrability, the common vector of unknowns, resolved modes, the tail budget and the exterior estimate (B.4).",
+   "family": "cell-data"
+  },
+  {
+   "id": "angular",
+   "name": "Angular and ray-exterior tests",
+   "description": "The angular inequalities, the pointwise test and the integrated test on ray exteriors (B.5 and B.6).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "tree",
+   "name": "The matrix tree lower bound",
+   "description": "The tree conditions on the cell matrices and the passage from all cells to the global inequality (B.7 and B.8).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "profile-change",
+   "name": "Changing the profile",
+   "description": "Bounds for moving estimates from the reference field to the actual profile (B.9).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "adjoint",
+   "name": "The adjoint pairing and its error",
+   "description": "The quadratic adjoint pairing, the azimuthal dual norm and the linear adjoint error with potentials and pins (B.10 to B.12).",
+   "family": "cell-certificate"
+  },
+  {
+   "id": "offset-certificate",
+   "name": "The offset and the certificate",
+   "description": "Enclosing the constant, linear and quadratic offset, and the fifteen fields of CellSystemCondition that make the data a certificate (B.13 and B.14).",
+   "family": "cell-certificate"
+  }
+ ]
 }

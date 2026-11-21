@@ -340428,28 +340428,6 @@
     "Quot.sound"
    ],
    "doc": null,
-   "end_line": 294,
-   "is_class": false,
-   "kind": "theorem",
-   "line": 293,
-   "module": "Breakdown.Cert.ReadingEnergy",
-   "name": "Breakdown.Cert.readingEnergyHolds_of",
-   "provenance": "lean",
-   "structural_dependencies": [],
-   "type": "Breakdown.Cert.GraphClosedHolds → Breakdown.Cert.ReadingEnergyHolds",
-   "type_dependencies": [
-    "Breakdown.Cert.GraphClosedHolds",
-    "Breakdown.Cert.ReadingEnergyHolds"
-   ],
-   "value_dependencies": []
-  },
-  {
-   "axioms": [
-    "propext",
-    "Classical.choice",
-    "Quot.sound"
-   ],
-   "doc": null,
    "end_line": 3447,
    "is_class": false,
    "kind": "definition",
@@ -380711,7 +380689,6 @@
   "Breakdown.Cert.HeldContracts",
   "Breakdown.Cert.ProductBound",
   "Breakdown.Cert.ProductSub",
-  "Breakdown.Cert.ReadingEnergy",
   "Breakdown.Cert.Statement",
   "Breakdown.Cert.SupBound",
   "Breakdown.CertCell.AssemblyCellRange",

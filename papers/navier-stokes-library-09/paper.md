@@ -3474,7 +3474,7 @@ Evaluates zero-angle sine harmonics and the associated zero field traces. These 
 
 **Zero-frequency sine tuple vanishes.** Proved result. Under the stated hypotheses, the time-zero sine tuple is the zero tuple. (`sinTuple_at_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/GaugePlanePairZero.lean#L17)).
 
-**Zero field is a gradient.** Proved result. Under the stated hypotheses, the zero field is a gradient field. (`isGradientField_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/GaugePlanePairZero.lean#L22)).
+**Zero field is a gradient.** Proved result. The zero vector field is the weak gradient of the constant scalar potential zero on R³. (`isGradientField_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/GaugePlanePairZero.lean#L22)).
 
 **Zero height strip moment.** Proved result. Under the stated hypotheses, zero field and derivative inputs give a zero height strip moment. (`heightStrip_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/GaugePlanePairZero.lean#L25)).
 
@@ -3674,9 +3674,9 @@ Computes the action of height reflection on coordinates and pressure gradients. 
 
 **Reflection fixes coordinate zero.** Proved result. Under the stated hypotheses, reflection preserves coordinate zero. (`flipPoint_coord_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/HarmonicPressureFlip.lean#L17)).
 
-**Reflection negates coordinate one.** Proved result. Under the stated hypotheses, reflection negates coordinate one. (`flipPoint_coord_one`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/HarmonicPressureFlip.lean#L20)).
+**Reflection negates coordinate one.** Proved result. For the half-turn R(y₁,y₂,y₃) = (y₁,−y₂,−y₃), the second Cartesian component of Ry is −y₂ at every point. (`flipPoint_coord_one`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/HarmonicPressureFlip.lean#L20)).
 
-**Reflection negates coordinate two.** Proved result. Under the stated hypotheses, reflection negates coordinate two. (`flipPoint_coord_two`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/HarmonicPressureFlip.lean#L23)).
+**Reflection negates coordinate two.** Proved result. For the half-turn R(y₁,y₂,y₃) = (y₁,−y₂,−y₃), the third Cartesian component of Ry is −y₃ at every point. (`flipPoint_coord_two`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/HarmonicPressureFlip.lean#L23)).
 
 **Reflection coordinate formula.** Proved result. Under the stated hypotheses, reflection preserves coordinate zero and negates the other coordinates. (`flipPoint_coord`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/HarmonicPressureFlip.lean#L26)).
 

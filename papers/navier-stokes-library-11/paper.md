@@ -340,7 +340,7 @@ Extend time and rotation transport to gradient and second-derivative modes. Appe
 
 **Rotation is matrix multiplication.** Proved result. Each coordinate of a rotated vector is the sum of its original coordinates weighted by the corresponding rotation-matrix row. (`axialRot_component_expand`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ModeShiftRotateTensor.lean#L34)).
 
-**Axial rotation is continuous.** Proved result. The axial rotation is continuous. (`continuous_axialRot_component`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ModeShiftRotateTensor.lean#L41)).
+**Axial rotation is continuous.** Proved result. For each fixed vector v and Cartesian component, the corresponding component of its rotation through θ about the axis is continuous in θ. (`continuous_axialRot_component`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ModeShiftRotateTensor.lean#L41)).
 
 **Change the angle of a rotated basis.** Proved result. A coordinate vector rotated by one angle expands in the basis rotated by the sum of two angles using the intermediate rotation coefficients. (`axialRot_unit_recombine`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ModeShiftRotateTensor.lean#L51)).
 
@@ -1160,13 +1160,13 @@ Expand the low-mode coupling integral into the finite strain and velocity rows. 
 
 **A radial factor removes the singularity.** Proved result. Under the declaration's hypotheses, multiplying the specified component by the radius agrees off the axis with a continuous function on the plane. (`weighted_cont`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowCouplingLow.lean#L35)).
 
-**Cell rectangle is compact.** Proved result. The cell rectangle is compact. (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowCouplingLow.lean#L69)).
+**Cell rectangle is compact.** Proved result. For every cell box, its closed rectangle of radial and height coordinates is compact in R². (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowCouplingLow.lean#L69)).
 
 **Cell rectangle is measurable.** Proved result. The cell rectangle is a measurable set. (`rect_meas`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowCouplingLow.lean#L71)).
 
 **Positive cell radius almost everywhere.** Proved result. Under the declaration's hypotheses, almost every point in a valid cell rectangle has strictly positive radius. (`ae_rect_pos`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowCouplingLow.lean#L73)).
 
-**Polynomial value is continuous.** Proved result. The polynomial value is continuous. (`eval_cont`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowCouplingLow.lean#L77)).
+**Polynomial value is continuous.** Proved result. For a fixed cell and complex polynomial coefficients, evaluating the polynomial in the cell's affine radial and height coordinates gives a continuous function on R². (`eval_cont`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowCouplingLow.lean#L77)).
 
 **Cell basis value is continuous.** Proved result. The tensor-product cell basis value is continuous. (`basis_cont`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowCouplingLow.lean#L81)).
 
@@ -1490,7 +1490,7 @@ Use rectangle integration and polynomial basis expansion to turn finite moments 
 
 **Reconstruct a polynomial radial pairing.** Proved result. Under the declaration's hypotheses, the finite sum of coefficient pairings in the segment basis equals the rectangle pairing with the conjugate radial polynomial. (`seg_expand_fst`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowLowPartStrip.lean#L167)).
 
-**Cell rectangle is compact.** Proved result. The cell rectangle is compact. (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowLowPartStrip.lean#L194)).
+**Cell rectangle is compact.** Proved result. For every cell box, its closed rectangle of radial and height coordinates is compact in R². (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowLowPartStrip.lean#L194)).
 
 **Reconstruct a cell polynomial pairing.** Proved result. Under the declaration's hypotheses, the finite sum of products of cell coefficients and conjugate test coefficients equals their weighted cell pairing. (`cell_expand_pairing`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowLowPartStrip.lean#L196)).
 
@@ -2200,7 +2200,7 @@ Use the angular relation to rewrite radial strip moments with the correct orient
 
 **Cell rectangle is measurable.** Proved result. The cell rectangle is a measurable set. (`rect_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowsMatchNormalTurn.lean#L36)).
 
-**Cell rectangle is compact.** Proved result. The cell rectangle is compact. (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowsMatchNormalTurn.lean#L38)).
+**Cell rectangle is compact.** Proved result. For every cell box, its closed rectangle of radial and height coordinates is compact in R². (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowsMatchNormalTurn.lean#L38)).
 
 **Positive-radius facts hold on the cell.** Proved result. Under the declaration's hypotheses, the stated property valid away from radius zero holds almost everywhere on the cell rectangle. (`ae_pos_on`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/RowsMatchNormalTurn.lean#L40)).
 
@@ -2462,9 +2462,9 @@ Transfer scalar reflection and the sign change of the weak height derivative to 
 
 Verify measurability and symmetry of the lower equatorial chart value and its scalar enclosure. Appendix B: the cell-calculus, harmonic decomposition, row representation and finite reference-field construction used by the cell-system route.
 
-**Upper chart value is measurable.** Proved result. The upper chart value is measurable. (`upperValue_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ScalarPlaneMin.lean#L21)).
+**Upper chart value is measurable.** Proved result. For any chart parameters and piecewise constant datum, the scalar value obtained from the upper chart is a measurable function of y ∈ R³. (`upperValue_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ScalarPlaneMin.lean#L21)).
 
-**Lower chart value is measurable.** Proved result. The lower chart value is measurable. (`lowerValue_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ScalarPlaneMin.lean#L27)).
+**Lower chart value is measurable.** Proved result. For any chart parameters and piecewise constant datum, the scalar value obtained from the lower chart is a measurable function of y ∈ R³. (`lowerValue_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ScalarPlaneMin.lean#L27)).
 
 **Rotation-invariant upper chart values.** Proved result. Axial rotation leaves the upper chart value unchanged. (`upperValue_axialRot`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ScalarPlaneMin.lean#L33)).
 
@@ -3168,31 +3168,31 @@ Expand Jacobi bubbles in the ordinary bubble basis and prove that both scaled-sp
 
 This file transfers regularity, vanishing, real coefficients and reflection parity from scaled Hermite data to ordinary jet data, using the parity of symmetric Jacobi polynomials. Appendix B, the construction and regularity of shape fields used in the cell coercivity route; supporting library for the shape construction around B.6–B.8.
 
-**Negating X changes coefficient parity.** Proved result. Negating X changes coefficient parity. (`coeff_comp_neg_X_real`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L16)).
+**Negating X changes coefficient parity.** Proved result. For a real polynomial p, the coefficient of Xˢ in p(−X) is (−1)ˢ times the coefficient of Xˢ in p(X). (`coeff_comp_neg_X_real`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L16)).
 
 **Jacobi parity follows its degree.** Proved result. Negating the variable multiplies the degree-j symmetric Jacobi polynomial by (−1) to power j. (`symmetricJacobi_comp_neg`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L30)).
 
-**Jacobi coefficients have fixed parity.** Proved result. Jacobi coefficients have fixed parity. (`symmetricJacobi_coeff_parity`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L52)).
+**Jacobi coefficients have fixed parity.** Proved result. For a symmetric Jacobi polynomial of degree j, its coefficient aₛ satisfies (−1)ʲaₛ = (−1)ˢaₛ, so coefficients of the opposite parity vanish. (`symmetricJacobi_coeff_parity`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L52)).
 
-**Jet conversion commutes with conjugation.** Proved result. Jet conversion commutes with conjugation. (`scaled_convert_conj`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L58)).
+**Jet conversion commutes with conjugation.** Proved result. Every entry of the scaled-to-unscaled jet conversion matrix is real, and hence is unchanged by complex conjugation. (`scaled_convert_conj`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L58)).
 
-**Reflected node scales agree.** Proved result. Reflected node scales agree. (`scale_getD_reflect`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L63)).
+**Reflected node scales agree.** Proved result. If the nodal scales are symmetric, the scale at node k equals the scale at the reflected node N−k for every 0 ≤ k ≤ N. (`scale_getD_reflect`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L63)).
 
-**Reflection respects jet conversion.** Proved result. Reflection respects jet conversion. (`scaled_convert_reflect`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L76)).
+**Reflection respects jet conversion.** Proved result. On a symmetric jet axis with symmetric scales, reflecting both indices of the conversion matrix gives the original entry multiplied by the quotient of the two jet parity signs. (`scaled_convert_reflect`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L76)).
 
-**Reflected coefficient sums agree.** Proved result. Reflected coefficient sums agree. (`sum_scaled_convert_reflect`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L126)).
+**Reflected coefficient sums agree.** Proved result. On a symmetric axis with symmetric scales, a coefficient relation c(reflect e) = τ εₑ g(e) is preserved by jet conversion, with the same factor τ and parity sign εₑ. (`sum_scaled_convert_reflect`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L126)).
 
-**Converted coefficients are double sums.** Proved result. Converted coefficients are double sums. (`scaled_toJet_coef`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L140)).
+**Converted coefficients are double sums.** Proved result. Each converted two-variable jet coefficient is the double sum of the original coefficients against the conversion matrices in the first and second coordinates. (`scaled_toJet_coef`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L140)).
 
 **Conversion preserves jet regularity.** Proved result. Scaled-to-ordinary jet conversion preserves the two specified derivative joining orders. (`scaled_jetClass`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L145)).
 
-**Conversion preserves initial vanishing.** Proved result. Conversion preserves initial vanishing. (`scaled_vanishesAtStart`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L149)).
+**Conversion preserves initial vanishing.** Proved result. If the scaled jet coefficients vanish at the initial endpoint, the coefficients after conversion to the ordinary jet basis also vanish there. (`scaled_vanishesAtStart`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L149)).
 
-**Conversion preserves real coefficients.** Proved result. Conversion preserves real coefficients. (`scaled_realCoef`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L168)).
+**Conversion preserves real coefficients.** Proved result. If all scaled spline coefficients are real, their coefficients in the ordinary jet basis remain real after conversion. (`scaled_realCoef`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L168)).
 
-**Conversion preserves reflection parity.** Proved result. Conversion preserves reflection parity. (`scaled_reflectFixed`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L174)).
+**Conversion preserves reflection parity.** Proved result. On a symmetric second-coordinate axis with symmetric scales, conversion from scaled to ordinary jets preserves either the even or the odd reflection law of the coefficients. (`scaled_reflectFixed`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L174)).
 
-**Conversion preserves conjugate parity.** Proved result. Conversion preserves conjugate parity. (`scaled_conjReflectFixed`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L184)).
+**Conversion preserves conjugate parity.** Proved result. On a symmetric second-coordinate axis with symmetric scales, jet conversion preserves a reflection law combined with complex conjugation, with the same even or odd sign. (`scaled_conjReflectFixed`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L184)).
 
 **Validity of converted scaled jet data.** Proved result. The scaled jet conversion preserves regularity, initial vanishing, real coefficients, and both reflection conditions. (`scaledJetDataHolds`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetScaledValid.lean#L200)).
 
@@ -3200,65 +3200,65 @@ This file transfers regularity, vanishing, real coefficients and reflection pari
 
 This file checks the left-endpoint values of the Hermite basis and uses them to prove that zero initial jet coefficients make the first spline row vanish. Appendix B, the construction and regularity of shape fields used in the cell coercivity route; supporting library for the shape construction around B.6–B.8.
 
-**Higher jet values vanish at zero.** Proved result. Higher jet values vanish at zero. (`jetUnit_eval_zero_of_ne`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L15)).
+**Higher jet values vanish at zero.** Proved result. The unit jet polynomial corresponding to derivative order p > 0 has value zero at the left endpoint 0. (`jetUnit_eval_zero_of_ne`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L15)).
 
-**Unit jets vanish at one.** Proved result. Unit jets vanish at one. (`jetUnit_eval_one`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L18)).
+**Unit jets vanish at one.** Proved result. For positive matching order n, every unit jet polynomial has value zero at the right endpoint 1. (`jetUnit_eval_one`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L18)).
 
-**Left jets vanish for positive order.** Proved result. Left jets vanish for positive order. (`nodalLeft_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L21)).
+**Left jets vanish for positive order.** Proved result. The left-endpoint basis polynomial for derivative order p > 0 has value zero at its own endpoint a. (`nodalLeft_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L21)).
 
-**Right jets vanish at the left endpoint.** Proved result. Right jets vanish at the left endpoint. (`nodalRight_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L26)).
+**Right jets vanish at the left endpoint.** Proved result. If the endpoints a and b are distinct and the matching order is positive, every right-endpoint basis polynomial vanishes at a. (`nodalRight_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L26)).
 
-**Bubble values vanish at the left end.** Proved result. Bubble values vanish at the left end. (`bubblePoly_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L35)).
+**Bubble values vanish at the left end.** Proved result. For positive matching order n, every bubble polynomial on [a,b] has value zero at a. (`bubblePoly_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L35)).
 
-**The first jet interval starts at zero.** Proved result. The first jet interval starts at zero. (`breaks_start`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L39)).
+**The first jet interval starts at zero.** Proved result. A valid jet axis on [0,1] has first breakpoint 0 and a strictly positive second breakpoint. (`breaks_start`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L39)).
 
-**Noninitial degrees vanish at the start.** Proved result. Noninitial degrees vanish at the start. (`dofPoly_start_eval`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L58)).
+**Noninitial degrees vanish at the start.** Proved result. On a valid jet axis over [0,1], every basis polynomial on the first cell vanishes at 0 except possibly the basis polynomial for the value at the initial node. (`dofPoly_start_eval`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L58)).
 
 **Embedding evaluates to a constant.** Proved result. Fixing the first variable of an embedded one-variable polynomial gives the constant polynomial equal to its value at that input. (`atFirst_embedFirst`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L85)).
 
-**Initial jet vanishing reaches splines.** Proved result. Initial jet vanishing reaches splines. (`jetStartVanish`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L92)).
+**Initial jet vanishing reaches splines.** Proved result. For valid jet axes on [0,1] and [−1,1], vanishing of the initial nodal coefficients makes the polynomial on every first-coordinate initial cell vanish identically at first coordinate 0. (`jetStartVanish`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetStart.lean#L92)).
 
 ### Breakdown.CertCell.ShapeJetUnit
 
 This file proves the endpoint derivative identities for the Hermite nodal basis and interior bubble basis on an interval. Appendix B, the construction and regularity of shape fields used in the cell coercivity route; supporting library for the shape construction around B.6–B.8.
 
-**Root multiplicity kills derivatives.** Proved result. Root multiplicity kills derivatives. (`eval_iterate_derivative_eq_zero_of_dvd`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L13)).
+**Root multiplicity kills derivatives.** Proved result. If a complex polynomial has a root r of multiplicity at least n, then every derivative of order o < n vanishes at r. (`eval_iterate_derivative_eq_zero_of_dvd`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L13)).
 
-**Affine composition scales derivatives.** Proved result. Affine composition scales derivatives. (`iterate_derivative_comp_linear`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L18)).
+**Affine composition scales derivatives.** Proved result. If q is an affine complex polynomial with derivative c, then the o-th derivative of P(q(X)) is cᵒP⁽ᵒ⁾(q(X)) for every o ≥ 0. (`iterate_derivative_comp_linear`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L18)).
 
-**Monomial jets vanish except at degree.** Proved result. Monomial jets vanish except at degree. (`eval_iterate_derivative_C_mul_X_pow_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L27)).
+**Monomial jets vanish except at degree.** Proved result. For cXᵖ, the derivative of order o evaluated at 0 equals cp! when o = p and equals zero otherwise. (`eval_iterate_derivative_C_mul_X_pow_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L27)).
 
-**A binomial sum inverts modulo a power.** Proved result. A binomial sum inverts modulo a power. (`one_sub_pow_mul_choose_sum_sub_one`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L39)).
+**A binomial sum inverts modulo a power.** Proved result. For nonnegative integers d and m, (1−X)ᵈ⁺¹∑ₛ₌₀ᵐ⁻¹ binom(d+s,s)Xˢ agrees with 1 modulo Xᵐ. (`one_sub_pow_mul_choose_sum_sub_one`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L39)).
 
 **Unit jets select one derivative.** Proved result. At zero, every derivative below the joining order of a unit jet is one when its order equals the selected jet index and zero otherwise. (`iterate_derivative_jetUnit_eval_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L66)).
 
-**Unit jets vanish at the right endpoint.** Proved result. Unit jets vanish at the right endpoint. (`iterate_derivative_jetUnit_eval_one`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L95)).
+**Unit jets vanish at the right endpoint.** Proved result. Every derivative of a unit jet polynomial of order o < n vanishes at the right endpoint 1. (`iterate_derivative_jetUnit_eval_one`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L95)).
 
 **Left basis selects one derivative.** Proved result. For distinct interval endpoints, each derivative below the joining order of the left nodal basis at the left endpoint is one at its selected index and zero otherwise. (`iterate_derivative_nodalLeft_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L102)).
 
-**Left basis vanishes at the right end.** Proved result. Left basis vanishes at the right end. (`iterate_derivative_nodalLeft_eval_right`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L116)).
+**Left basis vanishes at the right end.** Proved result. If a ≠ b, every derivative of order o < n of a left-endpoint jet basis polynomial vanishes at b. (`iterate_derivative_nodalLeft_eval_right`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L116)).
 
 **Right basis selects one derivative.** Proved result. For distinct interval endpoints, each derivative below the joining order of the right nodal basis at the right endpoint is one at its selected index and zero otherwise. (`iterate_derivative_nodalRight_eval_right`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L127)).
 
-**Right basis vanishes at the left end.** Proved result. Right basis vanishes at the left end. (`iterate_derivative_nodalRight_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L141)).
+**Right basis vanishes at the left end.** Proved result. If a ≠ b, every derivative of order o < n of a right-endpoint jet basis polynomial vanishes at a. (`iterate_derivative_nodalRight_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L141)).
 
-**Bubble jets vanish at the left endpoint.** Proved result. Bubble jets vanish at the left endpoint. (`iterate_derivative_bubblePoly_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L152)).
+**Bubble jets vanish at the left endpoint.** Proved result. Every derivative of order o < n of a bubble polynomial on [a,b] vanishes at a. (`iterate_derivative_bubblePoly_eval_left`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L152)).
 
-**Bubble jets vanish at the right endpoint.** Proved result. Bubble jets vanish at the right endpoint. (`iterate_derivative_bubblePoly_eval_right`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L159)).
+**Bubble jets vanish at the right endpoint.** Proved result. Every derivative of order o < n of a bubble polynomial on [a,b] vanishes at b. (`iterate_derivative_bubblePoly_eval_right`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetUnit.lean#L159)).
 
 ### Breakdown.CertCell.ShapeJetValid
 
 This file assembles the jet joining, reflection, conjugation and initial-vanishing facts into validity of the supplied shape data. Appendix B, the construction and regularity of shape fields used in the cell coercivity route; supporting library for the shape construction around B.6–B.8.
 
-**Spline join orders can be lowered.** Proved result. Spline join orders can be lowered. (`joinedSpline_mono_of_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetValid.lean#L20)).
+**Spline join orders can be lowered.** Proved result. If adjacent spline pieces agree through orders a and b in their two coordinates, they also agree through any smaller orders a′ ≤ a and b′ ≤ b. (`joinedSpline_mono_of_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetValid.lean#L20)).
 
 **Jet regularity gives joined splines.** Proved result. Under the jet-joining rule, jet data of radial and height orders a and b give a spline joined to those same orders. (`joinedSpline_of_jetClass`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetValid.lean#L25)).
 
-**Real coefficients respect conjugation.** Proved result. Real coefficients respect conjugation. (`conjReflectFixed_of_realCoef`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetValid.lean#L29)).
+**Real coefficients respect conjugation.** Proved result. For real jet coefficients, an even or odd reflection law also gives the corresponding reflection law combined with complex conjugation. (`conjReflectFixed_of_realCoef`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetValid.lean#L29)).
 
 **Zero first label for self-conjugate keys.** Proved result. Self-conjugate keys have zero first label. (`label_fst_eq_zero_of_negKey_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetValid.lean#L33)).
 
-**Two reflection laws give conjugacy.** Proved result. Two reflection laws give conjugacy. (`splineAgrees_conj_of_reflect_fixed`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetValid.lean#L38)).
+**Two reflection laws give conjugacy.** Proved result. Assuming the spline agreement rules, a spline that agrees both with its signed reflection and with the signed reflection of its conjugate agrees with its conjugate. (`splineAgrees_conj_of_reflect_fixed`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetValid.lean#L38)).
 
 **Jet rules imply valid given data.** Proved result. The jet joining, reflection, conjugate reflection, initial vanishing, and agreement assumptions imply validity of given jet data. (`givenJetDataValid_of`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetValid.lean#L51)).
 
@@ -3270,8 +3270,8 @@ This file assembles the jet joining, reflection, conjugation and initial-vanishi
 
 This file turns vanishing nodal and bubble coefficients beyond a radial breakpoint into vanishing of the represented spline there. Appendix B, the construction and regularity of shape fields used in the cell coercivity route; supporting library for the shape construction around B.6–B.8.
 
-**Defaulted breakpoints remain ordered.** Proved result. Defaulted breakpoints remain ordered. (`getD_succ_ge`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetVanish.lean#L15)).
+**Defaulted breakpoints remain ordered.** Proved result. A strictly increasing breakpoint list ending at 1 remains nondecreasing when all entries beyond its end are defined to be 1. (`getD_succ_ge`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetVanish.lean#L15)).
 
-**Zero tail coefficients kill each term.** Proved result. Zero tail coefficients kill each term. (`dof_term_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetVanish.lean#L30)).
+**Zero tail coefficients kill each term.** Proved result. If every nodal and bubble coefficient whose first-coordinate support begins at or beyond tᵦ is zero, then each coefficient-weighted basis polynomial vanishes on every cell starting at or beyond tᵦ. (`dof_term_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetVanish.lean#L30)).
 
 **Zero jet tails give zero spline tails.** Proved result. Vanishing jet tails give vanishing splines. (`jetSplineVanishesFrom`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ShapeJetVanish.lean#L56)).

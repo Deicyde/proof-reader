@@ -2476,9 +2476,9 @@ Source: `lean/Breakdown/FracCell/SharpEnergyVelocityCoef.lean`. Imported by the 
 
 **A normalized height derivative test.** Definition `bz`: The height derivative test is the radial basis polynomial times the height basis derivative divided by the square root of its height eigenvalue.
 
-**The radial weight is continuous.** Proved result `wr_cont`: The radial weight is continuous.
+**The radial weight is continuous.** Proved result `wr_cont`: For a fixed cell, the radial energy weight ℓ(r)(1−r̂²), where ℓ is its line weight and r̂ its affine reference coordinate, is continuous in the meridian variables.
 
-**The height weight is continuous.** Proved result `wz_cont`: The height weight is continuous.
+**The height weight is continuous.** Proved result `wz_cont`: For a fixed cell, the height energy weight ℓ(r)(1−ẑ²), where ℓ is its radial line weight and ẑ its affine height coordinate, is continuous in the meridian variables.
 
 **Radial derivative tests are continuous.** Proved result `br_cont`: Every normalized radial derivative test is continuous.
 
@@ -3040,11 +3040,11 @@ Source: `lean/Breakdown/FracCell/SharpSupremumRegular.lean`. Imported by the fra
 
 **Source namespace:** `Breakdown.CellCert.CellAnalysis.SharpSupremumRegular.Internal`.
 
-**The cell rectangle is measurable.** Proved result `rectM`: The cell rectangle is measurable.
+**The cell rectangle is measurable.** Proved result `rectM`: The closed rectangle of radial and height coordinates associated with any cell box is measurable in R².
 
 **Radius is nonzero almost everywhere.** Proved result `ae_fst_ne`: Radius is nonzero almost everywhere with respect to volume restricted to a cell rectangle.
 
-**The cell rectangle is compact.** Proved result `rectC`: The cell rectangle is compact.
+**The cell rectangle is compact.** Proved result `rectC`: For every cell box, its closed rectangle of radial and height coordinates is compact in R².
 
 **Convert a nonnegative real series.** Proved result `tsum_eq_toReal`: The total of a nonnegative real series equals the real conversion of the corresponding extended-nonnegative series.
 
@@ -3548,7 +3548,7 @@ Source: `lean/Breakdown/FracCell/SharpYDensityRegular.lean`. Imported by the ord
 
 **Vector square energy is nonnegative.** Proved result `vecSq_nonneg`: The sum of vector-entry squared norms is nonnegative.
 
-**Curl square energy is nonnegative.** Proved result `curlSq_nonneg`: The curl square is nonnegative.
+**Curl square energy is nonnegative.** Proved result `curlSq_nonneg`: For every complex 3 × 3 gradient matrix, the sum of squared moduli of its three curl components is nonnegative.
 
 **Curl energy has a matrix bound.** Proved result `curlSq_le`: The curl square is at most twenty-seven times the matrix square sum.
 

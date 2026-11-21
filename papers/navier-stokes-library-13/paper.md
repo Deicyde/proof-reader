@@ -12,9 +12,9 @@ This file extends the Leray-kernel representation of the bilinear term from test
 
 **The Hölder exponents six, six and three.** Proved result. Exponents six and six form the Hölder triple with product exponent three. (`holderTriple_six_six_three`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L14)).
 
-**Tensor-product norms multiply.** Proved result. Tensor-product norms multiply. (`norm_tensor_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L20)).
+**Tensor-product norms multiply.** Proved result. For vectors p,q ∈ R³, the norm of the tensor with entries pⱼqₖ is at most |p||q|. (`norm_tensor_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L20)).
 
-**The tensor-product map is continuous.** Proved result. The tensor-product map is continuous. (`continuous_tensor`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L26)).
+**The tensor-product map is continuous.** Proved result. The map sending two real vectors p,q to their tensor with entries pⱼqₖ is continuous. (`continuous_tensor`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L26)).
 
 **Tensor fields are a.e. measurable.** Proved result. Tensor fields are almost-everywhere measurable. (`tensorField_aestronglyMeasurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L32)).
 
@@ -22,17 +22,17 @@ This file extends the Leray-kernel representation of the bilinear term from test
 
 **The L6 to L3 tensor-product bound.** Proved result. Tensor L3 norms obey the L6 product bound. (`eLpNorm_tensorField_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L45)).
 
-**Two L6 fields give an L3 tensor.** Proved result. Two L6 fields give an L3 tensor. (`tensorField_memLp`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L54)).
+**Two L6 fields give an L3 tensor.** Proved result. If a,b ∈ L⁶(R³;R³), their tensor product a⊗b belongs to L³(R³). (`tensorField_memLp`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L54)).
 
-**Kernel convolution preserves subtraction.** Proved result. Kernel convolution preserves subtraction. (`kernelConv_sub`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L59)).
+**Kernel convolution preserves subtraction.** Proved result. If the Leray-kernel integrals for tensors F and G are integrable in every output component, convolution with F−G equals the convolution with F minus that with G. (`kernelConv_sub`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L59)).
 
 **Convolutions agree for a.e. equal fields.** Proved result. Almost-equal fields give equal convolutions. (`kernelConv_tensor_congr_ae`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L72)).
 
 **Bilinear splitting of tensor differences.** Proved result. Quadratic tensor differences split bilinearly. (`tensor_sub_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L81)).
 
-**Tensor differences obey an L3 estimate.** Proved result. Tensor differences obey an L3 estimate. (`toReal_eLpNorm_tensor_sub_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L87)).
+**Tensor differences obey an L3 estimate.** Proved result. For w,v ∈ L⁶, the tensor difference obeys ‖w⊗w−v⊗v‖₃ ≤ ‖w−v‖₆(‖w‖₆+‖v‖₆). (`toReal_eLpNorm_tensor_sub_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L87)).
 
-**L6 convergence gives kernel convergence.** Proved result. L6 convergence gives kernel convergence. (`kernelConv_tendsto`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L117)).
+**L6 convergence gives kernel convergence.** Proved result. If Leray-kernel convolution maps every L³ tensor to an integrable pointwise value bounded by Cτ⁻¹ times its L³ norm, convergence wₙ → v in L⁶ implies pointwise convergence of the convolutions of wₙ⊗wₙ to that of v⊗v. (`kernelConv_tendsto`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L117)).
 
 **From test kernels to the bilinear map.** Proved result. Test-kernel equality extends to the bilinear map. (`bilinKernel_of_test_decay`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L152)).
 
@@ -60,7 +60,7 @@ This file identifies the physical bilinear operator with its Fourier velocity sy
 
 **Weighted integrability of symbols.** Proved result. Velocity symbols have weighted integrability. (`memLp_weight_velSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L67)).
 
-**Velocity symbols are solenoidal.** Proved result. Velocity symbols are solenoidal. (`isSolenoidal_velSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L74)).
+**Velocity symbols are solenoidal.** Proved result. For each real divergence-free velocity in the homogeneous H¹ space, the chosen Fourier representative f satisfies ξ·f(ξ) = 0 and f(−ξ) = conj f(ξ) at every frequency. (`isSolenoidal_velSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L74)).
 
 **Integrability of weighted symbols.** Proved result. Frequency-weighted velocity symbols are integrable. (`integrable_freq_smul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L88)).
 
@@ -78,11 +78,11 @@ This file identifies the physical bilinear operator with its Fourier velocity sy
 
 **Convolution keeps square integrability.** Proved result. Convolution preserves square integrability. (`memLp_two_convC`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L167)).
 
-**Advection symbol is square integrable.** Proved result. The advection symbol is square integrable. (`memLp_two_advectionSymbol_of`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L217)).
+**Advection symbol is square integrable.** Proved result. If a vector-valued Fourier symbol is integrable and each coordinate multiplier 2πiηⱼf(η) lies in L², its advection symbol lies in L². (`memLp_two_advectionSymbol_of`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L217)).
 
-**Advection symbol has conjugate symmetry.** Proved result. The advection symbol has conjugate symmetry. (`advectionSymbol_herm`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L245)).
+**Advection symbol has conjugate symmetry.** Proved result. If a Fourier symbol is divergence free and satisfies the conjugate symmetry for a real field, its advection symbol satisfies the same symmetry: A(−ξ) = conj A(ξ). (`advectionSymbol_herm`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L245)).
 
-**Bilinear operator represents its form.** Proved result. The bilinear operator represents its form. (`bilinX_inner`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L256)).
+**Bilinear operator represents its form.** Proved result. For τ > 0 and u,v,ψ in the homogeneous H¹ space, the inner product of the bilinear heat-flow operator Bτ(u,v) with ψ equals its defining bilinear form evaluated at (u,v,ψ). (`bilinX_inner`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L256)).
 
 **Advection from directional derivatives.** Proved result. Advection is the sum of directional derivatives. (`advectionAt_eq_sum`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinSymbol.lean#L263)).
 
@@ -92,7 +92,7 @@ This file identifies the physical bilinear operator with its Fourier velocity sy
 
 This file matches the Leray-kernel pairing with the bilinear test form by integration by parts against divergence-free test fields. The smooth-profile and torus route supporting Proposition 7.11 and Corollary 7.2; analytic and Fourier library infrastructure.
 
-**Test pairings determine the field.** Proved result. Test pairings determine the field. (`eq_of_inner_test`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinTestKernel.lean#L14)).
+**Test pairings determine the field.** Proved result. Two elements of the homogeneous H¹ space are equal if they have the same inner product with every embedded smooth compactly supported divergence-free test field. (`eq_of_inner_test`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinTestKernel.lean#L14)).
 
 **Heat evolution of the test Laplacian.** Proved result. Heat evolution transports the test Laplacian. (`isLapOf_heat_embed`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinTestKernel.lean#L28)).
 
@@ -102,7 +102,7 @@ This file matches the Leray-kernel pairing with the bilinear test form by integr
 
 **Coordinate map respects derivatives.** Proved result. Coordinate projection commutes with derivatives. (`coord_fderiv`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinTestKernel.lean#L75)).
 
-**Inner products are coordinate sums.** Proved result. Inner products are coordinate sums. (`inner_eq_sum`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinTestKernel.lean#L80)).
+**Inner products are coordinate sums.** Proved result. For u,v ∈ R³, the Euclidean inner product equals ∑ⱼuⱼvⱼ. (`inner_eq_sum`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinTestKernel.lean#L80)).
 
 **Integration by parts for transport.** Proved result. Divergence-free transport integrates by parts. (`advect_by_parts`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinTestKernel.lean#L83)).
 
@@ -120,7 +120,7 @@ This file converts weighted velocity, derivative and pressure estimates into the
 
 **Coordinate is bounded by the vector norm.** Proved result. The absolute value of any coordinate is at most the Euclidean norm of the vector. (`abs_coord_le_norm`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/ClassFormOfWeights.lean#L18)).
 
-**Vectors as coordinate basis sums.** Proved result. Vectors are sums of coordinate basis vectors. (`eq_sum_coord_smul_unitVector`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/ClassFormOfWeights.lean#L25)).
+**Vectors as coordinate basis sums.** Proved result. Every vector v ∈ R³ equals the sum ∑ⱼvⱼeⱼ of its Cartesian components times the coordinate unit vectors. (`eq_sum_coord_smul_unitVector`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/ClassFormOfWeights.lean#L25)).
 
 **Coordinate bounds control operator norm.** Proved result. If a real linear functional is bounded by B on each coordinate unit vector, its operator norm is at most 3B. (`norm_le_three_mul_of_coords`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/ClassFormOfWeights.lean#L29)).
 
@@ -250,11 +250,11 @@ This file records algebraic rules for coordinate derivative multipliers, includi
 
 **Affine Fourier sums almost everywhere.** Proved result. Fourier representatives preserve affine sums almost everywhere. (`symX_add_smul_ae`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivAlgebra.lean#L11)).
 
-**Zero-order derivative multiplier is one.** Proved result. The zero-order derivative multiplier is one. (`monoSymbol_fin_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivAlgebra.lean#L18)).
+**Zero-order derivative multiplier is one.** Proved result. The Fourier multiplier corresponding to a derivative of order zero is the constant 1 at every frequency. (`monoSymbol_fin_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivAlgebra.lean#L18)).
 
 **Derivative permutations keep the symbol.** Proved result. Permuting derivatives preserves the multiplier. (`monoSymbol_comp_perm`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivAlgebra.lean#L21)).
 
-**Appending derivatives multiplies symbols.** Proved result. Appending derivatives multiplies symbols. (`monoSymbol_append`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivAlgebra.lean#L26)).
+**Appending derivatives multiplies symbols.** Proved result. Concatenating two lists of coordinate derivatives multiplies their Fourier multipliers: mαβ(ξ) = mα(ξ)mβ(ξ). (`monoSymbol_append`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivAlgebra.lean#L26)).
 
 **The algebra of abstract derivatives.** Proved result. Abstract derivatives are unique, include order zero, respect affine combinations and permutations, and compose by appending coordinate directions. (`derivAlgebra_holds`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivAlgebra.lean#L32)).
 
@@ -272,15 +272,15 @@ This file proves that the abstract derivative relation is closed under convergen
 
 This file realizes derivatives of heat evolution as bounded Fourier multipliers and obtains the factorial short-time derivative estimate. The smooth-profile and torus route supporting Proposition 7.11 and Corollary 7.2; analytic and Fourier library infrastructure.
 
-**Conjugation conjugates a scalar factor.** Proved result. Conjugation conjugates a scalar factor. (`conjVec_smul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L16)).
+**Conjugation conjugates a scalar factor.** Proved result. Complex conjugation of a scalar multiple satisfies conj(cz) = conj(c)conj(z) for every complex scalar and vector. (`conjVec_smul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L16)).
 
-**Longitudinal projection respects scalars.** Proved result. Longitudinal projection respects scalars. (`longitudinal_smul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L20)).
+**Longitudinal projection respects scalars.** Proved result. Projection onto the frequency direction ξ commutes with multiplication of a complex vector by any complex scalar. (`longitudinal_smul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L20)).
 
 **Symbol obeying constraints lies in Sig.** Proved result. A symbol satisfying constraints lies in Sig. (`mem_sig_of_symbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L28)).
 
 **Conjugation reverses the frequency.** Proved result. Conjugating the coordinate derivative symbol at the negated frequency recovers its value at the original frequency. (`conj_monoSymbol_neg`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L48)).
 
-**Derivative symbols are continuous.** Proved result. Derivative symbols are continuous. (`continuous_monoSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L57)).
+**Derivative symbols are continuous.** Proved result. Every coordinate-derivative multiplier ∏ⱼ2πiξαⱼ is continuous in the frequency ξ. (`continuous_monoSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L57)).
 
 **Derivative symbols have a power bound.** Proved result. The norm of an order-n coordinate derivative symbol is at most (2π times the frequency norm) to the n-th power. (`norm_monoSymbol_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L61)).
 
@@ -290,13 +290,13 @@ This file realizes derivatives of heat evolution as bounded Fourier multipliers 
 
 **Fourier heat evolution a.e..** Proved result. For positive time, heat evolution multiplies the Fourier representative by the Gaussian heat factor almost everywhere. (`heat_symX`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L125)).
 
-**Heat evolution commutes with derivatives.** Proved result. Heat evolution commutes with derivatives. (`heat_comm_deriv`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L131)).
+**Heat evolution commutes with derivatives.** Proved result. If y is the weak derivative of x for a fixed list of spatial coordinates in the divergence-free homogeneous H¹ space, heat evolution preserves that derivative relation. For all real t the operator uses the Fourier factor exp(−4π²max(t,0)|ξ|²), so it is the identity when t ≤ 0. (`heat_comm_deriv`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L131)).
 
 **The heat derivative multiplier.** Definition. The heat derivative multiplier is the coordinate derivative symbol multiplied by the Gaussian heat factor. (`heatDerivSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L137)).
 
-**Heat derivative multiplier is continuous.** Proved result. The heat derivative multiplier is continuous. (`continuous_heatDerivSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L140)).
+**Heat derivative multiplier is continuous.** Proved result. For every derivative multi-index and real t, its multiplier times exp(−4π²max(t,0)|ξ|²) is continuous in ξ. (`continuous_heatDerivSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L140)).
 
-**Heat derivatives have conjugate parity.** Proved result. Heat derivatives have conjugate parity. (`conj_heatDerivSymbol_neg`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L145)).
+**Heat derivatives have conjugate parity.** Proved result. The heat-derivative multiplier m satisfies conj(m(t,−ξ)) = m(t,ξ) for every real t and frequency ξ. (`conj_heatDerivSymbol_neg`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L145)).
 
 **Pointwise action of multiplier operators.** Proved result. Multiplier operators have their pointwise action. (`symbol_realized`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivHeat.lean#L152)).
 
@@ -330,19 +330,19 @@ This file truncates derivative multipliers to bounded multipliers so that abstra
 
 **Fourier multipliers act pointwise a.e..** Proved result. Fourier multipliers act pointwise almost everywhere. (`multOp_ae`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L31)).
 
-**Derivative multipliers are continuous.** Proved result. Derivative multipliers are continuous. (`continuous_monoSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L41)).
+**Derivative multipliers are continuous.** Proved result. The Fourier multiplier associated with any finite list of Cartesian derivatives is continuous in ξ. (`continuous_monoSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L41)).
 
 **A derivative symbol cut off by size.** Definition. The truncated derivative symbol equals the full symbol when its norm is at most N and zero otherwise. (`truncSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L45)).
 
 **Cutoff indicator for a derivative symbol.** Definition. The derivative cutoff is one when the symbol norm is at most N and zero otherwise. (`truncCut`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L48)).
 
-**Measurable truncated derivative symbols.** Proved result. Truncated derivative symbols are measurable. (`measurable_truncSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L51)).
+**Measurable truncated derivative symbols.** Proved result. For every derivative multi-index and truncation level N, the truncated Fourier derivative multiplier is measurable. (`measurable_truncSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L51)).
 
 **Measurable derivative cutoffs.** Proved result. Derivative cutoff indicators are measurable. (`measurable_truncCut`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L56)).
 
 **The threshold bounds a truncated symbol.** Proved result. The norm of the derivative symbol truncated at threshold N is at most N at every frequency. (`norm_truncSymbol_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L61)).
 
-**A cutoff symbol has norm at most one.** Proved result. A cutoff symbol has norm at most one. (`norm_truncCut_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L68)).
+**A cutoff symbol has norm at most one.** Proved result. For every derivative multi-index, truncation level and frequency, the scalar cutoff used for the truncated derivative multiplier has modulus at most one. (`norm_truncCut_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L68)).
 
 **Truncated integral derivatives a.e..** Proved result. Truncated derivative symbols pass through the interval integral as an almost-everywhere identity of Fourier representatives. (`truncate_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivIntegral.lean#L73)).
 
@@ -354,9 +354,9 @@ This file differentiates the tensor-product representation of a regular orbit to
 
 **Outer product as a bounded bilinear map.** Definition. The outer-product bilinear map sends two spatial vectors to the tensor of all pairwise coordinate products. (`outerProductMap`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivRepresentation.lean#L10)).
 
-**Outer-product map has norm at most one.** Proved result. The outer-product map has norm at most one. (`outerProductMap_norm_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivRepresentation.lean#L25)).
+**Outer-product map has norm at most one.** Proved result. The bilinear map sending vectors u,v to their outer product has operator norm at most one. (`outerProductMap_norm_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivRepresentation.lean#L25)).
 
-**Tensor derivatives have a uniform bound.** Proved result. Tensor derivatives have a uniform bound. (`norm_iteratedFDeriv_outer_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivRepresentation.lean#L28)).
+**Tensor derivatives have a uniform bound.** Proved result. If f is C² and its derivatives of orders zero, one and two are uniformly bounded by C, the corresponding derivatives of f⊗f are uniformly bounded by 4C². (`norm_iteratedFDeriv_outer_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivRepresentation.lean#L28)).
 
 **Differentiate a fixed derivative column.** Proved result. If the derivative map is differentiable, applying it to a fixed vector has derivative equal to the second derivative with that fixed vector in its second input. (`hasFDerivAt_fderiv_apply`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivRepresentation.lean#L49)).
 
@@ -374,19 +374,19 @@ This file equates homogeneous Sobolev energy with the sum of the L2 energies of 
 
 **Conjugate symmetry of derivative symbols.** Proved result. The conjugate of a derivative multiplier at the negative frequency equals that multiplier at the original frequency. (`conj_monoSymbol_neg`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L36)).
 
-**Derivative multipliers are continuous.** Proved result. Derivative multipliers are continuous. (`continuous_monoSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L44)).
+**Derivative multipliers are continuous.** Proved result. For any finite list of coordinate derivatives, the associated Fourier multiplier is continuous in frequency. (`continuous_monoSymbol`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L44)).
 
-**Conjugation conjugates scalar factors.** Proved result. Conjugation conjugates scalar factors. (`conjVec_smul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L48)).
+**Conjugation conjugates scalar factors.** Proved result. For a complex scalar c and vector z, conj(cz) equals conj(c)conj(z). (`conjVec_smul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L48)).
 
-**Longitudinal projection respects scalars.** Proved result. Longitudinal projection respects scalars. (`longitudinal_smul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L52)).
+**Longitudinal projection respects scalars.** Proved result. The longitudinal projection onto the direction of ξ is complex linear: projection of cz equals c times the projection of z. (`longitudinal_smul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L52)).
 
-**L2 norm equals integrated square energy.** Proved result. The L2 norm equals integrated square energy. (`lintegral_enorm_sq_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L57)).
+**L2 norm equals integrated square energy.** Proved result. For an L² complex vector field f in frequency space, the integral of its squared pointwise norm equals the square of its L² norm. (`lintegral_enorm_sq_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L57)).
 
 **L2 symbols from finite Sobolev energy.** Proved result. Finite Sobolev energy gives L2 multipliers. (`memLp_monoSymbol_smul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L64)).
 
 **L2 derivative data keep the constraints.** Proved result. An L2 field equal almost everywhere to a coordinate derivative multiplier times admissible Fourier data retains conjugate symmetry and zero longitudinal component. (`monoSymbol_smul_mem_sig`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L87)).
 
-**Finite Sobolev energy gives derivatives.** Proved result. Finite Sobolev energy gives derivatives. (`exists_deriv`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L111)).
+**Finite Sobolev energy gives derivatives.** Proved result. If the order-n Fourier-weighted energy of x is finite, every prescribed n-fold Cartesian derivative of x exists as an element of the same homogeneous H¹ space. (`exists_deriv`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L111)).
 
 **Normalize the derivative square sum.** Proved result. Frequency norm to the power 2n times the vector square norm equals (2π) to the power -2n times the sum of all order-n derivative-multiplier square norms. (`weight_mul_eq_sum`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DerivSobolev.lean#L117)).
 
@@ -414,7 +414,7 @@ This file characterizes the abstract coordinate derivative by translation differ
 
 **A majorant for quotient remainders.** Proved result. Difference-quotient remainders have a majorant. (`norm_slopeRemainder_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DiffQuotient.lean#L71)).
 
-**Frequency coordinates are continuous.** Proved result. Frequency coordinates are continuous. (`continuous_coord`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DiffQuotient.lean#L85)).
+**Frequency coordinates are continuous.** Proved result. Each Cartesian frequency coordinate ξ ↦ ξⱼ is continuous on R³. (`continuous_coord`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DiffQuotient.lean#L85)).
 
 **Measurable quotient-remainder energy.** Proved result. Difference-quotient remainder energy is measurable. (`aemeasurable_slopeRemainder`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DiffQuotient.lean#L88)).
 
@@ -430,7 +430,7 @@ This file characterizes the abstract coordinate derivative by translation differ
 
 This file tracks similarity dilation through Fourier representatives, velocity and pressure symbols, inverse transforms and Sobolev energy. The smooth-profile and torus route supporting Proposition 7.11 and Corollary 7.2; analytic and Fourier library infrastructure.
 
-**Space has real dimension three.** Proved result. Space has real dimension three. (`finrank_space`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DilateSymbol.lean#L14)).
+**Space has real dimension three.** Proved result. The real vector space of spatial vectors has dimension three. (`finrank_space`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DilateSymbol.lean#L14)).
 
 **Weighted energy as an L2 norm square.** Proved result. Order-k weighted Fourier energy equals the square of the L2 norm after multiplying the field by frequency radius to power k. (`homNormSq_eq_eLpNorm_sq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DilateSymbol.lean#L16)).
 
@@ -470,7 +470,7 @@ This file tracks similarity dilation through Fourier representatives, velocity a
 
 This file changes space and time variables in the heat and Leray-kernel integrals to recover the Duhamel similarity representation. The smooth-profile and torus route supporting Proposition 7.11 and Corollary 7.2; analytic and Fourier library infrastructure.
 
-**Space has real dimension three.** Proved result. Space has real dimension three. (`finrank_space_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DuhamelChangeOfVariables.lean#L9)).
+**Space has real dimension three.** Proved result. The real vector space used for the spatial change of variables has dimension three. (`finrank_space_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DuhamelChangeOfVariables.lean#L9)).
 
 **Cancellation of heat scaling in 3D.** Proved result. In three dimensions and for positive μ, the heat normalization μ√μ cancels the reciprocal-cube Jacobian of spatial scaling by √μ. (`heat_scalar_identity`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/DuhamelChangeOfVariables.lean#L11)).
 

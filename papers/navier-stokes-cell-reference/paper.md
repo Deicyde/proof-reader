@@ -156,7 +156,7 @@ Paper: Appendix B.1, (B.1), p.50. Source: [lines 1971–1974](https://github.com
 
 | Direct field | Meaning |
 |---|---|
-| [`order_pos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L1972) | The azimuthal order is at least one. |
+| The symmetry order satisfies κ≥1. | The azimuthal order is at least one. |
 | [`twisted`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L1973) | Γ contains rotation by π/κ combined with a half-period time shift. |
 | [`flip`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L1974) | Γ contains the spatial flip with zero time shift. |
 
@@ -281,7 +281,7 @@ Paper: Appendix B.3, (B.25) and Proposition B.4, pp.57–60. Source: [lines 2021
 
 | Direct field | Meaning |
 |---|---|
-| [`order_pos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2022) | The azimuthal order is at least one. |
+| The angular symmetry order satisfies κ≥1. | The azimuthal order is at least one. |
 | [`strainBound_nonneg`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2023) | The proposed strain operator bound is nonnegative. |
 | [`vorticityGradBound_nonneg`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2024) | The proposed curl-gradient operator bound is nonnegative. |
 | [`balance_pos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2025) | The balancing parameter is strictly positive. |
@@ -543,7 +543,7 @@ Paper: Appendix B.3, Proposition B.4 and the perturbations of (7.18). Source: [l
 
 **Checker care.**
 
-- **similarity-transport-field**: The field g is T_P v, not the time derivative alone: its weak transport identity includes v/2 and (y·∇)v/2. Decode the right-hand side with this convention.
+- In the weak sense, the supplied field is g=S⁻¹∂θv+v/2+(y·∇)v/2=T_Sv+∆v. The diffusion term enters separately in the weak right-hand-side equation.
 
 ### Uniform continuum hypotheses (L5174)
 
@@ -927,7 +927,7 @@ Paper: Appendix B.1, (B.9), pp.51–52. Source: [lines 3815–3823](https://gith
 |---|---|
 | [`params`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3816) | Base chart, symmetry order, radial phase and origin data. |
 | [`step`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3817) | Piecewise polynomial χ generating the moving phase. |
-| [`stepEdge`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3818) | Compactified radius σχ below which the moving phase vanishes. |
+| [`stepEdge`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3818) | Proposed cutoff breakpoint σχ; under the valid cutoff and positive chart-length conditions it bounds the region where the moving phase vanishes. |
 | [`rate`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3819) | Vector k of coefficients in k·α. |
 | [`centre`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3820) | Harmonic amplitude data for W⁰α. |
 | [`centreOrigin`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3821) | Origin profile g for the centre field. |
@@ -1711,7 +1711,7 @@ Paper: Appendix B.1, p.51, joining and conjugation/reflection conditions followi
 
 ### Reflected amplitude data (L2684)
 
-`Breakdown.CertCell.GivenShape.KeyAmp.reflect`. A is even under η-reflection and B, S and T are odd; the stored γ and exponents are retained.
+The reflected radial amplitude is A(σ,−η), while the reflected polar, stream, and swirl amplitudes are −B(σ,−η), −S(σ,−η), and −T(σ,−η). The coefficient γ and both exponents remain unchanged.
 
 Paper: Appendix B.1, p.51, joining and conjugation/reflection conditions following (B.8). Source: [lines 2684–2686](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2684-L2686). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L1880-L1882).
 
@@ -1739,7 +1739,7 @@ Paper: Appendix B.1, p.52, Hermite representation of the reference profile; no s
 
 ### Unit Hermite jet polynomial (L2700)
 
-`Breakdown.CertCell.GivenShape.jetUnit`. The polynomial normalizes the selected endpoint derivative with 1/p! and enforces the required vanishing at the opposite endpoint.
+For p<n, the unit-interval Hermite polynomial has p-th derivative 1 at the selected endpoint and the required vanishing derivatives at the opposite endpoint. The formula is zero when p≥n because its coefficient sum is empty.
 
 Paper: Appendix B.1, p.52, Hermite representation of the reference profile; no separate numbered formula for this constructor. Source: [lines 2700–2702](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2700-L2702). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L1896-L1898).
 
@@ -1749,7 +1749,7 @@ Paper: Appendix B.1, p.52, Hermite representation of the reference profile; no s
 
 ### Left endpoint jet on an interval (L2704)
 
-`Breakdown.CertCell.GivenShape.nodalLeft`. The affine pullback and the factor (b−a)^p turn the unit Hermite jet into a physical derivative at the left endpoint.
+The left-endpoint polynomial is obtained by the affine coordinate (x−a)/(b−a) and factor (b−a)^p. For a≠b and p<n, where n is the interpolation depth, this preserves the physical p-th derivative normalization.
 
 Paper: Appendix B.1, p.52, Hermite representation of the reference profile; no separate numbered formula for this constructor. Source: [lines 2704–2706](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2704-L2706). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L1900-L1902).
 
@@ -1759,7 +1759,7 @@ Paper: Appendix B.1, p.52, Hermite representation of the reference profile; no s
 
 ### Right endpoint jet on an interval (L2708)
 
-`Breakdown.CertCell.GivenShape.nodalRight`. The reflected affine coordinate and the factor (a−b)^p preserve the physical derivative convention at the right endpoint.
+The right-endpoint polynomial uses (b−x)/(b−a) and factor (a−b)^p. For a≠b and p<n, where n is the interpolation depth, the reflected coordinate and sign preserve the physical p-th derivative normalization.
 
 Paper: Appendix B.1, p.52, Hermite representation of the reference profile; no separate numbered formula for this constructor. Source: [lines 2708–2710](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2708-L2710). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L1904-L1906).
 
@@ -2244,7 +2244,7 @@ Paper: Appendix B.1, (B.9), pp.51–52. Source: [lines 3829–3829](https://gith
 
 ### Radius of the affine core (L3831)
 
-`Breakdown.CellReduction.Instantiation.ProfileShapeEntry.matchRadius`. The radius Lσχ/(1−σχ) bounds the region where f_* vanishes and the profile depends affinely on α through amplitudes alone.
+The proposed radius is rχ=Lσχ/(1−σχ). With valid cutoff data and L>0, the moving phase vanishes inside this radius and the profile depends affinely on the amplitude parameters there.
 
 Paper: Appendix B.1, (B.9), pp.51–52. Source: [lines 3831–3831](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3831). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L3027).
 
@@ -3254,7 +3254,7 @@ Paper: Appendix B.2, pp.53–54, scalar weights and auxiliary step functions bef
 **Checker care.**
 
 - **positive-step-scope**: Mesh validity is an independent conjunct, even when no table entry is tested. Prove positivity of both half-space values on every active cell; an empty or malformed mesh does not remove the mesh obligation.
-- **scalar-weight-side-conditions**: Check the different obligations for D, Z, λ and μ separately: there is no Z-nonnegativity field here, whereas λ/μ nonnegativity, different decay exponents and positive auxiliary steps are explicit. The rational-weight helper discussed in the prior audit is conditional on six representation implications.
+- The weight conditions prescribe joining orders, behavior at the origin, decay powers, and positive auxiliary steps, with 0<c,cμ<1. Nonnegativity is required for D, λ, and μ; no such condition on Z appears here.
 
 ### Reflection of scalar weights (L2528)
 
@@ -3515,8 +3515,8 @@ Paper: Appendix B.1–B.2, fixed reference field and uniform parameter enclosure
 |---|---|
 | [`model_eq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5012) | At every allowed α, the certificate’s reference model equals the common given field. |
 | [`classOf_eq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5013) | The label-to-coefficient-class map is constant across the parameter set. |
-| [`convD_eq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5014) | The first convolution coefficient family is constant across the parameter set. |
-| [`convZ_eq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5015) | The second convolution coefficient family is constant across the parameter set. |
+| [`convD_eq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5014) | The D conversion weight is constant across K. |
+| [`convZ_eq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5015) | The Z conversion weight is constant across K. |
 | [`eps_eq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5016) | Each eps piece is constant once its frame component is removed. |
 | [`mu_eq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5017) | Each mu piece is constant once its frame component is removed. |
 | [`c_eq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5018) | The form coefficient c equals the stored coercivity at every allowed α. |
@@ -3737,7 +3737,7 @@ Paper: Appendix B.4, compact pin fields before (B.51), p.67; exact cylindrical f
 
 ### Pin fields and compact generators (L6868)
 
-`Breakdown.PotentialShape.PinShapeEntry`. Stores both the cylindrical pin potentials Φ_l and compact generators Φ̃_l, together with the cell matrix fields used by the certificate. A later equality ties these representations together.
+The pin data supply cylindrical potentials Φₗ, proposed generators Φ̃ₗ and cell matrix fields. Compact support and the equalities tying these representations together are required separately.
 
 Paper: Appendix B.1, pin data, and Appendix B.4, replacement fields before (B.51), p.67. Source: [lines 6868–6877](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6868-L6877). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L6064-L6073).
 
@@ -3748,14 +3748,14 @@ Paper: Appendix B.1, pin data, and Appendix B.4, replacement fields before (B.51
 | [`pinCells`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6871) | Piecewise cell matrix representation of each pin field. |
 | [`cells`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6872) | Cylindrical series for each pin potential Φ_l. |
 | [`cellMesh`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6873) | Mesh radius for the cylindrical amplitudes. |
-| [`cellSupport`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6874) | Smaller support radius for the cylindrical amplitudes. |
-| [`params`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6875) | Chart and phase parameters of each compact generator Φ̃_l. |
-| [`generators`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6876) | Compact field data for each generator Φ̃_l. |
+| [`cellSupport`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6874) | Proposed support radius for the cylindrical amplitudes; each pin’s support conditions require 0<R_supp<R_mesh. |
+| [`params`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6875) | Chart and phase parameters for each proposed generator Φ̃ₗ; compact support is required separately. |
+| [`generators`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6876) | Harmonic data for each proposed generator Φ̃ₗ; compact support is required separately. |
 | [`edge`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6877) | Compactified support edge of each generator. |
 
 ### Pair pin potentials with generators (L6879)
 
-`Breakdown.PotentialShape.PinShapeEntry.pinData`. Constructs the PinData pair by decoding the cylindrical Φ_l fields and the compact Φ̃_l generator fields.
+The two pin families are obtained by evaluating the supplied cylindrical-potential and generator representations. Compact support of the generators is required separately.
 
 Paper: Appendix B.4, pin replacement before (B.51), p.67. Source: [lines 6879–6880](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6879-L6880). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L6075-L6076).
 
@@ -3934,14 +3934,14 @@ Paper: Appendix B.4, dual-bound definition and Lemma B.11, pp.65–66; (B.50). S
 
 ### Pin potentials and generators (L3591)
 
-`Breakdown.AdjointDefect.PinData`. The potential fields encode Φₗ and the solenoidal generators encode Φ̃ₗ, whose difference is charged separately in (B.53).
+The two field families supply the pin potentials Φₗ and proposed generators Φ̃ₗ; divergence freedom is required separately. Their difference contributes to the pin error in (B.53).
 
 Paper: Appendix B.4, (B.51)–(B.56), pp.67–68, and Lemma B.12. Source: [lines 3591–3593](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3591-L3593). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L2787-L2789).
 
 | Direct field | Meaning |
 |---|---|
-| [`potential`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3592) | Compact pin potentials Φₗ used to approximate the constraint matrices. |
-| [`generator`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3593) | Divergence-free pin generators Φ̃ₗ used in the adjoint residual. |
+| [`potential`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3592) | Pin-potential fields Φₗ used to approximate the constraint matrices; their compact support is required separately. |
+| [`generator`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3593) | Generator fields Φ̃ₗ used in the adjoint residual, with divergence freedom required separately. |
 
 ### Data for one adjoint defect (L3595)
 
@@ -4180,7 +4180,7 @@ Paper: Appendix B.4, (B.57)–(B.59), pp.68–69, and Lemma B.13. Source: [lines
 
 ### Certified offset expansion (L3991)
 
-`Breakdown.CellReduction.Instantiation.IsOffsetExpansionEntry`. The period and multiplier are affine on K, the core pairings have certified errors, and the outside norms are uniform on K. The resulting offset equals the constructed sum exactly.
+The reciprocal period and forcing coefficients are affine on K; the core pairings have certified errors and the exterior norm bounds are uniform. The resulting offset equals the constructed sum exactly.
 
 Paper: Appendix B.4, (B.57)–(B.59), pp.68–69, and Lemma B.13. Source: [lines 3991–4009](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L3991-L4009). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L3187-L3205).
 
@@ -4474,7 +4474,7 @@ Paper: Appendix B.3, (B.25)–(B.27), pp.57–58. Source: [lines 298–300](http
 
 ### Radial orthonormal polynomial (L306)
 
-`Breakdown.CellCert.CellAnalysis.CellBases.radialPoly`. Evaluates degree j using only coefficients numbered zero through j. Coefficients outside that range do not affect this polynomial.
+The radial polynomial is ∑ᵢ₌₀ʲ aⱼᵢrⁱ, so its degree is at most j. The separate positive-leading-coefficient condition makes the degree exactly j.
 
 Paper: Appendix B.3, p.57 and (B.27), p.58; explicit coefficient evaluation. Source: [lines 306–306](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L306). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/StatementDefs.lean#L442).
 
@@ -4484,7 +4484,7 @@ Paper: Appendix B.3, p.57 and (B.27), p.58; explicit coefficient evaluation. Sou
 
 ### Height orthonormal polynomial (L308)
 
-`Breakdown.CellCert.CellAnalysis.CellBases.heightPoly`. Evaluates degree l using the height coefficient table. Orthonormality is imposed by IsCellBases, not by the evaluator.
+The height polynomial is ∑ᵢ₌₀ˡ bₗᵢzⁱ. Orthonormality and the positive leading coefficient are separate requirements on the family.
 
 Paper: Appendix B.3, p.57 and (B.27), p.58; explicit coefficient evaluation. Source: [lines 308–308](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L308). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/StatementDefs.lean#L444).
 
@@ -5749,13 +5749,13 @@ Paper: Appendix B.3, pp.57–60, resolved-mode data and local comparison (B.26).
 
 ### Layouts for the modes of a cell (L4336)
 
-`Breakdown.CertCell.CellCalculus.CellModeLayouts`. Every label selects a layout and a parameterization of its relation space, while all labels share one orthonormal cell basis.
+Every harmonic has a cell-coordinate layout and relation data, while all harmonics share the same radial and height polynomial families. Their orthonormality is required separately.
 
 Paper: Appendix B.3, pp.57–60, resolved-mode data and local comparison (B.26). Source: [lines 4336–4340](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4336-L4340). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L3532-L3536).
 
 | Direct field | Meaning |
 |---|---|
-| [`bases`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4337) | Common radial and height orthonormal polynomial families for the cell. |
+| [`bases`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4337) | Common radial and height polynomial families; their orthonormality is imposed by the cell-coordinate conditions. |
 | [`layout`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4338) | Cell-coordinate layout selected by each lattice label. |
 | [`param`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4339) | Parameterization data for the selected layout's relation space. |
 | [`selection`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4340) | Choice of relation indices used to solve for dependent coordinates. |
@@ -5846,7 +5846,7 @@ Paper: Appendix B.3, pp.57–60, resolved-mode data and local comparison (B.26).
 | [`matrix_hermitian`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4387) | The local matrix equals its complex conjugate transpose at every point. |
 | [`matrix_regular`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4388-L4389) | Its entries are globally measurable and have one uniform bound on the rectangle. |
 | [`matrix_le`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4390-L4391) | For every complex gradient and velocity, the matrix form lies below the lower-order form minus the box penalty. |
-| [`pointwise`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4392-L4396) | Away from r=0, the weighted matrix form minus stretching and pairing penalties is covered by the absorption form. |
+| [`pointwise`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4392-L4396) | Away from r=0, the weighted difference between the matrix form and the stretching and pairing losses, plus the absorption term, is nonnegative. |
 | [`charges_nonneg`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4397) | The mean/wave gradient charges are nonnegative and the balancing length is positive. |
 | [`symmetric`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4398-L4400) | Negation of a resolved label preserves the two floors and three absorption coefficients. |
 
@@ -6040,7 +6040,7 @@ Paper: Appendix B.1, p.53, polynomial test fields and (B.11); Appendix B.3, pp.5
 
 ### Tensor product cell basis value (L4512)
 
-`Breakdown.CertCell.CellCalculus.basisValue`. A radial and a vertical real orthonormal polynomial are multiplied and embedded in ℂ for use in complex row integrals.
+A radial and a height polynomial are multiplied and their real product is regarded as a complex value for the row integrals. Orthonormality of these families is imposed separately.
 
 Paper: Appendix B.1, p.53, polynomial test fields and (B.11); Appendix B.3, pp.57–60, local rows in (B.26). Source: [lines 4512–4512](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4512). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L3708).
 
@@ -6159,7 +6159,7 @@ Paper: Appendix B.3, (B.25), p.57. Source: [lines 4586–4595](https://github.co
 | Direct field | Meaning |
 |---|---|
 | [`strain`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4588-L4589) | The strain quadratic form is bounded above by s₁\|u\|² at all times and angles. |
-| [`mean_gradient`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4590-L4591) | The zero harmonic of the vorticity gradient has complex operator bound s₂. |
+| [`mean_gradient`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4590-L4591) | The squared action of the zero-harmonic vorticity-gradient matrix is bounded by s₂² times the squared vector norm. |
 | [`wave_gradient`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4592-L4595) | The difference from that mean mode has operator bound s₃ at every time and angle. |
 
 **Checker care.**
@@ -6528,7 +6528,7 @@ Paper: Appendix B.3, (B.38)–(B.42) and Lemma B.7, pp.61–63. Source: [lines 2
 | Direct field | Meaning |
 |---|---|
 | [`Pos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2153) | Type indexing the positive factor columns at this node. |
-| [`posFintype`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2154) | Evidence that the positive-column type is finite. |
+| The family of positive real factor columns is finite. | Evidence that the positive-column type is finite. |
 | [`input`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2155) | Approximate real input matrix H in the node enclosure. |
 | [`base`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2156) | Approximate real base matrix K for its outgoing front. |
 | [`pivotValue`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2157) | Candidate diagonal pivot amounts before subtracting the error radius. |
@@ -6547,7 +6547,7 @@ Paper: Appendix B.3, (B.38)–(B.42) and Lemma B.7, pp.61–63. Source: [lines 2
 | [`Index`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2163) | Type indexing the complex coordinates of this node. |
 | [`indexFintype`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2164) | Evidence that the complex coordinate type is finite. |
 | [`Pos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2165) | Type indexing the positive complex factor columns. |
-| [`posFintype`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2166) | Evidence that the positive-column type is finite. |
+| The family of positive complex factor columns is finite. | Evidence that the positive-column type is finite. |
 | [`Neg`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2167) | Type indexing the negative complex factor columns. |
 | [`negFintype`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2168) | Evidence that the negative-column type is finite. |
 | [`coords`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L2169) | Map expressing complex coordinates in the real global unknowns. |
@@ -6631,7 +6631,7 @@ Paper: Appendix B.3, (B.38)–(B.42) and Lemma B.7, pp.61–63. Source: [lines 2
 
 ### Pressure gauge classes (L4860)
 
-`Breakdown.CertCell.GaugeKey.GaugeKeyValues`. Stores the pressure gauge classes, deleted coordinates and an exact rational inverse for their incidence matrix. These are extra data behind the paper’s unspecified global coordinate relations.
+The pressure-gauge classes, deleted coordinates and a proposed rational incidence inverse are supplied as data. The gauge conditions require the exact inverse identities.
 
 Paper: Appendix B.3, pp.57–60: relations between cell and global unknowns; no separate paper counterpart for this representation helper. Source: [lines 4860–4867](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4860-L4867). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L4056-L4063).
 
@@ -6643,7 +6643,7 @@ Paper: Appendix B.3, pp.57–60: relations between cell and global unknowns; no 
 | [`deletedKey`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4864) | Harmonic and skeleton key removed to fix each gauge class. |
 | [`endClass`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4865) | Optional class attached to each oriented end of a skeleton key. |
 | [`incidence`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4866) | Integer incidence matrix relating deleted pressure coordinates to classes. |
-| [`incidenceInv`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4867) | Rational matrix supplied as an exact inverse of the incidence matrix. |
+| [`incidenceInv`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L4867) | Rational matrix proposed as the inverse of the incidence matrix; exact inverse identities are required separately. |
 
 ### Gauge endpoint indicator (L4873)
 
@@ -7075,7 +7075,7 @@ Paper: Appendix B.3, p.57 and the coordinate discussion on p.60; the exact skele
 
 | Direct field | Meaning |
 |---|---|
-| [`evaluation`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6275) | Allowed direct, conjugate or plane-reflected reading of the parent key. |
+| [`evaluation`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6275) | Proposed direct, conjugate or plane-reflected reading, validated by the subdivision conditions. |
 | [`tiles`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6276) | Number of subsegments in the subdivision. |
 | [`tlo`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6277) | Lower endpoint of each subsegment. |
 | [`thi`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6278) | Upper endpoint of each subsegment. |
@@ -7096,7 +7096,7 @@ Paper: Appendix B.3, p.57 and the coordinate discussion on p.60; the exact skele
 
 | Direct field | Meaning |
 |---|---|
-| [`evaluation`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6289) | Permitted direct or conjugate evaluation of the normal velocity key. |
+| [`evaluation`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6289) | Proposed reading of the normal-velocity coordinate; the flux conditions require a direct or conjugate evaluation. |
 | [`endRe`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6290) | Optional real stream values at the two face endpoints. |
 | [`endIm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6291) | Optional imaginary stream values at the two face endpoints. |
 
@@ -7341,7 +7341,7 @@ Paper: Appendix B.3, (B.26)–(B.27), pp.58–60; the full auxiliary matrix form
 | [`rowCount`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5343) | Number of tested row functionals on the cell. |
 | [`rowMap`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5344) | Matrix evaluating the tested rows on the cell coordinates. |
 | [`rowBand`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5345) | Eliminated-mode coefficient fields in each tested row. |
-| [`rowWeight`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5346) | Positive definite matrix weighting the row estimates. |
+| [`rowWeight`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5346) | Proposed row-weight matrix, required to be positive definite by the elimination conditions. |
 | [`leakModes`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5347) | Finite set of unresolved harmonics charged for row or pairing leakage. |
 | [`leakCurl`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5348) | Curl-square allowance assigned to each leakage harmonic. |
 | [`leakVel`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5349) | Velocity-square allowance assigned to each leakage harmonic. |
@@ -7360,11 +7360,11 @@ Paper: Appendix B.3, (B.26)–(B.27), pp.58–60; the full auxiliary matrix form
 | [`rowLabel`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5362) | Harmonic label of each tested row. |
 | [`rowTest`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5363) | Natural index of the polynomial test used by each row. |
 | [`rowTailTest`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5364) | Orthogonal remainder of each row’s coupling test. |
-| [`leakWeight`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5365) | Positive leakage weight for each tested harmonic. |
+| [`leakWeight`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5365) | Proposed leakage weight for each harmonic; it must be positive on tested harmonics. |
 | [`rowKappaCost`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5366) | Error allowance charged to the multiplier vector β. |
 | [`actuatorModel`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5367) | Approximate forcing fields indexed by all natural numbers. |
 | [`actuatorRows`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5368) | Harmonics on which forcing-model errors are estimated explicitly. |
-| [`actuatorCost`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5369) | Positive Young-inequality weight for forcing-model error. |
+| [`actuatorCost`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5369) | Proposed weight for the forcing-model error, with positivity required by the row-functional conditions. |
 | [`actuatorErr`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5370) | Integrated squared error between true and approximate forcing fields. |
 | [`freqCost`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5371) | Weight allocated to reciprocal-period error for a tested harmonic. |
 | [`errorCost`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5372) | Weight allocated to local reference-model error. |
@@ -7540,7 +7540,7 @@ Paper: Appendix B.3, (B.26), p.58. Source: [lines 5484–5502](https://github.co
 
 | Direct field | Meaning |
 |---|---|
-| [`mesh_valid`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5485) | The mesh is valid. |
+| The mesh satisfies its geometric, harmonic and polynomial-degree conditions. | The mesh is valid. |
 | [`residual_value_le`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5486-L5488) | The cell form minus its energy leaf is bounded above by the kept potential and pairing forms, minus T_Q, plus b_Q and e_Q. |
 | [`band_weight_pos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5489-L5490) | Eliminated gradient weights are strictly positive; their three velocity weights are nonnegative. |
 | [`band_turn`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5491) | Every eliminated azimuthal frequency avoids 0 and ±1. |
@@ -7726,30 +7726,30 @@ Paper: Appendix B.3, the potential form P_Q in (B.26) and the coupling explanati
 | [`groupModes`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5632) | Resolved harmonics assigned to each coupling group. |
 | [`groupStrain`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5633) | Strain bound for each group of reference harmonics. |
 | [`groupGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5634) | Vorticity-gradient bound for each group. |
-| [`groupBalance`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5635) | Positive Young-inequality balance for each group. |
+| [`groupBalance`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5635) | Proposed balance for each harmonic group, required to be positive by the potential conditions. |
 | [`groupWave`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5636) | Cross-wave entry witnessing each group’s harmonic bound. |
-| [`groupPartners`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5637) | Unresolved, non-eliminated partner harmonics of each group. |
+| [`groupPartners`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5637) | Partner harmonics assigned to each group; the conditions require them to be unresolved and outside the eliminated set. |
 | [`rowPartners`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5638) | Partner harmonics relevant to tested rows. |
 | [`groupVel`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5639) | Velocity amplitude bound for each row-coupling group. |
 | [`groupHarmonics`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5640) | Reference harmonic differences belonging to each group. |
 | [`groupKappa`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5641) | Chosen trace-free or general matrix constant for each group. |
 | [`groupShift`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5642) | Fixed second label coordinate used by a cross-wave group. |
 | [`groupCurl`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5643) | Vorticity amplitude bound for each row-coupling group. |
-| [`length`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5644) | Positive common length used in the coupling split. |
-| [`epsLength`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5645) | Positive length used to balance reference-model error. |
+| [`length`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5644) | Proposed common coupling length, required to be positive by the potential conditions. |
+| [`epsLength`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5645) | Proposed length balancing the local model error, required to be positive by the potential conditions. |
 | [`epsStrain`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5646) | Bound on local strain approximation error. |
 | [`epsGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5647) | Bound on local vorticity-gradient approximation error. |
-| [`strainBalance`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5648) | Positive budget for a resolved gradient coupling tail. |
-| [`velBalance`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5649) | Positive budget for a resolved velocity coupling tail. |
+| [`strainBalance`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5648) | Proposed resolved-gradient tail balance, required to be positive by the potential conditions. |
+| [`velBalance`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5649) | Proposed resolved-velocity tail balance, required to be positive by the potential conditions. |
 | [`harmonicLabels`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5650) | Declared reference harmonic support used for convolution coverage. |
 | [`highStrain`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5651) | Bound on the higher-degree strain error. |
 | [`highGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5652) | Bound on the higher-degree vorticity-gradient error. |
-| [`youngCurl`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5653) | Positive weight splitting high-error curl costs. |
-| [`youngStrain`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5654) | Positive weight splitting high-error gradient costs. |
-| [`youngVel`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5655) | Positive weight splitting high-error velocity costs. |
+| [`youngCurl`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5653) | Proposed weight splitting the high-component curl error, required to be positive by the potential conditions. |
+| [`youngStrain`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5654) | Proposed weight splitting the high-component gradient error, required to be positive by the potential conditions. |
+| [`youngVel`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5655) | Proposed weight splitting the high-component velocity error, required to be positive by the potential conditions. |
 | [`longStrain`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5656) | Bound on the distant-harmonic strain contribution. |
 | [`longGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5657) | Bound on the distant-harmonic vorticity-gradient contribution. |
-| [`longBalance`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5658) | Positive balance between low and high distant harmonics. |
+| [`longBalance`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5658) | Proposed balance between low and high long components, required to be positive by the potential conditions. |
 | [`longCut`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5659) | Azimuthal label cutoff distinguishing the two distant-harmonic costs. |
 
 **Checker care.**
@@ -7758,14 +7758,14 @@ Paper: Appendix B.3, the potential form P_Q in (B.26) and the coupling explanati
 
 ### Pairing-tail Gram data (L5661)
 
-`Breakdown.CertCell.Assembly.PairingData`. Stores the harmonic set, positive weights and Gram forms that control tails of the β and 2ζ pairing profiles.
+The harmonic set, proposed weights and Gram matrices supply the data for the tails of the β and 2ζ pairing profiles. Positivity and the Gram estimates are required separately.
 
 Paper: Appendix B.3, B_Q in (B.26), p.58; no full Gram encoding is written. Source: [lines 5661–5664](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5661-L5664). Implementation: [the matching occurrence](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L4857-L4860).
 
 | Direct field | Meaning |
 |---|---|
 | [`gammaModes`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5662) | Harmonics whose pairing tails receive a Gram penalty. |
-| [`gammaWeight`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5663) | Positive balance weight for each penalized harmonic. |
+| [`gammaWeight`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5663) | Proposed balance weight for each penalized harmonic; the pairing conditions require positivity. |
 | [`gammaGram`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5664) | Complex matrix bounding the paired tails on the two k-component blocks. |
 
 ### Potential and pairing entries (L5666)
@@ -7998,12 +7998,12 @@ Paper: Appendix B.3, B_Q in (B.26) and Proposition B.4; full Gram conditions omi
 
 | Direct field | Meaning |
 |---|---|
-| [`mesh_valid`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5928) | The mesh is valid. |
+| The underlying cell mesh satisfies its stated validity conditions. | The mesh is valid. |
 | [`cell_conditions`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5929) | The cell-calculus conditions hold. |
 | [`kept_le`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5930) | The kept pairing matrix is below the exact pairing expression on admitted vectors. |
 | [`source_eq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5931-L5933) | On supported eliminated labels, the pairing source equals one half of the weighted gradient profile with zero velocity slots. |
 | [`source_zero`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5934-L5935) | On other eliminated labels, the pairing source is exactly zero. |
-| [`gamma_resolved`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5936-L5941) | Every nonzero resolved pairing tail has a positive Gram weight, allocated cost and Gram upper bound for real weights. |
+| [`gamma_resolved`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5936-L5941) | Every resolved pairing profile that is not equal to zero almost everywhere has a positive weight, an allocated cost and a Gram upper bound for its polynomial tail on real coefficient vectors. |
 | [`gamma_other`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5942-L5947) | Every nonzero unresolved, non-eliminated pairing profile is in both gamma and leakage sets with a positive weight and integral bound. |
 | [`gamma_gram`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5948-L5949) | Every selected gamma weight is positive and its Gram form is nonnegative on real vectors. |
 | [`leak_nonneg`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L5950) | All gradient leakage costs are nonnegative. |
@@ -8114,8 +8114,8 @@ Paper: Appendix B.3, tested-row pairings and (B.33)–(B.34), pp.59–60; detail
 | [`box_curl_rows`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6067-L6069) | Resolved box-curl allowance covers local and distant velocity errors. |
 | [`box_velocity_rows`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6070-L6075) | Resolved box-velocity allowance covers vorticity and reciprocal-period errors. |
 | [`band_allowance_rows`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6076-L6082) | Eliminated-mode allowances cover the corresponding velocity and vorticity errors. |
-| [`group_velocity`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6083-L6086) | Every reference-harmonic group has the supplied velocity norm bound at every time and angle. |
-| [`group_curl`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6087-L6090) | Every reference-harmonic group has the supplied vorticity norm bound at every time and angle. |
+| [`group_velocity`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6083-L6086) | Every reference-harmonic group has squared velocity norm at most the square of its proposed bound at every time and angle. |
+| [`group_curl`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6087-L6090) | Every reference-harmonic group has squared vorticity norm at most the square of its proposed bound at every time and angle. |
 | [`period_box`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CellLayerChallenge.lean#L6091-L6092) | The reciprocal period remains within its recorded error of the model value throughout the parameter set. |
 
 **Checker care.**

@@ -194,7 +194,7 @@ Commutes harmonic averaging with radial and height side-trace integrals. It iden
 
 **Split a height strip moment.** Proved result. Under the stated hypotheses, the combined height moment is the first moment plus i times the second. (`height_split`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/HarmonicSideData.lean#L56)).
 
-**Segment test is continuous.** Proved result. Under the stated hypotheses, the segment test is continuous. (`test_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/HarmonicSideData.lean#L86)).
+**Segment test is continuous.** Proved result. For each face segment and integer d ≥ 0, its test function ∑ᵢ₌₀ᵈ aᵢsⁱ is continuous on R. (`test_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/HarmonicSideData.lean#L86)).
 
 **Split a segment moment.** Proved result. Under the stated hypotheses, the combined segment moment is the first moment plus i times the second. (`moment_split`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/HarmonicSideData.lean#L90)).
 
@@ -272,7 +272,7 @@ Establishes reflection, rotational symmetry, support and normalization facts for
 
 **Cell index stays in range.** Proved result. Under the stated hypotheses, the selected cell index is smaller than the cell count. (`index_lt_count`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceBasic.lean#L94)).
 
-**Cell index at zero.** Proved result. Under the stated hypotheses, the cell index at zero is zero. (`index_at_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceBasic.lean#L106)).
+**Cell index at zero.** Proved result. If the cell breakpoints are strictly increasing and begin at zero, the point zero is assigned to the first cell. (`index_at_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceBasic.lean#L106)).
 
 **Substitution at zero preserves value.** Proved result. Under the stated hypotheses, substituting zero into the second polynomial variable preserves evaluation on that axis. (`eval_atSecond_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceBasic.lean#L120)).
 
@@ -660,7 +660,7 @@ Expresses a localized lower moment using an indicator and a continuous coefficie
 
 **Generator restricted to the lower half.** Proved result. Under the stated hypotheses, the lower generator equals the stated reflected meridian mode expansion. (`lower_indicator_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceMomentLower.lean#L21)).
 
-**Continuous lower generator coefficient.** Proved result. Under the stated hypotheses, the lower generator coefficient is continuous. (`continuous_lowerCoef`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceMomentLower.lean#L44)).
+**Continuous lower generator coefficient.** Proved result. For fixed row data, cell boxes and a vector component, the coefficient of the lower moment generator is continuous in the meridian coordinates. (`continuous_lowerCoef`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceMomentLower.lean#L44)).
 
 **Height-flip measurable equivalence.** Definition. `Breakdown.CertCell.Instance.Internal.MomentLower.heightFlip` constructs the measurable equivalence negating meridian height. (`heightFlip`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceMomentLower.lean#L49)).
 
@@ -812,7 +812,7 @@ Proves compactness and continuity properties of the solid support and test profi
 
 **Label phase is continuous.** Proved result. Under the stated hypotheses, the label phase is jointly continuous in time and angle. (`labelPhase_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceMoments.lean#L55)).
 
-**Label phase has norm one.** Proved result. Under the stated hypotheses, the label phase has norm one. (`labelPhase_norm`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceMoments.lean#L60)).
+**Label phase has norm one.** Proved result. For every temporal and angular label and all real σ and θ, the factor exp(i(2πkσ+nθ)) has complex modulus one. (`labelPhase_norm`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceMoments.lean#L60)).
 
 **Row phase factor has norm one.** Proved result. Under the stated hypotheses, the real-or-imaginary row factor has norm one. (`rowPartFactor_norm`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceMoments.lean#L64)).
 
@@ -922,7 +922,7 @@ Computes reflected velocity and gradient modes and transfers their integrals thr
 
 **Spacetime reflection preserves measure.** Proved result. Under the stated hypotheses, reflection of the spatial component preserves spacetime volume. (`measurePreserving_flipSnd`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairByPartsModes.lean#L131)).
 
-**Harmonic of a reflected label.** Proved result. Under the stated hypotheses, the harmonic of a reflected label is the reflected harmonic. (`labelHarmonic_labelFlip`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairByPartsModes.lean#L135)).
+**Harmonic of a reflected label.** Proved result. Replacing a lattice label (a,b) by (−a,b−a) leaves its temporal frequency unchanged and reverses its azimuthal frequency. (`labelHarmonic_labelFlip`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairByPartsModes.lean#L135)).
 
 **Frequency reflection is involutive.** Proved result. Under the stated hypotheses, reflecting a frequency twice returns it. (`flipLabel_flipLabel`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairByPartsModes.lean#L140)).
 
@@ -1288,7 +1288,7 @@ Computes harmonic orthogonality, reflected generator pairings and the finite blo
 
 **Test coefficient is continuous.** Proved result. Under the stated hypotheses, the row test coefficient is continuous. (`continuous_testValue`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L97)).
 
-**Cell solid is measurable.** Proved result. Under the stated hypotheses, the cell solid is measurable. (`measurableSet_solid`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L101)).
+**Cell solid is measurable.** Proved result. The three-dimensional solid obtained by revolving a closed meridian cell rectangle is a measurable subset of R³. (`measurableSet_solid`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L101)).
 
 **Unit indicator is measurable.** Proved result. Under the stated hypotheses, the unit indicator of a measurable set is measurable. (`measurable_unitOn`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L107)).
 
@@ -1304,13 +1304,13 @@ Computes harmonic orthogonality, reflected generator pairings and the finite blo
 
 **Cancel paired frame signs.** Proved result. Under the stated hypotheses, the two frame signs cancel in the indicated product. (`frameSign_pair`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L141)).
 
-**Label phase has norm one.** Proved result. Under the stated hypotheses, the label phase has norm one. (`norm_labelPhase`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L145)).
+**Label phase has norm one.** Proved result. For every temporal and angular label and all real σ and θ, the factor exp(i(2πkσ+nθ)) has complex modulus one. (`norm_labelPhase`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L145)).
 
 **Uniform bound for cell tests.** Proved result. Under the stated hypotheses, all components of the row test have a common nonnegative bound on the cell rectangle. (`exists_testBound`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L148)).
 
 **Bound a generator coefficient.** Proved result. Under the stated hypotheses, the coefficient magnitude is bounded by the stated test bound. (`abs_coefAt_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L159)).
 
-**Cell solid is bounded.** Proved result. Under the stated hypotheses, the cell solid is bounded. (`solid_bounded`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L174)).
+**Cell solid is bounded.** Proved result. For every meridian cell box, the solid obtained by rotation about the axis is bounded in R³. (`solid_bounded`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L174)).
 
 **Generator pairing is integrable.** Proved result. Under the stated hypotheses, the inner product of the two generators is integrable over a period. (`integrable_pairing`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingFormula.lean#L192)).
 
@@ -1376,7 +1376,7 @@ Factors each pairing block and proves positivity of the resulting quadratic form
 
 **Cell polynomial is continuous.** Proved result. Under the stated hypotheses, cell polynomial evaluation is continuous. (`eval_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingPosDef.lean#L41)).
 
-**Cell rectangle is compact.** Proved result. Under the stated hypotheses, the cell rectangle is compact. (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingPosDef.lean#L45)).
+**Cell rectangle is compact.** Proved result. For every cell box, its closed rectangle of radial and height coordinates is compact in R². (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingPosDef.lean#L45)).
 
 **Block-entry integrand is integrable.** Proved result. Under the stated hypotheses, the weighted test-field pairing is integrable on the cell rectangle. (`blockEntry_integrable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstancePairingPosDef.lean#L47)).
 
@@ -1440,13 +1440,13 @@ Proves measurability and integral regularity of the concrete scalar, vector and 
 
 **Meridian coordinates are continuous.** Proved result. Under the stated hypotheses, the meridian-coordinate map is continuous. (`pointPlane_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L18)).
 
-**Cell solid is measurable.** Proved result. Under the stated hypotheses, the cell solid is measurable. (`solid_measurableSet`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L21)).
+**Cell solid is measurable.** Proved result. The three-dimensional solid obtained by revolving a closed meridian cell rectangle is a measurable subset of R³. (`solid_measurableSet`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L21)).
 
 **Single-coordinate vector formula.** Proved result. Under the stated hypotheses, a single-coordinate vector is its value times the unit vector. (`single_eq_smul_unit`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L27)).
 
 **Frame vector is continuous.** Proved result. Under the stated hypotheses, the frame vector is continuous in angle. (`frameUnit_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L31)).
 
-**Frame vector has norm one.** Proved result. Under the stated hypotheses, the frame vector has norm one. (`frameUnit_norm_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L34)).
+**Frame vector has norm one.** Proved result. At each angle θ, each of the radial, azimuthal and axial basis vectors has Euclidean norm one. (`frameUnit_norm_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L34)).
 
 **Frame matrix term is continuous.** Proved result. Under the stated hypotheses, the rank-one frame reconstruction term is continuous in angle. (`frameTerm_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L38)).
 
@@ -1456,7 +1456,7 @@ Proves measurability and integral regularity of the concrete scalar, vector and 
 
 **Label phase is time-periodic.** Proved result. Under the stated hypotheses, the label phase is unchanged by adding one to time. (`labelPhase_periodic`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L49)).
 
-**Label phase has norm one.** Proved result. Under the stated hypotheses, the label phase has norm one. (`labelPhase_norm`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L58)).
+**Label phase has norm one.** Proved result. For every temporal and angular label and all real σ and θ, the factor exp(i(2πkσ+nθ)) has complex modulus one. (`labelPhase_norm`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L58)).
 
 **Real phase coefficient bound.** Proved result. Under the stated hypotheses, the absolute real part of the phase-weighted coefficient is bounded by the coefficient norm. (`coef_abs_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/InstanceRegular.lean#L61)).
 
@@ -1752,7 +1752,7 @@ Proves measurability, weak differentiation and local integrability of the veloci
 
 **Coordinate extraction is measurable.** Proved result. Under the stated hypotheses, the indicated coordinate function is almost everywhere strongly measurable. (`coord_two`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LabelRowProfile.lean#L72)).
 
-**Cell rectangle is measurable.** Proved result. Under the stated hypotheses, the cell rectangle is measurable. (`rect_meas`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LabelRowProfile.lean#L76)).
+**Cell rectangle is measurable.** Proved result. The closed rectangle of radial and height coordinates associated with any cell box is measurable in R². (`rect_meas`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LabelRowProfile.lean#L76)).
 
 **Weighted square by domination.** Proved result. Under the stated hypotheses, the radius-weighted squared profile is integrable under the given domination. (`wsq_le`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LabelRowProfile.lean#L78)).
 
@@ -1940,9 +1940,9 @@ Constructs radial and height monomial tests and computes their derivatives. The 
 
 **Conjugate level value is continuous.** Proved result. Under the stated hypotheses, the conjugate polynomial value along the specified height level is continuous. (`cont_conj_eval_level`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LabelRowProfileSspParts.lean#L191)).
 
-**Cell rectangle is compact.** Proved result. Under the stated hypotheses, the cell rectangle is compact. (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LabelRowProfileSspParts.lean#L195)).
+**Cell rectangle is compact.** Proved result. For every cell box, its closed rectangle of radial and height coordinates is compact in R². (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LabelRowProfileSspParts.lean#L195)).
 
-**Cell rectangle is measurable.** Proved result. Under the stated hypotheses, the cell rectangle is measurable. (`rect_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LabelRowProfileSspParts.lean#L197)).
+**Cell rectangle is measurable.** Proved result. The closed rectangle of radial and height coordinates associated with any cell box is measurable in R². (`rect_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LabelRowProfileSspParts.lean#L197)).
 
 **Multiply by a continuous cell factor.** Proved result. Under the stated hypotheses, multiplying the integrable profile by the continuous cell factor preserves integrability. (`int_mul_cont`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LabelRowProfileSspParts.lean#L199)).
 
@@ -1978,9 +1978,9 @@ Proves nonnegativity of the square densities entering a leaf estimate. It then e
 
 **Strain square sum is nonnegative.** Proved result. Under the stated hypotheses, the finite strain-entry square sum is nonnegative. (`sumSq_nonneg_leaf`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LeafDensityLower.lean#L15)).
 
-**Curl square is nonnegative.** Proved result. Under the stated hypotheses, the curl square is nonnegative. (`curlSq_nonneg_leaf`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LeafDensityLower.lean#L19)).
+**Curl square is nonnegative.** Proved result. For any complex 3 × 3 gradient matrix, the sum of squared moduli of its three curl components is nonnegative. (`curlSq_nonneg_leaf`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LeafDensityLower.lean#L19)).
 
-**Velocity square is nonnegative.** Proved result. Under the stated hypotheses, the velocity square is nonnegative. (`vecSq_nonneg_leaf`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LeafDensityLower.lean#L23)).
+**Velocity square is nonnegative.** Proved result. For any three-component complex velocity vector v, the quantity ∑ⱼ |vⱼ|² is nonnegative. (`vecSq_nonneg_leaf`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LeafDensityLower.lean#L23)).
 
 **Leaf density has its lower bound.** Proved result. Under the stated hypotheses, the Hessian floors, local quadratic form and box penalty are bounded by the coefficient density evaluated on the gradient, curl and velocity norms. (`leafDensityLower_holds`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LeafDensityLower.lean#L27)).
 
@@ -2038,9 +2038,9 @@ Expands the finite row forms and their real quadratic values. These algebraic id
 
 **Coefficient formulas for tests.** Proved result. Under the stated hypotheses, the test norm and pairing equal the stated Gram-matrix and moment expressions in coefficient space. (`param_eq`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalComponentAngularAlgebra.lean#L142)).
 
-**Cell rectangle is compact.** Proved result. Under the stated hypotheses, the cell rectangle is compact. (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalComponentAngularAlgebra.lean#L186)).
+**Cell rectangle is compact.** Proved result. For every cell box, its closed rectangle of radial and height coordinates is compact in R². (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalComponentAngularAlgebra.lean#L186)).
 
-**Cell rectangle is measurable.** Proved result. Under the stated hypotheses, the cell rectangle is measurable. (`rect_meas`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalComponentAngularAlgebra.lean#L188)).
+**Cell rectangle is measurable.** Proved result. The closed rectangle of radial and height coordinates associated with any cell box is measurable in R². (`rect_meas`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalComponentAngularAlgebra.lean#L188)).
 
 **Vanishing polynomial coefficients.** Proved result. Under the stated hypotheses, the one-variable polynomial coefficient family is zero under the stated vanishing condition. (`poly1_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalComponentAngularAlgebra.lean#L190)).
 
@@ -2206,9 +2206,9 @@ Uses symmetry of weak second derivatives and cylindrical frame differentiation t
 
 **Swap mixed second modes.** Proved result. Under the stated hypotheses, the two mixed radial-height second modes agree almost everywhere off the axis. (`localModeThirdSwap`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTangent.lean#L78)).
 
-**Cell rectangle is compact.** Proved result. Under the stated hypotheses, the cell rectangle is compact. (`rectCompact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTangent.lean#L104)).
+**Cell rectangle is compact.** Proved result. For every cell box, its closed rectangle of radial and height coordinates is compact in R². (`rectCompact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTangent.lean#L104)).
 
-**Cell rectangle is measurable.** Proved result. Under the stated hypotheses, the cell rectangle is measurable. (`rectMeasurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTangent.lean#L106)).
+**Cell rectangle is measurable.** Proved result. The closed rectangle of radial and height coordinates associated with any cell box is measurable in R². (`rectMeasurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTangent.lean#L106)).
 
 **Cell rectangle lies in the strip.** Proved result. Under the stated hypotheses, the cell rectangle lies in the stated bounded axis-reaching strip. (`rectInStrip`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTangent.lean#L108)).
 
@@ -2264,9 +2264,9 @@ Differentiates cylindrical frame components and evaluates their strip and face t
 
 **The axis is null.** Proved result. Under the stated hypotheses, the radial coordinate is nonzero almost everywhere. (`ae_fst_ne_zero`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTurn.lean#L18)).
 
-**Cell rectangle is measurable.** Proved result. Under the stated hypotheses, the cell rectangle is measurable. (`rect_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTurn.lean#L25)).
+**Cell rectangle is measurable.** Proved result. The closed rectangle of radial and height coordinates associated with any cell box is measurable in R². (`rect_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTurn.lean#L25)).
 
-**Cell rectangle is compact.** Proved result. Under the stated hypotheses, the cell rectangle is compact. (`rect_isCompact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTurn.lean#L28)).
+**Cell rectangle is compact.** Proved result. For every cell box, its closed rectangle of radial and height coordinates is compact in R². (`rect_isCompact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTurn.lean#L28)).
 
 **Split the radial strip integrand.** Proved result. Under the stated hypotheses, the strip expression splits into the radius-scaled expression and its stated correction. (`strip_pointwise_split`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalFaceTurn.lean#L31)).
 
@@ -2498,9 +2498,9 @@ Establishes local integrability of gradient and second-derivative columns and th
 
 Proves weighted integrability of products of local modes and polynomial tests on a compact cell rectangle. It evaluates the pairings and extracts the finite local mode data. Appendix B: cell-system construction and finite certificate analysis.
 
-**Cell rectangle is compact.** Proved result. Under the stated hypotheses, the cell rectangle is compact. (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L18)).
+**Cell rectangle is compact.** Proved result. For every cell box, its closed rectangle of radial and height coordinates is compact in R². (`rect_compact`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L18)).
 
-**Cell rectangle is measurable.** Proved result. Under the stated hypotheses, the cell rectangle is measurable. (`rect_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L20)).
+**Cell rectangle is measurable.** Proved result. The closed rectangle of radial and height coordinates associated with any cell box is measurable in R². (`rect_measurable`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L20)).
 
 **Continuous factors preserve integrals.** Proved result. Under the stated hypotheses, multiplying a cell-integrable function by the continuous factor preserves integrability. (`integrableOn_continuous_mul`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L22)).
 
@@ -2508,9 +2508,9 @@ Proves weighted integrability of products of local modes and polynomial tests on
 
 **Line weight is continuous.** Proved result. Under the stated hypotheses, the line weight embedded in the complex numbers is continuous. (`lineWeight_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L32)).
 
-**Radial basis polynomial is continuous.** Proved result. Under the stated hypotheses, the radial basis polynomial is continuous. (`radialPoly_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L40)).
+**Radial basis polynomial is continuous.** Proved result. Every radial basis polynomial is continuous as a function of the real radial coordinate. (`radialPoly_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L40)).
 
-**Height basis polynomial is continuous.** Proved result. Under the stated hypotheses, the height basis polynomial is continuous. (`heightPoly_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L44)).
+**Height basis polynomial is continuous.** Proved result. Every height basis polynomial is continuous as a function of the real height coordinate. (`heightPoly_continuous`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L44)).
 
 **Coefficients of a harmonic combination.** Proved result. Under the stated hypotheses, the coefficient of the first field plus i times the second is the same combination of coefficients. (`coef_pair`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeDataPair.lean#L48)).
 
@@ -2594,9 +2594,9 @@ Derive the weak radial and height derivative identities for Fourier coefficients
 
 **A circle coordinate is a frame pairing.** Proved result. The circle-frame coordinate of a vector is its inner product with the selected frame unit vector. (`circleFrameCoord_apply`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeWeak.lean#L30)).
 
-**Cylindrical frame is smooth.** Proved result. The cylindrical frame is smooth. (`planeFrameAt_coord_smooth`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeWeak.lean#L34)).
+**Cylindrical frame is smooth.** Proved result. Every Cartesian component of (q₁,q₂,0), (−q₂,q₁,0) and (0,0,1) is smooth in q ∈ R², giving smooth extensions of the cylindrical frame off the unit circle. (`planeFrameAt_coord_smooth`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeWeak.lean#L34)).
 
-**Cylindrical frame is smooth.** Proved result. The cylindrical frame is smooth. (`planeFrameAt_smooth`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeWeak.lean#L40)).
+**Cylindrical frame is smooth.** Proved result. The three vector-valued functions (q₁,q₂,0), (−q₂,q₁,0) and (0,0,1) are smooth on R² and restrict to the cylindrical frame on the unit circle. (`planeFrameAt_smooth`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeWeak.lean#L40)).
 
 **Frame coordinate is smooth.** Proved result. The moving-frame coordinate map is smooth. (`planeFrameCoord_smooth`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/LocalModeWeak.lean#L43)).
 
@@ -3192,7 +3192,7 @@ Check the measurability, rotation invariance and reflection symmetry required by
 
 **Outward weight is measurable.** Proved result. Under the hypotheses of this declaration, the outward interaction weight is measurable. (`measurable_outward`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ModeDensityBridgeLinksParts.lean#L143)).
 
-**Gradient weight is measurable.** Proved result. The gradient weight is measurable. (`measurable_wtGrad`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ModeDensityBridgeLinksParts.lean#L158)).
+**Gradient weight is measurable.** Proved result. For any scalar weight f on R³, y ↦ ‖Df(y)‖ is measurable when Df is assigned zero at points where f is not differentiable. (`measurable_wtGrad`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ModeDensityBridgeLinksParts.lean#L158)).
 
 **Hessian weight is measurable.** Proved result. Under the hypotheses of this declaration, the second-derivative norm weight is measurable. (`measurable_secondDerivNorm`; [source](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/ModeDensityBridgeLinksParts.lean#L161)).
 
