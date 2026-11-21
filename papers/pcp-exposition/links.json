@@ -1220,7 +1220,7 @@
     "PCP.Algebraic.ThreeColorVerifier.branchRejectionRate": "Rejection rate of one check",
     "PCP.Algebraic.ThreeColorVerifier.branchRejectionRate_le": "Each check rejects at most the total"
   },
-  "fidelity_held": "Sentence-by-sentence comparisons of this page's statements with their Lean have not been written yet. Comparator has judged the three headline statements; papers/pcp-full-argument/source-review.md records that run.",
+  "fidelity_held": "Sentence-by-sentence comparisons of this page's statements with their Lean are written and AI-assessed; no mathematician has reviewed them. Comparator has judged the three headline statements; papers/pcp-full-argument/source-review.md records that run.",
   "notes": {
     "PCP.np_subset_pcp": {
       "text": "For a language $\\mathcal L$ in NP, the formal statement supplies one polynomial-time verifier, constants $\\alpha,\\beta,\\ell$ and a polynomial $p$, all fixed independently of the input. On length $n$ it uses exactly $\\alpha\\lceil\\log_2(n+2)\\rceil+\\beta$ fair bits and makes at most $\\ell$ proof queries, each below $p(n)$. A yes-instance has one proof accepted for every seed; every proof of a no-instance has acceptance probability at most $1/2$. Proofs are represented by indefinitely indexed bits, but only the polynomially bounded initial segment can affect the verdict.",

@@ -956,7 +956,7 @@
     "PCP.Algebraic.SetMultilinear.digitMonomial": "Encoding one monomial by digits",
     "PCP.Algebraic.SetMultilinear.encode": "Linear encoding through digit monomials"
   },
-  "fidelity_held": "Sentence-by-sentence comparisons of this page's statements with their Lean have not been written yet. Comparator has judged the three headline statements; papers/pcp-full-argument/source-review.md records that run.",
+  "fidelity_held": "Sentence-by-sentence comparisons of this page's statements with their Lean are written and AI-assessed; no mathematician has reviewed them. Comparator has judged the three headline statements; papers/pcp-full-argument/source-review.md records that run.",
   "notes": {
     "PCP.np_subset_pcp": {
       "text": "For each NP language, the formal statement chooses one verifier and one polynomial-time implementation. On every input of length $n$, it uses exactly $\\alpha\\lceil\\log_2(n+2)\\rceil+\\beta$ fair bits, asks at most a fixed $\\ell$ proof-bit queries and reads only addresses below $p(n)$. The implementation, constants and polynomial are fixed before the input. Completeness chooses one proof before the random seed; soundness bounds every fixed proof’s acceptance probability by $1/2$.",
