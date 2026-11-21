@@ -47,8 +47,7 @@ was prepared by AI agents under Will Cook's direction and has not been reviewed 
 | Axioms of every declaration at `fd3a158` | Done: all 19,939 constants of the 729 compiled modules use only `propext`, `Classical.choice` and `Quot.sound` ([run 44905597526](https://github.com/wcook04/proof-reader/actions/runs/44905597526)) |
 | The authors' spine check `VerifySpine.lean` at `fd3a158` | Passed in the same run: "42 nodes, standard axioms; frontiers equal to the TeX citations and no bypass", with Remark 1.2 the stated library exception |
 | Our two checks beside the authors' Lean (`checks/`) | Compiled with the standard axioms only ([run 44887791276](https://github.com/wcook04/proof-reader/actions/runs/44887791276)); shown beside the Section 8 setting and Lemma 5.3 |
-| Comparator on the headline `TorusEuler.theorem11` | Accepted at the earlier commit `36d3961` ([run 44826207811](https://github.com/wcook04/proof-reader/actions/runs/44826207811)). At `fd3a158`: **pending** |
-| Comparator on the revised headline `TorusEuler.Paper.theorem_1_1` | **Pending** |
+| Comparator on Theorem 1.1 at `fd3a158`, both forms | Accepted ([run 44925234532](https://github.com/wcook04/proof-reader/actions/runs/44925234532)): `TorusEuler.theorem11` (existence) and `TorusEuler.Paper.theorem_1_1` (with uniqueness of the maximal solution), against the authors' own definitions, by Lean's default kernel and four external kernels (Lean paranoid, nanoda, con-leche, con-ron), with only `propext`, `Quot.sound` and `Classical.choice` permitted. Three controls were rejected: the negated statement, the time-derivative limit dropped from the singularity definition, and uniqueness without the equal lifespan. The files are in [`comparator/`](comparator/); the earlier run at `36d3961` was [44826207811](https://github.com/wcook04/proof-reader/actions/runs/44826207811) |
 
 ## How the page is built
 
