@@ -15,6 +15,30 @@ const printedNumber = (quote: string | undefined) => {
 
 const isProof = (d: Declaration) => d.keyword === "theorem" || d.keyword === "lemma";
 
+/** "lean/PCP/Algebraic/ThreeColorVerifier.lean" -> "PCP/Algebraic/ThreeColorVerifier.lean". */
+const shortFile = (file: string) => file.replace(/^lean\//, "");
+
+/** File stems too general to name a part of the proof alone: the folder is said with them. */
+const GENERIC = new Set(["Basic", "Defs", "Definition", "Definitions", "Main", "Core", "Lemmas", "Theorem", "Statement"]);
+/** The paper is written in British English; the Lean names are American. */
+const BRITISH: Record<string, string> = { color: "colour", coloring: "colouring", colorability: "colourability" };
+
+/** People's names keep their capital. */
+const NAMES = new Set(["Berlekamp", "Welch", "Hadamard", "Reed", "Solomon", "Schwartz", "Zippel"]);
+
+const words = (stem: string) =>
+  (stem.match(/[A-Z]+(?=[A-Z][a-z])|[A-Z]?[a-z]+|[A-Z]+|\d+/g) ?? [stem]).map((w) =>
+    (w.length > 1 && w === w.toUpperCase()) || NAMES.has(w) ? w : BRITISH[w.toLowerCase()] ?? w.toLowerCase());
+
+/** A Lean file in plain words: "ThreeColorVerifier.lean" -> "Three colour verifier", "Verifier/Definition.lean" -> "Verifier definition". */
+export function fileWords(file: string): string {
+  const parts = shortFile(file).replace(/\.lean$/, "").split("/");
+  const stem = parts[parts.length - 1];
+  const out = GENERIC.has(stem) && parts.length > 1 ? [...words(parts[parts.length - 2]), ...words(stem)] : words(stem);
+  const text = out.join(" ").replace("Berlekamp Welch", "Berlekamp\u2013Welch").replace("low degree", "low-degree").replace("zero on grid", "zero-on-grid");
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
 export interface FocusData {
   card(id: string): FGCard | undefined;
   /** Every edge with one of `ids` at one end. */
@@ -40,6 +64,7 @@ export function focusData(edition: Edition): FocusData {
     const at = d.passages.map((p) => passageAt.get(p)).filter((i): i is number => i !== undefined);
     if (at.length) firstPassage.set(d.id, Math.min(...at));
   }
+  const firstPassageOf = (d: Declaration) => firstPassage.get(d.id);
 
   const roleOf = (d: Declaration): FGRole => {
     if (results.has(d.id)) return "result";
@@ -60,10 +85,36 @@ export function focusData(edition: Edition): FocusData {
     }
     return undefined;
   };
+  // These editions have no phrase topics. A crowded side is grouped by the Lean file each
+  // declaration lives in, named in plain words ("Three colour verifier"), because the authors'
+  // files follow the parts of the proof. With a single Lean file that says nothing, so the
+  // paper section a declaration is first stated in names its group instead.
+  const files = new Set(edition.declarations.map((d) => d.file));
+  // A file whose plain name extends another's ("Binary local correction soundness") is part of
+  // that one's topic, so a crowded side shows a few parts of the proof rather than every file.
+  const named = [...files].map(fileWords);
+  const topicOfFile = new Map([...files].map((f) => {
+    const own = fileWords(f);
+    const parent = named.filter((n) => n !== own && own.startsWith(`${n} `)).sort((a, b) => a.length - b.length)[0];
+    return [f, parent ?? own];
+  }));
+  const sectionTitle = new Map((edition.reading?.outline ?? []).map((s) => [s.number, `${s.number} ${s.title}`]));
+  const firstSection = (d: Declaration) => {
+    const at = firstPassageOf(d);
+    return at === undefined ? undefined : sectionTitle.get(edition.passages[at].section);
+  };
   const cards = new Map<string, FGCard>();
   for (const d of edition.declarations) {
     // A long Lean name wraps after a dot, never inside a word.
-    cards.set(d.id, { id: d.id, title: d.plain || d.id, name: d.id.replace(/\./g, ".\u200b"), role: roleOf(d), kicker: kickerOf(d) });
+    cards.set(d.id, {
+      id: d.id,
+      title: d.plain || d.id,
+      name: d.id.replace(/\./g, ".\u200b"),
+      role: roleOf(d),
+      kicker: kickerOf(d),
+      topic: files.size > 1 ? topicOfFile.get(d.file) : firstSection(d),
+      section: files.size > 1 ? fileWords(d.file) : firstSection(d),
+    });
   }
 
   // `from` uses `to`: in its proof or body, or only in its statement.

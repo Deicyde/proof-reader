@@ -15,15 +15,14 @@
   --fg-mono-token: var(--font-mono);
   flex: 1;
 }
-.graph .fg__title { font-family: var(--font-serif); font-size: 15px; }
-.graph .fg__card.is-subject .fg__title { font-size: 16.5px; }
+.graph .fg__card.is-subject .fg__title { font-family: var(--font-serif); font-size: 16px; }
 .graph .fg__scroll:focus-visible { outline: 2px solid var(--lit); }
 
 /* The button over the drawing that opens the whole proof, and brings the reader back. It sits
    at the right of the first line over the drawing, which leaves room for it. */
-.graph .fg__label:first-child, .graph .fg__route:first-child { padding-right: 168px; min-height: 37px; box-sizing: border-box; }
-.graph__switch { position: absolute; right: 12px; top: 4px; z-index: 3; display: flex; gap: 1px; border: 1px solid var(--rule-control); border-radius: 7px; overflow: hidden; background: var(--raised); box-shadow: 0 1px 6px rgb(0 0 0 / 0.12); }
-.graph__switch button { min-height: 30px; padding: 0 10px; font: 500 13px/1 var(--font-sans); color: var(--ink); }
+.graph .fg__label:first-child, .graph .fg__route:first-child { padding-right: 150px; min-height: 31px; box-sizing: border-box; }
+.graph__switch { position: absolute; right: 12px; top: 3px; z-index: 3; display: flex; gap: 1px; border: 1px solid var(--rule-control); border-radius: 7px; overflow: hidden; background: var(--raised); box-shadow: 0 1px 6px rgb(0 0 0 / 0.12); }
+.graph__switch button { min-height: 25px; padding: 0 10px; font: 500 13px/1 var(--font-sans); color: var(--ink); }
 .graph__switch button:hover { background: color-mix(in srgb, var(--lit) 14%, transparent); }
 .graph__switch button:focus-visible { outline: 2px solid var(--lit); outline-offset: -2px; }
 .graph[data-whole] .graph__switch { top: 10px; }
@@ -37,5 +36,3 @@
 .graph__strip button { margin-left: auto; min-height: 30px; padding: 0 10px; border: 1px solid var(--rule-control); border-radius: 6px; font-size: 13px; color: var(--ink); }
 .leaf__tabs .leaf__open { margin-left: auto; color: var(--lit); text-decoration: underline; text-underline-offset: 3px; }
 .graph .fg__name { overflow-wrap: break-word; }
-/* A phone's drawing is a few cards high, scrolled by touch; the overview would cover most of it. */
-.graph[data-narrow] .fg__mini { display: none; }

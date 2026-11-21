@@ -29,7 +29,7 @@ from pathlib import Path
 from playwright.sync_api import Page, sync_playwright
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from graph_pane_checks import check_graph_pane, check_scrolls  # noqa: E402
+from graph_pane_checks import check_graph_pane, check_groups  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SLUG = "contextual-embeddings"
@@ -1850,7 +1850,7 @@ def cards_fit(page: Page, label: str) -> None:
 def pane_rules(page: Page, label: str) -> None:
     """The shared rules of docs/graph-pane.md (tests/graph_pane_checks.py) in the pane's present state."""
     page.wait_for_timeout(450)
-    failures = check_graph_pane(page, label, dock=".proof__lean") + check_scrolls(page, label)
+    failures = check_graph_pane(page, label, dock=".proof__lean") + check_groups(page, label)
     check(not failures, f"{label}: the graph pane keeps the rules of docs/graph-pane.md" + (f"; {failures[:3]}" if failures else ""))
 
 

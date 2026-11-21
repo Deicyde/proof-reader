@@ -94,7 +94,10 @@ export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, po
   const shown = useMemo(() => subjects.filter((id) => data.card(id)), [subjects, data]);
   const edges = useMemo(() => data.edges(shown), [data, shown]);
   const route = useMemo(() => data.route(shown), [data, shown]);
-  const routeNote = !data.main ? undefined : route && route.length === 0 ? "This is the main result." : route ? undefined : "No chain of uses recorded on this page leads from this to the main result.";
+  // A label over the drawing already says this is a view of its own (Lean the paper does not
+  // state, or the statement before an untied paragraph); a second line saying there is no
+  // chain would cost the drawing its room.
+  const routeNote = !data.main ? undefined : label && !route ? undefined : route && route.length === 0 ? "This is the main result." : route ? undefined : "No recorded chain of uses leads from this to the main result.";
   const lit = useMemo(() => (pointed ? [...pointed] : []), [pointed]);
 
   // Counts for the folded line.

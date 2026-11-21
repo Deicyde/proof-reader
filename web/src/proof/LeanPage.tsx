@@ -131,7 +131,9 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
     // The declaration's heading sticks to the top, so the lines in hand rest below it even
     // when the reading line is above this page (the dock under the graph).
     const head = row.closest(".decl")?.querySelector<HTMLElement>(".decl__head")?.offsetHeight ?? 0;
-    const room = Math.max(64, Math.min(head + 6, el.clientHeight * 0.6), Math.min(line, el.clientHeight * 0.6));
+    // With the reading line above this page, they rest just under the heading: a fixed margin
+    // there showed a line and a half of what comes before, the half cut by the heading.
+    const room = line < head + 6 ? Math.min(head + 6, el.clientHeight * 0.6) : Math.max(64, Math.min(line, el.clientHeight * 0.6));
     const at = row.getBoundingClientRect().top - box.top;
     let target = at - room;
     // A comparison Lean has checked against the statement is read first, while the lines

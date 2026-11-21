@@ -252,8 +252,11 @@ button:disabled { cursor: default; }
 .leaf__tabs button { min-height: 26px; padding: 0 6px; color: var(--ink-2); }
 .leaf__tabs button:hover { color: var(--ink); }
 .leaf__tabs button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-decoration-color: var(--thread); text-decoration-thickness: 2px; text-underline-offset: 4px; }
-.leaf__body { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; padding-bottom: 40vh; outline: none; }
-.leaf__body--supplementary { padding-bottom: 16px; }
+/* Room to scroll the last lines up, as a block inside the scrolled content: as bottom padding it
+   made the box itself 40vh tall, taller than the dock, and the whole page scrolled. */
+.leaf__body { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; outline: none; }
+.leaf__body::after { content: ""; display: block; height: 40vh; }
+.leaf__body--supplementary::after { height: 16px; }
 .crumbs { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 12px; padding: 6px 16px 0; font-size: var(--fs-sm); color: var(--ink-2); }
 .crumbs button { min-height: 24px; color: var(--ink); text-decoration: underline; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
 .crumbs button:hover { color: var(--lit); }

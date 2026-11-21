@@ -1,6 +1,7 @@
 """Drive the Graph view on every paper that has one and apply the shared checks of
 docs/graph-pane.md (tests/graph_pane_checks.py): following the paper, after a click on a
-marked passage, after a click on a card, and on the largest neighbourhoods.
+marked passage, after a click on a card, and on the largest neighbourhoods, each time
+opening the largest group and folding it with Fit.
 
     python3 tests/graph_pane.py                 # builds nothing; serves web/dist itself
     python3 tests/graph_pane.py --url http://127.0.0.1:8631/proof-reader/ --shots /tmp/shots
@@ -16,7 +17,7 @@ from playwright.sync_api import Page, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tests"))
-from graph_pane_checks import check_graph_pane, check_scrolls  # noqa: E402
+from graph_pane_checks import check_graph_pane, check_groups  # noqa: E402
 from journey import serve  # noqa: E402
 
 DOCK = ".proof__lean"
@@ -76,13 +77,13 @@ def run(page: Page, url: str, slug: str, size: tuple[int, int], shots: Path | No
       const q = qs[Math.floor(qs.length / 2)]; el.scrollTop += q.getBoundingClientRect().top - el.getBoundingClientRect().top - el.clientHeight * 0.3; }""")
     page.wait_for_timeout(1200)
     bad += check_graph_pane(page, f"{label} following", dock=DOCK)
-    bad += check_scrolls(page, f"{label} following")
+    bad += check_groups(page, f"{label} following")
     # A marked passage clicked: the view stays on Graph.
     click_passage(page, 3)
     if not view_is_graph(page):
         bad.append(f"{label}: a passage click changed the view")
     bad += check_graph_pane(page, f"{label} passage clicked", dock=DOCK)
-    bad += check_scrolls(page, f"{label} passage clicked")
+    bad += check_groups(page, f"{label} passage clicked")
     # A card clicked: it becomes the subject.
     card = page.locator(".fg__card:not(.is-subject)").first
     if card.count():
@@ -95,12 +96,12 @@ def run(page: Page, url: str, slug: str, size: tuple[int, int], shots: Path | No
         if page.locator(f".fg__card.is-subject[data-card='{want}']").count() == 0:
             bad.append(f"{label}: the clicked card {want} did not become the subject")
         bad += check_graph_pane(page, f"{label} card clicked", dock=DOCK)
-        bad += check_scrolls(page, f"{label} card clicked")
+        bad += check_groups(page, f"{label} card clicked")
     # The largest neighbourhood on this paper.
     big = most_used(slug)
     open_paper(page, url, slug, big)
     bad += check_graph_pane(page, f"{label} most used ({big})", dock=DOCK)
-    bad += check_scrolls(page, f"{label} most used ({big})")
+    bad += check_groups(page, f"{label} most used ({big})")
     if shots:
         page.screenshot(path=str(shots / f"{slug}-big-{w}.png"))
     return bad

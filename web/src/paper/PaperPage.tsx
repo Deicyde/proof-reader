@@ -702,11 +702,11 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const placeOf = (p: Passage) => `${sectionLabel(p.section)}, ${passageLocation(p)}`;
   const offMap = held.mode === "pin" && held.decl && !(declarations.get(held.decl)?.passages.length) ? declarations.get(held.decl) : undefined;
   const graphLabel = offMap
-    ? <>The Lean around {offMap.plain}, which the {noun(edition)} does not state.<button type="button" onClick={() => closeLean()}>Back to this paragraph’s steps</button></>
+    ? <>Lean only: the {noun(edition)} does not state this.<button type="button" onClick={() => closeLean()}>Back to this paragraph’s steps</button></>
     : before
-      ? <>No Lean is linked to this paragraph. The graph shows the statement before it, in {placeOf(before)}.</>
+      ? <span title={placeOf(before)}>No Lean is linked to this paragraph. This is the statement before it.</span>
       : !heldDecls.length && graphSubject.length
-        ? <>No Lean is linked to this paragraph. The graph shows the last statement opened.</>
+        ? <>No Lean is linked to this paragraph. This is the last statement opened.</>
         : undefined;
 
   const plainOf = useCallback((id: string | undefined) => (id ? declarations.get(id)?.plain ?? id : ""), [declarations]);
