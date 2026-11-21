@@ -1857,6 +1857,27 @@ def cards_fit(page: Page, label: str) -> None:
           f"{label}: all {found['n']} cards show their whole short title and nothing spills out" + (f"; {found['bad'][:4]}" if found["bad"] else ""))
 
 
+def cards_inside(page: Page, label: str) -> None:
+    """Every card drawn in the graph area is wholly inside it: none is cut by its edge."""
+    page.wait_for_timeout(450)
+    cut = page.evaluate("""() => {
+      const out = [];
+      for (const area of document.querySelectorAll('.proof .graph__canvas, .proof .nearmap')) {
+        const view = area.getBoundingClientRect();
+        if (!view.height) continue;
+        for (const card of area.querySelectorAll('.card[data-record], .nearmap__card')) {
+          if (getComputedStyle(card).visibility === 'hidden') continue;
+          const r = card.getBoundingClientRect();
+          if (!r.width || r.right <= view.left || r.left >= view.right || r.bottom <= view.top || r.top >= view.bottom) continue;
+          if (r.left < view.left - 0.5 || r.right > view.right + 0.5 || r.top < view.top - 0.5 || r.bottom > view.bottom + 0.5)
+            out.push(`${card.dataset.record}: ${Math.round(r.top - view.top)}..${Math.round(r.bottom - view.top)} of ${Math.round(view.height)}`);
+        }
+      }
+      return out;
+    }""")
+    check(not cut, f"{label}: every card on show is wholly inside the graph area" + (f"; cut: {cut[:4]}" if cut else ""))
+
+
 def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) -> None:
     """Graph mode on every graph page: the graph has the top half, fitted to its subject, and the
     Lean of what is in hand or being read is docked under it; a click never flips the tab."""
@@ -1883,6 +1904,8 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
             check(0.4 <= graph["height"] / panes["height"] <= 0.6, f"{slug}: the graph has about half the pane, not all of it")
         lean = page.locator(".proof__lean")
         wait_until(page, lambda: lean.is_visible() and len(lean.inner_text().strip()) > 40, f"{slug}: the lower half is never empty while following")
+        if w >= 600:
+            cards_inside(page, f"{slug} at {w}x{h}, following")
         if slug == GRAPH_PAGES[0]:
             shot_to(page, shots, f"proofreader-graph-following-{w}")
         # A sentence click: the card and its Lean below, the tab stays on Graph.
@@ -1904,6 +1927,8 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
                    f"{slug}: its Lean is shown under the graph")
         page.wait_for_timeout(700)
         cards_fit(page, f"{slug} at {w}x{h}, after a click")
+        if w >= 600:
+            cards_inside(page, f"{slug} at {w}x{h}, after a click")
         drawn = page.evaluate("""() => {
           const lit = [...document.querySelectorAll('.graph .card[data-trail="here"], .graph .card.is-selected, .nearmap__card.is-lit, .nearmap__card.is-head, .maplist li.is-lit')];
           const view = document.querySelector('.graph__canvas, .nearmap, .maplist')?.getBoundingClientRect();
@@ -1928,6 +1953,21 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
             page.locator(".graph__view button", has_text="Whole map").click()
             page.wait_for_timeout(1500)
             cards_fit(page, f"{slug} whole map at {w}x{h}")
+            cards_inside(page, f"{slug} whole map at {w}x{h}, following")
+            # A click on a sentence in the whole map: the same rule after the re-fit.
+            other = page.locator(".sheet__text p .q[data-p]").filter(has_not=page.locator("a.nm")).nth(6)
+            spot = other.evaluate("""(el) => {
+              const pane = el.closest('[data-paper-pane]');
+              const r0 = el.getBoundingClientRect(), p0 = pane.getBoundingClientRect();
+              pane.scrollTop += r0.top - (p0.top + Math.min(160, p0.height * 0.2));
+              const r = el.getClientRects()[0];
+              return [r.left + Math.min(8, r.width / 2), r.top + r.height / 2];
+            }""")
+            page.wait_for_timeout(300)
+            page.mouse.click(*spot)
+            wait_until(page, lambda: "Pinned" in caption(page), f"{slug} whole map: a click pins a sentence")
+            cards_inside(page, f"{slug} whole map at {w}x{h}, after a click")
+            page.keyboard.press("Escape")
             if slug == "pcp-full-argument":
                 shot_to(page, shots, f"proofreader-whole-map-{w}")
     # The divider moves and its place is kept.
