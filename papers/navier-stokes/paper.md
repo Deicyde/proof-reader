@@ -24,7 +24,8 @@ concrete numerical certificate or the program reported to validate it with
 released (§§1.1, 1.5). We have not independently verified that final premise.
 The root README says the authors had not rebuilt the latest cell-layer
 patch when they posted it. We rebuilt the patched package on GitHub Actions
-and it compiles; the independent replay with Comparator is still running (§5).
+and it compiles. Lean's Comparator, with four further checkers, accepts all
+15 selected theorems and rejects a control with a deleted hypothesis (§5).
 
 This page compares statements and records the limits of the available
 evidence. It was prepared by AI agents under Will Cook's direction and has
@@ -507,7 +508,7 @@ decoding convention, domain or tail bound is missing.
 | Cell conditions imply the breakdown endpoints | Lean proof sources. Appendix B says Propositions B.1 and B.4 are proved in the formalization. |
 | Concrete certificate satisfies the exact conditions | Authors' report of an external computation; neither certificate nor checker is public. |
 | Build of the published package | Our Actions runs: `lake build` exits 0 (7,735 s, then 7,680 s); the authors' axiom script reports only `propext`, `Classical.choice` and `Quot.sound` for its 27 names. |
-| Independent replay of the selected theorems by Comparator | Running (§5). |
+| Independent replay of the selected theorems by Comparator | Accepted: all 15 theorems by Lean's kernel and four further checkers; the control rejected (§5). |
 
 The hash identifies the intended certificate bytes once obtained. It does
 not establish the inequalities or their interpretation. The
@@ -567,18 +568,44 @@ authors' script [`scripts/PrintAxioms.lean`](https://github.com/tristanbuckmaste
 diagnostic output for those names, not an enforcing audit of every theorem.
 The run then failed at export, before Comparator.
 
-**Comparator.** Not yet established. Run [44796269901](https://github.com/wcook04/proof-reader/actions/runs/44796269901)
-compiled the package again (exit 0 after 7,680 seconds) and wrote all five
-exports, but judged nothing: each of the four Comparator calls stopped with
-exit code 2 because the external checker `leanchecker-paranoid` was not on
-the runner's PATH. Lake finds external checkers by a PATH lookup, and Lean
-v4.36.0 ships all four in its toolchain directory, which elan does not put on
-PATH. That job still showed green, because the earlier workflow wrote exit
-codes to files without failing on them. The workflow above puts the toolchain
-directory on PATH and stops if any checker is missing. Its run,
-[44819023135](https://github.com/wcook04/proof-reader/actions/runs/44819023135),
-reuses the compiled files of run 44809248303, and its result is the one this
-page will report.
+**Comparator ([run 44819023135](https://github.com/wcook04/proof-reader/actions/runs/44819023135), 21 November 2026).** Accepted. Judged against
+exports of the authors' compiled package, with only `propext`,
+`Classical.choice` and `Quot.sound` permitted:
+
+| Configuration | Theorems | Result |
+|---|---|---|
+| `comparator.json` (`Challenge.lean`) | `breakdown_on_space`, `breakdown_on_torus`, `breakdown_on_space_of_weak` | accepted by Lean paranoid, con-leche, con-ron, nanoda and Lean's kernel (38 minutes) |
+| `comparator-certificate.json` (`ExtendedCoerciveChallenge.lean`) | `certificate_orbit`, `extended_certificate_orbit` and seven supporting theorems | accepted by all five (38 minutes) |
+| `comparator-cell-layer.json` (`CellLayerTheorems.lean`) | the three `…_of_cell_system_condition` theorems | accepted by all five (38 minutes) |
+| control: `breakdown_on_space` with its profile hypothesis deleted | 1 | rejected: "Challenge and solution theorem statement do not match" |
+
+con-leche and con-ron each report 109,343 declarations accepted. The judge
+job first checked that every compiled package file it restored matched the
+hash the build job recorded. What this establishes: the conditional theorems
+say what the statement files say, and their proofs pass five checks using only
+the standard axioms. It does not check the certificate, which is not public,
+and it is not five independent implementations (Lean paranoid runs Lean's
+own kernel code).
+
+The diagnostic outside the gate, Comparator with the readable
+`CellLayerChallenge.lean` as the challenge, stopped at one constant:
+"Const does not match between challenge and target
+'Breakdown.AdjointDefect.transposeApply'". Its source text and surrounding
+`open` and namespace lines are identical in the readable file and in the
+library file `Breakdown/CertCell/StatementDefs.lean`; the two are elaborated
+in different environments (the library file also imports the
+fractional-certificate definitions), and the same text produces a different
+constant there. We have not yet found which instance or definition differs.
+So the readable file is a faithful copy of the library's text but not, for
+this constant at least, of its elaborated terms; the accepted cell-layer
+judgment above uses the library's definitions.
+
+Earlier runs judged nothing: run 44774695098 failed at export, and run
+[44796269901](https://github.com/wcook04/proof-reader/actions/runs/44796269901)
+stopped every call with exit code 2 because the external checkers were not on
+the runner's PATH while the job still showed green. The workflow now puts the
+toolchain directory on PATH, stops if a checker is missing, and fails unless
+the control is rejected and every positive comparison accepted.
 
 ## 6. Historical scope
 
