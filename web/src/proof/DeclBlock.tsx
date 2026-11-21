@@ -15,6 +15,7 @@ import { routeHref } from "../app/router";
 import { FidelityBlock } from "./Fidelity";
 import { ComparatorFold } from "./Comparator";
 import { Quote } from "../paper/Quote";
+import { DeclNote } from "./Note";
 
 export const KIND_WORDS: Record<string, string> = {
   theorem: "Theorem",
@@ -136,7 +137,7 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
         <span className="decl__kind">{KIND_WORDS[d.keyword] ?? d.keyword}, line{d.lines > 1 ? `s ${d.line} to ${d.end_line}` : ` ${d.line}`}; {declOrigin(edition, d)}</span>
       </header>
       {passage && !compact && <p className="decl__relation">{relation(passage)}</p>}
-      {d.note && <p className="decl__note"><span className="decl__note-by">Note added for this page</span>{d.note.text}</p>}
+      {d.note && <DeclNote note={d.note} />}
       <FidelityBlock edition={edition} d={d} act={act} onPassage={onPassage} />
       <Axioms edition={edition} d={d} act={act} part={!!exact && (exact[0] > d.line || exact[1] < d.end_line)} />
       <ComparatorFold edition={edition} d={d} names={names} act={act} />

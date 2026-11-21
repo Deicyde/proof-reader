@@ -7,7 +7,7 @@
 // compare the page's words with the PDF before it puts the formulas back. Math
 // is protected from Markdown the way Lean Exposition's reader does it.
 
-import { readFileSync } from "node:fs";
+import { readFileSync, writeSync } from "node:fs";
 import katex from "katex";
 import MarkdownIt from "markdown-it";
 
@@ -19,6 +19,24 @@ const OPEN = "";
 const CLOSE = "";
 const DISPLAY_OPEN = "";
 const DISPLAY_CLOSE = "";
+
+// Declaration notes and summaries for a paper page: {name: text} on stdin, typeset the way
+// the API map's reading notes are, $…$ as KaTeX and `…` as code.
+if (source === "--notes") {
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const notes = JSON.parse(readFileSync(0, "utf8"));
+  const out = Object.fromEntries(Object.entries(notes).map(([name, text]) => {
+    if ((text.match(/(?<!\\)\$/g) ?? []).length % 2) throw new Error(`Unpaired $ in the note for ${name}`);
+    return [name, text.split(/((?<!\\)\$[^$]+\$|`[^`]+`)/).map((part) => {
+      if (part.startsWith("$")) return katex.renderToString(part.slice(1, -1), { output: "htmlAndMathml", strict: "ignore", throwOnError: true, trust: false });
+      if (part.startsWith("`")) return `<code>${esc(part.slice(1, -1))}</code>`;
+      return esc(part.replace(/\\\$/g, "$"));
+    }).join("")];
+  }));
+  // Written synchronously: process.exit would cut an asynchronous pipe write short.
+  writeSync(1, JSON.stringify(out));
+  process.exit(0);
+}
 
 const isSpace = (c) => c === undefined || /\s/.test(c);
 const isDigit = (c) => c !== undefined && c >= "0" && c <= "9";
