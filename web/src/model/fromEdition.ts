@@ -64,7 +64,8 @@ export function editionGraph(edition: Edition): ArgGraph {
   const edges: ArgEdge[] = [];
   const add = (from: string, to: string, kind: LinkKind) =>
     edges.push({ key: `${from}→${to}→${kind}`, from, to, kind, linkIds: [`${from}→${to}`], scoped: false, semanticClass: kind });
-  for (const claim of edition.claims) for (const name of claim.lean) add(claim.id, name, "formalizes");
+  // A claim on a type (structure, inductive, class) has no drawn node to point at.
+  for (const claim of edition.claims) for (const name of claim.lean) if (nodes.has(name)) add(claim.id, name, "formalizes");
   for (const d of drawn) {
     for (const to of d.uses_proof) if (nodes.has(to)) add(d.id, to, "supports");
     for (const to of d.uses_statement) if (nodes.has(to)) add(d.id, to, "lean_type_dependency");

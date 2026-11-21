@@ -11,21 +11,21 @@
    ]
   },
   {
-   "id": "claim-breakdown-certcell-assembly-tailconditions",
-   "title": "Allocate resolved tail absorption",
+   "id": "claim-breakdown-certcell-assembly-rowentry-accounted",
+   "title": "Validate the chosen row reason",
    "section": "Breakdown.CertCell.StatementDefs",
-   "passage": "r30-0293",
+   "passage": "r30-0389",
    "lean": [
-    "Breakdown.CertCell.Assembly.TailConditions"
+    "Breakdown.CertCell.Assembly.RowEntry.Accounted"
    ]
   },
   {
-   "id": "claim-breakdown-certcell-cellcalculus-cellcalculusconditions",
-   "title": "Consistency of local calculus data",
+   "id": "claim-breakdown-certcell-assembly-rowentry-derivedrow",
+   "title": "Solve a relation for one row",
    "section": "Breakdown.CertCell.StatementDefs",
-   "passage": "r30-0232",
+   "passage": "r30-0381",
    "lean": [
-    "Breakdown.CertCell.CellCalculus.CellCalculusConditions"
+    "Breakdown.CertCell.Assembly.RowEntry.DerivedRow"
    ]
   }
  ],
@@ -47,7 +47,7 @@
    "id": "r30-0002",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Rotation about the vertical axis.** Definition. Breakdown.axialRot: This is the rotation Rφ about the third coordinate axis used in the mode average (B.12). Lean writes it in the Cartesian basis, so no cylindrical-coordinate choice is needed on the axis. ([`axialRot`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L191))",
+   "quote": "**Rotation about the vertical axis.** Definition. This is the rotation Rφ about the third coordinate axis used in the mode average (B.12). Lean writes it in the Cartesian basis, so no cylindrical-coordinate choice is needed on the axis. ([`axialRot`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L191))",
    "lean": [
     "Breakdown.axialRot"
    ],
@@ -60,7 +60,7 @@
    "id": "r30-0003",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Alternating symbol for curl.** Definition. Breakdown.alternatingSymbol: This gives the three-dimensional alternating symbol used to form the curls in (B.14) and (B.18). It uses zero-based coordinate indices and is zero when two indices coincide. ([`alternatingSymbol`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L195))",
+   "quote": "**Alternating symbol for curl.** Definition. This gives the three-dimensional alternating symbol used to form the curls in (B.14) and (B.18). It uses zero-based coordinate indices and is zero when two indices coincide. ([`alternatingSymbol`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L195))",
    "lean": [
     "Breakdown.alternatingSymbol"
    ],
@@ -99,7 +99,7 @@
    "id": "r30-0006",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Second derivative mode.** Definition. Breakdown.modeSecondDeriv: This applies the rotating Fourier average to the second spatial derivative tensor appearing in (B.16). Its three indices are the output component and the two differentiation directions. ([`modeSecondDeriv`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L210))",
+   "quote": "**Second derivative mode.** Definition. This applies the rotating Fourier average to the second spatial derivative tensor appearing in (B.16). Its three indices are the output component and the two differentiation directions. ([`modeSecondDeriv`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L210))",
    "lean": [
     "Breakdown.modeSecondDeriv"
    ],
@@ -112,7 +112,7 @@
    "id": "r30-0007",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Squared component norm.** Definition. Breakdown.cnormSq: This sums the squared moduli of a finite complex array. It gives the Euclidean and Frobenius squared norms of the velocity, gradient and second derivative modes in (B.16). ([`cnormSq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L216))",
+   "quote": "**Squared component norm.** Definition. This sums the squared moduli of a finite complex array. It gives the Euclidean and Frobenius squared norms of the velocity, gradient and second derivative modes in (B.16). ([`cnormSq`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L216))",
    "lean": [
     "Breakdown.cnormSq"
    ],
@@ -138,7 +138,7 @@
    "id": "r30-0009",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Gradient of a curl mode.** Definition. Breakdown.curlGradOfSecondDeriv: This contracts the second derivative mode to obtain the derivative of the curl used in (B.16). Its output pair records the curl component and its differentiation direction. ([`curlGradOfSecondDeriv`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L221))",
+   "quote": "**Gradient of a curl mode.** Definition. This contracts the second derivative mode to obtain the derivative of the curl used in (B.16). Its output pair records the curl component and its differentiation direction. ([`curlGradOfSecondDeriv`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L221))",
    "lean": [
     "Breakdown.curlGradOfSecondDeriv"
    ],
@@ -151,7 +151,7 @@
    "id": "r30-0010",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Invariance under axial rotations.** Proposition. Breakdown.IsAxisymmetric: This states that a scalar coefficient is unchanged by every rotation about the y₃ axis. It expresses the rotational invariance required of the weights and auxiliary functions in Appendix B.2. ([`IsAxisymmetric`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L226))",
+   "quote": "**Invariance under axial rotations.** Proposition. This states that a scalar coefficient is unchanged by every rotation about the y₃ axis. It expresses the rotational invariance required of the weights and auxiliary functions in Appendix B.2. ([`IsAxisymmetric`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L226))",
    "lean": [
     "Breakdown.IsAxisymmetric"
    ],
@@ -177,7 +177,7 @@
    "id": "r30-0012",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Mean time-angle mode.** Definition. Breakdown.meanField: This reconstructs the real vector field in the zero time-angle mode. The earlier multiplier estimates separate this mean from the nonzero waves when bounding the coefficients related to (B.16). ([`meanField`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L231))",
+   "quote": "**Mean time-angle mode.** Definition. This reconstructs the real vector field in the zero time-angle mode. The earlier multiplier estimates separate this mean from the nonzero waves when bounding the coefficients related to (B.16). ([`meanField`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L231))",
    "lean": [
     "Breakdown.meanField"
    ],
@@ -203,7 +203,7 @@
    "id": "r30-0014",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Curl from a spatial derivative.** Definition. Breakdown.curlVec: This turns a real derivative map into the curl vector used in (B.18). The derivative direction is the argument of G and the vector component is selected afterwards. ([`curlVec`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L237))",
+   "quote": "**Curl from a spatial derivative.** Definition. This turns a real derivative map into the curl vector used in (B.18). The derivative direction is the argument of G and the vector component is selected afterwards. ([`curlVec`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L237))",
    "lean": [
     "Breakdown.curlVec"
    ],
@@ -216,7 +216,7 @@
    "id": "r30-0015",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Derivative of vorticity.** Definition. Breakdown.vortGrad: This contracts a second derivative tensor to obtain one component of ∇curl W in (B.18). The first explicit index selects the curl component and the second selects the differentiation direction. ([`vortGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L240))",
+   "quote": "**Derivative of vorticity.** Definition. This contracts a second derivative tensor to obtain one component of ∇curl W in (B.18). The first explicit index selects the curl component and the second selects the differentiation direction. ([`vortGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L240))",
    "lean": [
     "Breakdown.vortGrad"
    ],
@@ -255,7 +255,7 @@
    "id": "r30-0018",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Magnitude of the curl weight.** Definition. Breakdown.ModeWeights.eps: This is the absolute value of the signed curl weight for the class of a mode. It is the nonnegative magnitude entering the earlier coefficient estimates related to (B.16). ([`eps`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L288))",
+   "quote": "**Magnitude of the curl weight.** Definition. This is the absolute value of the signed curl weight for the class of a mode. It is the nonnegative magnitude entering the earlier coefficient estimates related to (B.16). ([`eps`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L288))",
    "lean": [
     "Breakdown.ModeWeights.eps"
    ],
@@ -268,7 +268,7 @@
    "id": "r30-0019",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Magnitude of the velocity weight.** Definition. Breakdown.ModeWeights.mu: This is the absolute value of the signed velocity weight for the class of a mode. It enters the frequency seminorm and the earlier coefficient estimates related to (B.16). ([`mu`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L290))",
+   "quote": "**Magnitude of the velocity weight.** Definition. This is the absolute value of the signed velocity weight for the class of a mode. It enters the frequency seminorm and the earlier coefficient estimates related to (B.16). ([`mu`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L290))",
    "lean": [
     "Breakdown.ModeWeights.mu"
    ],
@@ -281,7 +281,7 @@
    "id": "r30-0020",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Class frequency in its rotating frame.** Definition. Breakdown.ModeWeights.dop: This applies the shifted frequency to the rotation rate assigned to a mode’s class. It corresponds to the frequency in (B.15), with direct frequency coordinates and the earlier spatially varying rate. ([`dop`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L292))",
+   "quote": "**Class frequency in its rotating frame.** Definition. This applies the shifted frequency to the rotation rate assigned to a mode’s class. It corresponds to the frequency in (B.15), with direct frequency coordinates and the earlier spatially varying rate. ([`dop`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L292))",
    "lean": [
     "Breakdown.ModeWeights.dop"
    ],
@@ -294,7 +294,7 @@
    "id": "r30-0021",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Gradient size of the curl weight.** Definition. Breakdown.ModeWeights.epsGrad: This measures the spatial derivative of the signed curl weight. It supplies the gradient-of-weight losses that enter the multiplier norm and the coefficients described after (B.16). ([`epsGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L294))",
+   "quote": "**Gradient size of the curl weight.** Definition. This measures the spatial derivative of the signed curl weight. It supplies the gradient-of-weight losses that enter the multiplier norm and the coefficients described after (B.16). ([`epsGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L294))",
    "lean": [
     "Breakdown.ModeWeights.epsGrad"
    ],
@@ -307,7 +307,7 @@
    "id": "r30-0022",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Gradient size of the velocity weight.** Definition. Breakdown.ModeWeights.muGrad: This measures the spatial derivative of the signed velocity weight. It enters the mixed derivative loss in the earlier version of the quadratic form associated with (B.16). ([`muGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L296))",
+   "quote": "**Gradient size of the velocity weight.** Definition. This measures the spatial derivative of the signed velocity weight. It enters the mixed derivative loss in the earlier version of the quadratic form associated with (B.16). ([`muGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L296))",
    "lean": [
     "Breakdown.ModeWeights.muGrad"
    ],
@@ -320,7 +320,7 @@
    "id": "r30-0023",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Neighbouring curl-weight bound.** Definition. Breakdown.ModeWeights.epsNb: This takes the largest curl-weight magnitude among modes joined to the given mode by a listed reference-profile wave. It bounds the mode couplings discussed after (B.16). ([`epsNb`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L298))",
+   "quote": "**Neighbouring curl-weight bound.** Definition. This takes the largest curl-weight magnitude among modes joined to the given mode by a listed reference-profile wave. It bounds the mode couplings discussed after (B.16). ([`epsNb`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L298))",
    "lean": [
     "Breakdown.ModeWeights.epsNb"
    ],
@@ -346,7 +346,7 @@
    "id": "r30-0025",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Indicator of a condition.** Definition. Breakdown.ModeWeights.ind: This encodes a logical condition as the real number zero or one. The coefficient formulas use it to charge an error budget only when the corresponding weight or coupling is active. ([`ind`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L305))",
+   "quote": "**Indicator of a condition.** Definition. This encodes a logical condition as the real number zero or one. The coefficient formulas use it to charge an error budget only when the corresponding weight or coupling is active. ([`ind`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L305))",
    "lean": [
     "Breakdown.ModeWeights.ind"
    ],
@@ -359,7 +359,7 @@
    "id": "r30-0026",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Curl-gradient energy already assigned.** Definition. Breakdown.ModeWeights.shareHat: This adds the shares spent on the active curl weight and on its neighbouring modes. Subtracting it from one reduces the curl-gradient coefficient corresponding to I′₂ in (B.16). ([`shareHat`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L307))",
+   "quote": "**Curl-gradient energy already assigned.** Definition. This adds the shares spent on the active curl weight and on its neighbouring modes. Subtracting it from one reduces the curl-gradient coefficient corresponding to I′₂ in (B.16). ([`shareHat`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L307))",
    "lean": [
     "Breakdown.ModeWeights.shareHat"
    ],
@@ -372,7 +372,7 @@
    "id": "r30-0027",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Operator norm of a scalar Hessian.** Definition. Breakdown.ModeWeights.secondDerivNorm: This is the operator norm of the second Fréchet derivative of a scalar conversion weight. It appears in the conversion losses for D and Z described explicitly below (B.16). ([`secondDerivNorm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L310))",
+   "quote": "**Operator norm of a scalar Hessian.** Definition. This is the operator norm of the second Fréchet derivative of a scalar conversion weight. It appears in the conversion losses for D and Z described explicitly below (B.16). ([`secondDerivNorm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L310))",
    "lean": [
     "Breakdown.ModeWeights.secondDerivNorm"
    ],
@@ -424,7 +424,7 @@
    "id": "r30-0031",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Velocity coefficient after losses.** Definition. Breakdown.ModeWeights.coefB: This is the earlier coefficient of the squared velocity mode in the quadratic lower bound. Its positive rotating-frame contribution is reduced by rotation, wave, Z-Hessian and Young-inequality losses. ([`coefB`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L328))",
+   "quote": "**Velocity coefficient after losses.** Definition. This is the earlier coefficient of the squared velocity mode in the quadratic lower bound. Its positive rotating-frame contribution is reduced by rotation, wave, Z-Hessian and Young-inequality losses. ([`coefB`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L328))",
    "lean": [
     "Breakdown.ModeWeights.coefB"
    ],
@@ -463,7 +463,7 @@
    "id": "r30-0034",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Earlier density evaluated on a mode.** Definition. Breakdown.ModeWeights.modeTerm: This substitutes the actual Fourier-mode amplitudes of v, G and H into the earlier quadratic form. It is the integrand corresponding to one Iι before the separate stretching term is added. ([`modeTerm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L341))",
+   "quote": "**Earlier density evaluated on a mode.** Definition. This substitutes the actual Fourier-mode amplitudes of v, G and H into the earlier quadratic form. It is the integrand corresponding to one Iι before the separate stretching term is added. ([`modeTerm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L341))",
    "lean": [
     "Breakdown.ModeWeights.modeTerm"
    ],
@@ -515,7 +515,7 @@
    "id": "r30-0038",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Spatial second derivative of the profile.** Definition. Breakdown.secondDerivField: This supplies the iterated spatial derivative of W used in ∇curl W. It belongs to the strong C² route; the extended weak route keeps a separate weak Hessian for the piecewise-polynomial profile. ([`secondDerivField`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L430))",
+   "quote": "**Spatial second derivative of the profile.** Definition. This supplies the iterated spatial derivative of W used in ∇curl W. It belongs to the strong C² route; the extended weak route keeps a separate weak Hessian for the piecewise-polynomial profile. ([`secondDerivField`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L430))",
    "lean": [
     "Breakdown.secondDerivField"
    ],
@@ -528,7 +528,7 @@
    "id": "r30-0039",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Quadratic form of the symmetric part.** Definition. Breakdown.symPartForm: This evaluates u·Gu, which equals the quadratic form of the symmetric part of G over the reals. The mean and wave bounds use it to control the stretching term J. ([`symPartForm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L433))",
+   "quote": "**Quadratic form of the symmetric part.** Definition. This evaluates u·Gu, which equals the quadratic form of the symmetric part of G over the reals. The mean and wave bounds use it to control the stretching term J. ([`symPartForm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L433))",
    "lean": [
     "Breakdown.symPartForm"
    ],
@@ -554,7 +554,7 @@
    "id": "r30-0041",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Periodic divergence-free test fields.** Proposition. Breakdown.IsPeriodicTestField: These are the smooth divergence-free test fields of period one with a common compact spatial support used in (B.14). The time variable remains periodic, so compactness is required only in space. ([`IsPeriodicTestField`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L456))",
+   "quote": "**Periodic divergence-free test fields.** Proposition. These are the smooth divergence-free test fields of period one with a common compact spatial support used in (B.14). The time variable remains periodic, so compactness is required only in space. ([`IsPeriodicTestField`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L456))",
    "lean": [
     "Breakdown.IsPeriodicTestField"
    ],
@@ -567,7 +567,7 @@
    "id": "r30-0042",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Periodic scalar test potentials.** Proposition. Breakdown.IsPeriodicTestPotential: These are smooth scalar potentials of period one with a common compact spatial support. Testing the multiplier against their gradients expresses the Hdiv condition that accompanies (B.14). ([`IsPeriodicTestPotential`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L460))",
+   "quote": "**Periodic scalar test potentials.** Proposition. These are smooth scalar potentials of period one with a common compact spatial support. Testing the multiplier against their gradients expresses the Hdiv condition that accompanies (B.14). ([`IsPeriodicTestPotential`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L460))",
    "lean": [
     "Breakdown.IsPeriodicTestPotential"
    ],
@@ -593,7 +593,7 @@
    "id": "r30-0044",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Multiplier for class-based weights.** Proposition. Breakdown.ModeWeights.IsMultiplierField: This identifies an L², period-one, divergence-free field by its pairings with smooth test fields, as in (B.14). The signed weights are attached directly to classes in this earlier version of the construction. ([`IsMultiplierField`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L472))",
+   "quote": "**Multiplier for class-based weights.** Proposition. This identifies an L², period-one, divergence-free field by its pairings with smooth test fields, as in (B.14). The signed weights are attached directly to classes in this earlier version of the construction. ([`IsMultiplierField`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L472))",
    "lean": [
     "Breakdown.ModeWeights.IsMultiplierField"
    ],
@@ -606,7 +606,7 @@
    "id": "r30-0045",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Positive part of the earlier density.** Definition. Breakdown.ModeWeights.densityPos: This sums the positive parts of the earlier mode terms and adds the positive part of J. Its integral is the earlier route’s version of I⁺ in the convention following (B.18). ([`densityPos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L486))",
+   "quote": "**Positive part of the earlier density.** Definition. This sums the positive parts of the earlier mode terms and adds the positive part of J. Its integral is the earlier route’s version of I⁺ in the convention following (B.18). ([`densityPos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L486))",
    "lean": [
     "Breakdown.ModeWeights.densityPos"
    ],
@@ -619,7 +619,7 @@
    "id": "r30-0046",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Negative part of the earlier density.** Definition. Breakdown.ModeWeights.densityNeg: This sums the negative parts of the earlier mode terms and adds the negative part of J. Finiteness of its integral is the essential assumption for combining the two signed bounds in Lemma B.2. ([`densityNeg`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L491))",
+   "quote": "**Negative part of the earlier density.** Definition. This sums the negative parts of the earlier mode terms and adds the negative part of J. Finiteness of its integral is the essential assumption for combining the two signed bounds in Lemma B.2. ([`densityNeg`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L491))",
    "lean": [
     "Breakdown.ModeWeights.densityNeg"
    ],
@@ -632,7 +632,7 @@
    "id": "r30-0047",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Norm constant for the multiplier.** Definition. Breakdown.ModeWeights.multiplierConstant: This is the square-root constant cM in Proposition B.1 with the energy share c left abstract. Setting c = 3/50 turns the first factor into the printed 50/3 coefficient. ([`multiplierConstant`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L497))",
+   "quote": "**Norm constant for the multiplier.** Definition. This is the square-root constant cM in Proposition B.1 with the energy share c left abstract. Setting c = 3/50 turns the first factor into the printed 50/3 coefficient. ([`multiplierConstant`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L497))",
    "lean": [
     "Breakdown.ModeWeights.multiplierConstant"
    ],
@@ -723,7 +723,7 @@
    "id": "r30-0054",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Membership up to mode negation.** Proposition. Breakdown.PieceWeights.inPiece: This tests whether a mode belongs to Np or to its negative. The coefficients in (B.16) use it to decide which modes receive a piece’s frequency gain and local losses. ([`inPiece`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L632))",
+   "quote": "**Membership up to mode negation.** Proposition. This tests whether a mode belongs to Np or to its negative. The coefficients in (B.16) use it to decide which modes receive a piece’s frequency gain and local losses. ([`inPiece`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L632))",
    "lean": [
     "Breakdown.PieceWeights.inPiece"
    ],
@@ -736,7 +736,7 @@
    "id": "r30-0055",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Couplings entering a mode piece.** Definition. Breakdown.PieceWeights.fwdSum: This sums the reference-mode majorants whose frequency shift carries the current mode into Np. It makes explicit one of the neighbour-coupling sums described after (B.16). ([`fwdSum`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L635))",
+   "quote": "**Couplings entering a mode piece.** Definition. This sums the reference-mode majorants whose frequency shift carries the current mode into Np. It makes explicit one of the neighbour-coupling sums described after (B.16). ([`fwdSum`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L635))",
    "lean": [
     "Breakdown.PieceWeights.fwdSum"
    ],
@@ -749,7 +749,7 @@
    "id": "r30-0056",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Couplings leaving a mode piece.** Definition. Breakdown.PieceWeights.backSum: For a chosen mode, this sums reference-mode majorants when subtracting the reference harmonic leaves Np. The piece coefficients use it to allocate losses at modes inside the piece. ([`backSum`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L639))",
+   "quote": "**Couplings leaving a mode piece.** Definition. For a chosen mode, this sums reference-mode majorants when subtracting the reference harmonic leaves Np. The piece coefficients use it to allocate losses at modes inside the piece. ([`backSum`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L639))",
    "lean": [
     "Breakdown.PieceWeights.backSum"
    ],
@@ -762,7 +762,7 @@
    "id": "r30-0057",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Total reference-gradient majorant.** Definition. Breakdown.PieceWeights.harmonicSum: This adds the majorants for all listed gradient modes of the reference profile. The velocity-piece coefficient uses this total when dividing derivative couplings into inward and outward losses. ([`harmonicSum`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L650))",
+   "quote": "**Total reference-gradient majorant.** Definition. This adds the majorants for all listed gradient modes of the reference profile. The velocity-piece coefficient uses this total when dividing derivative couplings into inward and outward losses. ([`harmonicSum`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L650))",
    "lean": [
     "Breakdown.PieceWeights.harmonicSum"
    ],
@@ -775,7 +775,7 @@
    "id": "r30-0058",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Derivative size of a piece weight.** Definition. Breakdown.PieceWeights.wtGrad: This is the derivative norm of a scalar piece weight. It enters the gradient budget in (B.19) and the transport losses described below (B.16). ([`wtGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L657))",
+   "quote": "**Derivative size of a piece weight.** Definition. This is the derivative norm of a scalar piece weight. It enters the gradient budget in (B.19) and the transport losses described below (B.16). ([`wtGrad`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L657))",
    "lean": [
     "Breakdown.PieceWeights.wtGrad"
    ],
@@ -788,7 +788,7 @@
    "id": "r30-0059",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Positive mass of the mode density.** Definition. Breakdown.PieceWeights.densityPos: This is the pointwise sum whose integral is I⁺ after (B.18). It adds the positive part of each Iι and the positive part of J, retaining the value infinity when needed. ([`densityPos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L735))",
+   "quote": "**Positive mass of the mode density.** Definition. This is the pointwise sum whose integral is I⁺ after (B.18). It adds the positive part of each Iι and the positive part of J, retaining the value infinity when needed. ([`densityPos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L735))",
    "lean": [
     "Breakdown.PieceWeights.densityPos"
    ],
@@ -801,7 +801,7 @@
    "id": "r30-0060",
    "section": "Breakdown.Cert.CoerciveStatement",
    "role": "defines",
-   "quote": "**Negative mass of the mode density.** Definition. Breakdown.PieceWeights.densityNeg: This is the pointwise sum whose integral is I⁻ after (B.18). Finiteness of its integral is the analytic condition that makes the signed lower bound and the cancellation in Lemma B.2 valid. ([`densityNeg`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L740))",
+   "quote": "**Negative mass of the mode density.** Definition. This is the pointwise sum whose integral is I⁻ after (B.18). Finiteness of its integral is the analytic condition that makes the signed lower bound and the cancellation in Lemma B.2 valid. ([`densityNeg`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveStatement.lean#L740))",
    "lean": [
     "Breakdown.PieceWeights.densityNeg"
    ],
@@ -840,7 +840,7 @@
    "id": "r30-0063",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Base part of the mode density.** Definition. Breakdown.Coercive.baseDensity: This is the part of Iι in (B.16) before the λ and μ corrections are added. It allows an arbitrary coercivity constant c; the paper displays c=3/50. ([`baseDensity`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L15))",
+   "quote": "**Base part of the mode density.** Definition. This is the part of Iι in (B.16) before the λ and μ corrections are added. It allows an arbitrary coercivity constant c; the paper displays c=3/50. ([`baseDensity`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L15))",
    "lean": [
     "Breakdown.Coercive.baseDensity"
    ],
@@ -853,7 +853,7 @@
    "id": "r30-0064",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Velocity-mode amplitude.** Definition. Breakdown.Coercive.velAmp: This is the Euclidean magnitude of the velocity mode v̂ι from (B.12). It supplies the order-zero argument in the mode quadratic form (B.16). ([`velAmp`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L21))",
+   "quote": "**Velocity-mode amplitude.** Definition. This is the Euclidean magnitude of the velocity mode v̂ι from (B.12). It supplies the order-zero argument in the mode quadratic form (B.16). ([`velAmp`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L21))",
    "lean": [
     "Breakdown.Coercive.velAmp"
    ],
@@ -866,7 +866,7 @@
    "id": "r30-0065",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Gradient-mode amplitude.** Definition. Breakdown.Coercive.gradAmp: This is the Euclidean magnitude of the matrix mode representing ∇v̂ι. It is the order-one derivative amplitude used by (B.16) and the harmonic interaction bounds. ([`gradAmp`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L24))",
+   "quote": "**Gradient-mode amplitude.** Definition. This is the Euclidean magnitude of the matrix mode representing ∇v̂ι. It is the order-one derivative amplitude used by (B.16) and the harmonic interaction bounds. ([`gradAmp`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L24))",
    "lean": [
     "Breakdown.Coercive.gradAmp"
    ],
@@ -879,7 +879,7 @@
    "id": "r30-0066",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Vorticity-mode amplitude.** Definition. Breakdown.Coercive.vortAmp: This contracts the gradient mode to its curl and takes its magnitude. It is the primed order-one amplitude in Iι and the main amplitude in the λ multiplier gains. ([`vortAmp`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L27))",
+   "quote": "**Vorticity-mode amplitude.** Definition. This contracts the gradient mode to its curl and takes its magnitude. It is the primed order-one amplitude in Iι and the main amplitude in the λ multiplier gains. ([`vortAmp`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L27))",
    "lean": [
     "Breakdown.Coercive.vortAmp"
    ],
@@ -892,7 +892,7 @@
    "id": "r30-0067",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Hessian-mode amplitude.** Definition. Breakdown.Coercive.secondDerivAmp: This is the Euclidean magnitude of all entries of the second-derivative mode. It supplies the unprimed order-two term in Iι. ([`secondDerivAmp`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L30))",
+   "quote": "**Hessian-mode amplitude.** Definition. This is the Euclidean magnitude of all entries of the second-derivative mode. It supplies the unprimed order-two term in Iι. ([`secondDerivAmp`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L30))",
    "lean": [
     "Breakdown.Coercive.secondDerivAmp"
    ],
@@ -905,7 +905,7 @@
    "id": "r30-0068",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Vorticity-gradient amplitude.** Definition. Breakdown.Coercive.vortGradAmp: This takes the curl contraction of a second-derivative mode and measures all entries of the resulting gradient. It is the primed order-two amplitude in Iι. ([`vortGradAmp`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L33))",
+   "quote": "**Vorticity-gradient amplitude.** Definition. This takes the curl contraction of a second-derivative mode and measures all entries of the resulting gradient. It is the primed order-two amplitude in Iι. ([`vortGradAmp`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L33))",
    "lean": [
     "Breakdown.Coercive.vortGradAmp"
    ],
@@ -944,7 +944,7 @@
    "id": "r30-0071",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Interactions across a mode set.** Definition. Breakdown.Coercive.edgeSum: This sums harmonic interactions that leave a selected set Nₚ or its negative. These are the cross-mode errors in the λ and μ estimates described after (B.20). ([`edgeSum`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L51))",
+   "quote": "**Interactions across a mode set.** Definition. This sums harmonic interactions that leave a selected set Nₚ or its negative. These are the cross-mode errors in the λ and μ estimates described after (B.20). ([`edgeSum`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L51))",
    "lean": [
     "Breakdown.Coercive.edgeSum"
    ],
@@ -957,7 +957,7 @@
    "id": "r30-0072",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Mode-set square-sum norm.** Definition. Breakdown.Coercive.pieceNorm: This takes the ℓ² size of an amplitude sequence on Nₚ together with −Nₚ. It is used when the cross-mode errors of Proposition B.1 are bounded in blocks. ([`pieceNorm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L55))",
+   "quote": "**Mode-set square-sum norm.** Definition. This takes the ℓ² size of an amplitude sequence on Nₚ together with −Nₚ. It is used when the cross-mode errors of Proposition B.1 are bounded in blocks. ([`pieceNorm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L55))",
    "lean": [
     "Breakdown.Coercive.pieceNorm"
    ],
@@ -970,7 +970,7 @@
    "id": "r30-0073",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Transport speed in a rotating frame.** Definition. Breakdown.Coercive.frameSpeedSup: This is the time-and-angle supremum of the transport velocity Wᵣ+y/2−νₚe_z×y. It gives the transport bound entering the errors in (B.16). ([`frameSpeedSup`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L58))",
+   "quote": "**Transport speed in a rotating frame.** Definition. This is the time-and-angle supremum of the transport velocity Wᵣ+y/2−νₚe_z×y. It gives the transport bound entering the errors in (B.16). ([`frameSpeedSup`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L58))",
    "lean": [
     "Breakdown.Coercive.frameSpeedSup"
    ],
@@ -983,7 +983,7 @@
    "id": "r30-0074",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Vorticity bound over time and angle.** Definition. Breakdown.Coercive.vortSup: This is the real supremum of the vorticity of the reference profile over time and axial angle. It supplies a coefficient in the λ block errors. ([`vortSup`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L62))",
+   "quote": "**Vorticity bound over time and angle.** Definition. This is the real supremum of the vorticity of the reference profile over time and axial angle. It supplies a coefficient in the λ block errors. ([`vortSup`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L62))",
    "lean": [
     "Breakdown.Coercive.vortSup"
    ],
@@ -996,7 +996,7 @@
    "id": "r30-0075",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Vorticity-gradient bound.** Definition. Breakdown.Coercive.vortGradSup: This is the real supremum of the operator norm of ∇curl Wᵣ over time and axial angle. The weak-Hessian route replaces this classical derivative by vortGradSupWith. ([`vortGradSup`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L65))",
+   "quote": "**Vorticity-gradient bound.** Definition. This is the real supremum of the operator norm of ∇curl Wᵣ over time and axial angle. The weak-Hessian route replaces this classical derivative by vortGradSupWith. ([`vortGradSup`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L65))",
    "lean": [
     "Breakdown.Coercive.vortGradSup"
    ],
@@ -1009,7 +1009,7 @@
    "id": "r30-0076",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Positive vorticity-mode gain.** Definition. Breakdown.Coercive.pieceEpsPos: This is λₚ|Ωₚ(ι)| times the squared vorticity-mode amplitude on Nₚ∪−Nₚ. It is the positive contribution of a λ piece to the primed order-one coefficient in (B.16). ([`pieceEpsPos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L69))",
+   "quote": "**Positive vorticity-mode gain.** Definition. This is λₚ|Ωₚ(ι)| times the squared vorticity-mode amplitude on Nₚ∪−Nₚ. It is the positive contribution of a λ piece to the primed order-one coefficient in (B.16). ([`pieceEpsPos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L69))",
    "lean": [
     "Breakdown.Coercive.pieceEpsPos"
    ],
@@ -1048,7 +1048,7 @@
    "id": "r30-0079",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Positive velocity-mode gain.** Definition. Breakdown.Coercive.pieceMuPos: This is (1−cμ)μₚ|Ωₚ(ι)| times the squared velocity-mode amplitude. The fraction cμ of the same frequency seminorm is reserved on the left of (B.20). ([`pieceMuPos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L97))",
+   "quote": "**Positive velocity-mode gain.** Definition. This is (1−cμ)μₚ|Ωₚ(ι)| times the squared velocity-mode amplitude. The fraction cμ of the same frequency seminorm is reserved on the left of (B.20). ([`pieceMuPos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L97))",
    "lean": [
     "Breakdown.Coercive.pieceMuPos"
    ],
@@ -1087,7 +1087,7 @@
    "id": "r30-0082",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Sum of the positive piece gains.** Definition. Breakdown.Coercive.piecePos: This adds the λ and μ positive frequency gains for one mode. It is the nonnegative part kept separate while the remaining terms in (B.16) are estimated. ([`piecePos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L119))",
+   "quote": "**Sum of the positive piece gains.** Definition. This adds the λ and μ positive frequency gains for one mode. It is the nonnegative part kept separate while the remaining terms in (B.16) are estimated. ([`piecePos`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L119))",
    "lean": [
     "Breakdown.Coercive.piecePos"
    ],
@@ -1113,7 +1113,7 @@
    "id": "r30-0084",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Sum of the block errors.** Definition. Breakdown.Coercive.pieceBlock: This adds the block errors over the finite λ and μ piece families. It completes the intermediate split used to prove the density lower bound in Proposition B.1. ([`pieceBlock`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L129))",
+   "quote": "**Sum of the block errors.** Definition. This adds the block errors over the finite λ and μ piece families. It completes the intermediate split used to prove the density lower bound in Proposition B.1. ([`pieceBlock`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L129))",
    "lean": [
     "Breakdown.Coercive.pieceBlock"
    ],
@@ -1126,7 +1126,7 @@
    "id": "r30-0085",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Time derivative and similarity drift.** Definition. Breakdown.Coercive.transportPart: This is S⁻¹∂θv+v/2+(y·∇)v/2, the time-and-drift part of T_S. The Laplacian is handled separately, so this field corresponds to T_Sv+∆v. ([`transportPart`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L134))",
+   "quote": "**Time derivative and similarity drift.** Definition. This is S⁻¹∂θv+v/2+(y·∇)v/2, the time-and-drift part of T_S. The Laplacian is handled separately, so this field corresponds to T_Sv+∆v. ([`transportPart`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L134))",
    "lean": [
     "Breakdown.Coercive.transportPart"
    ],
@@ -1165,7 +1165,7 @@
    "id": "r30-0088",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Every perturbation can be approximated.** Proposition. Breakdown.Coercive.SmoothApproximationHolds: This is the proposition that every weak perturbation admits the smooth approximation just specified. It packages the density step invoked in the proof of Proposition B.1. ([`SmoothApproximationHolds`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L165))",
+   "quote": "**Every perturbation can be approximated.** Proposition. This is the proposition that every weak perturbation admits the smooth approximation just specified. It packages the density step invoked in the proof of Proposition B.1. ([`SmoothApproximationHolds`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L165))",
    "lean": [
     "Breakdown.Coercive.SmoothApproximationHolds"
    ],
@@ -1191,7 +1191,7 @@
    "id": "r30-0090",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Vorticity gradient from a Hessian.** Definition. Breakdown.CoerciveWeak.vortGradMap: This contracts a supplied Hessian into a linear map representing ∇curl Wᵣ. It provides the operator-norm input used in the weak version of the reference-profile bounds. ([`vortGradMap`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L210))",
+   "quote": "**Vorticity gradient from a Hessian.** Definition. This contracts a supplied Hessian into a linear map representing ∇curl Wᵣ. It provides the operator-norm input used in the weak version of the reference-profile bounds. ([`vortGradMap`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L210))",
    "lean": [
     "Breakdown.CoerciveWeak.vortGradMap"
    ],
@@ -1243,7 +1243,7 @@
    "id": "r30-0094",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Weak base density and remainders.** Definition. Breakdown.CoerciveWeak.pieceRestWith: This combines the base density with weak-Hessian λ mode errors and the unchanged μ mode errors. It is the per-mode remainder in the weak density-passage argument. ([`pieceRestWith`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L383))",
+   "quote": "**Weak base density and remainders.** Definition. This combines the base density with weak-Hessian λ mode errors and the unchanged μ mode errors. It is the per-mode remainder in the weak density-passage argument. ([`pieceRestWith`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L383))",
    "lean": [
     "Breakdown.CoerciveWeak.pieceRestWith"
    ],
@@ -1256,7 +1256,7 @@
    "id": "r30-0095",
    "section": "Breakdown.Cert.ExtendedCoerciveDefs",
    "role": "defines",
-   "quote": "**Sum of the weak block errors.** Definition. Breakdown.CoerciveWeak.pieceBlockWith: This sums all λ block errors with the supplied weak Hessian and all μ block errors. It is the block part of the signed split used after approximation. ([`pieceBlockWith`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L391))",
+   "quote": "**Sum of the weak block errors.** Definition. This sums all λ block errors with the supplied weak Hessian and all μ block errors. It is the block part of the signed split used after approximation. ([`pieceBlockWith`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/ExtendedCoerciveDefs.lean#L391))",
    "lean": [
     "Breakdown.CoerciveWeak.pieceBlockWith"
    ],
@@ -1308,7 +1308,7 @@
    "id": "r30-0099",
    "section": "Breakdown.Cert.Statement",
    "role": "defines",
-   "quote": "**Gradient matrix pairing.** Definition. Breakdown.matInner: This is the Frobenius inner product of two derivative matrices written through their coordinate columns. It supplies the weak diffusion pairing and the pinning functional ℓᵢ. ([`matInner`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Statement.lean#L14))",
+   "quote": "**Gradient matrix pairing.** Definition. This is the Frobenius inner product of two derivative matrices written through their coordinate columns. It supplies the weak diffusion pairing and the pinning functional ℓᵢ. ([`matInner`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Statement.lean#L14))",
    "lean": [
     "Breakdown.matInner"
    ],
@@ -1334,7 +1334,7 @@
    "id": "r30-0101",
    "section": "Breakdown.Cert.Statement",
    "role": "defines",
-   "quote": "**Integral restricted to a spatial ball.** Definition. Breakdown.periodBallLIntegral: The earlier certificate also measures squared forcing on a closed ball during one normalized period. This local-ball quantity has no finite-row counterpart in the paper’s definition of [F]. ([`periodBallLIntegral`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Statement.lean#L23))",
+   "quote": "**Integral restricted to a spatial ball.** Definition. The earlier certificate also measures squared forcing on a closed ball during one normalized period. This local-ball quantity has no finite-row counterpart in the paper’s definition of [F]. ([`periodBallLIntegral`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Statement.lean#L23))",
    "lean": [
     "Breakdown.periodBallLIntegral"
    ],
@@ -1347,7 +1347,7 @@
    "id": "r30-0102",
    "section": "Breakdown.Cert.Statement",
    "role": "defines",
-   "quote": "**Local period-averaged L² norm.** Definition. Breakdown.periodBallNorm: This is the earlier certificate’s L² norm over one period and a spatial ball. Its coefficient enters the older coercivity and residual-size estimates alongside the full H norm. ([`periodBallNorm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Statement.lean#L29))",
+   "quote": "**Local period-averaged L² norm.** Definition. This is the earlier certificate’s L² norm over one period and a spatial ball. Its coefficient enters the older coercivity and residual-size estimates alongside the full H norm. ([`periodBallNorm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Statement.lean#L29))",
    "lean": [
     "Breakdown.periodBallNorm"
    ],
@@ -1360,7 +1360,7 @@
    "id": "r30-0103",
    "section": "Breakdown.Cert.Statement",
    "role": "defines",
-   "quote": "**Euclidean norm of coefficients.** Definition. Breakdown.vecNorm: This is the Euclidean norm of a finite multiplier or pin vector, used as |β| and |ℓ(v)| in Section 7. The index size is the certificate’s multiplier dimension. ([`vecNorm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Statement.lean#L32))",
+   "quote": "**Euclidean norm of coefficients.** Definition. This is the Euclidean norm of a finite multiplier or pin vector, used as |β| and |ℓ(v)| in Section 7. The index size is the certificate’s multiplier dimension. ([`vecNorm`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Statement.lean#L32))",
    "lean": [
     "Breakdown.vecNorm"
    ],
@@ -1438,7 +1438,7 @@
    "id": "r30-0109",
    "section": "Breakdown.Cert.Statement",
    "role": "defines",
-   "quote": "**Rectangular parameter set.** Definition. Breakdown.CertificateData.box: The earlier certificate uses the coordinate interval between centre minus radius and centre plus radius. This replaces the paper’s mixed coordinate-box and ellipsoid geometry with a translated rectangle. ([`box`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Statement.lean#L139))",
+   "quote": "**Rectangular parameter set.** Definition. The earlier certificate uses the coordinate interval between centre minus radius and centre plus radius. This replaces the paper’s mixed coordinate-box and ellipsoid geometry with a translated rectangle. ([`box`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/Statement.lean#L139))",
    "lean": [
     "Breakdown.CertificateData.box"
    ],
@@ -5442,7 +5442,7 @@
    "id": "r30-0417",
    "section": "Breakdown.Defs",
    "role": "defines",
-   "quote": "**Coordinate unit vectors.** Definition. Breakdown.unitVector: These are the three standard basis vectors used to write the divergence, Laplacian and gradient of (1.1). Coordinates are numbered 0, 1 and 2 in Lean. ([`unitVector`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L12))",
+   "quote": "**Coordinate unit vectors.** Definition. These are the three standard basis vectors used to write the divergence, Laplacian and gradient of (1.1). Coordinates are numbered 0, 1 and 2 in Lean. ([`unitVector`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L12))",
    "lean": [
     "Breakdown.unitVector"
    ],
@@ -5455,7 +5455,7 @@
    "id": "r30-0418",
    "section": "Breakdown.Defs",
    "role": "defines",
-   "quote": "**Divergence.** Definition. Breakdown.divergenceAt: This is the trace of the spatial derivative, representing div u in (1.1) and div W in (1.2). The derivative is stored as a continuous linear map. ([`divergenceAt`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L14))",
+   "quote": "**Divergence.** Definition. This is the trace of the spatial derivative, representing div u in (1.1) and div W in (1.2). The derivative is stored as a continuous linear map. ([`divergenceAt`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L14))",
    "lean": [
     "Breakdown.divergenceAt"
    ],
@@ -5481,7 +5481,7 @@
    "id": "r30-0420",
    "section": "Breakdown.Defs",
    "role": "defines",
-   "quote": "**Pressure gradient.** Definition. Breakdown.gradientAt: This reconstructs the vector ∇p from the three coordinate derivatives of the scalar pressure. Only the gradient enters the equation, so adding a function of time to p does not change this term. ([`gradientAt`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L20))",
+   "quote": "**Pressure gradient.** Definition. This reconstructs the vector ∇p from the three coordinate derivatives of the scalar pressure. Only the gradient enters the equation, so adding a function of time to p does not change this term. ([`gradientAt`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L20))",
    "lean": [
     "Breakdown.gradientAt"
    ],
@@ -5494,7 +5494,7 @@
    "id": "r30-0421",
    "section": "Breakdown.Defs",
    "role": "defines",
-   "quote": "**Nonlinear transport.** Definition. Breakdown.advectionAt: Applying the spatial derivative of v to v itself gives the paper’s (v·∇)v. This order of application fixes the convection convention used throughout the certificate files. ([`advectionAt`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L23))",
+   "quote": "**Nonlinear transport.** Definition. Applying the spatial derivative of v to v itself gives the paper’s (v·∇)v. This order of application fixes the convection convention used throughout the certificate files. ([`advectionAt`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L23))",
    "lean": [
     "Breakdown.advectionAt"
    ],
@@ -5507,7 +5507,7 @@
    "id": "r30-0422",
    "section": "Breakdown.Defs",
    "role": "defines",
-   "quote": "**Compactly supported scalar test.** Proposition. Breakdown.IsTestFunction: This supplies the scalar C∞ compactly supported test functions used to express weak spatial derivatives. Such tests make integration by parts local in the spatial variable. ([`IsTestFunction`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L63))",
+   "quote": "**Compactly supported scalar test.** Proposition. This supplies the scalar C∞ compactly supported test functions used to express weak spatial derivatives. Such tests make integration by parts local in the spatial variable. ([`IsTestFunction`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Defs.lean#L63))",
    "lean": [
     "Breakdown.IsTestFunction"
    ],
