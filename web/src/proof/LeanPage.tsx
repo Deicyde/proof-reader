@@ -260,8 +260,8 @@ function Untied({ edition, untied, onPassage }: { edition: Edition; untied: NonN
   const last = untied.last;
   return (
     <div className="untied">
-      <h3>{untied.section ? `No statement in ${untied.section} is linked to this Lean.` : "No statement here is linked to this Lean."}</h3>
-      <p>The {edition.coverage.ties} statements linked to it are in {list(tied)}. {edition.lean.scope}</p>
+      <h3>No Lean is linked to this passage.</h3>
+      <p>{untied.section ? `No statement in ${untied.section} is linked to this Lean.` : "No statement here is linked to this Lean."} The {edition.coverage.ties} statements linked to it are in {list(tied)}. {edition.lean.scope}</p>
       <p className="untied__go">
         {last && <button type="button" onClick={() => onPassage(last.id)}>Go to the last statement, in {sectionLabel(last.section)}</button>}
       </p>

@@ -6,6 +6,7 @@
 // classes straight onto what is there, so scrolling never waits for React. Only
 // when a statement has held the line does the right page hear about it.
 
+import { selecting } from "./clickIntent";
 import { forwardRef, memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import type { Pin } from "../app/history";
 import type { Passage } from "../app/edition";
@@ -583,6 +584,11 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
       return;
     }
     const link = target.closest<HTMLAnchorElement>("a");
+    // A source link that is itself the whole of a linked phrase opens in its new tab as before,
+    // and the click also shows the phrase's Lean here, as a click on any linked phrase does.
+    const wrapped = link?.target ? link.querySelector<HTMLElement>(".q[data-p]") : null;
+    if (wrapped?.dataset.p && wrapped.textContent?.trim() === link?.textContent?.trim() && !(event.metaKey || event.ctrlKey || event.shiftKey || event.altKey))
+      latest.current.onPin(wrapped.dataset.p.split(" ")[0]);
     // The browser handles new-tab requests and links to other pages of the site.
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link?.target) return;
     const destination = readerRoute(link)?.paper;
@@ -607,6 +613,17 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
       const id = goalOf(link, latest.current.slug);
       if (!id) return;
       event.preventDefault();
+      // A reference that is itself the whole of a linked phrase ("Fig. 2" tied to its Lean):
+      // the click shows the phrase's Lean, as any linked phrase does, and opens the figure beneath.
+      const tied = link.querySelector<HTMLElement>(".q[data-p]");
+      if (tied && tied.textContent?.trim() === link.textContent?.trim() && tied.dataset.p) {
+        latest.current.onPin(tied.dataset.p.split(" ")[0]);
+        if ((id.startsWith("cite-") || id.startsWith("fig-")) && !link.closest<HTMLElement>("p, li, figcaption, aside")?.parentElement?.querySelector(`:scope > .inset[data-for="${CSS.escape(id)}"]`)) {
+          openInset(id, link);
+          measure();
+        }
+        return;
+      }
       const source = elementFor(id);
       if (source && inView(source)) {
         // Already on the page: say so where it stands, and go nowhere.
@@ -630,8 +647,7 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
       } else latest.current.onJump(id);
       return;
     }
-    const selection = window.getSelection();
-    if (selection && !selection.isCollapsed) return;
+    if (selecting(event)) return;
     const mark = target.closest<HTMLElement>(".q");
     if (mark?.dataset.p) latest.current.onPin(mark.dataset.p.split(" ")[0]);
   };
