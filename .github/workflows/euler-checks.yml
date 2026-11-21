@@ -1,0 +1,75 @@
+# Compile our Lean checks in papers/euler/checks against the authors' compiled package at
+# fd3a158, with the authors' flags, and print the axioms of every theorem each check adds.
+name: Compile the Euler checks against the authors' package
+on:
+  workflow_dispatch:
+  push:
+    branches: ['claude/euler-*']
+    paths:
+      - '.github/workflows/euler-checks.yml'
+      - 'papers/euler/checks/**'
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    defaults:
+      run:
+        shell: bash
+    env:
+      EULER_COMMIT: fd3a1588967810b9abe42a1dcf46ee662d6434e2
+      EU: /home/runner/euler
+      OUT: /home/runner/out
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Free disk space
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch the authors' repository at the pinned commit
+        run: |
+          mkdir -p "$OUT"
+          git init -q "$EU" && cd "$EU"
+          git remote add origin https://github.com/mcoiculescu/EulerBlowupPublic.git
+          git fetch -q --depth 1 origin "$EULER_COMMIT"
+          git reset -q --hard FETCH_HEAD
+      - name: Restore the compiled package from the extraction runs
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.EU }}/formalization/lean/.lake/build
+          key: euler-checks-v1-${{ env.EULER_COMMIT }}-${{ github.run_id }}
+          restore-keys: |
+            euler-extract-v1-${{ env.EULER_COMMIT }}-
+      - name: Fetch Mathlib's compiled files
+        working-directory: ${{ env.EU }}/formalization/lean
+        run: lake exe cache get
+      - name: Build the package (a no-op when the cache is current)
+        working-directory: ${{ env.EU }}/formalization/lean
+        run: |
+          set -o pipefail
+          timeout 220m lake build 2>&1 | { grep -v '^✔' || true; } | tail -20
+      - name: Compile each check and print its axioms
+        working-directory: ${{ env.EU }}/formalization/lean
+        run: |
+          set -o pipefail
+          fail=0
+          for f in "$GITHUB_WORKSPACE"/papers/euler/checks/*.lean; do
+            n=$(basename "$f" .lean)
+            cp "$f" "$RUNNER_TEMP/$n.lean"
+            # Append #print axioms for every theorem the file declares, with its namespace.
+            python3 "$GITHUB_WORKSPACE/.github/euler/append_axioms.py" "$RUNNER_TEMP/$n.lean"
+            if lake env lean -DautoImplicit=false -DrelaxedAutoImplicit=false -DwarningAsError=true "$RUNNER_TEMP/$n.lean" > "$OUT/$n.log" 2>&1; then echo 0 > "$OUT/$n.exit"; else echo $? > "$OUT/$n.exit"; fail=1; fi
+            echo "== $n exit $(cat "$OUT/$n.exit")"; cut -c1-400 "$OUT/$n.log"
+            if grep -E "sorryAx|depends on axioms: \[[^]]*(sorry|ofReduceBool|trustCompiler)" "$OUT/$n.log"; then fail=1; fi
+          done
+          exit $fail
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: euler-checks
+          path: ${{ env.OUT }}

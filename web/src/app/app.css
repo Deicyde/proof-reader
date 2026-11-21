@@ -318,6 +318,7 @@ button:disabled { cursor: default; }
 .decl__relation, .decl__facts { margin: 3px 0 0; font-size: var(--fs-sm); line-height: 1.42; color: var(--ink-2); text-wrap: pretty; }
 .decl__axiom { margin: 3px 0 0; font-size: var(--fs-sm); font-weight: 600; color: var(--rel-assumes-lit); }
 .decl__note { margin: 5px 0 0; padding-left: 10px; border-left: 2px solid var(--rule-strong); font-family: var(--font-serif); font-size: 0.9375rem; line-height: 1.42; color: var(--ink); text-wrap: pretty; }
+.decl__note-summary { font-weight: 600; }
 .decl__note-by { display: block; margin-bottom: 2px; font-family: var(--font-sans); font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); }
 /* The paper and the Lean: a comparison made with AI, and the checks Lean ran */
 .fid { margin: 8px 0 0; padding-left: 10px; border-left: 2px solid var(--rule-strong); font-size: var(--fs-sm); line-height: 1.42; color: var(--ink-2); }
