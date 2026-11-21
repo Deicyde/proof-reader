@@ -46,7 +46,11 @@ def report (mods : Array Name) (roots : Array Name) : Meta.MetaM Json := do
   let mut out : Array Json := #[]
   for (n, m, ci) in pick do
     let typeDeps := ci.type.getUsedConstants
-    let valueDeps := (ci.value?.map Expr.getUsedConstants).getD #[]
+    -- `value?` gives no value for a theorem, so a theorem's proof dependencies are read from
+    -- its own value: what the proof uses, as the definitions' values already give.
+    let valueDeps := match ci with
+      | .thmInfo t => t.value.getUsedConstants
+      | _ => (ci.value?.map Expr.getUsedConstants).getD #[]
     let axioms ← collectAxioms n
     let ranges? ← findDeclarationRanges? n
     let doc ← findDocString? env n
