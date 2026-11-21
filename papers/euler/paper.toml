@@ -760,3 +760,7 @@ language = "lean"
 
 [shelf]
 example = ["e01.theorem.initial-data"]
+
+# Comparator, at the authors' final commit fd3a158 (run 44925234532): both forms of Theorem 1.1.
+[comparator]
+evidence = "comparator"
