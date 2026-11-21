@@ -252,6 +252,14 @@ in `paper.toml`, either one id as `example = "<passage>"` or a list in the order
 them as `example = ["<passage>", "<passage>"]`. A name that is not a passage, a passage
 with no Lean declaration, or a name given twice stops the build.
 
+When several pages read the same paper and Lean (the paper, a digest, a full account,
+guides), list one of them on the front page and put the others under it: in each
+companion's `[shelf]`, `with = "<slug of the listed page>"` and `place = <n>` for its
+order. The front page then shows the companions as one line of links under that entry.
+A long run of pages that split one text (a library guide in many parts) can share
+`group = "<label>"`; they appear as one numbered row, "Library guide: 1 2 3", at the
+place of the first.
+
 If Lean is slow to start, find where elan keeps its toolchains. A toolchain on an
 external drive can turn a 15-second extraction into many minutes.
 

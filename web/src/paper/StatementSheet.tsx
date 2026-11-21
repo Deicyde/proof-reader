@@ -13,6 +13,7 @@ import { sectionLabel } from "../model/fromEdition";
 import { reviewers, verdictWords } from "../proof/Fidelity";
 import "./sheet.css";
 import { Quote } from "./Quote";
+import { DeclNote } from "../proof/Note";
 
 export function StatementSheet({ edition }: { edition: Edition }) {
   const [files, setFiles] = useState<Record<string, string> | null>(null);
@@ -110,8 +111,7 @@ function Entry({ edition, entry, files, names, act, head = false }: { edition: E
               ))}
             </>
           )}
-          {!passages.length && d.note && <p className="decl__note"><span className="decl__note-by">Note added for this page</span>{d.note.text}</p>}
-          {passages.length > 0 && d.note && <p className="decl__note"><span className="decl__note-by">Note added for this page</span>{d.note.text}</p>}
+          {d.note && <DeclNote note={d.note} />}
           {!passages.length && !d.note && <p className="sheet__none">No explanation yet.</p>}
           {head && d.fidelity && (
             <p className="sheet__fid"><span className="decl__label">The {word} and the Lean</span> <span className="fid__by">Compared by AI</span> {verdictWords(d.fidelity.verdict, word)}. {d.fidelity.text}</p>

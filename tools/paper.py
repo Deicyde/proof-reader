@@ -14,6 +14,7 @@ Node with the packages in web/ for a reading copy or a Markdown source.
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
 import html
 import json
@@ -237,9 +238,19 @@ def written_name(declared: str) -> str:
     return declared.removeprefix("_root_.").replace("«", "").replace("»", "")
 
 
+def read_lean_report(folder: Path) -> dict:
+    """generated/lean.json, or its gzip copy for a project too large to keep uncompressed."""
+    plain, packed = folder / "generated" / "lean.json", folder / "generated" / "lean.json.gz"
+    if plain.is_file():
+        return json.loads(plain.read_text(encoding="utf-8"))
+    if packed.is_file():
+        return json.loads(gzip.decompress(packed.read_bytes()).decode("utf-8"))
+    raise PaperError(f"{plain} is missing: run python3 tools/paper.py extract {folder.name}")
+
+
 def shards(folder: Path, config: dict) -> tuple[dict, dict]:
     """The declarations people wrote, each with the rest folded into it."""
-    report = json.loads((folder / "generated" / "lean.json").read_text(encoding="utf-8"))
+    report = read_lean_report(folder)
     project = lean_project(folder, config)
     texts = {m: module_file(project, m).read_text(encoding="utf-8") for m in report["modules"]}
     rows = {d["name"]: d for d in report["declarations"]}
@@ -650,6 +661,9 @@ def resolve(slug: str) -> dict:
                 errors.append(f"claim {claim['id']}: no Lean declaration called {name}")
         if claim.get("passage") not in ids:
             errors.append(f"claim {claim['id']}: no passage called {claim.get('passage')}")
+    for name in links.get("show_also", []):
+        if name not in written:
+            errors.append(f"show_also: no Lean declaration called {name}")
     for name, title in links.get("plain", {}).items():
         if name not in written:
             errors.append(f"plain: no Lean declaration called {name}")
@@ -659,7 +673,10 @@ def resolve(slug: str) -> dict:
     for name, note in links.get("notes", {}).items():
         if name not in written:
             errors.append(f"note: no Lean declaration called {name}")
-        if not note.get("because") or any(b not in ids for b in note["because"]):
+        # A note rests on the passages it names, or, for a reading note on the Lean itself
+        # (`"on": "lean"`), on the declaration's own source; either way every named passage exists.
+        grounded = note.get("because") or note.get("on") == "lean"
+        if not grounded or any(b not in ids for b in note.get("because", [])):
             errors.append(f"note on {name}: `because` must name passages that exist")
     problem = shelf_problem(config, links["passages"])
     if problem:
@@ -865,7 +882,10 @@ def edition(slug: str) -> dict:
     data = resolve(slug)
     config, shard_info, links = data["config"], data["shards"], data["links"]
     written, uses, texts = shard_info["written"], shard_info["uses"], shard_info["texts"]
+    # `show_also` names declarations the page lists although no passage names them, such as
+    # lemmas used only inside proofs that carry a reading note.
     roots = [name for item in (*links["claims"], *data["passages"]) for name in item.get("lean", [])]
+    roots += links.get("show_also", [])
     keep = reachable(roots, uses)
     used_by: dict[str, list[str]] = {name: [] for name in keep}
     for name in keep:
@@ -887,6 +907,7 @@ def edition(slug: str) -> dict:
     # In particular, sibling papers can share a project without exposing `..`
     # in source links or asking a browser to resolve a filesystem path.
     project_root = "lean"
+    note_html = render_notes({n: links["notes"][n]["text"] for n in keep if n in links.get("notes", {})})
     declarations = []
     for name in sorted(keep, key=lambda n: (written[n]["module"], written[n]["line"])):
         row = written[name]
@@ -907,7 +928,7 @@ def edition(slug: str) -> dict:
             "axioms": sorted(a for a in axioms if a not in STANDARD_AXIOMS and a not in ("sorryAx", name)),
             "standard_axioms": sorted(a for a in axioms if a in STANDARD_AXIOMS),
             "passages": linked.get(name, []),
-            "note": links.get("notes", {}).get(name),
+            "note": note_entry(links.get("notes", {}).get(name), note_html.get(name)),
             "fidelity": fidelity_of(links.get("fidelity", {}).get(name)),
             # Where these facts come from, per declaration: "lean" (read by Lean from the
             # compiled module), "statement-compiled" (only the statement compiled here) or
@@ -1068,6 +1089,33 @@ def shelf_example(config: dict, passages: list[dict], paragraphs: dict, written:
     return examples[0] if examples else None
 
 
+def render_notes(texts: dict[str, str]) -> dict[str, str]:
+    """Notes typeset as the reader shows them: $…$ as KaTeX, `…` as code. Plain notes
+    without either need no typesetting, so the renderer runs only when one has them."""
+    wanted = {n: t for n, t in texts.items() if "$" in t or "`" in t}
+    if not wanted:
+        return {}
+    done = subprocess.run(["node", str(ROOT / "web" / "tools" / "render-paper.mjs"), "--notes"],
+                          input=json.dumps(wanted), capture_output=True, text=True, cwd=ROOT / "web")
+    if done.returncode != 0:
+        raise PaperError(f"could not typeset the notes:\n{done.stderr[-1500:]}")
+    return json.loads(done.stdout)
+
+
+def note_entry(note: dict | None, html_text: str | None) -> dict | None:
+    """What the page shows of a note: its text (and typeset form), the passages it rests on,
+    whether it is a reading note on the Lean, and an optional longer summary title."""
+    if not note:
+        return None
+    entry = {"text": note["text"], "because": note.get("because", [])}
+    for key in ("on", "summary"):
+        if note.get(key):
+            entry[key] = note[key]
+    if html_text:
+        entry["html"] = html_text
+    return entry
+
+
 def fidelity_of(entry: dict | None) -> dict | None:
     if not entry:
         return None
@@ -1166,7 +1214,18 @@ def write_shelf() -> None:
             continue
         built = json.loads(path.read_text(encoding="utf-8"))
         source = json.loads((PUBLIC / slug / "source.json").read_text(encoding="utf-8"))
-        shelf.append(shelf_entry(slug, built, source["files"]))
+        entry = shelf_entry(slug, built, source["files"])
+        listing = load_paper(slug)[1].get("shelf", {})
+        if listing.get("with"):
+            entry["with"] = listing["with"]
+            entry["place"] = int(listing.get("place", 0))
+        if listing.get("group"):
+            entry["group"] = str(listing["group"])
+        shelf.append(entry)
+    parents = {e["slug"] for e in shelf if "with" not in e}
+    for e in shelf:
+        if "with" in e and e["with"] not in parents:
+            raise SystemExit(f"{e['slug']}: [shelf] with = {e['with']!r} names no paper listed on its own")
     (PUBLIC / "index.json").write_text(json.dumps({"papers": shelf}, ensure_ascii=False), encoding="utf-8")
 
 

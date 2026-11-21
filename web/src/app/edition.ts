@@ -107,7 +107,8 @@ export interface Declaration {
   /** The declaration's doc comment, as Lean records it. */
   doc?: string | null;
   passages: string[];
-  note: { text: string; because: string[] } | null;
+  /** Our note: on the passages in `because`, or on the Lean itself (`on: "lean"`); `html` is its typeset form. */
+  note: { text: string; because: string[]; on?: "lean"; summary?: string; html?: string } | null;
   /** How the paper's statement stands to this Lean, compared with AI; absent before it was run. */
   fidelity?: Fidelity | null;
 }
@@ -287,6 +288,12 @@ export interface ShelfItem {
   linked?: number;
   example?: ShelfExample | null;
   examples?: ShelfExample[];
+  /** Listed on the front page under this paper's entry instead of on its own. */
+  with?: string;
+  /** Its position among the entries listed under the same paper. */
+  place?: number;
+  /** Companions sharing a group are listed as one numbered row. */
+  group?: string;
 }
 
 const base = import.meta.env.BASE_URL;

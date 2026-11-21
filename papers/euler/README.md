@@ -1,0 +1,188 @@
+# Finite-time singularity for the Euler equations on the torus: the paper and its Lean
+
+**[Read the paper beside its Lean](https://wcook04.github.io/proof-reader/#/euler)**
+
+> **Credit.** The paper and its Lean formalization are the work of Levent Alpöge, Tristan
+> Buckmaster and Matei P. Coiculescu, in their repository
+> [mcoiculescu/EulerBlowupPublic](https://github.com/mcoiculescu/EulerBlowupPublic). Their paper
+> thanks Anthropic for supporting the collaboration from which it grew. Their text (the reading
+> copy `paper.md` is set from their TeX) and their Lean (`lean/`) are theirs, hosted with this
+> credit; their repository states no licence. Everything else here (the links, titles, notes,
+> comparisons, checks and tools) is ours, under the [MIT licence](LICENSE).
+
+**Snapshot: 20 November 2026, the authors' commit
+[`fd3a158`](https://github.com/mcoiculescu/EulerBlowupPublic/tree/fd3a1588967810b9abe42a1dcf46ee662d6434e2).**
+
+Levent Alpöge, Tristan Buckmaster and Matei P. Coiculescu construct smooth odd periodic
+initial data for the unforced incompressible Euler equations on the three-dimensional torus
+whose solution blows up in finite time. Their repository holds the manuscript and a Lean 4
+formalization. At this commit the Lean follows the arXiv version of the manuscript one result
+at a time: each numbered result, and each display that a later proof cites, has a statement
+`TorusEuler.Paper.Statement.<result>` and a theorem `TorusEuler.Paper.<result>` whose proof
+takes exactly the results its TeX proof cites
+([the authors' README](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/README.md#L14-L44)).
+
+Every link below opens their paper or their Lean on GitHub at the pinned commit. The table follows the
+authors' own map,
+[`paper-coverage-latest.md`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/paper-coverage-latest.md),
+and was generated from it by [`tools/results_table.py`](tools/results_table.py). The page
+was prepared by AI agents under Will Cook's direction and has not been reviewed by the authors.
+
+- Paper: [arXiv version (PDF)](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/paper.pdf),
+  [its TeX](https://github.com/mcoiculescu/EulerBlowupPublic/tree/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source),
+  and the [auxiliary note on terminal smoothness](https://github.com/mcoiculescu/EulerBlowupPublic/tree/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/anc/auxiliary).
+- Lean: [`formalization/lean`](https://github.com/mcoiculescu/EulerBlowupPublic/tree/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean),
+  Lean `v4.34.0-rc2`, with the [proof spine](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean)
+  and the authors' [citation ledger](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/spine.json).
+
+## What is done and what is pending
+
+| Item | State |
+| --- | --- |
+| A reading copy beside the Lean on the Proof Reader site | Done: [the page](https://wcook04.github.io/proof-reader/#/euler), set from the authors' TeX of the arXiv version with their own numbering (231 labels of the paper and 11 of the auxiliary note checked against their compiled TeX) |
+| Sentence-level links | Done: 972 phrases tied to 1,039 Lean declarations. 255 of the 361 paragraphs and displays carry a tie; the other 106 are headings, history, surveys, bibliography entries, acknowledgements, figures and road maps, each with a stated reason. Every proof paragraph is tied |
+| Each numbered result linked to its Lean statement and theorem | Done, for all 42 rows of the authors' map (below) |
+| A same, stronger, weaker or different comparison of each result with its Lean | Done for all 42: 8 same, 28 stronger, 1 weaker (the Section 8 setting) and 5 different (5.3, 5.5, 7.1, 8.1, D.2), each with its reason on the page. Made with AI and not reviewed by the authors |
+| A title and a note on every declaration of the Lean | Done: every named declaration of the 729 modules carries a plain title and a reading note, typeset on the page; the 8,072 declarations are all in the page's index |
+| Axioms of every declaration at `fd3a158` | Done: all 19,939 constants of the 729 compiled modules use only `propext`, `Classical.choice` and `Quot.sound` ([run 44905597526](https://github.com/wcook04/proof-reader/actions/runs/44905597526)) |
+| The authors' spine check `VerifySpine.lean` at `fd3a158` | Passed in the same run: "42 nodes, standard axioms; frontiers equal to the TeX citations and no bypass", with Remark 1.2 the stated library exception |
+| Our two checks beside the authors' Lean (`checks/`) | Compiled with the standard axioms only ([run 44887791276](https://github.com/wcook04/proof-reader/actions/runs/44887791276)); shown beside the Section 8 setting and Lemma 5.3 |
+| Comparator on the headline `TorusEuler.theorem11` | Accepted at the earlier commit `36d3961` ([run 44826207811](https://github.com/wcook04/proof-reader/actions/runs/44826207811)). At `fd3a158`: **pending** |
+| Comparator on the revised headline `TorusEuler.Paper.theorem_1_1` | **Pending** |
+
+## How the page is built
+
+The authors' files are hosted unchanged: `lean/` is their `formalization/lean` at `fd3a158`.
+Everything else in this folder is ours.
+
+- `tools/reading_copy.py UPSTREAM TIES` flattens the authors' TeX, compiles it with Tectonic to
+  read their numbers, sets `paper.md` with Pandoc and carries each phrase tie into it as an
+  exact quotation (`generated/reading-ties.json`). The figures are converted to SVG.
+- `generated/lean.json.gz` is the extractor's report on all 729 modules, from
+  [`euler-extract.yml`](../../.github/workflows/euler-extract.yml) (the package takes hours to
+  build, so it is compiled on GitHub Actions); `notes/extract.toml` lists the modules.
+- `tools/record_checks.py RUN ARTIFACT` records a run of
+  [`euler-checks.yml`](../../.github/workflows/euler-checks.yml) as `generated/checks.json`.
+- `tools/build_links.py` writes `links.json` from the reviewed AI returns (kept privately): the
+  phrase ties, the 42 results and their comparisons, a reading note on every declaration with
+  its long title, and a card title of at most 40 characters.
+
+## Theorem 1.1
+
+The paper's Theorem 1.1 asserts smooth odd divergence-free periodic data whose maximal
+classical solution is smooth and odd up to a finite time $T_*>0$, with
+$\int_0^{T_*}\|\nabla u\|_{L^\infty}=\int_0^{T_*}\|\operatorname{curl}u\|_{L^\infty}=\infty$,
+bounded velocity, $|\operatorname{curl}u(t,0)|\to\infty$, and convergence of $u(t)$ and
+$\partial_tu(t)$ in every $C^m(K)$ on compact $K$ away from the origin
+([TeX](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/01_problem.tex#L60-L77)).
+Its text is the same in the frozen manuscript of 18 November and in the arXiv version.
+
+- [`TorusEuler.Paper.Statement.theorem_1_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S678/Statements.lean#L36-L40)
+  states the theorem with uniqueness: there are data, a time, a velocity and a pressure
+  satisfying `EulerSingularityWitness`, and every maximal smooth solution with the same data
+  has the same lifespan and the same velocity.
+  [`TorusEuler.Paper.theorem_1_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L162-L163)
+  proves it from Propositions 8.1, 8.2 and 8.4, Corollary 8.3 and the setting of Section 8.
+- [`TorusEuler.theorem11`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/MainTheorem.lean#L11-L15)
+  is its existence part, `TorusEuler.Theorem11`.
+
+The definitions both use are in
+[`Statement.lean`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Statement.lean),
+which is byte for byte the same at `36d3961` and `fd3a158`. Our clause-by-clause reading of
+those definitions against the paper, made at `36d3961`, is in
+[`notes/frozen-statement-comparison.md`](notes/frozen-statement-comparison.md) §3. It found
+each clause the same as the paper: periodic lifts for the torus, a fixed pressure gauge,
+zero forcing, smooth maximal solutions, and every quantitative conclusion. At that commit
+uniqueness was a separate theorem. The revised statement now includes it. A comparison of
+the uniqueness clause with the paper is pending.
+
+**Comparator at `36d3961`.** The workflow
+[`euler-comparator.yml`](../../.github/workflows/euler-comparator.yml) built the authors'
+package on Lean `v4.34.0-rc2`, wrote a challenge from their `Statement.lean` with
+`theorem TorusEuler.theorem11 : TorusEuler.Theorem11 := sorry`, and judged it with Lean
+v4.36.0's `lake comparator`. A control stating the negation was rejected: "Challenge and
+solution theorem statement do not match". A control that drops the $\partial_tu$ clause
+from `EulerSingularityWitness` was rejected: "Const does not match between challenge and
+target 'TorusEuler.EulerSingularityWitness'". The challenge was accepted by Lean's kernel
+and the four external kernels (Lean paranoid, nanoda, con-leche, con-ron), with only
+`propext`, `Classical.choice` and `Quot.sound` permitted. The authors' `Verify.lean` passed
+and checked the axioms of 10,389 `TorusEuler` declarations. This is a check of the proof
+against the stated definitions. Whether the definitions mean what the paper means is the
+reading above, and neither is a referee's reading of the mathematics.
+
+## The results and their Lean
+
+Each row links the result in the authors' TeX, its Lean statement and its Lean theorem. The
+last column is the authors' list of what the TeX proof cites, which their `VerifySpine.lean`
+checks against the theorem's hypotheses. A display is an equation that a later proof cites,
+numbered as in the paper.
+
+| Result | In the paper | Lean statement | Lean theorem | Its proof cites |
+| --- | --- | --- | --- | --- |
+| 1.1 | [`cc:target:unforced`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/01_problem.tex#L60) | [`Statement.theorem_1_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S678/Statements.lean#L36-L40) | [`Paper.theorem_1_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L162-L163) | 8.1, 8.2, 8.3, 8.4, display section8 setting |
+| 1.2 | [`unlabeled`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/01_problem.tex#L80) | [`Statement.remark_1_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Auxiliary/Statements.lean#L185-L190) | [`Paper.remark_1_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L166-L167) | library; TeX cites: Aux 1.1 |
+| 1.3 | [`cc:uf:tower:lem:slow-orders`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/01b_parameters.tex#L54) | [`Statement.lemma_1_3`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S678/Statements.lean#L55-L67) | [`Paper.lemma_1_3`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L10-L11) | none |
+| 2.1 | [`cc:lem:wave`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/02_affine.tex#L9) | [`Statement.lemma_2_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S2/Statements.lean#L57-L74) | [`Paper.lemma_2_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L170-L171) | none |
+| 2.2 | [`cc:lem:frame`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/02_affine.tex#L65) | [`Statement.lemma_2_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S2/Statements.lean#L89-L102) | [`Paper.lemma_2_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L22-L23) | none |
+| 2.3 | [`cc:lem:strong-shear`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/03_amplification.tex#L113) | [`Statement.lemma_2_3`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S2/Statements.lean#L128-L154) | [`Paper.lemma_2_3`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L174-L175) | 2.2 |
+| 2.4 | [`cc:uf:exact:lem:additive`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/03_amplification.tex#L265) | [`Statement.lemma_2_4`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S2/Statements.lean#L181-L203) | [`Paper.lemma_2_4`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L26-L27) | 2.2 |
+| 2.5 | [`cc:lem:model`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/03_amplification.tex#L452) | [`Statement.lemma_2_5`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S2/Statements.lean#L220-L235) | [`Paper.lemma_2_5`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L46-L47) | none |
+| 2.6 | [`cc:lem:finite-comparison`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/03_amplification.tex#L597) | [`Statement.lemma_2_6`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S2/Statements.lean#L256-L277) | [`Paper.lemma_2_6`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L50-L51) | 2.4, 2.5 |
+| 2.7 | [`cc:lem:new-wave-couplings`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/03_amplification.tex#L718) | [`Statement.lemma_2_7`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S2/Statements.lean#L293-L305) | [`Paper.lemma_2_7`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L54-L55) | 2.4, 2.5, 2.6 |
+| 2.8 | [`cc:prop:finite-return`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/03_amplification.tex#L894) | [`Statement.proposition_2_8`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S2/Statements.lean#L329-L346) | [`Paper.proposition_2_8`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L58-L59) | 2.4, 2.5, 2.6, 2.7 |
+| 3.1 | [`cc:uf:exact:lem:profile`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/04_localized_wave.tex#L152) | [`Statement.lemma_3_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S34A/Statements.lean#L39-L40) | [`Paper.lemma_3_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L82-L83) | none |
+| 4.1 | [`cc:uf:mean:hardy`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/06b_mean_inverse.tex#L104) | [`Statement.lemma_4_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S34A/Statements.lean#L56-L67) | [`Paper.lemma_4_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L62-L63) | none |
+| 4.2 | [`cc:uf:mean:inverse`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/06b_mean_inverse.tex#L143) | [`Statement.theorem_4_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S34A/Statements.lean#L113-L168) | [`Paper.theorem_4_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L74-L75) | 4.1, A.1, A.2 |
+| 5.1 | [`cc:uf:trunc:prop:parent`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/05b_parent_coefficients.tex#L16) | [`Statement.proposition_5_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L55-L98) | [`Paper.proposition_5_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L90-L91) | B.1, D.2 |
+| 5.2 | [`cc:uf:mean:columns`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/06d_mean_estimates.tex#L22) | [`Statement.proposition_5_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L112-L120) | [`Paper.proposition_5_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L122-L123) | 5.1, D.1, display eq D 2, display eq 5 14 |
+| 5.3 | [`cc:uf:tower:lem:inverse`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/06c_finite_hierarchy.tex#L54) | [`Statement.lemma_5_3`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L146-L183) | [`Paper.lemma_5_3`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L102-L103) | 3.1, 5.1, D.1, D.2, D.3 |
+| 5.4 | [`cc:uf:hier:prop:identity`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/06c_finite_hierarchy.tex#L304) | [`Statement.proposition_5_4`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L211-L262) | [`Paper.proposition_5_4`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L78-L79) | 4.2 |
+| 5.5 | [`cc:uf:hier:lem:relay`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/06c_finite_hierarchy.tex#L399) | [`Statement.lemma_5_5`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L287-L322) | [`Paper.lemma_5_5`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L106-L107) | 5.1, D.1 |
+| 5.6 | [`cc:uf:hier:thm:depth`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/06c_finite_hierarchy.tex#L469) | [`Statement.theorem_5_6`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L341-L383) | [`Paper.theorem_5_6`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L126-L127) | 5.1, 5.2, 5.3, 5.4, 5.5, D.1, B.1 |
+| 5.7 | [`cc:uf:hier:lem:physical`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/08_exact_wave.tex#L32) | [`Statement.lemma_5_7`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L402-L428) | [`Paper.lemma_5_7`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L130-L131) | 5.1, D.1 |
+| 5.8 | [`cc:uf:step:lem:approximate`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/08_exact_wave.tex#L82) | [`Statement.lemma_5_8`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L447-L486) | [`Paper.lemma_5_8`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L134-L135) | 5.3, 5.4, 5.5, 5.6, 5.7 |
+| 5.9 | [`cc:uf:step:lem:pressure-center`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/08_exact_wave.tex#L158) | [`Statement.lemma_5_9`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L499-L521) | [`Paper.lemma_5_9`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L138-L139) | 3.1, 4.2, 5.1, 5.3, 5.6, 5.7, B.1, D.1, 5.4 |
+| 5.10 | [`cc:uf:step:lem:flow-bounds`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/08_exact_wave.tex#L290) | [`Statement.lemma_5_10`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L535-L555) | [`Paper.lemma_5_10`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L142-L143) | 5.1, 5.6, 5.4 |
+| 5.11 | [`cc:uf:step:thm:step`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/08_exact_wave.tex#L379) | [`Statement.proposition_5_11`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L577-L619) | [`Paper.proposition_5_11`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L146-L147) | 5.8, 5.9, B.1, display eq 5 59 |
+| 6.1 | [`cc:uf:base:lem:first`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/03a_exact_base.tex#L38) | [`Statement.lemma_6_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S678/Statements.lean#L83-L86) | [`Paper.lemma_6_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L150-L151) | 2.2 |
+| 7.1 | [`cc:uf:tower:thm:finite`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/08b_induction.tex#L142) | [`Statement.theorem_7_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S678/Statements.lean#L137-L145) | [`Paper.theorem_7_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L154-L155) | 1.3, 2.2, 2.5, 2.6, 2.7, 2.8, 5.4, 5.8, 5.9, 5.10, 5.11, 6.1, B.1 |
+| 8.1 | [`cc:uf:terminal:agreement`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/09_limit.tex#L11) | [`Statement.proposition_8_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S678/Statements.lean#L169-L172) | [`Paper.proposition_8_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L18-L19) | 1.3, display eq 5 59 |
+| 8.2 | [`cc:uf:terminal:velocity-curl`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/09b_terminal_properties.tex#L3) | [`Statement.proposition_8_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S678/Statements.lean#L185-L189) | [`Paper.proposition_8_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L34-L35) | 1.3, 2.2, 2.4, B.1 |
+| 8.3 | [`cc:uf:terminal:time`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/09b_terminal_properties.tex#L69) | [`Statement.corollary_8_3`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S678/Statements.lean#L202-L206) | [`Paper.corollary_8_3`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L38-L39) | none |
+| 8.4 | [`cc:uf:terminal:off-origin`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/09b_terminal_properties.tex#L88) | [`Statement.proposition_8_4`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S678/Statements.lean#L217-L221) | [`Paper.proposition_8_4`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L42-L43) | 1.3 |
+| A.1 | [`cc:holder:linear`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/appA_mean_regularity.tex#L26) | [`Statement.theorem_A_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S34A/Statements.lean#L195-L217) | [`Paper.theorem_A_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L70-L71) | A.2 |
+| A.2 | [`cc:holder:freezing`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/appA_mean_regularity.tex#L71) | [`Statement.lemma_A_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S34A/Statements.lean#L241-L252) | [`Paper.lemma_A_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L66-L67) | none |
+| B.1 | [`cc:uf:trunc:lem:cutoff`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/appB_cutoff.tex#L12) | [`Statement.lemma_B_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/SBD/Statements.lean#L71-L167) | [`Paper.lemma_B_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L30-L31) | none |
+| Display eq D 2 | [`cc:uf:trunc:eq:holder-sup`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/appD_finite_norms.tex#L35) | [`Statement.Text.eq_D_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/SBD/Statements.lean#L189-L202) | [`Paper.Text.eq_D_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L110-L111) | none |
+| D.1 | [`cc:uf:trunc:lem:fields`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/appD_finite_norms.tex#L42) | [`Statement.lemma_D_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/SBD/Statements.lean#L239-L278) | [`Paper.lemma_D_1`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L94-L95) | none |
+| D.2 | [`cc:uf:trunc:lem:coefficients`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/appD_finite_norms.tex#L93) | [`Statement.lemma_D_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/SBD/Statements.lean#L315-L335) | [`Paper.lemma_D_2`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L86-L87) | none |
+| D.3 | [`cc:uf:trunc:lem:lifting`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/appD_finite_norms.tex#L133) | [`Statement.lemma_D_3`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/SBD/Statements.lean#L371-L393) | [`Paper.lemma_D_3`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L98-L99) | none |
+| Display section8 setting | [`unlabeled`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/09_limit.tex#L2) | [`Statement.Text.section8_setting`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S678/Statements.lean#L154-L156) | [`Paper.Text.section8_setting`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L158-L159) | 7.1 |
+| Display eq 5 59 | [`cc:holder:product-growth`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/08_exact_wave.tex#L426) | [`Statement.Text.eq_5_59`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/Statements.lean#L630-L638) | [`Paper.Text.eq_5_59`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L14-L15) | none |
+| Display eq 5 13 | [`cc:uf:mean:thresholds`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/06d_mean_estimates.tex#L42) | [`Statement.Text.eq_5_13`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/TextStatements.lean#L42-L55) | [`Paper.Text.eq_5_13`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L114-L115) | 5.1, D.2, display eq D 2 |
+| Display eq 5 14 | [`cc:uf:mean:holder-bound`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/manuscript/source/sections/06d_mean_estimates.tex#L56) | [`Statement.Text.eq_5_14`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/S5/TextStatements.lean#L72-L88) | [`Paper.Text.eq_5_14`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/Paper/Spine.lean#L118-L119) | 4.2, 5.1, D.2, D.3, display eq 5 13 |
+
+42 rows, from `formalization/paper-coverage-latest.md` at `fd3a158`.
+
+## The auxiliary note and Remark 1.2
+
+The auxiliary note is formalized outside the correspondence, by three theorems of the
+authors' library:
+[`auxiliaryTerminalSmoothness`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/AuxiliaryTerminalSmoothness.lean#L16),
+[`auxiliaryLemma12`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/PaperAuxiliaryStatements.lean#L21) and
+[`auxiliaryLemma13`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/lean/TorusEuler/PaperAuxiliaryStatements.lean#L43).
+Remark 1.2 is proved from the first. Corollary 8.3 cites the periodic Beale–Kato–Majda
+criterion, which is not formalized; the authors' README says its Lean proof obtains the
+divergence of the curl integral from the curl lower bound in the proof of Proposition 8.2.
+Where their ledger departs from the literal citations of the TeX, the decisions are listed in
+[`ledger-decisions.md`](https://github.com/mcoiculescu/EulerBlowupPublic/blob/fd3a1588967810b9abe42a1dcf46ee662d6434e2/formalization/ledger-decisions.md).
+
+## How this page is made
+
+- [`tools/results_table.py`](tools/results_table.py) writes the table above from a checkout
+  of the authors' repository at the pinned commit. It refuses any other commit.
+- [`euler-extract.yml`](../../.github/workflows/euler-extract.yml) compiles the authors' package
+  on Actions, reads the declarations, dependencies and axioms of the Paper layer, and runs
+  their `VerifySpine.lean`. It uploads names, line numbers, dependencies and axioms only.
+- [`euler-comparator.yml`](../../.github/workflows/euler-comparator.yml) is the Comparator run
+  described under Theorem 1.1. Its artifacts hold logs, exit codes and hashes.

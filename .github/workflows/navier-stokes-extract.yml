@@ -1,0 +1,125 @@
+# Read the declarations, dependencies and axioms of the Navier–Stokes pages from the authors'
+# compiled package. The package is the authors' commit ad53419, compiled by the Comparator
+# workflow and restored from its cache; nothing is rebuilt here unless Lake finds a module out of
+# date. Each page's copy of the Lean (papers/navier-stokes-paper/lean) must equal the authors'
+# checkout byte for byte. Two superset reports are also written, one for the library environment
+# (every Breakdown.* module and Solution), one for the readable challenge chain and one for the
+# readable fractional chain, because they declare the same names and cannot be imported together.
+# The pages' own reports are cut from these supersets, so only the supersets are read here.
+name: Extract the Navier–Stokes pages' declarations from Lean
+'on':
+  workflow_dispatch: {}
+  push:
+    branches:
+    - claude/navier-stokes-*
+    paths:
+    - .github/workflows/navier-stokes-extract.yml
+    - papers/navier-stokes-paper/extract/**
+permissions:
+  contents: read
+concurrency:
+  group: navier-stokes-extract
+  cancel-in-progress: false
+jobs:
+  extract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 355
+    defaults:
+      run:
+        shell: bash
+    env:
+      NS_COMMIT: ad53419de079eb8f95f60313473374624a348546
+      NS: /home/runner/ns
+      OUT: /home/runner/out
+      COPY: papers/navier-stokes-paper/lean
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+      with:
+        python-version: '3.12'
+    - name: Free disk space
+      run: |
+        sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+        df -h / | tail -1
+    - name: Install elan
+      run: |
+        curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+        echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+    - name: Fetch the authors' repository at the pinned commit
+      run: |
+        mkdir -p "$OUT"
+        git init -q "$NS" && cd "$NS"
+        git remote add origin https://github.com/tristanbuckmaster/navier-stokes.git
+        git fetch -q --depth 1 origin "$NS_COMMIT" && git checkout -q FETCH_HEAD
+        git rev-parse HEAD | tee "$OUT/ns-commit.txt"
+    - name: The page copy equals the authors' checkout
+      run: |
+        diff -r --exclude=.lake "$NS/lean" "$COPY"
+        cmp "$NS/paper/finite-time-blow-up-navier-stokes.pdf" papers/navier-stokes-paper/paper.pdf
+        echo "identical" | tee "$OUT/copy-check.txt"
+    - name: Restore the package's compiled files from the Comparator build
+      uses: actions/cache/restore@v4
+      with:
+        path: ${{ env.NS }}/lean/.lake/build
+        key: ns-extract-${{ env.NS_COMMIT }}-${{ github.run_id }}
+        restore-keys: |
+          ns-build-v3-${{ env.NS_COMMIT }}-
+    - name: Fetch Mathlib's compiled files (official cache)
+      working-directory: ${{ env.NS }}/lean
+      run: lake exe cache get
+    - name: Confirm Lake would rebuild nothing, and date the sources before the compiled files
+      working-directory: ${{ env.NS }}/lean
+      run: |
+        if lake build --no-build > "$OUT/no-build.log" 2>&1; then c=0; else c=$?; fi
+        echo "$c" | tee "$OUT/no-build.exit"
+        tail -5 "$OUT/no-build.log"
+        if [ "$c" != 0 ]; then echo "::warning::lake build --no-build exit $c: Lake considers some module out of date"; fi
+        git -C "$NS" diff --exit-code
+        # Compiled files restored from a cache are older than this fresh checkout, so the
+        # extractor's mtime test would fail. Lake's own trace check above decided freshness.
+        git -C "$NS" ls-files -z lean | (cd "$NS" && xargs -0 touch -d '2000-01-01 00:00:00')
+    - name: Read each page's modules, and the two supersets, from the compiled files
+      run: |
+        mkdir -p papers/ns-superset-library papers/ns-superset-challenge papers/ns-superset-fractional
+        for set in library challenge fractional; do
+          mods=$(python3 -c "import json,sys; print(json.dumps([l.strip() for l in open(sys.argv[1]) if l.strip()]))" "papers/navier-stokes-paper/extract/$set.txt")
+          printf '[paper]\ntitle = "superset"\n\n[lean]\nproject = "../navier-stokes-paper/lean"\nmodules = %s\n' "$mods" > "papers/ns-superset-$set/paper.toml"
+        done
+        slugs="ns-superset-library ns-superset-challenge ns-superset-fractional"
+        echo "$slugs" | tee "$OUT/slugs.txt"
+        for slug in $slugs; do
+          start=$(date +%s)
+          mkdir -p "papers/$slug/generated" "$OUT/$slug"
+          if timeout --kill-after=60s 300m python3 tools/extract_built.py "$slug" --project "$NS/lean" > "$OUT/$slug/extract.log" 2>&1; then c=0; else c=$?; fi
+          echo "$c" > "$OUT/$slug/extract.exit"
+          tail -3 "$OUT/$slug/extract.log" | cut -c1-400
+          echo "$slug exit $c after $(( $(date +%s) - start ))s"
+          if [ "$c" = 0 ]; then cp "papers/$slug/generated/lean.json" "$OUT/$slug/lean.json"; fi
+        done
+        python3 - <<'PY'
+        import json, os
+        from pathlib import Path
+        out = Path(os.environ["OUT"])
+        summary = {}
+        for d in sorted(p for p in out.iterdir() if p.is_dir()):
+            row = {"exit": (d / "extract.exit").read_text().strip()}
+            if (d / "lean.json").is_file():
+                j = json.loads((d / "lean.json").read_text())
+                std = {"propext", "Classical.choice", "Quot.sound"}
+                row.update(lean_version=j["lean_version"], modules=len(j["modules"]), declarations=len(j["declarations"]),
+                           sorry=sorted(r["name"] for r in j["declarations"] if "sorryAx" in (r.get("axioms") or [])),
+                           nonstandard=sorted({a for r in j["declarations"] for a in (r.get("axioms") or []) if a not in std}))
+                row["sorry"] = row["sorry"][:40]
+            summary[d.name] = row
+        (out / "summary.json").write_text(json.dumps(summary, indent=1) + "\n")
+        print(json.dumps(summary, indent=1))
+        PY
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: navier-stokes-lean-reports
+        path: ${{ env.OUT }}
+        retention-days: 14
+        if-no-files-found: error
