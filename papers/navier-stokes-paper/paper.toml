@@ -6,11 +6,11 @@ venue = "Preprint, 20 November 2026"
 url = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf"
 pdf = "paper.pdf"
 pdf_source = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf"
-licence = "none stated by the authors; hosted with credit"
+licence = "none stated by the authors; hosted with credit to them, to Anthropic and to their repository"
 licence_url = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546"
 
 [credit]
-text = "Paper and Lean: Levent Alpöge and Tristan Buckmaster, github.com/tristanbuckmaster/navier-stokes at ad53419. Links, plain titles, notes and comparisons prepared by Will Cook with AI assistance"
+text = "Paper and Lean by Levent Alpöge and Tristan Buckmaster, from their repository tristanbuckmaster/navier-stokes at ad53419; their paper thanks Anthropic for supporting the collaboration from which it grew, and states that they used Anthropic's Claude models throughout the work. Links, plain titles, notes and comparisons prepared by Will Cook with AI assistance"
 
 [lean]
 project = "lean"
@@ -18,5 +18,5 @@ modules = ["Breakdown.Base.Framework", "Breakdown.Base.Realization", "Breakdown.
 source = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546/lean"
 source_name = "navier-stokes at ad53419"
 source_lines = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/{path}#L{line}-L{end}"
-licence = "none stated by the authors; hosted with credit"
+licence = "none stated by the authors; hosted with credit to them, to Anthropic and to their repository"
 scope = "Lean 4.33.1 compiled the authors' package, unchanged at ad53419, on GitHub Actions; this page reads the library (Breakdown and Solution). Each declaration's statement, dependencies and axioms shown here are Lean's own report from those compiled modules. The links from the text to the Lean, the plain titles, the notes and the comparisons were made with AI and have not been reviewed by the authors."
