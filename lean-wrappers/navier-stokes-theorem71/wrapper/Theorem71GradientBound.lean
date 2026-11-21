@@ -101,7 +101,8 @@ theorem gradient_bound_everywhere {u : XX} {V : VelField} {H : SecondField} {M C
     filter_upwards [hae] with σ hσ
     exact min_eq_left hσ
   intro σ
-  have h := congrFun hmin σ
+  have h : min (∫ y, matSq (fderiv ℝ (V σ) y)) (M ^ 2) = ∫ y, matSq (fderiv ℝ (V σ) y) :=
+    congrFun hmin σ
   rw [← h]
   exact min_le_right _ _
 

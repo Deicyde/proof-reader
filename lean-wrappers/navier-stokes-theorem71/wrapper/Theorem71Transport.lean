@@ -45,6 +45,7 @@ theorem normalized_error_ae {P : ℝ} (hP : P ≠ 0) {A V W : VelField}
     with θ hθ
   filter_upwards [hθ] with y hy
   simp only [inv_mul_cancel_left₀ hP] at hy
+  show W (P * θ) y - A θ y = V θ y
   rw [hy]
   abel
 
@@ -78,6 +79,7 @@ theorem reading_of_C1_representative {u : XX} {v V : VelField}
       trace_eq := hr.trace_eq }
   · intro σ y
     have hfun : V (σ + 1) = V σ := funext (hper σ)
+    show fderiv ℝ (V (σ + 1)) y = fderiv ℝ (V σ) y
     rw [hfun]
   · filter_upwards [he, hr.velocity_eq] with σ hσ hv
     exact hσ.trans hv
@@ -100,6 +102,7 @@ theorem normalized_error_periodic {P : ℝ} {A W : VelField}
     (hW : ∀ s y, W (s + P) y = W s y) (hA : IsTimePeriodic A) :
     IsTimePeriodic (fun σ y => W (P * σ) y - A σ y) := by
   intro σ y
+  show W (P * (σ + 1)) y - A (σ + 1) y = W (P * σ) y - A σ y
   rw [show P * (σ + 1) = P * σ + P by ring, hW, hA σ y]
 
 /-- The two available derivative tails give a single integrable dominator for
@@ -112,11 +115,13 @@ theorem normalized_error_gradient_decay {P C D : ℝ} {A W : VelField}
     ∀ σ y, ‖fderiv ℝ (fun x => W (P * σ) x - A σ x) y‖
       ≤ (C + D) / (1 + ‖y‖) ^ 2 := by
   intro σ y
-  have hWs : ContDiff ℝ ∞ (W (P * σ)) :=
-    hW.comp (contDiff_const.prodMk contDiff_id)
+  have hW1 : ContDiff ℝ 1 (fun z : ℝ × Space => W z.1 z.2) :=
+    hW.of_le (by exact_mod_cast le_top)
+  have hWs : ContDiff ℝ 1 (W (P * σ)) :=
+    hW1.comp (contDiff_const.prodMk contDiff_id)
   have hAs : ContDiff ℝ 1 (A σ) :=
     hA.comp (contDiff_const.prodMk contDiff_id)
-  rw [fderiv_sub (hWs.differentiable (by simp) y) (hAs.differentiable one_ne_zero y)]
+  rw [fderiv_sub (hWs.differentiable one_ne_zero y) (hAs.differentiable one_ne_zero y)]
   calc
     ‖fderiv ℝ (W (P * σ)) y - fderiv ℝ (A σ) y‖
       ≤ ‖fderiv ℝ (W (P * σ)) y‖ + ‖fderiv ℝ (A σ) y‖ := norm_sub_le _ _
@@ -159,7 +164,7 @@ theorem weighted_integral_finite {Γ : Set Symmetry} {P : ℝ}
     (hw : IsAdmissibleWeight w w₀) :
     periodLIntegral (fun σ y => ‖secondDerivTrace (H σ y)‖ ^ 2 + w y * matSq (G σ y)) < ⊤ := by
   have hmT : AEMeasurable (fun z : ℝ × Space => ‖secondDerivTrace (H z.1 z.2)‖ ^ 2) volume :=
-    ((Cert.Internal.ReadingEnergy.continuous_secondDerivTrace.comp_aestronglyMeasurable
+    ((Coercive.Internal.PassageLimit.continuous_secondDerivTrace.comp_aestronglyMeasurable
       hv.measurable_secondDeriv).norm.pow 2).aemeasurable
   have hmG : AEMeasurable (fun z : ℝ × Space => matSq (G z.1 z.2)) volume :=
     (Cert.Internal.ReadingEnergy.continuous_matSq.comp_aestronglyMeasurable
@@ -168,11 +173,14 @@ theorem weighted_integral_finite {Γ : Set Symmetry} {P : ℝ}
     (hw.2.1.comp measurable_snd).aemeasurable
   have hnonneg : ∀ y, 0 ≤ w y := fun y => hw.1.le.trans (hw.2.2.1 y)
   obtain ⟨B, hB⟩ := hw.2.2.2
-  rw [Coercive.Internal.PassageLimit.periodLIntegral_add hmT (hmw.mul hmG)
+  rw [Coercive.Internal.PassageLimit.periodLIntegral_add
+    (f := fun σ y => ‖secondDerivTrace (H σ y)‖ ^ 2) (g := fun σ y => w y * matSq (G σ y))
+    hmT (hmw.mul hmG)
     (fun _ _ => sq_nonneg _) (fun σ y => mul_nonneg (hnonneg y)
       (Finset.sum_nonneg fun i _ => sq_nonneg _))]
   refine ENNReal.add_lt_top.2 ⟨hv.sumSecondPartials_finite, ?_⟩
   apply lt_of_le_of_lt (Coercive.Internal.PassageLimit.periodLIntegral_le_mul
+    (f := fun σ y => w y * matSq (G σ y)) (g := fun σ y => matSq (G σ y))
     (C := max B 0) (le_max_right _ _) (fun σ y =>
       mul_le_mul_of_nonneg_right ((hB y).trans (le_max_left _ _))
         (Finset.sum_nonneg fun i _ => sq_nonneg _)))

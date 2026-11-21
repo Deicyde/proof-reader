@@ -31,8 +31,8 @@ theorem extendedConclusion_of_held {k : ℕ} {d : ExtendedCertificateData k}
     Cert.Internal.AtProfile.profile_slice_smooth hd a.parameter
   have hC1 : ContDiff ℝ 1 (fun z : ℝ × Space => V z.1 z.2) :=
     Transport.normalized_error_C1 hS.smooth_field hA
-  have hPeriod : ∀ s y, W (s + d.period a.parameter) y = W s y := by
-    simpa using hS.periodic
+  have hPeriod : ∀ s y, W (s + d.period a.parameter) y = W s y :=
+    fun s y => (hS.periodic s y).trans rfl
   have hVPeriod : IsTimePeriodic V :=
     Transport.normalized_error_periodic hPeriod (hd.profile_periodic a.parameter)
   have he : ∀ᵐ σ : ℝ, V σ =ᵐ[volume] a.correction σ := by

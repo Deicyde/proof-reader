@@ -36,7 +36,8 @@ theorem HeldWitness.smoothWithData {k : ℕ} {d : ExtendedCertificateData k}
   have hP : d.period a.parameter ≠ 0 := a.sigma.period_pos.ne'
   have hscaled := (Breakdown.Internal.Rescale.quasiMeasurePreserving_mul (d.period a.parameter) hP).ae he
   filter_upwards [hscaled] with θ hθ
-  simpa [inv_mul_cancel_left₀ hP] using hθ
+  filter_upwards [hθ] with y hy
+  simpa only [inv_mul_cancel_left₀ hP] using hy
 
 /-- Physical, identity-isometry profile with its original parameter and error field. -/
 theorem HeldWitness.smooth {k : ℕ} {d : ExtendedCertificateData k}
@@ -48,6 +49,6 @@ theorem HeldWitness.smooth {k : ℕ} {d : ExtendedCertificateData k}
   obtain ⟨W, q, C, hs, hdecay, hraw⟩ := a.smoothWithData
   refine ⟨W, q, ?_, hraw⟩
   exact ⟨hs.period_pos, hs.smooth_field, hs.smooth_pressure, hs.residual, hs.divergence,
-    by simpa using hs.periodic, hs.nonzero, C, hdecay.1, hdecay.2⟩
+    fun s y => (hs.periodic s y).trans rfl, hs.nonzero, C, hdecay.1, hdecay.2⟩
 
 end Breakdown.Theorem71
