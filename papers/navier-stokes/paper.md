@@ -170,6 +170,34 @@ replayed theorem carrying every clause of printed Theorem 1.1 and its
 subsequent uniform family assertion. The exact torus convergence estimate
 on `B₁/₁₆` remains an unmatched part of that full statement comparison.
 
+### Lean we added: Theorem 1.1 on every compact time interval
+
+We wrote new Lean that states the paper's conclusion in physical terms and
+proves most of it from the authors' library. [`Theorem11Challenge`](https://github.com/wcook04/proof-reader/tree/claude/navier-stokes-20261120/lean-wrappers/navier-stokes/theorem11/Theorem11Challenge.lean)
+states the target with Mathlib only, so it can be read without the authors'
+definitions. [`Theorem11.theorem11SpaceSlabs`](https://github.com/wcook04/proof-reader/tree/claude/navier-stokes-20261120/lean-wrappers/navier-stokes/theorem11/Theorem11Solution.lean)
+proves: for every profile satisfying the library's profile premise and every
+$\varepsilon>0$ there are one smooth compactly supported divergence-free
+datum $\phi$ with $\|\nabla(\phi-W(0))\|_2<\varepsilon$ and constants
+$0<c\le C$, $0<\kappa<\tfrac14$ such that, for every $T<1$, a smooth
+solution $u$ from $\phi$ on $[0,T)$ with bounded energy satisfies, for all
+$0\le t<T$,
+
+$$
+c(1-t)^{-1/4}\le\|\nabla u(t)\|_2\le C(1-t)^{-1/4},\qquad
+\|\nabla(D_{1-t}u(t)-W(-\log(1-t)))\|_2\le C(1-t)^{\kappa},
+$$
+
+where $D_{1-t}$ rescales to similarity variables. The datum and constants
+are fixed once; the solution and its energy bound may depend on $T$. The full
+statement also wants one solution on all of $[0,1)$ with one energy bound,
+which needs the local pressures glued and an energy bound uniform up to time
+one; both are stated in the file and not yet proved. The torus helpers (exact
+agreement on $B_{1/16}$, the full $H^1$ comparison, the geometric rate) are
+proved as conditional bridges. All 16 modules compile against the package,
+and the theorems use only `propext`, `Classical.choice` and `Quot.sound`
+([run 44837689921](https://github.com/wcook04/proof-reader/actions/runs/44837689921)).
+
 ### What a referee's reading of §§1–6 finds
 
 A referee-style reading of §§1–6 and Appendix A found no blocking mathematical
@@ -329,6 +357,23 @@ rotation hypotheses, so the period alone gives no contradiction.
 Sources: paper Appendix B (closing paragraph), (7.21)–(7.27), (7.52),
 Remark 7.3.
 
+### Lean we added: Theorem 7.1 with its chosen witness
+
+The authors' exported certificate theorems say only that some weak profile
+exists. [`Breakdown.theorem71_extended`](https://github.com/wcook04/proof-reader/tree/claude/navier-stokes-20261120/lean-wrappers/navier-stokes-theorem71/wrapper/Theorem71Solution.lean)
+and `Breakdown.theorem71_cell` state and prove the conclusion of Theorem 7.1
+in full: one chosen parameter $\alpha$, its period and approximate field, a
+nonzero smooth exact profile, the bound (7.38) including the multiplier term
+$\omega^2\sum_i\beta^a_i(\alpha)^2$, the gradient bound at every time, the
+pins and every prescribed symmetry, for the extended certificate and for data
+satisfying `CellSystemCondition`. Three existential lemmas in the authors'
+files built these witnesses and then hid them; a short patch adds versions
+that return them and keeps the originals, with their types unchanged, as
+corollaries. The workflow applies it only after the three files' SHA-256
+hashes match. The patched package and all 13 modules compile, and both
+endpoints use only `propext`, `Classical.choice` and `Quot.sound`
+([run 44844164476](https://github.com/wcook04/proof-reader/actions/runs/44844164476)).
+
 ### The conditional chain reaches both breakdown conclusions
 
 From either formal certificate hypothesis, `certificate_orbit_proved` or
@@ -436,8 +481,8 @@ $\omega^2\sum_i\kappa_i^2\le0$ for every multiplier vector, with
 $\omega>0$. With $k=0$ the exterior still has to be covered by the
 exterior conditions, so the empty mesh moves all the work to the exterior and
 removes none of it. Whether a complete certificate with $k=0$ and no cells can
-exist is open. The probes behind these findings are being compiled against
-the library.
+exist is open. These deductions are checked by hand; their Lean probes do
+not all compile yet.
 
 ## 4. The outstanding certificate bridge
 
