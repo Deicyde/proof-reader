@@ -267,7 +267,7 @@ button:disabled { cursor: default; }
 .stepline .crumbs { padding: 3px 0 0; }
 .decl { padding: 6px 16px 12px; }
 .decl + .decl { border-top: 1px solid var(--rule); }
-.decl__head { position: sticky; top: 0; z-index: 1; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 0 -16px; padding: 4px 16px 2px; background: var(--sheet); }
+.decl__head { position: sticky; top: 0; z-index: 1; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 0 -16px; padding: 4px 16px 6px; background: var(--sheet); box-shadow: 0 1px 0 color-mix(in srgb, currentColor 14%, transparent); }
 .decl[data-source-read] .decl__head { position: static; }
 .decl__name { margin: 0; font-family: var(--font-serif); font-size: 1.0625rem; font-weight: 500; overflow-wrap: anywhere; }
 .decl__raw { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--ink-2); }
