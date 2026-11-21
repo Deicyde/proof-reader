@@ -12,7 +12,7 @@ name: Judge the torus Euler statement with Comparator
     - claude/euler-*
     paths:
     - .github/workflows/euler-comparator.yml
-    - .github/euler/**
+    - .github/euler/write_harness.py
 permissions:
   contents: read
 concurrency:
