@@ -28,8 +28,12 @@ from pathlib import Path
 
 from playwright.sync_api import Page, sync_playwright
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from graph_pane_checks import check_graph_pane, check_scrolls  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SLUG = "contextual-embeddings"
+EDITION = __import__("json").loads((ROOT / "web" / "public" / "papers" / SLUG / "edition.json").read_text())
 PAIRS = [(1440, 790), (1920, 953), (2560, 1313)]
 PHONE = (390, 664)
 
@@ -118,8 +122,8 @@ def lean_mode(page: Page) -> bool:
 
 GRAPH_FIRST = """
 try {
-  if (!localStorage.getItem('proof-reader-pane-4'))
-    localStorage.setItem('proof-reader-pane-4', JSON.stringify({graph: true, lean: false, share: 0, sideShare: 0}));
+  if (!localStorage.getItem('proof-reader-pane-5'))
+    localStorage.setItem('proof-reader-pane-5', JSON.stringify({graph: true, lean: false, share: 0, sideShare: 0}));
 } catch { /* a frame with no storage, such as the PDF's: nothing to set there */ }
 """
 
@@ -131,12 +135,12 @@ def graph_first(context):
 
 
 def opening(page: Page, url: str) -> None:
-    """A first visit with nothing saved: the Lean follows the reading, and a typed address is obeyed."""
+    """A first visit with nothing saved: the Graph view and its dock follow the reading, and a typed address is obeyed."""
     print("A first visit")
     page.goto(f"{url}#/{SLUG}", wait_until="load")
     page.wait_for_selector(".sheet__text .q", state="attached")
     page.wait_for_timeout(700)
-    check(lean_mode(page), "with nothing saved the right page opens on the Lean")
+    check(not lean_mode(page) and page.locator(".fg").count() == 1, "with nothing saved the right page opens on the Graph view, with the Lean docked under it")
     tops = page.evaluate(
         """() => { const el = document.querySelector('[data-paper-pane]');
         const origin = el.getBoundingClientRect().top - el.scrollTop;
@@ -163,8 +167,8 @@ def reopen_proof(page: Page, url: str) -> None:
     print("Reopening the proof pane")
     page.goto(f"{url}#/{SLUG}", wait_until="load")
     page.locator(".proof").wait_for()
-    page.evaluate("""localStorage.setItem('proof-reader-pane-4', JSON.stringify({
-        graph: false, lean: false, share: 0.3, sideShare: 0.4
+    page.evaluate("""localStorage.setItem('proof-reader-pane-5', JSON.stringify({
+        graph: false, lean: false, dock: 0.6
     }))""")
     for slug in ("pcp-exposition", "pcp-specialist", "pcp-full-argument", "pcp-reading-guide", SLUG):
         page.goto(f"{url}#/{slug}", wait_until="load")
@@ -183,10 +187,9 @@ def reopen_proof(page: Page, url: str) -> None:
     page.locator(".proof").wait_for()
     check(True, "reloading opens the proof pane again")
     check(page.evaluate("""() => {
-        const layout = JSON.parse(localStorage.getItem('proof-reader-pane-4'));
-        return layout.share === 0.3 && layout.sideShare === 0.4 && layout.lean === false
-            && !Object.hasOwn(layout, 'graph');
-    }"""), "mode and split sizes persist without a saved closed pane")
+        const layout = JSON.parse(localStorage.getItem('proof-reader-pane-5'));
+        return layout.dock === 0.6 && layout.lean === false && !Object.hasOwn(layout, 'graph');
+    }"""), "the view and the dock's height persist without a saved closed pane")
 
 
 def graph_follows(page: Page, url: str, shots: Path | None) -> None:
@@ -194,11 +197,10 @@ def graph_follows(page: Page, url: str, shots: Path | None) -> None:
     divider between paper and proof moves, is remembered and can be put back."""
     print("The graph follows the reading")
     page.goto(f"{url}#/pcp-exposition", wait_until="load")
-    page.locator(".nearmap__card.is-head").first.wait_for()
-    head = lambda: page.eval_on_selector_all(".nearmap__card.is-head .nearmap__title", "els => els.map(e => e.textContent)")
-    check(page.locator(".proof__graph").bounding_box()["height"] > 150 and lean_mode(page),
-          "a fresh visit opens with the graph above the Lean")
-    check(page.locator(".claims--many select").count() == 0, "many results have no menu to operate")
+    page.locator(".fg__card.is-subject").first.wait_for()
+    head = lambda: page.eval_on_selector_all(".fg__card.is-subject .fg__title", "els => els.map(e => e.textContent)")
+    check(page.locator(".proof__graph").bounding_box()["height"] > 150 and not lean_mode(page),
+          "a fresh visit opens on the graph with the Lean docked under it")
     seen = set()
     for _ in range(8):
         page.mouse.move(400, 500)
@@ -211,7 +213,7 @@ def graph_follows(page: Page, url: str, shots: Path | None) -> None:
     check(len(seen) >= 4, f"the graph changed {len(seen)} times as the paper scrolled")
     # A statement opened by its address is held; reading on lets it go without a click.
     page.goto(f"{url}#/pcp-exposition/@pcp-expository-opening", wait_until="load")
-    page.locator(".nearmap__card.is-head").first.wait_for()
+    page.locator(".fg__card.is-subject").first.wait_for()
     wait_until(page, lambda: "Pinned" in caption(page), "a statement opened by its address is held open")
     wait_until(page, lambda: top(page) < 1200, "the paper has arrived at that statement")
     page.wait_for_timeout(600)
@@ -225,7 +227,6 @@ def graph_follows(page: Page, url: str, shots: Path | None) -> None:
             let_go = True
             break
     check(let_go, "reading on lets go of it: the Lean and the graph follow the scroll")
-    check(page.locator(".graph__paused").count() == 0, "and nothing asks to be clicked first")
     # Whole file and back: the step's Lean is in view again.
     page.locator(".proof").get_by_role("button", name="Whole file", exact=True).click()
     page.wait_for_timeout(700)
@@ -393,7 +394,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     print("Arrive")
     page.goto(f"{url}#/{SLUG}", wait_until="load")
     page.wait_for_selector(".sheet__text .q", state="attached")
-    page.wait_for_selector(".card")
+    page.wait_for_selector(".fg__card", state="attached")
     page.wait_for_timeout(700)
     check("Contextual Embeddings" in page.title(), f"the tab names the paper: {page.title()}")
     check(page.locator(".firstline--status").is_visible() and page.locator(".firstline--status").bounding_box()["y"] < page.locator(".sheet__text h1").bounding_box()["y"], "the status line stands above the title")
@@ -447,7 +448,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     shot(page, shots, "00-front-page")
     page.locator(".shelf li a[href*='contextual-embeddings']").first.click()
     page.wait_for_selector(".sheet__text .q", state="attached")
-    page.wait_for_selector(".card")
+    page.wait_for_selector(".fg__card", state="attached")
     page.wait_for_timeout(700)
 
     print("Read")
@@ -455,7 +456,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     wheel_to(page, 5200)
     wait_until(page, lambda: "Following the paper" in caption(page), "scrolling follows without a click")
     check(page.locator(".sheet__text .q.is-active").count() > 0, "the statement under the line takes the highlighter")
-    check(page.locator('.card[data-trail="here"], .vocab .is-lit').count() > 0, "its card lights on the graph")
+    check(page.locator('.fg__card.is-subject').count() > 0, "its card is the subject of the graph")
     check(not lean_mode(page), "the Lean stays closed while reading")
     wait_until(page, lambda: address(page).endswith(page.evaluate("document.querySelector('.q.is-active').dataset.p.split(' ')[0]")), "the address keeps up with the sentence")
     check(entries(page) == base_entries, "following adds no history")
@@ -466,7 +467,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     page.wait_for_selector(".sheet__text .q", state="attached")
     wait_until(page, lambda: abs(top(page) - before) <= 1, f"a reload lands on the same pixel, {before:.0f}")
     check(address(page) == held, "and the same address")
-    page.wait_for_selector(".card")
+    page.wait_for_selector(".fg__card", state="attached")
     page.wait_for_timeout(500)
     wait_until(page, lambda: "Following the paper" in caption(page), "and follows from there")
 
@@ -480,11 +481,11 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     box = target.evaluate("(el) => { const b = el.getClientRects()[0]; return { x: b.left, y: b.top, width: b.width, height: b.height }; }")
     page.mouse.move(box["x"] + 8, box["y"] + 6)
     check("pointer" == target.evaluate("(el) => getComputedStyle(el).cursor"), "the pointer says it can be clicked")
-    wait_until(page, lambda: "Has Lean" in reading_strip(page), "a dwell names it in plain words under the graph")
+    page.wait_for_timeout(400)
     check(abs(top(page) - was_top) <= 1 and entries(page) == was_entries and not lean_mode(page), "pointing moves nothing and adds no history")
     shot(page, shots, "03-point")
     page.mouse.move(box["x"] + 6, 20)
-    wait_until(page, lambda: "Has Lean" not in reading_strip(page), "leaving restores")
+    wait_until(page, lambda: page.locator(".fg__card.is-lit").count() == 0, "leaving lights no card")
 
     print("Lean mode, chosen on the toggle")
     page.locator(".mode-toggle button", has_text="Lean").click()
@@ -514,16 +515,16 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     page.mouse.click(box["x"] + 8, box["y"] + 6)
     wait_until(page, lambda: address(page).endswith(f"@{other}"), f"the sentence has an address: {other}")
     check("Pinned" in caption(page), "the caption says it is pinned")
-    wait_until(page, lambda: lean_open(page) and lean_head(page), "the click shows its Lean, docked under the graph")
+    wait_until(page, lambda: lean_open(page) and lean_head(page), "the click shows its Lean in the dock under the graph")
     check(not lean_mode(page) and page.locator('.mode-toggle button[aria-pressed="true"]').inner_text() == "Graph",
           "the tab stays on Graph")
     panes = page.locator(".proof__panes").bounding_box()
-    check(0.35 <= page.locator(".proof__graph").bounding_box()["height"] / panes["height"] <= 0.65, "the graph keeps the top half of the pane")
+    check(0.6 <= page.locator(".proof__graph").bounding_box()["height"] / panes["height"] <= 0.8, "the drawing keeps its share of the pane over the dock")
     check(page.locator(".crumbs a").count() > 0, "breadcrumbs say where the paper has it")
     check(abs(top(page) - was_top) <= 2, "the paper does not move")
     page.locator(".mode-toggle button", has_text="Lean").click()
-    wait_until(page, lambda: lean_mode(page) and page.locator(".proof__graph").bounding_box()["height"] < 2 and "Pinned" in caption(page),
-               "Lean mode gives the pinned sentence's Lean the whole pane")
+    wait_until(page, lambda: lean_mode(page) and not page.locator(".proof__graph").is_visible() and "Pinned" in caption(page),
+               "the Lean view gives the pinned sentence's Lean the whole pane")
     check(page.locator(".bar .back").is_visible(), "a named Back appears")
     print("    back says:", page.locator(".bar .back").inner_text())
     page.wait_for_timeout(250)
@@ -555,45 +556,44 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
         check(fold.get_attribute("aria-expanded") != open_before, "Proof folds and opens")
         fold.click()
 
-    print("Pull the graph down")
-    handle = page.locator(".proof__handle").bounding_box()
-    page.mouse.move(handle["x"] + handle["width"] / 2, handle["y"] + 5)
-    page.mouse.down()
-    page.mouse.move(handle["x"] + handle["width"] / 2, handle["y"] + 240, steps=6)
-    page.mouse.up()
-    wait_until(page, lambda: page.locator(".proof__graph").bounding_box()["height"] > 150, "the handle draws the graph down above the Lean")
+    print("Back to the Graph view, keeping the subject")
+    page.locator(".mode-toggle button", has_text="Graph").click()
+    wait_until(page, lambda: not lean_mode(page) and page.locator(f'.fg__card.is-subject[data-card="{name}"]').count() == 1, f"the Graph view draws {name} in the middle")
+    check(address(page).endswith(f"/{name}"), "the view changed in place: the address still names it")
     page.wait_for_timeout(350)
 
     print("Click a card")
     stack[-1] = (stack[-1][0], snapshot(page))
-    cards = page.locator('.card[data-record="isoR"]')
-    check(cards.count() > 0, "the graph holds isoR")
-    if not cards.first.is_visible():
-        raise Stop("isoR's card is not visible")
+    stated = {d["id"] for d in EDITION["declarations"] if d["passages"]}
+    ids = page.eval_on_selector_all(".fg__card:not(.is-subject)", "els => els.map((e) => e.dataset.card)")
+    pick = "isoR" if "isoR" in ids else next((i for i in ids if i in stated), None)
+    check(pick is not None, f"the graph draws a neighbour the paper states: {pick}")
+    card = page.locator(f'.fg__card[data-card="{pick}"]').first
+    card.scroll_into_view_if_needed()
     was_top = top(page)
-    cards.first.click()
-    wait_until(page, lambda: lean_head(page) == "isoR", "the Lean opens at the card")
-    check(address(page).endswith("/isoR"), "the address names it")
-    wait_until(page, lambda: abs(top(page) - was_top) > 100, "the paper goes to the statement")
-    page.wait_for_timeout(1100)
-    check(page.evaluate("""() => { const canvas = document.querySelector('.graph__canvas').getBoundingClientRect(); const b = document.querySelector('.card[data-record="isoR"]').getBoundingClientRect(); return b.top >= canvas.top && b.bottom <= canvas.bottom; }"""), "its card stands in the band above the Lean")
-    check("Pinned" in caption(page), "it is pinned")
-    stop_here("card isoR")
+    card.click()
+    wait_until(page, lambda: lean_head(page) == pick, f"the dock opens at the card {pick}")
+    check(address(page).endswith(f"/{pick}"), "the address names it")
+    wait_until(page, lambda: abs(top(page) - was_top) > 40, "the paper goes to the statement")
+    page.wait_for_timeout(600)
+    check(page.evaluate("""(id) => { const view = document.querySelector('.fg__scroll').getBoundingClientRect(); const b = document.querySelector(`.fg__card.is-subject[data-card="${id}"]`)?.getBoundingClientRect(); return !!b && b.top >= view.top && b.bottom <= view.bottom; }""", pick), "its card is the subject, wholly in view")
+    check("Pinned" in caption(page) and not lean_mode(page), "it is pinned, and the view stays on Graph")
+    stop_here(f"card {pick}")
     shot(page, shots, "04-card")
 
     print("Move the graph")
-    canvas = page.locator(".graph__canvas").bounding_box()
-    page.mouse.move(canvas["x"] + 30, canvas["y"] + canvas["height"] - 20)
-    page.mouse.down()
-    page.mouse.move(canvas["x"] + 90, canvas["y"] + canvas["height"] - 50, steps=6)
-    page.mouse.up()
-    wait_until(page, lambda: page.locator(".graph__paused").count() > 0, "moving the graph pauses following, and says so")
-    page.locator(".graph__paused button").click()
-    wait_until(page, lambda: page.locator(".graph__paused").count() == 0, "one click resumes it")
-
-    page.locator(".proof__handle").click()
-    wait_until(page, lambda: page.locator(".proof__graph").bounding_box()["height"] < 2, "a click on the handle gives the Lean the pane again")
-    stack[-1] = ("card isoR", snapshot(page))
+    scroller = page.locator(".fg__scroll")
+    box = scroller.bounding_box()
+    before = scroller.evaluate("(el) => [el.scrollLeft, el.scrollTop]")
+    page.mouse.move(box["x"] + box["width"] / 2, box["y"] + box["height"] / 2)
+    page.mouse.wheel(0, 200)
+    page.wait_for_timeout(300)
+    after = scroller.evaluate("(el) => [el.scrollLeft, el.scrollTop]")
+    check(after != before or scroller.evaluate("(el) => el.scrollHeight <= el.clientHeight"), "the wheel scrolls the drawing")
+    check("Pinned" in caption(page) and entries(page) >= 1, "and moving it changes no subject")
+    page.locator(".mode-toggle button", has_text="Lean").click()
+    wait_until(page, lambda: lean_mode(page), "the Lean view takes the pane again")
+    stack[-1] = (f"card {pick}", snapshot(page))
 
     print("References")
     wheel_to(page, 3000)
@@ -610,7 +610,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     )
     check(figure_link, f"a citation is on screen: {figure_link}")
     citation = page.locator('a[data-journey="cite"]')
-    stack[-1] = ("card isoR, read on", snapshot(page))
+    stack[-1] = (f"card {pick}, read on", snapshot(page))
     page.wait_for_timeout(250)
     spot = citation.evaluate("(a) => { const b = a.getClientRects()[0]; return [b.left + b.width / 2, b.top + b.height / 2]; }")
     for nudge in (6, 3, 0):
@@ -685,8 +685,9 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     check("linked to this Lean" in caption(page), f"the caption says the Lean stops: {caption(page)}")
     check("After the last statement" in page.locator(".stepper").inner_text(), "the counter says so too")
     wait_until(page, lambda: page.locator(".proof__lean .untied").count() > 0 and "section 6.3" in page.locator(".proof__lean .untied").inner_text(),
-               "the Lean docked under the graph says what is and is not covered, in the paper's own scope")
-    check("No Lean is linked to this passage" in page.locator(".proof__lean .untied h3").inner_text(), "in one plain line first")
+               "the dock under the graph says what is and is not covered, in the paper's own scope")
+    check("No Lean is linked to this paragraph" in page.locator(".proof__lean .untied h3").inner_text(), "in one plain line first")
+    check("No Lean is linked to this paragraph" in page.locator(".fg__label").inner_text(), "and the graph keeps the statement before it, saying so")
     page.locator(".mode-toggle button", has_text="Lean").click()
     wait_until(page, lambda: page.locator(".untied").count() > 0, "the open Lean says plainly that nothing here is in it")
     check("66 statements" in page.locator(".untied").inner_text(), "and where the statements are")
@@ -755,7 +756,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     same(page, stack[-3][1], "Alt-Left goes back")
     reload(page)
     page.wait_for_selector(".sheet__text .q", state="attached")
-    page.wait_for_selector(".card")
+    page.wait_for_selector(".fg__card", state="attached")
     page.wait_for_timeout(600)
     same(page, stack[-3][1], "a reload keeps it all")
     page.go_forward()
@@ -765,7 +766,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     page.goto("about:blank")
     page.goto(f"{url}#/{SLUG}/@s-2", wait_until="load")
     page.wait_for_selector(".sheet__text .q", state="attached")
-    page.wait_for_selector(".card")
+    page.wait_for_selector(".fg__card", state="attached")
     page.wait_for_timeout(500)
     page.locator(".reading").focus()
     page.keyboard.press("j")
@@ -868,13 +869,13 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
         page.wait_for_selector(".sheet__text .q", state="attached")
         page.wait_for_timeout(700)
         check("Before the first" not in caption(page), f"{block} is not before the first statement: {caption(page)}")
-        reached = page.locator(".vocab__reached").inner_text()
-        check(int(reached.split()[0]) >= 4, f"and the graph knows how far: {reached}")
+        reached = page.locator(".stepper span").inner_text()
+        check(int(re.findall(r"\d+", reached)[0]) >= 4, f"and the counter knows how far: {reached}")
 
     print("No stray thread")
     page.goto("about:blank")
     page.goto(f"{url}#/{SLUG}", wait_until="load")
-    page.wait_for_selector(".card")
+    page.wait_for_selector(".fg__card", state="attached")
     page.locator(".rail__item", has_text="Modal Example").click()
     page.wait_for_timeout(1300)
     page.locator(".switch button", has_text="PDF").click()
@@ -929,7 +930,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     def at_rest(place: str) -> dict:
         page.goto("about:blank")
         page.goto(f"{url}#/{SLUG}/{place}", wait_until="load")
-        page.wait_for_selector(".card")
+        page.wait_for_selector(".fg__card", state="attached")
         page.wait_for_timeout(600)
         page.keyboard.press("Escape")
         wait_until(page, lambda: not lean_mode(page), "at rest in Graph mode")
@@ -1031,26 +1032,18 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     print("The handle and the choices")
     page.goto("about:blank")
     page.goto(f"{url}#/{SLUG}", wait_until="load")
-    page.wait_for_selector(".card")
+    page.wait_for_selector(".fg__card", state="attached")
     page.wait_for_timeout(500)
-    check(not lean_mode(page), "the page starts in Graph mode")
+    check(not lean_mode(page), "the page starts in the Graph view")
     handle = page.locator(".proof__handle")
     handle.click()
     page.wait_for_timeout(250)
-    check(not lean_mode(page) and lean_open(page), "in Graph mode the handle is the divider above the docked Lean: a click changes nothing")
+    check(not lean_mode(page) and lean_open(page), "in the Graph view the handle is the divider above the dock: a click changes nothing")
     page.locator(".mode-toggle button", has_text="Lean").click()
     wait_until(page, lambda: lean_mode(page), "the Lean side of the toggle gives the Lean the pane")
-    if not page.locator(".proof[data-side]").count():
-        box = handle.bounding_box()
-        page.mouse.move(box["x"] + box["width"] / 2, box["y"] + 5)
-        page.mouse.down()
-        page.mouse.move(box["x"] + box["width"] / 2, box["y"] + 240, steps=5)
-        page.mouse.up()
-        page.wait_for_timeout(200)
-        now = page.locator(".proof__graph").bounding_box()["height"]
-        check(now > 150, f"dragging the handle gives the graph room: {now:.0f}")
+    check(handle.count() == 0 and not page.locator(".proof__graph").is_visible(), "the Lean view fills the pane: no graph and no handle")
     reload(page)
-    page.wait_for_selector(".card", state="attached")
+    page.wait_for_selector(".fg__card", state="attached")
     page.wait_for_timeout(400)
     check(lean_mode(page), "the choice is remembered")
     page.locator(".mode-toggle button", has_text="Graph").click()
@@ -1280,7 +1273,8 @@ def monitors(page: Page, url: str, shots: Path | None, size: tuple[int, int]) ->
     page.wait_for_selector(".decl")
     page.wait_for_timeout(1400)
     check(page.evaluate("document.documentElement.scrollWidth <= innerWidth"), "no sideways scroll")
-    check(page.locator(".proof[data-side]").count() == (1 if w >= 2560 else 0), "stacked or side by side by the room on the right page")
+    graph, dock = page.locator(".proof__graph").bounding_box(), page.locator(".proof__lean").bounding_box()
+    check(graph and dock and dock["y"] >= graph["y"] + graph["height"] - 2, "the Lean is docked under the drawing at every width")
     box = page.locator(".proof").bounding_box()
     check(box["width"] >= 500, f"the right page is {box['width']:.0f}px wide")
     shot(page, shots, f"30-{w}")
@@ -1823,17 +1817,17 @@ def every_link_clicks(page: Page, url: str) -> dict[str, dict[str, int]]:
 CARDS = r"""() => {
   const bad = []; let n = 0;
   const inside = (a, b) => a.left >= b.left - 1 && a.right <= b.right + 1 && a.top >= b.top - 1 && a.bottom <= b.bottom + 1;
-  for (const card of document.querySelectorAll('.graph .card[data-record], .nearmap__card, .deps__card')) {
+  for (const card of document.querySelectorAll('.graph .card[data-record], .deps__card')) {
     const box = card.getBoundingClientRect();
     if (!box.width || getComputedStyle(card).visibility === 'hidden') continue;
     n++;
     const id = card.dataset.record ?? card.textContent.trim().slice(0, 30);
-    const title = card.querySelector('.card__ctitle, .nearmap__title, .deps__title');
+    const title = card.querySelector('.card__ctitle, .deps__title');
     const text = (title?.getAttribute('data-short') ?? title?.textContent ?? '').trim();
     if (title?.hasAttribute('data-short') || /…$/.test(text)) bad.push(`${id}: title cut to "${text}"`);
     // Up to a few pixels of glyph overhang is not a cut line.
     if (title && (title.scrollHeight > title.clientHeight + 4 || title.scrollWidth > title.clientWidth + 1)) bad.push(`${id}: title clipped`);
-    for (const el of card.querySelectorAll('.card__ctitle, .card__craw, .nearmap__title, .nearmap__raw, .deps__title, .deps__count')) {
+    for (const el of card.querySelectorAll('.card__ctitle, .card__craw, .deps__title, .deps__count')) {
       if (el.scrollWidth > el.clientWidth + 1) bad.push(`${id}: "${el.textContent.trim().slice(0, 30)}" clipped`);
       const range = document.createRange();
       range.selectNodeContents(el);
@@ -1849,40 +1843,23 @@ def cards_fit(page: Page, label: str) -> None:
     page.evaluate("document.fonts.ready")
     page.wait_for_timeout(400)
     found = page.evaluate(CARDS)
-    if not found["n"] and page.locator(".maplist").count():
-        # A pane too narrow for a drawing lists the cards instead: whole titles, as text.
-        check(page.locator(".maplist").evaluate("(el) => el.scrollWidth <= el.clientWidth + 1"), f"{label}: the cards are a list that fits the pane")
-        return
     check(found["n"] > 0 and not found["bad"],
           f"{label}: all {found['n']} cards show their whole short title and nothing spills out" + (f"; {found['bad'][:4]}" if found["bad"] else ""))
 
 
-def cards_inside(page: Page, label: str) -> None:
-    """Every card drawn in the graph area is wholly inside it: none is cut by its edge."""
+def pane_rules(page: Page, label: str) -> None:
+    """The shared rules of docs/graph-pane.md (tests/graph_pane_checks.py) in the pane's present state."""
     page.wait_for_timeout(450)
-    cut = page.evaluate("""() => {
-      const out = [];
-      for (const area of document.querySelectorAll('.proof .graph__canvas, .proof .nearmap')) {
-        const view = area.getBoundingClientRect();
-        if (!view.height) continue;
-        for (const card of area.querySelectorAll('.card[data-record], .nearmap__card')) {
-          if (getComputedStyle(card).visibility === 'hidden') continue;
-          const r = card.getBoundingClientRect();
-          if (!r.width || r.right <= view.left || r.left >= view.right || r.bottom <= view.top || r.top >= view.bottom) continue;
-          if (r.left < view.left - 0.5 || r.right > view.right + 0.5 || r.top < view.top - 0.5 || r.bottom > view.bottom + 0.5)
-            out.push(`${card.dataset.record}: ${Math.round(r.top - view.top)}..${Math.round(r.bottom - view.top)} of ${Math.round(view.height)}`);
-        }
-      }
-      return out;
-    }""")
-    check(not cut, f"{label}: every card on show is wholly inside the graph area" + (f"; cut: {cut[:4]}" if cut else ""))
+    failures = check_graph_pane(page, label, dock=".proof__lean") + check_scrolls(page, label)
+    check(not failures, f"{label}: the graph pane keeps the rules of docs/graph-pane.md" + (f"; {failures[:3]}" if failures else ""))
 
 
 def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) -> None:
-    """Graph mode on every graph page: the graph has the top half, fitted to its subject, and the
-    Lean of what is in hand or being read is docked under it; a click never flips the tab."""
+    """The Graph view on every graph page: the focus graph of the subject with the dock under it,
+    following the paper, after a click on a sentence and after a click on a card. No click
+    changes the view, and Escape returns to following the paper."""
     w, h = size
-    print(f"Graph mode with the Lean docked, {w}x{h}")
+    print(f"The Graph view with its dock, {w}x{h}")
     for slug in GRAPH_PAGES:
         page.goto(f"{url}#/{slug}", wait_until="load")
         page.locator(".sheet__text").wait_for()
@@ -1894,21 +1871,22 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
         page.wait_for_timeout(600)
         if lean_mode(page):
             page.locator(".mode-toggle button", has_text="Graph").click()
-        wait_until(page, lambda: page.locator(".proof[data-dock]").count() == 1, f"{slug}: Graph mode docks the Lean")
+        wait_until(page, lambda: page.locator(".proof[data-dock]").count() == 1, f"{slug}: the Graph view has the dock under the drawing")
         panes = page.locator(".proof__panes").bounding_box()
         graph = page.locator(".proof__graph").bounding_box()
-        folded = page.locator(".proof[data-folded]").count() > 0
-        if folded:
-            check(30 < graph["height"] <= 150, f"{slug}: a short page folds the graph to a strip above the Lean")
+        if w < 600:
+            check(page.locator(".graph[data-folded] .graph__strip").count() == 1 and graph["height"] <= 120,
+                  f"{slug}: on a phone the graph folds to one line")
+            check("uses" in page.locator(".graph__strip").inner_text(), f"{slug}: and the line counts what the subject uses")
         else:
-            check(0.4 <= graph["height"] / panes["height"] <= 0.6, f"{slug}: the graph has about half the pane, not all of it")
+            check(0.6 <= graph["height"] / panes["height"] <= 0.8, f"{slug}: the drawing has about 70% of the pane and the dock the rest")
         lean = page.locator(".proof__lean")
-        wait_until(page, lambda: lean.is_visible() and len(lean.inner_text().strip()) > 40, f"{slug}: the lower half is never empty while following")
+        wait_until(page, lambda: lean.is_visible() and len(lean.inner_text().strip()) > 40, f"{slug}: the dock is never empty while following")
         if w >= 600:
-            cards_inside(page, f"{slug} at {w}x{h}, following")
+            pane_rules(page, f"{slug} at {w}x{h}, following")
         if slug == GRAPH_PAGES[0]:
             shot_to(page, shots, f"proofreader-graph-following-{w}")
-        # A sentence click: the card and its Lean below, the tab stays on Graph.
+        # A sentence click: it becomes the subject, its Lean is in the dock, the view stays on Graph.
         mark = page.locator(".sheet__text p .q[data-p]").filter(has_not=page.locator("a.nm")).nth(3)
         passage = mark.get_attribute("data-p").split(" ")[0]
         # Bring it to the upper part of the paper, clear of a phone's sheet.
@@ -1922,24 +1900,20 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
         page.wait_for_timeout(300)
         page.mouse.click(*aim)
         wait_until(page, lambda: "Pinned" in caption(page) and page.url.endswith(f"@{passage}"), f"{slug}: a click pins the sentence")
-        check(not lean_mode(page), f"{slug}: and the tab stays on Graph")
+        check(not lean_mode(page), f"{slug}: and the view stays on Graph")
         wait_until(page, lambda: lean.is_visible() and page.locator(".proof__lean .decl, .proof__lean .untied").count() > 0,
-                   f"{slug}: its Lean is shown under the graph")
-        page.wait_for_timeout(700)
-        cards_fit(page, f"{slug} at {w}x{h}, after a click")
+                   f"{slug}: its Lean is shown in the dock")
         if w >= 600:
-            cards_inside(page, f"{slug} at {w}x{h}, after a click")
-        drawn = page.evaluate("""() => {
-          const lit = [...document.querySelectorAll('.graph .card[data-trail="here"], .graph .card.is-selected, .nearmap__card.is-lit, .nearmap__card.is-head, .maplist li.is-lit')];
-          const view = document.querySelector('.graph__canvas, .nearmap, .maplist')?.getBoundingClientRect();
-          if (!lit.length || !view) return null;
-          // A list item may be taller than a folded strip: its title line must be in view.
-          return lit.some((el) => { const b = (el.querySelector('.maplist__title') ?? el).getBoundingClientRect(); return b.top >= view.top - 1 && b.bottom <= view.bottom + 1 && b.left >= view.left - 1 && b.right <= view.right + 1; });
-        }""")
-        check(drawn is not False, f"{slug}: the graph re-fits to show the clicked sentence's card")
-        scale = page.evaluate("""() => { const w = document.querySelector('.tree__world'); const m = w && /scale\\(([^)]+)\\)/.exec(w.style.transform); return m ? parseFloat(m[1]) : null; }""")
-        check(scale is None or scale >= 0.84 or page.locator(".graph .card[data-trail='here']").count() == 0,
-              f"{slug}: never below reading size ({scale})")
+            pane_rules(page, f"{slug} at {w}x{h}, after a click on a sentence")
+            # A card click: it becomes the subject and the view stays on Graph.
+            card = page.locator(".fg__card:not(.is-subject)").first
+            if card.count():
+                want = card.get_attribute("data-card")
+                card.scroll_into_view_if_needed()
+                card.click()
+                wait_until(page, lambda: page.locator(f".fg__card.is-subject[data-card='{want}']").count() == 1, f"{slug}: a card click makes it the subject")
+                check(not lean_mode(page), f"{slug}: and the view stays on Graph")
+                pane_rules(page, f"{slug} at {w}x{h}, after a click on a card")
         if slug == GRAPH_PAGES[0] or slug == "pcp-full-argument":
             shot_to(page, shots, f"proofreader-graph-click-{slug}-{w}")
         page.keyboard.press("Escape")
@@ -1947,45 +1921,32 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
             # On a phone the proof is a sheet over the paper, and Escape closes it, as Back does.
             wait_until(page, lambda: page.locator(".proof").count() == 0 or "Pinned" not in caption(page), f"{slug}: Escape lets go of the sentence")
             continue
-        wait_until(page, lambda: "Pinned" not in caption(page), f"{slug}: Escape lets go of the sentence")
-        check(not lean_mode(page) and lean.is_visible(), f"{slug}: and the lower half returns to following the paper")
-        if w >= 600 and page.locator(".graph__view button", has_text="Whole map").count():
-            page.locator(".graph__view button", has_text="Whole map").click()
-            page.wait_for_timeout(1500)
-            cards_fit(page, f"{slug} whole map at {w}x{h}")
-            cards_inside(page, f"{slug} whole map at {w}x{h}, following")
-            # A click on a sentence in the whole map: the same rule after the re-fit.
-            other = page.locator(".sheet__text p .q[data-p]").filter(has_not=page.locator("a.nm")).nth(6)
-            spot = other.evaluate("""(el) => {
-              const pane = el.closest('[data-paper-pane]');
-              const r0 = el.getBoundingClientRect(), p0 = pane.getBoundingClientRect();
-              pane.scrollTop += r0.top - (p0.top + Math.min(160, p0.height * 0.2));
-              const r = el.getClientRects()[0];
-              return [r.left + Math.min(8, r.width / 2), r.top + r.height / 2];
-            }""")
-            page.wait_for_timeout(300)
-            page.mouse.click(*spot)
-            wait_until(page, lambda: "Pinned" in caption(page), f"{slug} whole map: a click pins a sentence")
-            cards_inside(page, f"{slug} whole map at {w}x{h}, after a click")
-            page.keyboard.press("Escape")
-            if slug == "pcp-full-argument":
-                shot_to(page, shots, f"proofreader-whole-map-{w}")
-    # The divider moves and its place is kept.
+        wait_until(page, lambda: "Pinned" not in caption(page), f"{slug}: Escape returns to following the paper")
+        check(not lean_mode(page) and lean.is_visible(), f"{slug}: in the Graph view, with the dock following the paper")
+        # The whole proof map is one button away, and a button brings the drawing back.
+        page.locator(".graph__switch button", has_text="Whole proof map").click()
+        wait_until(page, lambda: page.locator(".graph .tree .card[data-record]").count() > 0, f"{slug}: the whole proof map opens in the same place")
+        page.wait_for_timeout(900)
+        if slug == "pcp-full-argument":
+            shot_to(page, shots, f"proofreader-whole-map-{w}")
+        page.locator(".graph__switch button", has_text="Around this step").click()
+        wait_until(page, lambda: page.locator(".fg__card.is-subject").count() > 0, f"{slug}: and Around this step brings the drawing back")
+    # The handle between the drawing and the dock moves, and its place is kept.
     if w >= 600:
         handle = page.locator(".proof__handle").bounding_box()
         page.mouse.move(handle["x"] + handle["width"] / 2, handle["y"] + 5)
         page.mouse.down()
-        page.mouse.move(handle["x"] + handle["width"] / 2, handle["y"] - 80, steps=6)
+        page.mouse.move(handle["x"] + handle["width"] / 2, handle["y"] - 120, steps=6)
         page.mouse.up()
         page.wait_for_timeout(300)
-        kept = page.evaluate("JSON.parse(localStorage.getItem('proof-reader-pane-4')).dock")
-        check(kept < 0.5, f"dragging the divider changes the graph's share and keeps it ({kept:.2f})")
+        kept = page.evaluate("JSON.parse(localStorage.getItem('proof-reader-pane-5')).dock")
+        check(kept < 0.65, f"dragging the handle changes the drawing's share and keeps it ({kept:.2f})")
         page.reload()
         page.locator(".proof[data-dock]").wait_for()
         page.wait_for_timeout(600)
         panes = page.locator(".proof__panes").bounding_box()
         check(abs(page.locator(".proof__graph").bounding_box()["height"] / panes["height"] - kept) < 0.05, "and a reload keeps it")
-        page.evaluate("localStorage.removeItem('proof-reader-pane-4')")
+        page.evaluate("localStorage.removeItem('proof-reader-pane-5')")
 
 
 def physlib_cards(page: Page, url: str, shots: Path | None, size: tuple[int, int]) -> None:

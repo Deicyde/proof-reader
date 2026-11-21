@@ -1,0 +1,41 @@
+/* Proof Reader's colours and controls for the focus graph (focus-graph.css is shared with the
+   other readers and stays unchanged). The site's tokens already change with the theme. */
+.graph .fg {
+  --fg-ink-token: var(--ink);
+  --fg-muted-token: var(--ink-2);
+  --fg-ground-token: var(--sheet);
+  --fg-card-token: var(--raised);
+  --fg-edge-token: var(--rule-control);
+  --fg-wire-token: var(--rel-supports);
+  --fg-accent-token: var(--lit);
+  --fg-result-token: var(--lean-fill);
+  --fg-definition-token: var(--sunk);
+  --fg-helper-token: transparent;
+  --fg-sans-token: var(--font-sans);
+  --fg-mono-token: var(--font-mono);
+  flex: 1;
+}
+.graph .fg__title { font-family: var(--font-serif); font-size: 15px; }
+.graph .fg__card.is-subject .fg__title { font-size: 16.5px; }
+.graph .fg__scroll:focus-visible { outline: 2px solid var(--lit); }
+
+/* The button over the drawing that opens the whole proof, and brings the reader back. It sits
+   at the right of the first line over the drawing, which leaves room for it. */
+.graph .fg__label:first-child, .graph .fg__route:first-child { padding-right: 168px; min-height: 37px; box-sizing: border-box; }
+.graph__switch { position: absolute; right: 12px; top: 4px; z-index: 3; display: flex; gap: 1px; border: 1px solid var(--rule-control); border-radius: 7px; overflow: hidden; background: var(--raised); box-shadow: 0 1px 6px rgb(0 0 0 / 0.12); }
+.graph__switch button { min-height: 30px; padding: 0 10px; font: 500 13px/1 var(--font-sans); color: var(--ink); }
+.graph__switch button:hover { background: color-mix(in srgb, var(--lit) 14%, transparent); }
+.graph__switch button:focus-visible { outline: 2px solid var(--lit); outline-offset: -2px; }
+.graph[data-whole] .graph__switch { top: 10px; }
+/* On a phone the two buttons would cover the first line, so they take a row of their own. */
+.graph[data-narrow] .graph__switch { position: static; order: -1; align-self: flex-end; margin: 6px 12px 2px; }
+.graph[data-narrow] .fg__label:first-child, .graph[data-narrow] .fg__route:first-child { padding-right: 14px; min-height: 0; }
+
+/* Under 600 pixels of width: the subject, its counts, and a button to unfold the drawing. */
+.graph__strip { flex: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; margin: 0; padding: 8px 14px; border-bottom: 1px solid var(--rule); font-size: 14px; line-height: 1.35; color: var(--ink-2); }
+.graph__strip-subject { min-width: 0; font-family: var(--font-serif); font-size: 15px; font-weight: 600; color: var(--ink); }
+.graph__strip button { margin-left: auto; min-height: 30px; padding: 0 10px; border: 1px solid var(--rule-control); border-radius: 6px; font-size: 13px; color: var(--ink); }
+.leaf__tabs .leaf__open { margin-left: auto; color: var(--lit); text-decoration: underline; text-underline-offset: 3px; }
+.graph .fg__name { overflow-wrap: break-word; }
+/* A phone's drawing is a few cards high, scrolled by touch; the overview would cover most of it. */
+.graph[data-narrow] .fg__mini { display: none; }

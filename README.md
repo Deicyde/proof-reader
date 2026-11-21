@@ -34,16 +34,18 @@ by the authors of the paper or the Lean.
 
 ## Reading a page
 
-The paper is on the left and the proof pane on the right, with the graph above the Lean,
-or beside it on a very wide screen. As you scroll, the proof pane shows the declaration
-for the linked passage you are reading, and the graph shows that declaration with what it
-uses. Clicking a sentence or a graph card keeps its Lean open until you read on to
-another linked statement. **Back** returns to where you were. Use the **Graph / Lean**
-toggle to choose what stays beside the paper: in Graph mode the graph keeps the top half,
-fitted to the declaration in hand and its neighbours, and that declaration's Lean is under it;
-in Lean mode the Lean has the pane. A click never changes the mode, and Escape lets go of
-what was clicked. Both dividers can be dragged, and the site
-remembers where you leave them.
+The paper is on the left and the proof pane on the right. As you scroll, the proof pane
+shows the declaration for the linked passage you are reading. Use the **Graph / Lean**
+toggle to choose what stays beside the paper. In Graph mode a drawing of that declaration
+takes the top of the pane: what uses it sits above it, what it uses sits below, and each
+card says what kind of thing it is and whether the paper has reached it yet. Its Lean is in
+the dock underneath, and hovering a card shows that card's Lean there. **Whole proof map**
+swaps the drawing for a map of every declaration. In Lean mode the Lean has the whole pane.
+Clicking a sentence or a card keeps its Lean open until you read on to another linked
+statement, and **Back** returns to where you were. A click never changes the mode, and
+Escape lets go of what was clicked. The divider between the drawing and the dock can be
+dragged, and the site remembers where you leave it. On a phone the drawing folds to one
+line until you ask for it.
 
 Citations and figures open beneath the paragraph that mentions them. Each linked
 statement has its own address, so you can send someone straight to it. The contents
@@ -100,8 +102,9 @@ into `web/public/`, and the website in `web/` reads them. The generated folders
 | [skills/add-paper/](skills/add-paper/) | The step-by-step guide to adding a paper |
 | [tools/](tools/) | Python programs that extract the Lean, draft and compare reading copies, and build the data |
 | [web/](web/) | The website, written in React and TypeScript |
-| [web/src/map/](web/src/map/) | The graph, copied from [Lean Exposition](https://github.com/wcook04/lean-exposition) |
-| [tests/](tests/) | Python unit tests and [journey.py](tests/journey.py), which drives the site in a browser |
+| [web/src/map/](web/src/map/) | The whole proof map, copied from [Lean Exposition](https://github.com/wcook04/lean-exposition) |
+| [web/src/proof/FocusGraph.tsx](web/src/proof/FocusGraph.tsx) | The drawing around one declaration, shared with the other readers; [docs/graph-pane.md](docs/graph-pane.md) describes it |
+| [tests/](tests/) | Python unit tests, [journey.py](tests/journey.py), which drives the site in a browser, and [graph_pane.py](tests/graph_pane.py), which checks the drawing on every paper |
 | [.github/workflows/](.github/workflows/) | [pages.yml](.github/workflows/pages.yml) tests every paper, builds the site and publishes it; the others compile a paper's Lean or run Comparator |
 
 Before committing, run the commands in [AGENTS.md](AGENTS.md). `tests/journey.py` needs

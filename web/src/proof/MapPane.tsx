@@ -1,55 +1,35 @@
-// The graph of the proof, adapted from Lean Exposition's map beside the paper. It comes
-// along with the reading: every branch drawn, the statement under the reading line in
-// amber, what lies ahead quieter. A soft green says what Lean holds. The camera moves only
-// if a card has left the view. In Lean mode the graph is out of sight, or a band pulled
-// down above the Lean with the card in the middle of it, and leaving Lean mode gives the
-// camera back exactly. The reader stays in charge: moving the map pauses following.
+// The Graph view's drawing. By default it is the focus graph of docs/graph-pane.md: the
+// statement in hand in the middle, what uses it above, what it uses below, every
+// neighbour drawn with its line. The whole proof, as Lean Exposition's map draws it, is
+// one button away in the same place. Under 600 pixels of width the drawing folds to one line.
 
-import { memo, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type Ref } from "react";
-import { declEvidence, loadSource, type Edition } from "../app/edition";
+import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState, type ReactNode, type Ref } from "react";
+import type { Edition } from "../app/edition";
 import { ArgumentTree, type Insets, type MapViewHandle } from "../map/ArgumentTree";
-import { NearMap } from "./NearMap";
 import type { MapScene } from "../map/canvas/scene";
-import { declarationNode, isType } from "../model/fromEdition";
-import type { ArgEdge, ArgGraph } from "../model/graph";
+import type { ArgGraph } from "../model/graph";
+import { FocusGraph, type FGCard } from "./FocusGraph";
+import { focusData } from "./focusCards";
+import "./graph-pane.css";
 
 const INSETS: Insets = { top: 10, right: 12, bottom: 10, left: 12 };
 /** Narrow tiles, so that at the 11px floor the proof fits half a laptop's window. */
 const TILE_W = 134;
 const TILE_H = 64;
-/** Under this height the graph is the band above the Lean. */
-const BAND = 340;
-/**
- * Proof Reader, after the Quartic Reader and the Plectis maths site: a map with more cards
- * than this opens on one card and what it uses, with the whole map one click away; and a
- * pane narrower than LIST_BELOW shows the cards as a list.
- */
-const MAP_LIMIT = 16;
-/** More results than this, and the switch between them is one line with a menu. */
-const MANY_CLAIMS = 4;
-/** How many users of a card are named before "and N more". */
-const USERS_SHOWN = 3;
-const LIST_BELOW = 440;
-/** A re-fit on a new subject: quick, so the eye follows it. None under reduced motion. */
-const FIT_MS = 250;
-/** The scale at which card text is readable: the map's own floor. */
-const READING_K = 0.85;
-/** The margin, in drawing pixels, the camera keeps round the cards it fits. */
+/** On a screen narrower than this the drawing folds to one line. */
+const FOLD_BELOW = 600;
+/** The margin, in drawing pixels, the whole map keeps round the cards it frames. */
 const FIT_PAD = 14;
-/** Long enough for any camera move of the map to settle before cut cards are hidden. */
-const MOVE_SETTLE = 420;
-/** Neighbourhood tiles are wider, and each is as tall as its title needs, up to four lines. */
-const NEAR_W = 140;
+
 const tileHeight = (title: string, width: number, raw = "") => {
   // Proof Reader: the map keeps its type a constant size on screen, so at the reading floor
   // (k = 0.85) a 13px title is about 15px of the drawing and a 10.5px name about 12px. The
   // tile is sized for the whole title and the whole Lean name at that floor: neither is cut.
   const room = width - 2 * 9.5;
   const perLine = Math.max(6, Math.floor(room / 8.2));
-  const words = title.split(/\s+/);
   let lines = 1;
   let used = 0;
-  for (const w of words) {
+  for (const w of title.split(/\s+/)) {
     if (used && used + 1 + w.length > perLine) {
       lines += 1;
       used = w.length;
@@ -63,81 +43,8 @@ const tileHeight = (title: string, width: number, raw = "") => {
   return Math.ceil(22 + lines * 19 + (rawLines ? 6 + rawLines * 15 : 0) + 4);
 };
 
-/**
- * The neighbourhood of `centre`, drawn as the map draws a proof: the card (at the main
- * result, the claim and its theorems), then everything it uses directly, ranked by how
- * those use one another. The map draws the transitive reduction, so a use that runs
- * through another card in view is not drawn twice. Lines keep their kind: dashed where
- * only a statement uses the declaration, solid where a proof or definition body does.
- * Types the card uses get cards here too (the whole map keeps them on its shelf). Edges are added in the order the
- * centre's own Lean names them, which the layout keeps as its tie-break.
- */
-export function neighbourhood(edition: Edition, graph: ArgGraph, centre: string, goal: string, files: Record<string, string> | null): ArgGraph {
-  const decl = (id: string) => edition.declarations.find((d) => d.id === id);
-  // Every declaration of the page counts here, types included: the whole map keeps types on
-  // its shelf because nearly everything uses them, but in one card's neighbourhood a type it
-  // uses (a structure such as Verifier) is often the object the card is about.
-  const drawn = (id: string) => (graph.nodes.has(id) && graph.nodes.get(id)!.kind !== "goal") || !!decl(id);
-  const atGoal = centre === goal;
-  const heads = atGoal ? (edition.claims.find((c) => c.id === goal)?.lean ?? []).filter(drawn) : [centre];
-  const usesOf = (id: string) => {
-    const d = decl(id);
-    return d ? (d.keyword === "theorem" || d.keyword === "lemma" ? d.uses_statement : d.uses) : [];
-  };
-  const members = orderOfUse(edition, files, heads[0] ?? centre, [...new Set(heads.flatMap(usesOf))].filter((id) => drawn(id) && !heads.includes(id)));
-  const ids = [...(atGoal ? [goal] : []), ...heads, ...members];
-  const inView = new Set(ids);
-  const edges: ArgEdge[] = [];
-  const add = (from: string, to: string, kind: ArgEdge["kind"]) =>
-    edges.push({ key: `${from}→${to}→${kind}`, from, to, kind, linkIds: [`${from}→${to}`], scoped: false, semanticClass: kind });
-  if (atGoal) for (const h of heads) add(goal, h, "formalizes");
-  for (const from of [...heads, ...members]) {
-    const d = decl(from);
-    if (!d) continue;
-    const statement = new Set(d.uses_statement);
-    const targets = heads.includes(from) ? members : orderOfUse(edition, files, from, usesOf(from).filter((t) => inView.has(t) && t !== from && !heads.includes(t)));
-    for (const to of targets) {
-      if (!usesOf(from).includes(to)) continue;
-      add(from, to, statement.has(to) ? "lean_type_dependency" : "supports");
-    }
-  }
-  const nodes = new Map(ids.map((id) => [id, graph.nodes.get(id) ?? declarationNode(edition, decl(id)!, atGoal ? goal : centre)]));
-  const out = new Map<string, ArgEdge[]>(ids.map((id) => [id, []]));
-  const into = new Map<string, ArgEdge[]>(ids.map((id) => [id, []]));
-  for (const e of edges) {
-    out.get(e.from)!.push(e);
-    into.get(e.to)!.push(e);
-  }
-  const root = atGoal ? goal : centre;
-  return {
-    ...graph,
-    nodes,
-    order: ids,
-    edges,
-    out,
-    in: into,
-    regions: [{ id: root, title: graph.nodes.get(root)?.label ?? "", goal: root, members: ids }],
-    regionOf: new Map(ids.map((id) => [id, root])),
-    goals: [root],
-  };
-}
-
-/** For a card in view, the declarations it uses that the drawing reaches through another card. */
-function viaOf(graph: ArgGraph, id: string): { target: string; via: string }[] {
-  const direct = (graph.out.get(id) ?? []).map((e) => e.to);
-  const reach = (from: string, seen = new Set<string>()): Set<string> => {
-    for (const e of graph.out.get(from) ?? []) if (!seen.has(e.to)) { seen.add(e.to); reach(e.to, seen); }
-    return seen;
-  };
-  const found: { target: string; via: string }[] = [];
-  for (const t of direct) {
-    const through = direct.find((m) => m !== t && reach(m).has(t));
-    if (through) found.push({ target: t, via: through });
-  }
-  return found;
-}
-
 export interface MapPaneHandle {
+  /** The whole map's camera, when the whole map is open. */
   scene(): MapScene | null;
   paused(): boolean;
   restore(scene: MapScene | null, paused: boolean): void;
@@ -146,564 +53,171 @@ export interface MapPaneHandle {
 interface Props {
   ref?: Ref<MapPaneHandle>;
   edition: Edition;
+  /** The whole proof, for the whole map. */
   graph: ArgGraph;
-  /** What the right page is showing: outlined. */
-  lit: readonly string[];
-  /** Previewed by the pointer: tinted, and nothing moves. */
+  /** The declarations in the middle: the statement in hand or under the reading line. */
+  subjects: readonly string[];
+  /** Lit from the paper: the sentence or name under the pointer. */
   pointed: ReadonlySet<string> | null;
-  /** Declarations whose statements the reader has passed. */
-  passed: ReadonlySet<string>;
-  /** How many declarations the reader has reached, and how many there are. */
-  reached: number;
-  selected: string | null;
-  /** Hold the camera still for the next change: a card was just clicked. */
-  stay: boolean;
-  /** The Lean has the lower part of the page, so the graph has a band. */
-  leanOpen: boolean;
-  /** What the reader opened by a click, if anything: a new one re-fits the graph even when paused. */
-  held?: string | null;
-  onSelect(id: string): void;
+  /** The card previewed in the dock, if it is not the subject. */
+  held: string | null;
+  /** The index of the passage being read, to mark what was read and what is stated later. */
+  position: number;
+  /** One line over the drawing, when the drawing is not the paragraph's own. */
+  label?: ReactNode;
+  onSubject(id: string): void;
   onHover(id: string | null): void;
-  onPauseChange(paused: boolean): void;
 }
 
-export const MapPane = memo(function MapPane({ ref, edition, graph: fullGraph, lit, pointed, passed, reached, selected, stay, leanOpen, held: heldKey = null, onSelect, onHover, onPauseChange }: Props) {
+export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, pointed, held, position, label, onSubject, onHover }: Props) {
+  const data = useMemo(() => focusData(edition), [edition]);
+  const [whole, setWhole] = useState(false);
   const tree = useRef<MapViewHandle>(null);
-  const body = useRef<HTMLDivElement>(null);
-  const section = useRef<HTMLElement>(null);
-  const { claims } = edition;
-  const types = useMemo(() => edition.declarations.filter(isType), [edition]);
-  // A map draws one claim's proof. A paper with several gets a switch.
-  const [goal, setGoal] = useState(claims[0]?.id ?? "");
-  // A large map opens on a neighbourhood; the reader can ask for the whole map.
-  const big = fullGraph.nodes.size - claims.length > MAP_LIMIT;
-  const [whole, setWhole] = useState(!big);
-  const [centre, setCentre] = useState(goal);
-  // Bring one declaration into view with what it uses. A result the paper states is drawn
-  // under its own claim, so the switch above the drawing names what is on show.
-  const show = useCallback((id: string) => {
-    const stated = claims.find((c) => c.lean.includes(id));
-    if (stated) {
-      setGoal(stated.id);
-      setCentre(stated.id);
-    } else if (edition.declarations.some((d) => d.id === id)) setCentre(id);
-  }, [claims, edition]);
-  const near = !whole;
-  // The authors' Lean, for the order in which a statement names what it uses.
-  const [files, setFiles] = useState<Record<string, string> | null>(null);
-  useEffect(() => {
-    if (!big) return;
-    let live = true;
-    loadSource(edition.slug).then((src) => live && setFiles(src.files), () => undefined);
-    return () => {
-      live = false;
-    };
-  }, [big, edition.slug]);
-  const graph = useMemo(() => (near ? neighbourhood(edition, fullGraph, centre, goal, files) : fullGraph), [near, edition, fullGraph, centre, goal, files]);
-  // A much-used definition has dozens of users: name a few, with the rest one press away.
-  const [allUsers, setAllUsers] = useState(false);
-  useEffect(() => setAllUsers(false), [centre]);
-  const usedBy = useMemo(() => (near && centre !== goal ? (edition.declarations.find((d) => d.id === centre)?.used_by ?? []) : []), [near, centre, goal, edition]);
-  // What the pointer or focus is on, for the "via" line under the controls.
-  const [hovered, setHovered] = useState<string | null>(null);
-  const hover = useCallback((id: string | null) => {
-    setHovered(id);
-    onHover(id);
-  }, [onHover]);
-  const root = near ? centre : goal;
-  const heightOf = useCallback((id: string) => Math.max(TILE_H, tileHeight(fullGraph.nodes.get(id)?.label ?? "", near ? NEAR_W : TILE_W, fullGraph.nodes.get(id)?.rawName ?? "")), [fullGraph, near]);
-  // A narrow pane, a phone: the cards as a list, which is also the keyboard's way through.
   const [narrow, setNarrow] = useState(false);
+  const [unfolded, setUnfolded] = useState(false);
   useEffect(() => {
-    const el = section.current;
-    if (!el) return;
-    const observer = new ResizeObserver(() => setNarrow(el.clientWidth > 0 && el.clientWidth < LIST_BELOW));
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-  const claim = claims.find((c) => c.id === goal) ?? claims[0];
-  // The card or cards at the top of the neighbourhood, and what to say when nothing hangs below.
-  const headIds = useMemo(() => (centre === goal ? (claims.find((c) => c.id === goal)?.lean ?? []).filter((id) => graph.nodes.has(id)) : [centre]), [centre, goal, claims, graph]);
-  const alone = useMemo(() => {
-    const heads = headIds.map((id) => edition.declarations.find((d) => d.id === id)).filter((d) => !!d);
-    if (!heads.length) return undefined;
-    return heads.every((d) => declEvidence(edition, d) === "lean")
-      ? "Lean reports no other declaration on this page in its statement or proof."
-      : "Nothing is drawn below it: Lean has not been run on this declaration here, so what it uses is not recorded. Its statement was read from the authors\u2019 source.";
-  }, [headIds, edition]);
-  const claimAt = Math.max(0, claims.findIndex((c) => c.id === claim?.id));
-  const [paused, setPaused] = useState(false);
-  const pausedRef = useRef(false);
-  // The drawing follows the reading, as the whole map's camera does: the statement held
-  // open, or else the one under the reading line, comes into view. Looking around the graph
-  // pauses following the line; a statement the reader opens is always shown.
-  const followed = useMemo(() => lit.find((id) => edition.declarations.some((d) => d.id === id)) ?? null, [lit, edition]);
-  useEffect(() => {
-    if (selected) show(selected);
-  }, [selected, show]);
-  // A card the reader chose in the graph stays in view only until they read on: the next
-  // statement to reach the reading line takes the graph back. No button is needed.
-  const [held, setHeld] = useState<string | null>(null);
-  useEffect(() => {
-    if (selected || !followed || followed === held) return;
-    setHeld(null);
-    show(followed);
-  }, [selected, followed, held, show]);
-  const litIds = useMemo(() => (lit.length ? new Set(lit) : null), [lit]);
-  const litKey = lit.join("|");
-  const litRef = useRef(lit);
-  litRef.current = lit;
-  const shelf = useRef<HTMLDivElement>(null);
-  // The shelf is one line: bring a lit type into it.
-  useEffect(() => {
-    const row = shelf.current;
-    const item = row?.querySelector<HTMLElement>(".is-lit");
-    if (row && item) row.scrollLeft = Math.max(0, item.offsetLeft - row.offsetLeft - 8);
-  }, [litKey]);
-  const restoring = useRef(false);
-  const stayRef = useRef(stay);
-  stayRef.current = stay;
-  const leanRef = useRef(leanOpen);
-  const before = useRef<MapScene | null>(null);
-  const missed = useRef(false);
-
-  // Scrolling must stay smooth, so the trail is written straight onto the tiles.
-  const writeTrail = useCallback(() => {
-    body.current?.querySelectorAll<HTMLElement>(".card[data-record]").forEach((card) => {
-      const id = card.dataset.record!;
-      const state = litIds?.has(id) ? "here" : passed.has(id) || id === goal ? "" : "ahead";
-      if ((card.dataset.trail ?? "") !== state) card.dataset.trail = state;
-    });
-  }, [goal, litIds, passed]);
-  useEffect(writeTrail);
-
-  const inView = useCallback((ids: readonly string[]) => {
-    const canvas = body.current?.getBoundingClientRect();
-    if (!canvas?.width) return true;
-    return ids.every((id) => {
-      const cards = body.current!.querySelectorAll<HTMLElement>(`.card[data-record="${CSS.escape(id)}"]`);
-      if (!cards.length) return true;
-      return [...cards].some((card) => {
-        const r = card.getBoundingClientRect();
-        return r.top >= canvas.top && r.bottom <= canvas.bottom && r.left >= canvas.left && r.right <= canvas.right;
-      });
-    });
+    const media = window.matchMedia(`(max-width: ${FOLD_BELOW - 1}px)`);
+    const change = () => setNarrow(media.matches);
+    change();
+    media.addEventListener("change", change);
+    return () => media.removeEventListener("change", change);
   }, []);
 
-  // The graph's subject is what is lit: the card in hand or under the reading line. Whenever it
-  // changes, the camera centres it with its neighbours and zooms to fit them in the room the
-  // graph has, never below reading size. A manual pan is kept until the next change.
-  const graphRef = useRef(graph);
-  graphRef.current = graph;
-  // How many of the subject's neighbours did not fit at reading size, for the "+N more" chip.
-  const [more, setMore] = useState<{ n: number; subject: string } | null>(null);
-  const clipTimer = useRef(0);
-  const refit = useCallback((animate = true) => {
-    const g = graphRef.current;
-    const drawn = litRef.current.filter((id) => g.nodes.has(id) && g.nodes.get(id)!.kind !== "goal");
-    const canvas = body.current;
-    if (!drawn.length || !canvas?.clientHeight) {
-      // Nothing to frame: the caller fits the whole map, and the cut cards are hidden after it.
-      setMore(null);
-      window.clearTimeout(clipTimer.current);
-      clipTimer.current = window.setTimeout(() => clipCards(), MOVE_SETTLE);
-      return false;
-    }
-    const near = new Set(drawn);
-    // The claim's plate is not a neighbour: it heads the whole map and is not a declaration.
-    for (const id of drawn) {
-      for (const e of g.out.get(id) ?? []) if (g.nodes.get(e.to)?.kind !== "goal") near.add(e.to);
-      for (const e of g.in.get(id) ?? []) if (g.nodes.get(e.from)?.kind !== "goal") near.add(e.from);
-    }
-    // Where each card stands in the drawing, read from the cards as drawn now: the world is one
-    // transform, so screen offsets divided by the scale are drawing offsets.
-    const world = canvas.querySelector<HTMLElement>(".tree__world");
-    const k = Number(/scale\(([^)]+)\)/.exec(world?.style.transform ?? "")?.[1] ?? 1) || 1;
-    const boxOf = (id: string) => {
-      const el = canvas.querySelector<HTMLElement>(`.card[data-record="${CSS.escape(id)}"]`);
-      if (!el) return null;
-      const r = el.getBoundingClientRect();
-      return { x0: r.left / k, y0: r.top / k, x1: r.right / k, y1: r.bottom / k };
-    };
-    // The room at reading size, less the margin the camera keeps round what it frames.
-    const roomW = (canvas.clientWidth - INSETS.left - INSETS.right) / READING_K - 2 * FIT_PAD;
-    const roomH = (canvas.clientHeight - INSETS.top - INSETS.bottom) / READING_K - 2 * FIT_PAD;
-    const fits = (ids: string[]) => {
-      const boxes = ids.map(boxOf).filter((b) => !!b);
-      if (!boxes.length) return true;
-      const w = Math.max(...boxes.map((b) => b.x1)) - Math.min(...boxes.map((b) => b.x0));
-      const h = Math.max(...boxes.map((b) => b.y1)) - Math.min(...boxes.map((b) => b.y0));
-      return w <= roomW && h <= roomH;
-    };
-    let shown = [...near];
-    if (!fits(shown)) {
-      // Too many to read at once: the subject and the nearest whole neighbours that fit with it.
-      const centre = boxOf(drawn[0]);
-      const at = (id: string) => {
-        const b = boxOf(id);
-        return b && centre ? Math.hypot((b.x0 + b.x1 - centre.x0 - centre.x1) / 2, (b.y0 + b.y1 - centre.y0 - centre.y1) / 2) : Infinity;
-      };
-      shown = [...drawn];
-      for (const id of [...near].filter((id) => !drawn.includes(id)).sort((a, b) => at(a) - at(b)))
-        if (fits([...shown, id])) shown.push(id);
-    }
-    const hidden = near.size - shown.length;
-    setMore(hidden > 0 ? { n: hidden, subject: drawn[0] } : null);
-    tree.current?.fitNodes(shown, animate, FIT_MS, FIT_PAD);
-    window.clearTimeout(clipTimer.current);
-    clipTimer.current = window.setTimeout(() => clipCards(), (animate ? FIT_MS : 0) + 60);
-    return true;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const subjectSet = useMemo(() => new Set(subjects), [subjects]);
+  const card = useCallback((id: string): FGCard | undefined => {
+    const c = data.card(id);
+    if (!c) return undefined;
+    const at = data.firstPassage.get(id);
+    const seen = at === undefined || position < 0 || subjectSet.has(id) ? undefined : at < position ? "before" : at > position ? "later" : "here";
+    return seen ? { ...c, seen } : c;
+  }, [data, position, subjectSet]);
+  const shown = useMemo(() => subjects.filter((id) => data.card(id)), [subjects, data]);
+  const edges = useMemo(() => data.edges(shown), [data, shown]);
+  const route = useMemo(() => data.route(shown), [data, shown]);
+  const routeNote = !data.main ? undefined : route && route.length === 0 ? "This is the main result." : route ? undefined : "No chain of uses recorded on this page leads from this to the main result.";
+  const lit = useMemo(() => (pointed ? [...pointed] : []), [pointed]);
 
-  // While the graph follows its subject, a card the frame would cut in half is not drawn:
-  // every card on show is whole. A reader who moves the graph sees everything again.
-  const clipCards = useCallback(() => {
-    const canvas = body.current;
-    if (!canvas) return;
-    const view = canvas.getBoundingClientRect();
-    const following = !pausedRef.current;
-    canvas.querySelectorAll<HTMLElement>(".card[data-record]").forEach((card) => {
-      const r = card.getBoundingClientRect();
-      const whole = r.left >= view.left - 0.5 && r.right <= view.right + 0.5 && r.top >= view.top - 0.5 && r.bottom <= view.bottom + 0.5;
-      const outside = r.right <= view.left || r.left >= view.right || r.bottom <= view.top || r.top >= view.bottom;
-      card.classList.toggle("is-cut", following && !whole && !outside);
-    });
-  }, []);
-  useEffect(() => {
-    if (paused) {
-      setMore(null);
-      clipCards();
-    }
-  }, [paused, clipCards]);
+  // Counts for the folded line.
+  const counts = useMemo(() => {
+    const ids = new Set(shown);
+    const uses = new Set(edges.filter((e) => ids.has(e.from) && !ids.has(e.to)).map((e) => e.to));
+    const users = new Set(edges.filter((e) => ids.has(e.to) && !ids.has(e.from)).map((e) => e.from));
+    return { uses: uses.size, users: users.size };
+  }, [edges, shown]);
 
-  // A click is a new subject even while following is paused: it un-pauses and re-fits.
-  const heldWas = useRef(heldKey);
-  useEffect(() => {
-    if (heldWas.current === heldKey) return;
-    heldWas.current = heldKey;
-    if (!heldKey) return;
-    if (pausedRef.current) {
-      pausedRef.current = false;
-      setPaused(false);
-      onPauseChange(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [heldKey]);
-
-  useEffect(() => {
-    if (pausedRef.current || restoring.current || !lit.length) return;
-    // Out of sight in Lean mode: catch up on the way back.
-    if (!body.current?.clientHeight) {
-      missed.current = true;
-      return;
-    }
-    const drawn = lit.filter((id) => graph.nodes.has(id));
-    if (drawn.length && leanRef.current && (body.current?.clientHeight ?? 0) < BAND) tree.current?.panTo(drawn, { centre: true });
-    else if (drawn.length) refit();
-    // Only when what is lit changes: the map re-fits itself when its room changes.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [litKey, heldKey]);
-
-  const setPause = useCallback((next: boolean) => {
-    if (pausedRef.current === next) return;
-    pausedRef.current = next;
-    setPaused(next);
-    onPauseChange(next);
-  }, [onPauseChange]);
-
-  // The reader's own move through the graph: it stays where they put it until they ask
-  // it to follow the paper again.
-  const browse = useCallback((id: string) => {
-    if (claims.some((c) => c.id === id)) setGoal(id);
-    setCentre(id);
-    setHeld(litRef.current.find((x) => edition.declarations.some((d) => d.id === x)) ?? "");
-  }, [claims, edition]);
-
+  // The whole map's camera is what a history entry keeps.
+  const restoring = useRef<MapScene | null>(null);
   useImperativeHandle(ref, (): MapPaneHandle => ({
-    scene: () => tree.current?.getScene() ?? null,
-    paused: () => pausedRef.current,
-    restore: (scene, wasPaused) => {
-      pausedRef.current = wasPaused;
-      setPaused(wasPaused);
+    scene: () => (whole ? tree.current?.getScene() ?? null : null),
+    paused: () => false,
+    restore: (scene) => {
       if (!scene) return;
-      restoring.current = true;
-      tree.current?.restoreScene(scene);
-      window.setTimeout(() => {
-        restoring.current = false;
-        clipCards();
-      }, 80);
+      restoring.current = scene;
+      setWhole(true);
+      window.setTimeout(() => tree.current?.restoreScene(scene), 80);
     },
-  }), []);
+  }), [whole]);
 
-  // Every branch is drawn from the start, so following only frames; it never folds.
-  const opened = useRef(false);
+  // The whole map opens on the subject and what is joined to it, at a readable scale.
+  const frame = useCallback((animate: boolean) => {
+    const near = new Set<string>(shown);
+    for (const e of edges) {
+      near.add(e.from);
+      near.add(e.to);
+    }
+    const ids = [...near].filter((id) => graph.nodes.has(id));
+    if (ids.length) tree.current?.fitNodes(ids, animate, 250, FIT_PAD);
+    else tree.current?.fitAll(animate);
+  }, [edges, graph, shown]);
   useEffect(() => {
-    let again = 0;
+    if (!whole) return;
     const open = window.setTimeout(() => tree.current?.expandAll(), 0);
-    const frame = window.setTimeout(() => {
-      // A reload or a return to this entry finds the camera the reader left.
-      const saved = !opened.current ? (window.history.state as { scene?: MapScene; mapPaused?: boolean } | null) : null;
-      opened.current = true;
-      if (saved?.mapPaused) {
-        pausedRef.current = true;
-        setPaused(true);
-      }
-      if (saved?.scene) {
-        const scene = saved.scene;
-        tree.current?.restoreScene(scene);
-        // A slow first layout can frame the map after this: put the camera back once more.
-        again = window.setTimeout(() => {
-          if (!pausedRef.current && !leanRef.current) tree.current?.restoreScene(scene);
-        }, 400);
-      } else {
-        if (pausedRef.current || !refit(false)) tree.current?.fitAll(false);
-      }
-    }, 80);
+    const fit = window.setTimeout(() => {
+      if (restoring.current) restoring.current = null;
+      else frame(false);
+    }, 90);
     return () => {
       window.clearTimeout(open);
-      window.clearTimeout(frame);
-      window.clearTimeout(again);
+      window.clearTimeout(fit);
     };
-  }, [root, whole, inView]);
-
-  // The Lean rises: remember the camera, to give it back exactly when the Lean goes.
-  useLayoutEffect(() => {
-    if (leanRef.current === leanOpen) return;
-    leanRef.current = leanOpen;
-    if (leanOpen) {
-      before.current = tree.current?.getScene() ?? null;
-      missed.current = false;
-    }
-  }, [leanOpen]);
-
-  // Back in Graph mode. A resize has given the camera back; if the Lean followed the text
-  // while the graph was out of sight, the graph catches up.
+    // Only on opening: the reader moves the whole map themselves after that.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [whole]);
+  // Reading on brings the new subject into view on the whole map, without changing its scale.
+  const key = shown.join("|");
   useEffect(() => {
-    if (leanOpen) return;
-    const timer = window.setTimeout(() => {
-      before.current = null;
-      if (missed.current && !pausedRef.current && !restoring.current && litRef.current.length) refit();
-      missed.current = false;
-    }, 240);
-    return () => window.clearTimeout(timer);
-  }, [inView, leanOpen]);
+    if (whole && shown.length) tree.current?.panTo(shown.filter((id) => graph.nodes.has(id)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
 
-  // The room changed: the Lean rose or went, the handle was dragged, the window changed.
-  useEffect(() => {
-    const el = body.current;
-    if (!el) return;
-    let timer = 0;
-    let size = "";
-    const observer = new ResizeObserver(() => {
-      const next = `${el.clientWidth}x${el.clientHeight}`;
-      // Folded away for a statement with no card: the camera waits.
-      if (next === size || !el.clientHeight) return;
-      const first = !size;
-      size = next;
-      if (first) return;
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        if (restoring.current) return;
-        if (leanRef.current) {
-          // A band of graph is only useful with the card in the middle of it.
-          if (litRef.current.length && el.clientHeight < BAND) tree.current?.panTo(litRef.current, { centre: true });
-          else if (litRef.current.length && !inView(litRef.current)) tree.current?.panTo(litRef.current);
-        } else if (before.current) {
-          tree.current?.restoreScene(before.current);
-          before.current = null;
-        } else if (pausedRef.current || !refit(false)) tree.current?.fitAll(false);
-      }, 140);
-    });
-    observer.observe(el);
-    return () => {
-      observer.disconnect();
-      window.clearTimeout(timer);
-    };
-  }, [inView]);
-
-  // In the neighbourhood, a click on another card brings it into view with what it uses;
-  // a click on the card in view opens its Lean, as a click does on the whole map.
-  const select = useCallback((id: string | null) => {
+  const litIds = useMemo(() => (shown.length ? new Set(shown) : null), [shown]);
+  const goal = edition.claims[0]?.id ?? "";
+  const claim = edition.claims[0];
+  const heightOf = useCallback((id: string) => Math.max(TILE_H, tileHeight(graph.nodes.get(id)?.label ?? "", TILE_W, graph.nodes.get(id)?.rawName ?? "")), [graph]);
+  // A card on the whole map opens as the subject, back in the drawing around it.
+  const chooseOnMap = useCallback((id: string | null) => {
     if (!id) return;
-    const head = centre === goal && (claims.find((c) => c.id === goal)?.lean ?? []).includes(id);
-    if (near && id !== centre && !head && fullGraph.nodes.get(id)?.kind !== "goal") browse(id);
-    else onSelect(id);
-  }, [near, centre, goal, claims, fullGraph, onSelect, browse]);
-  const onUserMove = useCallback(() => setPause(true), [setPause]);
+    const target = edition.claims.find((c) => c.id === id)?.lean[0] ?? id;
+    if (!data.card(target)) return;
+    setWhole(false);
+    onSubject(target);
+  }, [data, edition, onSubject]);
   const noTrace = useCallback(() => undefined, []);
 
-  const map = useMemo(
-    () => (
-      <ArgumentTree
-        key={`${whole ? "whole" : "near"}:${root}`}
-        ref={tree}
-        graph={graph}
-        goal={root}
-        insets={INSETS}
-        persist={false}
-        mode="overview"
-        tileWidth={near ? NEAR_W : TILE_W}
-        tileHeight={TILE_H}
-        tileHeightOf={heightOf}
-        rootLabel={root === goal ? undefined : "In view"}
-        oneCardEach
-        fitMax={1.8}
-        selected={selected ?? undefined}
-        litIds={litIds}
-        previewIds={pointed}
-        rootExcerpt={root === goal ? <span>{claim?.title}</span> : undefined}
-        onSelect={select}
-        onTrace={noTrace}
-        onHover={hover}
-        onUserMove={onUserMove}
-      />
-    ),
-    [goal, root, whole, near, graph, heightOf, selected, litIds, pointed, claim, select, noTrace, hover, onUserMove],
-  );
+  const folded = narrow && !unfolded;
+  const first = shown[0] ? data.card(shown[0]) : undefined;
+  const subjectWords = first ? (shown.length > 1 ? `${first.title} and ${shown.length - 1} more stated here` : first.title) : "Nothing is drawn here";
 
   return (
-    <section ref={section} className={`graph${big ? " graph--quiet" : ""}${near ? " graph--near" : ""}`} aria-label="Graph of the Lean proof">
-      {paused && (
-        <p className="graph__paused" role="status">
-          Paused while you move the graph.
-          <button type="button" onClick={() => setPause(false)}>Follow the paper again</button>
+    <section className="graph" data-folded={folded || undefined} data-narrow={narrow || undefined} data-whole={whole || undefined} aria-label="Graph of the Lean proof">
+      {folded ? (
+        <p className="graph__strip">
+          <span className="graph__strip-subject">{subjectWords}</span>
+          <span className="graph__strip-counts">uses {counts.uses}, used by {counts.users}</span>
+          <button type="button" onClick={() => setUnfolded(true)}>Show the graph</button>
         </p>
+      ) : whole ? (
+        <div className="graph__canvas">
+          <ArgumentTree
+            ref={tree}
+            graph={graph}
+            goal={goal}
+            insets={INSETS}
+            persist={false}
+            mode="overview"
+            tileWidth={TILE_W}
+            tileHeight={TILE_H}
+            tileHeightOf={heightOf}
+            oneCardEach
+            fitMax={1.8}
+            litIds={litIds}
+            previewIds={pointed}
+            rootExcerpt={<span>{claim?.title}</span>}
+            onSelect={chooseOnMap}
+            onTrace={noTrace}
+            onHover={onHover}
+          />
+        </div>
+      ) : (
+        <FocusGraph
+          subjects={shown}
+          card={card}
+          edges={edges}
+          route={route}
+          routeNote={routeNote}
+          label={label}
+          lit={lit}
+          held={held}
+          onSubject={onSubject}
+          onHover={onHover}
+        />
       )}
-      {claims.length > 1 && claims.length <= MANY_CLAIMS && (
-        <div className="claims" role="group" aria-label="Which result's proof to show">
-          {claims.map((c) => (
-            <button key={c.id} type="button" aria-pressed={c.id === claim?.id} onClick={() => browse(c.id)}>{c.title}</button>
-          ))}
+      {!folded && (
+        <div className="graph__switch">
+          <button type="button" onClick={() => setWhole((w) => !w)}>{whole ? "Around this step" : "Whole proof map"}</button>
+          {narrow && <button type="button" onClick={() => { setWhole(false); setUnfolded(false); }}>Fold the graph</button>}
         </div>
       )}
-      {claims.length > MANY_CLAIMS && (!near || centre === goal) && (
-        <p className="claims claims--many">
-          <span className="claims__count">Result {claimAt + 1} of {claims.length}</span>
-          <b>{claim?.title}</b>
-        </p>
-      )}
-      {types.length > 0 && (
-        <div className="vocab" aria-label="Types the proof is written in">
-          <span className="vocab__name">Types</span>
-          <div className="vocab__list" ref={shelf}>
-            {types.map((d) => (
-              <button key={d.id} type="button" data-vocab={d.id} className={lit.includes(d.id) ? "is-lit" : ""} aria-label={`${d.plain} (${d.id})`} onClick={() => onSelect(d.id)} onMouseEnter={() => onHover(d.id)} onMouseLeave={() => onHover(null)} onFocus={() => onHover(d.id)} onBlur={() => onHover(null)}>
-                {d.plain}
-              </button>
-            ))}
-          </div>
-          <span className="vocab__reached">{reached} of {edition.declarations.length} declarations reached</span>
-        </div>
-      )}
-      {(big || narrow) && (
-        <div className="graph__view" role="group" aria-label="How much of the map to show">
-          {!narrow && (
-            <button type="button" aria-pressed={whole} onClick={() => setWhole((w) => !w)}>
-              {whole ? "Show one card and what it uses" : "Whole map"}
-            </button>
-          )}
-          {near && !narrow && centre !== goal && claims.length <= MANY_CLAIMS && <button type="button" onClick={() => browse(goal)}>Back to {claims.length > 1 ? "the result" : "the main result"}</button>}
-          {near && !narrow && centre !== goal && <button type="button" onClick={() => onSelect(centre)}>Open its Lean</button>}
-          {near && !narrow && usedBy.length > 0 && (
-            <span className="graph__usedby">Used by{" "}
-              {(allUsers ? usedBy : usedBy.slice(0, USERS_SHOWN)).map((id) => <button key={id} type="button" onClick={() => browse(id)}>{edition.declarations.find((d) => d.id === id)?.plain ?? id}</button>)}
-              {usedBy.length > USERS_SHOWN && (
-                <button type="button" className="graph__more" aria-expanded={allUsers} onClick={() => setAllUsers((v) => !v)}>
-                  {allUsers ? "show fewer" : `and ${usedBy.length - USERS_SHOWN} more`}
-                </button>
-              )}
-            </span>
-          )}
-          {whole && big && !narrow && <span className="graph__hint">Point at a card to see its lines.</span>}
-          {!narrow && hovered && graph.nodes.has(hovered) && viaOf(graph, hovered).length > 0 && (
-            <span className="graph__via" role="status">
-              {graph.nodes.get(hovered)?.label} also uses {viaOf(graph, hovered).map((v) => `${graph.nodes.get(v.target)?.label} (via ${graph.nodes.get(v.via)?.label})`).join(", ")}.
-            </span>
-          )}
-          {near && !narrow && !hovered && (
-            <span className="graph__hint">
-              {centre === goal
-                ? "Click a card for what it uses; the theorem opens its Lean."
-                : "Click a card for what it uses; the top card opens its Lean."}
-            </span>
-          )}
-        </div>
-      )}
-      {narrow
-        ? <MapList graph={fullGraph} goal={goal} lit={lit} onSelect={onSelect} onHover={onHover} />
-        : near
-          ? (
-            <NearMap
-              graph={graph}
-              heads={headIds}
-              plate={centre === goal && !(headIds.length === 1 && fullGraph.nodes.get(headIds[0])?.label === claim?.title) ? (claim?.title ?? null) : null}
-              alone={alone}
-              kicker={claims.length > 1 && claimAt > 0 ? `Result ${claimAt + 1} of ${claims.length}` : "Main result"}
-              lit={lit}
-              selected={selected}
-              onCard={(id) => select(id)}
-              onHover={hover}
-            />
-          )
-          : <>
-            <div className="graph__canvas" ref={body}>
-              {map}
-            </div>
-            <p className="graph__key">
-              {more && !paused && (
-                big
-                  ? <button type="button" className="graph__morechip" onClick={() => { setWhole(false); setCentre(more.subject); }} title="Show this card with everything it uses">+{more.n} more</button>
-                  : <span className="graph__morechip">+{more.n} more</span>
-              )}
-              Square cards are definitions, round cards theorems{edition.analytics.axioms.length ? " and the violet box an axiom" : ""}.
-              {" "}A line runs down from a declaration to one it uses: dashed when only its statement uses it, solid when its proof or definition body does.
-            </p>
-          </>}
     </section>
   );
 });
-
-/** The map as a list: every card in reading order of the proof, with what it uses and what uses it. */
-function MapList({ graph, goal, lit, onSelect, onHover }: { graph: ArgGraph; goal: string; lit: readonly string[]; onSelect(id: string): void; onHover(id: string | null): void }) {
-  const label = (id: string) => graph.nodes.get(id)?.label ?? id;
-  const ids = graph.order.filter((id) => id !== goal);
-  // The list follows its subject as the graph does: the lit card comes to the top of the list.
-  const list = useRef<HTMLOListElement>(null);
-  const litKey = lit.join("|");
-  useEffect(() => {
-    const el = list.current;
-    const item = el?.querySelector<HTMLElement>("li.is-lit");
-    if (el && item) el.scrollTo({ top: Math.max(0, item.offsetTop - 4), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-  }, [litKey]);
-  const card = (id: string) => (
-    <button type="button" onClick={() => onSelect(id)} onFocus={() => onHover(id)} onBlur={() => onHover(null)}>{label(id)}</button>
-  );
-  return (
-    <ol className="maplist" ref={list} aria-label="The declarations of the proof, as a list">
-      {ids.map((id) => {
-        const uses = (graph.out.get(id) ?? []).map((e) => e.to);
-        const users = (graph.in.get(id) ?? []).map((e) => e.from).filter((u) => u !== goal);
-        return (
-          <li key={id} className={lit.includes(id) ? "is-lit" : undefined}>
-            <p className="maplist__title">{card(id)} <code>{graph.nodes.get(id)?.rawName}</code></p>
-            {uses.length > 0 && <p className="maplist__rel">Uses {uses.map((u, i) => <span key={u}>{i > 0 && ", "}{card(u)}</span>)}</p>}
-            {users.length > 0 && <p className="maplist__rel">Used by {users.map((u, i) => <span key={u}>{i > 0 && ", "}{card(u)}</span>)}</p>}
-          </li>
-        );
-      })}
-    </ol>
-  );
-}
-
-/** Where a declaration's own text first names each of `ids`: the order a reader meets them. */
-function orderOfUse(edition: Edition, files: Record<string, string> | null, owner: string, ids: string[]): string[] {
-  const d = edition.declarations.find((x) => x.id === owner);
-  const text = d && files?.[d.file] ? files[d.file].split("\n").slice(d.line - 1, d.end_line).join("\n") : (d?.type ?? "");
-  const at = (id: string) => {
-    const last = id.split(".").pop()!.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const m = new RegExp(`(?<![\\w'])${last}(?![\\w'])`).exec(text);
-    return m ? m.index : Number.MAX_SAFE_INTEGER;
-  };
-  return [...ids].sort((a, b) => at(a) - at(b) || a.localeCompare(b));
-}
