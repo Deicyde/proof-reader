@@ -1082,7 +1082,7 @@ $$
 
 because $\kappa<1/4$. The same integral proves (6.2). $\square$
 
-The formal interval bilinear operator has norm at most $4C_KT^{1/4}$. This is the estimate packaged in `Breakdown.pieceOperator`; the weighted continuous estimate above is the paper's resummation over times approaching one. The sequence proof below instead puts the decay factors directly into the forcing.
+For $0<T\leq1$, the interval bilinear operator has norm at most $4C_KT^{1/4}$. This is the estimate packaged in `Breakdown.pieceOperator`; the weighted continuous estimate above is the paper's resummation over times approaching one. The sequence proof below instead puts the decay factors directly into the forcing.
 
 ### Lemma 6.2. Correcting an approximate solution
 
@@ -2388,7 +2388,7 @@ $$
 \le(M+Z)(T-t)^{-1/4}.
 $$
 
-This is an elementary deduction from the retained piece bounds and the gluing identity. The exported nonexistence theorem records unboundedness; it does not state this two-sided formula or the local physical profile estimate of Proposition 9.1.
+This is an elementary deduction from the retained piece bounds and the gluing identity. The intermediate periodic mild-solution statement records unboundedness, and the final theorem records nonexistence of global smooth periodic-velocity solutions; neither states this two-sided formula or the local physical profile estimate of Proposition 9.1.
 
 Together with the whole-space construction in Section 7, Proposition 9.1 and Lemma 9.2 complete the analytic proof of Theorem A. Proposition 9.4 explains the broader periodic nonexistence formulation exported by Lean. The additional work needed for an unconditional blow-up result is the separate construction of a profile.
 

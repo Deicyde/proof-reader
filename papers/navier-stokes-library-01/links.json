@@ -41,7 +41,8 @@
    "anchor": {
     "heading": "Breakdown.Base.Framework",
     "block": 3
-   }
+   },
+   "topic": "mild"
   },
   {
    "id": "s1-00002",
@@ -54,7 +55,8 @@
    "anchor": {
     "heading": "Breakdown.Base.Framework",
     "block": 4
-   }
+   },
+   "topic": "mild"
   },
   {
    "id": "s1-00003",
@@ -67,7 +69,8 @@
    "anchor": {
     "heading": "Breakdown.Base.Framework",
     "block": 5
-   }
+   },
+   "topic": "mild"
   },
   {
    "id": "s1-00004",
@@ -80,7 +83,8 @@
    "anchor": {
     "heading": "Breakdown.Base.Realization",
     "block": 3
-   }
+   },
+   "topic": "mild"
   },
   {
    "id": "s1-00005",
@@ -93,7 +97,8 @@
    "anchor": {
     "heading": "Breakdown.Base.Realization",
     "block": 4
-   }
+   },
+   "topic": "mild"
   },
   {
    "id": "s1-00006",
@@ -106,7 +111,8 @@
    "anchor": {
     "heading": "Breakdown.Base.Realization",
     "block": 5
-   }
+   },
+   "topic": "mild"
   },
   {
    "id": "s1-00007",
@@ -119,7 +125,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssembly",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00008",
@@ -132,7 +139,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssembly",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00009",
@@ -145,7 +153,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssembly",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00010",
@@ -158,7 +167,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssembly",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00011",
@@ -171,7 +181,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssembly",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00012",
@@ -184,7 +195,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssembly",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00013",
@@ -197,7 +209,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssembly",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00014",
@@ -210,7 +223,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssembly",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00015",
@@ -223,7 +237,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00016",
@@ -236,7 +251,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00017",
@@ -249,7 +265,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00018",
@@ -262,7 +279,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00019",
@@ -275,7 +293,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00020",
@@ -288,7 +307,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00021",
@@ -301,7 +321,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00022",
@@ -314,7 +335,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00023",
@@ -327,7 +349,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00024",
@@ -340,7 +363,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00025",
@@ -353,7 +377,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00026",
@@ -366,7 +391,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00027",
@@ -379,7 +405,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyAlgebra",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00028",
@@ -392,7 +419,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00029",
@@ -405,7 +433,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00030",
@@ -418,7 +447,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00031",
@@ -431,7 +461,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00032",
@@ -444,7 +475,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00033",
@@ -457,7 +489,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00034",
@@ -470,7 +503,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00035",
@@ -483,7 +517,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00036",
@@ -496,7 +531,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00037",
@@ -509,7 +545,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00038",
@@ -522,7 +559,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00039",
@@ -535,7 +573,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00040",
@@ -548,7 +587,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00041",
@@ -561,7 +601,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00042",
@@ -574,7 +615,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00043",
@@ -587,7 +629,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00044",
@@ -600,7 +643,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyBasics",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00045",
@@ -613,7 +657,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00046",
@@ -626,7 +671,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00047",
@@ -639,7 +685,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00048",
@@ -652,7 +699,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00049",
@@ -665,7 +713,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00050",
@@ -678,7 +727,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00051",
@@ -691,7 +741,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00052",
@@ -704,7 +755,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00053",
@@ -717,7 +769,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00054",
@@ -730,7 +783,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00055",
@@ -743,7 +797,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00056",
@@ -756,7 +811,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00057",
@@ -769,7 +825,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00058",
@@ -782,7 +839,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00059",
@@ -795,7 +853,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00060",
@@ -808,7 +867,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00061",
@@ -821,7 +881,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00062",
@@ -834,7 +895,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00063",
@@ -847,7 +909,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00064",
@@ -860,7 +923,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00065",
@@ -873,7 +937,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00066",
@@ -886,7 +951,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00067",
@@ -899,7 +965,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00068",
@@ -912,7 +979,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00069",
@@ -925,7 +993,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00070",
@@ -938,7 +1007,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00071",
@@ -951,7 +1021,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00072",
@@ -964,7 +1035,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyCentre",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00073",
@@ -977,7 +1049,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00074",
@@ -990,7 +1063,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00075",
@@ -1003,7 +1077,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00076",
@@ -1016,7 +1091,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00077",
@@ -1029,7 +1105,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00078",
@@ -1042,7 +1119,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00079",
@@ -1055,7 +1133,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00080",
@@ -1068,7 +1147,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00081",
@@ -1081,7 +1161,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00082",
@@ -1094,7 +1175,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00083",
@@ -1107,7 +1189,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00084",
@@ -1120,7 +1203,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyFields",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00085",
@@ -1133,7 +1217,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00086",
@@ -1146,7 +1231,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00087",
@@ -1159,7 +1245,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00088",
@@ -1172,7 +1259,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00089",
@@ -1185,7 +1273,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00090",
@@ -1198,7 +1287,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00091",
@@ -1211,7 +1301,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00092",
@@ -1224,7 +1315,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00093",
@@ -1237,7 +1329,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00094",
@@ -1250,7 +1343,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00095",
@@ -1263,7 +1357,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00096",
@@ -1276,7 +1371,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00097",
@@ -1289,7 +1385,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00098",
@@ -1302,7 +1399,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00099",
@@ -1315,7 +1413,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00100",
@@ -1328,7 +1427,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00101",
@@ -1341,7 +1441,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00102",
@@ -1354,7 +1455,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00103",
@@ -1367,7 +1469,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyMeasure",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00104",
@@ -1380,7 +1483,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyPairing",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00105",
@@ -1393,7 +1497,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyPairing",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00106",
@@ -1406,7 +1511,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyStatements",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00107",
@@ -1419,7 +1525,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyStatements",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00108",
@@ -1432,7 +1539,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointAssemblyStatements",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00109",
@@ -1445,7 +1553,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointEntryDefs",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00110",
@@ -1458,7 +1567,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointEntryDefs",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00111",
@@ -1471,7 +1581,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointEntryDefs",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00112",
@@ -1484,7 +1595,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointEntryDefs",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00113",
@@ -1497,7 +1609,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointEntryDefs",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00114",
@@ -1510,7 +1623,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointEntryDefs",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00115",
@@ -1523,7 +1637,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointEntryDefs",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00116",
@@ -1536,7 +1651,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointEntryDefs",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00117",
@@ -1549,7 +1665,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointEntryDefs",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00118",
@@ -1562,7 +1679,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointEntryDefs",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00119",
@@ -1575,7 +1693,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointFreeShift",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00120",
@@ -1588,7 +1707,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointFreeShift",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00121",
@@ -1601,7 +1721,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointFreeShift",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00122",
@@ -1614,7 +1735,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointFreeShift",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00123",
@@ -1627,7 +1749,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointFreeShift",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00124",
@@ -1640,7 +1763,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointFreeShift",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00125",
@@ -1653,7 +1777,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointFreeShift",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00126",
@@ -1666,7 +1791,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointFreeShift",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00127",
@@ -1679,7 +1805,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointFreeShift",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00128",
@@ -1692,7 +1819,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00129",
@@ -1705,7 +1833,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00130",
@@ -1718,7 +1847,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00131",
@@ -1731,7 +1861,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00132",
@@ -1744,7 +1875,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00133",
@@ -1757,7 +1889,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00134",
@@ -1770,7 +1903,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00135",
@@ -1783,7 +1917,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00136",
@@ -1796,7 +1931,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00137",
@@ -1809,7 +1945,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00138",
@@ -1822,7 +1959,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00139",
@@ -1835,7 +1973,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00140",
@@ -1848,7 +1987,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00141",
@@ -1861,7 +2001,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00142",
@@ -1874,7 +2015,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00143",
@@ -1887,7 +2029,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00144",
@@ -1900,7 +2043,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00145",
@@ -1913,7 +2057,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00146",
@@ -1926,7 +2071,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00147",
@@ -1939,7 +2085,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00148",
@@ -1952,7 +2099,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00149",
@@ -1965,7 +2113,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00150",
@@ -1978,7 +2127,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00151",
@@ -1991,7 +2141,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00152",
@@ -2004,7 +2155,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00153",
@@ -2017,7 +2169,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00154",
@@ -2030,7 +2183,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00155",
@@ -2043,7 +2197,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00156",
@@ -2056,7 +2211,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00157",
@@ -2069,7 +2225,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinCharge",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00158",
@@ -2082,7 +2239,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00159",
@@ -2095,7 +2253,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00160",
@@ -2108,7 +2267,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00161",
@@ -2121,7 +2281,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00162",
@@ -2134,7 +2295,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00163",
@@ -2147,7 +2309,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00164",
@@ -2160,7 +2323,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00165",
@@ -2173,7 +2337,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00166",
@@ -2186,7 +2351,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00167",
@@ -2199,7 +2365,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00168",
@@ -2212,7 +2379,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00169",
@@ -2225,7 +2393,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00170",
@@ -2238,7 +2407,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00171",
@@ -2251,7 +2421,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00172",
@@ -2264,7 +2435,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00173",
@@ -2277,7 +2449,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00174",
@@ -2290,7 +2463,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPinChargeParts",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00175",
@@ -2303,7 +2477,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBound",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00176",
@@ -2316,7 +2491,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBound",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00177",
@@ -2329,7 +2505,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBound",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00178",
@@ -2342,7 +2519,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBound",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00179",
@@ -2355,7 +2533,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBound",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00180",
@@ -2368,7 +2547,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBound",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00181",
@@ -2381,7 +2561,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBound",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00182",
@@ -2394,7 +2575,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBound",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00183",
@@ -2407,7 +2589,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBound",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00184",
@@ -2420,7 +2603,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00185",
@@ -2433,7 +2617,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00186",
@@ -2446,7 +2631,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00187",
@@ -2459,7 +2645,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00188",
@@ -2472,7 +2659,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00189",
@@ -2485,7 +2673,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00190",
@@ -2498,7 +2687,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00191",
@@ -2511,7 +2701,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00192",
@@ -2524,7 +2715,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00193",
@@ -2537,7 +2729,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00194",
@@ -2550,7 +2743,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00195",
@@ -2563,7 +2757,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00196",
@@ -2576,7 +2771,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00197",
@@ -2589,7 +2785,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00198",
@@ -2602,7 +2799,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00199",
@@ -2615,7 +2813,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00200",
@@ -2628,7 +2827,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00201",
@@ -2641,7 +2841,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00202",
@@ -2654,7 +2855,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00203",
@@ -2667,7 +2869,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00204",
@@ -2680,7 +2883,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00205",
@@ -2693,7 +2897,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00206",
@@ -2706,7 +2911,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00207",
@@ -2719,7 +2925,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00208",
@@ -2732,7 +2939,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00209",
@@ -2745,7 +2953,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00210",
@@ -2758,7 +2967,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00211",
@@ -2771,7 +2981,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00212",
@@ -2784,7 +2995,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00213",
@@ -2797,7 +3009,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00214",
@@ -2810,7 +3023,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 33
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00215",
@@ -2823,7 +3037,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 34
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00216",
@@ -2836,7 +3051,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 35
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00217",
@@ -2849,7 +3065,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundPairing",
     "block": 36
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00218",
@@ -2862,7 +3079,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00219",
@@ -2875,7 +3093,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00220",
@@ -2888,7 +3107,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00221",
@@ -2901,7 +3121,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00222",
@@ -2914,7 +3135,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00223",
@@ -2927,7 +3149,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00224",
@@ -2940,7 +3163,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00225",
@@ -2953,7 +3177,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00226",
@@ -2966,7 +3191,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00227",
@@ -2979,7 +3205,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00228",
@@ -2992,7 +3219,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00229",
@@ -3005,7 +3233,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00230",
@@ -3018,7 +3247,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00231",
@@ -3031,7 +3261,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00232",
@@ -3044,7 +3275,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00233",
@@ -3057,7 +3289,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00234",
@@ -3070,7 +3303,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00235",
@@ -3083,7 +3317,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00236",
@@ -3096,7 +3331,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointPotentialBoundSlice",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00237",
@@ -3109,7 +3345,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00238",
@@ -3122,7 +3359,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00239",
@@ -3135,7 +3373,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00240",
@@ -3148,7 +3387,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00241",
@@ -3161,7 +3401,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00242",
@@ -3174,7 +3415,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00243",
@@ -3187,7 +3429,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00244",
@@ -3200,7 +3443,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00245",
@@ -3213,7 +3457,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00246",
@@ -3226,7 +3471,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00247",
@@ -3239,7 +3485,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00248",
@@ -3252,7 +3499,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadTerm",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00249",
@@ -3265,7 +3513,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointQuadraticBridge",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00250",
@@ -3278,7 +3527,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthal",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00251",
@@ -3291,7 +3541,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthal",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00252",
@@ -3304,7 +3555,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthal",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00253",
@@ -3317,7 +3569,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthal",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00254",
@@ -3330,7 +3583,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthal",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00255",
@@ -3343,7 +3597,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthal",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00256",
@@ -3356,7 +3611,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthal",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00257",
@@ -3369,7 +3625,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthal",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00258",
@@ -3382,7 +3639,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthal",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00259",
@@ -3395,7 +3653,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalAlgebra",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00260",
@@ -3408,7 +3667,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalAlgebra",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00261",
@@ -3421,7 +3681,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalAlgebra",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00262",
@@ -3434,7 +3695,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalAlgebra",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00263",
@@ -3447,7 +3709,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalAlgebra",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00264",
@@ -3460,7 +3723,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalAlgebra",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00265",
@@ -3473,7 +3737,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalAlgebra",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00266",
@@ -3486,7 +3751,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalAlgebra",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00267",
@@ -3499,7 +3765,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalAlgebra",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00268",
@@ -3512,7 +3779,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalAlgebra",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00269",
@@ -3525,7 +3793,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalApprox",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00270",
@@ -3538,7 +3807,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalApprox",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00271",
@@ -3551,7 +3821,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalApprox",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00272",
@@ -3564,7 +3835,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalApprox",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00273",
@@ -3577,7 +3849,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalApprox",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00274",
@@ -3590,7 +3863,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalApprox",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00275",
@@ -3603,7 +3877,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalApprox",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00276",
@@ -3616,7 +3891,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalApprox",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00277",
@@ -3629,7 +3905,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalGradientTotal",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00278",
@@ -3642,7 +3919,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalGradientTotal",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00279",
@@ -3655,7 +3933,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalGradientTotal",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00280",
@@ -3668,7 +3947,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalPairing",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00281",
@@ -3681,7 +3961,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalPairing",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00282",
@@ -3694,7 +3975,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalPairing",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00283",
@@ -3707,7 +3989,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalPairing",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00284",
@@ -3720,7 +4003,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalPairing",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00285",
@@ -3733,7 +4017,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalParts",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00286",
@@ -3746,7 +4031,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalParts",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00287",
@@ -3759,7 +4045,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalParts",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00288",
@@ -3772,7 +4059,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalParts",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00289",
@@ -3785,7 +4073,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalParts",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00290",
@@ -3798,7 +4087,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalParts",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00291",
@@ -3811,7 +4101,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalParts",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00292",
@@ -3824,7 +4115,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalParts",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00293",
@@ -3837,7 +4129,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00294",
@@ -3850,7 +4143,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00295",
@@ -3863,7 +4157,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00296",
@@ -3876,7 +4171,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00297",
@@ -3889,7 +4185,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00298",
@@ -3902,7 +4199,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00299",
@@ -3915,7 +4213,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00300",
@@ -3928,7 +4227,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00301",
@@ -3941,7 +4241,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00302",
@@ -3954,7 +4255,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00303",
@@ -3967,7 +4269,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSlice",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00304",
@@ -3980,7 +4283,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSliceBound",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00305",
@@ -3993,7 +4297,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSliceBound",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00306",
@@ -4006,7 +4311,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSliceBound",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00307",
@@ -4019,7 +4325,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSliceBound",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00308",
@@ -4032,7 +4339,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSliceBound",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00309",
@@ -4045,7 +4353,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSliceBound",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00310",
@@ -4058,7 +4367,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSliceBound",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00311",
@@ -4071,7 +4381,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSliceBound",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00312",
@@ -4084,7 +4395,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSliceBound",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00313",
@@ -4097,7 +4409,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalSmooth",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00314",
@@ -4110,7 +4423,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalTime",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00315",
@@ -4123,7 +4437,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalTime",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00316",
@@ -4136,7 +4451,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalTime",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00317",
@@ -4149,7 +4465,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalTime",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00318",
@@ -4162,7 +4479,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalTime",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00319",
@@ -4175,7 +4493,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00320",
@@ -4188,7 +4507,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00321",
@@ -4201,7 +4521,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00322",
@@ -4214,7 +4535,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00323",
@@ -4227,7 +4549,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00324",
@@ -4240,7 +4563,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00325",
@@ -4253,7 +4577,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00326",
@@ -4266,7 +4591,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00327",
@@ -4279,7 +4605,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00328",
@@ -4292,7 +4619,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00329",
@@ -4305,7 +4633,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00330",
@@ -4318,7 +4647,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00331",
@@ -4331,7 +4661,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00332",
@@ -4344,7 +4675,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderPlain",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00333",
@@ -4357,7 +4689,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderPlain",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00334",
@@ -4370,7 +4703,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRemainderPlain",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00335",
@@ -4383,7 +4717,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00336",
@@ -4396,7 +4731,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00337",
@@ -4409,7 +4745,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00338",
@@ -4422,7 +4759,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00339",
@@ -4435,7 +4773,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00340",
@@ -4448,7 +4787,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00341",
@@ -4461,7 +4801,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00342",
@@ -4474,7 +4815,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00343",
@@ -4487,7 +4829,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00344",
@@ -4500,7 +4843,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00345",
@@ -4513,7 +4857,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00346",
@@ -4526,7 +4871,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00347",
@@ -4539,7 +4885,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00348",
@@ -4552,7 +4899,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00349",
@@ -4565,7 +4913,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00350",
@@ -4578,7 +4927,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00351",
@@ -4591,7 +4941,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00352",
@@ -4604,7 +4955,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00353",
@@ -4617,7 +4969,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00354",
@@ -4630,7 +4983,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00355",
@@ -4643,7 +4997,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00356",
@@ -4656,7 +5011,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00357",
@@ -4669,7 +5025,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00358",
@@ -4682,7 +5039,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00359",
@@ -4695,7 +5053,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00360",
@@ -4708,7 +5067,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00361",
@@ -4721,7 +5081,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00362",
@@ -4734,7 +5095,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00363",
@@ -4747,7 +5109,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00364",
@@ -4760,7 +5123,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00365",
@@ -4773,7 +5137,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 33
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00366",
@@ -4786,7 +5151,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 34
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00367",
@@ -4799,7 +5165,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 35
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00368",
@@ -4812,7 +5179,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 36
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00369",
@@ -4825,7 +5193,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 37
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00370",
@@ -4838,7 +5207,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 38
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00371",
@@ -4851,7 +5221,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 39
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00372",
@@ -4864,7 +5235,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 40
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00373",
@@ -4877,7 +5249,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 41
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00374",
@@ -4890,7 +5263,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 42
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00375",
@@ -4903,7 +5277,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 43
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00376",
@@ -4916,7 +5291,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 44
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00377",
@@ -4929,7 +5305,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 45
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00378",
@@ -4942,7 +5319,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 46
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00379",
@@ -4955,7 +5333,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 47
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00380",
@@ -4968,7 +5347,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 48
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00381",
@@ -4981,7 +5361,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 49
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00382",
@@ -4994,7 +5375,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 50
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00383",
@@ -5007,7 +5389,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 51
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00384",
@@ -5020,7 +5403,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 52
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00385",
@@ -5033,7 +5417,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 53
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00386",
@@ -5046,7 +5431,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 54
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00387",
@@ -5059,7 +5445,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 55
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00388",
@@ -5072,7 +5459,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 56
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00389",
@@ -5085,7 +5473,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 57
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00390",
@@ -5098,7 +5487,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 58
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00391",
@@ -5111,7 +5501,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 59
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00392",
@@ -5124,7 +5515,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 60
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00393",
@@ -5137,7 +5529,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 61
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00394",
@@ -5150,7 +5543,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 62
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00395",
@@ -5163,7 +5557,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 63
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00396",
@@ -5176,7 +5571,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 64
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00397",
@@ -5189,7 +5585,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 65
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00398",
@@ -5202,7 +5599,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 66
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00399",
@@ -5215,7 +5613,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 67
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00400",
@@ -5228,7 +5627,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 68
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00401",
@@ -5241,7 +5641,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 69
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00402",
@@ -5254,7 +5655,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 70
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00403",
@@ -5267,7 +5669,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 71
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00404",
@@ -5280,7 +5683,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 72
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00405",
@@ -5293,7 +5697,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 73
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00406",
@@ -5306,7 +5711,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 74
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00407",
@@ -5319,7 +5725,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 75
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00408",
@@ -5332,7 +5739,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 76
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00409",
@@ -5345,7 +5753,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 77
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00410",
@@ -5358,7 +5767,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 78
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00411",
@@ -5371,7 +5781,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 79
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00412",
@@ -5384,7 +5795,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 80
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00413",
@@ -5397,7 +5809,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 81
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00414",
@@ -5410,7 +5823,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 82
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00415",
@@ -5423,7 +5837,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 83
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00416",
@@ -5436,7 +5851,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 84
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00417",
@@ -5449,7 +5865,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 85
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00418",
@@ -5462,7 +5879,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 86
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00419",
@@ -5475,7 +5893,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 87
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00420",
@@ -5488,7 +5907,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 88
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00421",
@@ -5501,7 +5921,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 89
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00422",
@@ -5514,7 +5935,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 90
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00423",
@@ -5527,7 +5949,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 91
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00424",
@@ -5540,7 +5963,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 92
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00425",
@@ -5553,7 +5977,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 93
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00426",
@@ -5566,7 +5991,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 94
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00427",
@@ -5579,7 +6005,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 95
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00428",
@@ -5592,7 +6019,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 96
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00429",
@@ -5605,7 +6033,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 97
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00430",
@@ -5618,7 +6047,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 98
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00431",
@@ -5631,7 +6061,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 99
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00432",
@@ -5644,7 +6075,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 100
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00433",
@@ -5657,7 +6089,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 101
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00434",
@@ -5670,7 +6103,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 102
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00435",
@@ -5683,7 +6117,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 103
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00436",
@@ -5696,7 +6131,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 104
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00437",
@@ -5709,7 +6145,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 105
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00438",
@@ -5722,7 +6159,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 106
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00439",
@@ -5735,7 +6173,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 107
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00440",
@@ -5748,7 +6187,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 108
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00441",
@@ -5761,7 +6201,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 109
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00442",
@@ -5774,7 +6215,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 110
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00443",
@@ -5787,7 +6229,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 111
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00444",
@@ -5800,7 +6243,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 112
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00445",
@@ -5813,7 +6257,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentation",
     "block": 113
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00446",
@@ -5826,7 +6271,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationSlice",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00447",
@@ -5839,7 +6285,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationSlice",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00448",
@@ -5852,7 +6299,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationSlice",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00449",
@@ -5865,7 +6313,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationSlice",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00450",
@@ -5878,7 +6327,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationSlice",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00451",
@@ -5891,7 +6341,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationSlice",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00452",
@@ -5904,7 +6355,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationSlice",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00453",
@@ -5917,7 +6369,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationSlice",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00454",
@@ -5930,7 +6383,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationSlice",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00455",
@@ -5943,7 +6397,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00456",
@@ -5956,7 +6411,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00457",
@@ -5969,7 +6425,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00458",
@@ -5982,7 +6439,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00459",
@@ -5995,7 +6453,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00460",
@@ -6008,7 +6467,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00461",
@@ -6021,7 +6481,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00462",
@@ -6034,7 +6495,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00463",
@@ -6047,7 +6509,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00464",
@@ -6060,7 +6523,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00465",
@@ -6073,7 +6537,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00466",
@@ -6086,7 +6551,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00467",
@@ -6099,7 +6565,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00468",
@@ -6112,7 +6579,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00469",
@@ -6125,7 +6593,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationStrip",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00470",
@@ -6138,7 +6607,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00471",
@@ -6151,7 +6621,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00472",
@@ -6164,7 +6635,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00473",
@@ -6177,7 +6649,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00474",
@@ -6190,7 +6663,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00475",
@@ -6203,7 +6677,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00476",
@@ -6216,7 +6691,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00477",
@@ -6229,7 +6705,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00478",
@@ -6242,7 +6719,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00479",
@@ -6255,7 +6733,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00480",
@@ -6268,7 +6747,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00481",
@@ -6281,7 +6761,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00482",
@@ -6294,7 +6775,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00483",
@@ -6307,7 +6789,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00484",
@@ -6320,7 +6803,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00485",
@@ -6333,7 +6817,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00486",
@@ -6346,7 +6831,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00487",
@@ -6359,7 +6845,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00488",
@@ -6372,7 +6859,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00489",
@@ -6385,7 +6873,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00490",
@@ -6398,7 +6887,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00491",
@@ -6411,7 +6901,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00492",
@@ -6424,7 +6915,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00493",
@@ -6437,7 +6929,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00494",
@@ -6450,7 +6943,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00495",
@@ -6463,7 +6957,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00496",
@@ -6476,7 +6971,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00497",
@@ -6489,7 +6985,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00498",
@@ -6502,7 +6999,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00499",
@@ -6515,7 +7013,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00500",
@@ -6528,7 +7027,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 33
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00501",
@@ -6541,7 +7041,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 34
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00502",
@@ -6554,7 +7055,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointRepresentationWindow",
     "block": 35
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00503",
@@ -6567,7 +7069,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00504",
@@ -6580,7 +7083,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00505",
@@ -6593,7 +7097,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00506",
@@ -6606,7 +7111,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00507",
@@ -6619,7 +7125,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00508",
@@ -6632,7 +7139,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00509",
@@ -6645,7 +7153,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00510",
@@ -6658,7 +7167,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00511",
@@ -6671,7 +7181,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00512",
@@ -6684,7 +7195,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00513",
@@ -6697,7 +7209,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00514",
@@ -6710,7 +7223,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointStatements",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00515",
@@ -6723,7 +7237,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00516",
@@ -6736,7 +7251,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00517",
@@ -6749,7 +7265,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00518",
@@ -6762,7 +7279,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00519",
@@ -6775,7 +7293,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00520",
@@ -6788,7 +7307,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00521",
@@ -6801,7 +7321,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00522",
@@ -6814,7 +7335,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00523",
@@ -6827,7 +7349,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00524",
@@ -6840,7 +7363,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00525",
@@ -6853,7 +7377,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00526",
@@ -6866,7 +7391,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00527",
@@ -6879,7 +7405,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00528",
@@ -6892,7 +7419,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00529",
@@ -6905,7 +7433,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00530",
@@ -6918,7 +7447,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00531",
@@ -6931,7 +7461,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00532",
@@ -6944,7 +7475,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00533",
@@ -6957,7 +7489,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00534",
@@ -6970,7 +7503,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00535",
@@ -6983,7 +7517,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00536",
@@ -6996,7 +7531,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00537",
@@ -7009,7 +7545,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00538",
@@ -7022,7 +7559,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00539",
@@ -7035,7 +7573,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00540",
@@ -7048,7 +7587,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00541",
@@ -7061,7 +7601,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00542",
@@ -7074,7 +7615,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00543",
@@ -7087,7 +7629,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00544",
@@ -7100,7 +7643,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00545",
@@ -7113,7 +7657,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 33
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00546",
@@ -7126,7 +7671,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 34
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00547",
@@ -7139,7 +7685,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 35
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00548",
@@ -7152,7 +7699,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 36
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00549",
@@ -7165,7 +7713,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 37
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00550",
@@ -7178,7 +7727,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 38
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00551",
@@ -7191,7 +7741,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 39
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00552",
@@ -7204,7 +7755,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 40
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00553",
@@ -7217,7 +7769,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 41
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00554",
@@ -7230,7 +7783,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 42
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00555",
@@ -7243,7 +7797,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 43
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00556",
@@ -7256,7 +7811,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 44
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00557",
@@ -7269,7 +7825,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 45
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00558",
@@ -7282,7 +7839,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 46
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00559",
@@ -7295,7 +7853,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 47
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00560",
@@ -7308,7 +7867,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityCutoff",
     "block": 48
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00561",
@@ -7321,7 +7881,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00562",
@@ -7334,7 +7895,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00563",
@@ -7347,7 +7909,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00564",
@@ -7360,7 +7923,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00565",
@@ -7373,7 +7937,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00566",
@@ -7386,7 +7951,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00567",
@@ -7399,7 +7965,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00568",
@@ -7412,7 +7979,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00569",
@@ -7425,7 +7993,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00570",
@@ -7438,7 +8007,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00571",
@@ -7451,7 +8021,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00572",
@@ -7464,7 +8035,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00573",
@@ -7477,7 +8049,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00574",
@@ -7490,7 +8063,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00575",
@@ -7503,7 +8077,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00576",
@@ -7516,7 +8091,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00577",
@@ -7529,7 +8105,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00578",
@@ -7542,7 +8119,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.AdjointTestDensityLimits",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00579",
@@ -7555,7 +8133,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.CellLayerBreakdown",
     "block": 3
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00580",
@@ -7568,7 +8147,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.CellLayerBreakdown",
     "block": 4
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00581",
@@ -7581,7 +8161,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.CellLayerBreakdownCompose",
     "block": 3
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00582",
@@ -7594,7 +8175,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.CellLayerBreakdownCompose",
     "block": 4
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00583",
@@ -7607,7 +8189,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.CellLayerBreakdownCompose",
     "block": 5
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00584",
@@ -7620,7 +8203,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00585",
@@ -7633,7 +8217,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00586",
@@ -7646,7 +8231,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00587",
@@ -7659,7 +8245,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00588",
@@ -7672,7 +8259,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00589",
@@ -7685,7 +8273,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 8
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00590",
@@ -7698,7 +8287,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 9
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00591",
@@ -7711,7 +8301,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 10
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00592",
@@ -7724,7 +8315,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 11
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00593",
@@ -7737,7 +8329,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 12
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00594",
@@ -7750,7 +8343,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 13
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00595",
@@ -7763,7 +8357,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 14
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00596",
@@ -7776,7 +8371,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 15
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00597",
@@ -7789,7 +8385,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 16
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00598",
@@ -7802,7 +8399,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionIdentity",
     "block": 17
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00599",
@@ -7815,7 +8413,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionSmooth",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00600",
@@ -7828,7 +8427,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionSmooth",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00601",
@@ -7841,7 +8441,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionSmooth",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00602",
@@ -7854,7 +8455,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionSmooth",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00603",
@@ -7867,7 +8469,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionSmooth",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00604",
@@ -7880,7 +8483,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionSmooth",
     "block": 8
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00605",
@@ -7893,7 +8497,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionSmooth",
     "block": 9
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00606",
@@ -7906,7 +8511,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionSmooth",
     "block": 10
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00607",
@@ -7919,7 +8525,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ConvectionSmooth",
     "block": 11
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00608",
@@ -7932,7 +8539,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.CubicWeightProduct",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00609",
@@ -7945,7 +8553,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.CubicWeightProduct",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00610",
@@ -7958,7 +8567,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.CubicWeightProduct",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00611",
@@ -7971,7 +8581,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.CubicWeightProduct",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00612",
@@ -7984,7 +8595,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.CubicWeightProduct",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00613",
@@ -7997,7 +8609,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.EnergyBounds",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00614",
@@ -8010,7 +8623,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.EnergyBounds",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00615",
@@ -8023,7 +8637,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.EnergyBounds",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00616",
@@ -8036,7 +8651,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.EnergyBounds",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00617",
@@ -8049,7 +8665,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.EnergyBounds",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00618",
@@ -8062,7 +8679,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.EnergyBounds",
     "block": 8
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00619",
@@ -8075,7 +8693,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FormShiftBridge",
     "block": 3
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00620",
@@ -8088,7 +8707,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FormShiftBridge",
     "block": 4
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00621",
@@ -8101,7 +8721,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FormShiftBridge",
     "block": 5
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00622",
@@ -8114,7 +8735,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenFormBridge",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00623",
@@ -8127,7 +8749,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenFormBridge",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00624",
@@ -8140,7 +8763,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenFormBridge",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00625",
@@ -8153,7 +8777,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenIntegrand",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00626",
@@ -8166,7 +8791,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenIntegrand",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00627",
@@ -8179,7 +8805,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenIntegrand",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00628",
@@ -8192,7 +8819,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenIntegrand",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00629",
@@ -8205,7 +8833,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenIntegrand",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00630",
@@ -8218,7 +8847,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenIntegrand",
     "block": 8
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00631",
@@ -8231,7 +8861,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenIntegrand",
     "block": 9
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00632",
@@ -8244,7 +8875,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.FrozenIntegrand",
     "block": 10
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-00633",
@@ -8257,7 +8889,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapGradTerm",
     "block": 3
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00634",
@@ -8270,7 +8903,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapGradTerm",
     "block": 4
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00635",
@@ -8283,7 +8917,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapGradTerm",
     "block": 5
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00636",
@@ -8296,7 +8931,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapGradTerm",
     "block": 6
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00637",
@@ -8309,7 +8945,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapGradTerm",
     "block": 7
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00638",
@@ -8322,7 +8959,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapGradTerm",
     "block": 8
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00639",
@@ -8335,7 +8973,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapGradTerm",
     "block": 9
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00640",
@@ -8348,7 +8987,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapGradTerm",
     "block": 10
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00641",
@@ -8361,7 +9001,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapGradTerm",
     "block": 11
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00642",
@@ -8374,7 +9015,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapSupTerm",
     "block": 3
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00643",
@@ -8387,7 +9029,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapSupTerm",
     "block": 4
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00644",
@@ -8400,7 +9043,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapSupTerm",
     "block": 5
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00645",
@@ -8413,7 +9057,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapSupTerm",
     "block": 6
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00646",
@@ -8426,7 +9071,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapSupTerm",
     "block": 7
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00647",
@@ -8439,7 +9085,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapSupTerm",
     "block": 8
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00648",
@@ -8452,7 +9099,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapSupTerm",
     "block": 9
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00649",
@@ -8465,7 +9113,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapTransferBridge",
     "block": 3
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00650",
@@ -8478,7 +9127,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapTransferBridge",
     "block": 4
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00651",
@@ -8491,7 +9141,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.GapTransferBridge",
     "block": 5
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-00652",
@@ -8504,7 +9155,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAdjointField",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00653",
@@ -8517,7 +9169,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAdjointField",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00654",
@@ -8530,7 +9183,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAdjointField",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00655",
@@ -8543,7 +9197,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAdjointField",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00656",
@@ -8556,7 +9211,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAdjointStructure",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00657",
@@ -8569,7 +9225,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineInvariant",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00658",
@@ -8582,7 +9239,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineInvariant",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00659",
@@ -8595,7 +9253,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineInvariant",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00660",
@@ -8608,7 +9267,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineStructure",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00661",
@@ -8621,7 +9281,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineStructure",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00662",
@@ -8634,7 +9295,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineStructure",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00663",
@@ -8647,7 +9309,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineStructure",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00664",
@@ -8660,7 +9323,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineStructure",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00665",
@@ -8673,7 +9337,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineStructure",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00666",
@@ -8686,7 +9351,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineStructure",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00667",
@@ -8699,7 +9365,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineWeak",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00668",
@@ -8712,7 +9379,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineWeak",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00669",
@@ -8725,7 +9393,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineWeak",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00670",
@@ -8738,7 +9407,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineWeak",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00671",
@@ -8751,7 +9421,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineWeak",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00672",
@@ -8764,7 +9435,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineWeak",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00673",
@@ -8777,7 +9449,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineWeak",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00674",
@@ -8790,7 +9463,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAffineWeak",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00675",
@@ -8803,7 +9477,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAssembly",
     "block": 3
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00676",
@@ -8816,7 +9491,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAssembly",
     "block": 4
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00677",
@@ -8829,7 +9505,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAssembly",
     "block": 5
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00678",
@@ -8842,7 +9519,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAssembly",
     "block": 6
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00679",
@@ -8855,7 +9533,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAssembly",
     "block": 7
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00680",
@@ -8868,7 +9547,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAssembly",
     "block": 8
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00681",
@@ -8881,7 +9561,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAssembly",
     "block": 9
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00682",
@@ -8894,7 +9575,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstAssembly",
     "block": 10
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00683",
@@ -8907,7 +9589,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00684",
@@ -8920,7 +9603,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00685",
@@ -8933,7 +9617,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00686",
@@ -8946,7 +9631,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00687",
@@ -8959,7 +9645,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00688",
@@ -8972,7 +9659,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00689",
@@ -8985,7 +9673,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00690",
@@ -8998,7 +9687,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00691",
@@ -9011,7 +9701,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 11
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00692",
@@ -9024,7 +9715,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 12
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00693",
@@ -9037,7 +9729,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 13
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00694",
@@ -9050,7 +9743,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 14
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00695",
@@ -9063,7 +9757,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 15
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00696",
@@ -9076,7 +9771,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstBallAgreement",
     "block": 16
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00697",
@@ -9089,7 +9785,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00698",
@@ -9102,7 +9799,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00699",
@@ -9115,7 +9813,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00700",
@@ -9128,7 +9827,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00701",
@@ -9141,7 +9841,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00702",
@@ -9154,7 +9855,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00703",
@@ -9167,7 +9869,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00704",
@@ -9180,7 +9883,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00705",
@@ -9193,7 +9897,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 11
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00706",
@@ -9206,7 +9911,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 12
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00707",
@@ -9219,7 +9925,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 13
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00708",
@@ -9232,7 +9939,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 14
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00709",
@@ -9245,7 +9953,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 15
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00710",
@@ -9258,7 +9967,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 16
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00711",
@@ -9271,7 +9981,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 17
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00712",
@@ -9284,7 +9995,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 18
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00713",
@@ -9297,7 +10009,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 19
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00714",
@@ -9310,7 +10023,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldDecayOrder",
     "block": 20
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00715",
@@ -9323,7 +10037,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotential",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00716",
@@ -9336,7 +10051,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotential",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00717",
@@ -9349,7 +10065,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00718",
@@ -9362,7 +10079,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00719",
@@ -9375,7 +10093,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00720",
@@ -9388,7 +10107,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00721",
@@ -9401,7 +10121,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00722",
@@ -9414,7 +10135,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00723",
@@ -9427,7 +10149,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00724",
@@ -9440,7 +10163,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00725",
@@ -9453,7 +10177,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 11
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00726",
@@ -9466,7 +10191,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 12
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00727",
@@ -9479,7 +10205,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 13
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00728",
@@ -9492,7 +10219,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 14
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00729",
@@ -9505,7 +10233,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 15
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00730",
@@ -9518,7 +10247,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 16
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00731",
@@ -9531,7 +10261,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 17
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00732",
@@ -9544,7 +10275,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 18
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00733",
@@ -9557,7 +10289,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 19
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00734",
@@ -9570,7 +10303,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 20
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00735",
@@ -9583,7 +10317,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 21
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00736",
@@ -9596,7 +10331,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 22
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00737",
@@ -9609,7 +10345,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialAmp",
     "block": 23
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00738",
@@ -9622,7 +10359,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialParts",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00739",
@@ -9635,7 +10373,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialParts",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00740",
@@ -9648,7 +10387,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialParts",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00741",
@@ -9661,7 +10401,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialPrimitive",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00742",
@@ -9674,7 +10415,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialPrimitive",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00743",
@@ -9687,7 +10429,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00744",
@@ -9700,7 +10443,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00745",
@@ -9713,7 +10457,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00746",
@@ -9726,7 +10471,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00747",
@@ -9739,7 +10485,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00748",
@@ -9752,7 +10499,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00749",
@@ -9765,7 +10513,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00750",
@@ -9778,7 +10527,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00751",
@@ -9791,7 +10541,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 11
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00752",
@@ -9804,7 +10555,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 12
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00753",
@@ -9817,7 +10569,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 13
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00754",
@@ -9830,7 +10583,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 14
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00755",
@@ -9843,7 +10597,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 15
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00756",
@@ -9856,7 +10611,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 16
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00757",
@@ -9869,7 +10625,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 17
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00758",
@@ -9882,7 +10639,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 18
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00759",
@@ -9895,7 +10653,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 19
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00760",
@@ -9908,7 +10667,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 20
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00761",
@@ -9921,7 +10681,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 21
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00762",
@@ -9934,7 +10695,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 22
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00763",
@@ -9947,7 +10709,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 23
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00764",
@@ -9960,7 +10723,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 24
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00765",
@@ -9973,7 +10737,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 25
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00766",
@@ -9986,7 +10751,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 26
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00767",
@@ -9999,7 +10765,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 27
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00768",
@@ -10012,7 +10779,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 28
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00769",
@@ -10025,7 +10793,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 29
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00770",
@@ -10038,7 +10807,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 30
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00771",
@@ -10051,7 +10821,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 31
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00772",
@@ -10064,7 +10835,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 32
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00773",
@@ -10077,7 +10849,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 33
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00774",
@@ -10090,7 +10863,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 34
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00775",
@@ -10103,7 +10877,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 35
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00776",
@@ -10116,7 +10891,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 36
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00777",
@@ -10129,7 +10905,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 37
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00778",
@@ -10142,7 +10919,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 38
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00779",
@@ -10155,7 +10933,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 39
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00780",
@@ -10168,7 +10947,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 40
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00781",
@@ -10181,7 +10961,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 41
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00782",
@@ -10194,7 +10975,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 42
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00783",
@@ -10207,7 +10989,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 43
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00784",
@@ -10220,7 +11003,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialRotation",
     "block": 44
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00785",
@@ -10233,7 +11017,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00786",
@@ -10246,7 +11031,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00787",
@@ -10259,7 +11045,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00788",
@@ -10272,7 +11059,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00789",
@@ -10285,7 +11073,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00790",
@@ -10298,7 +11087,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00791",
@@ -10311,7 +11101,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00792",
@@ -10324,7 +11115,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00793",
@@ -10337,7 +11129,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 11
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00794",
@@ -10350,7 +11143,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 12
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00795",
@@ -10363,7 +11157,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 13
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00796",
@@ -10376,7 +11171,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 14
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00797",
@@ -10389,7 +11185,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 15
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00798",
@@ -10402,7 +11199,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 16
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00799",
@@ -10415,7 +11213,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 17
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00800",
@@ -10428,7 +11227,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 18
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00801",
@@ -10441,7 +11241,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 19
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00802",
@@ -10454,7 +11255,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 20
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00803",
@@ -10467,7 +11269,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 21
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00804",
@@ -10480,7 +11283,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 22
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00805",
@@ -10493,7 +11297,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 23
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00806",
@@ -10506,7 +11311,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 24
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00807",
@@ -10519,7 +11325,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 25
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00808",
@@ -10532,7 +11339,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 26
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00809",
@@ -10545,7 +11353,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 27
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00810",
@@ -10558,7 +11367,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 28
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00811",
@@ -10571,7 +11381,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStream",
     "block": 29
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00812",
@@ -10584,7 +11395,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00813",
@@ -10597,7 +11409,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00814",
@@ -10610,7 +11423,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00815",
@@ -10623,7 +11437,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00816",
@@ -10636,7 +11451,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00817",
@@ -10649,7 +11465,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00818",
@@ -10662,7 +11479,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00819",
@@ -10675,7 +11493,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00820",
@@ -10688,7 +11507,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 11
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00821",
@@ -10701,7 +11521,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 12
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00822",
@@ -10714,7 +11535,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 13
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00823",
@@ -10727,7 +11549,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 14
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00824",
@@ -10740,7 +11563,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 15
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00825",
@@ -10753,7 +11577,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstFieldPotentialStreamKey",
     "block": 16
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00826",
@@ -10766,7 +11591,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00827",
@@ -10779,7 +11605,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00828",
@@ -10792,7 +11619,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00829",
@@ -10805,7 +11633,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00830",
@@ -10818,7 +11647,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00831",
@@ -10831,7 +11661,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00832",
@@ -10844,7 +11675,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00833",
@@ -10857,7 +11689,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00834",
@@ -10870,7 +11703,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 11
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00835",
@@ -10883,7 +11717,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 12
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00836",
@@ -10896,7 +11731,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 13
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00837",
@@ -10909,7 +11745,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 14
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00838",
@@ -10922,7 +11759,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 15
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00839",
@@ -10935,7 +11773,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 16
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00840",
@@ -10948,7 +11787,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 17
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00841",
@@ -10961,7 +11801,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 18
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00842",
@@ -10974,7 +11815,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 19
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00843",
@@ -10987,7 +11829,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 20
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00844",
@@ -11000,7 +11843,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 21
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00845",
@@ -11013,7 +11857,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 22
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00846",
@@ -11026,7 +11871,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 23
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00847",
@@ -11039,7 +11885,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 24
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00848",
@@ -11052,7 +11899,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 25
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00849",
@@ -11065,7 +11913,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 26
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00850",
@@ -11078,7 +11927,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 27
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00851",
@@ -11091,7 +11941,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 28
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00852",
@@ -11104,7 +11955,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 29
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00853",
@@ -11117,7 +11969,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedDecay",
     "block": 30
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00854",
@@ -11130,7 +11983,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedParams",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00855",
@@ -11143,7 +11997,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedParams",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00856",
@@ -11156,7 +12011,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedParams",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00857",
@@ -11169,7 +12025,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedParams",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00858",
@@ -11182,7 +12039,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedParams",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00859",
@@ -11195,7 +12053,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmooth",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00860",
@@ -11208,7 +12067,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmooth",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00861",
@@ -11221,7 +12081,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmooth",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00862",
@@ -11234,7 +12095,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmoothFactor",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00863",
@@ -11247,7 +12109,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmoothFactor",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00864",
@@ -11260,7 +12123,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmoothFactor",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00865",
@@ -11273,7 +12137,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmoothFactor",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00866",
@@ -11286,7 +12151,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmoothFactor",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00867",
@@ -11299,7 +12165,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmoothFactor",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00868",
@@ -11312,7 +12179,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmoothFactor",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00869",
@@ -11325,7 +12193,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstMovedSmoothFactor",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00870",
@@ -11338,7 +12207,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetClause",
     "block": 3
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00871",
@@ -11351,7 +12221,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetClause",
     "block": 4
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00872",
@@ -11364,7 +12235,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetClause",
     "block": 5
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00873",
@@ -11377,7 +12249,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetClause",
     "block": 6
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00874",
@@ -11390,7 +12263,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetClause",
     "block": 7
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00875",
@@ -11403,7 +12277,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 3
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00876",
@@ -11416,7 +12291,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 4
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00877",
@@ -11429,7 +12305,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 5
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00878",
@@ -11442,7 +12319,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 6
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00879",
@@ -11455,7 +12333,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 7
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00880",
@@ -11468,7 +12347,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 8
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00881",
@@ -11481,7 +12361,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 9
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00882",
@@ -11494,7 +12375,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 10
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00883",
@@ -11507,7 +12389,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 11
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00884",
@@ -11520,7 +12403,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 12
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00885",
@@ -11533,7 +12417,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 13
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00886",
@@ -11546,7 +12431,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 14
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00887",
@@ -11559,7 +12445,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 15
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00888",
@@ -11572,7 +12459,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 16
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00889",
@@ -11585,7 +12473,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 17
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00890",
@@ -11598,7 +12487,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 18
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00891",
@@ -11611,7 +12501,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 19
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00892",
@@ -11624,7 +12515,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 20
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00893",
@@ -11637,7 +12529,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 21
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00894",
@@ -11650,7 +12543,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 22
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00895",
@@ -11663,7 +12557,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 23
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00896",
@@ -11676,7 +12571,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 24
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00897",
@@ -11689,7 +12585,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 25
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00898",
@@ -11702,7 +12599,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 26
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00899",
@@ -11715,7 +12613,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 27
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00900",
@@ -11728,7 +12627,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 28
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00901",
@@ -11741,7 +12641,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 29
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00902",
@@ -11754,7 +12655,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 30
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00903",
@@ -11767,7 +12669,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 31
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00904",
@@ -11780,7 +12683,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 32
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00905",
@@ -11793,7 +12697,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 33
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00906",
@@ -11806,7 +12711,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 34
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00907",
@@ -11819,7 +12725,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 35
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00908",
@@ -11832,7 +12739,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 36
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00909",
@@ -11845,7 +12753,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 37
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00910",
@@ -11858,7 +12767,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 38
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00911",
@@ -11871,7 +12781,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 39
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00912",
@@ -11884,7 +12795,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 40
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00913",
@@ -11897,7 +12809,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 41
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00914",
@@ -11910,7 +12823,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 42
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00915",
@@ -11923,7 +12837,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 43
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00916",
@@ -11936,7 +12851,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 44
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00917",
@@ -11949,7 +12865,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 45
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00918",
@@ -11962,7 +12879,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 46
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00919",
@@ -11975,7 +12893,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 47
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00920",
@@ -11988,7 +12907,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 48
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00921",
@@ -12001,7 +12921,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 49
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00922",
@@ -12014,7 +12935,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 50
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00923",
@@ -12027,7 +12949,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 51
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00924",
@@ -12040,7 +12963,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 52
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00925",
@@ -12053,7 +12977,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 53
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00926",
@@ -12066,7 +12991,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 54
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00927",
@@ -12079,7 +13005,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 55
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00928",
@@ -12092,7 +13019,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 56
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00929",
@@ -12105,7 +13033,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 57
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00930",
@@ -12118,7 +13047,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 58
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00931",
@@ -12131,7 +13061,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 59
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00932",
@@ -12144,7 +13075,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 60
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00933",
@@ -12157,7 +13089,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 61
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00934",
@@ -12170,7 +13103,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 62
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00935",
@@ -12183,7 +13117,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 63
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00936",
@@ -12196,7 +13131,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 64
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00937",
@@ -12209,7 +13145,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 65
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00938",
@@ -12222,7 +13159,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 66
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00939",
@@ -12235,7 +13173,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 67
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00940",
@@ -12248,7 +13187,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 68
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00941",
@@ -12261,7 +13201,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 69
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00942",
@@ -12274,7 +13215,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 70
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00943",
@@ -12287,7 +13229,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 71
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-00944",
@@ -12300,7 +13243,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstOffsetIdentity",
     "block": 72
-   }
+   },
+   "topic": "offset-certificate"
   }
  ],
  "plain": {
@@ -13254,5 +14198,133 @@
   "Breakdown.MildFramework.IsMildOn": "The mild integral equation"
  },
  "notes": {},
- "fidelity_held": "This guide describes each declaration on its own terms. Comparisons of the Lean with the paper's numbered statements are on the paper, index and full-account pages."
+ "fidelity_held": "This guide describes each declaration on its own terms. Comparisons of the Lean with the paper's numbered statements are on the paper, index and full-account pages.",
+ "families": [
+  {
+   "id": "theorems",
+   "name": "The theorems"
+  },
+  {
+   "id": "profile-to-blowup",
+   "name": "From a profile to blow-up"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus"
+  },
+  {
+   "id": "certificate-to-profile",
+   "name": "From a certificate to a profile"
+  },
+  {
+   "id": "cell-data",
+   "name": "Cell data"
+  },
+  {
+   "id": "cell-estimates",
+   "name": "Cell estimates"
+  },
+  {
+   "id": "cell-certificate",
+   "name": "From cell data to the certificate"
+  }
+ ],
+ "topics": [
+  {
+   "id": "statement",
+   "name": "The blow-up statements",
+   "description": "Smooth solutions, breakdown on space and on the torus, and the theorems that state them (Theorem 1.1, Theorem 7.1).",
+   "family": "theorems"
+  },
+  {
+   "id": "fractional",
+   "name": "The fractional extension",
+   "description": "The authors' separate extension with dissipation exponent between 1 and 5/4, outside the classical paper.",
+   "family": "theorems"
+  },
+  {
+   "id": "mild",
+   "name": "Heat flow and mild solutions",
+   "description": "The heat semigroup, the bilinear Duhamel term, mild solutions, restarting and uniqueness (§3).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "profile",
+   "name": "Recurrent profiles",
+   "description": "Self-similar time-periodic profiles, their slices and orbits, and weak profiles read as physical fields (§2, §4.1, §7.11).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "monodromy",
+   "name": "Monodromy and the correction",
+   "description": "The period map, its compact-plus-small splitting, the spectral projection and the fixed point that corrects a profile to an exact solution (§4).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus",
+   "description": "The solenoidal cutoff, periodization and the periodic right inverse that move the construction onto the torus (§5–6).",
+   "family": "torus"
+  },
+  {
+   "id": "certificate",
+   "name": "From certificate to profile",
+   "description": "Certificate data, the free operator, convection, held solutions and the smoothing of the weak profile they produce (§7).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "coercive",
+   "name": "The coercive multiplier estimate",
+   "description": "The multiplier, its five density coefficients and lower bound, and the a priori estimate it gives (Appendix B.1 and B.2).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "encoding",
+   "name": "Encoded cell data",
+   "description": "The finitely represented inputs: coordinates and harmonics, the profile representation, splines and jets, physical cells, rows, weights and potentials.",
+   "family": "cell-data"
+  },
+  {
+   "id": "quarter-plane",
+   "name": "Reduction to the quarter plane",
+   "description": "Symmetry reduction of the density to the meridian quarter plane (B.3).",
+   "family": "cell-data"
+  },
+  {
+   "id": "cells-tails",
+   "name": "Cells, traces and tails",
+   "description": "Integrability, the common vector of unknowns, resolved modes, the tail budget and the exterior estimate (B.4).",
+   "family": "cell-data"
+  },
+  {
+   "id": "angular",
+   "name": "Angular and ray-exterior tests",
+   "description": "The angular inequalities, the pointwise test and the integrated test on ray exteriors (B.5 and B.6).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "tree",
+   "name": "The matrix tree lower bound",
+   "description": "The tree conditions on the cell matrices and the passage from all cells to the global inequality (B.7 and B.8).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "profile-change",
+   "name": "Changing the profile",
+   "description": "Bounds for moving estimates from the reference field to the actual profile (B.9).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "adjoint",
+   "name": "The adjoint pairing and its error",
+   "description": "The quadratic adjoint pairing, the azimuthal dual norm and the linear adjoint error with potentials and pins (B.10 to B.12).",
+   "family": "cell-certificate"
+  },
+  {
+   "id": "offset-certificate",
+   "name": "The offset and the certificate",
+   "description": "Enclosing the constant, linear and quadratic offset, and the fifteen fields of CellSystemCondition that make the data a certificate (B.13 and B.14).",
+   "family": "cell-certificate"
+  }
+ ]
 }

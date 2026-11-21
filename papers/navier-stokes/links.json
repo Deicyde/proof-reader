@@ -51,7 +51,15 @@
    "anchor": {
     "heading": "1. The equations and the Clay conclusions",
     "block": 1
-   }
+   },
+   "topic": "statement",
+   "comparisons": [
+    {
+     "lean": "Breakdown.IsSmoothSolution",
+     "fidelity": "same",
+     "note": "The definition requires joint smoothness of velocity and pressure on the closed half-space in time, and the prescribed initial velocity. The equations are imposed at positive times."
+    }
+   ]
   },
   {
    "id": "1-the-equations-and-the-4-1",
@@ -64,7 +72,15 @@
    "anchor": {
     "heading": "1. The equations and the Clay conclusions",
     "block": 4
-   }
+   },
+   "topic": "statement",
+   "comparisons": [
+    {
+     "lean": "Breakdown.BreakdownOnSpace",
+     "fidelity": "same",
+     "note": "For each ν>0, the conclusion chooses smooth compactly supported solenoidal data and excludes every global smooth solution with one L²-energy bound valid for all t≥0."
+    }
+   ]
   },
   {
    "id": "1-the-equations-and-the-5-1",
@@ -77,7 +93,15 @@
    "anchor": {
     "heading": "1. The equations and the Clay conclusions",
     "block": 5
-   }
+   },
+   "topic": "statement",
+   "comparisons": [
+    {
+     "lean": "Breakdown.BreakdownOnTorus",
+     "fidelity": "same",
+     "note": "The conclusion chooses smooth solenoidal data of period one in each coordinate and excludes global smooth solutions with that velocity periodicity, for every ν>0. It places no periodicity requirement on the pressure."
+    }
+   ]
   },
   {
    "id": "2-a-profile-gives-breakd-1-1",
@@ -90,7 +114,15 @@
    "anchor": {
     "heading": "2. A profile gives breakdown",
     "block": 1
-   }
+   },
+   "topic": "profile",
+   "comparisons": [
+    {
+     "lean": "Breakdown.PeriodicSimilarityProfileExists",
+     "fidelity": "same",
+     "note": "The premise asks for smooth velocity and pressure, a positive recurrence period, an orthogonal spatial twist and a common decay constant. Its remaining clauses impose the similarity equation, incompressibility, nonvanishing, decay through second spatial derivatives, and pressure-gradient decay."
+    }
+   ]
   },
   {
    "id": "2-a-profile-gives-breakd-7-3",
@@ -103,7 +135,15 @@
    "anchor": {
     "heading": "2. A profile gives breakdown",
     "block": 7
-   }
+   },
+   "topic": "statement",
+   "comparisons": [
+    {
+     "lean": "Breakdown.breakdown_on_space",
+     "fidelity": "same",
+     "note": "The passage correctly describes the stated implication: the profile premise includes the additional decay bounds and the conclusion excludes global smooth bounded-energy evolution. A chosen trajectory and the estimates (1.6) are absent from this conclusion."
+    }
+   ]
   },
   {
    "id": "2-a-profile-gives-breakd-7-4",
@@ -116,7 +156,15 @@
    "anchor": {
     "heading": "2. A profile gives breakdown",
     "block": 7
-   }
+   },
+   "topic": "statement",
+   "comparisons": [
+    {
+     "lean": "Breakdown.breakdown_on_torus",
+     "fidelity": "same",
+     "note": "The conclusion excludes a global smooth solution even when only its velocity is periodic; it gives no trajectory or estimates (1.7). The moving-frame reduction and uniqueness supply the comparison with the paper's periodic-pressure solution class."
+    }
+   ]
   },
   {
    "id": "2-a-profile-gives-breakd-7-5",
@@ -129,7 +177,15 @@
    "anchor": {
     "heading": "2. A profile gives breakdown",
     "block": 7
-   }
+   },
+   "topic": "statement",
+   "comparisons": [
+    {
+     "lean": "Breakdown.breakdown_on_space_of_weak",
+     "fidelity": "same",
+     "note": "The hypothesis is existence of a nonzero recurrent distributional profile with uniform L⁶ and gradient L² bounds and square-integrable second derivatives over a period. This direct implication to whole-space breakdown is distinct from the paper's smooth-profile formulation."
+    }
+   ]
   },
   {
    "id": "quantitative-content-ins-1-2",
@@ -142,7 +198,15 @@
    "anchor": {
     "heading": "Quantitative content inside the formal proof",
     "block": 1
-   }
+   },
+   "topic": "monodromy",
+   "comparisons": [
+    {
+     "lean": "Breakdown.TransferHolds",
+     "fidelity": "same",
+     "note": "For an admissible nonzero recurrent mild orbit, any dense linear subspace and any ε>0, the statement chooses a mild trajectory on [0,1) with initial datum in that subspace within ε of the orbit. It also retains a positive exponent and a bound for the rescaled trajectory's distance from that same orbit."
+    }
+   ]
   },
   {
    "id": "quantitative-content-ins-3-4",
@@ -156,7 +220,20 @@
    "anchor": {
     "heading": "Quantitative content inside the formal proof",
     "block": 3
-   }
+   },
+   "topic": "profile",
+   "comparisons": [
+    {
+     "lean": "Breakdown.OrbitBoundStatement",
+     "fidelity": "same",
+     "note": "The first assertion gives one finite upper bound for the recurrent orbit's norm, valid at every similarity time."
+    },
+    {
+     "lean": "Breakdown.OrbitNormStatement",
+     "fidelity": "same",
+     "note": "The second assertion gives one strictly positive lower bound at every similarity time, assuming the orthogonal recurrence commutes with the heat and nonlinear evolution."
+    }
+   ]
   },
   {
    "id": "quantitative-content-ins-4-1",
@@ -169,7 +246,15 @@
    "anchor": {
     "heading": "Quantitative content inside the formal proof",
     "block": 4
-   }
+   },
+   "topic": "monodromy",
+   "comparisons": [
+    {
+     "lean": "Breakdown.StepDataStatement",
+     "fidelity": "same",
+     "note": "The short-interval inverse retains a finite-dimensional correction space, a bounded map with values in the chosen dense data space, and a bounded right inverse on the recurrent pieces. These are the correction data referred to in the passage."
+    }
+   ]
   },
   {
    "id": "3-a-certificate-gives-a-1-1",
@@ -183,7 +268,20 @@
    "anchor": {
     "heading": "3. A certificate gives a profile",
     "block": 1
-   }
+   },
+   "topic": "certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.certificate_orbit",
+     "fidelity": "same",
+     "note": "The earlier certificate implication concludes only existence of a weak recurrent profile. Its conclusion does not identify the chosen parameter or retain the closeness, symmetry and smoothness assertions of Theorem 7.1."
+    },
+    {
+     "lean": "Breakdown.extended_certificate_orbit",
+     "fidelity": "same",
+     "note": "The extended certificate implication has the same existential weak-profile conclusion. The full parameter, prescribed symmetries and estimates (7.38) do not appear in that conclusion."
+    }
+   ]
   },
   {
    "id": "two-routes-through-the-n-1-3",
@@ -196,7 +294,15 @@
    "anchor": {
     "heading": "Two routes through the nonlinear problem",
     "block": 1
-   }
+   },
+   "topic": "certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.Cert.extendedBorderedInvertibleHolds_of",
+     "fidelity": "same",
+     "note": "This is the bordered linear inversion step: compact convection, the coercive bound and the symmetry properties give a unique solve with the imposed pin constraints."
+    }
+   ]
   },
   {
    "id": "two-routes-through-the-n-1-5",
@@ -209,7 +315,15 @@
    "anchor": {
     "heading": "Two routes through the nonlinear problem",
     "block": 1
-   }
+   },
+   "topic": "certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.Cert.extendedSupBoundHolds_of",
+     "fidelity": "same",
+     "note": "This step obtains the uniform gradient bound used to keep the nonlinear correction in the prescribed set, using the energy-growth and product estimates."
+    }
+   ]
   },
   {
    "id": "two-routes-through-the-n-2-5",
@@ -223,7 +337,20 @@
    "anchor": {
     "heading": "Two routes through the nonlinear problem",
     "block": 2
-   }
+   },
+   "topic": "certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.Cert.extendedHeldContractsHolds_of",
+     "fidelity": "same",
+     "note": "For each admissible parameter, the correction map is a strict contraction in the norm combining the weighted correction size and the gradient supremum."
+    },
+    {
+     "lean": "Breakdown.Cert.extendedHeldExistsUniqueHolds_of",
+     "fidelity": "same",
+     "note": "The fixed-parameter theorem gives a held solution and uniqueness of its forcing coordinate and multiplier within the prescribed bounded class."
+    }
+   ]
   },
   {
    "id": "two-routes-through-the-n-3-2",
@@ -237,7 +364,20 @@
    "anchor": {
     "heading": "Two routes through the nonlinear problem",
     "block": 3
-   }
+   },
+   "topic": "certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.Cert.extendedExistsZeroHeldHolds_of",
+     "fidelity": "same",
+     "note": "After existence, uniqueness, continuity and the boundary enclosures are available, the theorem chooses a parameter where the original and corrective multipliers sum to zero."
+    },
+    {
+     "lean": "Breakdown.Held.testSetZero",
+     "fidelity": "same",
+     "note": "The finite-dimensional zero theorem applies to the mixed box and ellipsoid through a compact convex fixed-point argument. Its proof supplies the stated finite-dimensional step."
+    }
+   ]
   },
   {
    "id": "two-routes-through-the-n-3-4",
@@ -250,7 +390,15 @@
    "anchor": {
     "heading": "Two routes through the nonlinear problem",
     "block": 3
-   }
+   },
+   "topic": "certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.Cert.extendedHeldWeakEquationHolds_of",
+     "fidelity": "same",
+     "note": "When the two multiplier vectors sum to zero, the actuator sum cancels in the distributional equation for the corrected profile. The proof also establishes the integrability needed for the pressure-gradient pairing to vanish."
+    }
+   ]
   },
   {
    "id": "what-the-internal-constr-1-1",
@@ -263,7 +411,15 @@
    "anchor": {
     "heading": "What the internal construction retains",
     "block": 1
-   }
+   },
+   "topic": "certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.ExtendedCertificateData.IsHeldSolution",
+     "fidelity": "same",
+     "note": "At a fixed parameter the definition imposes the nonlinear equation, exact pin constraints, symmetry, correction-plus-multiplier size at most 2ε and gradient essential supremum at most M."
+    }
+   ]
   },
   {
    "id": "what-the-internal-constr-2-2",
@@ -276,7 +432,15 @@
    "anchor": {
     "heading": "What the internal construction retains",
     "block": 2
-   }
+   },
+   "topic": "profile",
+   "comparisons": [
+    {
+     "lean": "Breakdown.FarField.SmoothFieldOfOrbit",
+     "fidelity": "same",
+     "note": "For the given recurrent mild orbit, the statement supplies smooth velocity and pressure with its period and orthogonal twist. The velocity agrees almost everywhere in space with the given orbit at each time."
+    }
+   ]
   },
   {
    "id": "lean-we-added-theorem-7-1-2",
@@ -289,7 +453,15 @@
    "anchor": {
     "heading": "Lean we added: Theorem 7.1 with its chosen witness",
     "block": 1
-   }
+   },
+   "topic": "certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "different",
+     "note": "The linked definition lists the fifteen cell-system assumptions under which our wrapper theorem holds; it states no conclusion itself. The conclusion described in the sentence is that of our separately compiled wrapper, which is not part of the authors' library shown here."
+    }
+   ]
   },
   {
    "id": "the-conditional-chain-re-1-1",
@@ -303,7 +475,20 @@
    "anchor": {
     "heading": "The conditional chain reaches both breakdown conclusions",
     "block": 1
-   }
+   },
+   "topic": "certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.certificate_orbit_proved",
+     "fidelity": "same",
+     "note": "The theorem derives existence of a weak recurrent profile from the earlier certificate assumptions, supplying the analytic ingredients in its proof."
+    },
+    {
+     "lean": "Breakdown.extended_certificate_orbit_proved",
+     "fidelity": "same",
+     "note": "The theorem derives existence of a weak recurrent profile from the extended certificate assumptions, including the finite-row and adjoint conditions."
+    }
+   ]
   },
   {
    "id": "the-conditional-chain-re-2-3",
@@ -319,7 +504,30 @@
    "anchor": {
     "heading": "The conditional chain reaches both breakdown conclusions",
     "block": 2
-   }
+   },
+   "topic": "statement",
+   "comparisons": [
+    {
+     "lean": "Breakdown.WeakProfile.weakOrbitOfParts_holds",
+     "fidelity": "same",
+     "note": "This is the weak-to-mild step used in the route: it converts the recurrent distributional profile into an admissible mild orbit once its physical representation and pairing estimates are supplied."
+    },
+    {
+     "lean": "Breakdown.WeakProfile.breakdownOnSpace_of_orbit",
+     "fidelity": "same",
+     "note": "A nonzero admissible recurrent mild orbit gives compactly supported smooth data for which no global smooth bounded-energy solution exists."
+    },
+    {
+     "lean": "Breakdown.breakdownOnSpace_of_weak",
+     "fidelity": "same",
+     "note": "This theorem composes the weak-profile conversion with the whole-space breakdown argument."
+    },
+    {
+     "lean": "Breakdown.BreakdownOnSpace",
+     "fidelity": "same",
+     "note": "This is the whole-space nonexistence conclusion at the end of the displayed route, quantified over every positive viscosity."
+    }
+   ]
   },
   {
    "id": "the-conditional-chain-re-2-4",
@@ -335,7 +543,30 @@
    "anchor": {
     "heading": "The conditional chain reaches both breakdown conclusions",
     "block": 2
-   }
+   },
+   "topic": "statement",
+   "comparisons": [
+    {
+     "lean": "Breakdown.FarField.periodicLerayProfileExists_of_weak",
+     "fidelity": "same",
+     "note": "This step turns existence of a weak recurrent profile into existence of a smooth recurrent profile with the required spatial decay."
+    },
+    {
+     "lean": "Breakdown.Periodic.breakdownOnTorus_of_profile",
+     "fidelity": "same",
+     "note": "The smooth recurrent profile implies the periodic nonexistence conclusion for every positive viscosity."
+    },
+    {
+     "lean": "Breakdown.FarField.breakdownOnTorus_of_weak",
+     "fidelity": "same",
+     "note": "This theorem composes the weak-to-smooth profile step with the torus breakdown argument."
+    },
+    {
+     "lean": "Breakdown.BreakdownOnTorus",
+     "fidelity": "same",
+     "note": "This is the final periodic nonexistence conclusion, requiring periodic velocity and allowing any smooth pressure."
+    }
+   ]
   },
   {
    "id": "the-conditional-chain-re-3-1",
@@ -350,7 +581,25 @@
    "anchor": {
     "heading": "The conditional chain reaches both breakdown conclusions",
     "block": 3
-   }
+   },
+   "topic": "profile",
+   "comparisons": [
+    {
+     "lean": "Breakdown.FarField.smoothFieldOfOrbit_holds",
+     "fidelity": "same",
+     "note": "The theorem supplies smooth representatives of the given recurrent mild orbit, preserving its recurrence."
+    },
+    {
+     "lean": "Breakdown.FarField.integralEquationOfOrbit_holds",
+     "fidelity": "same",
+     "note": "The theorem establishes the Oseen integral equation for that orbit from the kernel and convolution estimates."
+    },
+    {
+     "lean": "Breakdown.FarField.farFieldDecay_holds",
+     "fidelity": "same",
+     "note": "The theorem supplies velocity decay through second spatial derivatives and pressure-gradient decay for the smooth orbit through the integral equation and far-field estimates."
+    }
+   ]
   },
   {
    "id": "the-conditional-chain-re-5-1",
@@ -360,12 +609,33 @@
    "lean": [
     "Breakdown.CellLayerSystem.CellSystemCondition",
     "Breakdown.BreakdownOnSpace",
-    "Breakdown.BreakdownOnTorus"
+    "Breakdown.BreakdownOnTorus",
+    "Breakdown.CellLayerSystem.breakdownOnSpace_of_cell_system_condition",
+    "Breakdown.CellLayerSystem.breakdownOnTorus_of_cell_system_condition",
+    "Breakdown.CellLayerSystem.breakdownOnSpaceAndTorus_of_cell_system_condition"
    ],
    "anchor": {
     "heading": "The conditional chain reaches both breakdown conclusions",
     "block": 5
-   }
+   },
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "weaker",
+     "note": "The linked definition supplies the fifteen assumptions on the seven groups of cell data. The implication from those assumptions to breakdown is a separate theorem."
+    },
+    {
+     "lean": "Breakdown.BreakdownOnSpace",
+     "fidelity": "weaker",
+     "note": "This link gives the whole-space nonexistence conclusion alone. It does not state the implication from the cell conditions."
+    },
+    {
+     "lean": "Breakdown.BreakdownOnTorus",
+     "fidelity": "weaker",
+     "note": "This link gives the periodic nonexistence conclusion alone. It does not state the implication from the cell conditions."
+    }
+   ]
   },
   {
    "id": "the-conditional-chain-re-8-5",
@@ -380,7 +650,25 @@
    "anchor": {
     "heading": "The conditional chain reaches both breakdown conclusions",
     "block": 8
-   }
+   },
+   "topic": "cells-tails",
+   "comparisons": [
+    {
+     "lean": "Breakdown.AdjointDefect.AzimuthalBounded",
+     "fidelity": "different",
+     "note": "The present condition does require distinct component, time-frequency and azimuthal-order triples and the denominator (|m|+1/2)². A historical claim about which revision changed it needs the earlier revision as well."
+    },
+    {
+     "lean": "Breakdown.CertCell.CellCalculus.IsLeafValues",
+     "fidelity": "different",
+     "note": "The present cell inequalities allow a zero lower bound for the curl-Hessian coefficient while keeping the Hessian lower bound strictly positive. This confirms the current requirements; the passage's proposed identification of a historical patch is not established by this definition."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.modelLabels",
+     "fidelity": "different",
+     "note": "The current active harmonics are those with a nonzero velocity, vorticity, strain or vorticity-gradient component somewhere in the cell. The definition alone does not establish the history of the change."
+    }
+   ]
   },
   {
    "id": "trying-to-satisfy-the-hy-2-3",
@@ -393,7 +681,15 @@
    "anchor": {
     "heading": "Trying to satisfy the hypotheses with cheap data",
     "block": 2
-   }
+   },
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "different",
+     "note": "The linked condition lists the assumptions on cell data; it contains no stated implication from an empty mesh to zero multipliers. That conclusion requires the support and coercivity arguments cited in the surrounding discussion."
+    }
+   ]
   },
   {
    "id": "4-the-outstanding-certif-5-3",
@@ -406,7 +702,15 @@
    "anchor": {
     "heading": "4. The outstanding certificate bridge",
     "block": 5
-   }
+   },
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "different",
+     "note": "The definition supplies the fifteen mathematical obligations a complete checker must establish. It does not give an implementation, a data format, or a verification of the separate checking plan described in the passage."
+    }
+   ]
   },
   {
    "id": "5-checking-workflow-and-4-5",
@@ -420,7 +724,20 @@
    "anchor": {
     "heading": "5. Checking workflow and status",
     "block": 4
-   }
+   },
+   "topic": "profile",
+   "comparisons": [
+    {
+     "lean": "Breakdown.FarField.periodicLerayProfileExists_of_weak",
+     "fidelity": "different",
+     "note": "This theorem states the weak-to-smooth profile implication. It provides no record of which results an external verification script examined."
+    },
+    {
+     "lean": "Breakdown.FarField.breakdownOnTorus_of_weak",
+     "fidelity": "different",
+     "note": "This theorem states the weak-profile implication to periodic breakdown. The asserted verification-script coverage is external to its statement."
+    }
+   ]
   },
   {
    "id": "5-checking-workflow-and-8-3",
@@ -435,7 +752,25 @@
    "anchor": {
     "heading": "5. Checking workflow and status",
     "block": 8
-   }
+   },
+   "topic": "statement",
+   "comparisons": [
+    {
+     "lean": "Breakdown.breakdown_on_space",
+     "fidelity": "different",
+     "note": "The linked theorem is one of the fifteen that the Comparator run checked. The sentence reports that run; the theorem's statement itself says nothing about it."
+    },
+    {
+     "lean": "Breakdown.breakdown_on_torus",
+     "fidelity": "different",
+     "note": "The linked theorem is one of the fifteen that the Comparator run checked. The sentence reports that run; the theorem's statement itself says nothing about it."
+    },
+    {
+     "lean": "Breakdown.breakdown_on_space_of_weak",
+     "fidelity": "different",
+     "note": "The linked theorem is one of the fifteen that the Comparator run checked. The sentence reports that run; the theorem's statement itself says nothing about it."
+    }
+   ]
   },
   {
    "id": "5-checking-workflow-and-8-4",
@@ -449,7 +784,20 @@
    "anchor": {
     "heading": "5. Checking workflow and status",
     "block": 8
-   }
+   },
+   "topic": "certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.certificate_orbit",
+     "fidelity": "different",
+     "note": "The link identifies the certificate-to-weak-profile implication, one of the theorems the Comparator run checked. The sentence reports that run; the statement itself says nothing about it."
+    },
+    {
+     "lean": "Breakdown.extended_certificate_orbit",
+     "fidelity": "different",
+     "note": "The link identifies the certificate-to-weak-profile implication, one of the theorems the Comparator run checked. The sentence reports that run; the statement itself says nothing about it."
+    }
+   ]
   },
   {
    "id": "5-checking-workflow-and-8-6",
@@ -462,7 +810,15 @@
    "anchor": {
     "heading": "5. Checking workflow and status",
     "block": 8
-   }
+   },
+   "topic": "statement",
+   "comparisons": [
+    {
+     "lean": "Breakdown.breakdown_on_space",
+     "fidelity": "different",
+     "note": "The theorem has an explicit profile premise. The quoted rejection of a modified control requires the control file and its checking output; those are not established by the unchanged theorem."
+    }
+   ]
   }
  ],
  "plain": {
@@ -628,7 +984,7 @@
   "Breakdown.CellReduction.Instantiation.AdjointEntryLinks": "Identify the cell adjoint objects",
   "Breakdown.CertCell.labelGrad": "Gradient mode on the meridian plane",
   "Breakdown.CellLayerSystem.PotentialEntriesBounded": "Admissible potential and pin data",
-  "Breakdown.CertCell.CellCalculus.IsLeafValues": "The local analytic leaf inequalities",
+  "Breakdown.CertCell.CellCalculus.IsLeafValues": "Local cell inequalities",
   "Breakdown.CertCell.Assembly.highOwnAmount": "Integrated high-error charge",
   "Breakdown.CertCell.CellCalculus.ownRowVector": "Complete own-cell row vector",
   "Breakdown.CertCell.Certificate.slackRemainder": "Residual of a real node split",
@@ -662,7 +1018,7 @@
   "Breakdown.Cert.extendedHeldWeakEquationHolds_of": "Cancel the force in the weak equation",
   "Breakdown.CertCell.GivenShape.jetUnit": "Unit-interval Hermite polynomial",
   "Breakdown.CertCell.Instance.HasNonnegValues": "Nonnegative values on both charts",
-  "Breakdown.FarField.breakdownOnTorus_of_weak": "Conditional torus breakdown",
+  "Breakdown.FarField.breakdownOnTorus_of_weak": "Weak profile gives torus breakdown",
   "Breakdown.CellReduction.Instantiation.movedParams": "Parameter dependent radial phase",
   "Breakdown.CellReduction.Instantiation.IsAdjointShapeEntry": "Identify the fixed adjoint fields",
   "Breakdown.CertCell.Assembly.RowReason": "Seven reasons for a coordinate row",
@@ -758,7 +1114,7 @@
   "Breakdown.CertCell.IsBoxUniform": "Fixed data across the parameter set",
   "Breakdown.CertCell.labelTime": "Temporal frequency",
   "Breakdown.CellReduction.Instantiation.ProfileShapeEntry": "Parameter-dependent profile data",
-  "Breakdown.certificate_orbit": "Earlier certificate gives a profile",
+  "Breakdown.certificate_orbit": "Earlier certificate gives a weak profile",
   "Breakdown.CertCell.GivenShape.keyPhase": "Harmonic with a radial phase",
   "Breakdown.CertCell.Assembly.activeGroups": "Groups contributing to a tested row",
   "Breakdown.AdjointDefect.AdjointDefectEntry.pinFlux": "Use the skew pin flux",
@@ -998,7 +1354,7 @@
   "Breakdown.CertCell.CellMatField": "Cellwise matrix coefficients",
   "Breakdown.CellReduction.Instantiation.InstantiationBounded": "Identify profile, pressure and adjoints",
   "Breakdown.CertCell.CellCalculus.CellModelHigh": "High polynomial-orthogonal pieces",
-  "Breakdown.StepDataStatement": "Data for the short-interval inverse",
+  "Breakdown.StepDataStatement": "A finite-dimensional right inverse",
   "Breakdown.CertCell.Assembly.modelVorticity": "Polynomial model vorticity coefficient",
   "Breakdown.CertCell.Assembly.absorbValue": "Local absorption already allocated",
   "Breakdown.CertCell.Assembly.longRowCost": "Long-range cost for the row",
@@ -1129,7 +1485,7 @@
   "Breakdown.CellReduction.Instantiation.affineField": "Affine profile in parameters",
   "Breakdown.CertCell.ScalarShape.BoundValues.bounds": "Function-valued harmonic bounds",
   "Breakdown.CertCell.Certificate.SignedTree": "Forms, fronts and columns at nodes",
-  "Breakdown.WeakProfile.breakdownOnSpace_of_orbit": "Breakdown from an abstract orbit",
+  "Breakdown.WeakProfile.breakdownOnSpace_of_orbit": "Breakdown from a recurrent orbit",
   "Breakdown.CertCell.Assembly.headUnit": "Pressure-head direction",
   "Breakdown.CertCell.Certificate.IsCoordinateOn": "Valid pivot coordinate signs",
   "Breakdown.IsSmoothSolution": "Smooth Navier–Stokes solution",
@@ -1176,44 +1532,175 @@
   "Breakdown.Cert.ExtendedFrozenBridgeHolds": "Frozen form bound on free solutions",
   "Breakdown.FarField.kernelConv": "Convolution with the Leray kernel",
   "Breakdown.FarField.heatKernelThird": "Third derivative of the heat kernel",
-  "Breakdown.MildFramework.Commutes": "Isometry commutes with every operator"
+  "Breakdown.MildFramework.Commutes": "Isometry commutes with every operator",
+  "Breakdown.CellLayerSystem.breakdownOnSpaceAndTorus_of_cell_system_condition": "Obtain both conditional conclusions",
+  "Breakdown.CellLayerSystem.breakdownOnSpace_of_cell_system_condition": "Obtain conditional blow-up on space",
+  "Breakdown.CellLayerSystem.breakdownOnTorus_of_cell_system_condition": "Obtain conditional blow-up on the torus"
  },
  "notes": {},
  "fidelity": {
   "Breakdown.breakdown_on_space": {
    "verdict": "different",
-   "text": "The written profile premise includes extra decay bounds, and the conclusion retains nonexistence for every positive viscosity while omitting the constructed trajectory, rate and convergence in Theorem 1.1. Relating the paper and formal endpoints uses the analytic bridges described in the authors’ README.",
+   "text": "Theorem 1.1 constructs a finite-time solution and gives its rate and convergence to the prescribed profile. The formal implication assumes additional second-derivative and pressure-gradient decay and concludes nonexistence of a global smooth bounded-energy solution for every positive viscosity.",
    "because": [
     "2-a-profile-gives-breakd-7-3"
    ]
   },
   "Breakdown.breakdown_on_torus": {
    "verdict": "different",
-   "text": "The formal conclusion excludes a larger pressure class than the paper’s periodic-pressure formulation and omits the trajectory, rate and convergence of (1.7). The hypothesis also writes additional profile decay bounds, so a single unqualified stronger/weaker label would hide changes in both directions.",
+   "text": "The paper constructs a periodic solution with the rate and local profile comparison (1.7). The formal implication assumes additional profile decay and excludes every global smooth solution with periodic velocity, even with nonperiodic pressure, while omitting those quantitative conclusions.",
    "because": [
     "2-a-profile-gives-breakd-7-4"
    ]
   },
   "Breakdown.breakdown_on_space_of_weak": {
    "verdict": "different",
-   "text": "The paper has no theorem with precisely this explicit weak-profile hypothesis and direct whole-space endpoint. Its related route is regularization in Proposition 7.11 followed by Theorem 1.1.",
+   "text": "The formal implication starts from a recurrent distributional profile with uniform L⁶ and gradient L² bounds and square-integrable second derivatives over a period. The paper instead combines smoothing in Proposition 7.11 with Theorem 1.1; it has no separate theorem with this exact weak-profile premise and nonexistence conclusion.",
    "because": [
     "2-a-profile-gives-breakd-7-5"
    ]
   },
   "Breakdown.certificate_orbit": {
    "verdict": "different",
-   "text": "The input is the earlier box-and-local-ball certificate, whereas the paper uses a finite-row seminorm and a mixed box/ellipsoid with adjoint conditions. The exported output is coarser than Theorem 7.1, recording only weak-profile existence and hiding the selected witness and bounds.",
+   "text": "The input is an earlier certificate using a parameter box and local-ball bounds, whereas Theorem 7.1 uses the finite-row seminorm and mixed box/ellipsoid with adjoint conditions. Its conclusion gives existence of a weak profile and omits the chosen parameter, smoothness, symmetries and estimates (7.38).",
    "because": [
     "3-a-certificate-gives-a-1-1"
    ]
   },
   "Breakdown.extended_certificate_orbit": {
    "verdict": "different",
-   "text": "The extended predicate adds representative and regularity conditions, and the exported conclusion records only weak-profile existence. The paper’s Theorem 7.1 retains α, its period, all prescribed symmetries and the bounds (7.38); these are not all exposed by this theorem type.",
+   "text": "The extended certificate imposes explicit representative, regularity and weighted-row conditions in addition to the printed assumptions. Its conclusion gives only existence of a weak profile, so the chosen parameter, smoothness, prescribed symmetries and estimates (7.38) require further statements.",
    "because": [
     "3-a-certificate-gives-a-1-1"
    ]
   }
- }
+ },
+ "families": [
+  {
+   "id": "theorems",
+   "name": "The theorems"
+  },
+  {
+   "id": "profile-to-blowup",
+   "name": "From a profile to blow-up"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus"
+  },
+  {
+   "id": "certificate-to-profile",
+   "name": "From a certificate to a profile"
+  },
+  {
+   "id": "cell-data",
+   "name": "Cell data"
+  },
+  {
+   "id": "cell-estimates",
+   "name": "Cell estimates"
+  },
+  {
+   "id": "cell-certificate",
+   "name": "From cell data to the certificate"
+  }
+ ],
+ "topics": [
+  {
+   "id": "statement",
+   "name": "The blow-up statements",
+   "description": "Smooth solutions, breakdown on space and on the torus, and the theorems that state them (Theorem 1.1, Theorem 7.1).",
+   "family": "theorems"
+  },
+  {
+   "id": "fractional",
+   "name": "The fractional extension",
+   "description": "The authors' separate extension with dissipation exponent between 1 and 5/4, outside the classical paper.",
+   "family": "theorems"
+  },
+  {
+   "id": "mild",
+   "name": "Heat flow and mild solutions",
+   "description": "The heat semigroup, the bilinear Duhamel term, mild solutions, restarting and uniqueness (§3).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "profile",
+   "name": "Recurrent profiles",
+   "description": "Self-similar time-periodic profiles, their slices and orbits, and weak profiles read as physical fields (§2, §4.1, §7.11).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "monodromy",
+   "name": "Monodromy and the correction",
+   "description": "The period map, its compact-plus-small splitting, the spectral projection and the fixed point that corrects a profile to an exact solution (§4).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus",
+   "description": "The solenoidal cutoff, periodization and the periodic right inverse that move the construction onto the torus (§5–6).",
+   "family": "torus"
+  },
+  {
+   "id": "certificate",
+   "name": "From certificate to profile",
+   "description": "Certificate data, the free operator, convection, held solutions and the smoothing of the weak profile they produce (§7).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "coercive",
+   "name": "The coercive multiplier estimate",
+   "description": "The multiplier, its five density coefficients and lower bound, and the a priori estimate it gives (Appendix B.1 and B.2).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "encoding",
+   "name": "Encoded cell data",
+   "description": "The finitely represented inputs: coordinates and harmonics, the profile representation, splines and jets, physical cells, rows, weights and potentials.",
+   "family": "cell-data"
+  },
+  {
+   "id": "quarter-plane",
+   "name": "Reduction to the quarter plane",
+   "description": "Symmetry reduction of the density to the meridian quarter plane (B.3).",
+   "family": "cell-data"
+  },
+  {
+   "id": "cells-tails",
+   "name": "Cells, traces and tails",
+   "description": "Integrability, the common vector of unknowns, resolved modes, the tail budget and the exterior estimate (B.4).",
+   "family": "cell-data"
+  },
+  {
+   "id": "angular",
+   "name": "Angular and ray-exterior tests",
+   "description": "The angular inequalities, the pointwise test and the integrated test on ray exteriors (B.5 and B.6).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "tree",
+   "name": "The matrix tree lower bound",
+   "description": "The tree conditions on the cell matrices and the passage from all cells to the global inequality (B.7 and B.8).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "profile-change",
+   "name": "Changing the profile",
+   "description": "Bounds for moving estimates from the reference field to the actual profile (B.9).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "adjoint",
+   "name": "The adjoint pairing and its error",
+   "description": "The quadratic adjoint pairing, the azimuthal dual norm and the linear adjoint error with potentials and pins (B.10 to B.12).",
+   "family": "cell-certificate"
+  },
+  {
+   "id": "offset-certificate",
+   "name": "The offset and the certificate",
+   "description": "Enclosing the constant, linear and quadratic offset, and the fifteen fields of CellSystemCondition that make the data a certificate (B.13 and B.14).",
+   "family": "cell-certificate"
+  }
+ ]
 }

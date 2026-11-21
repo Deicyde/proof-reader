@@ -2710,7 +2710,7 @@ This module extracts a finite radial-angular expansion beyond the final spline b
 
 **Theorem · Oscillatory factor and derivative bounds.** At positive radius, the oscillatory factor is bounded and its first two derivatives have the inverse-radius and inverse-square bounds. [`hF_bounds`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/GivenProfileFarModeSplit.lean#L1075).
 
-**Theorem · Bounds on the nonoscillatory derivatives.** On 0<s≤1, the nonoscillatory factor and its first two derivatives have the common power bound with zero, one and two divisions by s. [`gF_bounds`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/GivenProfileFarModeSplit.lean#L1127).
+**Theorem · Bounds on the nonoscillatory derivatives.** On 0< s≤1, the nonoscillatory factor and its first two derivatives have the common power bound with zero, one and two divisions by s. [`gF_bounds`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/GivenProfileFarModeSplit.lean#L1127).
 
 **Theorem · Combine a coefficient and a decay bound.** The nonnegative-factor inequalities combine to give the final bound |v|≤Cρ. [`fin_bound`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/GivenProfileFarModeSplit.lean#L1206).
 
@@ -2986,7 +2986,7 @@ This module describes the finite spherical and conical interfaces where spline f
 
 **Lemma · Homogeneity gives a global power bound.** In a finite-dimensional domain, a degree-d positively homogeneous function with d≥1 that is continuous away from zero satisfies a global bound C‖x‖ᵈ. [`hom_bound`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/GivenProfilePowerFieldJumpsPieces.lean#L809).
 
-**Theorem · High degree supplies smoothness at zero.** In a finite-dimensional domain, a degree-d positively homogeneous function that is Cᵐ away from zero is Cᵐ at zero whenever m<d. [`hom_contDiffAt_zero`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/GivenProfilePowerFieldJumpsPieces.lean#L833).
+**Theorem · High degree supplies smoothness at zero.** In a finite-dimensional domain, a degree-d positively homogeneous function that is Cᵐ away from zero is Cᵐ at zero whenever m< d. [`hom_contDiffAt_zero`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/GivenProfilePowerFieldJumpsPieces.lean#L833).
 
 **Definition · Fourth-power angular core.** The angular core multiplies the fourth power of a complex radius by the integer angular phase exp(ik arg w). [`axisCore`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FracCell/GivenProfilePowerFieldJumpsPieces.lean#L902).
 

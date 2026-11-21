@@ -41,7 +41,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01383",
@@ -54,7 +55,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01384",
@@ -67,7 +69,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01385",
@@ -80,7 +83,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01386",
@@ -93,7 +97,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01387",
@@ -106,7 +111,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01388",
@@ -119,7 +125,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01389",
@@ -132,7 +139,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01390",
@@ -145,7 +153,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01391",
@@ -158,7 +167,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01392",
@@ -171,7 +181,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01393",
@@ -184,7 +195,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01394",
@@ -197,7 +209,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Advection",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01395",
@@ -210,7 +223,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01396",
@@ -223,7 +237,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01397",
@@ -236,7 +251,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01398",
@@ -249,7 +265,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01399",
@@ -262,7 +279,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01400",
@@ -275,7 +293,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01401",
@@ -288,7 +307,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01402",
@@ -301,7 +321,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01403",
@@ -314,7 +335,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01404",
@@ -327,7 +349,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01405",
@@ -340,7 +363,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01406",
@@ -353,7 +377,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01407",
@@ -366,7 +391,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01408",
@@ -379,7 +405,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01409",
@@ -392,7 +419,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01410",
@@ -405,7 +433,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01411",
@@ -418,7 +447,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01412",
@@ -431,7 +461,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01413",
@@ -444,7 +475,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01414",
@@ -457,7 +489,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01415",
@@ -470,7 +503,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01416",
@@ -483,7 +517,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01417",
@@ -496,7 +531,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 26
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01418",
@@ -509,7 +545,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01419",
@@ -522,7 +559,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 28
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01420",
@@ -535,7 +573,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 29
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01421",
@@ -548,7 +587,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 30
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01422",
@@ -561,7 +601,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 31
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01423",
@@ -574,7 +615,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 32
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01424",
@@ -587,7 +629,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 33
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01425",
@@ -600,7 +643,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 34
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01426",
@@ -613,7 +657,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 35
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01427",
@@ -626,7 +671,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 36
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01428",
@@ -639,7 +685,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 37
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01429",
@@ -652,7 +699,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 38
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01430",
@@ -665,7 +713,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 39
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01431",
@@ -678,7 +727,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 40
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01432",
@@ -691,7 +741,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 41
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01433",
@@ -704,7 +755,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 42
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01434",
@@ -717,7 +769,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 43
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01435",
@@ -730,7 +783,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxClose",
     "block": 44
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01436",
@@ -743,7 +797,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01437",
@@ -756,7 +811,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01438",
@@ -769,7 +825,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01439",
@@ -782,7 +839,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01440",
@@ -795,7 +853,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01441",
@@ -808,7 +867,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01442",
@@ -821,7 +881,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01443",
@@ -834,7 +895,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01444",
@@ -847,7 +909,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01445",
@@ -860,7 +923,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01446",
@@ -873,7 +937,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01447",
@@ -886,7 +951,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01448",
@@ -899,7 +965,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01449",
@@ -912,7 +979,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01450",
@@ -925,7 +993,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01451",
@@ -938,7 +1007,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01452",
@@ -951,7 +1021,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01453",
@@ -964,7 +1035,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01454",
@@ -977,7 +1049,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01455",
@@ -990,7 +1063,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxField",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01456",
@@ -1003,7 +1077,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01457",
@@ -1016,7 +1091,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01458",
@@ -1029,7 +1105,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01459",
@@ -1042,7 +1119,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01460",
@@ -1055,7 +1133,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01461",
@@ -1068,7 +1147,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01462",
@@ -1081,7 +1161,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01463",
@@ -1094,7 +1175,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01464",
@@ -1107,7 +1189,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01465",
@@ -1120,7 +1203,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01466",
@@ -1133,7 +1217,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01467",
@@ -1146,7 +1231,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxLinks",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01468",
@@ -1159,7 +1245,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01469",
@@ -1172,7 +1259,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01470",
@@ -1185,7 +1273,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01471",
@@ -1198,7 +1287,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01472",
@@ -1211,7 +1301,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01473",
@@ -1224,7 +1315,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01474",
@@ -1237,7 +1329,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01475",
@@ -1250,7 +1343,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01476",
@@ -1263,7 +1357,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01477",
@@ -1276,7 +1371,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01478",
@@ -1289,7 +1385,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01479",
@@ -1302,7 +1399,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01480",
@@ -1315,7 +1413,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01481",
@@ -1328,7 +1427,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01482",
@@ -1341,7 +1441,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01483",
@@ -1354,7 +1455,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01484",
@@ -1367,7 +1469,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01485",
@@ -1380,7 +1483,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01486",
@@ -1393,7 +1497,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01487",
@@ -1406,7 +1511,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01488",
@@ -1419,7 +1525,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01489",
@@ -1432,7 +1539,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01490",
@@ -1445,7 +1553,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 26
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01491",
@@ -1458,7 +1567,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01492",
@@ -1471,7 +1581,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 28
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01493",
@@ -1484,7 +1595,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxResidual",
     "block": 29
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01494",
@@ -1497,7 +1609,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01495",
@@ -1510,7 +1623,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01496",
@@ -1523,7 +1637,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01497",
@@ -1536,7 +1651,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01498",
@@ -1549,7 +1665,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01499",
@@ -1562,7 +1679,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01500",
@@ -1575,7 +1693,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01501",
@@ -1588,7 +1707,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01502",
@@ -1601,7 +1721,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01503",
@@ -1614,7 +1735,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01504",
@@ -1627,7 +1749,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01505",
@@ -1640,7 +1763,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01506",
@@ -1653,7 +1777,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01507",
@@ -1666,7 +1791,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01508",
@@ -1679,7 +1805,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01509",
@@ -1692,7 +1819,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01510",
@@ -1705,7 +1833,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01511",
@@ -1718,7 +1847,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01512",
@@ -1731,7 +1861,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01513",
@@ -1744,7 +1875,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01514",
@@ -1757,7 +1889,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01515",
@@ -1770,7 +1903,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 26
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01516",
@@ -1783,7 +1917,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01517",
@@ -1796,7 +1931,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 28
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01518",
@@ -1809,7 +1945,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 29
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01519",
@@ -1822,7 +1959,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 30
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01520",
@@ -1835,7 +1973,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 31
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01521",
@@ -1848,7 +1987,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 32
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01522",
@@ -1861,7 +2001,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 33
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01523",
@@ -1874,7 +2015,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 34
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01524",
@@ -1887,7 +2029,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 35
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01525",
@@ -1900,7 +2043,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 36
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01526",
@@ -1913,7 +2057,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 37
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01527",
@@ -1926,7 +2071,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 38
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01528",
@@ -1939,7 +2085,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 39
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01529",
@@ -1952,7 +2099,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 40
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01530",
@@ -1965,7 +2113,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 41
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01531",
@@ -1978,7 +2127,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 42
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01532",
@@ -1991,7 +2141,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 43
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01533",
@@ -2004,7 +2155,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 44
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01534",
@@ -2017,7 +2169,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 45
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01535",
@@ -2030,7 +2183,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 46
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01536",
@@ -2043,7 +2197,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 47
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01537",
@@ -2056,7 +2211,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 48
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01538",
@@ -2069,7 +2225,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ApproxSizes",
     "block": 50
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01539",
@@ -2082,7 +2239,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Approximants",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01540",
@@ -2095,7 +2253,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Approximants",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01541",
@@ -2108,7 +2267,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Approximants",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01542",
@@ -2121,7 +2281,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Approximants",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01543",
@@ -2134,7 +2295,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Approximants",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01544",
@@ -2147,7 +2309,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01545",
@@ -2160,7 +2323,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01546",
@@ -2173,7 +2337,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01547",
@@ -2186,7 +2351,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01548",
@@ -2199,7 +2365,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01549",
@@ -2212,7 +2379,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01550",
@@ -2225,7 +2393,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01551",
@@ -2238,7 +2407,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01552",
@@ -2251,7 +2421,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01553",
@@ -2264,7 +2435,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01554",
@@ -2277,7 +2449,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01555",
@@ -2290,7 +2463,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Assembly",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01556",
@@ -2303,7 +2477,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.BaseInverse",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01557",
@@ -2316,7 +2491,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01558",
@@ -2329,7 +2505,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01559",
@@ -2342,7 +2519,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01560",
@@ -2355,7 +2533,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01561",
@@ -2368,7 +2547,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01562",
@@ -2381,7 +2561,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01563",
@@ -2394,7 +2575,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01564",
@@ -2407,7 +2589,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01565",
@@ -2420,7 +2603,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01566",
@@ -2433,7 +2617,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01567",
@@ -2446,7 +2631,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01568",
@@ -2459,7 +2645,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01569",
@@ -2472,7 +2659,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01570",
@@ -2485,7 +2673,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01571",
@@ -2498,7 +2687,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01572",
@@ -2511,7 +2701,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01573",
@@ -2524,7 +2715,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01574",
@@ -2537,7 +2729,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01575",
@@ -2550,7 +2743,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01576",
@@ -2563,7 +2757,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01577",
@@ -2576,7 +2771,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01578",
@@ -2589,7 +2785,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01579",
@@ -2602,7 +2799,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 26
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01580",
@@ -2615,7 +2813,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01581",
@@ -2628,7 +2827,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 28
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01582",
@@ -2641,7 +2841,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 29
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01583",
@@ -2654,7 +2855,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 30
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01584",
@@ -2667,7 +2869,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 31
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01585",
@@ -2680,7 +2883,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 32
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01586",
@@ -2693,7 +2897,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 33
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01587",
@@ -2706,7 +2911,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 34
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01588",
@@ -2719,7 +2925,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 35
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01589",
@@ -2732,7 +2939,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 36
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01590",
@@ -2745,7 +2953,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 37
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01591",
@@ -2758,7 +2967,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 39
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01592",
@@ -2771,7 +2981,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 40
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01593",
@@ -2784,7 +2995,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 41
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01594",
@@ -2797,7 +3009,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 42
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01595",
@@ -2810,7 +3023,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 43
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01596",
@@ -2823,7 +3037,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 44
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01597",
@@ -2836,7 +3051,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 45
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01598",
@@ -2849,7 +3065,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 46
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01599",
@@ -2862,7 +3079,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 47
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01600",
@@ -2875,7 +3093,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 48
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01601",
@@ -2888,7 +3107,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Basic",
     "block": 49
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01602",
@@ -2901,7 +3121,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainR3",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01603",
@@ -2914,7 +3135,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainR3",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01604",
@@ -2927,7 +3149,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainR3",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01605",
@@ -2940,7 +3163,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainR3",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01606",
@@ -2953,7 +3177,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainR3",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01607",
@@ -2966,7 +3191,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainR3",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01608",
@@ -2979,7 +3205,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainR3",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01609",
@@ -2992,7 +3219,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainR3",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01610",
@@ -3005,7 +3233,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainR3",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01611",
@@ -3018,7 +3247,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainR3",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01612",
@@ -3031,7 +3261,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainTorus",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01613",
@@ -3044,7 +3275,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainTorus",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01614",
@@ -3057,7 +3289,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainTorus",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01615",
@@ -3070,7 +3303,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainTorus",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01616",
@@ -3083,7 +3317,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainTorus",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01617",
@@ -3096,7 +3331,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainTorus",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01618",
@@ -3109,7 +3345,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainTorus",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01619",
@@ -3122,7 +3359,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainTorus",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01620",
@@ -3135,7 +3373,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ChainTorus",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01621",
@@ -3148,7 +3387,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01622",
@@ -3161,7 +3401,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01623",
@@ -3174,7 +3415,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01624",
@@ -3187,7 +3429,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01625",
@@ -3200,7 +3443,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01626",
@@ -3213,7 +3457,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01627",
@@ -3226,7 +3471,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01628",
@@ -3239,7 +3485,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01629",
@@ -3252,7 +3499,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01630",
@@ -3265,7 +3513,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01631",
@@ -3278,7 +3527,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01632",
@@ -3291,7 +3541,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01633",
@@ -3304,7 +3555,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01634",
@@ -3317,7 +3569,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01635",
@@ -3330,7 +3583,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01636",
@@ -3343,7 +3597,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01637",
@@ -3356,7 +3611,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01638",
@@ -3369,7 +3625,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01639",
@@ -3382,7 +3639,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CoefCalculus",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01640",
@@ -3395,7 +3653,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareChain",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01641",
@@ -3408,7 +3667,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareChain",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01642",
@@ -3421,7 +3681,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareChain",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01643",
@@ -3434,7 +3695,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareChain",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01644",
@@ -3447,7 +3709,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareChain",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01645",
@@ -3460,7 +3723,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareChain",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01646",
@@ -3473,7 +3737,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareChain",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01647",
@@ -3486,7 +3751,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareChain",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01648",
@@ -3499,7 +3765,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareChain",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01649",
@@ -3512,7 +3779,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareChain",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01650",
@@ -3525,7 +3793,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareDilate",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01651",
@@ -3538,7 +3807,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareDilate",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01652",
@@ -3551,7 +3821,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareDilate",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01653",
@@ -3564,7 +3835,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareDilate",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01654",
@@ -3577,7 +3849,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryR3",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01655",
@@ -3590,7 +3863,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryR3",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01656",
@@ -3603,7 +3877,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryR3",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01657",
@@ -3616,7 +3891,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryR3",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01658",
@@ -3629,7 +3905,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryR3",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01659",
@@ -3642,7 +3919,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryR3",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01660",
@@ -3655,7 +3933,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryR3",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01661",
@@ -3668,7 +3947,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryR3",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01662",
@@ -3681,7 +3961,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryR3",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01663",
@@ -3694,7 +3975,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryTorus",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01664",
@@ -3707,7 +3989,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryTorus",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01665",
@@ -3720,7 +4003,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryTorus",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01666",
@@ -3733,7 +4017,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryTorus",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01667",
@@ -3746,7 +4031,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryTorus",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01668",
@@ -3759,7 +4045,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryTorus",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01669",
@@ -3772,7 +4059,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareEntryTorus",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01670",
@@ -3785,7 +4073,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFinal",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01671",
@@ -3798,7 +4087,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01672",
@@ -3811,7 +4101,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01673",
@@ -3824,7 +4115,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01674",
@@ -3837,7 +4129,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01675",
@@ -3850,7 +4143,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01676",
@@ -3863,7 +4157,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01677",
@@ -3876,7 +4171,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01678",
@@ -3889,7 +4185,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01679",
@@ -3902,7 +4199,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01680",
@@ -3915,7 +4213,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01681",
@@ -3928,7 +4227,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01682",
@@ -3941,7 +4241,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01683",
@@ -3954,7 +4255,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01684",
@@ -3967,7 +4269,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01685",
@@ -3980,7 +4283,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01686",
@@ -3993,7 +4297,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareFrame",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01687",
@@ -4006,7 +4311,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareHeatDivFree",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01688",
@@ -4019,7 +4325,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareHeatDivFree",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01689",
@@ -4032,7 +4339,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareHeatDivFree",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01690",
@@ -4045,7 +4353,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareHeatDivFree",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01691",
@@ -4058,7 +4367,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareHeatDivFree",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01692",
@@ -4071,7 +4381,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareHeatDivFree",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01693",
@@ -4084,7 +4395,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareHeatDivFree",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01694",
@@ -4097,7 +4409,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareInvSeries",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01695",
@@ -4110,7 +4423,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareInvSeries",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01696",
@@ -4123,7 +4437,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareInvSeries",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01697",
@@ -4136,7 +4451,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareInvSeries",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01698",
@@ -4149,7 +4465,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareInvSeries",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01699",
@@ -4162,7 +4479,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambda",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01700",
@@ -4175,7 +4493,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambda",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01701",
@@ -4188,7 +4507,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambda",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01702",
@@ -4201,7 +4521,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambdaAssembly",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01703",
@@ -4214,7 +4535,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambdaAssembly",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01704",
@@ -4227,7 +4549,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambdaAssembly",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01705",
@@ -4240,7 +4563,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambdaAssembly",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01706",
@@ -4253,7 +4577,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambdaAssembly",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01707",
@@ -4266,7 +4591,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambdaAssembly",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01708",
@@ -4279,7 +4605,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambdaAssembly",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01709",
@@ -4292,7 +4619,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambdaAssembly",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01710",
@@ -4305,7 +4633,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambdaAssembly",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01711",
@@ -4318,7 +4647,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareLambdaAssembly",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01712",
@@ -4331,7 +4661,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedAssembly",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01713",
@@ -4344,7 +4675,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedAssembly",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01714",
@@ -4357,7 +4689,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedAssembly",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01715",
@@ -4370,7 +4703,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedAssembly",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01716",
@@ -4383,7 +4717,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedAssembly",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01717",
@@ -4396,7 +4731,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedAssembly",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01718",
@@ -4409,7 +4745,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedAssembly",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01719",
@@ -4422,7 +4759,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedAssembly",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01720",
@@ -4435,7 +4773,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedAssembly",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01721",
@@ -4448,7 +4787,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedAssembly",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01722",
@@ -4461,7 +4801,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01723",
@@ -4474,7 +4815,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01724",
@@ -4487,7 +4829,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01725",
@@ -4500,7 +4843,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01726",
@@ -4513,7 +4857,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01727",
@@ -4526,7 +4871,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01728",
@@ -4539,7 +4885,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01729",
@@ -4552,7 +4899,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01730",
@@ -4565,7 +4913,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01731",
@@ -4578,7 +4927,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01732",
@@ -4591,7 +4941,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01733",
@@ -4604,7 +4955,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSeedEntry",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01734",
@@ -4617,7 +4969,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSplit",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01735",
@@ -4630,7 +4983,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSplit",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01736",
@@ -4643,7 +4997,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSplit",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01737",
@@ -4656,7 +5011,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareSplit",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01738",
@@ -4669,7 +5025,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01739",
@@ -4682,7 +5039,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01740",
@@ -4695,7 +5053,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01741",
@@ -4708,7 +5067,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01742",
@@ -4721,7 +5081,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01743",
@@ -4734,7 +5095,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01744",
@@ -4747,7 +5109,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01745",
@@ -4760,7 +5123,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01746",
@@ -4773,7 +5137,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01747",
@@ -4786,7 +5151,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01748",
@@ -4799,7 +5165,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01749",
@@ -4812,7 +5179,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01750",
@@ -4825,7 +5193,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01751",
@@ -4838,7 +5207,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01752",
@@ -4851,7 +5221,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01753",
@@ -4864,7 +5235,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01754",
@@ -4877,7 +5249,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01755",
@@ -4890,7 +5263,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01756",
@@ -4903,7 +5277,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01757",
@@ -4916,7 +5291,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01758",
@@ -4929,7 +5305,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01759",
@@ -4942,7 +5319,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01760",
@@ -4955,7 +5333,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareStatements",
     "block": 26
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01761",
@@ -4968,7 +5347,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareTail",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01762",
@@ -4981,7 +5361,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareTail",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01763",
@@ -4994,7 +5375,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareTail",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01764",
@@ -5007,7 +5389,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareTail",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01765",
@@ -5020,7 +5403,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareTail",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01766",
@@ -5033,7 +5417,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareTail",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01767",
@@ -5046,7 +5431,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareTail",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01768",
@@ -5059,7 +5445,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareTail",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01769",
@@ -5072,7 +5459,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareTail",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01770",
@@ -5085,7 +5473,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01771",
@@ -5098,7 +5487,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01772",
@@ -5111,7 +5501,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01773",
@@ -5124,7 +5515,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01774",
@@ -5137,7 +5529,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01775",
@@ -5150,7 +5543,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01776",
@@ -5163,7 +5557,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01777",
@@ -5176,7 +5571,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01778",
@@ -5189,7 +5585,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01779",
@@ -5202,7 +5599,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01780",
@@ -5215,7 +5613,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01781",
@@ -5228,7 +5627,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.CompareWindow",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01782",
@@ -5241,7 +5641,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01783",
@@ -5254,7 +5655,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01784",
@@ -5267,7 +5669,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01785",
@@ -5280,7 +5683,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01786",
@@ -5293,7 +5697,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01787",
@@ -5306,7 +5711,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01788",
@@ -5319,7 +5725,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01789",
@@ -5332,7 +5739,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01790",
@@ -5345,7 +5753,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01791",
@@ -5358,7 +5767,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01792",
@@ -5371,7 +5781,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01793",
@@ -5384,7 +5795,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01794",
@@ -5397,7 +5809,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01795",
@@ -5410,7 +5823,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01796",
@@ -5423,7 +5837,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01797",
@@ -5436,7 +5851,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01798",
@@ -5449,7 +5865,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01799",
@@ -5462,7 +5879,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01800",
@@ -5475,7 +5893,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01801",
@@ -5488,7 +5907,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01802",
@@ -5501,7 +5921,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01803",
@@ -5514,7 +5935,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01804",
@@ -5527,7 +5949,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 26
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01805",
@@ -5540,7 +5963,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01806",
@@ -5553,7 +5977,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 28
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01807",
@@ -5566,7 +5991,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 29
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01808",
@@ -5579,7 +6005,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 30
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01809",
@@ -5592,7 +6019,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 31
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01810",
@@ -5605,7 +6033,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Cutoff",
     "block": 32
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01811",
@@ -5618,7 +6047,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Final",
     "block": 4
-   }
+   },
+   "topic": "statement"
   },
   {
    "id": "s7-01812",
@@ -5631,7 +6061,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Final",
     "block": 5
-   }
+   },
+   "topic": "statement"
   },
   {
    "id": "s7-01813",
@@ -5644,7 +6075,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Final",
     "block": 6
-   }
+   },
+   "topic": "statement"
   },
   {
    "id": "s7-01814",
@@ -5657,7 +6089,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Final",
     "block": 7
-   }
+   },
+   "topic": "statement"
   },
   {
    "id": "s7-01815",
@@ -5670,7 +6103,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Final",
     "block": 8
-   }
+   },
+   "topic": "statement"
   },
   {
    "id": "s7-01816",
@@ -5683,7 +6117,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Final",
     "block": 9
-   }
+   },
+   "topic": "statement"
   },
   {
    "id": "s7-01817",
@@ -5696,7 +6131,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Final",
     "block": 11
-   }
+   },
+   "topic": "statement"
   },
   {
    "id": "s7-01818",
@@ -5709,7 +6145,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ForceSmoothing",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01819",
@@ -5722,7 +6159,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ForceSmoothing",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01820",
@@ -5735,7 +6173,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ForceSmoothing",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01821",
@@ -5748,7 +6187,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ForceSmoothing",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01822",
@@ -5761,7 +6201,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ForceSmoothing",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01823",
@@ -5774,7 +6215,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ForceSmoothing",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01824",
@@ -5787,7 +6229,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ForceSmoothing",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01825",
@@ -5800,7 +6243,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ForceSmoothing",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01826",
@@ -5813,7 +6257,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.ForceSmoothing",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01827",
@@ -5826,7 +6271,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01828",
@@ -5839,7 +6285,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01829",
@@ -5852,7 +6299,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01830",
@@ -5865,7 +6313,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01831",
@@ -5878,7 +6327,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01832",
@@ -5891,7 +6341,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01833",
@@ -5904,7 +6355,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01834",
@@ -5917,7 +6369,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01835",
@@ -5930,7 +6383,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01836",
@@ -5943,7 +6397,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01837",
@@ -5956,7 +6411,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01838",
@@ -5969,7 +6425,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01839",
@@ -5982,7 +6439,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01840",
@@ -5995,7 +6453,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01841",
@@ -6008,7 +6467,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01842",
@@ -6021,7 +6481,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01843",
@@ -6034,7 +6495,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01844",
@@ -6047,7 +6509,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01845",
@@ -6060,7 +6523,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01846",
@@ -6073,7 +6537,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01847",
@@ -6086,7 +6551,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01848",
@@ -6099,7 +6565,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01849",
@@ -6112,7 +6579,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Forced",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01850",
@@ -6125,7 +6593,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01851",
@@ -6138,7 +6607,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01852",
@@ -6151,7 +6621,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01853",
@@ -6164,7 +6635,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01854",
@@ -6177,7 +6649,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01855",
@@ -6190,7 +6663,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01856",
@@ -6203,7 +6677,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01857",
@@ -6216,7 +6691,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01858",
@@ -6229,7 +6705,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01859",
@@ -6242,7 +6719,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01860",
@@ -6255,7 +6733,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01861",
@@ -6268,7 +6747,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01862",
@@ -6281,7 +6761,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01863",
@@ -6294,7 +6775,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01864",
@@ -6307,7 +6789,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01865",
@@ -6320,7 +6803,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01866",
@@ -6333,7 +6817,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01867",
@@ -6346,7 +6831,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01868",
@@ -6359,7 +6845,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01869",
@@ -6372,7 +6859,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01870",
@@ -6385,7 +6873,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01871",
@@ -6398,7 +6887,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01872",
@@ -6411,7 +6901,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 26
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01873",
@@ -6424,7 +6915,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01874",
@@ -6437,7 +6929,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 28
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01875",
@@ -6450,7 +6943,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 29
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01876",
@@ -6463,7 +6957,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 30
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01877",
@@ -6476,7 +6971,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 31
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01878",
@@ -6489,7 +6985,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 32
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01879",
@@ -6502,7 +6999,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 33
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01880",
@@ -6515,7 +7013,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 34
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01881",
@@ -6528,7 +7027,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 35
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01882",
@@ -6541,7 +7041,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 36
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01883",
@@ -6554,7 +7055,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 37
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01884",
@@ -6567,7 +7069,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 38
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01885",
@@ -6580,7 +7083,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 39
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01886",
@@ -6593,7 +7097,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 40
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01887",
@@ -6606,7 +7111,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 41
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01888",
@@ -6619,7 +7125,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 42
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01889",
@@ -6632,7 +7139,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 43
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01890",
@@ -6645,7 +7153,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 44
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01891",
@@ -6658,7 +7167,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 45
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01892",
@@ -6671,7 +7181,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 46
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01893",
@@ -6684,7 +7195,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 47
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01894",
@@ -6697,7 +7209,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 48
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01895",
@@ -6710,7 +7223,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 49
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01896",
@@ -6723,7 +7237,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 50
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01897",
@@ -6736,7 +7251,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 51
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01898",
@@ -6749,7 +7265,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.FreqTrSeries",
     "block": 53
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01899",
@@ -6762,7 +7279,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01900",
@@ -6775,7 +7293,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01901",
@@ -6788,7 +7307,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01902",
@@ -6801,7 +7321,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01903",
@@ -6814,7 +7335,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01904",
@@ -6827,7 +7349,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01905",
@@ -6840,7 +7363,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01906",
@@ -6853,7 +7377,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01907",
@@ -6866,7 +7391,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01908",
@@ -6879,7 +7405,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01909",
@@ -6892,7 +7419,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01910",
@@ -6905,7 +7433,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01911",
@@ -6918,7 +7447,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01912",
@@ -6931,7 +7461,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.Glue",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01913",
@@ -6944,7 +7475,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.GlueUnbounded",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01914",
@@ -6957,7 +7489,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.GlueUnbounded",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01915",
@@ -6970,7 +7503,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.GlueUnbounded",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01916",
@@ -6983,7 +7517,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.GlueUnbounded",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01917",
@@ -6996,7 +7531,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01918",
@@ -7009,7 +7545,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01919",
@@ -7022,7 +7559,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01920",
@@ -7035,7 +7573,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01921",
@@ -7048,7 +7587,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01922",
@@ -7061,7 +7601,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01923",
@@ -7074,7 +7615,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01924",
@@ -7087,7 +7629,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01925",
@@ -7100,7 +7643,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01926",
@@ -7113,7 +7657,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01927",
@@ -7126,7 +7671,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01928",
@@ -7139,7 +7685,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01929",
@@ -7152,7 +7699,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01930",
@@ -7165,7 +7713,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01931",
@@ -7178,7 +7727,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01932",
@@ -7191,7 +7741,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonAssembly",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01933",
@@ -7204,7 +7755,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonCoef",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01934",
@@ -7217,7 +7769,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonCoef",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01935",
@@ -7230,7 +7783,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonCoef",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01936",
@@ -7243,7 +7797,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonCoef",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01937",
@@ -7256,7 +7811,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonCoef",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01938",
@@ -7269,7 +7825,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonCoef",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01939",
@@ -7282,7 +7839,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonCoef",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01940",
@@ -7295,7 +7853,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonCoef",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01941",
@@ -7308,7 +7867,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonCoef",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01942",
@@ -7321,7 +7881,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01943",
@@ -7334,7 +7895,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01944",
@@ -7347,7 +7909,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01945",
@@ -7360,7 +7923,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01946",
@@ -7373,7 +7937,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01947",
@@ -7386,7 +7951,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01948",
@@ -7399,7 +7965,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01949",
@@ -7412,7 +7979,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01950",
@@ -7425,7 +7993,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01951",
@@ -7438,7 +8007,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01952",
@@ -7451,7 +8021,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01953",
@@ -7464,7 +8035,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01954",
@@ -7477,7 +8049,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01955",
@@ -7490,7 +8063,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01956",
@@ -7503,7 +8077,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01957",
@@ -7516,7 +8091,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01958",
@@ -7529,7 +8105,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01959",
@@ -7542,7 +8119,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01960",
@@ -7555,7 +8133,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01961",
@@ -7568,7 +8147,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01962",
@@ -7581,7 +8161,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01963",
@@ -7594,7 +8175,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01964",
@@ -7607,7 +8189,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 26
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01965",
@@ -7620,7 +8203,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01966",
@@ -7633,7 +8217,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 28
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01967",
@@ -7646,7 +8231,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 29
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01968",
@@ -7659,7 +8245,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 30
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01969",
@@ -7672,7 +8259,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 31
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01970",
@@ -7685,7 +8273,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 33
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01971",
@@ -7698,7 +8287,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonDensity",
     "block": 34
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01972",
@@ -7711,7 +8301,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeAssembly",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01973",
@@ -7724,7 +8315,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeAssembly",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01974",
@@ -7737,7 +8329,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeAssembly",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01975",
@@ -7750,7 +8343,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeAssembly",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01976",
@@ -7763,7 +8357,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeAssembly",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01977",
@@ -7776,7 +8371,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeAssembly",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01978",
@@ -7789,7 +8385,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeAssembly",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01979",
@@ -7802,7 +8399,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01980",
@@ -7815,7 +8413,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01981",
@@ -7828,7 +8427,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01982",
@@ -7841,7 +8441,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01983",
@@ -7854,7 +8455,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01984",
@@ -7867,7 +8469,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01985",
@@ -7880,7 +8483,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01986",
@@ -7893,7 +8497,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01987",
@@ -7906,7 +8511,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01988",
@@ -7919,7 +8525,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01989",
@@ -7932,7 +8539,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01990",
@@ -7945,7 +8553,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01991",
@@ -7958,7 +8567,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01992",
@@ -7971,7 +8581,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01993",
@@ -7984,7 +8595,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01994",
@@ -7997,7 +8609,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01995",
@@ -8010,7 +8623,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01996",
@@ -8023,7 +8637,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01997",
@@ -8036,7 +8651,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01998",
@@ -8049,7 +8665,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-01999",
@@ -8062,7 +8679,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeDensity",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02000",
@@ -8075,7 +8693,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02001",
@@ -8088,7 +8707,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02002",
@@ -8101,7 +8721,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02003",
@@ -8114,7 +8735,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02004",
@@ -8127,7 +8749,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02005",
@@ -8140,7 +8763,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02006",
@@ -8153,7 +8777,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02007",
@@ -8166,7 +8791,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02008",
@@ -8179,7 +8805,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02009",
@@ -8192,7 +8819,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02010",
@@ -8205,7 +8833,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonFreeR3",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02011",
@@ -8218,7 +8847,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02012",
@@ -8231,7 +8861,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02013",
@@ -8244,7 +8875,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02014",
@@ -8257,7 +8889,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02015",
@@ -8270,7 +8903,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02016",
@@ -8283,7 +8917,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02017",
@@ -8296,7 +8931,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02018",
@@ -8309,7 +8945,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02019",
@@ -8322,7 +8959,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02020",
@@ -8335,7 +8973,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02021",
@@ -8348,7 +8987,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonInverse",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02022",
@@ -8361,7 +9001,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02023",
@@ -8374,7 +9015,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02024",
@@ -8387,7 +9029,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02025",
@@ -8400,7 +9043,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02026",
@@ -8413,7 +9057,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02027",
@@ -8426,7 +9071,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02028",
@@ -8439,7 +9085,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02029",
@@ -8452,7 +9099,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02030",
@@ -8465,7 +9113,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02031",
@@ -8478,7 +9127,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02032",
@@ -8491,7 +9141,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02033",
@@ -8504,7 +9155,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonPartition",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02034",
@@ -8517,7 +9169,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02035",
@@ -8530,7 +9183,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02036",
@@ -8543,7 +9197,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02037",
@@ -8556,7 +9211,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02038",
@@ -8569,7 +9225,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02039",
@@ -8582,7 +9239,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02040",
@@ -8595,7 +9253,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02041",
@@ -8608,7 +9267,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02042",
@@ -8621,7 +9281,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02043",
@@ -8634,7 +9295,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02044",
@@ -8647,7 +9309,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02045",
@@ -8660,7 +9323,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02046",
@@ -8673,7 +9337,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02047",
@@ -8686,7 +9351,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02048",
@@ -8699,7 +9365,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02049",
@@ -8712,7 +9379,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonProj",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02050",
@@ -8725,7 +9393,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonSeries",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02051",
@@ -8738,7 +9407,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonSeries",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02052",
@@ -8751,7 +9421,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonSeries",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02053",
@@ -8764,7 +9435,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonSeries",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02054",
@@ -8777,7 +9449,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonSeries",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02055",
@@ -8790,7 +9463,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonSeries",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02056",
@@ -8803,7 +9477,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonSeries",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02057",
@@ -8816,7 +9491,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02058",
@@ -8829,7 +9505,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02059",
@@ -8842,7 +9519,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02060",
@@ -8855,7 +9533,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02061",
@@ -8868,7 +9547,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02062",
@@ -8881,7 +9561,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02063",
@@ -8894,7 +9575,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02064",
@@ -8907,7 +9589,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02065",
@@ -8920,7 +9603,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02066",
@@ -8933,7 +9617,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02067",
@@ -8946,7 +9631,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02068",
@@ -8959,7 +9645,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02069",
@@ -8972,7 +9659,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02070",
@@ -8985,7 +9673,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02071",
@@ -8998,7 +9687,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02072",
@@ -9011,7 +9701,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02073",
@@ -9024,7 +9715,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02074",
@@ -9037,7 +9729,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02075",
@@ -9050,7 +9743,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02076",
@@ -9063,7 +9757,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02077",
@@ -9076,7 +9771,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02078",
@@ -9089,7 +9785,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02079",
@@ -9102,7 +9799,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStatements",
     "block": 26
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02080",
@@ -9115,7 +9813,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02081",
@@ -9128,7 +9827,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02082",
@@ -9141,7 +9841,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02083",
@@ -9154,7 +9855,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02084",
@@ -9167,7 +9869,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02085",
@@ -9180,7 +9883,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02086",
@@ -9193,7 +9897,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02087",
@@ -9206,7 +9911,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02088",
@@ -9219,7 +9925,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02089",
@@ -9232,7 +9939,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02090",
@@ -9245,7 +9953,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02091",
@@ -9258,7 +9967,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonStep",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02092",
@@ -9271,7 +9981,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02093",
@@ -9284,7 +9995,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02094",
@@ -9297,7 +10009,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02095",
@@ -9310,7 +10023,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02096",
@@ -9323,7 +10037,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02097",
@@ -9336,7 +10051,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02098",
@@ -9349,7 +10065,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02099",
@@ -9362,7 +10079,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02100",
@@ -9375,7 +10093,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02101",
@@ -9388,7 +10107,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02102",
@@ -9401,7 +10121,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02103",
@@ -9414,7 +10135,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02104",
@@ -9427,7 +10149,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02105",
@@ -9440,7 +10163,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02106",
@@ -9453,7 +10177,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02107",
@@ -9466,7 +10191,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02108",
@@ -9479,7 +10205,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02109",
@@ -9492,7 +10219,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02110",
@@ -9505,7 +10233,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02111",
@@ -9518,7 +10247,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02112",
@@ -9531,7 +10261,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02113",
@@ -9544,7 +10275,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02114",
@@ -9557,7 +10289,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02115",
@@ -9570,7 +10303,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatComparisonTorusSide",
     "block": 28
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02116",
@@ -9583,7 +10317,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatDivFreeCont",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02117",
@@ -9596,7 +10331,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatDivFreeCont",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02118",
@@ -9609,7 +10345,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatDivFreeCont",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02119",
@@ -9622,7 +10359,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatDivFreeCont",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02120",
@@ -9635,7 +10373,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatDivFreeCont",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02121",
@@ -9648,7 +10387,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.HeatDivFreeCont",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02122",
@@ -9661,7 +10401,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseAlgebra",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02123",
@@ -9674,7 +10415,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseAlgebra",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02124",
@@ -9687,7 +10429,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseAlgebra",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02125",
@@ -9700,7 +10443,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02126",
@@ -9713,7 +10457,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02127",
@@ -9726,7 +10471,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02128",
@@ -9739,7 +10485,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02129",
@@ -9752,7 +10499,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02130",
@@ -9765,7 +10513,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02131",
@@ -9778,7 +10527,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02132",
@@ -9791,7 +10541,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02133",
@@ -9804,7 +10555,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02134",
@@ -9817,7 +10569,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02135",
@@ -9830,7 +10583,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02136",
@@ -9843,7 +10597,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.InverseDefs",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02137",
@@ -9856,7 +10611,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 4
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02138",
@@ -9869,7 +10625,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 5
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02139",
@@ -9882,7 +10639,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 6
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02140",
@@ -9895,7 +10653,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 7
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02141",
@@ -9908,7 +10667,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 8
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02142",
@@ -9921,7 +10681,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 9
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02143",
@@ -9934,7 +10695,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 10
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02144",
@@ -9947,7 +10709,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 11
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02145",
@@ -9960,7 +10723,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 12
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02146",
@@ -9973,7 +10737,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 13
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02147",
@@ -9986,7 +10751,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 14
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02148",
@@ -9999,7 +10765,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 15
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02149",
@@ -10012,7 +10779,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 16
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02150",
@@ -10025,7 +10793,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 17
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02151",
@@ -10038,7 +10807,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 18
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02152",
@@ -10051,7 +10821,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 19
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02153",
@@ -10064,7 +10835,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 20
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02154",
@@ -10077,7 +10849,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 21
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02155",
@@ -10090,7 +10863,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 22
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02156",
@@ -10103,7 +10877,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 23
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02157",
@@ -10116,7 +10891,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 24
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02158",
@@ -10129,7 +10905,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 25
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02159",
@@ -10142,7 +10919,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 26
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02160",
@@ -10155,7 +10933,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 27
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02161",
@@ -10168,7 +10947,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 28
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02162",
@@ -10181,7 +10961,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 29
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02163",
@@ -10194,7 +10975,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 30
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02164",
@@ -10207,7 +10989,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 31
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02165",
@@ -10220,7 +11003,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 32
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02166",
@@ -10233,7 +11017,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 33
-   }
+   },
+   "topic": "torus"
   },
   {
    "id": "s7-02167",
@@ -10246,7 +11031,8 @@
    "anchor": {
     "heading": "Breakdown.Torus.KernelBound",
     "block": 34
-   }
+   },
+   "topic": "torus"
   }
  ],
  "plain": {
@@ -11256,5 +12042,133 @@
    ]
   }
  },
- "fidelity_held": "This guide describes each declaration on its own terms. Comparisons of the Lean with the paper's numbered statements are on the paper, index and full-account pages."
+ "fidelity_held": "This guide describes each declaration on its own terms. Comparisons of the Lean with the paper's numbered statements are on the paper, index and full-account pages.",
+ "families": [
+  {
+   "id": "theorems",
+   "name": "The theorems"
+  },
+  {
+   "id": "profile-to-blowup",
+   "name": "From a profile to blow-up"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus"
+  },
+  {
+   "id": "certificate-to-profile",
+   "name": "From a certificate to a profile"
+  },
+  {
+   "id": "cell-data",
+   "name": "Cell data"
+  },
+  {
+   "id": "cell-estimates",
+   "name": "Cell estimates"
+  },
+  {
+   "id": "cell-certificate",
+   "name": "From cell data to the certificate"
+  }
+ ],
+ "topics": [
+  {
+   "id": "statement",
+   "name": "The blow-up statements",
+   "description": "Smooth solutions, breakdown on space and on the torus, and the theorems that state them (Theorem 1.1, Theorem 7.1).",
+   "family": "theorems"
+  },
+  {
+   "id": "fractional",
+   "name": "The fractional extension",
+   "description": "The authors' separate extension with dissipation exponent between 1 and 5/4, outside the classical paper.",
+   "family": "theorems"
+  },
+  {
+   "id": "mild",
+   "name": "Heat flow and mild solutions",
+   "description": "The heat semigroup, the bilinear Duhamel term, mild solutions, restarting and uniqueness (§3).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "profile",
+   "name": "Recurrent profiles",
+   "description": "Self-similar time-periodic profiles, their slices and orbits, and weak profiles read as physical fields (§2, §4.1, §7.11).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "monodromy",
+   "name": "Monodromy and the correction",
+   "description": "The period map, its compact-plus-small splitting, the spectral projection and the fixed point that corrects a profile to an exact solution (§4).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus",
+   "description": "The solenoidal cutoff, periodization and the periodic right inverse that move the construction onto the torus (§5–6).",
+   "family": "torus"
+  },
+  {
+   "id": "certificate",
+   "name": "From certificate to profile",
+   "description": "Certificate data, the free operator, convection, held solutions and the smoothing of the weak profile they produce (§7).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "coercive",
+   "name": "The coercive multiplier estimate",
+   "description": "The multiplier, its five density coefficients and lower bound, and the a priori estimate it gives (Appendix B.1 and B.2).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "encoding",
+   "name": "Encoded cell data",
+   "description": "The finitely represented inputs: coordinates and harmonics, the profile representation, splines and jets, physical cells, rows, weights and potentials.",
+   "family": "cell-data"
+  },
+  {
+   "id": "quarter-plane",
+   "name": "Reduction to the quarter plane",
+   "description": "Symmetry reduction of the density to the meridian quarter plane (B.3).",
+   "family": "cell-data"
+  },
+  {
+   "id": "cells-tails",
+   "name": "Cells, traces and tails",
+   "description": "Integrability, the common vector of unknowns, resolved modes, the tail budget and the exterior estimate (B.4).",
+   "family": "cell-data"
+  },
+  {
+   "id": "angular",
+   "name": "Angular and ray-exterior tests",
+   "description": "The angular inequalities, the pointwise test and the integrated test on ray exteriors (B.5 and B.6).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "tree",
+   "name": "The matrix tree lower bound",
+   "description": "The tree conditions on the cell matrices and the passage from all cells to the global inequality (B.7 and B.8).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "profile-change",
+   "name": "Changing the profile",
+   "description": "Bounds for moving estimates from the reference field to the actual profile (B.9).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "adjoint",
+   "name": "The adjoint pairing and its error",
+   "description": "The quadratic adjoint pairing, the azimuthal dual norm and the linear adjoint error with potentials and pins (B.10 to B.12).",
+   "family": "cell-certificate"
+  },
+  {
+   "id": "offset-certificate",
+   "name": "The offset and the certificate",
+   "description": "Enclosing the constant, linear and quadratic offset, and the fifteen fields of CellSystemCondition that make the data a certificate (B.13 and B.14).",
+   "family": "cell-certificate"
+  }
+ ]
 }

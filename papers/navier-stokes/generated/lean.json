@@ -10402,6 +10402,38 @@
     "Quot.sound"
    ],
    "doc": null,
+   "end_line": 355,
+   "is_class": false,
+   "kind": "theorem",
+   "line": 350,
+   "module": "Solution",
+   "name": "Breakdown.CellLayerSystem.breakdownOnSpaceAndTorus_of_cell_system_condition",
+   "provenance": "lean",
+   "structural_dependencies": [],
+   "type": "∀ {k : ℕ} {C : Type} {nE nM : ℕ} (D : Breakdown.CertCell.CellLayerData k C nE nM)\n  (X : Breakdown.CertCell.Instance.InstanceData k C nE nM) (R : Breakdown.CertCell.CellCalculus.CellCalculusEntry D)\n  (T : Breakdown.CertCell.TreeEntry D R) (Y : Breakdown.CertCell.CellLayerEntries D R T)\n  (N : Breakdown.CellLayerSystem.CoerciveNumbers) (B : Breakdown.CellLayerSystem.ReductionEntries k),\n  Breakdown.CellLayerSystem.CellSystemCondition D X R T Y N B → Breakdown.BreakdownOnSpace ∧ Breakdown.BreakdownOnTorus",
+   "type_dependencies": [
+    "Nat",
+    "Breakdown.CertCell.CellLayerData",
+    "Breakdown.CertCell.Instance.InstanceData",
+    "Breakdown.CertCell.CellCalculus.CellCalculusEntry",
+    "Breakdown.CertCell.TreeEntry",
+    "Breakdown.CertCell.CellLayerEntries",
+    "Breakdown.CellLayerSystem.CoerciveNumbers",
+    "Breakdown.CellLayerSystem.ReductionEntries",
+    "Breakdown.CellLayerSystem.CellSystemCondition",
+    "And",
+    "Breakdown.BreakdownOnSpace",
+    "Breakdown.BreakdownOnTorus"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "doc": null,
    "end_line": 4261,
    "is_class": false,
    "kind": "definition",
@@ -99951,6 +99983,36 @@
     "Quot.sound"
    ],
    "doc": null,
+   "end_line": 348,
+   "is_class": false,
+   "kind": "theorem",
+   "line": 344,
+   "module": "Solution",
+   "name": "Breakdown.CellLayerSystem.breakdownOnTorus_of_cell_system_condition",
+   "provenance": "lean",
+   "structural_dependencies": [],
+   "type": "∀ {k : ℕ} {C : Type} {nE nM : ℕ} (D : Breakdown.CertCell.CellLayerData k C nE nM)\n  (X : Breakdown.CertCell.Instance.InstanceData k C nE nM) (R : Breakdown.CertCell.CellCalculus.CellCalculusEntry D)\n  (T : Breakdown.CertCell.TreeEntry D R) (Y : Breakdown.CertCell.CellLayerEntries D R T)\n  (N : Breakdown.CellLayerSystem.CoerciveNumbers) (B : Breakdown.CellLayerSystem.ReductionEntries k),\n  Breakdown.CellLayerSystem.CellSystemCondition D X R T Y N B → Breakdown.BreakdownOnTorus",
+   "type_dependencies": [
+    "Nat",
+    "Breakdown.CertCell.CellLayerData",
+    "Breakdown.CertCell.Instance.InstanceData",
+    "Breakdown.CertCell.CellCalculus.CellCalculusEntry",
+    "Breakdown.CertCell.TreeEntry",
+    "Breakdown.CertCell.CellLayerEntries",
+    "Breakdown.CellLayerSystem.CoerciveNumbers",
+    "Breakdown.CellLayerSystem.ReductionEntries",
+    "Breakdown.CellLayerSystem.CellSystemCondition",
+    "Breakdown.BreakdownOnTorus"
+   ],
+   "value_dependencies": []
+  },
+  {
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "doc": null,
    "end_line": 2805,
    "is_class": false,
    "kind": "definition",
@@ -127288,6 +127350,36 @@
     "Nat",
     "Breakdown.CertCell.GivenShape.ScaledKeyData.mk"
    ]
+  },
+  {
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "doc": null,
+   "end_line": 342,
+   "is_class": false,
+   "kind": "theorem",
+   "line": 338,
+   "module": "Solution",
+   "name": "Breakdown.CellLayerSystem.breakdownOnSpace_of_cell_system_condition",
+   "provenance": "lean",
+   "structural_dependencies": [],
+   "type": "∀ {k : ℕ} {C : Type} {nE nM : ℕ} (D : Breakdown.CertCell.CellLayerData k C nE nM)\n  (X : Breakdown.CertCell.Instance.InstanceData k C nE nM) (R : Breakdown.CertCell.CellCalculus.CellCalculusEntry D)\n  (T : Breakdown.CertCell.TreeEntry D R) (Y : Breakdown.CertCell.CellLayerEntries D R T)\n  (N : Breakdown.CellLayerSystem.CoerciveNumbers) (B : Breakdown.CellLayerSystem.ReductionEntries k),\n  Breakdown.CellLayerSystem.CellSystemCondition D X R T Y N B → Breakdown.BreakdownOnSpace",
+   "type_dependencies": [
+    "Nat",
+    "Breakdown.CertCell.CellLayerData",
+    "Breakdown.CertCell.Instance.InstanceData",
+    "Breakdown.CertCell.CellCalculus.CellCalculusEntry",
+    "Breakdown.CertCell.TreeEntry",
+    "Breakdown.CertCell.CellLayerEntries",
+    "Breakdown.CellLayerSystem.CoerciveNumbers",
+    "Breakdown.CellLayerSystem.ReductionEntries",
+    "Breakdown.CellLayerSystem.CellSystemCondition",
+    "Breakdown.BreakdownOnSpace"
+   ],
+   "value_dependencies": []
   },
   {
    "axioms": [

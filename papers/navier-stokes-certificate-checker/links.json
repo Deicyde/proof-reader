@@ -24,7 +24,20 @@
    "anchor": {
     "heading": "Checking the Navier–Stokes certificate",
     "block": 3
-   }
+   },
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.spaceAndTorusBreakdown_of_cell_system_condition",
+     "fidelity": "same",
+     "note": "The theorem gives both whole-space and torus breakdown under the complete cell condition. This is the conditional implication stated in the opening sentence."
+    },
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The condition is the fifteen-clause premise of that implication. A numerical witness satisfying it is a separate obligation."
+    }
+   ]
   },
   {
    "id": "1-the-size-of-the-predic-1-1",
@@ -37,7 +50,15 @@
    "anchor": {
     "heading": "1. The size of the predicate",
     "block": 1
-   }
+   },
+   "topic": "offset-certificate",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellLayerSystem.CellSystemCondition",
+     "fidelity": "same",
+     "note": "The condition has fifteen direct clauses over the seven shared choices of cell data, field instances, local calculations, tree, assembly, constants and reduction data. The sentence counts these choices correctly."
+    }
+   ]
   },
   {
    "id": "2-where-a-natural-implem-2-1",
@@ -50,7 +71,15 @@
    "anchor": {
     "heading": "2. Where a natural implementation checks too little",
     "block": 2
-   }
+   },
+   "topic": "cells-tails",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Assembly.InRowRange",
+     "fidelity": "same",
+     "note": "Only used row coordinates are constrained by the common real row variables and complex gauge and pressure-head terms. All unused and port coordinates are free complex numbers, and both actuator blocks are required to be real."
+    }
+   ]
   },
   {
    "id": "2-where-a-natural-implem-2-2",
@@ -65,7 +94,25 @@
    "anchor": {
     "heading": "2. Where a natural implementation checks too little",
     "block": 2
-   }
+   },
+   "topic": "cells-tails",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Assembly.PotentialConditions",
+     "fidelity": "same",
+     "note": "The retained potential inequality is quantified over every vector satisfying the supplied admissibility condition. In the final cell condition that is the complete compatible-row space described immediately before this sentence."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.PairingConditions",
+     "fidelity": "same",
+     "note": "The retained pairing inequality is quantified over every admissible vector. Substituting the final compatible-row condition gives the full domain stated in the passage."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.EliminationConditions",
+     "fidelity": "same",
+     "note": "The residual elimination comparison is quantified over every admissible vector. It therefore includes the free and gauge directions of the full compatible-row condition."
+    }
+   ]
   },
   {
    "id": "2-where-a-natural-implem-5-1",
@@ -78,7 +125,15 @@
    "anchor": {
     "heading": "2. Where a natural implementation checks too little",
     "block": 5
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.PotentialShape.VanishesBeyond",
+     "fidelity": "same",
+     "note": "The missing-breakpoint default R makes each affected support guard true because R ≤ |R|. A node coefficient needs one guard and a bubble coefficient needs both endpoint guards; when both endpoints are absent, the bubble coefficient is therefore forced to zero."
+    }
+   ]
   },
   {
    "id": "2-where-a-natural-implem-5-4",
@@ -95,6 +150,14 @@
    "lines": [
     5246,
     5246
+   ],
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Assembly.RowFunctionalConditions",
+     "fidelity": "same",
+     "note": "The actuator-model measurability and weighted-square-integrability condition quantifies over every natural index. It is broader than a check restricted to the finitely many physical actuators."
+    }
    ]
   },
   {
@@ -109,7 +172,20 @@
    "anchor": {
     "heading": "2. Where a natural implementation checks too little",
     "block": 6
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.GivenShape.ScaledJetAxis.convert",
+     "fidelity": "same",
+     "note": "The node conversion uses the inverse scale with missing scales replaced by 1. Its formula remains defined at scale zero, as the passage says."
+    },
+    {
+     "lean": "Breakdown.CertCell.GivenShape.HasSymmetricScale",
+     "fidelity": "same",
+     "note": "The scale condition requires equality of list lengths and invariance under reversal. It does not require any scale to be nonzero."
+    }
+   ]
   },
   {
    "id": "2-where-a-natural-implem-7-1",
@@ -124,7 +200,25 @@
    "anchor": {
     "heading": "2. Where a natural implementation checks too little",
     "block": 7
-   }
+   },
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.Assembly.modelLabels",
+     "fidelity": "same",
+     "note": "A label is active when it belongs to one of the four model supports and some component is nonzero at a point in the cell. The definition directly supports conservative coverage by all declared supports."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.PotentialConditions",
+     "fidelity": "same",
+     "note": "The coupling-group conditions require coverage for active labels and their unresolved partners. Checking the same coverage for every declared support label is sufficient for these clauses."
+    },
+    {
+     "lean": "Breakdown.CertCell.Assembly.RowFunctionalConditions",
+     "fidelity": "same",
+     "note": "The tested-row coverage condition quantifies over active model labels. It is the third consumer of the active-label set identified in the sentence."
+    }
+   ]
   },
   {
    "id": "2-where-a-natural-implem-8-1",
@@ -137,7 +231,15 @@
    "anchor": {
     "heading": "2. Where a natural implementation checks too little",
     "block": 8
-   }
+   },
+   "topic": "adjoint",
+   "comparisons": [
+    {
+     "lean": "Breakdown.AdjointDefect.AzimuthalBounded",
+     "fidelity": "same",
+     "note": "The harmonic expansion requires the component, temporal-frequency and azimuthal-order triples to be distinct. This is the exact orthogonality requirement stated in the passage."
+    }
+   ]
   },
   {
    "id": "2-where-a-natural-implem-13-2",
@@ -154,6 +256,14 @@
    "lines": [
     4216,
     4216
+   ],
+   "topic": "encoding",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CertCell.IsBoxUniform",
+     "fidelity": "same",
+     "note": "The full bounding data are equal to their central value for every parameter in K. This transports the harmonic supports and all associated bounds together."
+    }
    ]
   },
   {
@@ -171,6 +281,14 @@
    "lines": [
     3218,
     3218
+   ],
+   "topic": "adjoint",
+   "comparisons": [
+    {
+     "lean": "Breakdown.CellReduction.Instantiation.AdjointEntryLinks",
+     "fidelity": "same",
+     "note": "The fitted-direction set is empty for every selected adjoint. All bounds quantified over that set are therefore vacuous on this specialised route."
+    }
    ]
   },
   {
@@ -184,7 +302,15 @@
    "anchor": {
     "heading": "3. What the library already proves, and what it takes as input",
     "block": 1
-   }
+   },
+   "topic": "adjoint",
+   "comparisons": [
+    {
+     "lean": "Breakdown.AdjointDefect.remainderAzimuthalHolds_proof",
+     "fidelity": "same",
+     "note": "The linked theorem supplies the azimuthal dual estimate by combining the angular inverse-square bound, approximation, mode pairing and time orthogonality. The earlier representation results listed in the sentence are separate results."
+    }
+   ]
   }
  ],
  "plain": {
@@ -814,10 +940,138 @@
  "fidelity": {
   "Breakdown.CellLayerSystem.spaceAndTorusBreakdown_of_cell_system_condition": {
    "verdict": "same",
-   "text": "The result takes the shared cell, tree, entry and reduction data together with CellSystemCondition, then concludes BreakdownOnSpace and BreakdownOnTorus. A byte decoder and a concrete satisfying instance are outside its statement.",
+   "text": "The guide states the complete cell-condition implication: satisfying the fifteen conditions gives both whole-space and torus breakdown. The statement itself supplies no numerical data satisfying those conditions.",
    "because": [
     "ADD0"
    ]
   }
- }
+ },
+ "families": [
+  {
+   "id": "theorems",
+   "name": "The theorems"
+  },
+  {
+   "id": "profile-to-blowup",
+   "name": "From a profile to blow-up"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus"
+  },
+  {
+   "id": "certificate-to-profile",
+   "name": "From a certificate to a profile"
+  },
+  {
+   "id": "cell-data",
+   "name": "Cell data"
+  },
+  {
+   "id": "cell-estimates",
+   "name": "Cell estimates"
+  },
+  {
+   "id": "cell-certificate",
+   "name": "From cell data to the certificate"
+  }
+ ],
+ "topics": [
+  {
+   "id": "statement",
+   "name": "The blow-up statements",
+   "description": "Smooth solutions, breakdown on space and on the torus, and the theorems that state them (Theorem 1.1, Theorem 7.1).",
+   "family": "theorems"
+  },
+  {
+   "id": "fractional",
+   "name": "The fractional extension",
+   "description": "The authors' separate extension with dissipation exponent between 1 and 5/4, outside the classical paper.",
+   "family": "theorems"
+  },
+  {
+   "id": "mild",
+   "name": "Heat flow and mild solutions",
+   "description": "The heat semigroup, the bilinear Duhamel term, mild solutions, restarting and uniqueness (§3).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "profile",
+   "name": "Recurrent profiles",
+   "description": "Self-similar time-periodic profiles, their slices and orbits, and weak profiles read as physical fields (§2, §4.1, §7.11).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "monodromy",
+   "name": "Monodromy and the correction",
+   "description": "The period map, its compact-plus-small splitting, the spectral projection and the fixed point that corrects a profile to an exact solution (§4).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus",
+   "description": "The solenoidal cutoff, periodization and the periodic right inverse that move the construction onto the torus (§5–6).",
+   "family": "torus"
+  },
+  {
+   "id": "certificate",
+   "name": "From certificate to profile",
+   "description": "Certificate data, the free operator, convection, held solutions and the smoothing of the weak profile they produce (§7).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "coercive",
+   "name": "The coercive multiplier estimate",
+   "description": "The multiplier, its five density coefficients and lower bound, and the a priori estimate it gives (Appendix B.1 and B.2).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "encoding",
+   "name": "Encoded cell data",
+   "description": "The finitely represented inputs: coordinates and harmonics, the profile representation, splines and jets, physical cells, rows, weights and potentials.",
+   "family": "cell-data"
+  },
+  {
+   "id": "quarter-plane",
+   "name": "Reduction to the quarter plane",
+   "description": "Symmetry reduction of the density to the meridian quarter plane (B.3).",
+   "family": "cell-data"
+  },
+  {
+   "id": "cells-tails",
+   "name": "Cells, traces and tails",
+   "description": "Integrability, the common vector of unknowns, resolved modes, the tail budget and the exterior estimate (B.4).",
+   "family": "cell-data"
+  },
+  {
+   "id": "angular",
+   "name": "Angular and ray-exterior tests",
+   "description": "The angular inequalities, the pointwise test and the integrated test on ray exteriors (B.5 and B.6).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "tree",
+   "name": "The matrix tree lower bound",
+   "description": "The tree conditions on the cell matrices and the passage from all cells to the global inequality (B.7 and B.8).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "profile-change",
+   "name": "Changing the profile",
+   "description": "Bounds for moving estimates from the reference field to the actual profile (B.9).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "adjoint",
+   "name": "The adjoint pairing and its error",
+   "description": "The quadratic adjoint pairing, the azimuthal dual norm and the linear adjoint error with potentials and pins (B.10 to B.12).",
+   "family": "cell-certificate"
+  },
+  {
+   "id": "offset-certificate",
+   "name": "The offset and the certificate",
+   "description": "Enclosing the constant, linear and quadratic offset, and the fifteen fields of CellSystemCondition that make the data a certificate (B.13 and B.14).",
+   "family": "cell-certificate"
+  }
+ ]
 }

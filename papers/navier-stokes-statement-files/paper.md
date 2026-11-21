@@ -690,7 +690,7 @@ Field `Breakdown.CertificateData.pin`: The matrix fields Ξᵢ define the linear
 
 Field `Breakdown.CertificateData.slope`: A square matrix approximates the variation of the force coefficients on the parameter box. Paper: Earlier alternative to the parameter map (7.30), p.34; no identical slope field. Source: [lean/CertificateChallenge.lean:117-117](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L117).
 
-Field `Breakdown.CertificateData.slopeInverse`: A supplied left inverse of the slope matrix is used in the older zero-finding map. Paper: Earlier alternative to the parameter map (7.30), p.34; no identical inverse-slope field. Source: [lean/CertificateChallenge.lean:118-118](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L118).
+A proposed inverse matrix is supplied for the older zero-finding map. The complete certificate requires it to be a left inverse of the slope matrix. Paper: Earlier alternative to the parameter map (7.30), p.34; no identical inverse-slope field. Source: [lean/CertificateChallenge.lean:118-118](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L118).
 
 Field `Breakdown.CertificateData.slopeOffset`: Coordinate error bounds enclose the force map around its affine slope model. Paper: Earlier alternative to enclosure conditions (7.34)-(7.37), p.34. Source: [lean/CertificateChallenge.lean:119-119](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L119).
 
@@ -698,7 +698,7 @@ Field `Breakdown.CertificateData.defectBound`: δ(p) bounds the full period L² 
 
 Field `Breakdown.CertificateData.defectBallBound`: This bounds the residual’s older local-ball norm before its coefficient is applied. Paper: Earlier alternative to δ₀ in (7.23), p.33. Source: [lean/CertificateChallenge.lean:121-121](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L121).
 
-Field `Breakdown.CertificateData.weight`: w_* is the positive lower bound for the spatial energy weight. Paper: Equation (7.14), p.32. Source: [lean/CertificateChallenge.lean:122-122](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L122).
+The real number w∗ is the proposed lower bound for the spatial energy weight; the certificate requires it to be positive. Paper: Equation (7.14), p.32. Source: [lean/CertificateChallenge.lean:122-122](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L122).
 
 Field `Breakdown.CertificateData.weightFn`: w(y) is the spatial weight multiplying the squared gradient. Paper: Equation (7.14), p.32. Source: [lean/CertificateChallenge.lean:123-123](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L123).
 
@@ -706,7 +706,7 @@ Field `Breakdown.CertificateData.weightMax`: A real upper bound makes the spatia
 
 Field `Breakdown.CertificateData.coerciveL2`: c₁ is the coefficient of the full H norm in the coercive estimate. Paper: Equation (7.18), p.32. Source: [lean/CertificateChallenge.lean:125-125](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L125).
 
-Field `Breakdown.CertificateData.coerciveBall`: This nonnegative coefficient multiplies the older local-ball forcing norm. Paper: Earlier alternative to [F] in (7.17)-(7.18), p.32. Source: [lean/CertificateChallenge.lean:126-126](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L126).
+This coefficient multiplies the earlier local-ball forcing norm; the certificate requires it to be nonnegative. Paper: Earlier alternative to [F] in (7.17)-(7.18), p.32. Source: [lean/CertificateChallenge.lean:126-126](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L126).
 
 Field `Breakdown.CertificateData.coercivePin`: c₂ multiplies the Euclidean size of the pin vector. Paper: Equation (7.18), p.32. Source: [lean/CertificateChallenge.lean:127-127](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L127).
 
@@ -718,7 +718,7 @@ Field `Breakdown.CertificateData.decay`: C_a bounds the approximate field and it
 
 Field `Breakdown.CertificateData.periodMax`: S_max uniformly bounds all periods in the parameter set. Paper: Period family in §7.2, p.31. Source: [lean/CertificateChallenge.lean:131-131](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L131).
 
-Field `Breakdown.CertificateData.twist`: m selects a full period or an available half-period in the gradient estimate. Paper: Equation (7.6), p.30, and (7.26)-(7.27), p.33. Source: [lean/CertificateChallenge.lean:132-132](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L132).
+The natural number m is the proposed period divisor; the certificate restricts it to one or to two with the required half-period symmetry. Paper: Equation (7.6), p.30, and (7.26)-(7.27), p.33. Source: [lean/CertificateChallenge.lean:132-132](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L132).
 
 Field `Breakdown.CertificateData.actuatorBound`: b_* bounds the combined H norms of the actuator fields. Paper: Equation (7.9), p.31. Source: [lean/CertificateChallenge.lean:133-133](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CertificateChallenge.lean#L133).
 
@@ -1296,7 +1296,7 @@ Encoding for `Breakdown.ModeWeights` (2): The presence of classOf gives C an inh
 
 Field `Breakdown.ModeWeights.classOf`: Assign each direct time-angle frequency pair to a weight class. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:267-267](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L267).
 
-Field `Breakdown.ModeWeights.waves`: Finite set of nonzero harmonics used for the oscillatory reference profile. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:268-268](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L268).
+This finite harmonic set is proposed for the oscillatory reference profile; admissibility excludes the zero harmonic. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:268-268](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L268).
 
 Field `Breakdown.ModeWeights.rate`: Rotation rate for each class, allowed here to depend on position. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:269-269](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L269).
 
@@ -1314,13 +1314,13 @@ Field `Breakdown.ModeWeights.share2`: Share used to absorb couplings to velocity
 
 Field `Breakdown.ModeWeights.share4`: Share used to absorb the velocity multiplier’s wave couplings. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:276-276](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L276).
 
-Field `Breakdown.ModeWeights.len`: Positive balancing length for the oscillatory stretching estimate. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:277-277](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L277).
+This is the balancing-length function for the oscillatory stretching estimate; admissibility requires it to be positive. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:277-277](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L277).
 
-Field `Breakdown.ModeWeights.len2`: Positive balancing length for gradient-of-vorticity wave errors. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:278-278](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L278).
+This is the balancing-length function for gradient-of-vorticity wave errors; admissibility requires it to be positive. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:278-278](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L278).
 
-Field `Breakdown.ModeWeights.eta`: Positive classwise Young parameter for the velocity multiplier. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:279-279](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L279).
+This is the classwise Young parameter for the velocity multiplier; admissibility requires a positive common lower bound. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:279-279](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L279).
 
-Field `Breakdown.ModeWeights.etaMin`: Common positive lower bound for the classwise Young parameters. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:280-280](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L280).
+This is the proposed common lower bound for the classwise Young parameters; admissibility requires it to be positive. Paper: Related to Appendix B.2, pp. 53-55; this earlier class-weight encoding has no exact printed counterpart Source: [lean/CoerciveChallenge.lean:280-280](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L280).
 
 Field `Breakdown.ModeWeights.c`: Coefficient reserved for the weighted perturbation energy. Paper: Proposition B.1 and (B.20), p. 55 Source: [lean/CoerciveChallenge.lean:281-281](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L281).
 
@@ -2066,7 +2066,7 @@ Encoding for `Breakdown.EpsPiece` (1): modes is an arbitrary mathematical Set an
 
 Encoding for `Breakdown.EpsPiece` (2): The raw structure does not exclude overlap with its negative; the positive one-sided frequency condition later enforces disjointness.
 
-Field `Breakdown.EpsPiece.modes`: The one-sided mode set Np on which the curl multiplier acts. Paper: Appendix B.2, weight data p. 53; (B.14)-(B.16), p. 54 Source: [lean/CoerciveChallenge.lean:701-701](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L701).
+The set Np selects the modes on which the curl multiplier acts; the positive one-sided frequency condition is imposed by admissibility. Paper: Appendix B.2, weight data p. 53; (B.14)-(B.16), p. 54 Source: [lean/CoerciveChallenge.lean:701-701](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L701).
 
 Field `Breakdown.EpsPiece.frame`: The scalar frame rotation rate νp for the current certificate parameter. Paper: Appendix B.2, weight data p. 53; (B.14)-(B.16), p. 54 Source: [lean/CoerciveChallenge.lean:702-702](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L702).
 
@@ -2076,7 +2076,7 @@ Field `Breakdown.EpsPiece.share1`: Young share for transport and gradient-of-wei
 
 Field `Breakdown.EpsPiece.share2`: Young share for mode couplings through the reference velocity. Paper: Auxiliary functions for the unexpanded coefficients of (B.16), p. 54; data described in Appendix B.2, p. 53 Source: [lean/CoerciveChallenge.lean:705-705](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L705).
 
-Field `Breakdown.EpsPiece.len`: Positive balancing length for the total vorticity-gradient loss. Paper: Auxiliary functions for the unexpanded coefficients of (B.16), p. 54; data described in Appendix B.2, p. 53 Source: [lean/CoerciveChallenge.lean:706-706](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L706).
+This is the balancing-length function for the total vorticity-gradient loss; admissibility requires positivity. Paper: Auxiliary functions for the unexpanded coefficients of (B.16), p. 54; data described in Appendix B.2, p. 53 Source: [lean/CoerciveChallenge.lean:706-706](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L706).
 
 Field `Breakdown.EpsPiece.t0`: Young parameter for the total vorticity coupling. Paper: Auxiliary functions for the unexpanded coefficients of (B.16), p. 54; data described in Appendix B.2, p. 53 Source: [lean/CoerciveChallenge.lean:707-707](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L707).
 
@@ -2086,13 +2086,13 @@ Field `Breakdown.EpsPiece.t2`: Young parameter for harmonic gradient-of-vorticit
 
 Field `Breakdown.EpsPiece.t3`: Young parameter for harmonic vorticity couplings. Paper: Auxiliary functions for the unexpanded coefficients of (B.16), p. 54; data described in Appendix B.2, p. 53 Source: [lean/CoerciveChallenge.lean:710-710](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L710).
 
-Field `Breakdown.EpsPiece.scale`: Positive scale balancing inward and outward velocity-mode couplings. Paper: Auxiliary functions for the unexpanded coefficients of (B.16), p. 54; data described in Appendix B.2, p. 53 Source: [lean/CoerciveChallenge.lean:711-711](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L711).
+This scale balances inward and outward velocity-mode couplings; admissibility requires it to be positive. Paper: Auxiliary functions for the unexpanded coefficients of (B.16), p. 54; data described in Appendix B.2, p. 53 Source: [lean/CoerciveChallenge.lean:711-711](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L711).
 
 Field `Breakdown.EpsPiece.speed`: Pointwise bound for the full reference transport velocity in this frame. Paper: Appendix B.2, weight data p. 53; (B.14)-(B.16), p. 54 Source: [lean/CoerciveChallenge.lean:712-712](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L712).
 
 ### 114. One velocity-multiplier piece
 
-`Breakdown.MuPiece`: This is one index p in the paper’s family Pµ, with a one-sided set of modes, a rotation rate and the weight µp. Its positive scalar eta and auxiliary functions divide the velocity-multiplier error terms between coefficients.
+These are the proposed data for one velocity piece p: a mode set, rotation rate, weight μp, Young parameter ηp and auxiliary functions. Admissibility supplies the one-sided frequency and positivity conditions.
 
 **Source.** [lean/CoerciveChallenge.lean:714-721](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L714-L721). Structure. **Paper.** Appendix B.2, weight data p. 53; (B.14)-(B.16), p. 54
 
@@ -2102,7 +2102,7 @@ Encoding for `Breakdown.MuPiece` (1): The mode set can be infinite even though t
 
 Encoding for `Breakdown.MuPiece` (2): Zero piece counts are allowed by Fin nM; all remaining certificate requirements still have to hold.
 
-Field `Breakdown.MuPiece.modes`: The one-sided mode set Np on which the velocity multiplier acts. Paper: Appendix B.2, weight data p. 53; (B.14)-(B.16), p. 54 Source: [lean/CoerciveChallenge.lean:715-715](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L715).
+The set Np selects the modes on which the velocity multiplier acts; admissibility imposes its positive one-sided frequency condition. Paper: Appendix B.2, weight data p. 53; (B.14)-(B.16), p. 54 Source: [lean/CoerciveChallenge.lean:715-715](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L715).
 
 Field `Breakdown.MuPiece.frame`: The scalar frame rotation rate νp for the current parameter. Paper: Appendix B.2, weight data p. 53; (B.14)-(B.16), p. 54 Source: [lean/CoerciveChallenge.lean:716-716](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L716).
 
@@ -2112,7 +2112,7 @@ Field `Breakdown.MuPiece.share`: Young share for transport and gradient-of-weigh
 
 Field `Breakdown.MuPiece.t4`: Young parameter for reference-velocity mode couplings. Paper: Auxiliary data for the unexpanded coefficients of (B.16), p. 54; data described in Appendix B.2, p. 53 Source: [lean/CoerciveChallenge.lean:719-719](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L719).
 
-Field `Breakdown.MuPiece.eta`: Positive scalar Young parameter for derivative couplings. Paper: Auxiliary data for the unexpanded coefficients of (B.16), p. 54; data described in Appendix B.2, p. 53 Source: [lean/CoerciveChallenge.lean:720-720](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L720).
+The scalar ηp is the Young parameter for derivative couplings; admissibility requires ηp>0. Paper: Auxiliary data for the unexpanded coefficients of (B.16), p. 54; data described in Appendix B.2, p. 53 Source: [lean/CoerciveChallenge.lean:720-720](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L720).
 
 Field `Breakdown.MuPiece.speed`: Bound for the full reference transport velocity in this rotating frame. Paper: Appendix B.2, weight data p. 53; (B.14)-(B.16), p. 54 Source: [lean/CoerciveChallenge.lean:721-721](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L721).
 
@@ -2128,7 +2128,7 @@ Encoding for `Breakdown.HarmonicBounds` (1): These fields are proposed bounds un
 
 Encoding for `Breakdown.HarmonicBounds` (2): Mode arrays use componentwise norms; supGradVort bounds the operator norm of the real derivative map.
 
-Field `Breakdown.HarmonicBounds.harmonics`: Finite set containing zero, conjugate partners and every reference-profile harmonic. Paper: Appendix B.2, bounds paragraph immediately before (B.16), p. 54 Source: [lean/CoerciveChallenge.lean:724-724](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L724).
+This is the finite set proposed to contain the reference-profile harmonics; admissibility requires zero, closure under negation and the stated mode expansion. Paper: Appendix B.2, bounds paragraph immediately before (B.16), p. 54 Source: [lean/CoerciveChallenge.lean:724-724](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L724).
 
 Field `Breakdown.HarmonicBounds.ampW`: Majorant for the amplitude of each velocity mode. Paper: Appendix B.2, bounds paragraph immediately before (B.16), p. 54 Source: [lean/CoerciveChallenge.lean:725-725](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L725).
 
@@ -2164,7 +2164,7 @@ Field `Breakdown.PieceWeights.epsP`: The finite indexed family of curl-multiplie
 
 Field `Breakdown.PieceWeights.muP`: The finite indexed family of velocity-multiplier pieces Pµ. Paper: (B.14), p. 54 Source: [lean/CoerciveChallenge.lean:737-737](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L737).
 
-Field `Breakdown.PieceWeights.c`: Positive energy fraction, specialized to 3/50 in the cell construction. Paper: Proposition B.1 and (B.20), p. 55 Source: [lean/CoerciveChallenge.lean:738-738](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L738).
+The energy fraction c is an unrestricted real value in the data; admissibility requires c>0, and the cell construction specializes it to 3/50. Paper: Proposition B.1 and (B.20), p. 55 Source: [lean/CoerciveChallenge.lean:738-738](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L738).
 
 Field `Breakdown.PieceWeights.cμ`: Fraction of the frequency seminorm retained in the multiplier estimate. Paper: Proposition B.1 and (B.20), p. 55 Source: [lean/CoerciveChallenge.lean:739-739](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L739).
 
@@ -2180,7 +2180,7 @@ Encoding for `Breakdown.PieceWeights.sgn` (1): For an arbitrary overlapping set 
 
 Encoding for `Breakdown.PieceWeights.sgn` (2): Membership in an infinite Set is a mathematical predicate and need not have a finite executable decision procedure.
 
-Clause 1 of `Breakdown.PieceWeights.sgn`, lines 744-744: This is sgnp from the paragraph before (B.14): it assigns opposite signs to a mode set and its negative, and zero outside their union. Paper: Definition of sgnp immediately before (B.14), p. 54 Source: [lean/CoerciveChallenge.lean:744-744](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L744).
+The sign is +1 on Np, −1 on −Np outside Np, and zero elsewhere; admissibility makes Np and −Np disjoint. Paper: Definition of sgnp immediately before (B.14), p. 54 Source: [lean/CoerciveChallenge.lean:744-744](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/CoerciveChallenge.lean#L744).
 
 ### 118. Membership up to mode negation
 
@@ -2672,7 +2672,7 @@ Field `Breakdown.ExtendedCertificateData.actuator`: The forcing fields bᵢ mult
 
 Field `Breakdown.ExtendedCertificateData.pin`: The matrix fields Ξᵢ defining the gradient-pairing constraints ℓᵢ. Paper: (7.11), p. 31 Source: [lean/ExtendedCertificateChallenge.lean:28-28](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L28).
 
-Field `Breakdown.ExtendedCertificateData.multiplierWeight`: The positive coefficient ω weighting the force-vector norm. Paper: (7.14), p. 32 Source: [lean/ExtendedCertificateChallenge.lean:29-29](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L29).
+The coefficient ω weights the force-vector norm; the certificate requires ω>0. Paper: (7.14), p. 32 Source: [lean/ExtendedCertificateChallenge.lean:29-29](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L29).
 
 Field `Breakdown.ExtendedCertificateData.model`: The reference profile Wᵣᵅ at which the initial coercive estimate is certified. Paper: (7.16), p. 32 Source: [lean/ExtendedCertificateChallenge.lean:30-30](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L30).
 
@@ -2682,13 +2682,13 @@ Field `Breakdown.ExtendedCertificateData.formShift`: The allowed loss in the fro
 
 Field `Breakdown.ExtendedCertificateData.rowCount`: The number N of directions measured separately in the residual seminorm. Paper: (7.17), p. 32 Source: [lean/ExtendedCertificateChallenge.lean:33-33](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L33).
 
-Field `Breakdown.ExtendedCertificateData.rowField`: Unit, mutually orthogonal representatives of the finite residual directions. Paper: (7.17), p. 32; (B.11), p. 53 Source: [lean/ExtendedCertificateChallenge.lean:34-34](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L34).
+These fields are the proposed residual directions; the certificate requires them to be orthonormal in H. Paper: (7.17), p. 32; (B.11), p. 53 Source: [lean/ExtendedCertificateChallenge.lean:34-34](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L34).
 
-Field `Breakdown.ExtendedCertificateData.rowWeight`: The nonnegative squared lengths τₐ attached to the orthonormal row fields. Paper: (7.17), p. 32; (B.11), p. 53 Source: [lean/ExtendedCertificateChallenge.lean:35-35](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L35).
+The real weights τₐ are attached to the residual directions; the certificate requires their nonnegativity and orthonormality of the direction fields. Paper: (7.17), p. 32; (B.11), p. 53 Source: [lean/ExtendedCertificateChallenge.lean:35-35](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L35).
 
 Field `Breakdown.ExtendedCertificateData.rowBound`: The bound c₀ for the row seminorm as an operator on H. Paper: (7.17), p. 32 Source: [lean/ExtendedCertificateChallenge.lean:36-36](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L36).
 
-Field `Breakdown.ExtendedCertificateData.weight`: The positive lower bound w∗ for the energy weight. Paper: (7.14)–(7.15), p. 32 Source: [lean/ExtendedCertificateChallenge.lean:37-37](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L37).
+The proposed lower bound w∗ for the energy weight is required to be positive by the certificate. Paper: (7.14)–(7.15), p. 32 Source: [lean/ExtendedCertificateChallenge.lean:37-37](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L37).
 
 Field `Breakdown.ExtendedCertificateData.weightFn`: The spatial weight w multiplying the squared gradient in the correction energy. Paper: (7.14), p. 32 Source: [lean/ExtendedCertificateChallenge.lean:38-38](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L38).
 
@@ -2704,7 +2704,7 @@ Field `Breakdown.ExtendedCertificateData.decay`: The common decay constant for t
 
 Field `Breakdown.ExtendedCertificateData.periodMax`: The uniform upper bound Smax for the selected periods. Paper: §7.2, p. 31; (7.26)–(7.27), p. 33 Source: [lean/ExtendedCertificateChallenge.lean:44-44](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L44).
 
-Field `Breakdown.ExtendedCertificateData.twist`: The effective period divisor m, chosen as one or as two with a half-period symmetry. Paper: (7.6), p. 30; (7.26)–(7.27), p. 33 Source: [lean/ExtendedCertificateChallenge.lean:45-45](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L45).
+The natural number m is the proposed period divisor; the certificate restricts it to one or to two with the specified half-period symmetry. Paper: (7.6), p. 30; (7.26)–(7.27), p. 33 Source: [lean/ExtendedCertificateChallenge.lean:45-45](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L45).
 
 Field `Breakdown.ExtendedCertificateData.actuatorBound`: The bound b∗ for the combined L² size of all forcing fields. Paper: (7.9), p. 31 Source: [lean/ExtendedCertificateChallenge.lean:46-46](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L46).
 
@@ -2722,9 +2722,9 @@ Field `Breakdown.ExtendedCertificateData.sizeBound`: The correction radius param
 
 Field `Breakdown.ExtendedCertificateData.supBound`: The bound M on the supremum over time of the correction's spatial L² gradient norm. Paper: (7.25)–(7.27), p. 33; (7.38), p. 35 Source: [lean/ExtendedCertificateChallenge.lean:53-53](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L53).
 
-Field `Breakdown.ExtendedCertificateData.frame`: The invertible matrix V, whose columns pair with the force vector in the parameter update. Paper: (7.30), p. 34 Source: [lean/ExtendedCertificateChallenge.lean:54-54](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L54).
+The columns of the proposed matrix V pair with the force vector in the parameter update; the certificate requires V to be invertible. Paper: (7.30), p. 34 Source: [lean/ExtendedCertificateChallenge.lean:54-54](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L54).
 
-Field `Breakdown.ExtendedCertificateData.scale`: The nonzero coordinate scales dⱼ in the mixed parameter set and Newton-type update. Paper: (7.29)–(7.30), pp. 33–34 Source: [lean/ExtendedCertificateChallenge.lean:55-55](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L55).
+The coordinate scales dⱼ enter the mixed parameter set and parameter update; the certificate requires every dⱼ to be nonzero. Paper: (7.29)–(7.30), pp. 33–34 Source: [lean/ExtendedCertificateChallenge.lean:55-55](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L55).
 
 Field `Breakdown.ExtendedCertificateData.radius`: The separate coordinate radii ϱⱼ on the adjoint-controlled set J. Paper: (7.29), p. 33 Source: [lean/ExtendedCertificateChallenge.lean:56-56](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L56).
 
@@ -3046,7 +3046,7 @@ Clause 1 of `Breakdown.ExtendedCertificateHypothesis`, lines 227-228: This exist
 
 ### 152. Normalise the force weight
 
-`Breakdown.ExtendedCertificateData.withUnitWeight`: This rescales the forcing fields and force coefficients so that ω becomes one while their product in the equation is unchanged. The frame and complementary-column bound are rescaled with them, preserving the force-cancellation geometry.
+For ω≠0, reciprocal rescaling of the forcing fields and force coefficients sets ω to one while preserving their product in the equation. The frame and complementary-column bound are rescaled as well; the certificate supplies ω>0.
 
 **Source.** [lean/ExtendedCertificateChallenge.lean:234-241](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L234-L241). Def. **Paper.** (7.10), p. 31; (7.14), p. 32; (7.30)–(7.37), p. 34; normalisation helper
 
@@ -3054,7 +3054,7 @@ Clause 1 of `Breakdown.ExtendedCertificateHypothesis`, lines 227-228: This exist
 
 Encoding for `Breakdown.ExtendedCertificateData.withUnitWeight` (1): The transformation is total even at ω=0; its preservation theorem assumes a certificate, whose multiplierWeight_pos excludes that case.
 
-Clause 1 of `Breakdown.ExtendedCertificateData.withUnitWeight`, lines 234-241: This rescales the forcing fields and force coefficients so that ω becomes one while their product in the equation is unchanged. Paper: (7.10), p. 31; (7.14), p. 32; (7.30)–(7.37), p. 34; normalisation helper Source: [lean/ExtendedCertificateChallenge.lean:234-241](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L234-L241).
+For ω≠0, reciprocal rescaling of the forcing fields and force coefficients sets ω to one and preserves their product in the equation. Paper: (7.10), p. 31; (7.14), p. 32; (7.30)–(7.37), p. 34; normalisation helper Source: [lean/ExtendedCertificateChallenge.lean:234-241](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCertificateChallenge.lean#L234-L241).
 
 ### 153. Absorb the reference error
 
@@ -3230,7 +3230,7 @@ Encoding for `Breakdown.Coercive.IsSplitLowerBound` (2): ENNReal.ofReal takes th
 
 Clause 1 of `Breakdown.Coercive.IsSplitLowerBound`, lines 42-43: The negative remainder and block errors have finite integral. Paper: Proposition B.1 approximation step, pp. 55–56 Source: [lean/ExtendedCoerciveChallenge.lean:42-43](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCoerciveChallenge.lean#L42-L43).
 
-Clause 2 of `Breakdown.Coercive.IsSplitLowerBound`, lines 44-48: The signed sum of gains, remainders, block error and stretching is bounded above by the multiplier gap. Paper: (B.20), p. 55; signed implementation form Source: [lean/ExtendedCoerciveChallenge.lean:44-48](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCoerciveChallenge.lean#L44-L48).
+The sum of the positive masses plus max(−X,0) is at most max(X,0) plus the negative masses. The negative mass of J may still be infinite at this stage. Paper: (B.20), p. 55; signed implementation form Source: [lean/ExtendedCoerciveChallenge.lean:44-48](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCoerciveChallenge.lean#L44-L48).
 
 ### 166. Interactions across a mode set
 
@@ -3248,7 +3248,7 @@ Clause 1 of `Breakdown.Coercive.edgeSum`, lines 51-53: This sums harmonic intera
 
 ### 167. Mode-set square-sum norm
 
-`Breakdown.Coercive.pieceNorm`: This takes the ℓ² size of an amplitude sequence on Nₚ together with −Nₚ. It is used when the cross-mode errors of Proposition B.1 are bounded in blocks.
+For a square-summable amplitude sequence on Np∪−Np, this formula is its ℓ² norm and is used in the block estimates for cross-mode errors. Outside that class the real series is assigned a default value, so the norm interpretation requires summability.
 
 **Source.** [lean/ExtendedCoerciveChallenge.lean:55-56](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCoerciveChallenge.lean#L55-L56). Def. **Paper.** Proof of Proposition B.1, pp. 55–56; block estimate helper
 
@@ -3258,7 +3258,7 @@ Encoding for `Breakdown.Coercive.pieceNorm` (1): This is a real tsum, so the dis
 
 Encoding for `Breakdown.Coercive.pieceNorm` (2): At its proof uses, Fourier square-sum estimates supply summability before it is interpreted as an ℓ² norm.
 
-Clause 1 of `Breakdown.Coercive.pieceNorm`, lines 55-56: This takes the ℓ² size of an amplitude sequence on Nₚ together with −Nₚ. Paper: Proof of Proposition B.1, pp. 55–56; block estimate helper Source: [lean/ExtendedCoerciveChallenge.lean:55-56](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCoerciveChallenge.lean#L55-L56).
+For a square-summable amplitude sequence, the formula gives its ℓ² norm restricted to Np∪−Np. Paper: Proof of Proposition B.1, pp. 55–56; block estimate helper Source: [lean/ExtendedCoerciveChallenge.lean:55-56](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/ExtendedCoerciveChallenge.lean#L55-L56).
 
 ### 168. Transport speed in a rotating frame
 

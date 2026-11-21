@@ -41,7 +41,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstParamsBounded",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00946",
@@ -54,7 +55,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPinContinuous",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00947",
@@ -67,7 +69,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPinContinuous",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00948",
@@ -80,7 +83,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPinContinuous",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00949",
@@ -93,7 +97,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPinContinuous",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00950",
@@ -106,7 +111,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPinContinuous",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00951",
@@ -119,7 +125,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPinContinuous",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00952",
@@ -132,7 +139,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPinContinuous",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00953",
@@ -145,7 +153,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPinContinuous",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00954",
@@ -158,7 +167,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPinContinuous",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00955",
@@ -171,7 +181,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPinContinuous",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-00956",
@@ -184,7 +195,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00957",
@@ -197,7 +209,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00958",
@@ -210,7 +223,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00959",
@@ -223,7 +237,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00960",
@@ -236,7 +251,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00961",
@@ -249,7 +265,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00962",
@@ -262,7 +279,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00963",
@@ -275,7 +293,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00964",
@@ -288,7 +307,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 11
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00965",
@@ -301,7 +321,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 12
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00966",
@@ -314,7 +335,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 13
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00967",
@@ -327,7 +349,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 14
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00968",
@@ -340,7 +363,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 15
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00969",
@@ -353,7 +377,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 16
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00970",
@@ -366,7 +391,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 17
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00971",
@@ -379,7 +405,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 18
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00972",
@@ -392,7 +419,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 19
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00973",
@@ -405,7 +433,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 20
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00974",
@@ -418,7 +447,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 21
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00975",
@@ -431,7 +461,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 22
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00976",
@@ -444,7 +475,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 23
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00977",
@@ -457,7 +489,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 24
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00978",
@@ -470,7 +503,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 25
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00979",
@@ -483,7 +517,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 26
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00980",
@@ -496,7 +531,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 27
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00981",
@@ -509,7 +545,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 28
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00982",
@@ -522,7 +559,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 29
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00983",
@@ -535,7 +573,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 30
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00984",
@@ -548,7 +587,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 31
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00985",
@@ -561,7 +601,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 32
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00986",
@@ -574,7 +615,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 33
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00987",
@@ -587,7 +629,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 34
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00988",
@@ -600,7 +643,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 35
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00989",
@@ -613,7 +657,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 36
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00990",
@@ -626,7 +671,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 37
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00991",
@@ -639,7 +685,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 38
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00992",
@@ -652,7 +699,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 39
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00993",
@@ -665,7 +713,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 40
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00994",
@@ -678,7 +727,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 41
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00995",
@@ -691,7 +741,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 42
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00996",
@@ -704,7 +755,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 43
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00997",
@@ -717,7 +769,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 44
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00998",
@@ -730,7 +783,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 45
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-00999",
@@ -743,7 +797,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 46
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01000",
@@ -756,7 +811,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 47
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01001",
@@ -769,7 +825,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 48
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01002",
@@ -782,7 +839,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 49
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01003",
@@ -795,7 +853,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 50
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01004",
@@ -808,7 +867,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 51
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01005",
@@ -821,7 +881,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 52
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01006",
@@ -834,7 +895,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 53
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01007",
@@ -847,7 +909,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 54
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01008",
@@ -860,7 +923,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 55
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01009",
@@ -873,7 +937,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 56
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01010",
@@ -886,7 +951,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 57
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01011",
@@ -899,7 +965,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 58
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01012",
@@ -912,7 +979,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 59
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01013",
@@ -925,7 +993,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 60
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01014",
@@ -938,7 +1007,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 61
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01015",
@@ -951,7 +1021,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 62
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01016",
@@ -964,7 +1035,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 63
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01017",
@@ -977,7 +1049,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 64
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01018",
@@ -990,7 +1063,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 65
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01019",
@@ -1003,7 +1077,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 66
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01020",
@@ -1016,7 +1091,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 67
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01021",
@@ -1029,7 +1105,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 68
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01022",
@@ -1042,7 +1119,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 69
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01023",
@@ -1055,7 +1133,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 70
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01024",
@@ -1068,7 +1147,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 71
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01025",
@@ -1081,7 +1161,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 72
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01026",
@@ -1094,7 +1175,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 73
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01027",
@@ -1107,7 +1189,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 74
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01028",
@@ -1120,7 +1203,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 75
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01029",
@@ -1133,7 +1217,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstPressureRegular",
     "block": 76
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01030",
@@ -1146,7 +1231,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstProfilePieces",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01031",
@@ -1159,7 +1245,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstProfilePieces",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01032",
@@ -1172,7 +1259,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstProfilePieces",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01033",
@@ -1185,7 +1273,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstProfilePieces",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01034",
@@ -1198,7 +1287,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstProfilePieces",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01035",
@@ -1211,7 +1301,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstProfilePieces",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01036",
@@ -1224,7 +1315,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstProfileSplit",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01037",
@@ -1237,7 +1329,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstScalarGradient",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01038",
@@ -1250,7 +1343,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstScalarGradient",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01039",
@@ -1263,7 +1357,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstScalarGradient",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01040",
@@ -1276,7 +1371,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstScalarGradient",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01041",
@@ -1289,7 +1385,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstScalarGradient",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01042",
@@ -1302,7 +1399,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstScalarGradient",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01043",
@@ -1315,7 +1413,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01044",
@@ -1328,7 +1427,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01045",
@@ -1341,7 +1441,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01046",
@@ -1354,7 +1455,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 6
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01047",
@@ -1367,7 +1469,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 7
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01048",
@@ -1380,7 +1483,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 8
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01049",
@@ -1393,7 +1497,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 9
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01050",
@@ -1406,7 +1511,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 10
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01051",
@@ -1419,7 +1525,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 11
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01052",
@@ -1432,7 +1539,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 12
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01053",
@@ -1445,7 +1553,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 13
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01054",
@@ -1458,7 +1567,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 14
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01055",
@@ -1471,7 +1581,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 15
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01056",
@@ -1484,7 +1595,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 16
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01057",
@@ -1497,7 +1609,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 17
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01058",
@@ -1510,7 +1623,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 18
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01059",
@@ -1523,7 +1637,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 19
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01060",
@@ -1536,7 +1651,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 20
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01061",
@@ -1549,7 +1665,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 21
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01062",
@@ -1562,7 +1679,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 22
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01063",
@@ -1575,7 +1693,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 23
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01064",
@@ -1588,7 +1707,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 24
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01065",
@@ -1601,7 +1721,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 25
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01066",
@@ -1614,7 +1735,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 26
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01067",
@@ -1627,7 +1749,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstStepPhase",
     "block": 27
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01068",
@@ -1640,7 +1763,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstWeakDivergence",
     "block": 3
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01069",
@@ -1653,7 +1777,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstWeakDivergence",
     "block": 4
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01070",
@@ -1666,7 +1791,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstWeakDivergence",
     "block": 5
-   }
+   },
+   "topic": "encoding"
   },
   {
    "id": "s1-01071",
@@ -1679,7 +1805,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 3
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01072",
@@ -1692,7 +1819,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 4
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01073",
@@ -1705,7 +1833,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 6
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01074",
@@ -1718,7 +1847,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 7
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01075",
@@ -1731,7 +1861,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 9
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01076",
@@ -1744,7 +1875,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 11
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01077",
@@ -1757,7 +1889,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 13
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01078",
@@ -1770,7 +1903,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 15
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01079",
@@ -1783,7 +1917,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 17
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01080",
@@ -1796,7 +1931,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 19
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01081",
@@ -1809,7 +1945,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 21
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01082",
@@ -1822,7 +1959,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 23
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01083",
@@ -1835,7 +1973,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 24
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01084",
@@ -1848,7 +1987,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 26
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01085",
@@ -1861,7 +2001,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 28
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01086",
@@ -1874,7 +2015,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 30
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01087",
@@ -1887,7 +2029,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 32
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01088",
@@ -1900,7 +2043,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 34
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01089",
@@ -1913,7 +2057,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 36
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01090",
@@ -1926,7 +2071,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 38
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01091",
@@ -1939,7 +2085,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 40
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01092",
@@ -1952,7 +2099,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 42
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01093",
@@ -1965,7 +2113,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 44
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01094",
@@ -1978,7 +2127,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 46
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01095",
@@ -1991,7 +2141,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.InstanceStatements",
     "block": 48
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01096",
@@ -2004,7 +2155,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.MatrixFacts",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01097",
@@ -2017,7 +2169,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.MatrixFacts",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01098",
@@ -2030,7 +2183,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.MatrixFacts",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01099",
@@ -2043,7 +2197,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.MatrixFacts",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01100",
@@ -2056,7 +2211,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.MatrixFacts",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01101",
@@ -2069,7 +2225,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PeriodGlue",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01102",
@@ -2082,7 +2239,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PeriodGlue",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01103",
@@ -2095,7 +2253,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PeriodGlue",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01104",
@@ -2108,7 +2267,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PeriodGlue",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01105",
@@ -2121,7 +2281,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PeriodGlue",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01106",
@@ -2134,7 +2295,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PeriodGlue",
     "block": 8
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01107",
@@ -2147,7 +2309,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PeriodGlue",
     "block": 9
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01108",
@@ -2160,7 +2323,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PeriodGlue",
     "block": 10
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01109",
@@ -2173,7 +2337,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PeriodGlue",
     "block": 11
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01110",
@@ -2186,7 +2351,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PerturbationSlice",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01111",
@@ -2199,7 +2365,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PerturbationSlice",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01112",
@@ -2212,7 +2379,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PerturbationSlice",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01113",
@@ -2225,7 +2393,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PerturbationSlice",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01114",
@@ -2238,7 +2407,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PerturbationSlice",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01115",
@@ -2251,7 +2421,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01116",
@@ -2264,7 +2435,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01117",
@@ -2277,7 +2449,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01118",
@@ -2290,7 +2463,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01119",
@@ -2303,7 +2477,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01120",
@@ -2316,7 +2491,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01121",
@@ -2329,7 +2505,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01122",
@@ -2342,7 +2519,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01123",
@@ -2355,7 +2533,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01124",
@@ -2368,7 +2547,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01125",
@@ -2381,7 +2561,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01126",
@@ -2394,7 +2575,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01127",
@@ -2407,7 +2589,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01128",
@@ -2420,7 +2603,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01129",
@@ -2433,7 +2617,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01130",
@@ -2446,7 +2631,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01131",
@@ -2459,7 +2645,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01132",
@@ -2472,7 +2659,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01133",
@@ -2485,7 +2673,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01134",
@@ -2498,7 +2687,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01135",
@@ -2511,7 +2701,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01136",
@@ -2524,7 +2715,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01137",
@@ -2537,7 +2729,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01138",
@@ -2550,7 +2743,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01139",
@@ -2563,7 +2757,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01140",
@@ -2576,7 +2771,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01141",
@@ -2589,7 +2785,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01142",
@@ -2602,7 +2799,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01143",
@@ -2615,7 +2813,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01144",
@@ -2628,7 +2827,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01145",
@@ -2641,7 +2841,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 33
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01146",
@@ -2654,7 +2855,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 34
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01147",
@@ -2667,7 +2869,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 35
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01148",
@@ -2680,7 +2883,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 36
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01149",
@@ -2693,7 +2897,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 37
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01150",
@@ -2706,7 +2911,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 38
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01151",
@@ -2719,7 +2925,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 39
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01152",
@@ -2732,7 +2939,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 40
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01153",
@@ -2745,7 +2953,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 41
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01154",
@@ -2758,7 +2967,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 42
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01155",
@@ -2771,7 +2981,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 43
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01156",
@@ -2784,7 +2995,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 44
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01157",
@@ -2797,7 +3009,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 45
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01158",
@@ -2810,7 +3023,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 46
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01159",
@@ -2823,7 +3037,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 47
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01160",
@@ -2836,7 +3051,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 48
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01161",
@@ -2849,7 +3065,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 49
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01162",
@@ -2862,7 +3079,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 50
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01163",
@@ -2875,7 +3093,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 51
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01164",
@@ -2888,7 +3107,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 52
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01165",
@@ -2901,7 +3121,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 53
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01166",
@@ -2914,7 +3135,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 54
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01167",
@@ -2927,7 +3149,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 55
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01168",
@@ -2940,7 +3163,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 56
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01169",
@@ -2953,7 +3177,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 57
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01170",
@@ -2966,7 +3191,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 58
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01171",
@@ -2979,7 +3205,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 59
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01172",
@@ -2992,7 +3219,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 60
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01173",
@@ -3005,7 +3233,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 61
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01174",
@@ -3018,7 +3247,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotCell",
     "block": 62
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01175",
@@ -3031,7 +3261,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFlux",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01176",
@@ -3044,7 +3275,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01177",
@@ -3057,7 +3289,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01178",
@@ -3070,7 +3303,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01179",
@@ -3083,7 +3317,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01180",
@@ -3096,7 +3331,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01181",
@@ -3109,7 +3345,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01182",
@@ -3122,7 +3359,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01183",
@@ -3135,7 +3373,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01184",
@@ -3148,7 +3387,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01185",
@@ -3161,7 +3401,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01186",
@@ -3174,7 +3415,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01187",
@@ -3187,7 +3429,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01188",
@@ -3200,7 +3443,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01189",
@@ -3213,7 +3457,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01190",
@@ -3226,7 +3471,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01191",
@@ -3239,7 +3485,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01192",
@@ -3252,7 +3499,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01193",
@@ -3265,7 +3513,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01194",
@@ -3278,7 +3527,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01195",
@@ -3291,7 +3541,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01196",
@@ -3304,7 +3555,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01197",
@@ -3317,7 +3569,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01198",
@@ -3330,7 +3583,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecay",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01199",
@@ -3343,7 +3597,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01200",
@@ -3356,7 +3611,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01201",
@@ -3369,7 +3625,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01202",
@@ -3382,7 +3639,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01203",
@@ -3395,7 +3653,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01204",
@@ -3408,7 +3667,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01205",
@@ -3421,7 +3681,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01206",
@@ -3434,7 +3695,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01207",
@@ -3447,7 +3709,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01208",
@@ -3460,7 +3723,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01209",
@@ -3473,7 +3737,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01210",
@@ -3486,7 +3751,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01211",
@@ -3499,7 +3765,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01212",
@@ -3512,7 +3779,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01213",
@@ -3525,7 +3793,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01214",
@@ -3538,7 +3807,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01215",
@@ -3551,7 +3821,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01216",
@@ -3564,7 +3835,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01217",
@@ -3577,7 +3849,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01218",
@@ -3590,7 +3863,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01219",
@@ -3603,7 +3877,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01220",
@@ -3616,7 +3891,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01221",
@@ -3629,7 +3905,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01222",
@@ -3642,7 +3919,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayAmp",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01223",
@@ -3655,7 +3933,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01224",
@@ -3668,7 +3947,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01225",
@@ -3681,7 +3961,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01226",
@@ -3694,7 +3975,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01227",
@@ -3707,7 +3989,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01228",
@@ -3720,7 +4003,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01229",
@@ -3733,7 +4017,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01230",
@@ -3746,7 +4031,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01231",
@@ -3759,7 +4045,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01232",
@@ -3772,7 +4059,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01233",
@@ -3785,7 +4073,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01234",
@@ -3798,7 +4087,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01235",
@@ -3811,7 +4101,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01236",
@@ -3824,7 +4115,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01237",
@@ -3837,7 +4129,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayJet",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01238",
@@ -3850,7 +4143,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayNull",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01239",
@@ -3863,7 +4157,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayNull",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01240",
@@ -3876,7 +4171,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayNull",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01241",
@@ -3889,7 +4185,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDecayNull",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01242",
@@ -3902,7 +4199,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01243",
@@ -3915,7 +4213,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01244",
@@ -3928,7 +4227,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01245",
@@ -3941,7 +4241,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01246",
@@ -3954,7 +4255,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01247",
@@ -3967,7 +4269,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01248",
@@ -3980,7 +4283,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01249",
@@ -3993,7 +4297,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01250",
@@ -4006,7 +4311,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01251",
@@ -4019,7 +4325,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01252",
@@ -4032,7 +4339,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01253",
@@ -4045,7 +4353,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01254",
@@ -4058,7 +4367,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01255",
@@ -4071,7 +4381,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01256",
@@ -4084,7 +4395,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01257",
@@ -4097,7 +4409,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01258",
@@ -4110,7 +4423,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01259",
@@ -4123,7 +4437,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01260",
@@ -4136,7 +4451,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01261",
@@ -4149,7 +4465,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01262",
@@ -4162,7 +4479,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01263",
@@ -4175,7 +4493,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01264",
@@ -4188,7 +4507,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01265",
@@ -4201,7 +4521,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01266",
@@ -4214,7 +4535,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01267",
@@ -4227,7 +4549,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01268",
@@ -4240,7 +4563,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01269",
@@ -4253,7 +4577,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01270",
@@ -4266,7 +4591,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01271",
@@ -4279,7 +4605,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxDivergence",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01272",
@@ -4292,7 +4619,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01273",
@@ -4305,7 +4633,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01274",
@@ -4318,7 +4647,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01275",
@@ -4331,7 +4661,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01276",
@@ -4344,7 +4675,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01277",
@@ -4357,7 +4689,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01278",
@@ -4370,7 +4703,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01279",
@@ -4383,7 +4717,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01280",
@@ -4396,7 +4731,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01281",
@@ -4409,7 +4745,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01282",
@@ -4422,7 +4759,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01283",
@@ -4435,7 +4773,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01284",
@@ -4448,7 +4787,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01285",
@@ -4461,7 +4801,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01286",
@@ -4474,7 +4815,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01287",
@@ -4487,7 +4829,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01288",
@@ -4500,7 +4843,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01289",
@@ -4513,7 +4857,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01290",
@@ -4526,7 +4871,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01291",
@@ -4539,7 +4885,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01292",
@@ -4552,7 +4899,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01293",
@@ -4565,7 +4913,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01294",
@@ -4578,7 +4927,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01295",
@@ -4591,7 +4941,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01296",
@@ -4604,7 +4955,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01297",
@@ -4617,7 +4969,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01298",
@@ -4630,7 +4983,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01299",
@@ -4643,7 +4997,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01300",
@@ -4656,7 +5011,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01301",
@@ -4669,7 +5025,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01302",
@@ -4682,7 +5039,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 33
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01303",
@@ -4695,7 +5053,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 34
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01304",
@@ -4708,7 +5067,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 35
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01305",
@@ -4721,7 +5081,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 36
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01306",
@@ -4734,7 +5095,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 37
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01307",
@@ -4747,7 +5109,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 38
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01308",
@@ -4760,7 +5123,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 39
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01309",
@@ -4773,7 +5137,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 40
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01310",
@@ -4786,7 +5151,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 41
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01311",
@@ -4799,7 +5165,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 42
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01312",
@@ -4812,7 +5179,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 43
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01313",
@@ -4825,7 +5193,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 44
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01314",
@@ -4838,7 +5207,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 45
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01315",
@@ -4851,7 +5221,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 46
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01316",
@@ -4864,7 +5235,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 47
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01317",
@@ -4877,7 +5249,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 48
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01318",
@@ -4890,7 +5263,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 49
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01319",
@@ -4903,7 +5277,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 50
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01320",
@@ -4916,7 +5291,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 51
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01321",
@@ -4929,7 +5305,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 52
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01322",
@@ -4942,7 +5319,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 53
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01323",
@@ -4955,7 +5333,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 54
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01324",
@@ -4968,7 +5347,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 55
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01325",
@@ -4981,7 +5361,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 56
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01326",
@@ -4994,7 +5375,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 57
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01327",
@@ -5007,7 +5389,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 58
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01328",
@@ -5020,7 +5403,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxPolar",
     "block": 59
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01329",
@@ -5033,7 +5417,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadial",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01330",
@@ -5046,7 +5431,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadial",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01331",
@@ -5059,7 +5445,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadial",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01332",
@@ -5072,7 +5459,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadial",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01333",
@@ -5085,7 +5473,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadial",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01334",
@@ -5098,7 +5487,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadial",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01335",
@@ -5111,7 +5501,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadial",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01336",
@@ -5124,7 +5515,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadial",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01337",
@@ -5137,7 +5529,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadial",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01338",
@@ -5150,7 +5543,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01339",
@@ -5163,7 +5557,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01340",
@@ -5176,7 +5571,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01341",
@@ -5189,7 +5585,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01342",
@@ -5202,7 +5599,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01343",
@@ -5215,7 +5613,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01344",
@@ -5228,7 +5627,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01345",
@@ -5241,7 +5641,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01346",
@@ -5254,7 +5655,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01347",
@@ -5267,7 +5669,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01348",
@@ -5280,7 +5683,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01349",
@@ -5293,7 +5697,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01350",
@@ -5306,7 +5711,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01351",
@@ -5319,7 +5725,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01352",
@@ -5332,7 +5739,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01353",
@@ -5345,7 +5753,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01354",
@@ -5358,7 +5767,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01355",
@@ -5371,7 +5781,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01356",
@@ -5384,7 +5795,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01357",
@@ -5397,7 +5809,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01358",
@@ -5410,7 +5823,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01359",
@@ -5423,7 +5837,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01360",
@@ -5436,7 +5851,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01361",
@@ -5449,7 +5865,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01362",
@@ -5462,7 +5879,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01363",
@@ -5475,7 +5893,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01364",
@@ -5488,7 +5907,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01365",
@@ -5501,7 +5921,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01366",
@@ -5514,7 +5935,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialCell",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01367",
@@ -5527,7 +5949,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialWeak",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01368",
@@ -5540,7 +5963,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialWeak",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01369",
@@ -5553,7 +5977,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialWeak",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01370",
@@ -5566,7 +5991,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxRadialWeak",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01371",
@@ -5579,7 +6005,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01372",
@@ -5592,7 +6019,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01373",
@@ -5605,7 +6033,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01374",
@@ -5618,7 +6047,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01375",
@@ -5631,7 +6061,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01376",
@@ -5644,7 +6075,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01377",
@@ -5657,7 +6089,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01378",
@@ -5670,7 +6103,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01379",
@@ -5683,7 +6117,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01380",
@@ -5696,7 +6131,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01381",
@@ -5709,7 +6145,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01382",
@@ -5722,7 +6159,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01383",
@@ -5735,7 +6173,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01384",
@@ -5748,7 +6187,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01385",
@@ -5761,7 +6201,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01386",
@@ -5774,7 +6215,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01387",
@@ -5787,7 +6229,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01388",
@@ -5800,7 +6243,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01389",
@@ -5813,7 +6257,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01390",
@@ -5826,7 +6271,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01391",
@@ -5839,7 +6285,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01392",
@@ -5852,7 +6299,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01393",
@@ -5865,7 +6313,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01394",
@@ -5878,7 +6327,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01395",
@@ -5891,7 +6341,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01396",
@@ -5904,7 +6355,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotFluxSpherical",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01397",
@@ -5917,7 +6369,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotGenerator",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01398",
@@ -5930,7 +6383,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotGenerator",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01399",
@@ -5943,7 +6397,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotGenerator",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01400",
@@ -5956,7 +6411,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotGenerator",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01401",
@@ -5969,7 +6425,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotGenerator",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01402",
@@ -5982,7 +6439,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhi",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01403",
@@ -5995,7 +6453,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01404",
@@ -6008,7 +6467,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01405",
@@ -6021,7 +6481,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01406",
@@ -6034,7 +6495,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01407",
@@ -6047,7 +6509,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01408",
@@ -6060,7 +6523,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01409",
@@ -6073,7 +6537,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01410",
@@ -6086,7 +6551,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01411",
@@ -6099,7 +6565,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01412",
@@ -6112,7 +6579,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01413",
@@ -6125,7 +6593,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01414",
@@ -6138,7 +6607,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01415",
@@ -6151,7 +6621,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01416",
@@ -6164,7 +6635,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01417",
@@ -6177,7 +6649,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01418",
@@ -6190,7 +6663,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01419",
@@ -6203,7 +6677,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01420",
@@ -6216,7 +6691,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01421",
@@ -6229,7 +6705,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPhiDecay",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01422",
@@ -6242,7 +6719,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressure",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01423",
@@ -6255,7 +6733,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressure",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01424",
@@ -6268,7 +6747,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressure",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01425",
@@ -6281,7 +6761,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01426",
@@ -6294,7 +6775,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01427",
@@ -6307,7 +6789,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01428",
@@ -6320,7 +6803,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01429",
@@ -6333,7 +6817,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01430",
@@ -6346,7 +6831,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01431",
@@ -6359,7 +6845,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01432",
@@ -6372,7 +6859,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01433",
@@ -6385,7 +6873,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01434",
@@ -6398,7 +6887,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01435",
@@ -6411,7 +6901,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01436",
@@ -6424,7 +6915,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01437",
@@ -6437,7 +6929,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01438",
@@ -6450,7 +6943,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01439",
@@ -6463,7 +6957,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01440",
@@ -6476,7 +6971,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01441",
@@ -6489,7 +6985,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01442",
@@ -6502,7 +6999,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01443",
@@ -6515,7 +7013,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01444",
@@ -6528,7 +7027,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01445",
@@ -6541,7 +7041,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01446",
@@ -6554,7 +7055,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01447",
@@ -6567,7 +7069,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01448",
@@ -6580,7 +7083,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01449",
@@ -6593,7 +7097,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01450",
@@ -6606,7 +7111,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01451",
@@ -6619,7 +7125,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01452",
@@ -6632,7 +7139,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01453",
@@ -6645,7 +7153,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01454",
@@ -6658,7 +7167,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01455",
@@ -6671,7 +7181,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 33
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01456",
@@ -6684,7 +7195,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 34
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01457",
@@ -6697,7 +7209,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 35
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01458",
@@ -6710,7 +7223,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecay",
     "block": 36
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01459",
@@ -6723,7 +7237,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01460",
@@ -6736,7 +7251,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01461",
@@ -6749,7 +7265,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01462",
@@ -6762,7 +7279,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01463",
@@ -6775,7 +7293,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01464",
@@ -6788,7 +7307,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01465",
@@ -6801,7 +7321,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01466",
@@ -6814,7 +7335,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01467",
@@ -6827,7 +7349,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01468",
@@ -6840,7 +7363,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01469",
@@ -6853,7 +7377,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01470",
@@ -6866,7 +7391,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01471",
@@ -6879,7 +7405,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01472",
@@ -6892,7 +7419,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01473",
@@ -6905,7 +7433,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01474",
@@ -6918,7 +7447,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01475",
@@ -6931,7 +7461,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01476",
@@ -6944,7 +7475,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01477",
@@ -6957,7 +7489,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01478",
@@ -6970,7 +7503,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01479",
@@ -6983,7 +7517,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01480",
@@ -6996,7 +7531,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01481",
@@ -7009,7 +7545,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01482",
@@ -7022,7 +7559,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01483",
@@ -7035,7 +7573,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01484",
@@ -7048,7 +7587,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01485",
@@ -7061,7 +7601,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01486",
@@ -7074,7 +7615,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01487",
@@ -7087,7 +7629,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01488",
@@ -7100,7 +7643,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureDecayProfile",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01489",
@@ -7113,7 +7657,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01490",
@@ -7126,7 +7671,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01491",
@@ -7139,7 +7685,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01492",
@@ -7152,7 +7699,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01493",
@@ -7165,7 +7713,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01494",
@@ -7178,7 +7727,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01495",
@@ -7191,7 +7741,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01496",
@@ -7204,7 +7755,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01497",
@@ -7217,7 +7769,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01498",
@@ -7230,7 +7783,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01499",
@@ -7243,7 +7797,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01500",
@@ -7256,7 +7811,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01501",
@@ -7269,7 +7825,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01502",
@@ -7282,7 +7839,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01503",
@@ -7295,7 +7853,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01504",
@@ -7308,7 +7867,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01505",
@@ -7321,7 +7881,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01506",
@@ -7334,7 +7895,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01507",
@@ -7347,7 +7909,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01508",
@@ -7360,7 +7923,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01509",
@@ -7373,7 +7937,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01510",
@@ -7386,7 +7951,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01511",
@@ -7399,7 +7965,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeak",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01512",
@@ -7412,7 +7979,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01513",
@@ -7425,7 +7993,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01514",
@@ -7438,7 +8007,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01515",
@@ -7451,7 +8021,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01516",
@@ -7464,7 +8035,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01517",
@@ -7477,7 +8049,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01518",
@@ -7490,7 +8063,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01519",
@@ -7503,7 +8077,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01520",
@@ -7516,7 +8091,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01521",
@@ -7529,7 +8105,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01522",
@@ -7542,7 +8119,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01523",
@@ -7555,7 +8133,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01524",
@@ -7568,7 +8147,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01525",
@@ -7581,7 +8161,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01526",
@@ -7594,7 +8175,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01527",
@@ -7607,7 +8189,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01528",
@@ -7620,7 +8203,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01529",
@@ -7633,7 +8217,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotPressureWeakShell",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01530",
@@ -7646,7 +8231,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecay",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01531",
@@ -7659,7 +8245,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecay",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01532",
@@ -7672,7 +8259,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecay",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01533",
@@ -7685,7 +8273,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecay",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01534",
@@ -7698,7 +8287,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecay",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01535",
@@ -7711,7 +8301,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecay",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01536",
@@ -7724,7 +8315,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecay",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01537",
@@ -7737,7 +8329,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01538",
@@ -7750,7 +8343,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01539",
@@ -7763,7 +8357,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01540",
@@ -7776,7 +8371,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01541",
@@ -7789,7 +8385,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01542",
@@ -7802,7 +8399,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01543",
@@ -7815,7 +8413,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01544",
@@ -7828,7 +8427,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01545",
@@ -7841,7 +8441,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01546",
@@ -7854,7 +8455,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01547",
@@ -7867,7 +8469,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01548",
@@ -7880,7 +8483,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01549",
@@ -7893,7 +8497,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01550",
@@ -7906,7 +8511,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01551",
@@ -7919,7 +8525,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01552",
@@ -7932,7 +8539,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01553",
@@ -7945,7 +8553,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01554",
@@ -7958,7 +8567,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01555",
@@ -7971,7 +8581,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01556",
@@ -7984,7 +8595,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01557",
@@ -7997,7 +8609,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01558",
@@ -8010,7 +8623,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01559",
@@ -8023,7 +8637,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01560",
@@ -8036,7 +8651,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01561",
@@ -8049,7 +8665,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01562",
@@ -8062,7 +8679,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01563",
@@ -8075,7 +8693,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01564",
@@ -8088,7 +8707,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01565",
@@ -8101,7 +8721,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01566",
@@ -8114,7 +8735,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01567",
@@ -8127,7 +8749,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 33
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01568",
@@ -8140,7 +8763,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayCells",
     "block": 34
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01569",
@@ -8153,7 +8777,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayFactor",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01570",
@@ -8166,7 +8791,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayFactor",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01571",
@@ -8179,7 +8805,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayFactor",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01572",
@@ -8192,7 +8819,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayFactor",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01573",
@@ -8205,7 +8833,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayFactor",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01574",
@@ -8218,7 +8847,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarDecayFactor",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01575",
@@ -8231,7 +8861,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01576",
@@ -8244,7 +8875,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01577",
@@ -8257,7 +8889,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01578",
@@ -8270,7 +8903,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01579",
@@ -8283,7 +8917,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01580",
@@ -8296,7 +8931,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01581",
@@ -8309,7 +8945,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01582",
@@ -8322,7 +8959,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01583",
@@ -8335,7 +8973,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01584",
@@ -8348,7 +8987,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01585",
@@ -8361,7 +9001,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01586",
@@ -8374,7 +9015,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01587",
@@ -8387,7 +9029,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01588",
@@ -8400,7 +9043,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01589",
@@ -8413,7 +9057,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01590",
@@ -8426,7 +9071,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01591",
@@ -8439,7 +9085,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01592",
@@ -8452,7 +9099,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01593",
@@ -8465,7 +9113,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01594",
@@ -8478,7 +9127,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01595",
@@ -8491,7 +9141,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01596",
@@ -8504,7 +9155,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01597",
@@ -8517,7 +9169,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01598",
@@ -8530,7 +9183,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01599",
@@ -8543,7 +9197,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01600",
@@ -8556,7 +9211,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01601",
@@ -8569,7 +9225,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 29
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01602",
@@ -8582,7 +9239,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 30
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01603",
@@ -8595,7 +9253,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 31
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01604",
@@ -8608,7 +9267,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 32
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01605",
@@ -8621,7 +9281,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 33
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01606",
@@ -8634,7 +9295,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 34
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01607",
@@ -8647,7 +9309,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 35
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01608",
@@ -8660,7 +9323,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 36
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01609",
@@ -8673,7 +9337,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 37
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01610",
@@ -8686,7 +9351,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 38
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01611",
@@ -8699,7 +9365,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 39
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01612",
@@ -8712,7 +9379,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 40
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01613",
@@ -8725,7 +9393,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 41
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01614",
@@ -8738,7 +9407,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 42
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01615",
@@ -8751,7 +9421,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 43
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01616",
@@ -8764,7 +9435,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 44
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01617",
@@ -8777,7 +9449,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 45
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01618",
@@ -8790,7 +9463,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 46
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01619",
@@ -8803,7 +9477,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 47
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01620",
@@ -8816,7 +9491,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 48
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01621",
@@ -8829,7 +9505,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOff",
     "block": 49
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01622",
@@ -8842,7 +9519,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOrigin",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01623",
@@ -8855,7 +9533,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOrigin",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01624",
@@ -8868,7 +9547,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOrigin",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01625",
@@ -8881,7 +9561,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01626",
@@ -8894,7 +9575,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01627",
@@ -8907,7 +9589,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01628",
@@ -8920,7 +9603,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01629",
@@ -8933,7 +9617,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01630",
@@ -8946,7 +9631,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01631",
@@ -8959,7 +9645,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01632",
@@ -8972,7 +9659,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01633",
@@ -8985,7 +9673,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01634",
@@ -8998,7 +9687,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01635",
@@ -9011,7 +9701,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01636",
@@ -9024,7 +9715,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01637",
@@ -9037,7 +9729,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01638",
@@ -9050,7 +9743,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01639",
@@ -9063,7 +9757,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01640",
@@ -9076,7 +9771,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01641",
@@ -9089,7 +9785,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01642",
@@ -9102,7 +9799,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01643",
@@ -9115,7 +9813,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01644",
@@ -9128,7 +9827,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01645",
@@ -9141,7 +9841,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01646",
@@ -9154,7 +9855,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01647",
@@ -9167,7 +9869,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01648",
@@ -9180,7 +9883,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01649",
@@ -9193,7 +9897,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 27
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01650",
@@ -9206,7 +9911,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginAngular",
     "block": 28
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01651",
@@ -9219,7 +9925,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01652",
@@ -9232,7 +9939,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01653",
@@ -9245,7 +9953,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01654",
@@ -9258,7 +9967,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01655",
@@ -9271,7 +9981,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01656",
@@ -9284,7 +9995,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01657",
@@ -9297,7 +10009,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01658",
@@ -9310,7 +10023,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01659",
@@ -9323,7 +10037,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01660",
@@ -9336,7 +10051,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01661",
@@ -9349,7 +10065,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01662",
@@ -9362,7 +10079,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01663",
@@ -9375,7 +10093,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01664",
@@ -9388,7 +10107,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01665",
@@ -9401,7 +10121,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01666",
@@ -9414,7 +10135,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01667",
@@ -9427,7 +10149,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01668",
@@ -9440,7 +10163,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 20
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01669",
@@ -9453,7 +10177,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 21
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01670",
@@ -9466,7 +10191,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 22
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01671",
@@ -9479,7 +10205,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 23
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01672",
@@ -9492,7 +10219,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 24
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01673",
@@ -9505,7 +10233,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 25
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01674",
@@ -9518,7 +10247,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotScalarOriginParts",
     "block": 26
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01675",
@@ -9531,7 +10261,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotTheta",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01676",
@@ -9544,7 +10275,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaScalar",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01677",
@@ -9557,7 +10289,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaScalar",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01678",
@@ -9570,7 +10303,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaScalar",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01679",
@@ -9583,7 +10317,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaScalar",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01680",
@@ -9596,7 +10331,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaScalar",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01681",
@@ -9609,7 +10345,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaScalar",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01682",
@@ -9622,7 +10359,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaScalar",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01683",
@@ -9635,7 +10373,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaScalar",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01684",
@@ -9648,7 +10387,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01685",
@@ -9661,7 +10401,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01686",
@@ -9674,7 +10415,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01687",
@@ -9687,7 +10429,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01688",
@@ -9700,7 +10443,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01689",
@@ -9713,7 +10457,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01690",
@@ -9726,7 +10471,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01691",
@@ -9739,7 +10485,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01692",
@@ -9752,7 +10499,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01693",
@@ -9765,7 +10513,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 12
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01694",
@@ -9778,7 +10527,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 13
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01695",
@@ -9791,7 +10541,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 14
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01696",
@@ -9804,7 +10555,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 15
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01697",
@@ -9817,7 +10569,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 16
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01698",
@@ -9830,7 +10583,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 17
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01699",
@@ -9843,7 +10597,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 18
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01700",
@@ -9856,7 +10611,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotThetaSmooth",
     "block": 19
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01701",
@@ -9869,7 +10625,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialPartsClosed",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01702",
@@ -9882,7 +10639,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialPartsClosed",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01703",
@@ -9895,7 +10653,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialShape",
     "block": 3
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01704",
@@ -9908,7 +10667,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialShape",
     "block": 4
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01705",
@@ -9921,7 +10681,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialShape",
     "block": 5
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01706",
@@ -9934,7 +10695,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialShape",
     "block": 6
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01707",
@@ -9947,7 +10709,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialShape",
     "block": 7
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01708",
@@ -9960,7 +10723,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialShape",
     "block": 8
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01709",
@@ -9973,7 +10737,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialShape",
     "block": 9
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01710",
@@ -9986,7 +10751,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialShape",
     "block": 10
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01711",
@@ -9999,7 +10765,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.PotentialShape",
     "block": 11
-   }
+   },
+   "topic": "adjoint"
   },
   {
    "id": "s1-01712",
@@ -10012,7 +10779,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01713",
@@ -10025,7 +10793,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01714",
@@ -10038,7 +10807,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01715",
@@ -10051,7 +10821,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01716",
@@ -10064,7 +10835,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01717",
@@ -10077,7 +10849,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 8
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01718",
@@ -10090,7 +10863,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 9
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01719",
@@ -10103,7 +10877,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 10
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01720",
@@ -10116,7 +10891,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 11
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01721",
@@ -10129,7 +10905,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 12
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01722",
@@ -10142,7 +10919,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 13
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01723",
@@ -10155,7 +10933,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 14
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01724",
@@ -10168,7 +10947,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 15
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01725",
@@ -10181,7 +10961,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 16
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01726",
@@ -10194,7 +10975,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 17
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01727",
@@ -10207,7 +10989,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 18
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01728",
@@ -10220,7 +11003,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 19
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01729",
@@ -10233,7 +11017,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 20
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01730",
@@ -10246,7 +11031,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 21
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01731",
@@ -10259,7 +11045,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 22
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01732",
@@ -10272,7 +11059,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 23
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01733",
@@ -10285,7 +11073,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 24
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01734",
@@ -10298,7 +11087,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 25
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01735",
@@ -10311,7 +11101,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 26
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01736",
@@ -10324,7 +11115,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 27
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01737",
@@ -10337,7 +11129,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 28
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01738",
@@ -10350,7 +11143,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 29
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01739",
@@ -10363,7 +11157,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 30
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01740",
@@ -10376,7 +11171,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 31
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01741",
@@ -10389,7 +11185,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 32
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01742",
@@ -10402,7 +11199,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 33
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01743",
@@ -10415,7 +11213,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 34
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01744",
@@ -10428,7 +11227,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 35
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01745",
@@ -10441,7 +11241,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 36
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01746",
@@ -10454,7 +11255,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 37
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01747",
@@ -10467,7 +11269,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 38
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01748",
@@ -10480,7 +11283,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 39
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01749",
@@ -10493,7 +11297,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 40
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01750",
@@ -10506,7 +11311,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 41
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01751",
@@ -10519,7 +11325,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 42
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01752",
@@ -10532,7 +11339,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ProfileFieldApprox",
     "block": 43
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01753",
@@ -10545,7 +11353,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionClosed",
     "block": 3
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01754",
@@ -10558,7 +11367,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionClosed",
     "block": 4
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01755",
@@ -10571,7 +11381,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionClosed",
     "block": 5
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01756",
@@ -10584,7 +11395,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionClosed",
     "block": 6
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01757",
@@ -10597,7 +11409,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionClosed",
     "block": 7
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01758",
@@ -10610,7 +11423,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionClosed",
     "block": 8
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01759",
@@ -10623,7 +11437,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionClosed",
     "block": 9
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01760",
@@ -10636,7 +11451,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionClosed",
     "block": 10
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01761",
@@ -10649,7 +11465,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionClosed",
     "block": 11
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01762",
@@ -10662,7 +11479,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 3
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01763",
@@ -10675,7 +11493,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 5
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01764",
@@ -10688,7 +11507,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 7
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01765",
@@ -10701,7 +11521,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 9
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01766",
@@ -10714,7 +11535,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 11
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01767",
@@ -10727,7 +11549,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 13
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01768",
@@ -10740,7 +11563,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 15
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01769",
@@ -10753,7 +11577,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 17
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01770",
@@ -10766,7 +11591,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 19
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01771",
@@ -10779,7 +11605,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 21
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01772",
@@ -10792,7 +11619,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 23
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01773",
@@ -10805,7 +11633,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 25
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01774",
@@ -10818,7 +11647,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 27
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01775",
@@ -10831,7 +11661,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 29
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01776",
@@ -10844,7 +11675,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 31
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01777",
@@ -10857,7 +11689,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 33
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01778",
@@ -10870,7 +11703,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 35
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01779",
@@ -10883,7 +11717,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 36
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01780",
@@ -10896,7 +11731,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 37
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01781",
@@ -10909,7 +11745,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 38
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01782",
@@ -10922,7 +11759,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 39
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01783",
@@ -10935,7 +11773,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 40
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01784",
@@ -10948,7 +11787,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 41
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01785",
@@ -10961,7 +11801,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 42
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01786",
@@ -10974,7 +11815,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 43
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01787",
@@ -10987,7 +11829,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 45
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01788",
@@ -11000,7 +11843,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 46
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01789",
@@ -11013,7 +11857,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 47
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01790",
@@ -11026,7 +11871,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 49
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01791",
@@ -11039,7 +11885,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 51
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01792",
@@ -11052,7 +11899,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 53
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01793",
@@ -11065,7 +11913,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 55
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01794",
@@ -11078,7 +11927,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ReductionStatements",
     "block": 57
-   }
+   },
+   "topic": "offset-certificate"
   },
   {
    "id": "s1-01795",
@@ -11091,7 +11941,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftGradTerm",
     "block": 3
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01796",
@@ -11104,7 +11955,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftGradTerm",
     "block": 4
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01797",
@@ -11117,7 +11969,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftGradTerm",
     "block": 5
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01798",
@@ -11130,7 +11983,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftGradTerm",
     "block": 6
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01799",
@@ -11143,7 +11997,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftGradTerm",
     "block": 7
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01800",
@@ -11156,7 +12011,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftSupTerm",
     "block": 3
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01801",
@@ -11169,7 +12025,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftSupTerm",
     "block": 4
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01802",
@@ -11182,7 +12039,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftSupTerm",
     "block": 5
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01803",
@@ -11195,7 +12053,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftSupTerm",
     "block": 6
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01804",
@@ -11208,7 +12067,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftSupTerm",
     "block": 7
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01805",
@@ -11221,7 +12081,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.ShiftSupTerm",
     "block": 8
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01806",
@@ -11234,7 +12095,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNorm",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01807",
@@ -11247,7 +12109,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNorm",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01808",
@@ -11260,7 +12123,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNorm",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01809",
@@ -11273,7 +12137,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormMollify",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01810",
@@ -11286,7 +12151,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormMollify",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01811",
@@ -11299,7 +12165,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormMollify",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01812",
@@ -11312,7 +12179,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormMollify",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01813",
@@ -11325,7 +12193,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormMollify",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01814",
@@ -11338,7 +12207,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormMollify",
     "block": 8
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01815",
@@ -11351,7 +12221,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01816",
@@ -11364,7 +12235,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01817",
@@ -11377,7 +12249,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01818",
@@ -11390,7 +12263,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01819",
@@ -11403,7 +12277,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01820",
@@ -11416,7 +12291,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 8
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01821",
@@ -11429,7 +12305,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 9
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01822",
@@ -11442,7 +12319,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 10
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01823",
@@ -11455,7 +12333,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 11
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01824",
@@ -11468,7 +12347,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 12
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01825",
@@ -11481,7 +12361,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 13
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01826",
@@ -11494,7 +12375,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 14
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01827",
@@ -11507,7 +12389,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 15
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01828",
@@ -11520,7 +12403,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 16
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01829",
@@ -11533,7 +12417,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 17
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01830",
@@ -11546,7 +12431,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 18
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01831",
@@ -11559,7 +12445,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 19
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01832",
@@ -11572,7 +12459,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 20
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01833",
@@ -11585,7 +12473,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 21
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01834",
@@ -11598,7 +12487,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 22
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01835",
@@ -11611,7 +12501,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 23
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01836",
@@ -11624,7 +12515,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 24
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01837",
@@ -11637,7 +12529,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 25
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01838",
@@ -11650,7 +12543,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SliceSupNormSmooth",
     "block": 26
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01839",
@@ -11663,7 +12557,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SmoothShiftPieces",
     "block": 3
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01840",
@@ -11676,7 +12571,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SmoothShiftPieces",
     "block": 4
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01841",
@@ -11689,7 +12585,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.SmoothShiftPieces",
     "block": 5
-   }
+   },
+   "topic": "profile-change"
   },
   {
    "id": "s1-01842",
@@ -11702,7 +12599,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.StrainTerm",
     "block": 3
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01843",
@@ -11715,7 +12613,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.StrainTerm",
     "block": 4
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01844",
@@ -11728,7 +12627,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.StrainTerm",
     "block": 5
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01845",
@@ -11741,7 +12641,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.StrainTerm",
     "block": 6
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01846",
@@ -11754,7 +12655,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.StrainTerm",
     "block": 7
-   }
+   },
+   "topic": "cells-tails"
   },
   {
    "id": "s1-01847",
@@ -11767,7 +12669,8 @@
    "anchor": {
     "heading": "Breakdown.CellReduction.StrainTerm",
     "block": 8
-   }
+   },
+   "topic": "cells-tails"
   }
  ],
  "plain": {
@@ -12682,5 +13585,133 @@
   "Breakdown.CertReduction.GapTransferBridgeHolds": "Transfer from model to profile"
  },
  "notes": {},
- "fidelity_held": "This guide describes each declaration on its own terms. Comparisons of the Lean with the paper's numbered statements are on the paper, index and full-account pages."
+ "fidelity_held": "This guide describes each declaration on its own terms. Comparisons of the Lean with the paper's numbered statements are on the paper, index and full-account pages.",
+ "families": [
+  {
+   "id": "theorems",
+   "name": "The theorems"
+  },
+  {
+   "id": "profile-to-blowup",
+   "name": "From a profile to blow-up"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus"
+  },
+  {
+   "id": "certificate-to-profile",
+   "name": "From a certificate to a profile"
+  },
+  {
+   "id": "cell-data",
+   "name": "Cell data"
+  },
+  {
+   "id": "cell-estimates",
+   "name": "Cell estimates"
+  },
+  {
+   "id": "cell-certificate",
+   "name": "From cell data to the certificate"
+  }
+ ],
+ "topics": [
+  {
+   "id": "statement",
+   "name": "The blow-up statements",
+   "description": "Smooth solutions, breakdown on space and on the torus, and the theorems that state them (Theorem 1.1, Theorem 7.1).",
+   "family": "theorems"
+  },
+  {
+   "id": "fractional",
+   "name": "The fractional extension",
+   "description": "The authors' separate extension with dissipation exponent between 1 and 5/4, outside the classical paper.",
+   "family": "theorems"
+  },
+  {
+   "id": "mild",
+   "name": "Heat flow and mild solutions",
+   "description": "The heat semigroup, the bilinear Duhamel term, mild solutions, restarting and uniqueness (§3).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "profile",
+   "name": "Recurrent profiles",
+   "description": "Self-similar time-periodic profiles, their slices and orbits, and weak profiles read as physical fields (§2, §4.1, §7.11).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "monodromy",
+   "name": "Monodromy and the correction",
+   "description": "The period map, its compact-plus-small splitting, the spectral projection and the fixed point that corrects a profile to an exact solution (§4).",
+   "family": "profile-to-blowup"
+  },
+  {
+   "id": "torus",
+   "name": "Passing to the torus",
+   "description": "The solenoidal cutoff, periodization and the periodic right inverse that move the construction onto the torus (§5–6).",
+   "family": "torus"
+  },
+  {
+   "id": "certificate",
+   "name": "From certificate to profile",
+   "description": "Certificate data, the free operator, convection, held solutions and the smoothing of the weak profile they produce (§7).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "coercive",
+   "name": "The coercive multiplier estimate",
+   "description": "The multiplier, its five density coefficients and lower bound, and the a priori estimate it gives (Appendix B.1 and B.2).",
+   "family": "certificate-to-profile"
+  },
+  {
+   "id": "encoding",
+   "name": "Encoded cell data",
+   "description": "The finitely represented inputs: coordinates and harmonics, the profile representation, splines and jets, physical cells, rows, weights and potentials.",
+   "family": "cell-data"
+  },
+  {
+   "id": "quarter-plane",
+   "name": "Reduction to the quarter plane",
+   "description": "Symmetry reduction of the density to the meridian quarter plane (B.3).",
+   "family": "cell-data"
+  },
+  {
+   "id": "cells-tails",
+   "name": "Cells, traces and tails",
+   "description": "Integrability, the common vector of unknowns, resolved modes, the tail budget and the exterior estimate (B.4).",
+   "family": "cell-data"
+  },
+  {
+   "id": "angular",
+   "name": "Angular and ray-exterior tests",
+   "description": "The angular inequalities, the pointwise test and the integrated test on ray exteriors (B.5 and B.6).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "tree",
+   "name": "The matrix tree lower bound",
+   "description": "The tree conditions on the cell matrices and the passage from all cells to the global inequality (B.7 and B.8).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "profile-change",
+   "name": "Changing the profile",
+   "description": "Bounds for moving estimates from the reference field to the actual profile (B.9).",
+   "family": "cell-estimates"
+  },
+  {
+   "id": "adjoint",
+   "name": "The adjoint pairing and its error",
+   "description": "The quadratic adjoint pairing, the azimuthal dual norm and the linear adjoint error with potentials and pins (B.10 to B.12).",
+   "family": "cell-certificate"
+  },
+  {
+   "id": "offset-certificate",
+   "name": "The offset and the certificate",
+   "description": "Enclosing the constant, linear and quadratic offset, and the fifteen fields of CellSystemCondition that make the data a certificate (B.13 and B.14).",
+   "family": "cell-certificate"
+  }
+ ]
 }

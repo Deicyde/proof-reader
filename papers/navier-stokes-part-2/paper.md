@@ -958,7 +958,7 @@ $$
 
 Every term in this distributional equation is represented by a locally integrable function.
 
-To prove the equation, add the approximate relation (II.4) to the correction equation (II.5). The quadratic expansion contributes precisely the two cross terms $C_\alpha v$ and $N(v)$. The residuals cancel, and the total force coefficients cancel by (II.49). This gives (II.50).
+To prove the equation, add the approximate relation (II.4) to the correction equation (II.5). The quadratic expansion contributes the two cross terms whose sum is $C_\alpha v$, together with the pure correction term $N(v)$. The residuals cancel, and the total force coefficients cancel by (II.49). This gives (II.50).
 
 The correction is continuous in $X$ by Lemma II.3. For the approximate profile, continuity of the gradient and (II.3) permit dominated convergence in $L^2_y$: the square is bounded by a constant times $(1+|y|)^{-4}$, integrable in dimension three. Its velocities are likewise continuous in $L^6$, using $(1+|y|)^{-6}$. Thus the sum is a continuous periodic $X$ curve.
 
@@ -993,7 +993,7 @@ W(s,\cdot)=\mathcal W(s/S,\cdot)\quad\text{in }X
 \tag{II.51}
 $$
 
-This is Proposition 7.11, stated on p.44 and proved on pp.45–47. Its hypotheses are much more specific than unrestricted weak Navier–Stokes solvability. They already provide a continuous periodic homogeneous $H^1$ orbit. We verify below how that input reaches each regularity theorem used.
+This is Proposition 7.11, stated on p.44 and proved on pp.45–47. Its hypotheses are much more specific than unrestricted weak Navier–Stokes solvability. The hypotheses of Proposition II.17 already provide a continuous periodic homogeneous $H^1$ orbit. The linked formal weak-profile hypothesis instead gives measurable recurrent fields with global derivative bounds; its construction derives a continuous orbit before smoothing. We verify below how that input reaches each regularity theorem used.
 
 ### 11.2 From the similarity equation to a physical mild solution
 
@@ -1032,7 +1032,7 @@ u(t)=e^{(t-a)\Delta}u(a)
 \tag{II.55}
 $$
 
-where $O_r$ is the kernel of $e^{r\Delta}P$, with the tensor indices contracted as in the convection term. The integral is an $X$ integral and hence also an $L^6$ integral. This is an application to the particular selected orbit, so no replacement by an unrelated mild solution occurs. The formal construction `Breakdown.WeakProfile.weakOrbitOfParts_holds` proves the corresponding weak-to-mild orbit step through its own representative interfaces.
+where $O_r$ is the kernel of $e^{r\Delta}P$, with the tensor indices contracted as in the convection term. The integral is an $X$ integral and hence also an $L^6$ integral. The mathematical argument applies to the particular selected orbit, preserving its identity. The linked formal weak-to-mild result returns an existential orbit, so retaining that identity in a theorem statement requires the separate same-witness construction. The formal construction `Breakdown.WeakProfile.weakOrbitOfParts_holds` proves the corresponding weak-to-mild orbit step through its own representative interfaces.
 
 ### 11.3 Two explicit integrable bootstraps
 
@@ -1258,11 +1258,11 @@ The displayed decimals are explanatory evaluations of symbolic consequences. The
 
 ### 13.2 What is represented differently in the formal certificate
 
-The mathematical proof above uses the analytic certificate stated in the paper. The linked formal construction starts from `Breakdown.IsExtendedCertificate`. Some differences are explicit encodings: its finite rows are normalised, it stores full-profile pin targets and subtracts the approximate pins, and it stores a weak Hessian and pressure-gradient representative. Other differences strengthen the stated input: the formal approximate profile is globally jointly $C^1$ in the ambient parameter, time and space; it has a specified weak Hessian with cubic decay; the weight is invariant under the symmetries; the pin coefficient is nonnegative; and the adjoints carry a uniform spatial $L^2$ bound at each time. The paper's §§7.2–7.3 do not state all these requirements in that form.
+The mathematical proof above uses the analytic certificate stated in the paper. The linked formal construction starts from `Breakdown.IsExtendedCertificate`. Some differences are choices of representation: the finite rows are normalised, full-profile pin targets are converted to correction targets by subtracting the approximate pins, and the weak Hessian and pressure contribution are supplied separately. The pressure contribution is required to annihilate compact solenoidal tests; these data do not specify a scalar pressure whose gradient it is. Other differences strengthen the stated input: the formal approximate profile is globally jointly $C^1$ in the ambient parameter, time and space; it has a specified weak Hessian with cubic decay; the weight is invariant under the symmetries; the pin coefficient is nonnegative; and the adjoints carry a uniform spatial $L^2$ bound at each time. The paper's §§7.2–7.3 do not state all these requirements in that form.
 
 The formal `twist` may be one even when a half-period symmetry is available, which gives a conservative version of the same inequalities. The paper defines $m$ to be two whenever that symmetry is present. None of these observations asserts that the concrete Appendix B data violate a formal hypothesis. They show why a comparison must name the actual input predicate and why a collection of local correspondences does not prove equivalence of the complete certificate definitions.
 
-Declarations ending in `Holds_of` often prove an implication between analytic interfaces. They are linked here for the particular step they establish. The top-level `Breakdown.extended_certificate_orbit_proved` assembles these nodes from the extended certificate hypothesis. Its conclusion is still conditional and existential. The same-witness wrapper attempts an additional conclusion-preserving assembly; its supplied source and build state remain separately identified.
+Intermediate results establish one analytic step from previously proved estimates or representation identities. The linked top-level theorem assembles these steps from an extended certificate hypothesis. They are linked here for the particular step they establish. The top-level `Breakdown.extended_certificate_orbit_proved` assembles these nodes from the extended certificate hypothesis. Its conclusion is still conditional and existential. The same-witness wrapper attempts an additional conclusion-preserving assembly; its supplied source and build state remain separately identified.
 
 ### 13.3 What this argument does and what remains external
 
