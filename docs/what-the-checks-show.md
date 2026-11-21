@@ -45,6 +45,15 @@ Evidence differs by page:
 - The coupled spring page: Lean 4.35.0 compiled two unchanged PhyslibAlpha modules, and
   our supplementary proofs were compiled against them
   ([coupled-spring-extract.yml](../.github/workflows/coupled-spring-extract.yml)).
+- The Navier–Stokes pages: Lean 4.33.1 compiled the authors' package, unchanged at commit
+  ad53419, in GitHub Actions, and
+  [navier-stokes-extract.yml](../.github/workflows/navier-stokes-extract.yml) read two
+  reports from the compiled files: one for the library (`Breakdown` and `Solution`) and one
+  for the readable statement files, which declare the same names and cannot be imported
+  with the library. Each page keeps the rows of that report for the declarations it shows.
+  As challenge files do, the readable statement files contain theorems whose proofs are
+  `sorry`, and the pages built on them show `sorry` in those theorems' axiom reports. The
+  library report has no `sorry` and no axioms beyond the three standard ones.
 
 ## Comparisons of a statement with its Lean
 

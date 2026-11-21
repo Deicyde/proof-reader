@@ -1,0 +1,42 @@
+[paper]
+title = "Cell declaration reference"
+short_title = "Navier–Stokes blow-up: cell reference"
+authors = ["Prepared by Will Cook with AI assistance"]
+venue = "Every declaration of CellLayerChallenge.lean at ad53419"
+markdown = "paper.md"
+url = "https://github.com/wcook04/proof-reader/blob/main/papers/navier-stokes-cell-reference/paper.md"
+noun = "reference"
+licence = "MIT"
+
+[credit]
+text = "Paper and Lean: Levent Alpöge and Tristan Buckmaster, github.com/tristanbuckmaster/navier-stokes at ad53419. Text, links, plain titles, notes and comparisons prepared by Will Cook with AI assistance, MIT licence"
+
+[lean]
+project = "../navier-stokes-paper/lean"
+modules = ["CellLayerChallenge"]
+source = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546/lean"
+source_name = "navier-stokes at ad53419"
+source_lines = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/{path}#L{line}-L{end}"
+licence = "none stated by the authors; hosted with credit"
+scope = "Lean 4.33.1 compiled the authors' package, unchanged at ad53419, on GitHub Actions; this page reads the readable statement chain (Challenge.lean to CellLayerChallenge.lean), whose closing theorems are sorry stubs that Solution.lean proves. Each declaration's statement, dependencies and axioms shown here are Lean's own report from those compiled modules. The links from the text to the Lean, the plain titles, the notes and the comparisons were made with AI and have not been reviewed by the authors."
+
+[reading]
+language = "lean"
+
+[reading.companions]
+"../navier-stokes-appendix-b/paper.md" = "navier-stokes-appendix-b"
+"../navier-stokes-cell-guide/paper.md" = "navier-stokes-cell-guide"
+"../navier-stokes-index/paper.md" = "navier-stokes-index"
+"../navier-stokes-paper/paper.pdf" = "navier-stokes-paper"
+"../navier-stokes-part-1/paper.md" = "navier-stokes-part-1"
+"../navier-stokes-part-2/paper.md" = "navier-stokes-part-2"
+"../navier-stokes-routes/paper.md" = "navier-stokes-routes"
+"../navier-stokes-statement-files/paper.md" = "navier-stokes-statement-files"
+"../navier-stokes/cell-layer-fidelity.md" = "navier-stokes-cell-fidelity"
+"../navier-stokes/certificate-checker.md" = "navier-stokes-certificate-checker"
+"../navier-stokes/digest.md" = "navier-stokes-digest"
+"../navier-stokes/paper.md" = "navier-stokes"
+
+[shelf]
+with = "navier-stokes-paper"
+place = 10

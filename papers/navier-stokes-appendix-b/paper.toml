@@ -1,0 +1,42 @@
+[paper]
+title = "From cell data to a Navier–Stokes certificate"
+short_title = "Navier–Stokes blow-up, part III: Appendix B"
+authors = ["Prepared by Will Cook with AI assistance"]
+venue = "Full account of Appendices B and C of Alpöge and Buckmaster’s paper"
+markdown = "paper.md"
+url = "https://github.com/wcook04/proof-reader/blob/main/papers/navier-stokes-appendix-b/paper.md"
+noun = "account"
+licence = "MIT"
+
+[credit]
+text = "Paper and Lean: Levent Alpöge and Tristan Buckmaster, github.com/tristanbuckmaster/navier-stokes at ad53419. Text, links, plain titles, notes and comparisons prepared by Will Cook with AI assistance, MIT licence"
+
+[lean]
+project = "../navier-stokes-paper/lean"
+modules = ["Breakdown.CellReduction.AdjointAssembly", "Breakdown.CellReduction.AdjointAssemblyPairing", "Breakdown.CellReduction.AdjointDualBounded", "Breakdown.CellReduction.AdjointEntryDefs", "Breakdown.CellReduction.AdjointFreeShift", "Breakdown.CellReduction.AdjointPinCharge", "Breakdown.CellReduction.AdjointPotentialBound", "Breakdown.CellReduction.AdjointQuadTerm", "Breakdown.CellReduction.AdjointQuadraticBridge", "Breakdown.CellReduction.AdjointRemainderAzimuthal", "Breakdown.CellReduction.AdjointRemainderAzimuthalPairing", "Breakdown.CellReduction.AdjointRemainderAzimuthalSmooth", "Breakdown.CellReduction.AdjointRemainderAzimuthalTime", "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak", "Breakdown.CellReduction.AdjointRemainderPlain", "Breakdown.CellReduction.AdjointRepresentation", "Breakdown.CellReduction.AdjointTestDensity", "Breakdown.CellReduction.CellLayerBreakdownClosed", "Breakdown.CellReduction.CellLayerBreakdownCompose", "Breakdown.CellReduction.ConvectionIdentityClosed", "Breakdown.CellReduction.FormShiftBridge", "Breakdown.CellReduction.FrozenFormBridge", "Breakdown.CellReduction.GapTransferBridge", "Breakdown.CellReduction.InstBallAgreement", "Breakdown.CellReduction.InstOffsetClause", "Breakdown.CellReduction.InstOffsetIdentity", "Breakdown.CellReduction.InstStepPhase", "Breakdown.CellReduction.PotentialPartsClosed", "Breakdown.CellReduction.PotentialShape", "Breakdown.CellReduction.ReductionClosed", "Breakdown.Cert.CoerciveFrequencySeminorm", "Breakdown.Cert.CoerciveFrequencySeminormTransport", "Breakdown.Cert.CoercivePieceField", "Breakdown.Cert.CoerciveSmoothApprox", "Breakdown.Cert.CoerciveSmoothBase", "Breakdown.Cert.CoerciveStatement", "Breakdown.Cert.CoerciveStretch", "Breakdown.Cert.ExtendedCoerciveAbsorbStep", "Breakdown.Cert.ExtendedCoerciveDefs", "Breakdown.Cert.ExtendedCoerciveEnergyIdentity", "Breakdown.Cert.ExtendedCoerciveMain", "Breakdown.Cert.ExtendedCoercivePieceDensityPassage", "Breakdown.Cert.ExtendedCoercivePieceEps", "Breakdown.Cert.ExtendedCoercivePieceMu", "Breakdown.Cert.ExtendedStatement", "Breakdown.Cert.Statement", "Breakdown.CertCell.AssemblyCellRange", "Breakdown.CertCell.AssemblyEliminationStage", "Breakdown.CertCell.AssemblyExteriorStretch", "Breakdown.CertCell.AssemblyPotentialGroups", "Breakdown.CertCell.AssemblyPotentialModelCharges", "Breakdown.CertCell.AssemblyPotentialSharpFrame", "Breakdown.CertCell.AssemblyResidual", "Breakdown.CertCell.AssemblyTailGain", "Breakdown.CertCell.AssemblyTopBound", "Breakdown.CertCell.AssemblyTreeState", "Breakdown.CertCell.BridgeStatements", "Breakdown.CertCell.CellCalculusStatements", "Breakdown.CertCell.CellLayerClosed", "Breakdown.CertCell.CellLayerConclusion", "Breakdown.CertCell.CellLayerJunctions", "Breakdown.CertCell.CellLayerPartProofs", "Breakdown.CertCell.CertComplexSlackBound", "Breakdown.CertCell.CertCoordinateSlack", "Breakdown.CertCell.CertPivotCount", "Breakdown.CertCell.CertRealRestriction", "Breakdown.CertCell.CertSlackBound", "Breakdown.CertCell.CertTerminalTest", "Breakdown.CertCell.CertTreeLowerBound", "Breakdown.CertCell.Certificate", "Breakdown.CertCell.CertificateEnclosureStatements", "Breakdown.CertCell.CertificateStatements", "Breakdown.CertCell.EnergyLeafBound", "Breakdown.CertCell.FormNegativeFinite", "Breakdown.CertCell.HalfPlaneReduction", "Breakdown.CertCell.InstancePairSurrogateClosed", "Breakdown.CertCell.ModeDensityBridgeLinks", "Breakdown.CertCell.ModeFlip", "Breakdown.CertCell.ModeTermFlip", "Breakdown.CertCell.RowSharesInstance", "Breakdown.CertCell.RowsMatchBridge", "Breakdown.CertCell.StatementDefs", "Breakdown.CertCell.StretchFlip", "Breakdown.CertCell.StretchTripleBound", "Breakdown.CertCell.TailAngular", "Breakdown.CertCell.TailExteriorLinks", "Breakdown.CertCell.TailPointwise", "Breakdown.CertCell.TailRayBound", "Breakdown.CertCell.TailRayModes", "Breakdown.CertCell.TailSquareModes", "Breakdown.CertCell.TailSquareSmooth", "Breakdown.CertCell.TopStatements", "Breakdown.FracCell.StatementDefs", "Solution"]
+source = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546/lean"
+source_name = "navier-stokes at ad53419"
+source_lines = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/{path}#L{line}-L{end}"
+licence = "none stated by the authors; hosted with credit"
+scope = "Lean 4.33.1 compiled the authors' package, unchanged at ad53419, on GitHub Actions; this page reads the library (Breakdown and Solution). Each declaration's statement, dependencies and axioms shown here are Lean's own report from those compiled modules. The links from the text to the Lean, the plain titles, the notes and the comparisons were made with AI and have not been reviewed by the authors."
+
+[reading]
+language = "lean"
+
+[reading.companions]
+"../navier-stokes-cell-guide/paper.md" = "navier-stokes-cell-guide"
+"../navier-stokes-cell-reference/paper.md" = "navier-stokes-cell-reference"
+"../navier-stokes-index/paper.md" = "navier-stokes-index"
+"../navier-stokes-paper/paper.pdf" = "navier-stokes-paper"
+"../navier-stokes-part-1/paper.md" = "navier-stokes-part-1"
+"../navier-stokes-part-2/paper.md" = "navier-stokes-part-2"
+"../navier-stokes-routes/paper.md" = "navier-stokes-routes"
+"../navier-stokes-statement-files/paper.md" = "navier-stokes-statement-files"
+"../navier-stokes/cell-layer-fidelity.md" = "navier-stokes-cell-fidelity"
+"../navier-stokes/certificate-checker.md" = "navier-stokes-certificate-checker"
+"../navier-stokes/digest.md" = "navier-stokes-digest"
+"../navier-stokes/paper.md" = "navier-stokes"
+
+[shelf]
+with = "navier-stokes-paper"
+place = 5

@@ -1,0 +1,28 @@
+{
+  "challenge_module": "Theorem71Control",
+  "solution_module": "Theorem71Solution",
+  "theorem_names": [
+    "Breakdown.theorem71_extended"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "external_kernels": {
+    "Lean paranoid": [
+      "leanchecker-paranoid",
+      "--silent",
+      "--from-export"
+    ],
+    "nanoda": [
+      "nanoda_bin"
+    ],
+    "con-leche": [
+      "con-leche"
+    ],
+    "con-ron": [
+      "con-ron"
+    ]
+  }
+}

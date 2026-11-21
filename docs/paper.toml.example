@@ -51,6 +51,13 @@ page_label = "{page}"         # how the paper numbers its pages, such as "191:{p
 # example = "isoR-clam"
 # or
 # example = ["isoR-clam", "closed-world", "indexIsoL"]
+#
+# A page that accompanies another (a digest, an index, a guide to the same Lean) can be
+# listed on the front page as a link under that paper's entry instead of as an entry of
+# its own. Name the paper's slug; `place` orders the links under it. The build stops if
+# `with` names a paper that is not listed on its own.
+# with = "navier-stokes-paper"
+# place = 2
 
 # A Comparator run on some of the Lean's theorems. Name the folder of the run's files:
 # Challenge.lean, Solution.lean, the configuration, the rejected control and receipt.json.
