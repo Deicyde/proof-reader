@@ -1,9 +1,9 @@
 # From a recurrent profile to unforced Navier–Stokes blow-up
 
-> **Paper and Lean by Levent Alpöge and Tristan Buckmaster**, [github.com/tristanbuckmaster/navier-stokes](https://github.com/tristanbuckmaster/navier-stokes) (commit [`ad53419`](https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546)). This page and the wrapper Lean in [`lean-wrappers/`](https://github.com/wcook04/proof-reader/tree/claude/navier-stokes-20261120/lean-wrappers) were prepared by Will Cook with AI assistance and are released under the [MIT licence](LICENSE); they have not been reviewed by the authors.
+**Navier–Stokes pages:** [the paper](../navier-stokes-paper/paper.pdf) · [index by number](../navier-stokes-index/paper.md) · **specialist digest** · [full account, part I](../navier-stokes-part-1/paper.md) · [part II](../navier-stokes-part-2/paper.md) · [part III](../navier-stokes-appendix-b/paper.md) · [what the Lean states](paper.md) · [statement files](../navier-stokes-statement-files/paper.md) · [proof routes](../navier-stokes-routes/paper.md) · [cell layer guide](../navier-stokes-cell-guide/paper.md) · [cell reference](../navier-stokes-cell-reference/paper.md) · [cell layer and Appendix B](cell-layer-fidelity.md) · [certificate checker](certificate-checker.md)
 
 **A specialist digest of the paper by Levent Alpöge and Tristan Buckmaster**  
-20 November 2026 · Lean at commit [`ad53419`](https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546) · companion pages: [statements](paper.md), [cell layer](cell-layer-fidelity.md), [certificate checker](certificate-checker.md)
+20 November 2026 · Lean at commit [`ad53419`](https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546)
 
 ## One-page summary
 
@@ -14,12 +14,11 @@ $$
 \|\nabla(u-u_1^*)(t)\|_2\lesssim(1-t)^{\kappa-1/4},\quad 0<\kappa<\tfrac14.
 $$
 
-It also constructs smooth data on $\mathbb T^3$ with the analogous $H^1$ rate and local profile convergence. Positive viscosity is arbitrary by scaling. Theorem 7.1 supplies the required profile from a certificate; Corollary 7.2 composes the two implications. The surprising features are the time dependence that escapes the stationary-profile exclusions, the passage from a potentially infinite-energy profile to compact initial data, and the removal of every localization force on the torus. [Paper, Theorems 1.1 and 7.1, pp. 3, 35.]
+It also constructs smooth data on $\mathbb T^3$ with the analogous $H^1$ rate and local profile convergence. Positive viscosity is arbitrary by scaling. Theorem 7.1 supplies the required profile from a certificate; Corollary 7.2 composes the two implications. The central steps are the use of time dependence beyond the stationary-profile setting, the passage from a potentially infinite-energy profile to compact initial data, and the removal of every localization force on the torus. [Paper, Theorems 1.1 and 7.1, pp. 3, 35.]
 
 **The strategy in six sentences.** Work in $X=\dot H^1_{\mathrm{div}}$, where the heat evolution after restoring similarity scale contracts by $e^{-S/4}$. The linearized evolution over a period is a compact perturbation of this contraction, leaving only finitely many directions that obstruct a chosen decay rate. A Lyapunov–Perron construction removes those directions by changing the datum in a finite-dimensional space of compactly supported fields, and a contraction solves the nonlinear perturbation problem. Cutting off a vector potential supplies finite-energy initial data, while a transferred right inverse and a second correction give an exact unforced solution on a large torus. Separately, a bordered linear problem, quantitative error bounds and a parameter fixed point turn an approximate profile into an exact one with zero auxiliary force. Regularization supplies the smooth decaying profile, and Appendix B reduces the required universal operator bounds to cell, mode, tail and matrix conditions on finitely represented data.
 
-**What the evidence establishes.** The paper proves the two conditional analytic implications. Named Lean declarations below support corresponding conditional results; internal statements retain substantial quantitative content, although the public exports omit parts of the paper's full conclusions. The package builds, and the authors' axiom script reports only the three standard axioms for its 27 names; Lean's Comparator, with four further checkers, accepts all 15 selected theorems and rejects a control ([§5 of the statement comparison](paper.md#5-checking-workflow-and-status)). The authors report a separate 128-bit Arb/FLINT verification of the concrete certificate. **Neither that certificate nor its checking program is public yet.** Its published SHA-256 identifies intended bytes; it does not discharge the numerical premise. [Paper, pp. 4, 9–10, 70; authors' README.]
-
+**What the evidence establishes.** The paper proves the two conditional analytic implications. Named Lean declarations below support corresponding conditional results; internal statements retain substantial quantitative content, although the public exports omit parts of the paper's full conclusions. The package builds, and the authors' axiom script reports only the three standard axioms for its 27 names; Lean's Comparator, with four further checkers, accepts all 15 selected theorems and rejects a control ([§5 of the statement comparison](paper.md#5-checking-workflow-and-status)). The authors report a separate 128-bit Arb/FLINT verification of the concrete certificate. **The pinned release supplies neither that certificate nor its checking program.** Its published SHA-256 identifies intended bytes; it does not discharge the numerical premise. [Paper, pp. 4, 9–10, 70; authors' README.]
 
 # The argument
 
@@ -64,7 +63,7 @@ $$
 
 These error bounds allow the physical error to grow. Multiplication by $(T-t)^{1/4}$ shows that its size relative to the profile tends to zero. In similarity variables the convergence is exponential, at rate $e^{-\kappa s}$. The torus comparison is local in physical space; that fixed physical ball expands to exhaust $\mathbb R^3$ in similarity coordinates.
 
-**Paper:** §1.1, (1.2)–(1.7), pp. 2–3. **Formal anchor:** `Breakdown.profileOrbit_holds`, [`Profile/Orbit.lean:39–41`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Profile/Orbit.lean#L39-L41), constructs the abstract recurrent orbit from the formal smooth-profile premise. The public conclusions `Breakdown.breakdown_on_space` and `Breakdown.breakdown_on_torus` in [`Solution.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Solution.lean) express failure of global smooth existence. They do not themselves state the displayed quantitative bundle. The formal profile premise writes additional second-derivative and pressure-gradient decay assumptions. Remark 1.2 supplies the higher spatial derivative bound. A pressure-normalization argument gives the gradient bound: the difference from the Riesz-transform pressure is harmonic, and testing in time makes it decay at infinity without assuming a bound on the time derivative. This is an analytic bridge, not yet a Lean declaration.
+**Paper:** §1.1, (1.2)–(1.7), pp. 2–3. **Formal anchor:** `Breakdown.profileOrbit_holds`, [`Profile/Orbit.lean:39–41`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Profile/Orbit.lean#L39-L41), constructs the abstract recurrent orbit from the formal smooth-profile premise. The public conclusions `Breakdown.breakdown_on_space` and `Breakdown.breakdown_on_torus` in [`Solution.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Solution.lean) exclude global smooth solutions in specified classes: uniformly finite-energy solutions on the whole space, and solutions with periodic velocity on the torus. They do not themselves state the displayed quantitative bundle. The formal profile premise writes additional second-derivative and pressure-gradient decay assumptions. Remark 1.2 supplies the higher spatial derivative bound. A pressure-normalization argument gives the gradient bound: the difference from the Riesz-transform pressure is harmonic, and testing in time makes it decay at infinity without assuming a bound on the time derivative. This is an analytic bridge, not yet a Lean declaration.
 
 ## 2. Why the space is homogeneous $H^1$
 
@@ -76,7 +75,7 @@ X=\dot H^1_{\mathrm{div}}(\mathbb R^3)
 \ \nabla\cdot f=0\},\qquad \|f\|_X=\|\nabla f\|_2.
 $$
 
-The $L^6$ representative is part of the definition; it removes the constant-field ambiguity of the homogeneous seminorm. The profile bounds give $W(s)\in X$ uniformly in $s$. Smooth compactly supported solenoidal fields are dense in $X$, an assertion used twice: to approximate the initial profile, and to represent its finite-dimensional correction directions by compact fields.
+The $L^6$ representative is part of the definition; it removes the constant-field ambiguity of the homogeneous seminorm. The Lean represents $X$ as a closed Fourier-space submodule and recovers its $L^6$ velocity through a continuous linear map. The profile bounds give $W(s)\in X$ uniformly in $s$. Smooth compactly supported solenoidal fields are dense in $X$, an assertion used twice: to approximate the initial profile, and to represent its finite-dimensional correction directions by compact fields.
 
 Write $D_\mu f(x)=\sqrt\mu f(\sqrt\mu x)$ and $\rho_Rf(x)=Rf(R^{-1}x)$. A change of variables gives
 
@@ -131,7 +130,7 @@ $$
 \qquad \|\mathcal M_0\|\le\lambda^{1/4}=e^{-S/4}<1.
 $$
 
-The decisive assertion is that $\mathcal M-\mathcal M_0$ is compact. For fixed $\tau>0$ and $u\in X$, the map $v\mapsto K(\tau)(u,v)$ is compact. To see the mechanism, approximate $u$ in $X$ by a compactly supported smooth coefficient $\phi$. A weakly null bounded sequence in $X$ tends strongly to zero in $L^2$ on the support of $\phi$, by Rellich. Positive-time smoothing of $\operatorname{div}(\phi\otimes v+v\otimes\phi)$ then gives strong convergence in $X$. The bilinear bound controls the coefficient-approximation error uniformly in $v$.
+The decisive assertion is that $\mathcal M-\mathcal M_0$ is compact. For fixed $\tau>0$ and $u\in X$, the map $v\mapsto K(\tau)(u,v)$ is compact. To see the mechanism, approximate $u$ in $X$ by a compactly supported smooth coefficient $\phi$. A weakly null bounded sequence in $X$ tends strongly to zero in $L^2$ on the support of $\phi$, by Rellich. Positive-time smoothing of $\operatorname{div}(\phi\otimes v+v\otimes\phi)$ then gives strong convergence in $X$. The bilinear bound controls the coefficient-approximation error uniformly in $v$. This is the paper's physical-space argument. The Lean first proves compactness for coefficients in the dense test space through frequency truncation and total boundedness.
 
 There is a second compactness issue: the monodromy contains an integral up to a singular time endpoint. If $\chi_k\rightharpoonup0$ in $X$, then $h_{\chi_k}(t')\rightharpoonup0$ at each fixed time, since the linear evolution is bounded. For $t'<t_1$, the compact coefficient operator sends this sequence strongly to zero. Its norm is bounded by
 
@@ -139,7 +138,7 @@ $$
 C(t_1-t')^{-3/4}\sup_k\|\chi_k\|_X,
 $$
 
-which is integrable. Dominated convergence proves compactness of the integrated perturbation. Merely calling it an integral of compact operators would leave this endpoint unaccounted for.
+which is integrable. Dominated convergence proves compactness of the integrated perturbation. Merely calling it an integral of compact operators would leave this endpoint unaccounted for. The Lean cuts off a terminal interval, bounds its contribution by $O(\varepsilon^{1/4})$, and extends compactness from simple coefficient paths by density.
 
 Compact perturbation theory now gives $r_{\mathrm{ess}}(\mathcal M)\le e^{-S/4}$. Choose a circle $|z|=\Theta$, with $e^{-S/4}<\Theta<1$, missing the spectrum. The spectrum outside it consists of finitely many eigenvalues of finite algebraic multiplicity. Its Riesz projection $P_u$ is real, finite rank and commutes with $\mathcal M$. On its range $\mathcal M_u$ is invertible, and
 
@@ -148,7 +147,7 @@ $$
 +\sum_{n\ge0}\Theta^n\|\mathcal M_u^{-n}P_u\|<\infty.
 $$
 
-No eigenvalues have been calculated. The finite exceptional space includes every direction that obstructs the selected decay rate, including neutral and slowly decaying directions; calling it simply the growing eigenspace would be misleading. Jordan blocks cause no additional hypothesis because the spectral gaps give the displayed summability.
+No eigenvalues have been calculated. The finite exceptional space includes every direction that obstructs the selected decay rate, including neutral and slowly decaying directions; calling it simply the growing eigenspace would be misleading. Jordan blocks cause no additional hypothesis because the spectral gaps give the displayed summability. The exported Lean dichotomy gives power bounds at two separated radii and surjectivity on the exceptional range; the weighted sums follow from those bounds.
 
 **Paper:** Lemma 3.2, p. 14; §§4.3–4.4, Lemmas 4.4–4.5, pp. 18–20. **Formal anchors:** `Breakdown.Freq.bilinCompact_holds`, [`FreqTr/Realization.lean:116–119`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FreqTr/Realization.lean#L116-L119); `Breakdown.monodromy`, [`Transfer/Exports.lean:47`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Transfer/Exports.lean#L47), whose type `MonodromyStatement` records compact perturbation and the free bound in [`StatementsFrame.lean:71–88`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Transfer/StatementsFrame.lean#L71-L88); `Breakdown.dichotomyHolds`, [`Spectral/RealDichotomy.lean:151`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Spectral/RealDichotomy.lean#L151). The source uses subdivided time periods and an abstract dichotomy; these are supporting formal declarations, not a claim that the revised paper follows their proof line for line.
 
@@ -207,12 +206,11 @@ $$
 \le C(1-t)^{\kappa-1/4};
 $$
 
-after $t-t'=(1-t)\theta$, the remaining integral is controlled by $\int_0^\infty\theta^{-3/4}(1+\theta)^{\kappa-1/2}\,d\theta<\infty$. Hence $\|B(v,v')\|_\kappa\le C\|v\|_\kappa\|v'\|_\kappa$. For a small prescribed datum displacement $\chi$, applying $\mathcal R$ to $e^{t\Delta}\chi+B(v,v)$ is a contraction on a small ball. The fixed point gives $u=u^*+v$ with initial datum $u^*(0)+\chi+\gamma$.
+after $t-t'=(1-t)\theta$, the remaining integral is controlled by $\int_0^\infty\theta^{-3/4}(1+\theta)^{\kappa-1/2}\,d\theta<\infty$. Here one of the two factors $(1-t')^\kappa$ has been bounded by $1$. Hence $\|B(v,v')\|_\kappa\le C\|v\|_\kappa\|v'\|_\kappa$. For a small prescribed datum displacement $\chi$, applying $\mathcal R$ to $e^{t\Delta}\chi+B(v,v)$ is a contraction on a small ball. The fixed point gives $u=u^*+v$ with initial datum $u^*(0)+\chi+\gamma$.
 
 The exceptional directions are removed by choosing data. The proof neither assumes spectral stability nor claims that every nearby datum blows up. Proposition 2.1 states that every sufficiently close datum can be corrected in the one fixed space $E$; the time, centre and phase are held fixed.
 
-
-**A useful consistency check.** Spatial translations already force at least three exceptional directions. Differentiating the recurrence for $h_a=(a\cdot\nabla)u^*$ gives $\mathcal M h_a(0)=e^{S/2}h_{R^{-1}a}(0)$. If $h_a(0)=0$ for a nonzero $a$, the slice is constant on every line parallel to $a$. A nonzero field with that property cannot belong to $L^6(\mathbb R^3)$, so $a\mapsto h_a(0)$ is injective. These three multipliers have modulus $e^{S/2}>1$, hence $\dim E\ge3$. This short deduction does not compute the remaining codimension or add a hypothesis to the proof. [Paper (4.2), (4.10).]
+**Our inference: a translation check.** Spatial translations already force at least three exceptional directions. Differentiating the recurrence for $h_a=(a\cdot\nabla)u^*$ gives $\mathcal M h_a(0)=e^{S/2}h_{R^{-1}a}(0)$. If $h_a(0)=0$ for a nonzero $a$, the slice is constant on every line parallel to $a$. A nonzero field with that property cannot belong to $L^6(\mathbb R^3)$, so $a\mapsto h_a(0)$ is injective. These three multipliers have modulus $e^{S/2}>1$, hence $\dim E\ge3$. This short deduction does not compute the remaining codimension or add a hypothesis to the proof. [Paper (4.2), (4.10).]
 
 **Paper:** Proposition 4.3 and its proof, pp. 18, 20–21; Lemmas 4.6–4.8, pp. 19–22; Proposition 2.1, p. 11. **Formal anchors:** `Breakdown.exists_section`, [`Transfer/Section.lean:31`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Transfer/Section.lean#L31); `Breakdown.periodicInverse`, [`Transfer/Exports.lean:49`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Transfer/Exports.lean#L49); `Breakdown.stepData`, lines 51–52; `Breakdown.contraction`, [`Transfer/Contraction.lean:45`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Transfer/Contraction.lean#L45); `Breakdown.transferHolds_of_dichotomy`, [`Transfer/Exports.lean:54–55`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Transfer/Exports.lean#L54-L55). Its conclusion `TransferHolds`, [`Base/Framework.lean:66–73`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Base/Framework.lean#L66-L73), retains a compact-data orbit and quantitative rescaled convergence. The paper's full corrected-data family has not been identified as one fully matching exported theorem.
 
@@ -249,7 +247,7 @@ u^a(t)=\Pi_L\bar u(t),\qquad
 \Pi_Lf=\sum_{j\in\mathbb Z^3}f(\cdot-Lj).
 $$
 
-It agrees with $u^*$ on $B_{L/16}$. A compactly supported solenoidal field has zero integral, since $f=\operatorname{div}(x\otimes f)$, so its periodization lies in the mean-zero periodic homogeneous $H^1$ space. This removes the constant mode and gives Sobolev estimates independent of $L$.
+It agrees with $u^*$ on $B_{L/16}$. A compactly supported solenoidal field has zero integral, since $f=\operatorname{div}(x\otimes f)$, so its periodization lies in the mean-zero periodic homogeneous $H^1$ space. This removes the constant mode and gives Sobolev estimates independent of $L$ in the paper's argument. Lean instead works on the unit torus in an inhomogeneous Fourier $H^1$ space with weight $1+4\pi^2|k|^2$; its ambient space does not impose zero mean.
 
 Write $Q_L=[-L/2,L/2]^3$, and let $\Delta_T$, $\mathbb P_T$ and $B_T$ be the periodic Laplacian, Leray projection and Duhamel bilinear map on this torus. Periodization does not commute exactly with the whole-space nonlinear flow. The required estimate uses the Oseen kernel, incorporating the Leray projection and hence nonlocal pressure. Its derivatives satisfy $|\nabla O_t(x)|\lesssim|x|^{-4}$, $|\nabla^2O_t(x)|\lesssim|x|^{-5}$ uniformly in positive time. Summing over nonzero lattice images and integrating over one period cell gives, for a compact tensor $F$ supported in $B_{L/8}$,
 
@@ -296,7 +294,7 @@ is an exact bounded right inverse. The same nonlinear contraction now removes $F
 
 Finally, $u_{\mathrm{per}}(t,x)=L u(L^2t,Lx)$ scales the period to one and gives $T=L^{-2}$. The gradient norm gains $L^{1/2}$, exactly cancelling the time-scale factor: $L^{1/2}(1-L^2t)^{-1/4}=(T-t)^{-1/4}$. The comparison region becomes $B_{1/16}$. Smoothness and periodic pressure follow from the periodic local theory.
 
-**Paper:** §6, pp. 24–29; Lemmas 6.1–6.3; (6.12)–(6.18). **Formal anchors:** `Breakdown.Periodic.heatDivFreeComparison` and `freeHeatComparison`, [`Torus/HeatComparison.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/HeatComparison.lean):[18](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/HeatComparison.lean#L18), [24](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/HeatComparison.lean#L24); `Breakdown.Periodic.rightInversePerturb`, [`Torus/InverseAlgebra.lean:41`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/InverseAlgebra.lean#L41); the full assembly `Breakdown.Periodic.breakdownOnTorus_of_profile`, [`Torus/Main.lean:69–112`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/Main.lean#L69-L112). The printed transfer proof is a revised analytic argument; the formal route uses its own discrete inverse, comparison and gluing machinery. The exported periodic endpoint permits arbitrary smooth pressure with periodic velocity, using an additional moving-frame reduction. It should not be confused with the narrower periodic-pressure class in which the constructed solution first appears.
+**Paper:** §6, pp. 24–29; Lemmas 6.1–6.3; (6.12)–(6.18). **Formal anchors:** `Breakdown.Periodic.heatDivFreeComparison` and `freeHeatComparison`, [`Torus/HeatComparison.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/HeatComparison.lean):[18](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/HeatComparison.lean#L18), [24](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/HeatComparison.lean#L24); `Breakdown.Periodic.rightInversePerturb`, [`Torus/InverseAlgebra.lean:41`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/InverseAlgebra.lean#L41); the full assembly `Breakdown.Periodic.breakdownOnTorus_of_profile`, [`Torus/Main.lean:69–112`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/Main.lean#L69-L112). The printed transfer proof is a revised analytic argument; the formal route uses its own discrete inverse, comparison and gluing machinery. Its heat comparisons prove convergence below a sufficiently small scale, using Fourier integrals and lattice sums; they do not state the displayed powers of $L$ as their conclusion. The exported periodic endpoint permits arbitrary smooth pressure with periodic velocity, using an additional moving-frame reduction. It should not be confused with the narrower periodic-pressure class in which the constructed solution first appears.
 
 ## 7. What the certificate has to construct
 
@@ -310,7 +308,7 @@ $$
 
 The spatial space remains $X=\dot H^1_{\mathrm{div}}(\mathbb R^3)$, realized by $L^6$ vector fields. The correction space $D_S$ consists of periodic $L^2_\theta X$ fields satisfying $\Delta v,T_Sv\in H$. This is a graph domain: it does **not** require $\partial_\theta v$ and $y\cdot\nabla v$ separately to belong to $H$ on all of space.
 
-For parameters $\alpha$ in a nonempty compact convex set $K$, the data provide a period $S(\alpha)$, an approximate field $W^a_\alpha$, fixed forcing fields $b_i$, approximate force coefficients $\beta^a(\alpha)$ and a residual:
+For parameters $\alpha$ in the certificate's nonempty compact convex set $K$, formed from coordinate intervals and a weighted ball, the data provide a period $S(\alpha)$, an approximate field $W^a_\alpha$, fixed forcing fields $b_i$, approximate force coefficients $\beta^a(\alpha)$ and a residual:
 
 $$
 T_{S(\alpha)}W^a_\alpha+(W^a_\alpha\cdot\nabla)W^a_\alpha
@@ -394,11 +392,11 @@ $$
 +\frac{2S}{m}(\|F\|_H+b_*|\beta|)\|v\|_w.
 $$
 
-Here $m=2$ when a half-period time shift is an orthogonal spatial symmetry, and $m=1$ otherwise. It is the **scalar enstrophy** that has the shorter period. No pointwise-in-time forcing bound is silently inserted.
+The symmetry condition permits $m=1$, and also permits $m=2$ when a half-period time shift is an orthogonal spatial symmetry. The estimates involving $m$ must be checked for the chosen value. It is the **scalar enstrophy** that has the shorter period. No pointwise-in-time forcing bound is silently inserted.
 
 The paper solves the nonlinear problem and selects the parameter simultaneously. Let $Z\subset H^\Gamma$ be the closed ball of radius $2c_w\varepsilon M$. For $(\alpha,g)\in K\times Z$, solve the bordered linear problem with $-F^a_\alpha-g$ as its right side. The residual/pin budget (7.24), $2c_Lc_wM<1$, and (7.27) place its answer in the two desired correction bounds; the product estimate returns $(v\cdot\nabla)v$ to $Z$. Equip $Z$ with its weak Hilbert-space topology. The product is compact and convex. Strong local convergence of velocities, weak convergence of gradients and the uniform $H$ bound identify the weak limit of the nonlinear term. Uniqueness of the limiting **linear** solve identifies its multipliers. This makes the joint map continuous and permits Schauder–Tychonoff.
 
-Lean takes a different route. For fixed $\alpha$, after normalizing $\omega=1$, put $\rho=2\varepsilon$ and use
+Lean takes a different route. For fixed $\alpha$, after absorbing the reference-field error and normalizing $\omega=1$, put $\rho=2\varepsilon$ and use
 
 $$
 d((v,\beta),(u,\gamma))
@@ -438,7 +436,7 @@ $$
 \alpha'_j=\alpha_j-d_j^{-1}V_j\cdot\Phi.
 $$
 
-The decisive assertion is $\alpha'\in K$, not just that the projection of $\alpha'$ has a fixed point. An outward update at a boundary point can be fixed by nearest-point projection while $\Phi\ne0$.
+The decisive assertion is that the raw update satisfies $\alpha'\in K$. An outward update at a boundary point can be fixed by nearest-point projection while $\Phi\ne0$.
 
 For $j\in J$, pair the equation with an approximate adjoint $\psi_{\alpha,j}$. The adjoint-defect condition at $v=0$ forces this field to annihilate gradients, which makes pairing an equation modulo gradients legitimate. The adjoint-defect, nonlinear and affine-offset estimates give
 
@@ -465,7 +463,7 @@ If $\mathcal W=0$, the correction bound would give the reverse inequality. Thus 
 
 ## 11. Regularity is recovered from the constructed solution
 
-The corrected field is continuous into $X$, periodic, and solves the similarity equation modulo gradients. Proposition 7.11 does not assert regularity for arbitrary weak Navier–Stokes solutions. Its input already gives, after returning to physical variables,
+The corrected field is continuous into $X$, periodic, and solves the similarity equation modulo gradients. The next estimates describe the paper's proof of Proposition 7.11; the formal proof uses a different smoothing and decay argument, identified below. The proposition assumes the constructed profile and, after returning to physical variables, already has
 
 $$
 u\in C((-\infty,1);L^6),
@@ -487,7 +485,9 @@ $$
 |u(t,x)|\lesssim\frac1{\sqrt{1-t}+|x|}.
 $$
 
-Scaling back gives the required profile decay, and interior estimates give derivative decay. This route never requires finite kinetic energy of the profile. Equality in $X$ at every time preserves the correction norms and pins; continuity upgrades each almost-everywhere symmetry to pointwise symmetry.
+Scaling back gives the required profile decay, and interior estimates give derivative decay. This route never requires finite kinetic energy of the profile. Recovering the full same-witness conclusion also requires identifying the smooth representative with the originally selected correction at every time. Equality in $X$ then preserves the correction norms and pins; continuity upgrades each almost-everywhere symmetry to pointwise symmetry.
+
+With its analytic inputs supplied, the formal weak-profile bridge gives a continuous mild orbit. For each chosen mild orbit, the formal smoothing statement returns smooth velocity and pressure together with equality to that orbit's velocity almost everywhere in space at every time. For a smooth orbit satisfying the profile integral equation, the formal decay theorem bounds the velocity and its first two spatial derivatives by $C(1+|y|)^{-1-j}$, and the pressure gradient by $C(1+|y|)^{-3}$.
 
 **Paper:** Proposition 7.11, pp.45–47; Lemma 3.6 and Appendix A; Remark 1.2. The paper uses Koch–Nadirashvili–Seregin–Šverák, Proposition 4.1 (2009), and Chae–Wolf, Theorem 1.1 (2017); their hypotheses are met here, as [the statement comparison](paper.md) explains. **Lean:** `Breakdown.WeakProfile.weakOrbitOfParts_holds`, `Breakdown.FarField.smoothFieldOfOrbit_holds` and `farFieldDecay_holds` supply a self-contained formal route with different organization. `Breakdown.FarField.periodicLerayProfileExists_of_weak` at [`Breakdown/CertTorus/Main.lean:8`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/Main.lean#L8) closes weak-to-smooth existence. The authors' existential interfaces hide the correspondence to the originally selected correction; our [Theorem 7.1 wrapper](https://github.com/wcook04/proof-reader/tree/claude/navier-stokes-20261120/lean-wrappers/navier-stokes-theorem71) exposes it, and `Breakdown.theorem71_extended` and `theorem71_cell` prove the full same-witness conclusion with only the standard axioms.
 
@@ -504,7 +504,7 @@ E_\iota(\theta,\varphi)
 \sigma=\frac{|y|}{|y|+L},\quad \eta=\frac{y_3}{|y|}.
 $$
 
-Piecewise polynomials in $(\sigma,\eta)$, explicit factors at the axis, origin and infinity, and a radial phase describe the fields. Divergence is built into the representation. Joins make distributional derivatives agree with the piecewise formulas. Write $k_{\mathrm{sym}}$ for Appendix B's symmetry integer, to distinguish it from the decay exponent $\kappa$. The reported instance has $k_{\mathrm{sym}}=19$; this is finite rotational symmetry, not axisymmetry. The scalar $m=2$ used above comes from its half-period rotational symmetry and is a different integer.
+Piecewise polynomials in $(\sigma,\eta)$, explicit factors at the axis, origin and infinity, and a radial phase describe the fields. Divergence is built into the representation. Joins make distributional derivatives agree with the piecewise formulas. Write $k_{\mathrm{sym}}$ for Appendix B's symmetry integer, to distinguish it from the decay exponent $\kappa$. The paper reports $k_{\mathrm{sym}}=19$ for its intended instance; this is a finite rotational symmetry. The scalar $m=2$ used above comes from its half-period rotational symmetry and is a different integer.
 
 The central construction is the a priori estimate (7.18). Proposition B.1 builds a multiplier consisting of $-\Delta v$ and mode-dependent skew terms. In rotating frames those skew terms recover positive contributions proportional to the absolute frequency; profile stretching and commutator errors remain as explicit quadratic forms. Proposition B.4 reduces those forms to cell coefficients, trace variables, model-error bounds and the remaining harmonics. The paper describes these two proofs but relies on the formalization for their complete proofs.
 
@@ -512,7 +512,7 @@ Three reductions prevent a finite calculation from silently truncating the PDE.
 
 **Resolved cells.** Polynomial coefficients represent low-order mode components. Orthogonal remainders are controlled by explicit Legendre/Jacobi spectral gaps such as (B.27). Global cell maps enforce shared traces, symmetry and divergence identities. Local quadratic inequalities must hold on their stated range, including pressure/gauge and free coordinates, not merely on the sampled profile.
 
-**Unresolved modes and the exterior.** For a single mode $u=\widehat v_\iota$, let $r=(y_1^2+y_2^2)^{1/2}$ be the cylindrical radius, $k=k_{\mathrm{sym}}\iota_1$ its azimuthal frequency, and $a_+=\max\{a,0\}$. Angular derivative inequalities give
+**Unresolved modes and the exterior.** For a single mode $u=\widehat v_\iota$, let $r=(y_1^2+y_2^2)^{1/2}$ be the cylindrical radius, $k=k_{\mathrm{sym}}\iota_1$ its azimuthal frequency, and $a_+=\max\{a,0\}$. Angular derivative inequalities give, almost everywhere for the weak Fourier modes,
 
 $$
 (|k|-1)_+|u|\le r|\nabla u|,
@@ -527,7 +527,7 @@ $f_{01}^2\le4(f_1^*-t)f_0^*$. At infinity, the replacement is an integrated Hard
 $f_0^\infty/\Lambda_0+f_{01}^\infty/\sqrt{\Lambda_0}\le f_1^\infty$.
 Thus the exterior is included analytically; it is not assigned zero error.
 
-**The matrix tree and its free directions.** Local bounds telescope along a finite rooted tree. Each node contributes positive pivots and finitely many negative column squares; internal matrix fronts cancel. Lemma B.7 yields
+**The matrix tree and its free directions.** Local bounds telescope along a finite rooted tree. Each node contributes positive pivots and finitely many negative column squares; internal matrix fronts cancel. The formal tree bound retains the root front. Dropping its nonnegative contribution under the pivot-count conditions gives the following form of Lemma B.7:
 
 $$
 \langle Nx,x\rangle
@@ -535,7 +535,7 @@ $$
 -\sum_\xi|Y_\xi^\mathsf Tx|^2.
 $$
 
-Every coordinate is covered by a positive pivot, so the form is positive on the complement of the bad columns. This is not a positive-definiteness claim on the entire global space; the negative columns are retained explicitly. The actual vector has physical coordinates $x_p$ and freely selectable auxiliary coordinates $x_f$. Proposition B.8 shows that the pure-free subspace is nonpositive, hence intersects the positive complement only at zero. The number of bad columns is at most the dimension of that free subspace. A dimension count therefore lets every $x_p$ be completed to $(x_p,x_f)$ in the positive complement. Let $Y$ concatenate the columns of all $Y_\xi$. Writing $\mathscr L=Y^\perp$ and $\mathscr F=\{0\}\times\mathbb R^{n_f}$, the argument has proved $\mathscr L\cap\mathscr F=\{0\}$ and $\operatorname{codim}\mathscr L\le n_f=\dim\mathscr F$. Hence $\mathscr L\oplus\mathscr F$ is the whole coordinate space. The direction of this dimension inequality matters: it proves the availability of the auxiliary completion, not a numerical count of unstable PDE modes. This converts the finite matrix certificate into the universal perturbation inequality (B.21).
+Under the pivot-count conditions, every coordinate is covered by a positive pivot and the root front is nonnegative. The root form is then positive on the complement of the bad columns; the tree lower bound transfers this positivity to the total leaf form. The negative columns remain explicit in the global bound. The actual vector has physical coordinates $x_p$ and freely selectable auxiliary coordinates $x_f$. Proposition B.8 shows that the pure-free subspace is nonpositive, hence intersects the positive complement only at zero. The number of bad columns is at most the dimension of that free subspace. A dimension count therefore lets every $x_p$ be completed to $(x_p,x_f)$ in the positive complement. Let $Y$ concatenate the columns of all $Y_\xi$. Writing $\mathscr L=Y^\perp$ and $\mathscr F=\{0\}\times\mathbb R^{n_f}$, the argument has proved $\mathscr L\cap\mathscr F=\{0\}$ and $\operatorname{codim}\mathscr L\le n_f=\dim\mathscr F$. Hence $\mathscr L\oplus\mathscr F$ is the whole coordinate space. The direction of this dimension inequality matters: it proves the availability of the auxiliary completion, not a numerical count of unstable PDE modes. This converts the finite matrix certificate into the universal perturbation inequality (B.21).
 
 Adding (B.21) to the multiplier inequality cancels the problematic integral and force pairings. With
 
@@ -547,7 +547,7 @@ $$
 
 one gets $P^2\le c_M\|F\|_H P+Q^2$, hence $P\le c_M\|F\|_H+Q$. Lemma B.2 obtains (7.18). Lemmas B.9–B.13 similarly turn a finite family of field norms, pairings and enclosure estimates into the reference-error, growth and adjoint bounds. Proposition B.14 assembles the certificate of §7.
 
-The published constants are substantial: $w_*=39/50$, $c_1\ge50/3$, $c_0>81.64$ and $c_2>129$, implying $c_L>98.3$, $M<0.01695$ and $\varepsilon<0.0075$. These are necessary constraints on any satisfying data, not measured margins of the absent instance. The small number is the correction after the stabilized inverse has been applied, not the size of $W^a_\alpha$ itself. A profile with large gradient can therefore coexist with a small correction radius. Whether the required residual and coercive margins actually coexist in one data set remains a numerical question; compatibility of the scalar inequalities alone cannot settle it.
+The published choice $w_*=39/50$ and the stated scalar inequalities imply $c_1\ge50/3$, $c_0>81.64$, $c_2>129$, $c_L>98.3$, $M<0.01695$ and $\varepsilon<0.0075$. These numerical bounds are deductions from the paper's constants. These are necessary constraints on any satisfying data, not measured margins of the absent instance. The small number is the correction after the stabilized inverse has been applied, not the size of $W^a_\alpha$ itself. A profile with large gradient can therefore coexist with a small correction radius. Whether the required residual and coercive margins actually coexist in one data set remains a numerical question; compatibility of the scalar inequalities alone cannot settle it.
 
 **Paper:** Appendix B.1–B.4, pp.49–70; especially Propositions B.1, B.4, B.8 and B.14, Lemmas B.2 and B.7. **Lean:** `Breakdown.CoerciveWeak.pieceMultiplierDensityWeakHolds_proof`; `Breakdown.CertCell.cellLayerParts_closed` and `rowRestClause_closed` in [`Breakdown/CertCell/CellLayerClosed.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/CellLayerClosed.lean); `Breakdown.CertCell.Certificate.signedTreeLowerBound` in [`CertTreeLowerBound.lean`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/CertTreeLowerBound.lean); `Breakdown.CellLayerSystem.isExtendedCertificate_of_parts` in [`Breakdown/CellReduction/CellLayerBreakdownCompose.lean:171`](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CellReduction/CellLayerBreakdownCompose.lean#L171).
 
@@ -555,7 +555,7 @@ The published constants are substantial: $w_*=39/50$, $c_1\ge50/3$, $c_0>81.64$ 
 
 “Finite certificate” means finitely represented data plus a sound reduction of all universal conditions. Appendix B still requires uniform bounds over $K$, every point of specified regions, all relevant harmonics and the unbounded exterior. The exact checker must connect bytes to these mathematical objects and discharge those quantifiers. A small numerical residual at selected points is insufficient. The final paragraph of Appendix B explicitly leaves several coefficient expressions and side conditions unwritten. For those clauses the readable Lean definitions and the complete decoding rules must supply the specification; the appendix alone is not a standalone executable checker.
 
-The paper reports a 128-bit Arb verification; neither the data nor the checking program is public. The published SHA-256 is `3f7a335b84b6c7631742cacc5343dfcd11cf72f5221ff79b2b9268790b4b22c5`. It identifies the intended file; it does not prove any inequality. The open implication is
+At the pinned release, the paper reports a 128-bit Arb verification; the supplied release contains neither the data nor the checking program. The published SHA-256 is `3f7a335b84b6c7631742cacc5343dfcd11cf72f5221ff79b2b9268790b4b22c5`. It identifies the intended file; it does not prove any inequality. The unproved checker-to-condition obligation is
 
 $$
 \operatorname{Accept}(\text{bytes})
@@ -583,7 +583,6 @@ These are the six points on which a referee's close reading has the greatest eff
 | **W6. A nonzero smooth profile with the right identity.** Proposition 7.11, (7.28), (7.38)–(7.39); §§10–11. | Strong input norms must justify smoothing and decay; equality of representatives must preserve period, parameter, bounds and symmetries. | Classical admissibility or the full same-witness conclusion would be missing; this must be separated from a coarser formal endpoint. |
 
 For an afternoon reading, start with §§1, 3–6 and 8–12, using the six groups of equations that carry the logic: the free contraction and compact perturbation; the two-sided recurrence; the inverse-defect estimate; the absorbed bordered bound; the raw-update enclosure; and the tree/free-variable coercivity argument. The full paper is still needed to check the detailed analytic estimates and the coefficient-level conditions omitted from its Appendix B.
-
 
 # Lineage: mechanisms, discovery and validation
 

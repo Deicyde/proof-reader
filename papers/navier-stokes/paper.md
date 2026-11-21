@@ -1,6 +1,6 @@
 # Finite-time blow-up for Navier–Stokes: what the Lean states
 
-> **Paper and Lean by Levent Alpöge and Tristan Buckmaster**, [github.com/tristanbuckmaster/navier-stokes](https://github.com/tristanbuckmaster/navier-stokes) (commit [`ad53419`](https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546)). This page and the wrapper Lean in [`lean-wrappers/`](https://github.com/wcook04/proof-reader/tree/claude/navier-stokes-20261120/lean-wrappers) were prepared by Will Cook with AI assistance and are released under the [MIT licence](LICENSE); they have not been reviewed by the authors.
+**Navier–Stokes pages:** [the paper](../navier-stokes-paper/paper.pdf) · [index by number](../navier-stokes-index/paper.md) · [specialist digest](digest.md) · [full account, part I](../navier-stokes-part-1/paper.md) · [part II](../navier-stokes-part-2/paper.md) · [part III](../navier-stokes-appendix-b/paper.md) · **what the Lean states** · [statement files](../navier-stokes-statement-files/paper.md) · [proof routes](../navier-stokes-routes/paper.md) · [cell layer guide](../navier-stokes-cell-guide/paper.md) · [cell reference](../navier-stokes-cell-reference/paper.md) · [cell layer and Appendix B](cell-layer-fidelity.md) · [certificate checker](certificate-checker.md)
 
 **20 November 2026, commit
 [`ad53419`](https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546).**
