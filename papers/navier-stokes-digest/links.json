@@ -500,8 +500,7 @@
    "section": "12",
    "passage": "s12-exterior-test",
    "lean": [
-    "Breakdown.CertCell.exteriorConditionSound_closed",
-    "Breakdown.CertCell.TailBand.IsExteriorCondition"
+    "Breakdown.CertCell.exteriorConditionSound_closed"
    ]
   },
   {
@@ -520,7 +519,6 @@
    "passage": "s12-positive-complement",
    "lean": [
     "Breakdown.CertCell.Certificate.pivotCountPositive",
-    "Breakdown.CertCell.Certificate.PassesPivotCount",
     "Breakdown.CertCell.Certificate.signedTreeLowerBound"
    ]
   },

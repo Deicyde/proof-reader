@@ -261,15 +261,6 @@
    ]
   },
   {
-   "id": "claim-theorem-7-3",
-   "title": "Remark 7.3: Every prescribed symmetry with a positive time shift gives another valid profile period and isometry, including a half-period choice when available.",
-   "section": "7.4",
-   "passage": "pdf-item-theorem-7-3",
-   "lean": [
-    "Breakdown.IsPerturbation"
-   ]
-  },
-  {
    "id": "claim-theorem-7-4",
    "title": "Lemma 7.4: An admissible perturbation has a solenoidal free residual, a continuous periodic energy-space representative and the local and averaged energy identities.",
    "section": "7.5",
@@ -480,8 +471,7 @@
    "section": "B.4. The other conditions and the statement",
    "passage": "pdf-item-theorem-B-14",
    "lean": [
-    "Breakdown.CellLayerSystem.isExtendedCertificate_of_parts",
-    "Breakdown.CellLayerSystem.CellSystemCondition"
+    "Breakdown.CellLayerSystem.isExtendedCertificate_of_parts"
    ]
   }
  ],
