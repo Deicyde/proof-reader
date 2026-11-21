@@ -92,7 +92,8 @@ export interface Insets {
 
 export interface MapViewHandle {
   fitAll(animate?: boolean): void;
-  fitNodes(ids: Iterable<string>, animate?: boolean): void;
+  /** Proof Reader: `dur` sets the move's length, so a re-fit on a new subject can be quick. */
+  fitNodes(ids: Iterable<string>, animate?: boolean, dur?: number, pad?: number): void;
   zoomBy(factor: number): void;
   focusNode(id: string): void;
   expandAll(): void;
@@ -615,7 +616,10 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
         m = { label, kind, title, t: measureTitle(title, label, kind) };
         measured.current.set(lid, m);
       }
-      const section = el.hasAttribute("data-section") || el.hasAttribute("data-raw") ? 14 : 0;
+      // Proof Reader: a Lean name wraps rather than being cut, so it reserves a line for each line it takes.
+      const raw = el.dataset.raw ?? "";
+      const rawLines = raw ? Math.max(1, Math.ceil((raw.length * 6.4) / Math.max(40, rect.w * k - 16))) : 0;
+      const section = el.hasAttribute("data-section") || raw ? 14 + 13 * Math.max(0, rawLines - 1) : 0;
       const plate = kind === "root" && !denseRef.current ? fitPlate(m.t, rect.w, rect.h, k, statementH.current) : null;
       const fit = plate ?? fitTitle(m.t, rect.w, rect.h, k, kind, box, section);
       const statement = plate?.statement ?? false;
@@ -1554,15 +1558,16 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
         const anchor = (selected && pick(l, selected)) || goal;
         moveCamera(frameBox(box, viewport(), { min: k, max: k, anchor: boxOf(l, anchor, 24), top: true }), animate);
       },
-      fitNodes: (ids, animate = true) => {
+      fitNodes: (ids, animate = true, dur = MOVE_MS, pad?: number) => {
         const list = [...ids];
         const fn = (l: Layout) => {
-          const b = boundsOf(l, list, compact ? 24 : 40);
-          return b ? fitBounds(b, viewport(), { max: 1, min: compact ? COMPACT_FLOOR : floor }) : null;
+          const b = boundsOf(l, list, pad ?? (compact ? 24 : 40));
+          // Proof Reader: up to the map's own fitting scale, never below reading size.
+          return b ? fitBounds(b, viewport(), { max: Math.max(1, fitMaxRef.current), min: compact ? COMPACT_FLOOR : floor }) : null;
         };
         if (list.every((id) => hasRec(builtRef.current.layout, id))) {
           const v = fn(builtRef.current.layout);
-          if (v) moveCamera(v, animate);
+          if (v) moveCamera(v, animate, dur);
         } else pendingCamera.current = fn;
       },
       zoomBy: (factor) => {

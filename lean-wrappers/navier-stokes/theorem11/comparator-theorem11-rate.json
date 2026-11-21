@@ -1,0 +1,32 @@
+{
+  "challenge_module": "Theorem11Rate",
+  "solution_module": "Theorem11RateReplay",
+  "theorem_names": [
+    "Theorem11Rate.norm_window",
+    "Theorem11Rate.undo_quarter_scaling",
+    "Theorem11Rate.power_error_small",
+    "Theorem11Rate.late_rate",
+    "Theorem11Rate.globalize_rate"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "external_kernels": {
+    "Lean paranoid": [
+      "leanchecker-paranoid",
+      "--silent",
+      "--from-export"
+    ],
+    "nanoda": [
+      "nanoda_bin"
+    ],
+    "con-leche": [
+      "con-leche"
+    ],
+    "con-ron": [
+      "con-ron"
+    ]
+  }
+}

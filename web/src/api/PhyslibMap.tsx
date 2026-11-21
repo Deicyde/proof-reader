@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { selecting } from "../paper/clickIntent";
 import type { OutlineEntry } from "../app/edition";
 import { Lockup } from "../app/Family";
 import { readRoute, routeHref } from "../app/router";
@@ -375,7 +376,7 @@ function MapReader({ edition }: { edition: Edition }) {
                 const phrase = target.closest<HTMLElement>("[data-phrase]");
                 if (!mark && phrase && !target.closest("a")) {
                   event.preventDefault();
-                  if (window.getSelection()?.toString()) return;
+                  if (selecting(event)) return;
                   openPhrase(Number(phrase.dataset.phrase));
                   return;
                 }
@@ -384,7 +385,7 @@ function MapReader({ edition }: { edition: Edition }) {
                 const link = mark ?? block?.querySelector<HTMLAnchorElement>(".api-map__passage");
                 if (!link) return;
                 event.preventDefault();
-                if (window.getSelection()?.toString()) return;
+                if (selecting(event)) return;
                 focusBack.current = link;
                 const record = link.hash.split("/").at(-1) ?? null;
                 const isClosedOnMobile = !group && !ref && !paragraph && citation !== "index" && window.matchMedia("(max-width: 900px)").matches;

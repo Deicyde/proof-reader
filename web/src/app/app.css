@@ -235,7 +235,7 @@ button:disabled { cursor: default; }
 .graph--quiet .tree:has(.card:hover) .links, .graph--quiet .tree:has(.card:focus-visible) .links { opacity: 0.12; }
 .graph__via { color: var(--ink-2); }
 @media (prefers-reduced-motion: reduce) { .graph--quiet .tree .links { transition: none; } }
-.maplist { flex: 1; min-height: 0; overflow-y: auto; margin: 0; padding: 4px 16px 24px; list-style: none; }
+.maplist { position: relative; flex: 1; min-height: 0; overflow-y: auto; margin: 0; padding: 4px 16px 24px; list-style: none; }
 .maplist li { padding: 8px 0; border-bottom: 1px solid var(--rule); }
 .maplist li.is-lit { background: var(--highlight-soft); }
 .maplist p { margin: 0; }
@@ -263,7 +263,7 @@ button:disabled { cursor: default; }
 .graph .tree .card[data-shape="axiom"] .card__ctitle, .graph .tree .card[data-shape="axiom"] .card__title { color: var(--rel-assumes-lit); font-weight: 600; }
 .graph .tree .card--leaf::after { display: none; }
 .graph .card__compact { justify-content: center; }
-.card__craw { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-mono); font-size: calc(10.5px / var(--k)); line-height: 1.2; color: var(--ink-2); }
+.card__craw { display: block; max-width: 100%; overflow-wrap: anywhere; font-family: var(--font-mono); font-size: calc(10.5px / var(--k)); line-height: 1.2; color: var(--ink-2); }
 .graph .tree .card[data-lean="whole"] { background: var(--lean-fill); border-color: var(--lean-fill-line); }
 .graph .tree .card[data-lean="part"] { background: var(--lean-fill-part); border-color: color-mix(in oklab, var(--lean-fill-line) 55%, var(--card-border)); }
 .graph .tree .card[data-trail="ahead"][data-lean="whole"] { background: color-mix(in oklab, var(--lean-fill) 45%, var(--sheet)); border-color: color-mix(in oklab, var(--lean-fill-line) 50%, var(--sheet)); }
@@ -530,7 +530,7 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
 /* Proof Reader: the neighbourhood drawing. */
 .nearmap { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; background: var(--sheet); }
 .nearmap__fit { position: relative; overflow: hidden; }
-.nearmap__world { position: relative; transform-origin: 50% 0; }
+.nearmap__world { position: relative; transform-origin: 0 0; }
 .nearmap__lines { position: absolute; left: 0; top: 0; pointer-events: none; }
 .nearmap__band { fill: color-mix(in oklab, var(--ink-3) 7%, var(--sheet)); stroke: none; }
 .nearmap__bandlabel { font-family: var(--font-sans); font-size: 11px; fill: var(--ink-3); }
@@ -567,10 +567,28 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
   .nearmap__world { animation: nearmap-arrive 180ms cubic-bezier(0.16, 1, 0.3, 1) backwards; }
   @keyframes nearmap-arrive { from { opacity: 0; } }
 }
-/* A Lean name stays on one line inside its card; the whole name is in its tooltip and in the Lean. */
-.nearmap__raw { display: block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* A card's Lean name is never cut: a long one wraps inside the card, which is drawn tall enough for it. */
+.nearmap__raw { display: block; max-width: 100%; overflow-wrap: anywhere; }
+.nearmap__title { overflow-wrap: break-word; }
+@media (prefers-reduced-motion: no-preference) { .nearmap__world { transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), left 250ms cubic-bezier(0.16, 1, 0.3, 1); } }
 .nearmap__key { display: flex; flex-wrap: wrap; gap: 2px 18px; white-space: normal; }
 .nearmap__shapes { color: var(--ink-3); }
 .nearmap__shapes .key-shape { margin-left: 10px; }
 .nearmap__shapes .key-shape:first-child { margin-left: 0; }
 .nearmap__alone { max-width: 46ch; margin: 4px auto 0; padding: 0 16px; text-align: center; font-size: var(--fs-sm); line-height: 1.45; color: var(--ink-2); text-wrap: pretty; }
+
+/* Graph mode: the graph has the top part of the page, the Lean of what is in hand the rest. */
+.proof[data-dock] .proof__panes { flex-direction: column; }
+.proof[data-dock] .proof__panes.is-both > .proof__graph { flex: 0 0 auto; height: calc(var(--share) * 100%); }
+.proof[data-dock] .proof__panes.is-both > .proof__lean { flex: 1 1 0; }
+.proof[data-dock][data-folded] .proof__panes.is-both > .proof__graph { height: min(calc(var(--share) * 100%), 148px); }
+.proof[data-dock] .proof__panes.is-both .vocab { display: flex; }
+.graph__key { flex: none; margin: 0; padding: 4px 16px 6px; border-top: 1px solid var(--rule); font-size: var(--fs-micro); line-height: 1.35; color: var(--ink-3); }
+.proof[data-lean] .graph__key { display: none; }
+.maplist__title code, .maplist code { overflow-wrap: anywhere; }
+/* While the graph follows, a card the frame would cut is not drawn; a chip counts the neighbours left out. */
+.graph .tree .card.is-cut, .nearmap__card.is-cut { visibility: hidden; }
+.graph__morechip { float: right; margin: 0 0 2px 10px; padding: 3px 10px; border: 1px solid var(--rule-strong); border-radius: 999px; background: var(--sheet); font-size: var(--fs-xs); color: var(--ink-2); }
+button.graph__morechip { cursor: pointer; }
+button.graph__morechip:hover { color: var(--ink); border-color: var(--ink-3); }
+.nearmap__more { position: sticky; float: right; bottom: 10px; margin: -34px 12px 0 0; }

@@ -1,0 +1,42 @@
+[paper]
+title = "Reading the proof routes"
+short_title = "Navier–Stokes blow-up: proof routes"
+authors = ["Prepared by Will Cook with AI assistance"]
+venue = "Route map through Alpöge and Buckmaster’s library at ad53419"
+markdown = "paper.md"
+url = "https://github.com/wcook04/proof-reader/blob/main/papers/navier-stokes-routes/paper.md"
+noun = "guide"
+licence = "MIT"
+
+[credit]
+text = "Paper and Lean: Levent Alpöge and Tristan Buckmaster, github.com/tristanbuckmaster/navier-stokes at ad53419. Text, links, plain titles, notes and comparisons prepared by Will Cook with AI assistance, MIT licence"
+
+[lean]
+project = "../navier-stokes-paper/lean"
+modules = ["Breakdown.Base.Framework", "Breakdown.Base.Realization", "Breakdown.CellReduction.AdjointAssembly", "Breakdown.CellReduction.AdjointQuadraticBridge", "Breakdown.CellReduction.AdjointStatements", "Breakdown.CellReduction.CellLayerBreakdownClosed", "Breakdown.CellReduction.CellLayerBreakdownCompose", "Breakdown.CellReduction.InstAssembly", "Breakdown.CellReduction.InstOffsetClause", "Breakdown.CellReduction.InstanceStatements", "Breakdown.CellReduction.ReductionClosed", "Breakdown.CellReduction.ReductionStatements", "Breakdown.Cert.Assembly", "Breakdown.Cert.CoerciveMain", "Breakdown.Cert.ContractionFixedPoint", "Breakdown.Cert.ExtendedAdjointEnclosure", "Breakdown.Cert.ExtendedAssembly", "Breakdown.Cert.ExtendedAtProfile", "Breakdown.Cert.ExtendedBorderedInvertible", "Breakdown.Cert.ExtendedCoerciveBordered", "Breakdown.Cert.ExtendedCoerciveMain", "Breakdown.Cert.ExtendedConvection", "Breakdown.Cert.ExtendedConvectionCompact", "Breakdown.Cert.ExtendedDataContinuity", "Breakdown.Cert.ExtendedExistsZeroHeld", "Breakdown.Cert.ExtendedHeldContracts", "Breakdown.Cert.ExtendedHeldExistsUnique", "Breakdown.Cert.ExtendedHeldLimit", "Breakdown.Cert.ExtendedHeldMapsTo", "Breakdown.Cert.ExtendedHeldNonzero", "Breakdown.Cert.ExtendedHeldWeakEquation", "Breakdown.Cert.ExtendedMain", "Breakdown.Cert.ExtendedMultiplierContinuity", "Breakdown.Cert.ExtendedNodes", "Breakdown.Cert.ExtendedSigmaProfileOfHeld", "Breakdown.Cert.ExtendedStatement", "Breakdown.Cert.ExtendedStiffEnclosure", "Breakdown.Cert.ExtendedUnitWeight", "Breakdown.Cert.FreeInv", "Breakdown.Cert.FreePerturbation", "Breakdown.Cert.HalfOrderGraphMem", "Breakdown.Cert.LocalCompactness", "Breakdown.Cert.Main", "Breakdown.Cert.Nodes", "Breakdown.Cert.ProductBound", "Breakdown.Cert.ReadingEnergy", "Breakdown.Cert.ReadingExists", "Breakdown.Cert.Rescale", "Breakdown.Cert.SliceReading", "Breakdown.Cert.Statement", "Breakdown.Cert.TestDense", "Breakdown.Cert.TestPairing", "Breakdown.CertCell.AssemblyCellRange", "Breakdown.CertCell.AssemblyEliminationStage", "Breakdown.CertCell.AssemblyStatements", "Breakdown.CertCell.AssemblyTreeState", "Breakdown.CertCell.CellCalculusStatements", "Breakdown.CertCell.CellLayerClosed", "Breakdown.CertCell.CellLayerConclusion", "Breakdown.CertCell.CellLayerPartProofs", "Breakdown.CertCell.CellLayerResidualClosed", "Breakdown.CertCell.CellLayerStatements", "Breakdown.CertCell.CertificateEnclosureStatements", "Breakdown.CertCell.HarmonicRelations", "Breakdown.CertCell.RowsMatchBridge", "Breakdown.CertCell.StatementDefs", "Breakdown.CertTorus.CertificateCorollary", "Breakdown.CertTorus.DecayCompose", "Breakdown.CertTorus.Defs", "Breakdown.CertTorus.FarFieldDecayClosed", "Breakdown.CertTorus.IntegralEquationClosed", "Breakdown.CertTorus.LocalGainOfPicard", "Breakdown.CertTorus.Main", "Breakdown.CertTorus.MildSmoothing", "Breakdown.CertTorus.OrbitSmoothOfWindows", "Breakdown.CertTorus.OrbitTailOfSymbolCurve", "Breakdown.CertTorus.RegularStatements", "Breakdown.CertTorus.SmoothFieldClosed", "Breakdown.Defs", "Breakdown.Frac.SpaceExports", "Breakdown.Frac.TorusBlowupExports", "Breakdown.FracCell.Assembly", "Breakdown.FracCell.FinalChain", "Breakdown.FracCell.StatementDefs", "Breakdown.FracCert.Defs", "Breakdown.FracCert.Main", "Breakdown.FracCert.StFree", "Breakdown.FracCert.StHeld", "Breakdown.FracCert.StWeak", "Breakdown.FreqTr.Basic", "Breakdown.FreqTr.EmbedDilate", "Breakdown.FreqTr.GradSixDecay", "Breakdown.FreqTr.Realization", "Breakdown.FreqTr.Statements", "Breakdown.FreqTr.StatementsExport", "Breakdown.Held.AdjointEnclosure", "Breakdown.Held.Exports", "Breakdown.Held.Statements", "Breakdown.Profile.L2", "Breakdown.Profile.Orbit", "Breakdown.Profile.Parts", "Breakdown.Profile.SliceContinuity", "Breakdown.Profile.StatementsEmbed", "Breakdown.Profile.StatementsField", "Breakdown.Profile.StatementsFlow", "Breakdown.Profile.StatementsPhysical", "Breakdown.Profile.StatementsSlice", "Breakdown.Profile.Weak", "Breakdown.Spectral.CompactPart", "Breakdown.Spectral.ComplexDichotomy", "Breakdown.Spectral.FiniteSpectrum", "Breakdown.Spectral.RealDichotomy", "Breakdown.Spectral.SpectralProjection", "Breakdown.Torus.ApproxClose", "Breakdown.Torus.ApproxResidual", "Breakdown.Torus.ApproxSizes", "Breakdown.Torus.Approximants", "Breakdown.Torus.Assembly", "Breakdown.Torus.BaseInverse", "Breakdown.Torus.CompareFinal", "Breakdown.Torus.CompareLambdaAssembly", "Breakdown.Torus.CompareSeedAssembly", "Breakdown.Torus.CompareStatements", "Breakdown.Torus.Glue", "Breakdown.Torus.GlueUnbounded", "Breakdown.Torus.HeatComparison", "Breakdown.Torus.InverseAlgebra", "Breakdown.Torus.Main", "Breakdown.Torus.MovingFrame", "Breakdown.Torus.Reduction", "Breakdown.Torus.SeqPerturbation", "Breakdown.Torus.StatementsAnalysis", "Breakdown.Torus.StatementsApprox", "Breakdown.Torus.StatementsApproxSteps", "Breakdown.Torus.StatementsInverse", "Breakdown.Torus.StatementsSeqOps", "Breakdown.Torus.StatementsShell", "Breakdown.Torus.StatementsSmooth", "Breakdown.Torus.StatementsSteps", "Breakdown.Torus.Transplant", "Breakdown.Transfer.Contraction", "Breakdown.Transfer.DiscreteDichotomy", "Breakdown.Transfer.Exports", "Breakdown.Transfer.Main", "Breakdown.Transfer.OrbitNorm", "Breakdown.Transfer.Section", "Breakdown.Transfer.StatementsAbstract", "Breakdown.Transfer.StatementsDefs", "Breakdown.Transfer.StatementsFrame", "Breakdown.Transfer.StatementsLocal", "Breakdown.Transfer.VarConstIntegral", "Breakdown.Uniqueness.Basic", "Breakdown.Uniqueness.Blowup", "Breakdown.Uniqueness.LocalBlowup", "Breakdown.Uniqueness.Main", "Breakdown.Uniqueness.RegDefs", "Breakdown.Uniqueness.RegGlue", "Breakdown.Uniqueness.RegPhys", "Breakdown.Uniqueness.Restrict", "Breakdown.Uniqueness.Scaling", "Breakdown.Uniqueness.Space", "Breakdown.Weak.Basic", "Breakdown.Weak.GoodTimes", "Breakdown.Weak.Main", "Breakdown.Weak.MildFromGood", "Breakdown.Weak.OrbitBreakdown", "Breakdown.Weak.OrbitOfParts", "Breakdown.Weak.PhysicalIdentity", "Breakdown.Weak.Representative", "Breakdown.Weak.SimilarityIdentity", "Breakdown.Weak.SliceEmbedding", "Breakdown.Weak.StatementsOrbit", "Breakdown.Weak.StatementsSlice", "Breakdown.Weak.StatementsTime", "Breakdown.Weak.ZeroGradient", "Solution"]
+source = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546/lean"
+source_name = "navier-stokes at ad53419"
+source_lines = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/{path}#L{line}-L{end}"
+licence = "none stated by the authors; hosted with credit"
+scope = "Lean 4.33.1 compiled the authors' package, unchanged at ad53419, on GitHub Actions; this page reads the library (Breakdown and Solution). Each declaration's statement, dependencies and axioms shown here are Lean's own report from those compiled modules. The links from the text to the Lean, the plain titles, the notes and the comparisons were made with AI and have not been reviewed by the authors."
+
+[reading]
+language = "lean"
+
+[reading.companions]
+"../navier-stokes-appendix-b/paper.md" = "navier-stokes-appendix-b"
+"../navier-stokes-cell-guide/paper.md" = "navier-stokes-cell-guide"
+"../navier-stokes-cell-reference/paper.md" = "navier-stokes-cell-reference"
+"../navier-stokes-index/paper.md" = "navier-stokes-index"
+"../navier-stokes-paper/paper.pdf" = "navier-stokes-paper"
+"../navier-stokes-part-1/paper.md" = "navier-stokes-part-1"
+"../navier-stokes-part-2/paper.md" = "navier-stokes-part-2"
+"../navier-stokes-statement-files/paper.md" = "navier-stokes-statement-files"
+"../navier-stokes/cell-layer-fidelity.md" = "navier-stokes-cell-fidelity"
+"../navier-stokes/certificate-checker.md" = "navier-stokes-certificate-checker"
+"../navier-stokes/digest.md" = "navier-stokes-digest"
+"../navier-stokes/paper.md" = "navier-stokes"
+
+[shelf]
+with = "navier-stokes-paper"
+place = 8

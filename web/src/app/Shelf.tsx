@@ -126,10 +126,10 @@ export function Shelf() {
           <div className="band__in">
             <h2 id="papers-title">{papers && papers.length > 1 ? "Papers on this site" : "The paper on this site"}</h2>
             <ul className="shelf__list">
-              {(papers ?? []).map((p) => (
+              {(papers ?? []).filter((p) => !p.with).map((p) => (
                 <li key={p.slug}>
                   <a href={routeHref({ paper: p.slug })}>
-                    {p.source_kind !== "markdown" && <img src={paperFile(p.slug, "first-page.png")} alt="" width={96} height={142} />}
+                    {p.source_kind !== "markdown" ? <img src={paperFile(p.slug, "first-page.png")} alt="" width={96} height={142} /> : <span aria-hidden="true" />}
                     <span>
                       <span className="shelf__title">{p.title}</span>
                       <span className="shelf__by">{p.authors.join(", ")}</span>
@@ -142,6 +142,14 @@ export function Shelf() {
                       <span className="shelf__status">The links from this {p.noun || "paper"} to its proof in Lean, and the notes, were made with AI and have not been reviewed by the authors.</span>
                     </span>
                   </a>
+                  {(papers ?? []).some((q) => q.with === p.slug) && (
+                    <p className="shelf__with">
+                      <span>Read with it: </span>
+                      {(papers ?? []).filter((q) => q.with === p.slug).sort((a, b) => (a.place ?? 0) - (b.place ?? 0)).map((q, i, all) => (
+                        <span key={q.slug}><a href={routeHref({ paper: q.slug })}>{companionLabel(q, p)}</a>{i < all.length - 1 ? ", " : ""}</span>
+                      ))}
+                    </p>
+                  )}
                 </li>
               ))}
             </ul>
@@ -256,4 +264,13 @@ function Specimen({ paper, example }: { paper: ShelfItem; example: ShelfExample 
       </figcaption>
     </figure>
   );
+}
+
+/** A companion's short title without the stem it shares with the paper it is listed under ("Navier–Stokes blow-up: proof routes" → "Proof routes"). */
+function companionLabel(item: ShelfItem, under: ShelfItem): string {
+  const name = item.short_title || item.title;
+  const stem = (s: string) => s.split(/[:,] /)[0];
+  const shared = stem(name) === stem(under.short_title || under.title) && name.length > stem(name).length + 2;
+  const rest = shared ? name.slice(stem(name).length + 2) : name;
+  return rest.charAt(0).toUpperCase() + rest.slice(1);
 }

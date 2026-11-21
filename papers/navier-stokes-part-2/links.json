@@ -1,0 +1,3228 @@
+{
+ "schema": 1,
+ "claims": [
+  {
+   "id": "theorem-ii-1",
+   "title": "One profile with the full conclusion",
+   "section": "1.1",
+   "passage": "theorem-full-profile",
+   "lean": [
+    "Breakdown.extended_certificate_orbit_proved",
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ]
+  },
+  {
+   "id": "lemma-ii-2",
+   "title": "Equality modulo gradients and projection",
+   "section": "2.1",
+   "passage": "projection-statement",
+   "lean": [
+    "Breakdown.Cert.exists_projSpec",
+    "Breakdown.Cert.testPairingHolds_proof",
+    "Breakdown.Cert.testDenseHolds_proof"
+   ]
+  },
+  {
+   "id": "row-bound",
+   "title": "The finite rows are bounded in H",
+   "section": "2.3",
+   "passage": "row-seminorm",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.rows",
+    "Breakdown.Cert.rowNormHolds"
+   ]
+  },
+  {
+   "id": "unit-weight-normalisation",
+   "title": "Normalise the multiplier weight",
+   "section": "2.6",
+   "passage": "unit-weight",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.withUnitWeight",
+    "Breakdown.Cert.extendedUnitWeightHolds"
+   ]
+  },
+  {
+   "id": "reference-normalisation",
+   "title": "Transfer to the approximate profile",
+   "section": "2.6",
+   "passage": "reference-normalisation",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.atProfile",
+    "Breakdown.Cert.extendedAtProfileHolds"
+   ]
+  },
+  {
+   "id": "lemma-ii-3",
+   "title": "Continuous energy and its identity",
+   "section": "3.1",
+   "passage": "free-energy-statement",
+   "lean": [
+    "Breakdown.Cert.freeEnergyLocalHolds_of",
+    "Breakdown.Cert.freePerturbationHolds_of"
+   ]
+  },
+  {
+   "id": "proposition-ii-4",
+   "title": "The periodic free inverse",
+   "section": "3.2",
+   "passage": "free-inverse-statement",
+   "lean": [
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.freeEquivariantHolds_of"
+   ]
+  },
+  {
+   "id": "proposition-ii-5",
+   "title": "Changing period and weak forcing",
+   "section": "3.3",
+   "passage": "period-compactness-statement",
+   "lean": [
+    "Breakdown.Cert.periodContinuityHolds_of",
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ]
+  },
+  {
+   "id": "lemma-ii-6",
+   "title": "The exact quadratic estimate",
+   "section": "4.1",
+   "passage": "product-statement",
+   "lean": [
+    "Breakdown.Cert.sliceSupBoundHolds_of",
+    "Breakdown.Cert.productBoundHolds_of"
+   ]
+  },
+  {
+   "id": "lemma-ii-7",
+   "title": "Compactness of linearised convection",
+   "section": "4.2",
+   "passage": "convection-statement",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionHolds_of",
+    "Breakdown.Cert.extendedConvectionCompactHolds_of"
+   ]
+  },
+  {
+   "id": "lemma-ii-8",
+   "title": "Absorb the reference error",
+   "section": "5.1",
+   "passage": "reference-transfer-statement",
+   "lean": [
+    "Breakdown.Cert.extendedAtProfileHolds",
+    "Breakdown.Cert.extendedCoerciveBorderedHolds_of"
+   ]
+  },
+  {
+   "id": "proposition-ii-9",
+   "title": "The bordered map is bijective",
+   "section": "5.2",
+   "passage": "bordered-statement",
+   "lean": [
+    "Breakdown.Cert.extendedBorderedInvertibleHolds_of"
+   ]
+  },
+  {
+   "id": "proposition-ii-10",
+   "title": "Bound the gradient at every time",
+   "section": "6.1",
+   "passage": "supremum-statement",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of"
+   ]
+  },
+  {
+   "id": "lemma-ii-11",
+   "title": "A complete space for the correction",
+   "section": "7.1",
+   "passage": "complete-space-statement",
+   "lean": [
+    "Breakdown.Cert.XX",
+    "Breakdown.Cert.extendedHeldMetricHolds_of"
+   ]
+  },
+  {
+   "id": "proposition-ii-12",
+   "title": "The nonlinear step preserves the bounds",
+   "section": "7.2",
+   "passage": "self-map-statement",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ]
+  },
+  {
+   "id": "proposition-ii-13",
+   "title": "A unique held solution at each parameter",
+   "section": "7.3",
+   "passage": "contraction-statement",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of",
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of"
+   ]
+  },
+  {
+   "id": "proposition-ii-14",
+   "title": "Continuity of the multiplier",
+   "section": "8.1",
+   "passage": "multiplier-continuity-statement",
+   "lean": [
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ]
+  },
+  {
+   "id": "proposition-ii-15",
+   "title": "A parameter where the force vanishes",
+   "section": "9.1",
+   "passage": "parameter-map-statement",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointEnclosureHolds_of",
+    "Breakdown.Cert.extendedStiffEnclosureHolds",
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of"
+   ]
+  },
+  {
+   "id": "proposition-ii-16",
+   "title": "The unforced profile is nonzero",
+   "section": "10.1",
+   "passage": "weak-profile-statement",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of",
+    "Breakdown.Cert.extendedHeldNonzeroHolds_of"
+   ]
+  },
+  {
+   "id": "proposition-ii-17",
+   "title": "Regularity while retaining the orbit",
+   "section": "11.1",
+   "passage": "regularity-statement",
+   "lean": [
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ]
+  },
+  {
+   "id": "corollary-ii-18",
+   "title": "Breakdown from the selected profile",
+   "section": "12.3",
+   "passage": "corollary-same-profile",
+   "lean": [
+    "Breakdown.extended_certificate_breakdown_on_space",
+    "Breakdown.FarField.breakdownOnTorus_of_weak"
+   ]
+  },
+  {
+   "id": "remark-ii-19",
+   "title": "A recurrence prescribed by symmetry",
+   "section": "12.4",
+   "passage": "additional-recurrence",
+   "lean": [
+    "Breakdown.PeriodicSimilarityProfileExists",
+    "Breakdown.Symmetry"
+   ]
+  }
+ ],
+ "passages": [
+  {
+   "id": "theorem-full-profile",
+   "section": "1.1",
+   "role": "states",
+   "quote": "**Theorem II.1.** Suppose a certificate satisfies the conditions set out in §2 below. There exist a single parameter $\\alpha_*\\in K$, a smooth velocity $W:\\mathbb R\\times\\mathbb R^3\\to\\mathbb R^3$, and a smooth pressure $q:\\mathbb R\\times\\mathbb R^3\\to\\mathbb R$, with $S=S(\\alpha_*)>0$, such that",
+   "lean": [
+    "Breakdown.extended_certificate_orbit_proved",
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ],
+   "anchor": {
+    "heading": "1.1 Theorem II.1: the full conclusion of Theorem 7.1",
+    "block": 1
+   }
+  },
+  {
+   "id": "joint-bound-retained",
+   "section": "1.1",
+   "role": "states",
+   "quote": "These are the complete velocity, correction and symmetry conclusions of the paper's Theorem 7.1, including the multiplier term in (7.38).",
+   "lean": [
+    "Breakdown.extended_certificate_orbit_proved"
+   ],
+   "anchor": {
+    "heading": "1.1 Theorem II.1: the full conclusion of Theorem 7.1",
+    "block": 11
+   }
+  },
+  {
+   "id": "upstream-existential-boundary",
+   "section": "1.3",
+   "role": "explains",
+   "quote": "Its conclusion does not retain the chosen parameter, the correction, or the full inequality (II.1).",
+   "lean": [
+    "Breakdown.extended_certificate_orbit_proved"
+   ],
+   "anchor": {
+    "heading": "1.3 What the formal endpoints retain",
+    "block": 1
+   }
+  },
+  {
+   "id": "domain-combination",
+   "section": "2.1",
+   "role": "defines",
+   "quote": "Neither $\\partial_\\theta v$ nor $y\\cdot\\nabla v$ is separately assumed to belong to $H$.",
+   "lean": [
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 6
+   }
+  },
+  {
+   "id": "projection-statement",
+   "section": "2.1",
+   "role": "states",
+   "quote": "**Lemma II.2.** For $F,G\\in H$, equality modulo gradients is equivalent to $PF=PG$.",
+   "lean": [
+    "Breakdown.Cert.exists_projSpec",
+    "Breakdown.Cert.testPairingHolds_proof",
+    "Breakdown.Cert.testDenseHolds_proof"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 7
+   }
+  },
+  {
+   "id": "projection-density",
+   "section": "2.1",
+   "role": "proves",
+   "quote": "Hence annihilation of all tests says that $F-G$ is orthogonal to $H_{\\rm div}$, which is exactly $P(F-G)=0$.",
+   "lean": [
+    "Breakdown.Cert.testDenseHolds_proof",
+    "Breakdown.Cert.testPairingHolds_proof"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 8
+   }
+  },
+  {
+   "id": "symmetry-closed",
+   "section": "2.1",
+   "role": "explains",
+   "quote": "Its fixed space is closed, being the kernel of the continuous map $\\rho-I$; the intersection over any set $\\Gamma$ is closed.",
+   "lean": [
+    "Breakdown.Cert.freeEquivariantHolds_of",
+    "Breakdown.Cert.extendedInvarianceHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.1 Equations modulo gradients and symmetry",
+    "block": 11
+   }
+  },
+  {
+   "id": "raw-residual",
+   "section": "2.2",
+   "role": "explains",
+   "quote": "No continuity of the chosen residual in the $H$ norm is assumed.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.defect",
+    "Breakdown.Cert.extendedDataContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 5
+   }
+  },
+  {
+   "id": "pins-count",
+   "section": "2.2",
+   "role": "explains",
+   "quote": "There are as many scalar pins as force coefficients.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData",
+    "Breakdown.Cert.extendedBorderedInvertibleHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.2 Approximate fields, residuals and pins",
+    "block": 10
+   }
+  },
+  {
+   "id": "row-seminorm",
+   "section": "2.3",
+   "role": "states",
+   "quote": "The row measurement is a seminorm and satisfies $[F]\\le c_0\\|F\\|_H$.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.rows",
+    "Breakdown.Cert.rowNormHolds"
+   ],
+   "anchor": {
+    "heading": "2.3 Norms and the finite-row measurement",
+    "block": 5
+   }
+  },
+  {
+   "id": "coercive-representative",
+   "section": "2.4",
+   "role": "defines",
+   "quote": "The norm and row measurement belong to the actual representative $F$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 3
+   },
+   "lines": [
+    168,
+    168
+   ]
+  },
+  {
+   "id": "frozen-form-input",
+   "section": "2.4",
+   "role": "explains",
+   "quote": "It is required at every time for each $u\\in X$ with $\\Delta u\\in L^2$ and with every spatial symmetry $(R,0)\\in\\Gamma$.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.Cert.extendedFrozenBridgeHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 8
+   }
+  },
+  {
+   "id": "three-smallness-roles",
+   "section": "2.4",
+   "role": "explains",
+   "quote": "Condition (II.12) controls differences in that supremum norm, and (II.11) makes the resulting nonlinear map contract.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 17
+   }
+  },
+  {
+   "id": "self-map-budget-role",
+   "section": "2.4",
+   "role": "explains",
+   "quote": "Condition (II.13) keeps the linear output inside the gradient-supremum ball.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 17
+   }
+  },
+  {
+   "id": "strict-separation-input",
+   "section": "2.4",
+   "role": "explains",
+   "quote": "Condition (II.14) excludes the zero profile after force cancellation.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate",
+    "Breakdown.Cert.extendedHeldNonzeroHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.4 Analytic inequalities required of a certificate",
+    "block": 17
+   }
+  },
+  {
+   "id": "parameter-auxiliary-continuity",
+   "section": "2.5",
+   "role": "explains",
+   "quote": "These auxiliary choices need no continuity in the parameter.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData",
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "2.5 The parameter enclosure",
+    "block": 3
+   }
+  },
+  {
+   "id": "unit-weight",
+   "section": "2.6",
+   "role": "states",
+   "quote": "The multiplier weight can be normalised to one without changing the physical force or the parameter update.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.withUnitWeight",
+    "Breakdown.Cert.extendedUnitWeightHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 1
+   }
+  },
+  {
+   "id": "reference-normalisation",
+   "section": "2.6",
+   "role": "states",
+   "quote": "The second normalisation replaces the reference field by the approximate field after absorbing $\\vartheta$.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.atProfile",
+    "Breakdown.Cert.extendedAtProfileHolds"
+   ],
+   "anchor": {
+    "heading": "2.6 The two normalisations used in Lean",
+    "block": 4
+   }
+  },
+  {
+   "id": "free-energy-statement",
+   "section": "3.1",
+   "role": "states",
+   "quote": "**Lemma II.3.** If $v\\in D_S$, then $T_Sv\\in H_{\\rm div}$, and $v$ has a continuous, period-one representative with values in $X$. Its squared gradient norm $E(\\theta)=\\|\\nabla v(\\theta)\\|_2^2$ is locally absolutely continuous and satisfies",
+   "lean": [
+    "Breakdown.Cert.freeEnergyLocalHolds_of",
+    "Breakdown.Cert.freePerturbationHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.1 Lemma II.3: the energy identity at graph-domain regularity",
+    "block": 1
+   }
+  },
+  {
+   "id": "energy-physical-reading",
+   "section": "3.1",
+   "role": "explains",
+   "quote": "The gradients of fields in $X$ form a closed subspace of $L^2$, so this continuous representative is the gradient of a continuous $X$ curve.",
+   "lean": [
+    "Breakdown.Cert.readingEnergyHolds_of",
+    "Breakdown.Cert.readingExistsHolds_proof"
+   ],
+   "anchor": {
+    "heading": "3.1 Lemma II.3: the energy identity at graph-domain regularity",
+    "block": 17
+   }
+  },
+  {
+   "id": "period-energy-bound",
+   "section": "3.1",
+   "role": "proves",
+   "quote": "Cauchy–Schwarz first gives $\\|\\Delta v\\|_H\\le\\|f\\|_H$ by discarding the nonnegative gradient term, then gives (II.23) on substitution.",
+   "lean": [
+    "Breakdown.Cert.freeEnergyLocalHolds_of",
+    "Breakdown.Cert.freeInvHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.1 Lemma II.3: the energy identity at graph-domain regularity",
+    "block": 19
+   }
+  },
+  {
+   "id": "free-inverse-statement",
+   "section": "3.2",
+   "role": "states",
+   "quote": "**Proposition II.4.** The map $T_S:D_S\\to H_{\\rm div}$ is a bijection. It restricts to a bijection $D_S^\\Gamma\\to H_{\\rm div}^\\Gamma$.",
+   "lean": [
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.freeEquivariantHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 1
+   }
+  },
+  {
+   "id": "heat-dilation-inverse",
+   "section": "3.2",
+   "role": "explains",
+   "quote": "The exponential estimates remove the boundary at infinity.",
+   "lean": [
+    "Breakdown.Cert.exists_gradInvSpec"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 11
+   }
+  },
+  {
+   "id": "free-inverse-surjectivity",
+   "section": "3.2",
+   "role": "proves",
+   "quote": "Distributional differentiation commutes with this convergence, so $T_Sv=f$.",
+   "lean": [
+    "Breakdown.Cert.freeInvHolds_of",
+    "Breakdown.Cert.freePerturbationHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.2 Proposition II.4: construction of the free inverse",
+    "block": 12
+   }
+  },
+  {
+   "id": "period-compactness-statement",
+   "section": "3.3",
+   "role": "states",
+   "quote": "**Proposition II.5.** Suppose $S_j\\to S>0$ and $f_j\\rightharpoonup f$ weakly in $H_{\\rm div}$. Set $v_j=T_{S_j}^{-1}f_j$ and $v=T_S^{-1}f$. Then $\\nabla v_j\\rightharpoonup\\nabla v$ and $\\Delta v_j\\rightharpoonup\\Delta v$ in $H$, while $v_j\\to v$ strongly in $L^2((0,1)\\times B_R)$ for every finite $R$.",
+   "lean": [
+    "Breakdown.Cert.periodContinuityHolds_of",
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+    "block": 1
+   }
+  },
+  {
+   "id": "local-compactness-step",
+   "section": "3.3",
+   "role": "explains",
+   "quote": "Apply it on an exhaustion and take a diagonal subsequence.",
+   "lean": [
+    "Breakdown.Cert.localCompactnessHolds_of"
+   ],
+   "anchor": {
+    "heading": "3.3 Proposition II.5: weak forcing gives strong local compactness",
+    "block": 4
+   }
+  },
+  {
+   "id": "product-statement",
+   "section": "4.1",
+   "role": "states",
+   "quote": "**Lemma II.6.** If $u\\in X$ and $\\Delta u\\in L^2$, then",
+   "lean": [
+    "Breakdown.Cert.sliceSupBoundHolds_of",
+    "Breakdown.Cert.productBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.1 Lemma II.6: the exact product constant",
+    "block": 1
+   }
+  },
+  {
+   "id": "fourier-constant",
+   "section": "4.1",
+   "role": "explains",
+   "quote": "The following Fourier proof computes its constant directly.",
+   "lean": [
+    "Breakdown.supBoundFactor",
+    "Breakdown.Cert.sliceSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.1 Lemma II.6: the exact product constant",
+    "block": 3
+   }
+  },
+  {
+   "id": "bilinear-product",
+   "section": "4.1",
+   "role": "explains",
+   "quote": "The same estimate applies to the larger spatial derivative space used in §7 whenever its essential supremum is finite.",
+   "lean": [
+    "Breakdown.Cert.productBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.1 Lemma II.6: the exact product constant",
+    "block": 10
+   }
+  },
+  {
+   "id": "convection-statement",
+   "section": "4.2",
+   "role": "states",
+   "quote": "**Lemma II.7.** The linearised convection map satisfies $\\|C_\\alpha v\\|_H\\le C\\|\\nabla v\\|_H$, with $C$ uniform in $\\alpha$. It preserves the prescribed invariance, and $C_\\alpha T_{S(\\alpha)}^{-1}:H_{\\rm div}\\to H$ is compact.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionHolds_of",
+    "Breakdown.Cert.extendedConvectionCompactHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 1
+   }
+  },
+  {
+   "id": "convection-tail-step",
+   "section": "4.2",
+   "role": "proves",
+   "quote": "First make the tail uniformly small by choosing $R$ in (II.28), then make the bounded-cylinder norm small by choosing $j$.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionCompactHolds_of"
+   ],
+   "anchor": {
+    "heading": "4.2 Lemma II.7: bounded and compact convection",
+    "block": 9
+   }
+  },
+  {
+   "id": "reference-transfer-statement",
+   "section": "5.1",
+   "role": "states",
+   "quote": "**Lemma II.8.** If $F\\simeq T_Sv+C_\\alpha v+\\sum_i\\beta_i b_i$, then",
+   "lean": [
+    "Breakdown.Cert.extendedAtProfileHolds",
+    "Breakdown.Cert.extendedCoerciveBorderedHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.1 Lemma II.8: transfer the reference estimate",
+    "block": 1
+   }
+  },
+  {
+   "id": "zero-pin-inverse",
+   "section": "5.1",
+   "role": "uses",
+   "quote": "When the pins vanish, (II.8) gives",
+   "lean": [
+    "Breakdown.Cert.extendedCoerciveBorderedHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.1 Lemma II.8: transfer the reference estimate",
+    "block": 5
+   }
+  },
+  {
+   "id": "bordered-statement",
+   "section": "5.2",
+   "role": "states",
+   "quote": "**Proposition II.9.** For fixed $\\alpha$ and $S=S(\\alpha)$, the map",
+   "lean": [
+    "Breakdown.Cert.extendedBorderedInvertibleHolds_of"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 1
+   }
+  },
+  {
+   "id": "finite-rank-border",
+   "section": "5.2",
+   "role": "explains",
+   "quote": "The finite-dimensional negative identity in its second component is legitimate because the pin space and multiplier space have the same dimension.",
+   "lean": [
+    "Breakdown.Cert.Internal.BorderedInvertible.exists_inverse_of_compact_bordered"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 9
+   }
+  },
+  {
+   "id": "fredholm-surjectivity",
+   "section": "5.2",
+   "role": "explains",
+   "quote": "Thus $\\|Qe_j-Qe_r\\|\\ge1$, contradicting compactness.",
+   "lean": [
+    "Breakdown.Cert.Internal.BorderedInvertible.exists_inverse_of_compact_bordered"
+   ],
+   "anchor": {
+    "heading": "5.2 Proposition II.9: bijectivity of the bordered map",
+    "block": 10
+   }
+  },
+  {
+   "id": "supremum-statement",
+   "section": "6.1",
+   "role": "states",
+   "quote": "**Proposition II.10.** Suppose $v\\in D_{S(\\alpha)}^\\Gamma$ and $F\\simeq T_{S(\\alpha)}v+C_\\alpha v+\\sum_i\\beta_i b_i$. Then",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 1
+   }
+  },
+  {
+   "id": "frozen-form-bridge",
+   "section": "6.1",
+   "role": "uses",
+   "quote": "For almost every time the slice is admissible in (II.9); its pure spatial symmetries extend to every time in $X$ by continuity.",
+   "lean": [
+    "Breakdown.Cert.extendedFrozenBridgeHolds_of",
+    "Breakdown.Cert.sliceReadingHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 6
+   }
+  },
+  {
+   "id": "half-period-averaging",
+   "section": "6.1",
+   "role": "explains",
+   "quote": "Only the scalar energy was given a shorter period; the chosen forcing representative and $\\Lambda$ may have period one alone.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "6.1 Proposition II.10: the supremum estimate",
+    "block": 14
+   }
+  },
+  {
+   "id": "complete-space-statement",
+   "section": "7.1",
+   "role": "states",
+   "quote": "**Lemma II.11.** The iteration can be carried out on a complete held set in the spatial derivative space",
+   "lean": [
+    "Breakdown.Cert.XX",
+    "Breakdown.Cert.extendedHeldMetricHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 1
+   }
+  },
+  {
+   "id": "spatial-graph-closed",
+   "section": "7.1",
+   "role": "defines",
+   "quote": "This space imposes no time-domain condition.",
+   "lean": [
+    "Breakdown.Cert.XX",
+    "Breakdown.Cert.halfOrderGraph",
+    "Breakdown.Cert.mem_halfOrderGraph_iff"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 3
+   }
+  },
+  {
+   "id": "supremum-lower-semicontinuity",
+   "section": "7.1",
+   "role": "explains",
+   "quote": "This proves closedness of every sublevel set of $B$, and hence its lower semicontinuity in the ambient topology.",
+   "lean": [
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le",
+    "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 6
+   }
+  },
+  {
+   "id": "held-metric-completeness",
+   "section": "7.1",
+   "role": "explains",
+   "quote": "Fixing one sufficiently late term and passing the other index to the limit, continuity of $A$ and lower semicontinuity of $B$ show convergence in $d$ as well.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of",
+    "Breakdown.Cert.contractionFixedPointHolds_proof"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 9
+   }
+  },
+  {
+   "id": "zero-radius-metric",
+   "section": "7.1",
+   "role": "explains",
+   "quote": "The held set is then the singleton zero pair; no division by $\\rho$ has occurred.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMetricHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.1 Lemma II.11: a complete space for the iteration",
+    "block": 10
+   }
+  },
+  {
+   "id": "self-map-statement",
+   "section": "7.2",
+   "role": "states",
+   "quote": "**Proposition II.12.** Fix $\\alpha\\in K$. Given $z=(u,\\gamma)\\in\\mathcal B$, let $\\mathcal F_\\alpha(z)=(v,\\beta)$ be the unique bordered solution",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 1
+   }
+  },
+  {
+   "id": "self-map-weighted-bound",
+   "section": "7.2",
+   "role": "proves",
+   "quote": "Apply (II.29) to (II.37), use the residual and pin budget (II.10), and bound the extra row contribution by $c_0\\|N(u)\\|_H$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 5
+   }
+  },
+  {
+   "id": "self-map-supremum-bound",
+   "section": "7.2",
+   "role": "proves",
+   "quote": "The last inequality is exactly (7.27), after substituting $\\rho=2\\varepsilon$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.2 Proposition II.12: the nonlinear step preserves both bounds",
+    "block": 9
+   }
+  },
+  {
+   "id": "contraction-statement",
+   "section": "7.3",
+   "role": "states",
+   "quote": "**Proposition II.13.** For each $\\alpha\\in K$, the map $\\mathcal F_\\alpha$ has a unique fixed point in $\\mathcal B$. Its contraction constant is",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of",
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 1
+   }
+  },
+  {
+   "id": "quadratic-difference",
+   "section": "7.3",
+   "role": "explains",
+   "quote": "The last step multiplies $(\\rho/M)B(u-u')\\le d(z,z')$ by $M>0$.",
+   "lean": [
+    "Breakdown.Cert.productSubHolds_of",
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 7
+   }
+  },
+  {
+   "id": "second-smallness-use",
+   "section": "7.3",
+   "role": "proves",
+   "quote": "Condition (7.26) says that the bracket in (II.42), multiplied by $\\rho^2$, is at most $M^2$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldContractsHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 10
+   }
+  },
+  {
+   "id": "picard-limit",
+   "section": "7.3",
+   "role": "explains",
+   "quote": "The contraction estimate makes $\\mathcal F_\\alpha z_r$ converge to $\\mathcal F_\\alpha z_*$; the shifted sequence also converges to $z_*$, proving the fixed-point identity.",
+   "lean": [
+    "Breakdown.Cert.contractionFixedPointHolds_proof",
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 17
+   }
+  },
+  {
+   "id": "zero-radius-solve",
+   "section": "7.3",
+   "role": "explains",
+   "quote": "It does not force the arbitrary raw residual representative to vanish; a gradient representative can remain.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldMapsToHolds_of"
+   ],
+   "anchor": {
+    "heading": "7.3 Proposition II.13: contraction and a unique held solution",
+    "block": 17
+   }
+  },
+  {
+   "id": "multiplier-continuity-statement",
+   "section": "8.1",
+   "role": "states",
+   "quote": "**Proposition II.14.** Let $(v_\\alpha,\\beta_\\alpha)$ be the unique held solution at $\\alpha$. The map $\\alpha\\mapsto\\beta_\\alpha$ is continuous on $K$.",
+   "lean": [
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 1
+   }
+  },
+  {
+   "id": "tested-residual-continuity",
+   "section": "8.1",
+   "role": "explains",
+   "quote": "Replace the residual by the left side of (II.4) in this pairing and integrate the Laplacian term by parts once.",
+   "lean": [
+    "Breakdown.Cert.extendedDataContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 4
+   }
+  },
+  {
+   "id": "nonlinear-limit",
+   "section": "8.1",
+   "role": "explains",
+   "quote": "The set of gradients with essential slice norm at most $M$ is convex and norm-closed in $L^2_{\\theta,y}$, hence weakly closed; therefore $B(\\widetilde v)\\le M$.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldLimitHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 9
+   }
+  },
+  {
+   "id": "uniqueness-identifies-limit",
+   "section": "8.1",
+   "role": "proves",
+   "quote": "Proposition II.13 identifies it with $(v_\\alpha,\\beta_\\alpha)$.",
+   "lean": [
+    "Breakdown.Cert.extendedMultiplierContinuityHolds_of"
+   ],
+   "anchor": {
+    "heading": "8.1 Proposition II.14: continuity of the multiplier",
+    "block": 9
+   }
+  },
+  {
+   "id": "parameter-map-statement",
+   "section": "9.1",
+   "role": "states",
+   "quote": "**Proposition II.15.** The continuous map",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointEnclosureHolds_of",
+    "Breakdown.Cert.extendedStiffEnclosureHolds",
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.1 Proposition II.15: the raw update stays in the parameter set",
+    "block": 1
+   }
+  },
+  {
+   "id": "adjoint-annihilates-gradients",
+   "section": "9.2",
+   "role": "explains",
+   "quote": "Applying (II.17) with $v=0$ shows that $\\psi$ annihilates every $H$ field equivalent to zero modulo gradients.",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointPairingHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.2 The adjoint coordinates",
+    "block": 1
+   }
+  },
+  {
+   "id": "joint-adjoint-bound",
+   "section": "9.2",
+   "role": "proves",
+   "quote": "Combine the first two errors with the joint norm rather than estimating its two components independently:",
+   "lean": [
+    "Breakdown.Cert.extendedAdjointEnclosureHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.2 The adjoint coordinates",
+    "block": 4
+   }
+  },
+  {
+   "id": "stiff-inclusion",
+   "section": "9.3",
+   "role": "proves",
+   "quote": "This proves the weighted-ball inclusion and completes $\\mathcal T(K)\\subseteq K$.",
+   "lean": [
+    "Breakdown.Cert.extendedStiffEnclosureHolds"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 3
+   }
+  },
+  {
+   "id": "compact-convex-fixed-point",
+   "section": "9.3",
+   "role": "explains",
+   "quote": "Empty interior causes no difficulty.",
+   "lean": [
+    "Breakdown.Held.convexCompactFixedPoint",
+    "Breakdown.exists_fixedPoint_box"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 4
+   }
+  },
+  {
+   "id": "force-zero",
+   "section": "9.3",
+   "role": "proves",
+   "quote": "The force has vanished exactly.",
+   "lean": [
+    "Breakdown.Held.testSetZero_of",
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 7
+   }
+  },
+  {
+   "id": "raw-membership-needed",
+   "section": "9.3",
+   "role": "explains",
+   "quote": "The raw inclusions (II.47)–(II.48) are what remove this ambiguity in both the paper's route and the formal route.",
+   "lean": [
+    "Breakdown.Held.testSetZero_of"
+   ],
+   "anchor": {
+    "heading": "9.3 The remaining coordinates and the fixed point",
+    "block": 8
+   }
+  },
+  {
+   "id": "two-nonlinear-routes",
+   "section": "9.4",
+   "role": "explains",
+   "quote": "The main exposition follows the latter route because it is the route actually assembled by the extended-certificate Lean proof.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldExistsUniqueHolds_of",
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of",
+    "Breakdown.extended_certificate_orbit_proved"
+   ],
+   "anchor": {
+    "heading": "9.4 The paper's simultaneous fixed point",
+    "block": 7
+   }
+  },
+  {
+   "id": "weak-profile-statement",
+   "section": "10.1",
+   "role": "states",
+   "quote": "**Proposition II.16.** For the selected $\\alpha_*$, put $S=S(\\alpha_*)$, $v=v_{\\alpha_*}$ and $\\mathcal W=W^a_{\\alpha_*}+v$. Then $\\mathcal W$ is a nonzero continuous period-one curve in $X$, and",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of",
+    "Breakdown.Cert.extendedHeldNonzeroHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 1
+   }
+  },
+  {
+   "id": "sum-cancels-force",
+   "section": "10.1",
+   "role": "proves",
+   "quote": "The residuals cancel, and the total force coefficients cancel by (II.49).",
+   "lean": [
+    "Breakdown.Cert.extendedHeldWeakEquationHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 4
+   }
+  },
+  {
+   "id": "profile-separated-from-zero",
+   "section": "10.1",
+   "role": "proves",
+   "quote": "The strict profile-separation inequality, rather than residual smallness alone, supplies nontriviality.",
+   "lean": [
+    "Breakdown.Cert.extendedHeldNonzeroHolds_of"
+   ],
+   "anchor": {
+    "heading": "10.1 Proposition II.16: cancellation and nontriviality",
+    "block": 11
+   }
+  },
+  {
+   "id": "regularity-statement",
+   "section": "11.1",
+   "role": "states",
+   "quote": "**Proposition II.17.** Let $S>0$ and let $\\mathcal W\\in C(\\mathbb R;X)$ be nonzero and period-one. Suppose every term of $T_S\\mathcal W+N(\\mathcal W)$ is locally integrable and this expression is zero modulo gradients. Then there are smooth $W,q$ satisfying the similarity equation, with period $S$, identity isometry and the profile decay in Theorem II.1, such that",
+   "lean": [
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ],
+   "anchor": {
+    "heading": "11.1 Proposition II.17: the precise regularity statement",
+    "block": 1
+   }
+  },
+  {
+   "id": "weak-to-mild",
+   "section": "11.2",
+   "role": "explains",
+   "quote": "This is an application to the particular selected orbit, so no replacement by an unrelated mild solution occurs.",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds"
+   ],
+   "anchor": {
+    "heading": "11.2 From the similarity equation to a physical mild solution",
+    "block": 10
+   }
+  },
+  {
+   "id": "regularity-route-distinction",
+   "section": "11.6",
+   "role": "explains",
+   "quote": "The formal regularity route proves the necessary analytic results inside the library instead of invoking the two named external profile regularity theorems.",
+   "lean": [
+    "Breakdown.WeakProfile.weakOrbitOfParts_holds",
+    "Breakdown.FarField.smoothFieldOfOrbit_holds",
+    "Breakdown.FarField.farFieldDecay_holds"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 1
+   }
+  },
+  {
+   "id": "smooth-velocity-reading",
+   "section": "11.6",
+   "role": "explains",
+   "quote": "Its velocity relation preserves spatial almost-everywhere equality at each time.",
+   "lean": [
+    "Breakdown.FarField.IsVelocityOf",
+    "Breakdown.FarField.IsSmoothOrbitField",
+    "Breakdown.FarField.smoothFieldOfOrbit_holds"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 2
+   }
+  },
+  {
+   "id": "formal-oseen-identity",
+   "section": "11.6",
+   "role": "explains",
+   "quote": "`Breakdown.FarField.integralEquationOfOrbit_holds` derives an Oseen integral equation extending into the past.",
+   "lean": [
+    "Breakdown.FarField.integralEquationOfOrbit_holds"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 3
+   }
+  },
+  {
+   "id": "formal-integral-decay",
+   "section": "11.6",
+   "role": "explains",
+   "quote": "It also supplies stronger derivative and pressure-gradient decay than the two velocity bounds required in the paper's profile definition.",
+   "lean": [
+    "Breakdown.FarField.DecayBounds",
+    "Breakdown.FarField.farFieldDecay_holds"
+   ],
+   "anchor": {
+    "heading": "11.6 How the formal regularity proof is organised",
+    "block": 3
+   }
+  },
+  {
+   "id": "same-orbit-subtraction",
+   "section": "12.1",
+   "role": "uses",
+   "quote": "Consequently the actual difference $v_*(\\theta,y)=W(S\\theta,y)-W^a_{\\alpha_*}(\\theta,y)$ is the original correction as an $X$ element at every time.",
+   "lean": [
+    "Breakdown.FarField.IsVelocityOf",
+    "Breakdown.Cert.readingEnergyHolds_of"
+   ],
+   "anchor": {
+    "heading": "12.1 Completion of Theorem II.1",
+    "block": 3
+   }
+  },
+  {
+   "id": "weak-hessian-retained",
+   "section": "12.1",
+   "role": "uses",
+   "quote": "The weak Hessian can simply be the already constructed weak Hessian of $v$.",
+   "lean": [
+    "Breakdown.IsPerturbation",
+    "Breakdown.Cert.Internal.ProductBound.weakGradient_unique",
+    "Breakdown.Cert.Internal.ReadingExists.isWeakGradient_congr"
+   ],
+   "anchor": {
+    "heading": "12.1 Completion of Theorem II.1",
+    "block": 5
+   }
+  },
+  {
+   "id": "pins-and-energy-reading",
+   "section": "12.1",
+   "role": "uses",
+   "quote": "All energy integrals remain finite because the derivative classes have been retained and $w$ is bounded.",
+   "lean": [
+    "Breakdown.weightedEnergy",
+    "Breakdown.Cert.readingEnergyHolds_of",
+    "Breakdown.Cert.Internal.ReadingEnergy.energy_part",
+    "Breakdown.Cert.Internal.ReadingEnergy.pin_part"
+   ],
+   "anchor": {
+    "heading": "12.1 Completion of Theorem II.1",
+    "block": 5
+   }
+  },
+  {
+   "id": "pointwise-symmetry",
+   "section": "12.1",
+   "role": "explains",
+   "quote": "The argument is made separately for each pair and uses no common exceptional set over a possibly uncountable $\\Gamma$.",
+   "lean": [
+    "Breakdown.IsPerturbation",
+    "Breakdown.FarField.IsVelocityOf"
+   ],
+   "anchor": {
+    "heading": "12.1 Completion of Theorem II.1",
+    "block": 8
+   }
+  },
+  {
+   "id": "wrapper-every-time",
+   "section": "12.2",
+   "role": "uses",
+   "quote": "Pointwise smoothness alone would not establish continuity of an integral over all of space; the integrable tail bound supplies the needed domination.",
+   "lean": [
+    "Breakdown.FarField.DecayBounds",
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "12.2 The every-time bridge in the proposed wrapper",
+    "block": 4
+   }
+  },
+  {
+   "id": "finite-integral-before-real",
+   "section": "12.2",
+   "role": "explains",
+   "quote": "The intended wrapper also proves finiteness before interpreting a nonnegative integral as a real number.",
+   "lean": [
+    "Breakdown.periodLIntegral",
+    "Breakdown.weightedEnergy"
+   ],
+   "anchor": {
+    "heading": "12.2 The every-time bridge in the proposed wrapper",
+    "block": 5
+   }
+  },
+  {
+   "id": "normalised-multiplier-retained",
+   "section": "12.2",
+   "role": "uses",
+   "quote": "The same parameter set, period and pin data survive the two normalisations from §2.6.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.withUnitWeight",
+    "Breakdown.ExtendedCertificateData.atProfile"
+   ],
+   "anchor": {
+    "heading": "12.2 The every-time bridge in the proposed wrapper",
+    "block": 6
+   }
+  },
+  {
+   "id": "corollary-same-profile",
+   "section": "12.3",
+   "role": "states",
+   "quote": "**Corollary II.18.** If a certificate exists, the conclusions of Theorem 1.1 hold on $\\mathbb R^3$ and $\\mathbb T^3$ with the smooth profile, selected period and identity isometry supplied by Theorem II.1.",
+   "lean": [
+    "Breakdown.extended_certificate_breakdown_on_space",
+    "Breakdown.FarField.breakdownOnTorus_of_weak"
+   ],
+   "anchor": {
+    "heading": "12.3 Corollary II.18: apply Part I to this profile",
+    "block": 1
+   }
+  },
+  {
+   "id": "corollary-interface-boundary",
+   "section": "12.3",
+   "role": "explains",
+   "quote": "Their theorem types expose less than the full quantitative same-profile corollary above.",
+   "lean": [
+    "Breakdown.extended_certificate_breakdown_on_space",
+    "Breakdown.FarField.breakdownOnTorus_of_weak"
+   ],
+   "anchor": {
+    "heading": "12.3 Corollary II.18: apply Part I to this profile",
+    "block": 9
+   }
+  },
+  {
+   "id": "additional-recurrence",
+   "section": "12.4",
+   "role": "explains",
+   "quote": "If $(R,\\theta_0)\\in\\Gamma$ with $\\theta_0>0$, equation (II.2) makes the same velocity a profile with recurrence time $S\\theta_0$ and isometry $R$. The differential equation and decay bounds do not depend on the choice of recurrence. In particular, a half-period symmetry gives recurrence time $S/2$. This is Remark 7.3, p.35. It supplies an additional recurrence description of the same velocity; it makes no claim about a least period.",
+   "lean": [
+    "Breakdown.PeriodicSimilarityProfileExists",
+    "Breakdown.Symmetry"
+   ],
+   "anchor": {
+    "heading": "12.4 Remark II.19: a prescribed shorter recurrence",
+    "block": 1
+   }
+  },
+  {
+   "id": "formal-input-differences",
+   "section": "13.2",
+   "role": "explains",
+   "quote": "Other differences strengthen the stated input:",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "13.2 What is represented differently in the formal certificate",
+    "block": 1
+   }
+  },
+  {
+   "id": "modular-node-boundary",
+   "section": "13.2",
+   "role": "explains",
+   "quote": "Declarations ending in `Holds_of` often prove an implication between analytic interfaces.",
+   "lean": [
+    "Breakdown.extended_certificate_orbit_proved"
+   ],
+   "anchor": {
+    "heading": "13.2 What is represented differently in the formal certificate",
+    "block": 3
+   }
+  },
+  {
+   "id": "name-cert-hh",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.periodNorm`; `Breakdown.Cert.HH` represents the projected Fourier forcing",
+   "lean": [
+    "Breakdown.Cert.HH"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-cert-timecircle",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Real time; `Breakdown.Cert.TimeCircle` represents $\\mathbb R/\\mathbb Z$",
+   "lean": [
+    "Breakdown.Cert.TimeCircle"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-cert-xbar",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Complete spatial derivative space used before solving the time equation",
+   "lean": [
+    "Breakdown.Cert.XBar"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-cert-freeinv",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Free inverse: `Breakdown.Cert.freeInv`; physical equation: `Breakdown.IsPerturbation` and `Breakdown.IsRightSide`",
+   "lean": [
+    "Breakdown.Cert.freeInv"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-cert-phystohh",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.Cert.solProj`, `Breakdown.Cert.physToHH`",
+   "lean": [
+    "Breakdown.Cert.physToHH"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-cert-sizez",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.Cert.sizeZ` after normalisation; `Breakdown.Cert.supGrad`",
+   "lean": [
+    "Breakdown.Cert.sizeZ"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-cert-solproj",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.Cert.solProj`, `Breakdown.Cert.physToHH`",
+   "lean": [
+    "Breakdown.Cert.solProj"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-cert-supgrad",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.Cert.sizeZ` after normalisation; `Breakdown.Cert.supGrad`",
+   "lean": [
+    "Breakdown.Cert.supGrad"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-extendedcertificatedata-actuator",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Approximate force coefficients, directions and their bound",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    27,
+    27
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-actuatorbound",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Approximate force coefficients, directions and their bound",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    46,
+    46
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-adjointdefect",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`d.adjointDefect`, `d.adjointQuad`, `d.adjointOffset`",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    61,
+    61
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-adjointoffset",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`d.adjointDefect`, `d.adjointQuad`, `d.adjointOffset`",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    64,
+    64
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-adjointquad",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`d.adjointDefect`, `d.adjointQuad`, `d.adjointOffset`",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    63,
+    63
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-adjointset",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Box coordinates, their radii, ball radius and nonzero scales",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    58,
+    58
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-coercivel2",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Reference forcing constant, pin constant, zero-pin inverse constant",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    40,
+    40
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-coercivepin",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Reference forcing constant, pin constant, zero-pin inverse constant",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    41,
+    41
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-coercivetotal",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Reference forcing constant, pin constant, zero-pin inverse constant",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    42,
+    42
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-defectbound",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "$\\delta(\\alpha),\\delta_0(\\alpha),\\delta_{\\max}$",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    49,
+    49
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-defectmax",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "$\\delta(\\alpha),\\delta_0(\\alpha),\\delta_{\\max}$",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    51,
+    51
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-defectrowbound",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "$\\delta(\\alpha),\\delta_0(\\alpha),\\delta_{\\max}$",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    50,
+    50
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-formbound",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`d.formBound`; obtained from `d.modelFormBound` and `d.formShift`",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    48,
+    48
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-formshift",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`d.formBound`; obtained from `d.modelFormBound` and `d.formShift`",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    32,
+    32
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-frame",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Column $j$ of an invertible matrix $V$",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    54,
+    54
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-gapsize",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`d.gapSize`, `Breakdown.ExtendedCertificateData.transferLoss`",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    31,
+    31
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-model",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Approximate field and reference field",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    30,
+    30
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-modelformbound",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`d.formBound`; obtained from `d.modelFormBound` and `d.formShift`",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    47,
+    47
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-multiplier",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Approximate force coefficients, directions and their bound",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    25,
+    25
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-multiplierweight",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Spatial weight, lower and upper bounds, multiplier weight",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    29,
+    29
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-params",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.ExtendedCertificateData.params`; the Lean dimension is named $k$",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.params"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-extendedcertificatedata-period",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Period and upper bound",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    21,
+    21
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-periodmax",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Period and upper bound",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    44,
+    44
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-pin",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Pin field and its gradient pairing",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    28,
+    28
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-radius",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Box coordinates, their radii, ball radius and nonzero scales",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    56,
+    56
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-rowbound",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.ExtendedCertificateData.rows`, `d.rowBound`",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    36,
+    36
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-scale",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Box coordinates, their radii, ball radius and nonzero scales",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    55,
+    55
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-sizebound",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Half the joint radius, gradient supremum radius, joint radius",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    52,
+    52
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-stiffnorm",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Joint bound and affine offset on the remaining coordinates",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    65,
+    65
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-stiffoffset",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Joint bound and affine offset on the remaining coordinates",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    66,
+    66
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-stiffradius",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Box coordinates, their radii, ball radius and nonzero scales",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    57,
+    57
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-supbound",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Half the joint radius, gradient supremum radius, joint radius",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    53,
+    53
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-symmetries",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Prescribed orthogonal spatial actions with time shifts",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    20,
+    20
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-target",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.ExtendedCertificateData.targetGap`; `d.target` stores full-profile pins",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    26,
+    26
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-targetgap",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.ExtendedCertificateData.targetGap`; `d.target` stores full-profile pins",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.targetGap"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-extendedcertificatedata-transferloss",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`d.gapSize`, `Breakdown.ExtendedCertificateData.transferLoss`",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.transferLoss"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-extendedcertificatedata-twist",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Period reduction of scalar enstrophy",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    45,
+    45
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-weight",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Spatial weight, lower and upper bounds, multiplier weight",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    37,
+    37
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-weightfn",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Spatial weight, lower and upper bounds, multiplier weight",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    38,
+    38
+   ]
+  },
+  {
+   "id": "name-extendedcertificatedata-weightmax",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Spatial weight, lower and upper bounds, multiplier weight",
+   "lean": [
+    "Breakdown.ExtendedCertificateData"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   },
+   "lines": [
+    39,
+    39
+   ]
+  },
+  {
+   "id": "name-freq-x",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.Freq.X` encodes the homogeneous derivative symbol; physical readings recover the velocity",
+   "lean": [
+    "Breakdown.Freq.X"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-isrightside",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Free inverse: `Breakdown.Cert.freeInv`; physical equation: `Breakdown.IsPerturbation` and `Breakdown.IsRightSide`",
+   "lean": [
+    "Breakdown.IsRightSide"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-space",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Spatial similarity variable in $\\mathbb R^3$",
+   "lean": [
+    "Breakdown.Space"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-matsq",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.matSq`; not the squared operator norm",
+   "lean": [
+    "Breakdown.matSq"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-periodnorm",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "`Breakdown.periodNorm`; `Breakdown.Cert.HH` represents the projected Fourier forcing",
+   "lean": [
+    "Breakdown.periodNorm"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-pinvalue",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Pin field and its gradient pairing",
+   "lean": [
+    "Breakdown.pinValue"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  },
+  {
+   "id": "name-stationaryenergy",
+   "section": "1.2",
+   "role": "defines",
+   "quote": "Period-integrated and single-slice derivative energies",
+   "lean": [
+    "Breakdown.stationaryEnergy"
+   ],
+   "anchor": {
+    "heading": "1.2 Dictionary",
+    "block": 2
+   }
+  }
+ ],
+ "plain": {
+  "Breakdown.Cert.HH": "Periodic projected forcing space",
+  "Breakdown.Cert.Internal.BorderedInvertible.exists_inverse_of_compact_bordered": "Invert the compact bordered operator",
+  "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le": "Closed essential-supremum bounds",
+  "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le": "Closed gradient-supremum bounds",
+  "Breakdown.Cert.Internal.ProductBound.weakGradient_unique": "Uniqueness of a weak gradient",
+  "Breakdown.Cert.Internal.ReadingEnergy.energy_part": "Identify the physical weighted energy",
+  "Breakdown.Cert.Internal.ReadingEnergy.pin_part": "Identify the physical pin pairings",
+  "Breakdown.Cert.Internal.ReadingExists.isWeakGradient_congr": "Transfer a weak gradient by equality",
+  "Breakdown.Cert.TimeCircle": "Period-one time",
+  "Breakdown.Cert.XBar": "The spatial derivative graph",
+  "Breakdown.Cert.XX": "Periodic fields in the spatial graph",
+  "Breakdown.Cert.contractionFixedPointHolds_proof": "Contraction in a closed held set",
+  "Breakdown.Cert.exists_gradInvSpec": "Construct the free gradient inverse",
+  "Breakdown.Cert.exists_projSpec": "Construct the Leray projection",
+  "Breakdown.Cert.extendedAdjointEnclosureHolds_of": "Enclose the adjoint coordinates",
+  "Breakdown.Cert.extendedAdjointPairingHolds_of": "Pair the equation with an adjoint",
+  "Breakdown.Cert.extendedAtProfileHolds": "Transfer to the approximate profile",
+  "Breakdown.Cert.extendedBorderedInvertibleHolds_of": "Invert the bordered linear equation",
+  "Breakdown.Cert.extendedCoerciveBorderedHolds_of": "Apply the bordered coercive bound",
+  "Breakdown.Cert.extendedConvectionCompactHolds_of": "Compactness of linearised convection",
+  "Breakdown.Cert.extendedConvectionHolds_of": "Bound the linearised convection",
+  "Breakdown.Cert.extendedDataContinuityHolds_of": "Continuity of tested residual data",
+  "Breakdown.Cert.extendedExistsZeroHeldHolds_of": "Choose a parameter with zero force",
+  "Breakdown.Cert.extendedFrozenBridgeHolds_of": "Transfer the frozen-form bound",
+  "Breakdown.Cert.extendedHeldContractsHolds_of": "Contract the nonlinear correction map",
+  "Breakdown.Cert.extendedHeldExistsUniqueHolds_of": "The unique held correction",
+  "Breakdown.Cert.extendedHeldLimitHolds_of": "Pass held solutions to a limit",
+  "Breakdown.Cert.extendedHeldMapsToHolds_of": "Preserve both correction bounds",
+  "Breakdown.Cert.extendedHeldMetricHolds_of": "The metric on the held correction set",
+  "Breakdown.Cert.extendedHeldNonzeroHolds_of": "The corrected field is nonzero",
+  "Breakdown.Cert.extendedHeldWeakEquationHolds_of": "The corrected field is unforced",
+  "Breakdown.Cert.extendedInvarianceHolds_of": "Invariance of the linearised terms",
+  "Breakdown.Cert.extendedMultiplierContinuityHolds_of": "Continuity of the correction multiplier",
+  "Breakdown.Cert.extendedStiffEnclosureHolds": "Enclose the remaining coordinates",
+  "Breakdown.Cert.extendedSupBoundHolds_of": "Control the gradient at every time",
+  "Breakdown.Cert.extendedUnitWeightHolds": "Preserve the unit-weight certificate",
+  "Breakdown.Cert.freeEnergyLocalHolds_of": "Continuous energy and its identity",
+  "Breakdown.Cert.freeEquivariantHolds_of": "The free inverse preserves symmetries",
+  "Breakdown.Cert.freeInv": "The periodic free inverse",
+  "Breakdown.Cert.freeInvHolds_of": "Invert the free periodic equation",
+  "Breakdown.Cert.freePerturbationHolds_of": "Read the free solve as a perturbation",
+  "Breakdown.Cert.halfOrderGraph": "The closed spatial derivative graph",
+  "Breakdown.Cert.localCompactnessHolds_of": "Local compactness of the free inverse",
+  "Breakdown.Cert.mem_halfOrderGraph_iff": "Identify the closed derivative graph",
+  "Breakdown.Cert.periodContinuityHolds_of": "Vary the period in the free inverse",
+  "Breakdown.Cert.physToHH": "Project a physical forcing field",
+  "Breakdown.Cert.productBoundHolds_of": "Bound the bilinear convection term",
+  "Breakdown.Cert.productSubHolds_of": "Expand the quadratic difference",
+  "Breakdown.Cert.readingEnergyHolds_of": "Read energy and pins in physical space",
+  "Breakdown.Cert.readingExistsHolds_proof": "Read the spatial Fourier graph",
+  "Breakdown.Cert.rowNormHolds": "Bound the finite-row seminorm",
+  "Breakdown.Cert.sizeZ": "Joint correction and multiplier size",
+  "Breakdown.Cert.sliceReadingHolds_of": "Read the derivative graph at a time",
+  "Breakdown.Cert.sliceSupBoundHolds_of": "Bound a velocity slice in supremum",
+  "Breakdown.Cert.solProj": "The solenoidal projection",
+  "Breakdown.Cert.supGrad": "Essential gradient supremum",
+  "Breakdown.Cert.testDenseHolds_proof": "Density of solenoidal tests",
+  "Breakdown.Cert.testPairingHolds_proof": "Physical pairings against tests",
+  "Breakdown.ExtendedCertificateData": "Extended certificate data",
+  "Breakdown.ExtendedCertificateData.atProfile": "Use the approximate field as reference",
+  "Breakdown.ExtendedCertificateData.defect": "The chosen residual field",
+  "Breakdown.ExtendedCertificateData.params": "The box and weighted-ball parameters",
+  "Breakdown.ExtendedCertificateData.rows": "Finite-row forcing seminorm",
+  "Breakdown.ExtendedCertificateData.targetGap": "Pins required of the correction",
+  "Breakdown.ExtendedCertificateData.transferLoss": "Loss from the reference field",
+  "Breakdown.ExtendedCertificateData.withUnitWeight": "Normalise the multiplier weight",
+  "Breakdown.FarField.DecayBounds": "Velocity and pressure-gradient decay",
+  "Breakdown.FarField.IsSmoothOrbitField": "A smooth periodic similarity field",
+  "Breakdown.FarField.IsVelocityOf": "Velocity equality at every time",
+  "Breakdown.FarField.breakdownOnTorus_of_weak": "Conditional torus breakdown",
+  "Breakdown.FarField.farFieldDecay_holds": "Decay of the smooth orbit",
+  "Breakdown.FarField.integralEquationOfOrbit_holds": "The orbit satisfies the Oseen equation",
+  "Breakdown.FarField.periodicLerayProfileExists_of_weak": "A smooth profile from a weak profile",
+  "Breakdown.FarField.smoothFieldOfOrbit_holds": "A smooth representative of the orbit",
+  "Breakdown.Freq.X": "Solenoidal homogeneous Fourier symbols",
+  "Breakdown.Held.convexCompactFixedPoint": "A fixed point on a compact convex set",
+  "Breakdown.Held.testSetZero_of": "Cancel the finite-dimensional force",
+  "Breakdown.IsExtendedCertificate": "Conditions of an extended certificate",
+  "Breakdown.IsPerturbation": "The correction and its weak derivatives",
+  "Breakdown.IsRightSide": "The linear equation modulo gradients",
+  "Breakdown.PeriodicSimilarityProfileExists": "Existence of a smooth periodic profile",
+  "Breakdown.Space": "Three-dimensional space",
+  "Breakdown.Symmetry": "An isometry with a time shift",
+  "Breakdown.WeakProfile.weakOrbitOfParts_holds": "Build the mild orbit from weak data",
+  "Breakdown.exists_fixedPoint_box": "A fixed point on a box",
+  "Breakdown.extended_certificate_breakdown_on_space": "Conditional whole-space breakdown",
+  "Breakdown.extended_certificate_orbit_proved": "A weak orbit from a certificate",
+  "Breakdown.matSq": "Squared Frobenius gradient norm",
+  "Breakdown.periodLIntegral": "Nonnegative integral over one period",
+  "Breakdown.periodNorm": "Forcing norm over one period",
+  "Breakdown.pinValue": "Gradient pairing with a pin",
+  "Breakdown.stationaryEnergy": "Weighted energy at one time",
+  "Breakdown.supBoundFactor": "The exact slice supremum constant",
+  "Breakdown.weightedEnergy": "Weighted correction energy",
+  "Breakdown.sumSecondPartialsAt": "Laplacian",
+  "Breakdown.frozenForm": "Frozen-time quadratic form",
+  "Breakdown.Freq.embedX": "Embed a physical velocity field",
+  "Breakdown.weakDefectField": "Explicit residual field",
+  "Breakdown.IsWeakGradient": "Weak spatial gradient",
+  "Breakdown.matInner": "Gradient matrix pairing",
+  "Breakdown.gradientAt": "Pressure gradient",
+  "Breakdown.Freq.dilX": "Dilation in the Fourier space",
+  "Breakdown.weakSimilarityIntegrand": "Weak self-similar equation",
+  "Breakdown.SimilarityResidual": "Similarity-equation residual",
+  "Breakdown.advectionAt": "Nonlinear transport",
+  "Breakdown.divergenceAt": "Divergence",
+  "Breakdown.unitVector": "Coordinate unit vectors",
+  "Breakdown.vecNorm": "Euclidean norm of coefficients",
+  "Breakdown.IsSpaceTimeTestVector": "Unrestricted space-time test",
+  "Breakdown.FarField.SmoothFieldOfOrbit": "Smooth representative of an orbit",
+  "Breakdown.ExtendedCertificateData.adjustedMultiplier": "Adjusted approximate multiplier",
+  "Breakdown.ExtendedCertificateHypothesis": "An extended certificate exists",
+  "Breakdown.BreakdownOnTorus": "The torus nonexistence statement",
+  "Breakdown.rowNorm": "Finite difficult-direction norm",
+  "Breakdown.BreakdownOnSpace": "The whole-space nonexistence statement",
+  "Breakdown.Freq.heatFactor": "Heat multiplier",
+  "Breakdown.Freq.velocity": "Physical velocity",
+  "Breakdown.Freq.fieldOp": "A chosen Fourier multiplier",
+  "Breakdown.IsTestFunction": "Compactly supported scalar test",
+  "Breakdown.IsProfileField": "Stationary test field for the form",
+  "Breakdown.IsSpaceTimeTestField": "Divergence-free space-time tests",
+  "Breakdown.FarField.IntegralEquationOfOrbit": "The orbit obeys the integral equation",
+  "Breakdown.secondDerivTrace": "Trace of the weak Hessian",
+  "Breakdown.ExtendedCertificateData.actuatorAdjointError": "Forcing-to-adjoint discrepancy",
+  "Breakdown.Freq.Sig": "Real solenoidal Fourier fields",
+  "Breakdown.WeakPeriodicSimilarityProfileExists": "Weak recurrent profile exists",
+  "Breakdown.IsSmoothSolution": "Smooth Navier–Stokes solution",
+  "Breakdown.FarField.FarFieldDecay": "Decay of the smooth profile",
+  "Breakdown.IsTimePeriodic": "Normalized time periodicity",
+  "Breakdown.Freq.freqVec": "Frequency as a complex vector",
+  "Breakdown.Freq.phiFactor": "Heat-smoothed half derivative weight",
+  "Breakdown.Freq.instCompleteSpaceSubtypeAEEqFunSpaceCSpaceVolumeMemAddSubgroupL2CSubmoduleRealSig": "Completeness of the field space",
+  "Breakdown.Freq.realVec": "Real part of a complex vector",
+  "Breakdown.Cert.SecondField": "Second derivative field type",
+  "Breakdown.Freq.realPart": "Real part of a complex field",
+  "Breakdown.FarField.similarityShift": "Field in shifted similarity variables",
+  "Breakdown.Cert.circleRep": "Representative of a time on the circle",
+  "Breakdown.Cert.FreeInvSpec": "Specification of the free inverse",
+  "Breakdown.Freq.partialX": "Partial derivative on the field space",
+  "Breakdown.FarField.IsRegularOrbitField": "Orbit field solving the integral form",
+  "Breakdown.Freq.factOneLeSix": "One is at most six",
+  "Breakdown.Freq.L6R": "Real fields in L6",
+  "Breakdown.Freq.derivSymbol": "Normalised derivative symbol",
+  "Breakdown.Cert.pinSlice": "Pin pairing on one slice",
+  "Breakdown.Cert.onCircle": "Function read on the time circle",
+  "Breakdown.Cert.shiftLp": "Time shift on the circle",
+  "Breakdown.Cert.slicePropagator": "Similarity propagator on slices",
+  "Breakdown.Freq.IsRealizedBy": "Operator acts pointwise in frequency",
+  "Breakdown.Cert.ProjSpec": "Specification of the Leray projection",
+  "Breakdown.Cert.solField": "Leray projection of a field",
+  "Breakdown.Freq.VelocitySpec": "Velocity map on test fields",
+  "Breakdown.Freq.complexify": "Complexify a real field",
+  "Breakdown.Freq.reflConj": "Reflect and conjugate",
+  "Breakdown.Freq.L2C": "Complex square-integrable fields",
+  "Breakdown.Cert.HBar": "Space of solenoidal slices",
+  "Breakdown.Freq.restrictX": "Operator restricted to the field space",
+  "Breakdown.Freq.toPhys": "Back to physical space",
+  "Breakdown.Cert.propagatorIntegrand": "Integrand of the propagator integral",
+  "Breakdown.Freq.toLpOrZero": "Lp class or zero",
+  "Breakdown.Cert.gradInv": "Gradient-level free inverse",
+  "Breakdown.Freq.CSpace": "Complex three-dimensional vectors",
+  "Breakdown.Cert.circleLpOrZero": "L2 class on the circle or zero",
+  "Breakdown.Cert.GradInvSpec": "Specification of the gradient inverse",
+  "Breakdown.Cert.solenoidalSymbol": "Fourier symbol of the Leray projection",
+  "Breakdown.Freq.complexifyVec": "Complexify a real vector",
+  "Breakdown.Cert.sliceWeightedGrad": "Weighted gradient energy of a slice",
+  "Breakdown.Freq.freqTrInvR": "Inverse Fourier transform as a real map",
+  "Breakdown.FarField.TailVanishes": "Field vanishes at infinity uniformly",
+  "Breakdown.Cert.gradCLM": "Gradient part over the period",
+  "Breakdown.Freq.cmul": "Multiply by a complex number",
+  "Breakdown.Cert.IsReadingOf": "Physical fields read from a state",
+  "Breakdown.Cert.energyW": "Weighted energy of a periodic state",
+  "Breakdown.Cert.GradField": "Gradient field type",
+  "Breakdown.Freq.partialField": "Partial derivative of a field",
+  "Breakdown.Freq.ofGrad": "Field from its gradient in frequency",
+  "Breakdown.Cert.VelField": "Velocity field type",
+  "Breakdown.FarField.tensorField": "Tensor product of two fields",
+  "Breakdown.Cert.secondPart": "Second-order part of a slice",
+  "Breakdown.FarField.UniformDerivBound": "Uniform bound on derivatives",
+  "Breakdown.Cert.toPhysH": "Slice to physical space field",
+  "Breakdown.Cert.gradPart": "Gradient part of a slice",
+  "Breakdown.Freq.IsHalfSspOf": "Half Laplacian relation in frequency",
+  "Breakdown.Cert.secondCLM": "Second-order part over the period",
+  "Breakdown.Freq.dilL2": "Dilation in frequency",
+  "Breakdown.Freq.freqTrL2": "Fourier transform on L2",
+  "Breakdown.Freq.longitudinal": "Projection onto the frequency direction",
+  "Breakdown.Cert.factZeroLtOneReal": "Zero is less than one",
+  "Breakdown.FarField.lerayKernel": "Leray projection kernel",
+  "Breakdown.FarField.kernelConv": "Convolution with the Leray kernel",
+  "Breakdown.FarField.profileBilin": "Bilinear profile integral",
+  "Breakdown.Freq.freqTrR": "Fourier transform as a real map",
+  "Breakdown.FarField.heatKernelThird": "Third derivative of the heat kernel",
+  "Breakdown.Freq.gradSymbol": "Normalised gradient symbol",
+  "Breakdown.FarField.heatKernel": "Heat kernel",
+  "Breakdown.Freq.conjVec": "Conjugate of a complex vector",
+  "Breakdown.Cert.smoothH": "Heat smoothing on slices",
+  "Breakdown.Freq.L2R": "Real square-integrable fields"
+ },
+ "notes": {
+  "Breakdown.IsPerturbation": {
+   "text": "The stored transport field includes the time and dilation terms before subtracting the Laplacian. Its Hessian is a weak derivative representative.",
+   "because": [
+    "domain-combination",
+    "weak-hessian-retained"
+   ]
+  },
+  "Breakdown.ExtendedCertificateData.targetGap": {
+   "text": "The data store pin values for the full profile. Subtracting the approximate pins gives the correction target.",
+   "because": [
+    "name-extendedcertificatedata-targetgap"
+   ]
+  },
+  "Breakdown.Cert.XX": {
+   "text": "The iteration space contains spatial derivatives but no time-graph condition. Every bordered output supplies that additional condition.",
+   "because": [
+    "spatial-graph-closed"
+   ]
+  },
+  "Breakdown.Cert.extendedHeldContractsHolds_of": {
+   "text": "Condition (7.26) controls the supremum part of the difference metric. The paper's simultaneous fixed point leaves that condition unused.",
+   "because": [
+    "second-smallness-use",
+    "two-nonlinear-routes"
+   ]
+  },
+  "Breakdown.Cert.extendedDataContinuityHolds_of": {
+   "text": "Continuity is obtained through solenoidal test pairings. An arbitrary residual representative need not be continuous in the H norm.",
+   "because": [
+    "tested-residual-continuity",
+    "raw-residual"
+   ]
+  },
+  "Breakdown.Cert.extendedSupBoundHolds_of": {
+   "text": "Only scalar enstrophy needs the shorter period. The averaging argument does not assume the same time symmetry for the chosen forcing representative.",
+   "because": [
+    "half-period-averaging"
+   ]
+  },
+  "Breakdown.Cert.readingEnergyHolds_of": {
+   "text": "This reading uses the Frobenius square of the gradient and the trace of a weak Hessian. Its immediate premise is GraphClosedHolds.",
+   "because": [
+    "pins-and-energy-reading",
+    "weak-hessian-retained"
+   ]
+  },
+  "Breakdown.extended_certificate_orbit_proved": {
+   "text": "The public conclusion discards the selected parameter and correction. The proposed wrapper is mapped separately because it belongs to the supplied local work.",
+   "because": [
+    "upstream-existential-boundary"
+   ]
+  }
+ },
+ "fidelity": {
+  "Breakdown.Cert.HH": {
+   "verdict": "different",
+   "text": "HH is the time-periodic L2 space of solenoidal Fourier forcing symbols. The paper's H also contains unprojected representatives, so the two spaces must not be identified directly.",
+   "because": [
+    "name-cert-hh"
+   ]
+  },
+  "Breakdown.Cert.Internal.BorderedInvertible.exists_inverse_of_compact_bordered": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "finite-rank-border",
+    "fredholm-surjectivity"
+   ]
+  },
+  "Breakdown.Cert.Internal.HeldMetric.isClosed_eLpNorm_top_le": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "supremum-lower-semicontinuity"
+   ]
+  },
+  "Breakdown.Cert.Internal.HeldMetric.isClosed_supGrad_le": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "supremum-lower-semicontinuity"
+   ]
+  },
+  "Breakdown.Cert.Internal.ProductBound.weakGradient_unique": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "weak-hessian-retained"
+   ]
+  },
+  "Breakdown.Cert.Internal.ReadingEnergy.energy_part": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "pins-and-energy-reading"
+   ]
+  },
+  "Breakdown.Cert.Internal.ReadingEnergy.pin_part": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "pins-and-energy-reading"
+   ]
+  },
+  "Breakdown.Cert.Internal.ReadingExists.isWeakGradient_congr": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "weak-hessian-retained"
+   ]
+  },
+  "Breakdown.Cert.TimeCircle": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-cert-timecircle"
+   ]
+  },
+  "Breakdown.Cert.XBar": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-cert-xbar"
+   ]
+  },
+  "Breakdown.Cert.XX": {
+   "verdict": "different",
+   "text": "XX is periodic L2 over the closed spatial derivative graph. It is the complete ambient correction space, and imposes no T_S v integrability condition before the inverse is applied.",
+   "because": [
+    "complete-space-statement",
+    "spatial-graph-closed"
+   ]
+  },
+  "Breakdown.Cert.contractionFixedPointHolds_proof": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "held-metric-completeness",
+    "picard-limit"
+   ]
+  },
+  "Breakdown.Cert.exists_gradInvSpec": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "heat-dilation-inverse"
+   ]
+  },
+  "Breakdown.Cert.exists_projSpec": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "projection-statement"
+   ]
+  },
+  "Breakdown.Cert.extendedAdjointEnclosureHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "parameter-map-statement",
+    "joint-adjoint-bound"
+   ]
+  },
+  "Breakdown.Cert.extendedAdjointPairingHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "adjoint-annihilates-gradients"
+   ]
+  },
+  "Breakdown.Cert.extendedAtProfileHolds": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "reference-normalisation",
+    "reference-transfer-statement"
+   ]
+  },
+  "Breakdown.Cert.extendedBorderedInvertibleHolds_of": {
+   "verdict": "different",
+   "text": "The formal theorem is a modular invertibility result using compact convection, coercivity and physical reading premises. It supplies the bordered solve in Proposition II.9 once those nodes and the extended certificate are given.",
+   "because": [
+    "pins-count",
+    "bordered-statement"
+   ]
+  },
+  "Breakdown.Cert.extendedCoerciveBorderedHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "reference-transfer-statement",
+    "zero-pin-inverse"
+   ]
+  },
+  "Breakdown.Cert.extendedConvectionCompactHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "convection-statement",
+    "convection-tail-step"
+   ]
+  },
+  "Breakdown.Cert.extendedConvectionHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "convection-statement"
+   ]
+  },
+  "Breakdown.Cert.extendedDataContinuityHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "raw-residual",
+    "tested-residual-continuity"
+   ]
+  },
+  "Breakdown.Cert.extendedExistsZeroHeldHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "parameter-map-statement",
+    "force-zero",
+    "two-nonlinear-routes"
+   ]
+  },
+  "Breakdown.Cert.extendedFrozenBridgeHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "frozen-form-input",
+    "frozen-form-bridge"
+   ]
+  },
+  "Breakdown.Cert.extendedHeldContractsHolds_of": {
+   "verdict": "different",
+   "text": "The contraction node uses small_second, corresponding to (7.26), to control the supremum component of the metric and obtains the exact factor 2 c_L c_w M. The paper's Schauder construction does not use (7.26).",
+   "because": [
+    "three-smallness-roles",
+    "contraction-statement",
+    "quadratic-difference",
+    "second-smallness-use"
+   ]
+  },
+  "Breakdown.Cert.extendedHeldExistsUniqueHolds_of": {
+   "verdict": "different",
+   "text": "Given the contraction, metric, self-map, bordered-solve and invariance nodes, the formal node proves a unique held solution for each fixed parameter of a normalised extended certificate. Proposition 7.10 in the paper selects a parameter and a solution simultaneously; the added uniqueness is restricted to the held class.",
+   "because": [
+    "contraction-statement",
+    "picard-limit",
+    "two-nonlinear-routes"
+   ]
+  },
+  "Breakdown.Cert.extendedHeldLimitHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "nonlinear-limit"
+   ]
+  },
+  "Breakdown.Cert.extendedHeldMapsToHolds_of": {
+   "verdict": "different",
+   "text": "For a normalised extended certificate, the node combines the residual budget, inverse, product and supremum estimates to preserve both held bounds. It is a modular self-map result, not an unconditional existence theorem.",
+   "because": [
+    "self-map-budget-role",
+    "self-map-statement",
+    "self-map-weighted-bound",
+    "self-map-supremum-bound",
+    "zero-radius-solve"
+   ]
+  },
+  "Breakdown.Cert.extendedHeldMetricHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "complete-space-statement",
+    "held-metric-completeness",
+    "zero-radius-metric"
+   ]
+  },
+  "Breakdown.Cert.extendedHeldNonzeroHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "strict-separation-input",
+    "weak-profile-statement",
+    "profile-separated-from-zero"
+   ]
+  },
+  "Breakdown.Cert.extendedHeldWeakEquationHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "weak-profile-statement",
+    "sum-cancels-force"
+   ]
+  },
+  "Breakdown.Cert.extendedInvarianceHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "symmetry-closed"
+   ]
+  },
+  "Breakdown.Cert.extendedMultiplierContinuityHolds_of": {
+   "verdict": "different",
+   "text": "The node derives continuity of the selected correction multiplier from held-limit compactness and uniqueness. It assumes no strong H continuity of the chosen residual representative.",
+   "because": [
+    "parameter-auxiliary-continuity",
+    "multiplier-continuity-statement",
+    "uniqueness-identifies-limit"
+   ]
+  },
+  "Breakdown.Cert.extendedStiffEnclosureHolds": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "parameter-map-statement",
+    "stiff-inclusion"
+   ]
+  },
+  "Breakdown.Cert.extendedSupBoundHolds_of": {
+   "verdict": "different",
+   "text": "The node derives the same frozen-form supremum inequality through the continuous scalar energy representative and twist in {1,2}. The physical domain and representatives are supplied by separate reading premises.",
+   "because": [
+    "supremum-statement",
+    "half-period-averaging"
+   ]
+  },
+  "Breakdown.Cert.extendedUnitWeightHolds": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "unit-weight"
+   ]
+  },
+  "Breakdown.Cert.freeEnergyLocalHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "free-energy-statement",
+    "period-energy-bound"
+   ]
+  },
+  "Breakdown.Cert.freeEquivariantHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "symmetry-closed",
+    "free-inverse-statement"
+   ]
+  },
+  "Breakdown.Cert.freeInv": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-cert-freeinv"
+   ]
+  },
+  "Breakdown.Cert.freeInvHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "period-energy-bound",
+    "free-inverse-statement",
+    "free-inverse-surjectivity"
+   ]
+  },
+  "Breakdown.Cert.freePerturbationHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "free-energy-statement",
+    "free-inverse-surjectivity"
+   ]
+  },
+  "Breakdown.Cert.halfOrderGraph": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "spatial-graph-closed"
+   ]
+  },
+  "Breakdown.Cert.localCompactnessHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "period-compactness-statement",
+    "local-compactness-step"
+   ]
+  },
+  "Breakdown.Cert.mem_halfOrderGraph_iff": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "spatial-graph-closed"
+   ]
+  },
+  "Breakdown.Cert.periodContinuityHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "period-compactness-statement"
+   ]
+  },
+  "Breakdown.Cert.physToHH": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-cert-phystohh"
+   ]
+  },
+  "Breakdown.Cert.productBoundHolds_of": {
+   "verdict": "same",
+   "text": "Assuming SliceSupBoundHolds, ReadingExistsHolds and ReadingEnergyHolds, the source gives the bilinear bound with the same c_w, weighted first-factor norm and essential gradient supremum of the second factor. Continuity turns that essential supremum into the ordinary supremum for inverse outputs.",
+   "because": [
+    "product-statement",
+    "bilinear-product"
+   ]
+  },
+  "Breakdown.Cert.productSubHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "quadratic-difference"
+   ]
+  },
+  "Breakdown.Cert.readingEnergyHolds_of": {
+   "verdict": "different",
+   "text": "This theorem identifies physical gradient, Laplacian energy and pin pairings for an abstract spatial graph reading. Its input is GraphClosedHolds; it does not by itself retain a selected certificate parameter through smoothing.",
+   "because": [
+    "energy-physical-reading",
+    "same-orbit-subtraction",
+    "pins-and-energy-reading"
+   ]
+  },
+  "Breakdown.Cert.readingExistsHolds_proof": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "energy-physical-reading"
+   ]
+  },
+  "Breakdown.Cert.rowNormHolds": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "row-seminorm"
+   ]
+  },
+  "Breakdown.Cert.sizeZ": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-cert-sizez"
+   ]
+  },
+  "Breakdown.Cert.sliceReadingHolds_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "frozen-form-bridge"
+   ]
+  },
+  "Breakdown.Cert.sliceSupBoundHolds_of": {
+   "verdict": "same",
+   "text": "Assuming GraphClosedHolds, the source establishes the same weighted slice bound and coefficient c_w through the spatial Fourier graph. The rewrite computes the coefficient directly and explains extension to the canonical L6 representative.",
+   "because": [
+    "product-statement",
+    "fourier-constant"
+   ]
+  },
+  "Breakdown.Cert.solProj": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-cert-solproj"
+   ]
+  },
+  "Breakdown.Cert.supGrad": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-cert-supgrad"
+   ]
+  },
+  "Breakdown.Cert.testDenseHolds_proof": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "projection-statement",
+    "projection-density"
+   ]
+  },
+  "Breakdown.Cert.testPairingHolds_proof": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "projection-statement",
+    "projection-density"
+   ]
+  },
+  "Breakdown.ExtendedCertificateData": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "pins-count"
+   ]
+  },
+  "Breakdown.ExtendedCertificateData.atProfile": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "reference-normalisation",
+    "normalised-multiplier-retained"
+   ]
+  },
+  "Breakdown.ExtendedCertificateData.defect": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "raw-residual"
+   ]
+  },
+  "Breakdown.ExtendedCertificateData.params": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-extendedcertificatedata-params"
+   ]
+  },
+  "Breakdown.ExtendedCertificateData.rows": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "row-seminorm"
+   ]
+  },
+  "Breakdown.ExtendedCertificateData.targetGap": {
+   "verdict": "same",
+   "text": "The stored full-profile target is reduced by the approximate field's pin values. After this explicit subtraction it is the correction target bar-ell used in the rewrite.",
+   "because": [
+    "name-extendedcertificatedata-targetgap"
+   ]
+  },
+  "Breakdown.ExtendedCertificateData.transferLoss": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-extendedcertificatedata-transferloss"
+   ]
+  },
+  "Breakdown.ExtendedCertificateData.withUnitWeight": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "unit-weight",
+    "normalised-multiplier-retained"
+   ]
+  },
+  "Breakdown.FarField.DecayBounds": {
+   "verdict": "stronger",
+   "text": "At the level of decay conclusions, this interface also bounds second spatial derivatives and the pressure gradient. The paper's basic profile definition requires the velocity and first-gradient bounds; no extra certificate witness is retained by these decay bounds alone.",
+   "because": [
+    "formal-integral-decay",
+    "wrapper-every-time"
+   ]
+  },
+  "Breakdown.FarField.IsSmoothOrbitField": {
+   "verdict": "different",
+   "text": "This predicate stores the smooth velocity and pressure, similarity equation, recurrence, nonzero property and analytic bounds. It does not identify a chosen mild orbit; the separate IsVelocityOf relation supplies that identity in the linked smooth-field theorem.",
+   "because": [
+    "smooth-velocity-reading"
+   ]
+  },
+  "Breakdown.FarField.IsVelocityOf": {
+   "verdict": "same",
+   "text": "The definition identifies the spatial velocity representative almost everywhere for each time. This every-time quantifier is the representative fact used in the same-witness argument, not a complete certificate conclusion.",
+   "because": [
+    "smooth-velocity-reading",
+    "same-orbit-subtraction",
+    "pointwise-symmetry"
+   ]
+  },
+  "Breakdown.FarField.breakdownOnTorus_of_weak": {
+   "verdict": "weaker",
+   "text": "Relative to Corollary II.18, this export states conditional breakdown on its domain. Its type does not retain the displayed quantitative rates and comparison with the same certificate-selected profile.",
+   "because": [
+    "corollary-same-profile",
+    "corollary-interface-boundary"
+   ]
+  },
+  "Breakdown.FarField.farFieldDecay_holds": {
+   "verdict": "different",
+   "text": "The formal node derives decay from a smooth-orbit Oseen integral equation by weighted estimates. The written proof uses the explicitly stated Chae–Wolf theorem and interior estimates; the full formal far-field proof is not expanded here.",
+   "because": [
+    "regularity-route-distinction",
+    "formal-integral-decay"
+   ]
+  },
+  "Breakdown.FarField.integralEquationOfOrbit_holds": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "formal-oseen-identity"
+   ]
+  },
+  "Breakdown.FarField.periodicLerayProfileExists_of_weak": {
+   "verdict": "weaker",
+   "text": "Relative to Proposition II.17 and Theorem II.1, this public export returns existential smooth-profile existence. Internal orbit readings retain a velocity relation, but the export does not state the same-orbit identity or the certificate correction bundle.",
+   "because": [
+    "theorem-full-profile",
+    "regularity-statement"
+   ]
+  },
+  "Breakdown.FarField.smoothFieldOfOrbit_holds": {
+   "verdict": "different",
+   "text": "This constructs a smooth field representing a given mild orbit and retains its velocity relation. It follows a Fourier bootstrap rather than importing the bounded-mild regularity theorem used in the written proof.",
+   "because": [
+    "regularity-route-distinction",
+    "smooth-velocity-reading"
+   ]
+  },
+  "Breakdown.Freq.X": {
+   "verdict": "different",
+   "text": "This is a closed real subspace of complex L2 Fourier symbols representing the homogeneous derivative of the velocity. It requires the physical-reading theorems to identify the paper's canonical L6 velocity.",
+   "because": [
+    "name-freq-x"
+   ]
+  },
+  "Breakdown.Held.convexCompactFixedPoint": {
+   "verdict": "same",
+   "text": "The source proves a fixed point for a continuous self-map of a nonempty compact convex finite-dimensional set, without requiring interior. This is exactly the topological statement used for K.",
+   "because": [
+    "compact-convex-fixed-point"
+   ]
+  },
+  "Breakdown.Held.testSetZero_of": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "force-zero",
+    "raw-membership-needed"
+   ]
+  },
+  "Breakdown.IsExtendedCertificate": {
+   "verdict": "different",
+   "text": "The formal predicate adds global joint C1 regularity, a weak Hessian with decay, invariant weight, a nonnegative pin coefficient and a uniform-in-time adjoint bound. The rewrite states the paper certificate and records these extra formal hypotheses separately.",
+   "because": [
+    "formal-input-differences"
+   ]
+  },
+  "Breakdown.IsPerturbation": {
+   "verdict": "different",
+   "text": "This physical interface stores separate weak gradient, Hessian and transport representatives with explicit integrability and tests. Its transport field is T_S v plus the Laplacian, so it is not a literal type alias for D_S.",
+   "because": [
+    "domain-combination",
+    "weak-hessian-retained"
+   ]
+  },
+  "Breakdown.IsRightSide": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-isrightside"
+   ]
+  },
+  "Breakdown.PeriodicSimilarityProfileExists": {
+   "verdict": "weaker",
+   "text": "This is a smooth-profile existence predicate, with no retained certificate parameter or quantitative correction. The additional recurrence in Remark II.19 is a mathematical consequence of the retained symmetry identity, not a new upstream export.",
+   "because": [
+    "additional-recurrence"
+   ]
+  },
+  "Breakdown.Space": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-space"
+   ]
+  },
+  "Breakdown.Symmetry": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "additional-recurrence"
+   ]
+  },
+  "Breakdown.WeakProfile.weakOrbitOfParts_holds": {
+   "verdict": "different",
+   "text": "The source proves this step through named Fourier, physical-reading or analytic interfaces. The passage gives its physical mathematical role; the node premises are instantiated by the assembled certificate route.",
+   "because": [
+    "weak-to-mild",
+    "regularity-route-distinction"
+   ]
+  },
+  "Breakdown.exists_fixedPoint_box": {
+   "verdict": "same",
+   "text": "The source proves the finite-dimensional box fixed-point theorem used in the compact-convex reduction. It does not assert that a projected raw update has zero force without the membership estimates.",
+   "because": [
+    "compact-convex-fixed-point"
+   ]
+  },
+  "Breakdown.extended_certificate_breakdown_on_space": {
+   "verdict": "weaker",
+   "text": "Relative to Corollary II.18, this export states conditional breakdown on its domain. Its type does not retain the displayed quantitative rates and comparison with the same certificate-selected profile.",
+   "because": [
+    "corollary-same-profile",
+    "corollary-interface-boundary"
+   ]
+  },
+  "Breakdown.extended_certificate_orbit_proved": {
+   "verdict": "weaker",
+   "text": "Relative to Theorem II.1, the source assumes ExtendedCertificateHypothesis and returns only existential weak-profile existence. Its conclusion does not retain the parameter, period identity, actual correction, joint multiplier bound, pins or every-time symmetry bundle.",
+   "because": [
+    "theorem-full-profile",
+    "joint-bound-retained",
+    "upstream-existential-boundary",
+    "two-nonlinear-routes",
+    "modular-node-boundary"
+   ]
+  },
+  "Breakdown.matSq": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-matsq"
+   ]
+  },
+  "Breakdown.periodLIntegral": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "finite-integral-before-real"
+   ]
+  },
+  "Breakdown.periodNorm": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-periodnorm"
+   ]
+  },
+  "Breakdown.pinValue": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-pinvalue"
+   ]
+  },
+  "Breakdown.stationaryEnergy": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "name-stationaryenergy"
+   ]
+  },
+  "Breakdown.supBoundFactor": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "fourier-constant"
+   ]
+  },
+  "Breakdown.weightedEnergy": {
+   "verdict": "same",
+   "text": "The linked definition or stored field represents the quantity identified in the passage; this is a local notation correspondence, not equivalence of the complete certificate predicates.",
+   "because": [
+    "pins-and-energy-reading",
+    "finite-integral-before-real"
+   ]
+  }
+ }
+}

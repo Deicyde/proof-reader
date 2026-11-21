@@ -16,6 +16,11 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { ArgGraph } from "../model/graph";
 
 const CARD_W = 150;
+/** Proof Reader: a wide pane spreads the cards into wider columns, up to this, and up to four of them. */
+const CARD_W_MAX = 230;
+const MAX_COLS = 4;
+/** A drawing that leaves the pane mostly empty is drawn larger, up to this. */
+const MAX_SCALE = 1.4;
 const COL_GAP = 26;
 /** Spacing of lines from different cards that pass one gutter. */
 const LANE = 5;
@@ -27,8 +32,8 @@ const MIN_SCALE = 0.82;
 const LINE_H = 16;
 
 /** Lines a title wraps to in a card of CARD_W at the card's type size. */
-function titleLines(title: string, width = CARD_W): number {
-  const perLine = Math.floor((width - 16) / 6.9);
+function titleLines(title: string, width = CARD_W, charW = 6.9): number {
+  const perLine = Math.floor((width - 16) / charW);
   let lines = 1;
   let used = 0;
   for (const w of title.split(/\s+/)) {
@@ -45,7 +50,7 @@ function titleLines(title: string, width = CARD_W): number {
 const shortName = (name: string) => name.split(".").pop() ?? name;
 
 function rawLines(name: string, width = CARD_W): number {
-  const perLine = Math.floor((width - 16) / 6.6);
+  const perLine = Math.max(8, Math.floor((width - 16) / 6.6));
   let lines = 1;
   let used = 0;
   for (const part of name.split(".")) {
@@ -54,6 +59,11 @@ function rawLines(name: string, width = CARD_W): number {
       lines += 1;
       used = w;
     } else used += w;
+    // A part longer than a line wraps inside itself: the name is never cut.
+    while (used > perLine) {
+      lines += 1;
+      used -= perLine;
+    }
   }
   return lines;
 }
@@ -133,8 +143,11 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
     if (frame.current) frame.current.scrollTop = 0;
   }, [headKey]);
 
-  const drawing = useMemo(() => {
-    if (!width) return null;
+  // Heights the type actually needed, measured once the cards are drawn: a card is never
+  // shorter than its text.
+  const [needed, setNeeded] = useState<ReadonlyMap<string, number>>(new Map());
+  useEffect(() => setNeeded(new Map()), [graph]);
+  const layoutAt = useMemo(() => (width: number) => {
     const ids = graph.order.filter((id) => graph.nodes.has(id) && graph.nodes.get(id)!.kind !== "goal");
     const all = graph.edges.filter((e) => e.kind !== "formalizes" && ids.includes(e.from) && ids.includes(e.to));
     const keep = reduce(ids, all);
@@ -147,11 +160,15 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
     const depth = Math.max(0, ...rank.values());
     const order = new Map(ids.map((id, i) => [id, i]));
     // Room on each side for the outer gutters, then three columns where the pane allows.
+    // Proof Reader: as many columns as the widest level needs, up to four, each as wide as the
+    // pane allows, so that a wide pane is used rather than left empty around a thin strip.
     const usable = width - 2 * COL_GAP - 8;
-    const cardW = Math.max(120, Math.min(CARD_W, Math.floor((usable + COL_GAP) / 3) - COL_GAP));
-    const cols = Math.max(1, Math.floor((usable + COL_GAP) / (cardW + COL_GAP)));
+    const widest = Math.max(1, ...[...new Set(rank.values())].map((r) => ids.filter((id) => rank.get(id) === r).length));
+    const fitCols = Math.max(1, Math.floor((usable + COL_GAP) / (CARD_W + COL_GAP)));
+    const cols = Math.max(1, Math.min(MAX_COLS, fitCols, Math.max(3, widest)));
+    const cardW = Math.max(120, Math.min(CARD_W_MAX, Math.floor((usable + COL_GAP) / cols) - COL_GAP));
     // A card: its plain title, and the last part of its Lean name (the whole name on hover).
-    const cardH = (id: string) => 16 + titleLines(graph.nodes.get(id)?.label ?? id, cardW) * LINE_H + rawLines(shortName(graph.nodes.get(id)?.rawName ?? id), cardW) * 13;
+    const cardH = (id: string) => Math.max(needed.get(id) ?? 0, 16 + titleLines(graph.nodes.get(id)?.label ?? id, cardW) * LINE_H + rawLines(shortName(graph.nodes.get(id)?.rawName ?? id), cardW) * 13);
     // Columns, from the bottom level up. The deepest level spreads across the columns in the
     // Lean's order; each level above stands in columns over what it uses: a card takes the
     // column at the barycentre of its uses in the level below (half-way rounds right), cards
@@ -210,7 +227,8 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
       const owner = levels[r - 1].find((q) => levels[r].every((m) => edges.some((e) => e.from === q && e.to === m)));
       if (owner) bandOf.set(r, owner);
     }
-    let y = plate ? 74 : 12;
+    // The plate is at most 420px wide at the serif heading size; leave room for every line its title wraps to.
+    let y = plate ? 74 + (titleLines(plate, Math.min(width - 32, 420) - 8, 10) - 1) * 26 : 12;
     for (let r = 0; r <= depth; r++) {
       const stack = stacks[r];
       if (!stack || !stack.size) continue;
@@ -310,8 +328,18 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
       return [{ x: Math.min(...xs) - 8, y: top, w: Math.max(...xs) + cardW - Math.min(...xs) + 16, h: these[these.length - 1].y + these[these.length - 1].h - top + 6,
         label: owner ? `Everything on this band is used by ${graph.nodes.get(owner)?.label ?? owner}` : null }];
     });
-    return { placed, lines, height: y + 12, crossings, behind, kinds, edges, bands };
-  }, [graph, heads, plate, width]);
+    return { placed, lines, width, height: y + 12, crossings, behind, kinds, edges, bands };
+  }, [graph, heads, plate, needed]);
+  // Shrink to fit the pane with the one-line key under the drawing; past MIN_SCALE it scrolls.
+  // A small drawing in a large pane is laid out narrower and drawn larger, to use the room.
+  const KEY_H = 34;
+  const drawing = useMemo(() => {
+    if (!width) return null;
+    const first = layoutAt(width);
+    if (!paneH) return first;
+    const up = Math.min(MAX_SCALE, (paneH - KEY_H) / first.height, width / 300);
+    return up > 1.05 ? layoutAt(width / up) : first;
+  }, [layoutAt, width, paneH]);
 
   // Above the Lean, the graph takes only the room its drawing needs, up to the share the
   // reader has given it: a card with two uses leaves the rest of the page to its Lean.
@@ -330,9 +358,44 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
       panes?.style.removeProperty("--graph-want");
     };
   }, []);
-  // Shrink to fit the pane with the one-line key under the drawing; past MIN_SCALE it scrolls.
-  const KEY_H = 34;
-  const fit = drawing && paneH ? Math.max(MIN_SCALE, Math.min(1, (paneH - KEY_H) / drawing.height)) : 1;
+  const fit = drawing && paneH ? Math.max(MIN_SCALE, Math.min(MAX_SCALE, width / drawing.width, (paneH - KEY_H) / drawing.height)) : 1;
+  // Once drawn, any card whose text needs more room than estimated is laid out again taller.
+  useLayoutEffect(() => {
+    const world = frame.current?.querySelector<HTMLElement>(".nearmap__world");
+    if (!world) return;
+    const grow = new Map<string, number>();
+    world.querySelectorAll<HTMLElement>(".nearmap__card").forEach((card) => {
+      const over = card.scrollHeight - card.clientHeight;
+      if (over > 1) grow.set(card.dataset.record!, card.offsetHeight + over + 2);
+    });
+    if (grow.size) setNeeded((was) => new Map([...was, ...grow]));
+  }, [drawing]);
+  // A card the pane would cut in half is not drawn until it is scrolled wholly into view, and
+  // a chip counts the cards below the fold.
+  const [below, setBelow] = useState(0);
+  useEffect(() => {
+    const el = frame.current;
+    if (!el || !drawing) return;
+    const clip = () => {
+      const view = el.getBoundingClientRect();
+      let under = 0;
+      el.querySelectorAll<HTMLElement>(".nearmap__card").forEach((card) => {
+        const r = card.getBoundingClientRect();
+        const whole = r.top >= view.top - 0.5 && r.bottom <= view.bottom + 0.5;
+        const outside = r.bottom <= view.top || r.top >= view.bottom;
+        card.classList.toggle("is-cut", !whole && !outside);
+        if (!whole && r.top > view.top) under += 1;
+      });
+      setBelow(under);
+    };
+    const later = window.setTimeout(clip, 260);
+    clip();
+    el.addEventListener("scroll", clip, { passive: true });
+    return () => {
+      window.clearTimeout(later);
+      el.removeEventListener("scroll", clip);
+    };
+  }, [drawing, fit, paneH]);
   const near = (id: string) => !!hot && (id === hot || !!drawing?.edges.some((e) => (e.from === hot && e.to === id) || (e.to === hot && e.from === id)));
   const point = (id: string | null) => {
     setHot(id);
@@ -342,14 +405,14 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
     <div className="nearmap" ref={frame} data-hot={hot ?? undefined}>
       {drawing && (
         <div className="nearmap__fit" style={{ height: drawing.height * fit }}>
-        <div key={headKey} className="nearmap__world" style={{ height: drawing.height, transform: fit < 1 ? `scale(${fit})` : undefined }} data-crossings={drawing.crossings} data-behind={drawing.behind} data-scale={fit.toFixed(2)}>
+        <div key={headKey} className="nearmap__world" style={{ width: drawing.width, height: drawing.height, left: (width - drawing.width * fit) / 2, transformOrigin: "0 0", transform: fit !== 1 ? `scale(${fit})` : undefined }} data-crossings={drawing.crossings} data-behind={drawing.behind} data-scale={fit.toFixed(2)}>
           {plate && (
             <div className="nearmap__plate">
               <span className="nearmap__kicker">{kicker}</span>
               <span className="nearmap__claim">{plate}</span>
             </div>
           )}
-          <svg className="nearmap__lines" width={width} height={drawing.height} aria-hidden="true">
+          <svg className="nearmap__lines" width={drawing.width} height={drawing.height} aria-hidden="true">
             {drawing.bands.map((b, i) => <rect key={`band${i}`} className="nearmap__band" x={b.x} y={b.y} width={b.w} height={b.h} rx={8} />)}
             {drawing.bands.map((b, i) => b.label && <text key={`bandlabel${i}`} className="nearmap__bandlabel" x={b.x + 10} y={b.y + 13}>{b.label}</text>)}
             {drawing.lines.map((s, i) => (
@@ -386,6 +449,11 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
           })}
         </div>
         </div>
+      )}
+      {below > 0 && (
+        <button type="button" className="graph__morechip nearmap__more" onClick={() => frame.current?.scrollBy({ top: frame.current.clientHeight * 0.7, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })}>
+          +{below} more below
+        </button>
       )}
       {drawing && drawing.edges.length === 0 && alone && <p className="nearmap__alone" ref={tail}>{alone}</p>}
       {drawing && drawing.edges.length > 0 && (

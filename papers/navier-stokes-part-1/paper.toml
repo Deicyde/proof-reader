@@ -1,0 +1,42 @@
+[paper]
+title = "From a recurrent profile to compact-data Navier–Stokes blow-up"
+short_title = "Navier–Stokes blow-up, part I: Theorem 1.1"
+authors = ["Prepared by Will Cook with AI assistance"]
+venue = "Full account of §§1–6 and Appendix A of Alpöge and Buckmaster’s paper"
+markdown = "paper.md"
+url = "https://github.com/wcook04/proof-reader/blob/main/papers/navier-stokes-part-1/paper.md"
+noun = "account"
+licence = "MIT"
+
+[credit]
+text = "Paper and Lean: Levent Alpöge and Tristan Buckmaster, github.com/tristanbuckmaster/navier-stokes at ad53419. Text, links, plain titles, notes and comparisons prepared by Will Cook with AI assistance, MIT licence"
+
+[lean]
+project = "../navier-stokes-paper/lean"
+modules = ["Breakdown.Base.Framework", "Breakdown.Base.Realization", "Breakdown.Defs", "Breakdown.FreqTr.Basic", "Breakdown.FreqTr.GradSixDecay", "Breakdown.FreqTr.NiceApprox", "Breakdown.FreqTr.Realization", "Breakdown.FreqTr.Statements", "Breakdown.Profile.Difference", "Breakdown.Profile.L2", "Breakdown.Profile.Orbit", "Breakdown.Profile.StatementsPhysical", "Breakdown.Profile.StatementsSlice", "Breakdown.Profile.TimeDeriv", "Breakdown.Spectral.RealDichotomy", "Breakdown.Torus.ApproxClose", "Breakdown.Torus.ApproxResidual", "Breakdown.Torus.ApproxSizes", "Breakdown.Torus.Assembly", "Breakdown.Torus.CompareFinal", "Breakdown.Torus.Cutoff", "Breakdown.Torus.Glue", "Breakdown.Torus.GlueUnbounded", "Breakdown.Torus.HeatComparison", "Breakdown.Torus.InverseAlgebra", "Breakdown.Torus.Lattice", "Breakdown.Torus.Main", "Breakdown.Torus.MovingFrame", "Breakdown.Torus.Reduction", "Breakdown.Torus.SeqPerturbation", "Breakdown.Torus.ShellDefs", "Breakdown.Torus.ShellR3", "Breakdown.Torus.ShellTorus", "Breakdown.Torus.StatementsApprox", "Breakdown.Torus.StatementsCutoff", "Breakdown.Torus.StatementsSmooth", "Breakdown.Torus.StatementsSteps", "Breakdown.Torus.Transplant", "Breakdown.Transfer.Contraction", "Breakdown.Transfer.DiscreteDichotomy", "Breakdown.Transfer.Exports", "Breakdown.Transfer.OrbitNorm", "Breakdown.Transfer.Restrict", "Breakdown.Transfer.Section", "Breakdown.Transfer.StatementsAbstract", "Breakdown.Transfer.StatementsDefs", "Breakdown.Transfer.StatementsFrame", "Breakdown.Transfer.StepData", "Breakdown.Transfer.VarConstIntegral", "Breakdown.Uniqueness.Basic", "Breakdown.Uniqueness.Space", "Solution"]
+source = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546/lean"
+source_name = "navier-stokes at ad53419"
+source_lines = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/{path}#L{line}-L{end}"
+licence = "none stated by the authors; hosted with credit"
+scope = "Lean 4.33.1 compiled the authors' package, unchanged at ad53419, on GitHub Actions; this page reads the library (Breakdown and Solution). Each declaration's statement, dependencies and axioms shown here are Lean's own report from those compiled modules. The links from the text to the Lean, the plain titles, the notes and the comparisons were made with AI and have not been reviewed by the authors."
+
+[reading]
+language = "lean"
+
+[reading.companions]
+"../navier-stokes-appendix-b/paper.md" = "navier-stokes-appendix-b"
+"../navier-stokes-cell-guide/paper.md" = "navier-stokes-cell-guide"
+"../navier-stokes-cell-reference/paper.md" = "navier-stokes-cell-reference"
+"../navier-stokes-index/paper.md" = "navier-stokes-index"
+"../navier-stokes-paper/paper.pdf" = "navier-stokes-paper"
+"../navier-stokes-part-2/paper.md" = "navier-stokes-part-2"
+"../navier-stokes-routes/paper.md" = "navier-stokes-routes"
+"../navier-stokes-statement-files/paper.md" = "navier-stokes-statement-files"
+"../navier-stokes/cell-layer-fidelity.md" = "navier-stokes-cell-fidelity"
+"../navier-stokes/certificate-checker.md" = "navier-stokes-certificate-checker"
+"../navier-stokes/digest.md" = "navier-stokes-digest"
+"../navier-stokes/paper.md" = "navier-stokes"
+
+[shelf]
+with = "navier-stokes-paper"
+place = 3

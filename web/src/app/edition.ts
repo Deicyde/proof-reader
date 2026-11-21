@@ -288,6 +288,10 @@ export interface ShelfItem {
   linked?: number;
   example?: ShelfExample | null;
   examples?: ShelfExample[];
+  /** Listed on the front page under this paper's entry instead of on its own. */
+  with?: string;
+  /** Its position among the entries listed under the same paper. */
+  place?: number;
 }
 
 const base = import.meta.env.BASE_URL;
