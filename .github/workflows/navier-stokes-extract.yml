@@ -3,8 +3,9 @@
 # workflow and restored from its cache; nothing is rebuilt here unless Lake finds a module out of
 # date. Each page's copy of the Lean (papers/navier-stokes-paper/lean) must equal the authors'
 # checkout byte for byte. Two superset reports are also written, one for the library environment
-# (Breakdown.* and Solution) and one for the readable challenge chain, because the two declare the
-# same names and cannot be imported together.
+# (every Breakdown.* module and Solution), one for the readable challenge chain and one for the
+# readable fractional chain, because they declare the same names and cannot be imported together.
+# The pages' own reports are cut from these supersets, so only the supersets are read here.
 name: Extract the Navier–Stokes pages' declarations from Lean
 'on':
   workflow_dispatch: {}
@@ -81,25 +82,17 @@ jobs:
         git -C "$NS" ls-files -z lean | (cd "$NS" && xargs -0 touch -d '2000-01-01 00:00:00')
     - name: Read each page's modules, and the two supersets, from the compiled files
       run: |
-        mkdir -p papers/ns-superset-library papers/ns-superset-challenge
-        for set in library challenge; do
+        mkdir -p papers/ns-superset-library papers/ns-superset-challenge papers/ns-superset-fractional
+        for set in library challenge fractional; do
           mods=$(python3 -c "import json,sys; print(json.dumps([l.strip() for l in open(sys.argv[1]) if l.strip()]))" "papers/navier-stokes-paper/extract/$set.txt")
           printf '[paper]\ntitle = "superset"\n\n[lean]\nproject = "../navier-stokes-paper/lean"\nmodules = %s\n' "$mods" > "papers/ns-superset-$set/paper.toml"
         done
-        slugs=$(python3 - <<'PY'
-        import tomllib
-        from pathlib import Path
-        for t in sorted(Path("papers").glob("*/paper.toml")):
-            project = tomllib.loads(t.read_text()).get("lean", {}).get("project", "lean")
-            if (t.parent / project).resolve() == Path("papers/navier-stokes-paper/lean").resolve():
-                print(t.parent.name)
-        PY
-        )
+        slugs="ns-superset-library ns-superset-challenge ns-superset-fractional"
         echo "$slugs" | tee "$OUT/slugs.txt"
         for slug in $slugs; do
           start=$(date +%s)
           mkdir -p "papers/$slug/generated" "$OUT/$slug"
-          if timeout --kill-after=60s 120m python3 tools/extract_built.py "$slug" --project "$NS/lean" > "$OUT/$slug/extract.log" 2>&1; then c=0; else c=$?; fi
+          if timeout --kill-after=60s 300m python3 tools/extract_built.py "$slug" --project "$NS/lean" > "$OUT/$slug/extract.log" 2>&1; then c=0; else c=$?; fi
           echo "$c" > "$OUT/$slug/extract.exit"
           tail -3 "$OUT/$slug/extract.log" | cut -c1-400
           echo "$slug exit $c after $(( $(date +%s) - start ))s"

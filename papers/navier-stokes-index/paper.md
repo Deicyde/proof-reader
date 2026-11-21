@@ -1,6 +1,6 @@
 # The authors’ paper, by its own numbering
 
-**Navier–Stokes pages:** [the paper](../navier-stokes-paper/paper.pdf) · **index by number** · [specialist digest](../navier-stokes/digest.md) · [full account, part I](../navier-stokes-part-1/paper.md) · [part II](../navier-stokes-part-2/paper.md) · [part III](../navier-stokes-appendix-b/paper.md) · [what the Lean states](../navier-stokes/paper.md) · [statement files](../navier-stokes-statement-files/paper.md) · [proof routes](../navier-stokes-routes/paper.md) · [cell layer guide](../navier-stokes-cell-guide/paper.md) · [cell reference](../navier-stokes-cell-reference/paper.md) · [cell layer and Appendix B](../navier-stokes/cell-layer-fidelity.md) · [certificate checker](../navier-stokes/certificate-checker.md)
+**Navier–Stokes pages:** [the paper](../navier-stokes-paper/paper.pdf) · **index by number** · [specialist digest](../navier-stokes/digest.md) · [full account, part I](../navier-stokes-part-1/paper.md) · [part II](../navier-stokes-part-2/paper.md) · [part III](../navier-stokes-appendix-b/paper.md) · [what the Lean states](../navier-stokes/paper.md) · [statement files](../navier-stokes-statement-files/paper.md) · [proof routes](../navier-stokes-routes/paper.md) · [proof routes in detail](../navier-stokes-route-details/paper.md) · [library guide](../navier-stokes-library-01/paper.md) · [cell layer guide](../navier-stokes-cell-guide/paper.md) · [cell reference](../navier-stokes-cell-reference/paper.md) · [cell layer and Appendix B](../navier-stokes/cell-layer-fidelity.md) · [certificate checker](../navier-stokes/certificate-checker.md)
 
 Original annotations for the paper of 20 November 2026, at source snapshot `ad53419de079eb8f95f60313473374624a348546`.
 
@@ -148,7 +148,7 @@ The similarity equation and velocity decay alone imply the first and second spat
 
 [PDF page 3](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=3) · Section 1.1 · **no Lean**.
 
-**Comparison.** No declaration proving this implication from the weaker written hypothesis was identified; IsSimilarityProfile explicitly assumes the derivative and pressure-gradient bounds.
+**Comparison.** The paper derives derivative decay from smooth Navier-Stokes evolution and velocity decay alone by a cited pressure-free interior estimate; Lean's nearby profile and far-field predicates carry additional derivative, tail, pressure and integral-equation hypotheses.
 
 **Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
 
@@ -164,7 +164,7 @@ Two vorticity-magnitude surfaces of the computed approximate profile at similari
 
 [PDF page 4](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=4) · Section 1.1 · **no Lean**.
 
-**Comparison.** This is a numerical visualisation of the unreleased approximate profile; no field data or rendering computation is supplied by the formal library.
+**Comparison.** The figure displays vorticity level surfaces of one computed approximate profile; the pinned source supplies neither that field's numerical data nor a verified rendering.
 
 **Scope.** The particular plotted numerical data, not the general analytical definitions used to describe them.
 
@@ -182,11 +182,11 @@ The heat evolution is Gaussian convolution at positive time and the identity at 
 
 [PDF page 10](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=10) · Section 2.1 · **different**.
 
-**Comparison.** The formal heat flow is a Fourier multiplier on the gradient-weighted Hilbert space; this display defines Gaussian convolution for general Lp fields.
+**Comparison.** heatX is Fourier-defined on X, and source proofs identify its reconstructed L6 velocity with Gaussian convolution almost everywhere for positive time; the paper defines heat evolution on general Lp fields and includes time zero.
 
 **Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
 
-**Lean correspondence.** [Heat flow on the Fourier space](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FreqTr/Basic.lean#L95) (`Breakdown.Freq.heatX`); [Heat multiplier](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FreqTr/Basic.lean#L90) (`Breakdown.Freq.heatFactor`); [Prove the heat semigroup properties](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FreqTr/Realization.lean#L52) (`Breakdown.Freq.heat_holds`).
+**Lean correspondence.** [Heat flow on the Fourier space](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FreqTr/Basic.lean#L95) (`Breakdown.Freq.heatX`); [Heat multiplier](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FreqTr/Basic.lean#L90) (`Breakdown.Freq.heatFactor`); [Prove the heat semigroup properties](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FreqTr/Realization.lean#L52) (`Breakdown.Freq.heat_holds`); [Gaussian convolution](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/KernelStatementsIdentify.lean#L12) (`Breakdown.FarField.heatConv`); [Heat flow as Gaussian convolution](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/KernelStatementsIdentify.lean#L18) (`Breakdown.FarField.HeatVelocity`); [Identify the physical heat flow](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/HeatVelocity.lean#L114) (`Breakdown.FarField.heatVelocity_of_heatConvTest`).
 
 **Uses.** (1.1).
 
@@ -430,7 +430,7 @@ The projected heat evolution of L^(3/2) forcing has homogeneous H1 norm at most 
 
 [PDF page 13](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=13) · Section 3.2 · **no Lean**.
 
-**Comparison.** The route proves the bilinear estimate by duality; no declaration with this full L^(3/2)-forcing domain and output norm was identified.
+**Comparison.** No source declaration was located for projected heat flow on every L^(3/2) forcing field with this homogeneous H1 bound; the nearby heatDivFree domain is L2, and shell estimates restrict the input to transport products.
 
 **Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
 
@@ -476,13 +476,13 @@ The bilinear operator intertwines heat evolution, Navier–Stokes dilation and o
 
 Every spatial derivative of the Oseen tensor decays at the parabolic rate (|x|+√τ)^(-3−l).
 
-[PDF page 13](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=13) · Section 3.2 · **no Lean**.
+[PDF page 13](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=13) · Section 3.2 · **different**.
 
-**Comparison.** No matching all-orders Oseen-tensor statement was identified on this route; the formal heat comparisons proceed through Fourier integrals and lattice sums.
+**Comparison.** Lean defines the Leray-divergence kernel and supplies a proof of its power-four parabolic decay; the paper states bounds for every derivative order of the Oseen tensor.
 
-**Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
+**Scope.** Matched: The divergence-kernel estimate with decay (norm(x) + sqrt(tau))^(-4). Remaining: The base Oseen tensor, an explicit identification as its derivative, and the entire family of bounds for every derivative order l >= 0.
 
-**Lean correspondence.** No direct audited counterpart assigned.
+**Lean correspondence.** [The Leray-divergence kernel](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/Defs.lean#L22) (`Breakdown.FarField.lerayKernel`); [Decay of the Leray kernel](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/KernelStatements.lean#L27) (`Breakdown.FarField.LerayKernelBound`); [Prove Leray kernel decay](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/IntegralEquationClosed.lean#L30) (`Breakdown.FarField.lerayKernelBound_holds`).
 
 **Uses.** (2.2).
 
@@ -492,13 +492,13 @@ Every spatial derivative of the Oseen tensor decays at the parabolic rate (|x|+�
 
 Projected heat evolution of a tensor divergence is convolution with the derivative of the Oseen tensor, which also gives the symmetric bilinear term.
 
-[PDF page 13](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=13) · Section 3.2 · **no Lean**.
+[PDF page 13](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=13) · Section 3.2 · **different**.
 
-**Comparison.** The formal route supplies Fourier and duality formulas, but no declaration matching this pair of physical Oseen-convolution identities was identified.
+**Comparison.** Lean supplies an almost-everywhere physical convolution formula for K(tau)(u,u), with a compact test-field version; the display also quantifies over arbitrary tensor divergences and distinct inputs u and v.
 
-**Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
+**Scope.** Matched: The diagonal bilinear term, as an equality of physical representatives almost everywhere; a separate compact test-field statement is exact in the abstract space. Remaining: The W^(1,1) tensor-divergence formula and the polarized two-input formula are not theorem conclusions of these declarations. Polarization was not written or compiled in this audit.
 
-**Lean correspondence.** No direct audited counterpart assigned.
+**Lean correspondence.** [Convolution for compact test fields](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/KernelStatementsIdentify.lean#L30) (`Breakdown.FarField.BilinTestKernel`); [Bilinear flow as convolution](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/KernelStatementsIdentify.lean#L39) (`Breakdown.FarField.BilinKernel`); [Extend the convolution formula](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/BilinKernel.lean#L152) (`Breakdown.FarField.bilinKernel_of_test_decay`).
 
 **Uses.** (2.2), (2.3), (3.9).
 
@@ -744,13 +744,13 @@ Uniform projected-heat and bilinear smoothing estimates hold on every mean-zero 
 
 Mean-zero periodic L^(3/2) forcing gains a τ^(-3/4) homogeneous H1 bound under projected heat evolution, uniformly in the period.
 
-[PDF page 16](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=16) · Section 3.6 · **no Lean**.
+[PDF page 16](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=16) · Section 3.6 · **different**.
 
-**Comparison.** No declaration matching the full mean-zero L^(3/2) forcing estimate for arbitrary torus period was identified; the route exposes the bilinear kernel estimate.
+**Comparison.** Lean supplies the tau^(-3/4) L^(3/2) forcing bound for compactly supported L2 data transplanted to its inhomogeneous unit-torus space, with mu*tau <= 1; the paper allows every period and all positive times in the mean-zero homogeneous space.
 
-**Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
+**Scope.** Matched: The actual L^(3/2)-norm right-hand side is present, for supported L2 input and the rescaled unit-torus source operator. Remaining: All mean-zero L^(3/2) torus data, arbitrary torus period, all positive times, and the literal homogeneous output norm.
 
-**Lean correspondence.** No direct audited counterpart assigned.
+**Lean correspondence.** [Bound projected torus forcing](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/ShellTorus.lean#L33) (`Breakdown.Periodic.ShellTorus.Internal.sourceOp_threeHalves`); [Projected heat for transplanted data](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/ShellDefs.lean#L844) (`Breakdown.Periodic.sourceOp`); [Prove periodic Sobolev control](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Torus/TrigHs.lean#L333) (`Breakdown.Periodic.trigHs`).
 
 **Uses.** (3.15), (3.18).
 
@@ -1128,7 +1128,7 @@ The rescaled source and the forcing of the discrete recurrence are uniformly bou
 
 [PDF page 19](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=19) · Section 4.4 · **no Lean**.
 
-**Comparison.** No declaration with this specific conversion from the printed Cκ norm to gn and fn was identified; the formal recurrence takes bounded weighted sequences directly.
+**Comparison.** No source declaration was located for the displayed conversion from the paper's global C_kappa norm to its particular g_n and f_n; the formal inverse instead takes bounded weighted sequences of short pieces as input.
 
 **Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
 
@@ -1176,7 +1176,7 @@ A change of time variable bounds the convolution of the singular heat kernel wit
 
 [PDF page 21](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=21) · Section 4.5 · **no Lean**.
 
-**Comparison.** No declaration matching this weighted improper-integral calculation was identified; the formal method uses short-time integral bounds and a geometric sequence weight.
+**Comparison.** No source declaration was located for this global weighted improper-integral calculation; the formal route bounds integrals on short compact pieces and treats the weight through a geometric sequence.
 
 **Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
 
@@ -1242,7 +1242,7 @@ A bounded continuous background interacting with a C0 curve has Cκ norm bounded
 
 [PDF page 22](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=22) · Section 4.5 · **no Lean**.
 
-**Comparison.** No declaration for this particular mixed global weighted estimate was identified; the formal route uses bounds for normalized piece operators.
+**Comparison.** No source declaration was located for this mixed global C_kappa estimate using sup(f) and the C_0 norm of g; the matched formal bounds concern compact-piece bilinear operators and normalized sequences.
 
 **Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
 
@@ -2474,7 +2474,7 @@ The change of variables gives exponential scaling formulas for the gradient ener
 
 [PDF page 36](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=36) · Section 7.5 · **no Lean**.
 
-**Comparison.** No standalone declaration was identified for this paired physical-coordinate display; the formal free-energy proof works directly with the Fourier semigroup.
+**Comparison.** Dilation and weak-coordinate-change components are present, but no source declaration was located for this paired physical-coordinate energy and derivative-pairing formula at the paper's weak regularity.
 
 **Scope.** Local display and named formal counterpart; this does not identify the complete certificate definitions.
 
@@ -2488,13 +2488,13 @@ The change of variables gives exponential scaling formulas for the gradient ener
 
 The physical heat trajectory has a continuous gradient representative whose energy increment equals minus twice the time-integrated derivative–Laplacian pairing.
 
-[PDF page 36](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=36) · Section 7.5 · **no Lean**.
+[PDF page 36](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=36) · Section 7.5 · **different**.
 
-**Comparison.** The paper invokes Lions–Magenes for this physical-time identity; the audited formal route derives its similarity-time energy counterpart directly.
+**Comparison.** Lean constructs a continuous periodic representative satisfying an integrated energy identity for freeInv in similarity time; the printed line is the physical-time identity obtained from a general Lions-Magenes argument.
 
-**Scope.** Local display and named formal counterpart; this does not identify the complete certificate definitions.
+**Scope.** Matched: A continuous representative, almost-everywhere agreement with the constructed free inverse, and its interval energy identity in similarity time. Remaining: The general physical-time identity for every field with the paper's weak regularity, its displayed physical derivative pairing, and the Lions-Magenes lemma as a reusable formal result.
 
-**Lean correspondence.** No direct audited counterpart assigned.
+**Lean correspondence.** [The similarity-time energy identity](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/FreeEnergyLocal.lean#L17) (`Breakdown.Cert.Internal.FreeEnergyLocal.IsEnergyCurve`); [Continuous periodic energy-space curve](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/FreeEnergyLocal.lean#L564) (`Breakdown.Cert.Internal.FreeEnergyLocal.exists_energyCurve`); [Local energy identity](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/FreeEnergyLocal.lean#L625) (`Breakdown.Cert.freeEnergyLocalHolds_of`).
 
 **Uses.** (3.2).
 
@@ -2890,11 +2890,11 @@ The physical solution’s L6 norm, multiplied by the quarter-power of the remain
 
 [PDF page 45](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=45) · Section 7.10 · **different**.
 
-**Comparison.** The scaling and physical curve are formalized, but this exact physical-time supremum equality is not a separate exposed declaration in the audited route.
+**Comparison.** physicalCurve and velocity covariance give the rescaling at the level of Fourier states and almost-everywhere physical representatives; the displayed equality of physical-time suprema is not an exposed theorem conclusion.
 
 **Scope.** Local display and named formal counterpart; this does not identify the complete certificate definitions.
 
-**Lean correspondence.** [Physical-time velocity curve](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Weak/Basic.lean#L20) (`Breakdown.WeakProfile.physicalCurve`).
+**Lean correspondence.** [Physical-time velocity curve](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Weak/Basic.lean#L20) (`Breakdown.WeakProfile.physicalCurve`); [Velocity rotation and dilation](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FreqTr/Statements.lean#L203) (`Breakdown.Freq.VelocityDilate`); [Velocity rotation and dilation](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/FreqTr/Realization.lean#L103) (`Breakdown.Freq.velocityCov_holds`).
 
 **Uses.** (3.1), (7.40).
 
@@ -2938,11 +2938,11 @@ The physical solution decays like the reciprocal of the sum of the diffusion len
 
 [PDF page 46](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=46) · Section 7.10 · **different**.
 
-**Comparison.** The formal theorem gives velocity, derivative and pressure-gradient decay for an IsRegularOrbitField, which includes a profile integral equation and additional regularity and tail data; after similarity rescaling its velocity bound has the printed form, without identifying the two full premises.
+**Comparison.** The decay theorem assumes IsRegularOrbitField, including an integral equation, uniform derivatives, a vanishing tail and square-integrable pressure gradient; its rescaled velocity estimate corresponds to the display without identifying those premises with the paper's weaker written input.
 
 **Scope.** Comparison of the assumption-and-conclusion interface; the extra derivative bounds alone do not order the whole implication.
 
-**Lean correspondence.** [Spatial decay of the smooth profile](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/FarFieldDecayClosed.lean#L35) (`Breakdown.FarField.farFieldDecay_holds`); [Profile and pressure decay bounds](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/Defs.lean#L74) (`Breakdown.FarField.DecayBounds`).
+**Lean correspondence.** [Spatial decay of the smooth profile](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/FarFieldDecayClosed.lean#L35) (`Breakdown.FarField.farFieldDecay_holds`); [Profile and pressure decay bounds](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/Defs.lean#L74) (`Breakdown.FarField.DecayBounds`); [A smooth orbit with its integral law](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/Defs.lean#L58) (`Breakdown.FarField.IsRegularOrbitField`); [A smooth periodic similarity field](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertTorus/Defs.lean#L45) (`Breakdown.FarField.IsSmoothOrbitField`).
 
 **Uses.** (1.5), (7.65).
 
@@ -4126,7 +4126,7 @@ Meridional plots show the mean azimuthal vorticity and stream function, the mean
 
 [PDF page 71](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=71) · Section C.1 · **no Lean**.
 
-**Comparison.** The images describe a particular computed candidate; the formal harmonic definitions do not prove these numerical plots.
+**Comparison.** The meridional plots concern the mean and first time harmonic of one computed candidate; formal harmonic representations provide no verified values or rendering of those particular plots.
 
 **Scope.** The particular plotted numerical data, not the general analytical definitions used to describe them.
 
@@ -4142,7 +4142,7 @@ A horizontal slice at height 6.5 depicts the vertical vorticity component of the
 
 [PDF page 72](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=72) · Section C.1 · **no Lean**.
 
-**Comparison.** No particular computed field or plotting data is present in the pinned Lean package.
+**Comparison.** The horizontal vorticity slice at z = 6.5 concerns a particular computed candidate; its sampled field and plotting data are not supplied in the pinned source.
 
 **Scope.** The particular plotted numerical data, not the general analytical definitions used to describe them.
 
@@ -4158,7 +4158,7 @@ Radial plots compare the weighted suprema of the approximate velocity and its fi
 
 [PDF page 72](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=72) · Section C.1 · **no Lean**.
 
-**Comparison.** The plotted decay is computational evidence about one candidate; the formal decay conditions are assumptions on arbitrary certificate data.
+**Comparison.** The plotted weighted angular and time suprema concern one approximate candidate; abstract decay bounds on admitted data do not verify those plotted numerical values.
 
 **Scope.** The particular plotted numerical data, not the general analytical definitions used to describe them.
 
@@ -4172,13 +4172,13 @@ Radial plots compare the weighted suprema of the approximate velocity and its fi
 
 The computation uses the divergence-free self-similar equation in curl-cross form with the kinetic-energy contribution absorbed into the pressure.
 
-[PDF page 73](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=73) · Section C.2. The discretization and Newton’s method · **no Lean**.
+[PDF page 73](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=73) · Section C.2. The discretization and Newton’s method · **different**.
 
-**Comparison.** No declaration verifying this displayed curl-cross discretisation, its Gauss quadrature, fitted pressure or computed residual was identified in the pinned Lean sources; centreDefect is a related continuum residual definition, not a verification of the Appendix C computation.
+**Comparison.** centreDefect encodes a continuum residual in derivative and pressure-adjusted advection form with extra period and actuator parameters; source proofs supply curl algebra, while the printed curl-cross PDE and the surrounding numerical computation are not one verified package.
 
-**Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
+**Scope.** Matched: The continuum residual's terms, pressure correction by half the squared speed, and source-read curl/advection and curl-curl algebra. Remaining: A standalone theorem equating this complete displayed PDE to centreDefect for the paper's exact notation and parameters; any verification of quadrature, least-squares fitted pressure, computed residuals or concrete candidate data.
 
-**Lean correspondence.** No direct audited counterpart assigned.
+**Lean correspondence.** [Define the constant residual term](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L3123) (`Breakdown.CellReduction.Instantiation.centreDefect`); [Relate curl and advection](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/AssemblyRemainderAnnihilates.lean#L33) (`Breakdown.CertCell.Assembly.Internal.RemainderAnnihilates.cross_identity`); [Relate curl-curl and the Laplacian](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/Cert/CoerciveTestDensityProof.lean#L494) (`Breakdown.Coercive.Internal.TestDensityProof.negSsp_curl_curl`).
 
 **Uses.** (1.2), (B.3), (B.6), (B.7), (B.8).
 
@@ -4188,13 +4188,13 @@ The computation uses the divergence-free self-similar equation in curl-cross for
 
 Newton corrections use the linearisation of the curl-cross self-similar operator at the current approximate field, applied to vectors without forming its full matrix.
 
-[PDF page 73](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=73) · Section C.2. The discretization and Newton’s method · **no Lean**.
+[PDF page 73](https://raw.githubusercontent.com/tristanbuckmaster/navier-stokes/ad53419de079eb8f95f60313473374624a348546/paper/finite-time-blow-up-navier-stokes.pdf#page=73) · Section C.2. The discretization and Newton’s method · **different**.
 
-**Comparison.** linearDefect contains related continuum linearisation terms with additional period, actuator and pressure contributions, but no verified matrix-free Newton, bordered flexible-GMRES or preconditioner implementation was identified; that definition does not certify the computational procedure or this discrete Jacobian.
+**Comparison.** Lean defines the two curl-cross linear coupling terms and proves their weak-testing bridge with explicit derivative, pressure and actuator data; these continuum results do not verify the matrix-free Newton or flexible-GMRES procedure described around the displayed operator.
 
-**Scope.** The item-specific correspondence described in the reason; no whole-library equivalence claim.
+**Scope.** Matched: The exact two curl-cross coupling terms, their second-derivative and drift packaging, and an annihilator theorem connecting the strong remainder with solenoidal weak testing. Remaining: A standalone theorem for the complete displayed Newton Jacobian under the paper's conventions; the matrix-free solver, bordering, GMRES, preconditioner, nested dissection, stopping rule and computed values.
 
-**Lean correspondence.** No direct audited counterpart assigned.
+**Lean correspondence.** [The two linear curl couplings](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/CellCalculusStatements.lean#L692) (`Breakdown.CertCell.CellCalculus.couplingField`); [The strong continuum right side](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/CellCalculusStatements.lean#L781) (`Breakdown.CertCell.CellCalculus.IsStrongRightSide`); [Prove the remainder vanishes on tests](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/AssemblyRemainderAnnihilates.lean#L484) (`Breakdown.CertCell.Assembly.remainderAnnihilates_holds`); [Define the linear residual term](https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/Breakdown/CertCell/StatementDefs.lean#L3130) (`Breakdown.CellReduction.Instantiation.linearDefect`).
 
 **Uses.** (C.1).
 

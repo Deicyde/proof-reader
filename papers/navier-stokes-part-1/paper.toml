@@ -13,7 +13,7 @@ text = "Paper and Lean: Levent Alpöge and Tristan Buckmaster, github.com/trista
 
 [lean]
 project = "../navier-stokes-paper/lean"
-modules = ["Breakdown.Base.Framework", "Breakdown.Base.Realization", "Breakdown.Defs", "Breakdown.FreqTr.Basic", "Breakdown.FreqTr.GradSixDecay", "Breakdown.FreqTr.NiceApprox", "Breakdown.FreqTr.Realization", "Breakdown.FreqTr.Statements", "Breakdown.Profile.Difference", "Breakdown.Profile.L2", "Breakdown.Profile.Orbit", "Breakdown.Profile.StatementsPhysical", "Breakdown.Profile.StatementsSlice", "Breakdown.Profile.TimeDeriv", "Breakdown.Spectral.RealDichotomy", "Breakdown.Torus.ApproxClose", "Breakdown.Torus.ApproxResidual", "Breakdown.Torus.ApproxSizes", "Breakdown.Torus.Assembly", "Breakdown.Torus.CompareFinal", "Breakdown.Torus.Cutoff", "Breakdown.Torus.Glue", "Breakdown.Torus.GlueUnbounded", "Breakdown.Torus.HeatComparison", "Breakdown.Torus.InverseAlgebra", "Breakdown.Torus.Lattice", "Breakdown.Torus.Main", "Breakdown.Torus.MovingFrame", "Breakdown.Torus.Reduction", "Breakdown.Torus.SeqPerturbation", "Breakdown.Torus.ShellDefs", "Breakdown.Torus.ShellR3", "Breakdown.Torus.ShellTorus", "Breakdown.Torus.StatementsApprox", "Breakdown.Torus.StatementsCutoff", "Breakdown.Torus.StatementsSmooth", "Breakdown.Torus.StatementsSteps", "Breakdown.Torus.Transplant", "Breakdown.Transfer.Contraction", "Breakdown.Transfer.DiscreteDichotomy", "Breakdown.Transfer.Exports", "Breakdown.Transfer.OrbitNorm", "Breakdown.Transfer.Restrict", "Breakdown.Transfer.Section", "Breakdown.Transfer.StatementsAbstract", "Breakdown.Transfer.StatementsDefs", "Breakdown.Transfer.StatementsFrame", "Breakdown.Transfer.StepData", "Breakdown.Transfer.VarConstIntegral", "Breakdown.Uniqueness.Basic", "Breakdown.Uniqueness.Space", "Solution"]
+modules = ["Breakdown.Base.Framework", "Breakdown.Base.Realization", "Breakdown.Defs", "Breakdown.FreqTr.Basic", "Breakdown.FreqTr.BilinExists", "Breakdown.FreqTr.GradSixDecay", "Breakdown.FreqTr.NiceApprox", "Breakdown.FreqTr.NiceDense", "Breakdown.FreqTr.Realization", "Breakdown.FreqTr.Statements", "Breakdown.FreqTr.VelocityExists", "Breakdown.Profile.Difference", "Breakdown.Profile.L2", "Breakdown.Profile.Orbit", "Breakdown.Profile.Parts", "Breakdown.Profile.SliceContinuity", "Breakdown.Profile.StatementsPhysical", "Breakdown.Profile.StatementsSlice", "Breakdown.Profile.TimeDeriv", "Breakdown.Spectral.RealDichotomy", "Breakdown.Torus.ApproxClose", "Breakdown.Torus.ApproxResidual", "Breakdown.Torus.ApproxSizes", "Breakdown.Torus.Assembly", "Breakdown.Torus.CompareFinal", "Breakdown.Torus.Cutoff", "Breakdown.Torus.Glue", "Breakdown.Torus.GlueUnbounded", "Breakdown.Torus.HeatComparison", "Breakdown.Torus.InverseAlgebra", "Breakdown.Torus.Lattice", "Breakdown.Torus.Main", "Breakdown.Torus.MovingFrame", "Breakdown.Torus.Reduction", "Breakdown.Torus.SeqPerturbation", "Breakdown.Torus.ShellDefs", "Breakdown.Torus.ShellR3", "Breakdown.Torus.ShellTorus", "Breakdown.Torus.ShellTorusBase", "Breakdown.Torus.ShellTorusPhi", "Breakdown.Torus.StatementsApprox", "Breakdown.Torus.StatementsCutoff", "Breakdown.Torus.StatementsSmooth", "Breakdown.Torus.StatementsSteps", "Breakdown.Torus.Transplant", "Breakdown.Transfer.CompactPiece", "Breakdown.Transfer.Contraction", "Breakdown.Transfer.DiscreteDichotomy", "Breakdown.Transfer.Exports", "Breakdown.Transfer.OrbitNorm", "Breakdown.Transfer.Restrict", "Breakdown.Transfer.Section", "Breakdown.Transfer.StatementsAbstract", "Breakdown.Transfer.StatementsDefs", "Breakdown.Transfer.StatementsFrame", "Breakdown.Transfer.StepData", "Breakdown.Transfer.VarConstIntegral", "Breakdown.Uniqueness.Basic", "Breakdown.Uniqueness.RegPhysAux", "Breakdown.Uniqueness.Space", "Solution"]
 source = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546/lean"
 source_name = "navier-stokes at ad53419"
 source_lines = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/{path}#L{line}-L{end}"
@@ -28,14 +28,52 @@ language = "lean"
 "../navier-stokes-cell-guide/paper.md" = "navier-stokes-cell-guide"
 "../navier-stokes-cell-reference/paper.md" = "navier-stokes-cell-reference"
 "../navier-stokes-index/paper.md" = "navier-stokes-index"
+"../navier-stokes-library-01/paper.md" = "navier-stokes-library-01"
+"../navier-stokes-library-02/paper.md" = "navier-stokes-library-02"
+"../navier-stokes-library-03/paper.md" = "navier-stokes-library-03"
+"../navier-stokes-library-04/paper.md" = "navier-stokes-library-04"
+"../navier-stokes-library-05/paper.md" = "navier-stokes-library-05"
+"../navier-stokes-library-06/paper.md" = "navier-stokes-library-06"
+"../navier-stokes-library-07/paper.md" = "navier-stokes-library-07"
+"../navier-stokes-library-08/paper.md" = "navier-stokes-library-08"
+"../navier-stokes-library-09/paper.md" = "navier-stokes-library-09"
+"../navier-stokes-library-10/paper.md" = "navier-stokes-library-10"
+"../navier-stokes-library-11/paper.md" = "navier-stokes-library-11"
+"../navier-stokes-library-12/paper.md" = "navier-stokes-library-12"
+"../navier-stokes-library-13/paper.md" = "navier-stokes-library-13"
+"../navier-stokes-library-14/paper.md" = "navier-stokes-library-14"
+"../navier-stokes-library-15/paper.md" = "navier-stokes-library-15"
+"../navier-stokes-library-16/paper.md" = "navier-stokes-library-16"
+"../navier-stokes-library-17/paper.md" = "navier-stokes-library-17"
+"../navier-stokes-library-18/paper.md" = "navier-stokes-library-18"
+"../navier-stokes-library-19/paper.md" = "navier-stokes-library-19"
+"../navier-stokes-library-20/paper.md" = "navier-stokes-library-20"
+"../navier-stokes-library-21/paper.md" = "navier-stokes-library-21"
+"../navier-stokes-library-22/paper.md" = "navier-stokes-library-22"
+"../navier-stokes-library-23/paper.md" = "navier-stokes-library-23"
+"../navier-stokes-library-24/paper.md" = "navier-stokes-library-24"
+"../navier-stokes-library-25/paper.md" = "navier-stokes-library-25"
+"../navier-stokes-library-26/paper.md" = "navier-stokes-library-26"
+"../navier-stokes-library-27/paper.md" = "navier-stokes-library-27"
+"../navier-stokes-library-28/paper.md" = "navier-stokes-library-28"
+"../navier-stokes-library-29/paper.md" = "navier-stokes-library-29"
+"../navier-stokes-library-30/paper.md" = "navier-stokes-library-30"
 "../navier-stokes-paper/paper.pdf" = "navier-stokes-paper"
 "../navier-stokes-part-2/paper.md" = "navier-stokes-part-2"
+"../navier-stokes-route-details/paper.md" = "navier-stokes-route-details"
 "../navier-stokes-routes/paper.md" = "navier-stokes-routes"
 "../navier-stokes-statement-files/paper.md" = "navier-stokes-statement-files"
 "../navier-stokes/cell-layer-fidelity.md" = "navier-stokes-cell-fidelity"
 "../navier-stokes/certificate-checker.md" = "navier-stokes-certificate-checker"
 "../navier-stokes/digest.md" = "navier-stokes-digest"
 "../navier-stokes/paper.md" = "navier-stokes"
+
+
+
+
+
+
+
 
 [shelf]
 with = "navier-stokes-paper"

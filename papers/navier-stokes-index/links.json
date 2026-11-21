@@ -3324,7 +3324,6 @@
    "role": "explains",
    "quote": "The admissibility numbers bound the total curl weight, the total magnitude of its gradients and the squared velocity-weight sum relative to its frequency-weighted sum.",
    "lean": [
-    "Breakdown.CertCell.InstanceSplit.EnclosureAdmissibleClauses",
     "Breakdown.CertCell.InstanceSplit.EnclosureAdmissibleClauses"
    ],
    "anchor": {
@@ -3471,7 +3470,6 @@
    "quote": "On compatible cell unknowns, the cell matrix minus its energy matrix is dominated by the retained potential and pairing forms, minus the top-degree form, plus eliminated-band and row contributions.",
    "lean": [
     "Breakdown.CertCell.Assembly.EliminationConditions",
-    "Breakdown.CertCell.Assembly.EliminationConditions",
     "Breakdown.CertCell.Assembly.InRowRange"
    ],
    "anchor": {
@@ -3529,7 +3527,6 @@
    "role": "explains",
    "quote": "An exterior region passes the scalar test when its inverse-square velocity and cross-term costs fit within the gradient floor at an allowed positive Hardy constant.",
    "lean": [
-    "Breakdown.CertCell.TailBand.IsExteriorCondition",
     "Breakdown.CertCell.TailBand.IsExteriorCondition",
     "Breakdown.CertCell.TailBand.IsDirectionRadius"
    ],
@@ -4648,7 +4645,6 @@
    "role": "explains",
    "quote": "The generic targetGap field does not mean Appendix B permits nonzero target pinning; IsProfileShapeEntry.target_eq enforces zero.",
    "lean": [
-    "Breakdown.CellReduction.Instantiation.IsProfileShapeEntry",
     "Breakdown.CellReduction.Instantiation.IsProfileShapeEntry"
    ],
    "anchor": {
@@ -4662,7 +4658,6 @@
    "role": "explains",
    "quote": "AdjointEntryLinks.fitted_empty removes the extra fitted-potential terms before comparing defectSum with B.53.",
    "lean": [
-    "Breakdown.CellReduction.Instantiation.AdjointEntryLinks",
     "Breakdown.CellReduction.Instantiation.AdjointEntryLinks",
     "Breakdown.AdjointDefect.AdjointDefectEntry.defectSum"
    ],
@@ -4696,38 +4691,3795 @@
     "heading": "No verified profile discovery computation",
     "block": 1
    }
+  },
+  {
+   "id": "r5-gap-paper-index-0001",
+   "section": "(1.1)",
+   "role": "explains",
+   "quote": "**Comparison.** The momentum and incompressibility fields give these equations at viscosity one; the structure also packages regularity and initial data.",
+   "lean": [
+    "Breakdown.IsSmoothSolution"
+   ],
+   "anchor": {
+    "heading": "(1.1)",
+    "block": 3
+   },
+   "title": "Smooth Navier–Stokes solution"
+  },
+  {
+   "id": "r5-gap-paper-index-0002",
+   "section": "(1.1)",
+   "role": "explains",
+   "quote": "**Scope.** Momentum and incompressibility fields at ν=1.",
+   "lean": [
+    "Breakdown.IsSmoothSolution"
+   ],
+   "anchor": {
+    "heading": "(1.1)",
+    "block": 4
+   },
+   "title": "Smooth Navier–Stokes solution"
+  },
+  {
+   "id": "r5-gap-paper-index-0003",
+   "section": "(1.2)",
+   "role": "explains",
+   "quote": "**Comparison.** The residual, divergence and recurrence clauses reproduce this system; the additional decay clauses belong to the comparison with (1.3).",
+   "lean": [
+    "Breakdown.SimilarityResidual",
+    "Breakdown.PeriodicSimilarityProfileExists"
+   ],
+   "anchor": {
+    "heading": "(1.2)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0004",
+   "section": "(1.2)",
+   "role": "explains",
+   "quote": "**Scope.** Similarity residual, divergence and twisted recurrence clauses.",
+   "lean": [
+    "Breakdown.SimilarityResidual",
+    "Breakdown.PeriodicSimilarityProfileExists"
+   ],
+   "anchor": {
+    "heading": "(1.2)",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0005",
+   "section": "(1.3)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal premise includes these bounds and also assumes second-derivative and pressure-gradient decay; these are assumptions, not consequences proved by this declaration.",
+   "lean": [
+    "Breakdown.IsSimilarityProfile",
+    "Breakdown.PeriodicSimilarityProfileExists"
+   ],
+   "anchor": {
+    "heading": "(1.3)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0006",
+   "section": "(1.4)",
+   "role": "explains",
+   "quote": "**Comparison.** The whole-space definitions use final time one and a similarity-time phase; the displayed formula permits arbitrary T.",
+   "lean": [
+    "Breakdown.physicalField",
+    "Breakdown.MildFramework.selfSimilar"
+   ],
+   "anchor": {
+    "heading": "(1.4)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0007",
+   "section": "(1.5)",
+   "role": "explains",
+   "quote": "**Comparison.** Lean encodes the twist on the similarity orbit and reconstructs physical pieces; this Eulerian identity is not the stated form of either declaration.",
+   "lean": [
+    "Breakdown.MildFramework.IsOrbit",
+    "Breakdown.MildFramework.selfSimilar"
+   ],
+   "anchor": {
+    "heading": "(1.5)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0008",
+   "section": "Theorem 1.1",
+   "role": "explains",
+   "quote": "**Comparison.** The pinned endpoints exclude global smooth solutions under a profile premise with additional decay; their statements do not bundle the constructed physical trajectories, common constants, rates and local torus comparison.",
+   "lean": [
+    "Breakdown.breakdownOnSpace_of_profile",
+    "Breakdown.Periodic.breakdownOnTorus_of_profile"
+   ],
+   "anchor": {
+    "heading": "Theorem 1.1",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0009",
+   "section": "(1.6)",
+   "role": "explains",
+   "quote": "**Comparison.** The mapped interfaces retain mild rescaled convergence and positive profile norms; the exact two-sided physical estimate is not a bundled conclusion of these declarations.",
+   "lean": [
+    "Breakdown.TransferHolds"
+   ],
+   "anchor": {
+    "heading": "(1.6)",
+    "block": 3
+   },
+   "title": "Compact data approaching the profile"
+  },
+  {
+   "id": "r5-gap-paper-index-0010",
+   "section": "(1.7)",
+   "role": "explains",
+   "quote": "**Comparison.** The pinned torus interface exports norm unboundedness, without the printed local ball estimate or explicit rate.",
+   "lean": [
+    "Breakdown.Periodic.TorusBlowup"
+   ],
+   "anchor": {
+    "heading": "(1.7)",
+    "block": 3
+   },
+   "title": "A torus mild solution is unbounded"
+  },
+  {
+   "id": "r5-gap-paper-index-0011",
+   "section": "(2.2)",
+   "role": "explains",
+   "quote": "**Comparison.** heatDivFree realizes the projected heat operator on L2 forcing in the gradient-weighted Fourier representation; the paper defines it on L1+L2 fields.",
+   "lean": [
+    "Breakdown.Freq.heatDivFree"
+   ],
+   "anchor": {
+    "heading": "(2.2)",
+    "block": 3
+   },
+   "title": "Heat flow with solenoidal projection"
+  },
+  {
+   "id": "r5-gap-paper-index-0012",
+   "section": "(2.3)",
+   "role": "explains",
+   "quote": "**Comparison.** Lean defines the bilinear map by duality and proves its transport formula with a compact test-field input; the display defines it for all pairs in X.",
+   "lean": [
+    "Breakdown.Freq.bilinX"
+   ],
+   "anchor": {
+    "heading": "(2.3)",
+    "block": 3
+   },
+   "title": "Symmetric Navier–Stokes bilinear term"
+  },
+  {
+   "id": "r5-gap-paper-index-0013",
+   "section": "(2.4)",
+   "role": "explains",
+   "quote": "**Comparison.** The definition states this equation on the half-open interval and explicitly requires continuity and interval integrability.",
+   "lean": [
+    "Breakdown.MildFramework.IsMildOn"
+   ],
+   "anchor": {
+    "heading": "(2.4)",
+    "block": 3
+   },
+   "title": "The mild integral equation"
+  },
+  {
+   "id": "r5-gap-paper-index-0014",
+   "section": "Proposition 2.1",
+   "role": "explains",
+   "quote": "**Comparison.** The exported transfer statement selects one datum in a chosen dense subspace; finite-dimensional corrections exist internally, but the printed uniform family over every nearby datum is not retained by that interface.",
+   "lean": [
+    "Breakdown.TransferHolds",
+    "Breakdown.transferHolds_of_dichotomy"
+   ],
+   "anchor": {
+    "heading": "Proposition 2.1",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0015",
+   "section": "(2.5)",
+   "role": "explains",
+   "quote": "**Comparison.** The mapped convergence and orbit-norm interfaces contain the ingredients, with no single statement exporting all the displayed constants and inequalities.",
+   "lean": [
+    "Breakdown.TransferHolds"
+   ],
+   "anchor": {
+    "heading": "(2.5)",
+    "block": 3
+   },
+   "title": "Compact data approaching the profile"
+  },
+  {
+   "id": "r5-gap-paper-index-0016",
+   "section": "Proposition 2.2",
+   "role": "explains",
+   "quote": "**Comparison.** TorusBlowup supplies a smooth datum and an unbounded mild trajectory; its fields omit the two-sided rate and local profile convergence.",
+   "lean": [
+    "Breakdown.Periodic.TorusBlowup",
+    "Breakdown.Periodic.torusBlowup_of_parts"
+   ],
+   "anchor": {
+    "heading": "Proposition 2.2",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0017",
+   "section": "(2.6)",
+   "role": "explains",
+   "quote": "**Comparison.** The mapped torus conclusion states unboundedness of its Fourier-space norm, rather than these two quantified estimates.",
+   "lean": [
+    "Breakdown.Periodic.TorusBlowup"
+   ],
+   "anchor": {
+    "heading": "(2.6)",
+    "block": 3
+   },
+   "title": "A torus mild solution is unbounded"
+  },
+  {
+   "id": "r5-gap-paper-index-0018",
+   "section": "Lemma 2.3",
+   "role": "explains",
+   "quote": "**Comparison.** MildRegular gives smooth whole-space representatives on each compact interval and an interval energy bound; it does not state energy monotonicity or the periodic assertion.",
+   "lean": [
+    "Breakdown.MildRegular",
+    "Breakdown.mildRegular_realization"
+   ],
+   "anchor": {
+    "heading": "Lemma 2.3",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0019",
+   "section": "(3.1)",
+   "role": "explains",
+   "quote": "**Comparison.** The explicit Sobolev theorem is for smooth decaying fields, while the bounded velocity map extends the construction to the abstract Fourier space.",
+   "lean": [
+    "Breakdown.Freq.GradSixDecay",
+    "Breakdown.Freq.gradSixDecay"
+   ],
+   "anchor": {
+    "heading": "(3.1)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0020",
+   "section": "(3.2)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal space stores a gradient-weighted Fourier field; these declarations establish its solenoidal encoding and physical derivative norm rather than one literal transform identity for every u.",
+   "lean": [
+    "Breakdown.Freq.Sig",
+    "Breakdown.Freq.embedNormLinear_holds",
+    "Breakdown.Freq.partial_holds"
+   ],
+   "anchor": {
+    "heading": "(3.2)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0021",
+   "section": "(3.3)",
+   "role": "explains",
+   "quote": "**Comparison.** HeatSemigroup records the multiplier realization, semigroup law, contraction and strong continuity, and heat_holds proves the package.",
+   "lean": [
+    "Breakdown.Freq.HeatSemigroup",
+    "Breakdown.Freq.heat_holds"
+   ],
+   "anchor": {
+    "heading": "(3.3)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0022",
+   "section": "(3.4)",
+   "role": "explains",
+   "quote": "**Comparison.** The two physical-field definitions agree with the stated dilation and push-forward.",
+   "lean": [
+    "Breakdown.dilateField",
+    "Breakdown.pushForward"
+   ],
+   "anchor": {
+    "heading": "(3.4)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0023",
+   "section": "(3.5)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal dilation package has these norm, composition and heat-intertwining identities on the realized space.",
+   "lean": [
+    "Breakdown.Freq.DilationAlgebra",
+    "Breakdown.Freq.dilation_holds"
+   ],
+   "anchor": {
+    "heading": "(3.5)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0024",
+   "section": "Lemma 3.1",
+   "role": "explains",
+   "quote": "**Comparison.** The matched package proves the bilinear part and its time properties; no matching general L^(3/2)-forcing theorem for the full first assertion was identified.",
+   "lean": [
+    "Breakdown.Freq.BilinBound",
+    "Breakdown.Freq.bilin_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.1",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0025",
+   "section": "(3.7)",
+   "role": "explains",
+   "quote": "**Comparison.** BilinBound has the same positive-time exponent and two input norms; bilin_holds proves existence and the bound.",
+   "lean": [
+    "Breakdown.Freq.BilinBound",
+    "Breakdown.Freq.bilin_holds"
+   ],
+   "anchor": {
+    "heading": "(3.7)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0026",
+   "section": "(3.8)",
+   "role": "explains",
+   "quote": "**Comparison.** The three proved covariance statements correspond to the three identities, after reading the Fourier representation as a physical field.",
+   "lean": [
+    "Breakdown.Freq.bilinShift_holds",
+    "Breakdown.Freq.bilinDilate_holds",
+    "Breakdown.Freq.bilinRotate_holds"
+   ],
+   "anchor": {
+    "heading": "(3.8)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0027",
+   "section": "Lemma 3.2",
+   "role": "explains",
+   "quote": "**Comparison.** BilinCompact states compactness when the fixed input lies in the dense compact test span; the printed lemma quantifies over every element of X.",
+   "lean": [
+    "Breakdown.Freq.BilinCompact",
+    "Breakdown.Freq.bilinCompact_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.2",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0028",
+   "section": "(3.11)",
+   "role": "explains",
+   "quote": "**Comparison.** The G_zero, G_add, G_norm and G_cont fields carry exactly these abstract heat assumptions.",
+   "lean": [
+    "Breakdown.HeatBilinear"
+   ],
+   "anchor": {
+    "heading": "(3.11)",
+    "block": 3
+   },
+   "title": "Abstract heat and bilinear operators"
+  },
+  {
+   "id": "r5-gap-paper-index-0029",
+   "section": "(3.11)",
+   "role": "explains",
+   "quote": "**Scope.** The heat-operator fields of HeatBilinear.",
+   "lean": [
+    "Breakdown.HeatBilinear"
+   ],
+   "anchor": {
+    "heading": "(3.11)",
+    "block": 4
+   },
+   "title": "Abstract heat and bilinear operators"
+  },
+  {
+   "id": "r5-gap-paper-index-0030",
+   "section": "(3.12)",
+   "role": "explains",
+   "quote": "**Comparison.** K_shift is the stated covariance, while K_bound is assumed only for 0<τ≤1 instead of all positive τ.",
+   "lean": [
+    "Breakdown.HeatBilinear"
+   ],
+   "anchor": {
+    "heading": "(3.12)",
+    "block": 3
+   },
+   "title": "Abstract heat and bilinear operators"
+  },
+  {
+   "id": "r5-gap-paper-index-0031",
+   "section": "(3.12)",
+   "role": "explains",
+   "quote": "**Scope.** K_shift and K_bound fields of HeatBilinear.",
+   "lean": [
+    "Breakdown.HeatBilinear"
+   ],
+   "anchor": {
+    "heading": "(3.12)",
+    "block": 4
+   },
+   "title": "Abstract heat and bilinear operators"
+  },
+  {
+   "id": "r5-gap-paper-index-0032",
+   "section": "Lemma 3.3",
+   "role": "explains",
+   "quote": "**Comparison.** The formal statement gives integrability and continuity on every compact interval [a,b]; only its additional explicit 4CK(t−a)^(1/4)MN estimate is restricted to t−a≤1. Continuous curves provide the finite M and N.",
+   "lean": [
+    "Breakdown.VarConstIntegralStatement",
+    "Breakdown.varConstIntegral"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.3",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0033",
+   "section": "Lemma 3.4",
+   "role": "explains",
+   "quote": "**Comparison.** The matched formal route inverts linear operators on sufficiently short pieces and assembles them; it does not export this all-interval Volterra statement.",
+   "lean": [
+    "Breakdown.MonodromyStatement",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.4",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0034",
+   "section": "Lemma 3.5",
+   "role": "explains",
+   "quote": "**Comparison.** The formal restart interface is specialized to the quadratic mild equation, while the displayed restart assertion permits separate input curves f and h; mild uniqueness is proved.",
+   "lean": [
+    "Breakdown.RestrictStatement",
+    "Breakdown.restrict",
+    "Breakdown.UniqueStatement",
+    "Breakdown.mildUnique"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.5",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0035",
+   "section": "(3.13)",
+   "role": "explains",
+   "quote": "**Comparison.** RestrictStatement covers the nonlinear choice f=h=u; this display is written for arbitrary continuous forcing factors.",
+   "lean": [
+    "Breakdown.RestrictStatement",
+    "Breakdown.restrict"
+   ],
+   "anchor": {
+    "heading": "(3.13)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0036",
+   "section": "Lemma 3.6",
+   "role": "explains",
+   "quote": "**Comparison.** The formal weak-to-mild bridge requires smooth decaying slices and L2-continuous differences in addition to the test identity.",
+   "lean": [
+    "Breakdown.Freq.MildOfWeak",
+    "Breakdown.Freq.mild_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.6",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0037",
+   "section": "(3.14)",
+   "role": "explains",
+   "quote": "**Comparison.** The same weak momentum identity is written with gradient and advection pairings; the enclosing predicates carry extra decay and regularity conditions.",
+   "lean": [
+    "Breakdown.Freq.IsWeakSolution"
+   ],
+   "anchor": {
+    "heading": "(3.14)",
+    "block": 3
+   },
+   "title": "Weak solution for the profile route"
+  },
+  {
+   "id": "r5-gap-paper-index-0038",
+   "section": "(3.14)",
+   "role": "explains",
+   "quote": "**Scope.** Test-derivative clause, with integration by parts identifying the displayed pairings.",
+   "lean": [
+    "Breakdown.Freq.IsWeakSolution"
+   ],
+   "anchor": {
+    "heading": "(3.14)",
+    "block": 4
+   },
+   "title": "Weak solution for the profile route"
+  },
+  {
+   "id": "r5-gap-paper-index-0039",
+   "section": "(3.15)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal unit-torus space uses the inhomogeneous weight 1+4π²|k|² and retains the zero mode; this is not the displayed homogeneous norm.",
+   "lean": [
+    "Breakdown.Periodic.V"
+   ],
+   "anchor": {
+    "heading": "(3.15)",
+    "block": 3
+   },
+   "title": "Periodic Fourier velocity space"
+  },
+  {
+   "id": "r5-gap-paper-index-0040",
+   "section": "(3.16)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal route works directly with its inhomogeneous Fourier norm and does not state this mean-zero norm-equivalence lemma.",
+   "lean": [
+    "Breakdown.Periodic.V"
+   ],
+   "anchor": {
+    "heading": "(3.16)",
+    "block": 3
+   },
+   "title": "Periodic Fourier velocity space"
+  },
+  {
+   "id": "r5-gap-paper-index-0041",
+   "section": "(3.17)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal kernel uses Fourier coefficients on the unit torus with the inhomogeneous V norm; the paper defines it on variable-period homogeneous spaces.",
+   "lean": [
+    "Breakdown.Periodic.kernel"
+   ],
+   "anchor": {
+    "heading": "(3.17)",
+    "block": 3
+   },
+   "title": "Periodic bilinear term"
+  },
+  {
+   "id": "r5-gap-paper-index-0042",
+   "section": "(3.18)",
+   "role": "explains",
+   "quote": "**Comparison.** TrigHs controls finite Fourier polynomials on the unit cell with the inhomogeneous weight, rather than the printed uniform-in-period homogeneous inequality.",
+   "lean": [
+    "Breakdown.Periodic.TrigHs",
+    "Breakdown.Periodic.trigHs"
+   ],
+   "anchor": {
+    "heading": "(3.18)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0043",
+   "section": "Lemma 3.7",
+   "role": "explains",
+   "quote": "**Comparison.** Lean proves a unit-torus inhomogeneous kernel estimate for τ≤1 and packages rescaled time frames; the paper states the whole L^(3/2) forcing result for every spatial period.",
+   "lean": [
+    "Breakdown.Periodic.KernelSharpBound",
+    "Breakdown.Periodic.kernelSharpBound"
+   ],
+   "anchor": {
+    "heading": "Lemma 3.7",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0044",
+   "section": "(3.20)",
+   "role": "explains",
+   "quote": "**Comparison.** The exponent matches, but the formal estimate concerns the inhomogeneous unit-period V norm for τ≤1 and its rescaled time frames.",
+   "lean": [
+    "Breakdown.Periodic.KernelSharpBound",
+    "Breakdown.Periodic.kernelSharpBound"
+   ],
+   "anchor": {
+    "heading": "(3.20)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0045",
+   "section": "(3.21)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal construction rescales time on the unit torus and transfers compact fields with an additional L2 contribution to the norm; it does not state these variable-period identities.",
+   "lean": [
+    "Breakdown.Periodic.stepFrame"
+   ],
+   "anchor": {
+    "heading": "(3.21)",
+    "block": 3
+   },
+   "title": "Rescaled heat flow on the torus"
+  },
+  {
+   "id": "r5-gap-paper-index-0046",
+   "section": "(4.1)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal profile assumes spatial decay and the physical field is its dilation; the exact time-dependent pair of displayed estimates is not a separate matched declaration.",
+   "lean": [
+    "Breakdown.physicalField"
+   ],
+   "anchor": {
+    "heading": "(4.1)",
+    "block": 3
+   },
+   "title": "Profile in physical variables"
+  },
+  {
+   "id": "r5-gap-paper-index-0047",
+   "section": "(4.1)",
+   "role": "explains",
+   "quote": "**Scope.** Decay premise together with the physical scaling definition; displayed estimate is an analytic reading.",
+   "lean": [
+    "Breakdown.physicalField"
+   ],
+   "anchor": {
+    "heading": "(4.1)",
+    "block": 4
+   },
+   "title": "Profile in physical variables"
+  },
+  {
+   "id": "r5-gap-paper-index-0048",
+   "section": "Proposition 4.1",
+   "role": "explains",
+   "quote": "**Comparison.** The proved package constructs an embedded similarity orbit and a physical mild curve under the formal profile’s additional decay bounds.",
+   "lean": [
+    "Breakdown.EmbeddedProfileOrbit",
+    "Breakdown.embeddedProfileOrbit_holds",
+    "Breakdown.PhysicalMild",
+    "Breakdown.physicalMild_unconditional"
+   ],
+   "anchor": {
+    "heading": "Proposition 4.1",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0049",
+   "section": "(4.2)",
+   "role": "explains",
+   "quote": "**Comparison.** The recurrence is carried by IsOrbit and the matching of profile pieces; the paper writes it directly in physical time.",
+   "lean": [
+    "Breakdown.MildFramework.IsOrbit"
+   ],
+   "anchor": {
+    "heading": "(4.2)",
+    "block": 3
+   },
+   "title": "A recurrent mild profile"
+  },
+  {
+   "id": "r5-gap-paper-index-0050",
+   "section": "Lemma 4.2",
+   "role": "explains",
+   "quote": "**Comparison.** Lean states recurrent rescaled pieces and positive upper and lower similarity-orbit norms; the printed physical-time rate is obtained by the dilation law.",
+   "lean": [
+    "Breakdown.ProfilePieceStatement",
+    "Breakdown.profilePiece"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.2",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0051",
+   "section": "(4.3)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal route divides a period into k substeps and records piece matching and recurrence; this closed nth-period Eulerian identity is not its theorem type.",
+   "lean": [
+    "Breakdown.ProfilePieceStatement",
+    "Breakdown.profilePiece"
+   ],
+   "anchor": {
+    "heading": "(4.3)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0052",
+   "section": "(4.4)",
+   "role": "explains",
+   "quote": "**Comparison.** The proved uniform similarity-orbit bounds and the dilation norm identity give this estimate under the physical scaling definition.",
+   "lean": [
+    "Breakdown.orbitBound",
+    "Breakdown.orbitNorm",
+    "Breakdown.Freq.DilationAlgebra",
+    "Breakdown.MildFramework.selfSimilar"
+   ],
+   "anchor": {
+    "heading": "(4.4)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0053",
+   "section": "(4.4)",
+   "role": "explains",
+   "quote": "**Scope.** Combined consequence of the two orbit norm bounds and D_norm; no standalone printed-rate theorem is claimed.",
+   "lean": [
+    "Breakdown.orbitBound",
+    "Breakdown.orbitNorm",
+    "Breakdown.Freq.DilationAlgebra",
+    "Breakdown.MildFramework.selfSimilar"
+   ],
+   "anchor": {
+    "heading": "(4.4)",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0054",
+   "section": "(4.5)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal route uses bounded sequences of rescaled continuous pieces and a separate gluing map; it has no matching declaration of the displayed global Cκ norm.",
+   "lean": [
+    "Breakdown.Piece"
+   ],
+   "anchor": {
+    "heading": "(4.5)",
+    "block": 3
+   },
+   "title": "Continuous curves on one time piece"
+  },
+  {
+   "id": "r5-gap-paper-index-0055",
+   "section": "(4.6)",
+   "role": "explains",
+   "quote": "**Comparison.** pieceBil gives the same integral on one compact time piece; the paper defines B on the entire half-open lifespan.",
+   "lean": [
+    "Breakdown.HeatBilinear.pieceBil"
+   ],
+   "anchor": {
+    "heading": "(4.6)",
+    "block": 3
+   },
+   "title": "Duhamel operator on one time piece"
+  },
+  {
+   "id": "r5-gap-paper-index-0056",
+   "section": "(4.7)",
+   "role": "explains",
+   "quote": "**Comparison.** PiecePerturbationStatement records the forward implication on a compact piece and piecePerturbation proves it; the paper states an equivalence on the whole lifespan.",
+   "lean": [
+    "Breakdown.PiecePerturbationStatement",
+    "Breakdown.piecePerturbation"
+   ],
+   "anchor": {
+    "heading": "(4.7)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0057",
+   "section": "Proposition 4.3",
+   "role": "explains",
+   "quote": "**Comparison.** The proved inverse is encoded on bounded sequences of short rescaled pieces, with a finite-dimensional correction and compact-data lift; the paper uses one global weighted curve space.",
+   "lean": [
+    "Breakdown.StepDataStatement",
+    "Breakdown.stepData",
+    "Breakdown.PeriodicInverseStatement",
+    "Breakdown.periodicInverse",
+    "Breakdown.SectionStatement",
+    "Breakdown.exists_section"
+   ],
+   "anchor": {
+    "heading": "Proposition 4.3",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0058",
+   "section": "(4.8)",
+   "role": "explains",
+   "quote": "**Comparison.** StepDataStatement records the analogous bounded linear inverse with a finite-dimensional first component in the sequence formulation, and stepData proves it.",
+   "lean": [
+    "Breakdown.StepDataStatement",
+    "Breakdown.stepData"
+   ],
+   "anchor": {
+    "heading": "(4.8)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0059",
+   "section": "(4.9)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal step map uses the inverse of the linearization on each sufficiently short subinterval, then composes those maps.",
+   "lean": [
+    "Breakdown.MildFramework.stepOp"
+   ],
+   "anchor": {
+    "heading": "(4.9)",
+    "block": 3
+   },
+   "title": "Linearization on one time piece"
+  },
+  {
+   "id": "r5-gap-paper-index-0060",
+   "section": "(4.10)",
+   "role": "explains",
+   "quote": "**Comparison.** The monodromy expression is the untwisted product of k short-step maps in MonodromyStatement; the paper defines it through the one-period solution operator.",
+   "lean": [
+    "Breakdown.stepMap"
+   ],
+   "anchor": {
+    "heading": "(4.10)",
+    "block": 3
+   },
+   "title": "Linear flow across one time piece"
+  },
+  {
+   "id": "r5-gap-paper-index-0061",
+   "section": "Lemma 4.4",
+   "role": "explains",
+   "quote": "**Comparison.** MonodromyStatement records compactness of the difference from the untwisted free-step product and the same exp(−P/4) norm bound; monodromy proves it.",
+   "lean": [
+    "Breakdown.MonodromyStatement",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.4",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0062",
+   "section": "Lemma 4.4",
+   "role": "explains",
+   "quote": "**Scope.** Last two clauses of MonodromyStatement after k short steps compose one period.",
+   "lean": [
+    "Breakdown.MonodromyStatement",
+    "Breakdown.monodromy"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.4",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0063",
+   "section": "Lemma 4.5",
+   "role": "explains",
+   "quote": "**Comparison.** Set b=α=exp(−S/4) and β=1 in the abstract theorem, then choose Θ strictly between its radii r₁ and r₂. Its finite-rank commuting projection, surjectivity and inverse-power bounds give the paper’s invertibility and summability.",
+   "lean": [
+    "Breakdown.DichotomyHolds",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.5",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0064",
+   "section": "Lemma 4.5",
+   "role": "explains",
+   "quote": "**Scope.** The geometric estimates are stronger than the displayed weighted summability after this explicit parameter specialization.",
+   "lean": [
+    "Breakdown.DichotomyHolds",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.5",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0065",
+   "section": "(4.11)",
+   "role": "explains",
+   "quote": "**Comparison.** The two-radius geometric estimates bound these series by convergent geometric sums once the weight is chosen strictly between the radii.",
+   "lean": [
+    "Breakdown.DichotomyHolds",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "(4.11)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0066",
+   "section": "(4.11)",
+   "role": "explains",
+   "quote": "**Scope.** Geometric bounds imply the displayed summability; this last implication is an analytic comparison.",
+   "lean": [
+    "Breakdown.DichotomyHolds",
+    "Breakdown.dichotomyHolds"
+   ],
+   "anchor": {
+    "heading": "(4.11)",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0067",
+   "section": "Lemma 4.6",
+   "role": "explains",
+   "quote": "**Comparison.** Lean builds an equivalent kind of forced recurrence from k short pieces and bounded weighted forcing; it does not state the paper’s particular vn, gn, χn and fn formulas.",
+   "lean": [
+    "Breakdown.orbitSeq"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.6",
+    "block": 3
+   },
+   "title": "Weighted discrete forced recurrence"
+  },
+  {
+   "id": "r5-gap-paper-index-0068",
+   "section": "(4.12)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal inverse solves the normalized sequence of short-step equations, rather than this single equation on [0,1).",
+   "lean": [
+    "Breakdown.MildFramework.stepOp"
+   ],
+   "anchor": {
+    "heading": "(4.12)",
+    "block": 3
+   },
+   "title": "Linearization on one time piece"
+  },
+  {
+   "id": "r5-gap-paper-index-0069",
+   "section": "(4.13)",
+   "role": "explains",
+   "quote": "**Comparison.** The implementation uses rescaled pieces and orbitSeq; the particular four auxiliary objects in this display are not declarations in that route.",
+   "lean": [
+    "Breakdown.MildFramework.profilePiece"
+   ],
+   "anchor": {
+    "heading": "(4.13)",
+    "block": 3
+   },
+   "title": "One rescaled piece of the profile"
+  },
+  {
+   "id": "r5-gap-paper-index-0070",
+   "section": "(4.14)",
+   "role": "explains",
+   "quote": "**Comparison.** orbitSeq states a weight-normalized recurrence and the inverse is assembled on short pieces; the displayed unweighted two-part identity is not exported.",
+   "lean": [
+    "Breakdown.orbitSeq"
+   ],
+   "anchor": {
+    "heading": "(4.14)",
+    "block": 3
+   },
+   "title": "Weighted discrete forced recurrence"
+  },
+  {
+   "id": "r5-gap-paper-index-0071",
+   "section": "(4.16)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal route records residuals on successive pieces and a linear sequence operator; the paper uses one residual and one operator on its global weighted curve space.",
+   "lean": [
+    "Breakdown.Periodic.r3Op"
+   ],
+   "anchor": {
+    "heading": "(4.16)",
+    "block": 3
+   },
+   "title": "Linearized sequence operator on R3"
+  },
+  {
+   "id": "r5-gap-paper-index-0072",
+   "section": "(4.17)",
+   "role": "explains",
+   "quote": "**Comparison.** The sequence correction theorem has this residual-plus-quadratic structure after normalization on each piece; the unknowns and forcing are indexed by pieces.",
+   "lean": [
+    "Breakdown.Periodic.SeqPerturbation",
+    "Breakdown.Periodic.seqPerturbation"
+   ],
+   "anchor": {
+    "heading": "(4.17)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0073",
+   "section": "Lemma 4.7",
+   "role": "explains",
+   "quote": "**Comparison.** The formal route bounds compact-piece operators and handles the global time weight in sequence spaces; the three printed Cκ estimates are not one formal package.",
+   "lean": [
+    "Breakdown.PieceOperatorStatement",
+    "Breakdown.pieceOperator"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.7",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0074",
+   "section": "(4.19)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal bilinear operator norm is on a compact time piece and has the factor T^(1/4); global weighting is supplied by the sequence construction.",
+   "lean": [
+    "Breakdown.PieceOperatorStatement",
+    "Breakdown.pieceOperator"
+   ],
+   "anchor": {
+    "heading": "(4.19)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0075",
+   "section": "(4.20)",
+   "role": "explains",
+   "quote": "**Comparison.** The contraction and compact-piece free-evolution bounds are formal fields and theorems; the displayed Cκ weighting is a paper-level consequence of κ<1/4.",
+   "lean": [
+    "Breakdown.HeatBilinear"
+   ],
+   "anchor": {
+    "heading": "(4.20)",
+    "block": 3
+   },
+   "title": "Abstract heat and bilinear operators"
+  },
+  {
+   "id": "r5-gap-paper-index-0076",
+   "section": "Lemma 4.8",
+   "role": "explains",
+   "quote": "**Comparison.** The formal fixed-point theorem acts on rescaled sequences and uses an explicit residual/data smallness condition; the paper formulates the same strategy in Cκ with different constants.",
+   "lean": [
+    "Breakdown.Periodic.SeqPerturbation",
+    "Breakdown.Periodic.seqPerturbation"
+   ],
+   "anchor": {
+    "heading": "Lemma 4.8",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0077",
+   "section": "(4.22)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal right inverse is a continuous linear map into datum corrections and bounded sequences of pieces, with its equation expressed one piece at a time.",
+   "lean": [
+    "Breakdown.StepDataStatement"
+   ],
+   "anchor": {
+    "heading": "(4.22)",
+    "block": 3
+   },
+   "title": "Finite-dimensional correction data"
+  },
+  {
+   "id": "r5-gap-paper-index-0078",
+   "section": "(4.23)",
+   "role": "explains",
+   "quote": "**Comparison.** SeqPerturbation uses 64‖R‖²CKL^(1/4)(ρ+‖ξ‖)≤1, which is a different normalized sufficient condition.",
+   "lean": [
+    "Breakdown.Periodic.SeqPerturbation"
+   ],
+   "anchor": {
+    "heading": "(4.23)",
+    "block": 3
+   },
+   "title": "Correct approximate solution pieces"
+  },
+  {
+   "id": "r5-gap-paper-index-0079",
+   "section": "(4.24)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal correction has the corresponding factor-two bound for each normalized piece and for its datum parameter; it is not stated in the displayed Cκ norm.",
+   "lean": [
+    "Breakdown.Periodic.SeqPerturbation",
+    "Breakdown.Periodic.seqPerturbation"
+   ],
+   "anchor": {
+    "heading": "(4.24)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0080",
+   "section": "(5.1)",
+   "role": "explains",
+   "quote": "**Comparison.** The homotopy potential and cutoffField realize this construction; homotopyCurl and cutoffDivergenceFree prove the curl and solenoidal identities.",
+   "lean": [
+    "Breakdown.Periodic.homotopyPotential",
+    "Breakdown.Periodic.cutoffField",
+    "Breakdown.Periodic.homotopyCurl",
+    "Breakdown.Periodic.cutoffDivergenceFree"
+   ],
+   "anchor": {
+    "heading": "(5.1)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0081",
+   "section": "(5.1)",
+   "role": "explains",
+   "quote": "**Scope.** General-centre potential and product-rule form of curl(χA), specialized to centre zero and χ(x)=η(x/r).",
+   "lean": [
+    "Breakdown.Periodic.homotopyPotential",
+    "Breakdown.Periodic.cutoffField",
+    "Breakdown.Periodic.homotopyCurl",
+    "Breakdown.Periodic.cutoffDivergenceFree"
+   ],
+   "anchor": {
+    "heading": "(5.1)",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0082",
+   "section": "Lemma 5.1",
+   "role": "explains",
+   "quote": "**Comparison.** Lean proves support, agreement, gradient closeness and mass bounds for a fixed physical cutoff around the unit-torus centre, with the scale encoded by T−t; its displayed estimates use different parameters.",
+   "lean": [
+    "Breakdown.Periodic.ApproxFieldProperties",
+    "Breakdown.Periodic.approxFieldProperties_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma 5.1",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0083",
+   "section": "(5.2)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal gradient theorem is an arbitrary-ε closeness statement at small T−t, and the mass theorem is a squared L2 bound proportional to (T−t)^(-1/2).",
+   "lean": [
+    "Breakdown.Periodic.cutoffGradientClose",
+    "Breakdown.Periodic.cutoffMassBound"
+   ],
+   "anchor": {
+    "heading": "(5.2)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0084",
+   "section": "(6.1)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal transfer includes scaling to the unit torus and an inhomogeneous norm identity with an added μ times the L2 mass; it does not assert this homogeneous equality.",
+   "lean": [
+    "Breakdown.Periodic.TransplantNorm",
+    "Breakdown.Periodic.transplantNorm"
+   ],
+   "anchor": {
+    "heading": "(6.1)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0085",
+   "section": "Lemma 6.1",
+   "role": "explains",
+   "quote": "**Comparison.** HeatDivFreeComparison gives arbitrary-δ convergence at small scale on positive-time windows for compact L2 forcing, without this uniform all-time rate or tensor-divergence hypothesis.",
+   "lean": [
+    "Breakdown.Periodic.HeatDivFreeComparison",
+    "Breakdown.Periodic.heatDivFreeComparison"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.1",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0086",
+   "section": "(6.2)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal comparison controls a shell norm by δ times an L^(3/2) forcing norm for sufficiently small scale; the printed L^(-7/2) estimate is not its statement.",
+   "lean": [
+    "Breakdown.Periodic.HeatDivFreeComparison",
+    "Breakdown.Periodic.heatDivFreeComparison"
+   ],
+   "anchor": {
+    "heading": "(6.2)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0087",
+   "section": "(6.3)",
+   "role": "explains",
+   "quote": "**Comparison.** FreeHeatComparison gives uniform small-scale convergence for each compact test field over a bounded time window; it does not export the displayed L-dependent rate.",
+   "lean": [
+    "Breakdown.Periodic.FreeHeatComparison",
+    "Breakdown.Periodic.freeHeatComparison"
+   ],
+   "anchor": {
+    "heading": "(6.3)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0088",
+   "section": "(6.4)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal cutoff estimates use the small physical scale T−t and a fixed cutoff, with gradient closeness stated qualitatively.",
+   "lean": [
+    "Breakdown.Periodic.cutoffGradientClose"
+   ],
+   "anchor": {
+    "heading": "(6.4)",
+    "block": 3
+   },
+   "title": "Gradient error from the cutoff"
+  },
+  {
+   "id": "r5-gap-paper-index-0089",
+   "section": "Lemma 6.2",
+   "role": "explains",
+   "quote": "**Comparison.** The formal package bounds normalized approximate pieces above and below and makes their residual at most θ^nKT^(1/4); it uses the unit-torus sequence formulation.",
+   "lean": [
+    "Breakdown.Periodic.ApproxSizes",
+    "Breakdown.Periodic.approxSizes",
+    "Breakdown.Periodic.ApproxResidualSmall",
+    "Breakdown.Periodic.approxResidualSmall"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.2",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0090",
+   "section": "(6.5)",
+   "role": "explains",
+   "quote": "**Comparison.** ApproxSizes gives positive upper and lower bounds for normalized unit-torus pieces; TransplantNorm has an additional L2 term, so the displayed norm equality is not literal.",
+   "lean": [
+    "Breakdown.Periodic.ApproxSizes",
+    "Breakdown.Periodic.approxSizes"
+   ],
+   "anchor": {
+    "heading": "(6.5)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0091",
+   "section": "(6.6)",
+   "role": "explains",
+   "quote": "**Comparison.** torusOp is the same linearization pattern after splitting into normalized time pieces, with a previous-piece shift and a separate initial seed.",
+   "lean": [
+    "Breakdown.Periodic.torusOp"
+   ],
+   "anchor": {
+    "heading": "(6.6)",
+    "block": 3
+   },
+   "title": "Linearized sequence operator on torus"
+  },
+  {
+   "id": "r5-gap-paper-index-0092",
+   "section": "(6.7)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal shell restriction uses L6 velocity and L2 derivative data with its product norm and a scaling map on the unit torus.",
+   "lean": [
+    "Breakdown.Periodic.RestrictR3Bound",
+    "Breakdown.Periodic.restrictR3Bound"
+   ],
+   "anchor": {
+    "heading": "(6.7)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0093",
+   "section": "(6.8)",
+   "role": "explains",
+   "quote": "**Comparison.** AdvectShellBounds states the local transport product bound for a compact test field and shell data; the time-dependent profile factor is supplied separately in the formal construction.",
+   "lean": [
+    "Breakdown.Periodic.AdvectShellBounds"
+   ],
+   "anchor": {
+    "heading": "(6.8)",
+    "block": 3
+   },
+   "title": "Estimate local advection"
+  },
+  {
+   "id": "r5-gap-paper-index-0094",
+   "section": "(6.9)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal factorization is proved first for compact test fields and rescaled shell operators, then assembled on sequences, rather than for the paper’s two global A operators.",
+   "lean": [
+    "Breakdown.Periodic.R3Factor"
+   ],
+   "anchor": {
+    "heading": "(6.9)",
+    "block": 3
+   },
+   "title": "Factor whole-space local interaction"
+  },
+  {
+   "id": "r5-gap-paper-index-0095",
+   "section": "(6.10)",
+   "role": "explains",
+   "quote": "**Comparison.** OperatorNormBounds controls the localized sequence maps in their ℓ∞ piece norms; the paper’s Cκ formulation and specific approximate background are different.",
+   "lean": [
+    "Breakdown.Periodic.OperatorNormBounds",
+    "Breakdown.Periodic.operatorNormBounds_holds"
+   ],
+   "anchor": {
+    "heading": "(6.10)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0096",
+   "section": "(6.11)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal comparison becomes at most any prescribed δ for small scale and includes propagation through sequence shifts; it does not state the L^(-2) rate.",
+   "lean": [
+    "Breakdown.Periodic.ComparisonSmall",
+    "Breakdown.Periodic.comparisonSmall"
+   ],
+   "anchor": {
+    "heading": "(6.11)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0097",
+   "section": "(6.12)",
+   "role": "explains",
+   "quote": "**Comparison.** ShellInverseTransfer records a periodic right inverse through chain operators and localized comparison maps, and shellInverseTransfer constructs it; its candidate is not the displayed γ,v,ζ,z formula.",
+   "lean": [
+    "Breakdown.Periodic.ShellInverseTransfer",
+    "Breakdown.Periodic.shellInverseTransfer"
+   ],
+   "anchor": {
+    "heading": "(6.12)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0098",
+   "section": "(6.13)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal inverse-transfer proof isolates localized feedback using chainOp; it does not expose the specific ζ−z restriction identity of this display.",
+   "lean": [
+    "Breakdown.Periodic.chainOp"
+   ],
+   "anchor": {
+    "heading": "(6.13)",
+    "block": 3
+   },
+   "title": "Chain operator with localized feedback"
+  },
+  {
+   "id": "r5-gap-paper-index-0099",
+   "section": "(6.14)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal route identifies the whole-space chain operator with its sequence linearization; this particular cutoff-error identity is not a matched statement.",
+   "lean": [
+    "Breakdown.Periodic.r3Op"
+   ],
+   "anchor": {
+    "heading": "(6.14)",
+    "block": 3
+   },
+   "title": "Linearized sequence operator on R3"
+  },
+  {
+   "id": "r5-gap-paper-index-0100",
+   "section": "Lemma 6.3",
+   "role": "explains",
+   "quote": "**Comparison.** Lean supplies qualitative small-scale operator comparisons and an exact right-inverse transfer theorem; the printed candidate and explicit L^(-1/2) defect bound are absent from these statement types.",
+   "lean": [
+    "Breakdown.Periodic.ComparisonSmall",
+    "Breakdown.Periodic.comparisonSmall",
+    "Breakdown.Periodic.ShellInverseTransfer",
+    "Breakdown.Periodic.shellInverseTransfer"
+   ],
+   "anchor": {
+    "heading": "Lemma 6.3",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0101",
+   "section": "(6.15)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal transfer hypothesis is an arbitrary δ comparison of localized operators and its conclusion gives a bounded exact inverse in sequence spaces.",
+   "lean": [
+    "Breakdown.Periodic.ComparisonSmall"
+   ],
+   "anchor": {
+    "heading": "(6.15)",
+    "block": 3
+   },
+   "title": "Compare the localized inverse data"
+  },
+  {
+   "id": "r5-gap-paper-index-0102",
+   "section": "(6.16)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal assembly chooses small T and separate tolerances for the same three purposes; it does not state these three inequalities in C1,C2,L and c*.",
+   "lean": [
+    "Breakdown.Periodic.RightInversePerturb"
+   ],
+   "anchor": {
+    "heading": "(6.16)",
+    "block": 3
+   },
+   "title": "Perturb a bounded right inverse"
+  },
+  {
+   "id": "r5-gap-paper-index-0103",
+   "section": "(6.17)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal correction records a bounded sequence of errors and a transferred smooth datum; the global Cκ estimate with the printed L-power is not exported.",
+   "lean": [
+    "Breakdown.Periodic.SeqPerturbation",
+    "Breakdown.Periodic.seqPerturbation"
+   ],
+   "anchor": {
+    "heading": "(6.17)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0104",
+   "section": "(6.18)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal pieces retain positive profile bounds and bounded corrections, but GlueUnbounded exports only norm unboundedness rather than this all-time two-sided rate.",
+   "lean": [
+    "Breakdown.Periodic.ApproxSizes"
+   ],
+   "anchor": {
+    "heading": "(6.18)",
+    "block": 3
+   },
+   "title": "Upper and lower approximate norms"
+  },
+  {
+   "id": "r5-gap-paper-index-0105",
+   "section": "(7.1)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal normalized-time equation is encoded through a weak integrand and an explicit residual field, rather than this pressure-bearing strong display.",
+   "lean": [
+    "Breakdown.sigmaSimilarityIntegrand"
+   ],
+   "anchor": {
+    "heading": "(7.1)",
+    "block": 3
+   },
+   "title": "Equation in unit-period time"
+  },
+  {
+   "id": "r5-gap-paper-index-0106",
+   "section": "(7.2)",
+   "role": "explains",
+   "quote": "**Comparison.** The test class and IsRightSide use this distributional notion, with the linear residual written after integration by parts.",
+   "lean": [
+    "Breakdown.IsRightSide"
+   ],
+   "anchor": {
+    "heading": "(7.2)",
+    "block": 3
+   },
+   "title": "Equality modulo gradients"
+  },
+  {
+   "id": "r5-gap-paper-index-0107",
+   "section": "(7.3)",
+   "role": "explains",
+   "quote": "**Comparison.** Lean proves separation by periodised compact space-time tests; the displayed tensor family is a paper presentation of the density argument.",
+   "lean": [
+    "Breakdown.Cert.periodize"
+   ],
+   "anchor": {
+    "heading": "(7.3)",
+    "block": 3
+   },
+   "title": "Periodise a compact test field"
+  },
+  {
+   "id": "r5-gap-paper-index-0108",
+   "section": "(7.4)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal perturbation stores weak first and second derivatives and the combined time-drift field separately, and obtains them from a closed Fourier graph.",
+   "lean": [
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "(7.4)",
+    "block": 3
+   },
+   "title": "Weak perturbation domain"
+  },
+  {
+   "id": "r5-gap-paper-index-0109",
+   "section": "(7.5)",
+   "role": "explains",
+   "quote": "**Comparison.** Replacing y by R y turns the paper’s R-inverse convention into the formal field equation.",
+   "lean": [
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "(7.5)",
+    "block": 3
+   },
+   "title": "Prescribed space-time symmetries"
+  },
+  {
+   "id": "r5-gap-paper-index-0110",
+   "section": "(7.6)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal admissibility clause allows twist = 1 even when a half-period symmetry exists; twist = 2 still requires such a symmetry.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.6)",
+    "block": 3
+   },
+   "title": "Available half-period improvement"
+  },
+  {
+   "id": "r5-gap-paper-index-0111",
+   "section": "(7.7)",
+   "role": "explains",
+   "quote": "**Comparison.** The pointwise symmetry clause is equivalent after the spatial substitution y ↦ R y.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.7)",
+    "block": 3
+   },
+   "title": "Approximate-profile symmetries"
+  },
+  {
+   "id": "r5-gap-paper-index-0112",
+   "section": "(7.8)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal clause additionally bounds a supplied weak second derivative by an inverse-radius term of order three.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.8)",
+    "block": 3
+   },
+   "title": "Approximate-profile decay"
+  },
+  {
+   "id": "r5-gap-paper-index-0113",
+   "section": "(7.9)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal condition uses the equivalent sum of nonnegative period integrals.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.9)",
+    "block": 3
+   },
+   "title": "Combined forcing-field norm"
+  },
+  {
+   "id": "r5-gap-paper-index-0114",
+   "section": "(7.10)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal residual is explicitly assembled from weak Hessian and pressure-gradient data; the paper allows any H field representing this residual modulo gradients.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.defect"
+   ],
+   "anchor": {
+    "heading": "(7.10)",
+    "block": 3
+   },
+   "title": "Residual of the approximate profile"
+  },
+  {
+   "id": "r5-gap-paper-index-0115",
+   "section": "(7.11)",
+   "role": "explains",
+   "quote": "**Comparison.** pinValue is the displayed pairing, while targetGap translates the stored full-profile target into the paper’s perturbation target.",
+   "lean": [
+    "Breakdown.pinValue"
+   ],
+   "anchor": {
+    "heading": "(7.11)",
+    "block": 3
+   },
+   "title": "Pin functional"
+  },
+  {
+   "id": "r5-gap-paper-index-0116",
+   "section": "(7.12)",
+   "role": "explains",
+   "quote": "**Comparison.** The same equation and constraints are stored after Leray projection and free inversion, together with radius and essential-supremum bounds.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.IsHeldSolution"
+   ],
+   "anchor": {
+    "heading": "(7.12)",
+    "block": 3
+   },
+   "title": "Held nonlinear solution"
+  },
+  {
+   "id": "r5-gap-paper-index-0117",
+   "section": "(7.13)",
+   "role": "explains",
+   "quote": "**Comparison.** sliceConvection evaluates exactly the two terms through the physical velocity and its gradient.",
+   "lean": [
+    "Breakdown.Cert.sliceConvection"
+   ],
+   "anchor": {
+    "heading": "(7.13)",
+    "block": 3
+   },
+   "title": "Linearised convection"
+  },
+  {
+   "id": "r5-gap-paper-index-0118",
+   "section": "(7.14)",
+   "role": "explains",
+   "quote": "**Comparison.** The physical energies agree; the internal sizeZ norm uses omega = 1 after a proved rescaling of forcing fields and multipliers.",
+   "lean": [
+    "Breakdown.weightedEnergy"
+   ],
+   "anchor": {
+    "heading": "(7.14)",
+    "block": 3
+   },
+   "title": "Weighted perturbation energy"
+  },
+  {
+   "id": "r5-gap-paper-index-0119",
+   "section": "(7.15)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal reciprocal square root simplifies to the paper’s value.",
+   "lean": [
+    "Breakdown.supBoundFactor"
+   ],
+   "anchor": {
+    "heading": "(7.15)",
+    "block": 3
+   },
+   "title": "Define the uniform-norm constant"
+  },
+  {
+   "id": "r5-gap-paper-index-0120",
+   "section": "(7.16)",
+   "role": "explains",
+   "quote": "**Comparison.** The same sliceConvection definition is applied to the formal model field.",
+   "lean": [
+    "Breakdown.Cert.sliceConvection"
+   ],
+   "anchor": {
+    "heading": "(7.16)",
+    "block": 3
+   },
+   "title": "Linearised convection"
+  },
+  {
+   "id": "r5-gap-paper-index-0121",
+   "section": "(7.17)",
+   "role": "explains",
+   "quote": "**Comparison.** Lean uses orthonormal rows with nonnegative weights and proves the corresponding seminorm bound; this is a different representation of the displayed orthogonal family.",
+   "lean": [
+    "Breakdown.rowNorm"
+   ],
+   "anchor": {
+    "heading": "(7.17)",
+    "block": 3
+   },
+   "title": "Finite-direction residual seminorm"
+  },
+  {
+   "id": "r5-gap-paper-index-0122",
+   "section": "(7.18)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal coercive field is this estimate under the explicit weak derivative encoding; it remains an input condition at this level.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.18)",
+    "block": 3
+   },
+   "title": "Reference-profile inverse estimate"
+  },
+  {
+   "id": "r5-gap-paper-index-0123",
+   "section": "(7.19)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal squared-integral inequality encodes this norm bound for admissible weak perturbations.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.19)",
+    "block": 3
+   },
+   "title": "Reference-to-profile convection error"
+  },
+  {
+   "id": "r5-gap-paper-index-0124",
+   "section": "(7.20)",
+   "role": "explains",
+   "quote": "**Comparison.** transferLoss is exactly this product under the certificate’s field names.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.transferLoss"
+   ],
+   "anchor": {
+    "heading": "(7.20)",
+    "block": 3
+   },
+   "title": "Loss in the profile transfer"
+  },
+  {
+   "id": "r5-gap-paper-index-0125",
+   "section": "(7.21)",
+   "role": "explains",
+   "quote": "**Comparison.** The two formal fields reproduce both scalar inequalities.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.21)",
+    "block": 3
+   },
+   "title": "Transfer loss is below one"
+  },
+  {
+   "id": "r5-gap-paper-index-0126",
+   "section": "(7.22)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal proof obtains this bound from the model bound plus the form-shift condition, then applies it to admissible weak slices.",
+   "lean": [
+    "Breakdown.frozenForm"
+   ],
+   "anchor": {
+    "heading": "(7.22)",
+    "block": 3
+   },
+   "title": "Frozen-time quadratic form"
+  },
+  {
+   "id": "r5-gap-paper-index-0127",
+   "section": "(7.23)",
+   "role": "explains",
+   "quote": "**Comparison.** These three fields carry the displayed inequalities, with squared nonnegative integrals for the full norm.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.23)",
+    "block": 3
+   },
+   "title": "Residual norm bound"
+  },
+  {
+   "id": "r5-gap-paper-index-0128",
+   "section": "(7.24)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal targetGap is the paper’s prescribed correction constraint; the remaining constants give the same budget.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.24)",
+    "block": 3
+   },
+   "title": "Residual and constraint budget"
+  },
+  {
+   "id": "r5-gap-paper-index-0129",
+   "section": "(7.25)",
+   "role": "explains",
+   "quote": "**Comparison.** small_first states this exact scalar inequality.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.25)",
+    "block": 3
+   },
+   "title": "Nonlinear smallness condition"
+  },
+  {
+   "id": "r5-gap-paper-index-0130",
+   "section": "(7.26)",
+   "role": "explains",
+   "quote": "**Comparison.** small_second is algebraically identical; its use in the Lean difference estimate is an additional proof role, although the paper explicitly leaves it unused.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.26)",
+    "block": 3
+   },
+   "title": "Second supremum budget"
+  },
+  {
+   "id": "r5-gap-paper-index-0131",
+   "section": "(7.27)",
+   "role": "explains",
+   "quote": "**Comparison.** small_third records the same inequality and the held-step proof uses it to preserve the gradient supremum.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.27)",
+    "block": 3
+   },
+   "title": "Held-set supremum budget"
+  },
+  {
+   "id": "r5-gap-paper-index-0132",
+   "section": "(7.28)",
+   "role": "explains",
+   "quote": "**Comparison.** Dividing the paper inequality by the positive lower weight gives the formal nontrivial clause.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.28)",
+    "block": 3
+   },
+   "title": "Correction cannot cancel the profile"
+  },
+  {
+   "id": "r5-gap-paper-index-0133",
+   "section": "(7.29)",
+   "role": "explains",
+   "quote": "**Comparison.** params records the same mixed geometry; nonzero scales and nonnegative radii are separate certificate clauses.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.params"
+   ],
+   "anchor": {
+    "heading": "(7.29)",
+    "block": 3
+   },
+   "title": "Admissible parameter set"
+  },
+  {
+   "id": "r5-gap-paper-index-0134",
+   "section": "(7.30)",
+   "role": "explains",
+   "quote": "**Comparison.** The local map T in testSetZero_of is the same update, written using the transpose frame matrix.",
+   "lean": [
+    "Breakdown.Held.testSetZero_of"
+   ],
+   "anchor": {
+    "heading": "(7.30)",
+    "block": 3
+   },
+   "title": "Zero of the parameter multiplier"
+  },
+  {
+   "id": "r5-gap-paper-index-0135",
+   "section": "(7.31)",
+   "role": "explains",
+   "quote": "**Comparison.** The pairing is the same; the named formal vector stores this vector minus the frame column, which is the discrepancy used in the inclusion budget.",
+   "lean": [
+    "Breakdown.periodPairing"
+   ],
+   "anchor": {
+    "heading": "(7.31)",
+    "block": 3
+   },
+   "title": "Pairing over one period"
+  },
+  {
+   "id": "r5-gap-paper-index-0136",
+   "section": "(7.32)",
+   "role": "explains",
+   "quote": "**Comparison.** adjoint_quadratic states the absolute pairing bound for the formal weak perturbation class.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.32)",
+    "block": 3
+   },
+   "title": "Quadratic adjoint error"
+  },
+  {
+   "id": "r5-gap-paper-index-0137",
+   "section": "(7.33)",
+   "role": "explains",
+   "quote": "**Comparison.** adjoint_defect retains the unprojected residual and the coupled constraint pairing.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.33)",
+    "block": 3
+   },
+   "title": "Linear adjoint error"
+  },
+  {
+   "id": "r5-gap-paper-index-0138",
+   "section": "(7.34)",
+   "role": "explains",
+   "quote": "**Comparison.** adjustedMultiplier expands into the same frame, residual and constraint terms, and adjoint_offset supplies the bound.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.34)",
+    "block": 3
+   },
+   "title": "Approximate parameter offset"
+  },
+  {
+   "id": "r5-gap-paper-index-0139",
+   "section": "(7.35)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal inclusion clause has the same square-root combination and non-strict inequality.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.35)",
+    "block": 3
+   },
+   "title": "Adjoint-coordinate inclusion"
+  },
+  {
+   "id": "r5-gap-paper-index-0140",
+   "section": "(7.36)",
+   "role": "explains",
+   "quote": "**Comparison.** stiff_norm and stiff_offset are the two displayed Euclidean bounds on the complement of adjointSet.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.36)",
+    "block": 3
+   },
+   "title": "Complementary frame norm"
+  },
+  {
+   "id": "r5-gap-paper-index-0141",
+   "section": "(7.37)",
+   "role": "explains",
+   "quote": "**Comparison.** stiff_inclusion is exactly this scalar budget.",
+   "lean": [
+    "Breakdown.IsExtendedCertificate"
+   ],
+   "anchor": {
+    "heading": "(7.37)",
+    "block": 3
+   },
+   "title": "Complementary-coordinate inclusion"
+  },
+  {
+   "id": "r5-gap-paper-index-0142",
+   "section": "Theorem 7.1",
+   "role": "explains",
+   "quote": "**Comparison.** The formal certificate has additional written requirements and the public theorem exposes a weaker existential weak profile; the separate smoothing result does not expose the full same-witness quantitative bundle.",
+   "lean": [
+    "Breakdown.extended_certificate_orbit_proved"
+   ],
+   "anchor": {
+    "heading": "Theorem 7.1",
+    "block": 3
+   },
+   "title": "Extended certificate gives weak profile"
+  },
+  {
+   "id": "r5-gap-paper-index-0143",
+   "section": "(7.38)",
+   "role": "explains",
+   "quote": "**Comparison.** Internal held solutions carry these bounds before smoothing, after multiplier normalisation; the pinned endpoint does not expose their transport to the same final smooth profile.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.IsHeldSolution"
+   ],
+   "anchor": {
+    "heading": "(7.38)",
+    "block": 3
+   },
+   "title": "Held correction radius"
+  },
+  {
+   "id": "r5-gap-paper-index-0144",
+   "section": "(7.39)",
+   "role": "explains",
+   "quote": "**Comparison.** The approximate field and weak correction carry the symmetry data, but the existential IsSigmaProfile output drops the complete Gamma bundle and the public endpoint does not re-expose this conclusion.",
+   "lean": [
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "(7.39)",
+    "block": 3
+   },
+   "title": "Prescribed space-time symmetries"
+  },
+  {
+   "id": "r5-gap-paper-index-0145",
+   "section": "Corollary 7.2",
+   "role": "explains",
+   "quote": "**Comparison.** The public formal endpoints are conditional nonexistence of global smooth solutions; they do not expose the paper’s trajectory, rate, convergence and selected-profile data.",
+   "lean": [
+    "Breakdown.extended_certificate_breakdown_on_space"
+   ],
+   "anchor": {
+    "heading": "Corollary 7.2",
+    "block": 3
+   },
+   "title": "Extended certificate gives space blow-up"
+  },
+  {
+   "id": "r5-gap-paper-index-0146",
+   "section": "Remark 7.3",
+   "role": "explains",
+   "quote": "**Comparison.** The constituent symmetry equations are present, but no pinned public declaration exposes this alternative-period statement for the same final smooth profile.",
+   "lean": [
+    "Breakdown.IsPerturbation"
+   ],
+   "anchor": {
+    "heading": "Remark 7.3",
+    "block": 3
+   },
+   "title": "Prescribed space-time symmetries"
+  },
+  {
+   "id": "r5-gap-paper-index-0147",
+   "section": "(7.40)",
+   "role": "explains",
+   "quote": "**Comparison.** physicalCurve uses the equivalent inverse logarithmic time substitution and dilation, after replacing S theta by similarity time.",
+   "lean": [
+    "Breakdown.WeakProfile.physicalCurve"
+   ],
+   "anchor": {
+    "heading": "(7.40)",
+    "block": 3
+   },
+   "title": "Physical-time velocity curve"
+  },
+  {
+   "id": "r5-gap-paper-index-0148",
+   "section": "(7.41)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal counterpart establishes the transformed weak equation against tests; the two pointwise chain-rule identities are not its exposed statement.",
+   "lean": [
+    "Breakdown.WeakProfile.physicalIdentity_of_parts"
+   ],
+   "anchor": {
+    "heading": "(7.41)",
+    "block": 3
+   },
+   "title": "Weak equation in physical time"
+  },
+  {
+   "id": "r5-gap-paper-index-0149",
+   "section": "Lemma 7.4",
+   "role": "explains",
+   "quote": "**Comparison.** These conclusions are implemented for the constructed free inverse and its physical representatives across several interfaces, rather than one theorem on the paper’s D_S space.",
+   "lean": [
+    "Breakdown.Cert.freeEnergyLocalHolds_of"
+   ],
+   "anchor": {
+    "heading": "Lemma 7.4",
+    "block": 3
+   },
+   "title": "Local energy identity"
+  },
+  {
+   "id": "r5-gap-paper-index-0150",
+   "section": "(7.42)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal theorem gives an interval-integrated identity for a continuous energy representative of the constructed free inverse; its coefficients agree with the displayed differential identity after the physical-energy identification and the corresponding almost-everywhere reading.",
+   "lean": [
+    "Breakdown.Cert.freeEnergyLocalHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.42)",
+    "block": 3
+   },
+   "title": "Local energy identity"
+  },
+  {
+   "id": "r5-gap-paper-index-0151",
+   "section": "(7.42)",
+   "role": "explains",
+   "quote": "**Scope.** The matching energy-identity component for the constructed free inverse, after physical-energy identification and the integrated-to-almost-everywhere differential passage; no unproved identification of the entire printed D_S domain is asserted.",
+   "lean": [
+    "Breakdown.Cert.freeEnergyLocalHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.42)",
+    "block": 4
+   },
+   "title": "Local energy identity"
+  },
+  {
+   "id": "r5-gap-paper-index-0152",
+   "section": "(7.43)",
+   "role": "explains",
+   "quote": "**Comparison.** freeInvHolds_of gives the displayed quadratic estimate for the constructed free inverse, and the local energy theorem supplies the pairing equality after integration over one period; physical energies are identified by the separate reading interface.",
+   "lean": [
+    "Breakdown.Cert.freeInvHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.43)",
+    "block": 3
+   },
+   "title": "Free inverse and energy bound"
+  },
+  {
+   "id": "r5-gap-paper-index-0153",
+   "section": "(7.43)",
+   "role": "explains",
+   "quote": "**Scope.** The free-inverse energy estimate and period-integrated identity; its numerical constants match after the physical-energy identification.",
+   "lean": [
+    "Breakdown.Cert.freeInvHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.43)",
+    "block": 4
+   },
+   "title": "Free inverse and energy bound"
+  },
+  {
+   "id": "r5-gap-paper-index-0154",
+   "section": "Proposition 7.5",
+   "role": "explains",
+   "quote": "**Comparison.** The Fourier graph inverse, symmetry, weak convergence and local compactness are proved separately; the statement is not exposed as a bijection of the paper’s D_S.",
+   "lean": [
+    "Breakdown.Cert.exists_gradInvSpec"
+   ],
+   "anchor": {
+    "heading": "Proposition 7.5",
+    "block": 3
+   },
+   "title": "Build the free gradient inverse"
+  },
+  {
+   "id": "r5-gap-paper-index-0155",
+   "section": "(7.46)",
+   "role": "explains",
+   "quote": "**Comparison.** propagator_weak_derivative proves the same free evolution equation through test-function pairings.",
+   "lean": [
+    "Breakdown.Cert.Internal.FreePerturbation.propagator_weak_derivative"
+   ],
+   "anchor": {
+    "heading": "(7.46)",
+    "block": 3
+   },
+   "title": "Free propagator equation"
+  },
+  {
+   "id": "r5-gap-paper-index-0156",
+   "section": "(7.47)",
+   "role": "explains",
+   "quote": "**Comparison.** The cited formal operator estimate directly carries the gradient rate; it does not separately state the accompanying Laplacian rate of this display.",
+   "lean": [
+    "Breakdown.Cert.Internal.DenseEnergyBand.norm_semigroupX_le"
+   ],
+   "anchor": {
+    "heading": "(7.47)",
+    "block": 3
+   },
+   "title": "Decay of the free gradient norm"
+  },
+  {
+   "id": "r5-gap-paper-index-0157",
+   "section": "Lemma 7.6",
+   "role": "explains",
+   "quote": "**Comparison.** The formal slice bound and bilinear period-space estimate yield both displayed conclusions after the physical-energy identification.",
+   "lean": [
+    "Breakdown.Cert.sliceSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "Lemma 7.6",
+    "block": 3
+   },
+   "title": "Velocity bound from two derivatives"
+  },
+  {
+   "id": "r5-gap-paper-index-0158",
+   "section": "(7.48)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal slice bound proves the product estimate from which this weighted version follows by the arithmetic–geometric mean inequality.",
+   "lean": [
+    "Breakdown.Cert.sliceSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.48)",
+    "block": 3
+   },
+   "title": "Velocity bound from two derivatives"
+  },
+  {
+   "id": "r5-gap-paper-index-0159",
+   "section": "(7.48)",
+   "role": "explains",
+   "quote": "**Scope.** The derived weighted numerical inequality after the physical-energy identification; SliceSupBoundHolds itself states a product bound on the Fourier graph.",
+   "lean": [
+    "Breakdown.Cert.sliceSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.48)",
+    "block": 4
+   },
+   "title": "Velocity bound from two derivatives"
+  },
+  {
+   "id": "r5-gap-paper-index-0160",
+   "section": "(7.49)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal estimate treats two possibly distinct factors with an admissible weight and a finite gradient supremum; the displayed quadratic bound is its diagonal case after the physical-energy identification.",
+   "lean": [
+    "Breakdown.Cert.productBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.49)",
+    "block": 3
+   },
+   "title": "Quadratic-term norm estimate"
+  },
+  {
+   "id": "r5-gap-paper-index-0161",
+   "section": "(7.49)",
+   "role": "explains",
+   "quote": "**Scope.** The bilinear product-estimate component with an admissible weight and finite gradient supremum; the paper’s displayed bound is its diagonal physical reading.",
+   "lean": [
+    "Breakdown.Cert.productBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.49)",
+    "block": 4
+   },
+   "title": "Quadratic-term norm estimate"
+  },
+  {
+   "id": "r5-gap-paper-index-0162",
+   "section": "Lemma 7.7",
+   "role": "explains",
+   "quote": "**Comparison.** The three assertions are supplied by separate proved interfaces using coefficient decay, invariant subspaces and local compactness with tail control.",
+   "lean": [
+    "Breakdown.Cert.extendedConvectionHolds_of"
+   ],
+   "anchor": {
+    "heading": "Lemma 7.7",
+    "block": 3
+   },
+   "title": "Bounded linearised convection"
+  },
+  {
+   "id": "r5-gap-paper-index-0163",
+   "section": "(7.50)",
+   "role": "explains",
+   "quote": "**Comparison.** The corresponding formal lemmas prove norm estimates for the two terms using the same coefficient decay; the combined pointwise line is not their exposed conclusion.",
+   "lean": [
+    "Breakdown.Cert.Internal.ConvectionFirstOrder.first_term"
+   ],
+   "anchor": {
+    "heading": "(7.50)",
+    "block": 3
+   },
+   "title": "Approximate velocity times gradient"
+  },
+  {
+   "id": "r5-gap-paper-index-0164",
+   "section": "(7.51)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal squared L2 tail bound decays as 1/(1+R), sufficient for compactness but coarser than the paper’s displayed L3-tail coefficient.",
+   "lean": [
+    "Breakdown.Cert.Internal.ExtendedConvectionCompact.slice_tail_first"
+   ],
+   "anchor": {
+    "heading": "(7.51)",
+    "block": 3
+   },
+   "title": "Convection outside a large ball"
+  },
+  {
+   "id": "r5-gap-paper-index-0165",
+   "section": "(7.52)",
+   "role": "explains",
+   "quote": "**Comparison.** The proof absorbs the convection gap and rescales the residual, row and constraint constants by the positive transfer margin.",
+   "lean": [
+    "Breakdown.Cert.extendedAtProfileHolds"
+   ],
+   "anchor": {
+    "heading": "(7.52)",
+    "block": 3
+   },
+   "title": "Absorb the reference-profile error"
+  },
+  {
+   "id": "r5-gap-paper-index-0166",
+   "section": "Proposition 7.8",
+   "role": "explains",
+   "quote": "**Comparison.** The formal operator uses f = T_S v as its unknown and proves invertibility by coercivity and a compact bordered perturbation, after normalising the certificate.",
+   "lean": [
+    "Breakdown.Cert.extendedBorderedInvertibleHolds_of"
+   ],
+   "anchor": {
+    "heading": "Proposition 7.8",
+    "block": 3
+   },
+   "title": "Invert the constrained linear problem"
+  },
+  {
+   "id": "r5-gap-paper-index-0167",
+   "section": "(7.53)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal bordered operator is this map after the substitution f = T_S v, so its domain is a pair of a free right-hand side and multipliers.",
+   "lean": [
+    "Breakdown.Cert.bordered"
+   ],
+   "anchor": {
+    "heading": "(7.53)",
+    "block": 3
+   },
+   "title": "Convection with forcing and constraints"
+  },
+  {
+   "id": "r5-gap-paper-index-0168",
+   "section": "(7.54)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal first component starts with f and adds already projected convection and actuator terms.",
+   "lean": [
+    "Breakdown.Cert.bordered"
+   ],
+   "anchor": {
+    "heading": "(7.54)",
+    "block": 3
+   },
+   "title": "Convection with forcing and constraints"
+  },
+  {
+   "id": "r5-gap-paper-index-0169",
+   "section": "Proposition 7.9",
+   "role": "explains",
+   "quote": "**Comparison.** The proved bound has the displayed constants in the Fourier representation, with the continuous energy identity recovering the pointwise supremum interpretation.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "Proposition 7.9",
+    "block": 3
+   },
+   "title": "Uniform gradient bound"
+  },
+  {
+   "id": "r5-gap-paper-index-0170",
+   "section": "(7.55)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal bound has the same constants for the free-inverse representative and uses the essential supremum; the continuous energy representative supplies the pointwise reading.",
+   "lean": [
+    "Breakdown.Cert.extendedSupBoundHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.55)",
+    "block": 3
+   },
+   "title": "Uniform gradient bound"
+  },
+  {
+   "id": "r5-gap-paper-index-0171",
+   "section": "(7.56)",
+   "role": "explains",
+   "quote": "**Comparison.** This estimate occurs as the local bound hIG inside core_bound; the declaration then integrates it into the supremum estimate.",
+   "lean": [
+    "Breakdown.Cert.Internal.SupBound.core_bound"
+   ],
+   "anchor": {
+    "heading": "(7.56)",
+    "block": 3
+   },
+   "title": "Energy growth over a full period"
+  },
+  {
+   "id": "r5-gap-paper-index-0172",
+   "section": "(7.57)",
+   "role": "explains",
+   "quote": "**Comparison.** heldRight substitutes the current correction’s quadratic term immediately, as required by the fixed-parameter contraction route.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.heldRight"
+   ],
+   "anchor": {
+    "heading": "(7.57)",
+    "block": 3
+   },
+   "title": "Right-hand side of the nonlinear step"
+  },
+  {
+   "id": "r5-gap-paper-index-0173",
+   "section": "(7.58)",
+   "role": "explains",
+   "quote": "**Comparison.** The two formal interfaces prove projected invariance and testwise continuity without requiring continuity of the raw residual.",
+   "lean": [
+    "Breakdown.Cert.extendedInvarianceHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.58)",
+    "block": 3
+   },
+   "title": "Symmetry of the projected data"
+  },
+  {
+   "id": "r5-gap-paper-index-0174",
+   "section": "Proposition 7.10",
+   "role": "explains",
+   "quote": "**Comparison.** The Lean route first proves a unique bounded correction for each fixed parameter by contraction, then finds a finite-dimensional multiplier zero; the paper uses a joint weak-topology Schauder map.",
+   "lean": [
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of"
+   ],
+   "anchor": {
+    "heading": "Proposition 7.10",
+    "block": 3
+   },
+   "title": "Choose a force-free parameter"
+  },
+  {
+   "id": "r5-gap-paper-index-0175",
+   "section": "(7.59)",
+   "role": "explains",
+   "quote": "**Comparison.** The held-solution fields encode these bounds; the nonlinear self-map proof establishes that iteration stays within them.",
+   "lean": [
+    "Breakdown.ExtendedCertificateData.IsHeldSolution"
+   ],
+   "anchor": {
+    "heading": "(7.59)",
+    "block": 3
+   },
+   "title": "Held correction radius"
+  },
+  {
+   "id": "r5-gap-paper-index-0176",
+   "section": "(7.60)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal conclusion includes the equality multiplier(q) + kappa = 0 for its selected held solution.",
+   "lean": [
+    "Breakdown.Cert.extendedExistsZeroHeldHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.60)",
+    "block": 3
+   },
+   "title": "Choose a force-free parameter"
+  },
+  {
+   "id": "r5-gap-paper-index-0177",
+   "section": "(7.61)",
+   "role": "explains",
+   "quote": "**Comparison.** The two formal lemmas prove these enclosures for the selected nonlinear held solution.",
+   "lean": [
+    "Breakdown.Cert.Internal.ExtendedExistsZeroHeld.box_part"
+   ],
+   "anchor": {
+    "heading": "(7.61)",
+    "block": 3
+   },
+   "title": "Enclose adjoint coordinates"
+  },
+  {
+   "id": "r5-gap-paper-index-0178",
+   "section": "Proposition 7.11",
+   "role": "explains",
+   "quote": "**Comparison.** The public theorem maps existential weak-profile data to existential smooth-profile data, with explicit weak-derivative and L2/L6 requirements in its input; it allows a general isometry and returns extra decay, but does not expose the identity with a specified input field in (7.62).",
+   "lean": [
+    "Breakdown.FarField.periodicLerayProfileExists_of_weak"
+   ],
+   "anchor": {
+    "heading": "Proposition 7.11",
+    "block": 3
+   },
+   "title": "Weak profile gives a smooth profile"
+  },
+  {
+   "id": "r5-gap-paper-index-0179",
+   "section": "(7.62)",
+   "role": "explains",
+   "quote": "**Comparison.** The smooth-orbit interface preserves a specified continuous orbit, but the preceding weak-to-orbit interface erases the link to the original weak field from its public type.",
+   "lean": [
+    "Breakdown.FarField.smoothFieldOfOrbit_holds"
+   ],
+   "anchor": {
+    "heading": "(7.62)",
+    "block": 3
+   },
+   "title": "Smooth field for a specified orbit"
+  },
+  {
+   "id": "r5-gap-paper-index-0180",
+   "section": "(7.63)",
+   "role": "explains",
+   "quote": "**Comparison.** physicalCurve and velocity covariance give the rescaling at the level of Fourier states and almost-everywhere physical representatives; the displayed equality of physical-time suprema is not an exposed theorem conclusion.",
+   "lean": [
+    "Breakdown.WeakProfile.physicalCurve",
+    "Breakdown.Freq.VelocityDilate",
+    "Breakdown.Freq.velocityCov_holds"
+   ],
+   "anchor": {
+    "heading": "(7.63)",
+    "block": 3
+   },
+   "title": "Physical-time velocity curve"
+  },
+  {
+   "id": "r5-gap-paper-index-0181",
+   "section": "(7.64)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal mild equation gives the same heat-plus-bilinear integral formula in the Fourier realization, with the kernel identification proved downstream.",
+   "lean": [
+    "Breakdown.WeakProfile.mildFromGood_holds"
+   ],
+   "anchor": {
+    "heading": "(7.64)",
+    "block": 3
+   },
+   "title": "Weak equations give a mild solution"
+  },
+  {
+   "id": "r5-gap-paper-index-0182",
+   "section": "(7.65)",
+   "role": "explains",
+   "quote": "**Comparison.** Lean obtains a smooth orbit with uniform derivative bounds by a Sobolev and Picard argument; it does not expose the paper’s L6-to-L12-to-L-infinity estimate as this numbered statement.",
+   "lean": [
+    "Breakdown.FarField.smoothFieldOfOrbit_holds"
+   ],
+   "anchor": {
+    "heading": "(7.65)",
+    "block": 3
+   },
+   "title": "Smooth field for a specified orbit"
+  },
+  {
+   "id": "r5-gap-paper-index-0183",
+   "section": "(7.66)",
+   "role": "explains",
+   "quote": "**Comparison.** The decay theorem assumes IsRegularOrbitField, including an integral equation, uniform derivatives, a vanishing tail and square-integrable pressure gradient; its rescaled velocity estimate corresponds to the display without identifying those premises with the paper's weaker written input.",
+   "lean": [
+    "Breakdown.FarField.farFieldDecay_holds",
+    "Breakdown.FarField.DecayBounds",
+    "Breakdown.FarField.IsRegularOrbitField",
+    "Breakdown.FarField.IsSmoothOrbitField"
+   ],
+   "anchor": {
+    "heading": "(7.66)",
+    "block": 3
+   },
+   "title": "Spatial decay of the smooth profile"
+  },
+  {
+   "id": "r5-gap-paper-index-0184",
+   "section": "(7.66)",
+   "role": "explains",
+   "quote": "**Scope.** Comparison of the assumption-and-conclusion interface; the extra derivative bounds alone do not order the whole implication.",
+   "lean": [
+    "Breakdown.FarField.farFieldDecay_holds"
+   ],
+   "anchor": {
+    "heading": "(7.66)",
+    "block": 4
+   },
+   "title": "Spatial decay of the smooth profile"
+  },
+  {
+   "id": "r5-gap-paper-index-0185",
+   "section": "(B.1)",
+   "role": "explains",
+   "quote": "**Comparison.** IsModeClass names both generators, GeneratedByClassSymmetries restricts the remaining symmetries to their words modulo full periods, and CellHypothesis supplies κ≥3; the first structure alone is insufficient to recover all the surrounding prose.",
+   "lean": [
+    "Breakdown.CertCell.Bridge.IsModeClass",
+    "Breakdown.CertCell.Instance.GeneratedByClassSymmetries"
+   ],
+   "anchor": {
+    "heading": "(B.1)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0186",
+   "section": "(B.2)",
+   "role": "explains",
+   "quote": "**Comparison.** The exponential and both integer frequency maps coincide after identifying the Lean azimuthal order with κ.",
+   "lean": [
+    "Breakdown.CertCell.labelPhase"
+   ],
+   "anchor": {
+    "heading": "(B.2)",
+    "block": 3
+   },
+   "title": "Lattice harmonic phase"
+  },
+  {
+   "id": "r5-gap-paper-index-0187",
+   "section": "(B.3)",
+   "role": "explains",
+   "quote": "**Comparison.** The two coordinate definitions are exact for nonzero y and positive chart length; Lean also assigns total values at the origin.",
+   "lean": [
+    "Breakdown.CertCell.GivenShape.chartCoord",
+    "Breakdown.CellCert.GivenFields.heightRatio"
+   ],
+   "anchor": {
+    "heading": "(B.3)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0188",
+   "section": "(B.4)",
+   "role": "explains",
+   "quote": "**Comparison.** polarVecQ and azimVecQ give the two displayed coordinate vectors, with the same convention for the radial direction.",
+   "lean": [
+    "Breakdown.CellCert.GivenFields.polarVecQ",
+    "Breakdown.CellCert.GivenFields.azimVecQ"
+   ],
+   "anchor": {
+    "heading": "(B.4)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0189",
+   "section": "(B.5)",
+   "role": "explains",
+   "quote": "**Comparison.** keyPhase supplies the extra exponential, and shiftedScale combines σ(1−σ)∂σ with i times the phase index times phaseSlope.",
+   "lean": [
+    "Breakdown.CertCell.GivenShape.keyPhase",
+    "Breakdown.CertCell.GivenShape.shiftedScale"
+   ],
+   "anchor": {
+    "heading": "(B.5)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0190",
+   "section": "(B.6)",
+   "role": "explains",
+   "quote": "**Comparison.** The formula is distributed between one-key synthesis and the finite sum; taking real parts is harmless for the valid conjugate-closed data, whose validity is a separate hypothesis.",
+   "lean": [
+    "Breakdown.CertCell.GivenShape.complexField",
+    "Breakdown.CertCell.GivenShape.keyVector"
+   ],
+   "anchor": {
+    "heading": "(B.6)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0191",
+   "section": "(B.7)",
+   "role": "explains",
+   "quote": "**Comparison.** This is the nonzero-first-label branch of reducedComps, with lowOrder=h₀, highOrder=h and division by κι₁; spline regularity remains in IsTimeFieldData.",
+   "lean": [
+    "Breakdown.CertCell.GivenShape.reducedComps"
+   ],
+   "anchor": {
+    "heading": "(B.7)",
+    "block": 3
+   },
+   "title": "Divergence-free amplitudes"
+  },
+  {
+   "id": "r5-gap-paper-index-0192",
+   "section": "(B.8)",
+   "role": "explains",
+   "quote": "**Comparison.** This is the first-label-zero branch of reducedComps together with streamValue, including the σ(1−σ)^h weight and phase-adjusted radial derivative.",
+   "lean": [
+    "Breakdown.CertCell.GivenShape.reducedComps",
+    "Breakdown.CertCell.GivenShape.streamValue"
+   ],
+   "anchor": {
+    "heading": "(B.8)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0193",
+   "section": "(B.9)",
+   "role": "explains",
+   "quote": "**Comparison.** affineField, movedParams and stepPhase encode the displayed construction; IsProfileShapeEntry connects those definitions to the certificate profile and its central and tangent origin terms.",
+   "lean": [
+    "Breakdown.CellReduction.Instantiation.affineField",
+    "Breakdown.CellReduction.Instantiation.movedParams",
+    "Breakdown.CellReduction.Instantiation.stepPhase"
+   ],
+   "anchor": {
+    "heading": "(B.9)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0194",
+   "section": "(B.10)",
+   "role": "explains",
+   "quote": "**Comparison.** pinField constructs the tensor and pinValue is its gradient pairing; the output/input order of the linear-map encoding transposes the paper matrix convention.",
+   "lean": [
+    "Breakdown.CertCell.CellLayerData.pinField",
+    "Breakdown.pinValue"
+   ],
+   "anchor": {
+    "heading": "(B.10)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0195",
+   "section": "(B.11)",
+   "role": "explains",
+   "quote": "**Comparison.** The Gram normalisation is implemented, but rowFieldOf has unit norm and the factor τₖ is stored in rowWeightOf=testWeight/coercivity rather than in the field itself; the weighted row seminorm matches after this explicit translation.",
+   "lean": [
+    "Breakdown.CertCell.RowValues.rowFieldOf",
+    "Breakdown.CertCell.RowValues.rowWeightOf"
+   ],
+   "anchor": {
+    "heading": "(B.11)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0196",
+   "section": "(B.12)",
+   "role": "explains",
+   "quote": "**Comparison.** modeVel uses the same conjugate phase, the inverse spatial rotation and normalisation by 2π; labelHarmonic translates the Appendix B labels.",
+   "lean": [
+    "Breakdown.modeVel"
+   ],
+   "anchor": {
+    "heading": "(B.12)",
+    "block": 3
+   },
+   "title": "Time and azimuthal projection"
+  },
+  {
+   "id": "r5-gap-paper-index-0197",
+   "section": "(B.13)",
+   "role": "explains",
+   "quote": "**Comparison.** The public theorem proves the displayed covariance under explicit periodicity and integrability hypotheses, which hold for the perturbations under discussion.",
+   "lean": [
+    "Breakdown.CertCell.Bridge.modeShiftRotate"
+   ],
+   "anchor": {
+    "heading": "(B.13)",
+    "block": 3
+   },
+   "title": "Mode shift and rotation covariance"
+  },
+  {
+   "id": "r5-gap-paper-index-0198",
+   "section": "(B.14)",
+   "role": "explains",
+   "quote": "**Comparison.** The definition is the same weak characterisation and additionally records measurability, periodicity, finite L² norm and annihilation of pressure gradients; existence is supplied by Proposition B.1’s proof.",
+   "lean": [
+    "Breakdown.PieceWeights.IsMultiplierField"
+   ],
+   "anchor": {
+    "heading": "(B.14)",
+    "block": 3
+   },
+   "title": "Variational multiplier"
+  },
+  {
+   "id": "r5-gap-paper-index-0199",
+   "section": "(B.15)",
+   "role": "explains",
+   "quote": "**Comparison.** Substitution of labelHarmonic into frameFreq gives 2π(2ι₂−ι₁)/S+νₚκι₁.",
+   "lean": [
+    "Breakdown.PieceWeights.frameFreq"
+   ],
+   "anchor": {
+    "heading": "(B.15)",
+    "block": 3
+   },
+   "title": "Rotating-frame frequency"
+  },
+  {
+   "id": "r5-gap-paper-index-0200",
+   "section": "(B.16)",
+   "role": "explains",
+   "quote": "**Comparison.** The five-term structure matches exactly, but the paper explicitly omits most coefficient corrections; the Lean definitions choose complete formulas that cannot be checked against nonexistent printed expressions.",
+   "lean": [
+    "Breakdown.PieceWeights.modeDensity",
+    "Breakdown.CertCell.ModeCoefficients.ofPieces"
+   ],
+   "anchor": {
+    "heading": "(B.16)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0201",
+   "section": "(B.17)",
+   "role": "explains",
+   "quote": "**Comparison.** The explicit coefficient lemmas require y₃≠0, because auxiliary step data are compared away from the reflection plane; they establish the almost-everywhere symmetry needed for integration, rather than the literal unrestricted pointwise wording.",
+   "lean": [
+    "Breakdown.CertCell.Bridge.Internal.ModeTermFlip.coefA_flip",
+    "Breakdown.CertCell.Bridge.Internal.ModeTermFlip.coefAA_flip",
+    "Breakdown.CertCell.Bridge.Internal.ModeTermFlip.coefB_flip",
+    "Breakdown.CertCell.Bridge.Internal.ModeTermFlip.shareHat_flip"
+   ],
+   "anchor": {
+    "heading": "(B.17)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0202",
+   "section": "(B.18)",
+   "role": "explains",
+   "quote": "**Comparison.** stretchForm has the same signs and index contractions; stretchFormWith replaces the reference Hessian by the supplied weak second-derivative representative.",
+   "lean": [
+    "Breakdown.stretchForm"
+   ],
+   "anchor": {
+    "heading": "(B.18)",
+    "block": 3
+   },
+   "title": "Stretching quadratic expression"
+  },
+  {
+   "id": "r5-gap-paper-index-0203",
+   "section": "(B.19)",
+   "role": "explains",
+   "quote": "**Comparison.** These three inequalities are explicit fields of EnclosureAdmissibleClauses; they are assumptions on supplied data, not computed bounds.",
+   "lean": [
+    "Breakdown.CertCell.InstanceSplit.EnclosureAdmissibleClauses"
+   ],
+   "anchor": {
+    "heading": "(B.19)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0204",
+   "section": "Proposition B.1",
+   "role": "explains",
+   "quote": "**Comparison.** The implemented weak-state theorem supplies multiplier existence, seminorm finiteness, the norm bound and an ENNReal density inequality; finite negative part then gives the printed real-integral statement, while full coefficient and regularity assumptions are more explicit than the abbreviated paper data.",
+   "lean": [
+    "Breakdown.CoerciveWeak.pieceMultiplierDensityWeakHolds_proof",
+    "Breakdown.CoerciveWeak.PieceMultiplierDensityWeakHolds"
+   ],
+   "anchor": {
+    "heading": "Proposition B.1",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0205",
+   "section": "(B.20)",
+   "role": "explains",
+   "quote": "**Comparison.** multiplierGap is the displayed left side, and the proved positive/negative-integral inequality yields its comparison with the signed density once the stated negative-part finiteness is imposed.",
+   "lean": [
+    "Breakdown.CoerciveWeak.PieceMultiplierDensityWeakHolds",
+    "Breakdown.CoerciveWeak.pieceMultiplierDensityWeakHolds_proof"
+   ],
+   "anchor": {
+    "heading": "(B.20)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0206",
+   "section": "(B.21)",
+   "role": "explains",
+   "quote": "**Comparison.** RowRestClause gives this inequality with symbolic coercivity and pin weight, and CellHypothesis fixes them to 3/50 and 1000; the density is encoded through separate positive and negative integrals.",
+   "lean": [
+    "Breakdown.CoerciveWeak.RowRestClause",
+    "Breakdown.CertCell.rowRestClause_closed"
+   ],
+   "anchor": {
+    "heading": "(B.21)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0207",
+   "section": "(B.22)",
+   "role": "explains",
+   "quote": "**Comparison.** The three bounds are explicit fields; substituting coercivity=3/50, pinWeight=1000 and rowWeightMax=400(1+2^−18) gives the printed constants.",
+   "lean": [
+    "Breakdown.CellLayerSystem.CellSystemCondition",
+    "Breakdown.CertCell.Instance.IsRowInstance"
+   ],
+   "anchor": {
+    "heading": "(B.22)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0208",
+   "section": "Lemma B.2",
+   "role": "explains",
+   "quote": "**Comparison.** The first theorem combines the two signed density inequalities and the second completes the scalar estimate with the c₁ and c₂ budgets; the admissible perturbations are represented by weak gradients and second derivatives.",
+   "lean": [
+    "Breakdown.CoerciveWeak.extendedCoerciveClause_of_pieceData_proved",
+    "Breakdown.CoerciveWeak.rowMultiplierInequality_of_pieceDensity"
+   ],
+   "anchor": {
+    "heading": "Lemma B.2",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0209",
+   "section": "Lemma B.3",
+   "role": "explains",
+   "quote": "**Comparison.** The formal bridge proves the positive and negative integral equalities separately, which gives both the signed identity and the finiteness statements without subtracting infinite quantities.",
+   "lean": [
+    "Breakdown.CertCell.modeDensityBridge_closed",
+    "Breakdown.CertCell.DensityIdentity"
+   ],
+   "anchor": {
+    "heading": "Lemma B.3",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0210",
+   "section": "(B.23)",
+   "role": "explains",
+   "quote": "**Comparison.** The implementation proves the stronger bookkeeping form of two separate nonnegative integral equalities, so the signed formula follows whenever it is defined.",
+   "lean": [
+    "Breakdown.CertCell.DensityIdentity",
+    "Breakdown.CertCell.modeDensityBridge_closed"
+   ],
+   "anchor": {
+    "heading": "(B.23)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0211",
+   "section": "(B.24)",
+   "role": "explains",
+   "quote": "**Comparison.** ModeFlipHolds supplies the velocity identity almost everywhere, as appropriate for the weak perturbation class, and also supplies first- and second-derivative versions.",
+   "lean": [
+    "Breakdown.CertCell.Bridge.modeFlip"
+   ],
+   "anchor": {
+    "heading": "(B.24)",
+    "block": 3
+   },
+   "title": "Reflection of mode fields"
+  },
+  {
+   "id": "r5-gap-paper-index-0212",
+   "section": "(B.25)",
+   "role": "explains",
+   "quote": "**Comparison.** supremumLoss reproduces the three terms and traceFreeConst fixes their constant; its gradient and velocity norms are written as square roots of component-square sums.",
+   "lean": [
+    "Breakdown.CellCert.CellAnalysis.supremumLoss"
+   ],
+   "anchor": {
+    "heading": "(B.25)",
+    "block": 3
+   },
+   "title": "Stretching loss majorant"
+  },
+  {
+   "id": "r5-gap-paper-index-0213",
+   "section": "(B.26)",
+   "role": "explains",
+   "quote": "**Comparison.** The displayed comparison is the residual_value_le field, but the formal predicate is supplied as InRowRange; proving that this is the printed x=X_Qx_g representation also uses row completeness, pressure gauge invariance and transport conditions omitted from the paper.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.EliminationConditions"
+   ],
+   "anchor": {
+    "heading": "(B.26)",
+    "block": 3
+   },
+   "title": "Local residual matrix inequality"
+  },
+  {
+   "id": "r5-gap-paper-index-0214",
+   "section": "(B.27)",
+   "role": "explains",
+   "quote": "**Comparison.** hessTailGain specialises tailGain with shift two, Q=d and innerRadius equal to r₁ off the axis or one on it; TailBudget.Holds contains the full charge comparison that uses this threshold.",
+   "lean": [
+    "Breakdown.CertCell.TailBand.hessTailGain",
+    "Breakdown.CertCell.TailBand.tailGain"
+   ],
+   "anchor": {
+    "heading": "(B.27)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0215",
+   "section": "(B.28)",
+   "role": "explains",
+   "quote": "**Comparison.** offModeDensity applies exactly these coefficient subtractions through PointCoef.withStretch and then evaluates the resulting quadratic form.",
+   "lean": [
+    "Breakdown.CertCell.TailBand.offModeDensity"
+   ],
+   "anchor": {
+    "heading": "(B.28)",
+    "block": 3
+   },
+   "title": "Charged unresolved mode density"
+  },
+  {
+   "id": "r5-gap-paper-index-0216",
+   "section": "(B.29)",
+   "role": "explains",
+   "quote": "**Comparison.** PassesTest is the conjunction of the four printed inequalities, using gradFloor and velWithShift for f₁* and f₀*.",
+   "lean": [
+    "Breakdown.CertCell.TailBand.PointCoef.PassesTest"
+   ],
+   "anchor": {
+    "heading": "(B.29)",
+    "block": 3
+   },
+   "title": "Scalar positive quadratic test"
+  },
+  {
+   "id": "r5-gap-paper-index-0217",
+   "section": "(B.30)",
+   "role": "explains",
+   "quote": "**Comparison.** The numerical inequality and the alternatives Λ₀≤1/4+(k₀−1)₊² or Λ₀≤2 match, but a directional exterior is formalised with measurable homogeneous radius and uniform positive lower and finite upper bounds that the printed description does not state.",
+   "lean": [
+    "Breakdown.CertCell.TailBand.IsExteriorCondition"
+   ],
+   "anchor": {
+    "heading": "(B.30)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0218",
+   "section": "(B.31)",
+   "role": "explains",
+   "quote": "**Comparison.** The two geometric cases are proved, including the square-exterior constant two; the directional case is scoped by IsDirectionRadius rather than an unrestricted phrase allowing dependence on direction.",
+   "lean": [
+    "Breakdown.CertCell.TailBand.modeRayInverseSquare",
+    "Breakdown.CertCell.TailBand.modeSquareInverseSquare_of_smooth"
+   ],
+   "anchor": {
+    "heading": "(B.31)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0219",
+   "section": "Proposition B.4",
+   "role": "explains",
+   "quote": "**Comparison.** The components are implemented across the closed cell, row, gauge, stretching and Hardy proofs; there is no single theorem with the four real error variables r_Q,0…r_Q,3 and the paper leaves part of the required data conditions unwritten.",
+   "lean": [
+    "Breakdown.CertCell.cellJunctions_closed",
+    "Breakdown.CertCell.cellFormAssembly_closed",
+    "Breakdown.CertCell.formNegFinite"
+   ],
+   "anchor": {
+    "heading": "Proposition B.4",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0220",
+   "section": "(B.32)",
+   "role": "explains",
+   "quote": "**Comparison.** ExteriorPointBoundHolds is precisely this almost-everywhere inequality; exteriorPointBound_of_tripleSum proves it from the harmonic expansion discharged by meanStretchTripleSum.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.exteriorPointBound_of_tripleSum",
+    "Breakdown.CertCell.Assembly.meanStretchTripleSum"
+   ],
+   "anchor": {
+    "heading": "(B.32)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0221",
+   "section": "(B.33)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal local comparison uses named rowShare, pairShare, strain-slack, credit and kappaCost expressions and separates signed integrals; it does not assert the printed existential four-number parametrisation directly.",
+   "lean": [
+    "Breakdown.CertCell.CellCalculus.IsCellFormBound",
+    "Breakdown.CertCell.cellFormAssembly_closed"
+   ],
+   "anchor": {
+    "heading": "(B.33)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0222",
+   "section": "(B.34)",
+   "role": "explains",
+   "quote": "**Comparison.** The same charges are bounded in separate row, pairing and credit proofs and assembled into InitialStateBound; the four paper error variables are replaced by explicit shares and their individual budgets.",
+   "lean": [
+    "Breakdown.CertCell.rowSharesOfInstance",
+    "Breakdown.CertCell.InstancePair.pairSharesFromSurrogateProfiles_holds",
+    "Breakdown.CertCell.creditLeavesBound_closed"
+   ],
+   "anchor": {
+    "heading": "(B.34)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0223",
+   "section": "Lemma B.5",
+   "role": "explains",
+   "quote": "**Comparison.** The angular theorem proves the norm relations almost everywhere, quad_lower performs the reduction and pointwiseQuadraticTest proves nonnegativity from PassesTest.",
+   "lean": [
+    "Breakdown.CertCell.TailBand.angularModeBounds",
+    "Breakdown.CertCell.TailBand.pointwiseQuadraticTest",
+    "Breakdown.CertCell.Assembly.offModeConditionSound_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma B.5",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0224",
+   "section": "(B.35)",
+   "role": "explains",
+   "quote": "**Comparison.** AngularRelations records the four inequalities in squared-norm variables, and angularModeBounds proves them for the weak projected modes almost everywhere.",
+   "lean": [
+    "Breakdown.CertCell.TailBand.angularModeBounds",
+    "Breakdown.CertCell.TailBand.AngularRelations"
+   ],
+   "anchor": {
+    "heading": "(B.35)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0225",
+   "section": "(B.36)",
+   "role": "explains",
+   "quote": "**Comparison.** quad_lower is the algebraic inequality with the angular relations as hypotheses; gradFloor contains both the curl correction and the Hessian angular gain.",
+   "lean": [
+    "Breakdown.CertCell.TailBand.Internal.ExteriorLinks.quad_lower"
+   ],
+   "anchor": {
+    "heading": "(B.36)",
+    "block": 3
+   },
+   "title": "Reduce to gradient and velocity terms"
+  },
+  {
+   "id": "r5-gap-paper-index-0226",
+   "section": "Lemma B.6",
+   "role": "explains",
+   "quote": "**Comparison.** The conclusion is proved for the formally admitted ray exteriors and the stated coefficient budgets; measurability and bounded homogeneous radius requirements make the geometric scope more explicit than the paper.",
+   "lean": [
+    "Breakdown.CertCell.TailBand.modeRayInverseSquare",
+    "Breakdown.CertCell.exteriorConditionSound_closed"
+   ],
+   "anchor": {
+    "heading": "Lemma B.6",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0227",
+   "section": "(B.37)",
+   "role": "explains",
+   "quote": "**Comparison.** rayLine proves the final one-dimensional estimate for compactly supported C¹ functions and radialRay extends it to the weak-field setting; the displayed intermediate boundary identity is used inside the proof rather than exported as the same general formula.",
+   "lean": [
+    "Breakdown.CellCert.Exterior.rayLine"
+   ],
+   "anchor": {
+    "heading": "(B.37)",
+    "block": 3
+   },
+   "title": "One dimensional Hardy tail estimate"
+  },
+  {
+   "id": "r5-gap-paper-index-0228",
+   "section": "(B.38)",
+   "role": "explains",
+   "quote": "**Comparison.** The tree-sum theorem identifies the quadratic value of the leaf sum with precisely these components, including cancellation of paired null leaves and the factor two on credits.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.TreeStateInternal.quadValue_totalForm_eq",
+    "Breakdown.CertCell.TreeEntry.leafForm"
+   ],
+   "anchor": {
+    "heading": "(B.38)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0229",
+   "section": "(B.39)",
+   "role": "explains",
+   "quote": "**Comparison.** input_lower and front_upper are the two displayed comparisons, while the complex enclosure records the conjugate-pair realification mentioned in the accompanying text.",
+   "lean": [
+    "Breakdown.CertCell.Certificate.PassesRealNodeEnclosure"
+   ],
+   "anchor": {
+    "heading": "(B.39)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0230",
+   "section": "(B.40)",
+   "role": "explains",
+   "quote": "**Comparison.** Both enclosure structures implement this test; real absolute values become complex norms in the complex-node variant.",
+   "lean": [
+    "Breakdown.CertCell.Certificate.PassesRealNodeEnclosure",
+    "Breakdown.CertCell.Certificate.PassesComplexNodeEnclosure"
+   ],
+   "anchor": {
+    "heading": "(B.40)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0231",
+   "section": "Lemma B.7",
+   "role": "explains",
+   "quote": "**Comparison.** signedTreeLowerBound telescopes the node bounds and pivotCountPositive uses the common column kernel and pivot coverage to prove positivity; the closed certificate theorem supplies the enclosure proofs.",
+   "lean": [
+    "Breakdown.CertCell.Certificate.signedTreeLowerBound",
+    "Breakdown.CertCell.Certificate.pivotCountPositive"
+   ],
+   "anchor": {
+    "heading": "Lemma B.7",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0232",
+   "section": "(B.41)",
+   "role": "explains",
+   "quote": "**Comparison.** The formal lower bound includes a root-front term, whose required nonnegativity permits its removal and whose zero choice gives the printed display exactly.",
+   "lean": [
+    "Breakdown.CertCell.Certificate.signedTreeLowerBound"
+   ],
+   "anchor": {
+    "heading": "(B.41)",
+    "block": 3
+   },
+   "title": "Sum the signed tree bounds"
+  },
+  {
+   "id": "r5-gap-paper-index-0233",
+   "section": "(B.42)",
+   "role": "explains",
+   "quote": "**Comparison.** The node-bound conclusions are the displayed inequality after moving the node front to the appropriate side; the closed certificate result supplies the real and complex slack components.",
+   "lean": [
+    "Breakdown.CertCell.Certificate.realNodeEnclosureBound_of_slackBound",
+    "Breakdown.CertCell.Certificate.complexNodeEnclosureBound_of_parts"
+   ],
+   "anchor": {
+    "heading": "(B.42)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0234",
+   "section": "(B.43)",
+   "role": "explains",
+   "quote": "**Comparison.** globalForm is the exact scalar right side, with coercivity and pin weight later fixed by CellHypothesis, and TreeRowConditions.global_eq compares the global leaf against it despite the field name.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.TreeRowConditions",
+    "Breakdown.CertCell.globalForm"
+   ],
+   "anchor": {
+    "heading": "(B.43)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0235",
+   "section": "Proposition B.8",
+   "role": "explains",
+   "quote": "**Comparison.** rowRestClause_closed is the correct endpoint for finiteness and (B.21), rather than merely the generic tree positivity theorem; its exact cell, shape and entry predicates include substantive omitted paper conditions.",
+   "lean": [
+    "Breakdown.CertCell.rowRestClause_closed",
+    "Breakdown.CoerciveWeak.RowRestClause"
+   ],
+   "anchor": {
+    "heading": "Proposition B.8",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0236",
+   "section": "(B.44)",
+   "role": "explains",
+   "quote": "**Comparison.** InitialStateBound packages this comparison after replacing 2ζ·ℓ−|ζ|²/1000 by its completed-square upper bound; it also uses the formal reflected right-hand side and pressure representative, so it is not the unmodified intermediate display.",
+   "lean": [
+    "Breakdown.CertCell.initialState_closed",
+    "Breakdown.CertCell.InitialStateBound"
+   ],
+   "anchor": {
+    "heading": "(B.44)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0237",
+   "section": "(B.45)",
+   "role": "explains",
+   "quote": "**Comparison.** The proved statement is the squared equivalent with constant 4/3 for a weak gradient, finite sixth power and finite gradient energy; it does not require smooth compact support.",
+   "lean": [
+    "Breakdown.sixthPowerGradientBound_four_thirds"
+   ],
+   "anchor": {
+    "heading": "(B.45)",
+    "block": 3
+   },
+   "title": "Sobolev inequality with fixed constant"
+  },
+  {
+   "id": "r5-gap-paper-index-0238",
+   "section": "(B.46)",
+   "role": "explains",
+   "quote": "**Comparison.** The cell reduction proves squared weak-field and period versions at constant weight and uses the same product estimate; it does not package all four displayed inequalities for an arbitrary variable weight into a single declaration.",
+   "lean": [
+    "Breakdown.CertReduction.energyBoundsHolds_proof",
+    "Breakdown.CertReduction.Internal.product_le_scaleFactor_sq"
+   ],
+   "anchor": {
+    "heading": "(B.46)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0239",
+   "section": "Lemma B.9",
+   "role": "explains",
+   "quote": "**Comparison.** The gap, reference-form and form-shift implications are separated into three bridge theorems; the two profile pieces and the same constants are assembled by the cell-system composition.",
+   "lean": [
+    "Breakdown.CertReduction.gapTransferBridgeHolds_proof",
+    "Breakdown.CertReduction.formShiftBridgeHolds_proof",
+    "Breakdown.CertReduction.frozenFormBridgeHolds_of_convection"
+   ],
+   "anchor": {
+    "heading": "Lemma B.9",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0240",
+   "section": "(B.47)",
+   "role": "explains",
+   "quote": "**Comparison.** ShiftNumbersBounded supplies the four difference norms and FrozenFormBounded supplies the reference L³ gradient norm and its quadratic strain lower bound; the integrals are encoded as squares or cubes.",
+   "lean": [
+    "Breakdown.CellLayerSystem.ShiftNumbersBounded",
+    "Breakdown.CertReduction.FrozenFormBounded"
+   ],
+   "anchor": {
+    "heading": "(B.47)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0241",
+   "section": "(B.48)",
+   "role": "explains",
+   "quote": "**Comparison.** The three scalar budgets coincide after expanding gapGradCoeff, shiftGradCoeff and the frozen-form coefficient.",
+   "lean": [
+    "Breakdown.CellLayerSystem.ShiftNumbersBounded",
+    "Breakdown.CertReduction.FrozenFormBounded"
+   ],
+   "anchor": {
+    "heading": "(B.48)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0242",
+   "section": "(B.49)",
+   "role": "explains",
+   "quote": "**Comparison.** The generic sup and gradient term proofs cover the three estimates, with the gradient proof choosing its L² or L³ branch and the cubic product supplying the 2/√3 factor.",
+   "lean": [
+    "Breakdown.CertReduction.gapSupTermHolds_proof",
+    "Breakdown.CertReduction.gapGradTermHolds_proof"
+   ],
+   "anchor": {
+    "heading": "(B.49)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0243",
+   "section": "Lemma B.10",
+   "role": "explains",
+   "quote": "**Comparison.** cubicForm selects the same two alternatives, adjointQuadCoeff contains the printed constants, and the bridge integrates the perturbation estimate over one period.",
+   "lean": [
+    "Breakdown.CertReduction.adjointQuadraticBridge_of",
+    "Breakdown.CertReduction.adjointQuadTerm_of"
+   ],
+   "anchor": {
+    "heading": "Lemma B.10",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0244",
+   "section": "Lemma B.11",
+   "role": "explains",
+   "quote": "**Comparison.** The implemented dual decomposition combines the plain weighted Hardy bound with the sharp azimuthal bound; it states both spatial and time integrability as well as the final absolute pairing estimate.",
+   "lean": [
+    "Breakdown.AdjointDefect.dualBoundedBound_of_parts",
+    "Breakdown.AdjointDefect.remainderPlainHolds_proof",
+    "Breakdown.AdjointDefect.remainderAzimuthalHolds_proof"
+   ],
+   "anchor": {
+    "heading": "Lemma B.11",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0245",
+   "section": "(B.50)",
+   "role": "explains",
+   "quote": "**Comparison.** The smooth mode estimate uses the exact sharp coefficient, and the weak extension proves a sum over modes before the dual-pairing argument; remainderAzimuthalHolds_proof supplies its approximation and mode-sum components, and the residual certificate enforces distinct component, time-frequency and azimuthal labels.",
+   "lean": [
+    "Breakdown.AdjointDefect.AzimuthalParts.smoothModeInverseSquare",
+    "Breakdown.AdjointDefect.AzimuthalParts.modeInverseSquareWeak_of"
+   ],
+   "anchor": {
+    "heading": "(B.50)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0246",
+   "section": "(B.51)",
+   "role": "explains",
+   "quote": "**Comparison.** IsPotentialData gives bounded-near-origin Laplacian estimates decaying as (1+|y|)^−4 for G and (1+|y|)^−3 for U, plus a value bound for U; these imply the printed common estimate away from zero after changing the constant, while the full spline admissibility conditions are omitted in the paper.",
+   "lean": [
+    "Breakdown.AdjointDefect.IsPotentialData",
+    "Breakdown.PotentialShape.potentialData_of_series"
+   ],
+   "anchor": {
+    "heading": "(B.51)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0247",
+   "section": "(B.51)",
+   "role": "explains",
+   "quote": "**Scope.** The analytic decay bounds in IsPotentialData, after changing one existential constant; this does not compare the full omitted spline-admissibility hypotheses.",
+   "lean": [
+    "Breakdown.AdjointDefect.IsPotentialData",
+    "Breakdown.PotentialShape.potentialData_of_series"
+   ],
+   "anchor": {
+    "heading": "(B.51)",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0248",
+   "section": "(B.52)",
+   "role": "explains",
+   "quote": "**Comparison.** For the actual cell data, pins_eq and pins_valid identify the generators with valid compact B.6 fields, and shapeParts_closed.field_divergence makes their divergence zero; thus div(DΦ̃−DΦ̃*)=ΔΦ̃ distributionally, giving the displayed residual after theta=G, phi=U and the matrix transpose convention are applied.",
+   "lean": [
+    "Breakdown.AdjointDefect.remainderField",
+    "Breakdown.AdjointDefect.AdjointDefectEntry.centreResidual",
+    "Breakdown.AdjointDefect.AdjointDefectEntry.pinFlux"
+   ],
+   "anchor": {
+    "heading": "(B.52)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0249",
+   "section": "Lemma B.12",
+   "role": "explains",
+   "quote": "**Comparison.** The generic bridge is specialised by AdjointEntryLinks.fitted_empty and the profile links; its three major contributions are the same potential defect, free/time shift and pin charge, with the named representation, potential, dual and charge proofs supplying the analytic components.",
+   "lean": [
+    "Breakdown.AdjointDefect.adjointDefectBridge_of_pieces"
+   ],
+   "anchor": {
+    "heading": "Lemma B.12",
+    "block": 3
+   },
+   "title": "Assemble the linear adjoint estimate"
+  },
+  {
+   "id": "r5-gap-paper-index-0250",
+   "section": "(B.53)",
+   "role": "explains",
+   "quote": "**Comparison.** Expanding defectSum with fittedSet=∅ and adding pinCharge yields the printed scalar expression; without fitted_empty the generic definition contains additional fitted-direction terms.",
+   "lean": [
+    "Breakdown.AdjointDefect.AdjointDefectBounded",
+    "Breakdown.AdjointDefect.AdjointDefectEntry.defectSum",
+    "Breakdown.AdjointDefect.AdjointDefectEntry.pinCharge"
+   ],
+   "anchor": {
+    "heading": "(B.53)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0251",
+   "section": "(B.54)",
+   "role": "explains",
+   "quote": "**Comparison.** RepresentationHolds with zero reference advection gives the displayed identity, including −ψ−(y·∇ψ)/2; the proof obtains it by test-field approximation with the required periodicity and decay.",
+   "lean": [
+    "Breakdown.AdjointDefect.representationHolds_of_density",
+    "Breakdown.AdjointDefect.RepresentationHolds"
+   ],
+   "anchor": {
+    "heading": "(B.54)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0252",
+   "section": "(B.55)",
+   "role": "explains",
+   "quote": "**Comparison.** The pairing identity is implemented, but weak_pairing assumes L² matrix columns and |y| times the divergence in L², whereas the paper states the general L²/L^(6/5) version; pair_flux verifies the needed special cases from potential decay.",
+   "lean": [
+    "Breakdown.AdjointDefect.Internal.PotentialBound.weak_pairing",
+    "Breakdown.AdjointDefect.Internal.PotentialBound.pair_flux"
+   ],
+   "anchor": {
+    "heading": "(B.55)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0253",
+   "section": "(B.56)",
+   "role": "explains",
+   "quote": "**Comparison.** The equality is assembled within adjointDefectBridge_of_parts using a generic fitted/free split and antisymmetric pin flux; its specialisation gives the same weak pairings, but no public declaration states the raw three-line printed identity as such.",
+   "lean": [
+    "Breakdown.AdjointDefect.adjointDefectBridge_of_parts",
+    "Breakdown.AdjointDefect.Internal.PotentialBound.slice_identity",
+    "Breakdown.AdjointDefect.Internal.transport_split"
+   ],
+   "anchor": {
+    "heading": "(B.56)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0254",
+   "section": "(B.57)",
+   "role": "explains",
+   "quote": "**Comparison.** The three residual definitions include the same pressure-gradient corrections, and quadraticCoefficient uses one ordered term on the diagonal and the sum of both orders off it; offsetBallIdentity_holds proves the resulting expansion.",
+   "lean": [
+    "Breakdown.CellReduction.Instantiation.centreDefect",
+    "Breakdown.CellReduction.Instantiation.linearDefect",
+    "Breakdown.CellReduction.Instantiation.OffsetExpansionEntry.quadraticCoefficient",
+    "Breakdown.CellReduction.Instantiation.offsetBallIdentity_holds"
+   ],
+   "anchor": {
+    "heading": "(B.57)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0255",
+   "section": "Lemma B.13",
+   "role": "explains",
+   "quote": "**Comparison.** The offset theorem uses the exact local polynomial identity, the three absolute coefficient enclosures, coordinate radii and far-field Cauchy–Schwarz; the specialised profile route makes the target pinning term zero.",
+   "lean": [
+    "Breakdown.CellReduction.Instantiation.offsetClause_holds_of",
+    "Breakdown.CellReduction.Instantiation.offsetBallIdentity_holds"
+   ],
+   "anchor": {
+    "heading": "Lemma B.13",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0256",
+   "section": "(B.58)",
+   "role": "explains",
+   "quote": "**Comparison.** All three fields have absolute values exactly as the printed PDF does; text extraction drops those bars, so reading the extracted inequalities alone would give an incorrect one-sided comparison.",
+   "lean": [
+    "Breakdown.CellReduction.Instantiation.IsOffsetExpansionEntry"
+   ],
+   "anchor": {
+    "heading": "(B.58)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0257",
+   "section": "(B.59)",
+   "role": "explains",
+   "quote": "**Comparison.** offsetSum uses the same upper-triangular indexing and diagonal correction; coordRadius uses |stiffRadius|/|scale|, equal to the printed radius under the certificate nonnegativity condition.",
+   "lean": [
+    "Breakdown.CellReduction.Instantiation.offsetSum",
+    "Breakdown.CellReduction.Instantiation.coordRadius"
+   ],
+   "anchor": {
+    "heading": "(B.59)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-gap-paper-index-0258",
+   "section": "Proposition B.14",
+   "role": "explains",
+   "quote": "**Comparison.** isExtendedCertificate_of_parts constructs an extended certificate after choosing a sufficient decay constant, and the closed cell-route theorem supplies its analytic component proofs; the exact CellSystemCondition includes representation, gauge, coefficient and error conditions the paper explicitly omits, and no concrete validating data are supplied here.",
+   "lean": [
+    "Breakdown.CellLayerSystem.isExtendedCertificate_of_parts",
+    "Breakdown.CellLayerSystem.CellSystemCondition"
+   ],
+   "anchor": {
+    "heading": "Proposition B.14",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-corrected-comparison-equation-2-1",
+   "section": "2.1",
+   "role": "explains",
+   "quote": "**Comparison.** heatX is Fourier-defined on X, and source proofs identify its reconstructed L6 velocity with Gaussian convolution almost everywhere for positive time; the paper defines heat evolution on general Lp fields and includes time zero.",
+   "lean": [
+    "Breakdown.Freq.heatX",
+    "Breakdown.Freq.heatFactor",
+    "Breakdown.Freq.heat_holds",
+    "Breakdown.FarField.heatConv",
+    "Breakdown.FarField.HeatVelocity",
+    "Breakdown.FarField.heatVelocity_of_heatConvTest"
+   ],
+   "anchor": {
+    "heading": "(2.1)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-corrected-comparison-equation-3-9",
+   "section": "3.2",
+   "role": "explains",
+   "quote": "**Comparison.** Lean defines the Leray-divergence kernel and supplies a proof of its power-four parabolic decay; the paper states bounds for every derivative order of the Oseen tensor.",
+   "lean": [
+    "Breakdown.FarField.lerayKernel",
+    "Breakdown.FarField.LerayKernelBound",
+    "Breakdown.FarField.lerayKernelBound_holds"
+   ],
+   "anchor": {
+    "heading": "(3.9)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-corrected-comparison-equation-3-10",
+   "section": "3.2",
+   "role": "explains",
+   "quote": "**Comparison.** Lean supplies an almost-everywhere physical convolution formula for K(tau)(u,u), with a compact test-field version; the display also quantifies over arbitrary tensor divergences and distinct inputs u and v.",
+   "lean": [
+    "Breakdown.FarField.BilinTestKernel",
+    "Breakdown.FarField.BilinKernel",
+    "Breakdown.FarField.bilinKernel_of_test_decay"
+   ],
+   "anchor": {
+    "heading": "(3.10)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-corrected-comparison-equation-3-19",
+   "section": "3.6",
+   "role": "explains",
+   "quote": "**Comparison.** Lean supplies the tau^(-3/4) L^(3/2) forcing bound for compactly supported L2 data transplanted to its inhomogeneous unit-torus space, with mu*tau <= 1; the paper allows every period and all positive times in the mean-zero homogeneous space.",
+   "lean": [
+    "Breakdown.Periodic.ShellTorus.Internal.sourceOp_threeHalves",
+    "Breakdown.Periodic.sourceOp",
+    "Breakdown.Periodic.trigHs"
+   ],
+   "anchor": {
+    "heading": "(3.19)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-corrected-comparison-equation-7-45",
+   "section": "7.5",
+   "role": "explains",
+   "quote": "**Comparison.** Lean constructs a continuous periodic representative satisfying an integrated energy identity for freeInv in similarity time; the printed line is the physical-time identity obtained from a general Lions-Magenes argument.",
+   "lean": [
+    "Breakdown.Cert.Internal.FreeEnergyLocal.IsEnergyCurve",
+    "Breakdown.Cert.Internal.FreeEnergyLocal.exists_energyCurve",
+    "Breakdown.Cert.freeEnergyLocalHolds_of"
+   ],
+   "anchor": {
+    "heading": "(7.45)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-corrected-comparison-equation-C-1",
+   "section": "C.2. The discretization and Newton’s method",
+   "role": "explains",
+   "quote": "**Comparison.** centreDefect encodes a continuum residual in derivative and pressure-adjusted advection form with extra period and actuator parameters; source proofs supply curl algebra, while the printed curl-cross PDE and the surrounding numerical computation are not one verified package.",
+   "lean": [
+    "Breakdown.CellReduction.Instantiation.centreDefect",
+    "Breakdown.CertCell.Assembly.Internal.RemainderAnnihilates.cross_identity",
+    "Breakdown.Coercive.Internal.TestDensityProof.negSsp_curl_curl"
+   ],
+   "anchor": {
+    "heading": "(C.1)",
+    "block": 3
+   }
+  },
+  {
+   "id": "r5-corrected-comparison-equation-C-2",
+   "section": "C.2. The discretization and Newton’s method",
+   "role": "explains",
+   "quote": "**Comparison.** Lean defines the two curl-cross linear coupling terms and proves their weak-testing bridge with explicit derivative, pressure and actuator data; these continuum results do not verify the matrix-free Newton or flexible-GMRES procedure described around the displayed operator.",
+   "lean": [
+    "Breakdown.CertCell.CellCalculus.couplingField",
+    "Breakdown.CertCell.CellCalculus.IsStrongRightSide",
+    "Breakdown.CertCell.Assembly.remainderAnnihilates_holds",
+    "Breakdown.CellReduction.Instantiation.linearDefect"
+   ],
+   "anchor": {
+    "heading": "(C.2)",
+    "block": 3
+   }
   }
  ],
  "plain": {
-  "Breakdown.AdjointDefect.AdjointDefectBounded": "All adjoint defect norm budgets",
+  "Breakdown.AdjointDefect.AdjointDefectBounded": "The complete adjoint defect bound",
   "Breakdown.AdjointDefect.AdjointDefectEntry.centreResidual": "Adjoint residual at the centre period",
-  "Breakdown.AdjointDefect.AdjointDefectEntry.defectSum": "Potential and parameter error sum",
-  "Breakdown.AdjointDefect.AdjointDefectEntry.pinCharge": "Pin approximation error sum",
-  "Breakdown.AdjointDefect.AdjointDefectEntry.pinFlux": "Antisymmetric pin generator flux",
-  "Breakdown.AdjointDefect.AzimuthalBounded": "Sharp azimuthal remainder bound",
-  "Breakdown.AdjointDefect.AzimuthalParts.modeInverseSquareWeak_of": "Extend sharp Hardy to weak fields",
-  "Breakdown.AdjointDefect.AzimuthalParts.smoothModeInverseSquare": "Sharp smooth azimuthal Hardy bound",
-  "Breakdown.AdjointDefect.DualBounded": "Mixed adjoint remainder dual bound",
+  "Breakdown.AdjointDefect.AdjointDefectEntry.defectSum": "Add the adjoint-defect budgets",
+  "Breakdown.AdjointDefect.AdjointDefectEntry.pinCharge": "Add the pin-error budgets",
+  "Breakdown.AdjointDefect.AdjointDefectEntry.pinFlux": "Use the skew pin flux",
+  "Breakdown.AdjointDefect.AzimuthalBounded": "Record the azimuthal dual bound",
+  "Breakdown.AdjointDefect.AzimuthalParts.modeInverseSquareWeak_of": "Extend Hardy to weak derivatives",
+  "Breakdown.AdjointDefect.AzimuthalParts.smoothModeInverseSquare": "Prove Hardy for a smooth mode",
+  "Breakdown.AdjointDefect.DualBounded": "Define the dual-bound decomposition",
   "Breakdown.AdjointDefect.Internal.PotentialBound.pair_flux": "Integrate the decaying flux by parts",
   "Breakdown.AdjointDefect.Internal.PotentialBound.slice_identity": "Potential remainder pairing identity",
   "Breakdown.AdjointDefect.Internal.PotentialBound.weak_pairing": "Weak matrix integration by parts",
   "Breakdown.AdjointDefect.Internal.transport_split": "Split parameter dependent adjoint",
-  "Breakdown.AdjointDefect.IsPotentialData": "Weak potential fields and decay",
+  "Breakdown.AdjointDefect.IsPotentialData": "Require weak potential derivatives",
   "Breakdown.AdjointDefect.IsWeakMatrixDivergence": "Distributional matrix divergence",
-  "Breakdown.AdjointDefect.RemainderBounded": "Plain weighted remainder bound",
+  "Breakdown.AdjointDefect.RemainderBounded": "Record the plain weighted norm",
   "Breakdown.AdjointDefect.RepresentationHolds": "Weak transport pairing identity",
   "Breakdown.AdjointDefect.adjointDefectBridge_of_parts": "Full adjoint decomposition and bound",
-  "Breakdown.AdjointDefect.adjointDefectBridge_of_pieces": "Assemble the linear adjoint bound",
-  "Breakdown.AdjointDefect.adjointTransport": "Formal adjoint transport operator",
-  "Breakdown.AdjointDefect.dualBoundedBound_of_parts": "Dual data imply gradient pairing bound",
-  "Breakdown.AdjointDefect.freeShiftBoundHolds_proof": "Bound the free parameter shift",
-  "Breakdown.AdjointDefect.pinChargeHolds_proof": "Bound the pin approximation charge",
+  "Breakdown.AdjointDefect.adjointDefectBridge_of_pieces": "Assemble the linear adjoint estimate",
+  "Breakdown.AdjointDefect.adjointTransport": "Define the adjoint transport",
+  "Breakdown.AdjointDefect.dualBoundedBound_of_parts": "Combine the two dual bounds",
+  "Breakdown.AdjointDefect.freeShiftBoundHolds_proof": "Bound the free parameter shifts",
+  "Breakdown.AdjointDefect.pinChargeHolds_proof": "Bound the pin replacement errors",
   "Breakdown.AdjointDefect.potentialBoundHolds_proof": "Bound the potential contribution",
-  "Breakdown.AdjointDefect.remainderAzimuthalHolds_proof": "Azimuthal remainder pairing proof",
-  "Breakdown.AdjointDefect.remainderField": "Adjoint residual with potentials",
-  "Breakdown.AdjointDefect.remainderPlainHolds_proof": "Plain remainder pairing proof",
-  "Breakdown.AdjointDefect.representationHolds_of_density": "Weak adjoint representation proof",
-  "Breakdown.AdjointDefect.testFieldDensityHolds_proof": "Approximate the adjoint by tests",
+  "Breakdown.AdjointDefect.remainderAzimuthalHolds_proof": "Prove the azimuthal remainder bound",
+  "Breakdown.AdjointDefect.remainderField": "Define the potential remainder",
+  "Breakdown.AdjointDefect.remainderPlainHolds_proof": "Prove the plain remainder bound",
+  "Breakdown.AdjointDefect.representationHolds_of_density": "Represent the adjoint pairing",
+  "Breakdown.AdjointDefect.testFieldDensityHolds_proof": "Approximate solenoidal test fields",
   "Breakdown.CellCert.CellAnalysis.CellBox.innerRadius": "Axis adjusted radial factor",
   "Breakdown.CellCert.CellAnalysis.supremumLoss": "Stretching loss majorant",
   "Breakdown.CellCert.Exterior.rayLine": "One dimensional Hardy tail estimate",
@@ -4735,26 +8487,26 @@
   "Breakdown.CellCert.GivenFields.azimVecQ": "Weighted azimuthal frame vector",
   "Breakdown.CellCert.GivenFields.heightRatio": "Polar height coordinate",
   "Breakdown.CellCert.GivenFields.polarVecQ": "Weighted polar frame vector",
-  "Breakdown.CellLayerSystem.CellSystemCondition": "Complete cell system condition",
-  "Breakdown.CellLayerSystem.ShiftNumbersBounded": "Central and box profile norm budgets",
-  "Breakdown.CellLayerSystem.adjointPotentialFacts_of_parts": "Attach potential facts to cell data",
-  "Breakdown.CellLayerSystem.isExtendedCertificate_of_parts": "Cell conditions yield a certificate",
-  "Breakdown.CellLayerSystem.spaceBreakdown_of_cell_system_condition": "Closed cell route to space blowup",
-  "Breakdown.CellReduction.Instantiation.AdjointEntryLinks": "Link adjoint entries to profile data",
-  "Breakdown.CellReduction.Instantiation.IsOffsetExpansionEntry": "Offset coefficient enclosures",
-  "Breakdown.CellReduction.Instantiation.IsProfileShapeEntry": "Profile shape and certificate links",
+  "Breakdown.CellLayerSystem.CellSystemCondition": "The fifteen cell conditions",
+  "Breakdown.CellLayerSystem.ShiftNumbersBounded": "Reference and parameter shift bounds",
+  "Breakdown.CellLayerSystem.adjointPotentialFacts_of_parts": "Supply the potential regularity",
+  "Breakdown.CellLayerSystem.isExtendedCertificate_of_parts": "Build the extended certificate",
+  "Breakdown.CellLayerSystem.spaceBreakdown_of_cell_system_condition": "Close the conditional cell route",
+  "Breakdown.CellReduction.Instantiation.AdjointEntryLinks": "Identify the cell adjoint objects",
+  "Breakdown.CellReduction.Instantiation.IsOffsetExpansionEntry": "Require the offset enclosures",
+  "Breakdown.CellReduction.Instantiation.IsProfileShapeEntry": "Identify the profile and target",
   "Breakdown.CellReduction.Instantiation.OffsetExpansionEntry.quadraticCoefficient": "Symmetrised quadratic coefficient",
   "Breakdown.CellReduction.Instantiation.affineField": "Affine profile in parameters",
-  "Breakdown.CellReduction.Instantiation.centreDefect": "Constant residual coefficient",
-  "Breakdown.CellReduction.Instantiation.coordRadius": "Box and stiff coordinate radii",
-  "Breakdown.CellReduction.Instantiation.linearDefect": "Linear residual coefficient",
+  "Breakdown.CellReduction.Instantiation.centreDefect": "Define the constant residual term",
+  "Breakdown.CellReduction.Instantiation.coordRadius": "Define each parameter radius",
+  "Breakdown.CellReduction.Instantiation.linearDefect": "Define the linear residual term",
   "Breakdown.CellReduction.Instantiation.movedParams": "Parameter dependent radial phase",
-  "Breakdown.CellReduction.Instantiation.offsetBallIdentity_holds": "Exact residual expansion inside ball",
-  "Breakdown.CellReduction.Instantiation.offsetClause_holds_of": "Coefficient bounds imply offset clause",
-  "Breakdown.CellReduction.Instantiation.offsetSum": "Total adjoint offset error",
+  "Breakdown.CellReduction.Instantiation.offsetBallIdentity_holds": "Expand the defect inside the ball",
+  "Breakdown.CellReduction.Instantiation.offsetClause_holds_of": "Prove the offset certificate clause",
+  "Breakdown.CellReduction.Instantiation.offsetSum": "Add the offset error budgets",
   "Breakdown.CellReduction.Instantiation.phaseRate": "Linear phase rate",
   "Breakdown.CellReduction.Instantiation.quadraticDefect": "Ordered quadratic residual term",
-  "Breakdown.CellReduction.Instantiation.stepPhase": "Integrated phase cutoff",
+  "Breakdown.CellReduction.Instantiation.stepPhase": "Radial phase from a step spline",
   "Breakdown.Cert.Internal.ConvectionFirstOrder.first_term": "Approximate velocity times gradient",
   "Breakdown.Cert.Internal.ConvectionFirstOrder.second_term": "Perturbation times profile gradient",
   "Breakdown.Cert.Internal.DenseEnergyBand.norm_semigroupX_le": "Decay of the free gradient norm",
@@ -4800,11 +8552,11 @@
   "Breakdown.Cert.sliceSupBoundHolds_of": "Velocity bound from two derivatives",
   "Breakdown.Cert.testDenseHolds_proof": "Periodic tests separate fields",
   "Breakdown.CertCell.Assembly.EliminationConditions": "Local elimination comparison",
-  "Breakdown.CertCell.Assembly.InRowRange": "Compatible local row range",
+  "Breakdown.CertCell.Assembly.InRowRange": "All compatible local row vectors",
   "Breakdown.CertCell.Assembly.TreeRowConditions": "Global row and matrix conditions",
   "Breakdown.CertCell.Assembly.TreeStateInternal.quadValue_totalForm_eq": "Identify the assembled tree form",
   "Breakdown.CertCell.Assembly.exteriorPointBound_of_tripleSum": "Exterior stretching bound by modes",
-  "Breakdown.CertCell.Assembly.meanStretchTripleSum": "Mean stretching harmonic expansion",
+  "Breakdown.CertCell.Assembly.meanStretchTripleSum": "Mean stretching mode expansion",
   "Breakdown.CertCell.Assembly.offModeConditionSound_holds": "Unresolved mode positivity proof",
   "Breakdown.CertCell.Bridge.Internal.ModeTermFlip.coefAA_flip": "Reflected gradient coefficient",
   "Breakdown.CertCell.Bridge.Internal.ModeTermFlip.coefA_flip": "Reflected curl coefficient",
@@ -4812,48 +8564,48 @@
   "Breakdown.CertCell.Bridge.Internal.ModeTermFlip.shareHat_flip": "Reflected Hessian allocation",
   "Breakdown.CertCell.Bridge.IsFlipCompatible": "Reflection compatible weights",
   "Breakdown.CertCell.Bridge.IsModeClass": "Twist and reflection generators",
-  "Breakdown.CertCell.Bridge.halfPlaneReduction": "Geometric half plane integration",
-  "Breakdown.CertCell.Bridge.modeFlip": "Reflection of projected modes",
+  "Breakdown.CertCell.Bridge.halfPlaneReduction": "Cylindrical half-plane reduction",
+  "Breakdown.CertCell.Bridge.modeFlip": "Reflection of mode fields",
   "Breakdown.CertCell.Bridge.modeShiftRotate": "Mode shift and rotation covariance",
-  "Breakdown.CertCell.Bridge.modeTermFlip": "Reflection of the full density",
+  "Breakdown.CertCell.Bridge.modeTermFlip": "Reflection of mode density",
   "Breakdown.CertCell.CellCalculus.CellFormBoundsHold": "Bounds for every cell",
   "Breakdown.CertCell.CellCalculus.IsCellFormBound": "Local cell integral comparison",
-  "Breakdown.CertCell.CellHypothesis": "Cell certificate hypotheses",
+  "Breakdown.CertCell.CellHypothesis": "The cell structure and constants",
   "Breakdown.CertCell.CellLayerData.pinField": "Cell polynomial pinning tensor",
-  "Breakdown.CertCell.CellMatField.field": "Reflected cell tensor field",
+  "Breakdown.CertCell.CellMatField.field": "Matrix field from closed cell solids",
   "Breakdown.CertCell.Certificate.PassesComplexNodeEnclosure": "Complex node enclosure conditions",
   "Breakdown.CertCell.Certificate.SignedTree.totalForm": "Sum of all leaf forms",
-  "Breakdown.CertCell.Certificate.complexNodeEnclosureBound_of_parts": "Complex node lower bound from enclosure",
-  "Breakdown.CertCell.Certificate.pivotCountPositive": "Positivity off the negative columns",
-  "Breakdown.CertCell.Certificate.realNodeEnclosureBound_of_slackBound": "Real node lower bound from enclosure",
-  "Breakdown.CertCell.Certificate.signedSlackBound": "Weighted row sums bound slack",
-  "Breakdown.CertCell.Certificate.signedTreeLowerBound": "Global signed tree lower bound",
+  "Breakdown.CertCell.Certificate.complexNodeEnclosureBound_of_parts": "Complex node with enclosure errors",
+  "Breakdown.CertCell.Certificate.pivotCountPositive": "Count positive pivot directions",
+  "Breakdown.CertCell.Certificate.realNodeEnclosureBound_of_slackBound": "Real node with enclosure errors",
+  "Breakdown.CertCell.Certificate.signedSlackBound": "Real weighted row-sum bound",
+  "Breakdown.CertCell.Certificate.signedTreeLowerBound": "Sum the signed tree bounds",
   "Breakdown.CertCell.DensityIdentity": "Separate positive and negative factors",
-  "Breakdown.CertCell.GivenShape.IsTimeFieldData": "Valid harmonic field data",
-  "Breakdown.CertCell.GivenShape.chartCoord": "Compact radial coordinate",
+  "Breakdown.CertCell.GivenShape.IsTimeFieldData": "Profile shape and symmetry conditions",
+  "Breakdown.CertCell.GivenShape.chartCoord": "Compactified radius",
   "Breakdown.CertCell.GivenShape.complexField": "Finite harmonic sum",
-  "Breakdown.CertCell.GivenShape.keyPhase": "Harmonic with radial phase",
+  "Breakdown.CertCell.GivenShape.keyPhase": "The full oscillatory factor",
   "Breakdown.CertCell.GivenShape.keyVector": "One vector harmonic",
   "Breakdown.CertCell.GivenShape.phaseSlope": "Radial phase derivative factor",
-  "Breakdown.CertCell.GivenShape.reducedComps": "Solenoidal mode coefficients",
+  "Breakdown.CertCell.GivenShape.reducedComps": "Divergence-free amplitudes",
   "Breakdown.CertCell.GivenShape.shapeInfoField": "Real represented field",
   "Breakdown.CertCell.GivenShape.shapeParts_closed": "Closed analytic shape proofs",
-  "Breakdown.CertCell.GivenShape.shiftedScale": "Phase adjusted radial derivative",
+  "Breakdown.CertCell.GivenShape.shiftedScale": "Radial derivative with phase",
   "Breakdown.CertCell.GivenShape.streamValue": "Axisymmetric stream coefficient",
   "Breakdown.CertCell.InitialStateBound": "Initial state versus signed density",
   "Breakdown.CertCell.Instance.GeneratedByClassSymmetries": "Allowed symmetry words",
   "Breakdown.CertCell.Instance.IsRowInstance": "Rows linked to the certificate",
   "Breakdown.CertCell.Instance.rowFieldsOrthonormal": "Row orthonormality proof",
-  "Breakdown.CertCell.InstancePair.pairSharesFromSurrogateProfiles_holds": "Assemble forcing and pinning shares",
-  "Breakdown.CertCell.InstanceSplit.EnclosureAdmissibleClauses": "Multiplier enclosure hypotheses",
+  "Breakdown.CertCell.InstancePair.pairSharesFromSurrogateProfiles_holds": "Pairings from surrogate profiles",
+  "Breakdown.CertCell.InstanceSplit.EnclosureAdmissibleClauses": "Uniform multiplier enclosure bounds",
   "Breakdown.CertCell.ModeCoefficients.ofPieces": "Five explicit cell coefficients",
   "Breakdown.CertCell.RowValues.fieldPairingMatrix": "Gram matrix of row generators",
-  "Breakdown.CertCell.RowValues.mix": "Inverse square root Gram mixing",
+  "Breakdown.CertCell.RowValues.mix": "Gram orthogonalisation of row fields",
   "Breakdown.CertCell.RowValues.rowFieldOf": "Normalised row fields",
   "Breakdown.CertCell.RowValues.rowWeightOf": "Separate row norm weights",
   "Breakdown.CertCell.TailBand.AngularRelations": "Four angular derivative inequalities",
   "Breakdown.CertCell.TailBand.Internal.ExteriorLinks.quad_lower": "Reduce to gradient and velocity terms",
-  "Breakdown.CertCell.TailBand.IsDirectionRadius": "Admissible directional boundary",
+  "Breakdown.CertCell.TailBand.IsDirectionRadius": "Admissible directional radius",
   "Breakdown.CertCell.TailBand.IsExteriorCondition": "Exterior coefficient and Hardy tests",
   "Breakdown.CertCell.TailBand.PointCoef.PassesTest": "Scalar positive quadratic test",
   "Breakdown.CertCell.TailBand.PointCoef.gradFloor": "Effective gradient coefficient",
@@ -4861,49 +8613,49 @@
   "Breakdown.CertCell.TailBand.TailBudget.Holds": "Complete tail absorption budget",
   "Breakdown.CertCell.TailBand.angularModeBounds": "Angular derivative mode bounds",
   "Breakdown.CertCell.TailBand.hessTailGain": "Hessian tail gain",
-  "Breakdown.CertCell.TailBand.modeRayInverseSquare": "Hardy bound on directional exterior",
-  "Breakdown.CertCell.TailBand.modeSquareInverseSquare_of_smooth": "Hardy bound outside a square",
+  "Breakdown.CertCell.TailBand.modeRayInverseSquare": "Inverse-square bound on ray exteriors",
+  "Breakdown.CertCell.TailBand.modeSquareInverseSquare_of_smooth": "Extend the square exterior bound",
   "Breakdown.CertCell.TailBand.offModeDensity": "Charged unresolved mode density",
-  "Breakdown.CertCell.TailBand.pointwiseQuadraticTest": "Prove the scalar quadratic test",
-  "Breakdown.CertCell.TailBand.radialRay": "Weak radial Hardy exterior estimate",
-  "Breakdown.CertCell.TailBand.squareExteriorSmoothStatement": "Smooth square exterior bound",
+  "Breakdown.CertCell.TailBand.pointwiseQuadraticTest": "Nonnegative pointwise mode test",
+  "Breakdown.CertCell.TailBand.radialRay": "One-dimensional radial Hardy bound",
+  "Breakdown.CertCell.TailBand.squareExteriorSmoothStatement": "Square-exterior inverse-square bound",
   "Breakdown.CertCell.TailBand.tailGain": "Spectral and angular tail gain",
   "Breakdown.CertCell.TreeEntry.leafForm": "Physical global and credit leaves",
-  "Breakdown.CertCell.cellFormAssembly_closed": "Assemble the local integral bound",
+  "Breakdown.CertCell.cellFormAssembly_closed": "Assemble the cell energy bound",
   "Breakdown.CertCell.cellJunctions_closed": "Cell and global compatibility proof",
-  "Breakdown.CertCell.creditLeavesBound_closed": "Bound the plane credit leaves",
-  "Breakdown.CertCell.exteriorConditionSound_closed": "Exterior density positivity proof",
-  "Breakdown.CertCell.formNegFinite": "Finiteness of the negative density",
+  "Breakdown.CertCell.creditLeavesBound_closed": "Sum of the rectangle credits",
+  "Breakdown.CertCell.exteriorConditionSound_closed": "Validate the exterior conditions",
+  "Breakdown.CertCell.formNegFinite": "The negative part is finite",
   "Breakdown.CertCell.globalForm": "Global multiplier and pinning penalty",
   "Breakdown.CertCell.initialStateValue": "Global cell state value",
   "Breakdown.CertCell.initialState_closed": "Initial global integral inequality",
-  "Breakdown.CertCell.labelHarmonic": "Label to Fourier frequencies",
+  "Breakdown.CertCell.labelHarmonic": "Paper label to frequency",
   "Breakdown.CertCell.labelPhase": "Lattice harmonic phase",
-  "Breakdown.CertCell.modeDensityBridge_closed": "Density to quarter plane proof",
-  "Breakdown.CertCell.rowRestClause_closed": "Cell data prove the row lower bound",
-  "Breakdown.CertCell.rowSharesOfInstance": "Assemble the row norm shares",
-  "Breakdown.CertCell.stateEnclosureCertificateNonneg_holds": "Closed tree nonnegativity theorem",
-  "Breakdown.CertReduction.AdjointQuadraticBounded": "Adjoint L2 or L3 norm condition",
+  "Breakdown.CertCell.modeDensityBridge_closed": "Join signed density estimates",
+  "Breakdown.CertCell.rowRestClause_closed": "Obtain the row estimate from cells",
+  "Breakdown.CertCell.rowSharesOfInstance": "Sum of the cell row contributions",
+  "Breakdown.CertCell.stateEnclosureCertificateNonneg_holds": "Conclude the state is nonnegative",
+  "Breakdown.CertReduction.AdjointQuadraticBounded": "Quadratic adjoint coefficient",
   "Breakdown.CertReduction.EnergyBoundsHolds": "Energy bound interfaces",
-  "Breakdown.CertReduction.FrozenFormBounded": "Reference strain and gradient budgets",
+  "Breakdown.CertReduction.FrozenFormBounded": "Frozen quadratic-form bound",
   "Breakdown.CertReduction.Internal.product_le_scaleFactor_sq": "Energy product estimate",
-  "Breakdown.CertReduction.adjointQuadCoeff": "Adjoint norm conversion constants",
-  "Breakdown.CertReduction.adjointQuadTerm_of": "One period quadratic adjoint estimate",
-  "Breakdown.CertReduction.adjointQuadraticBridge_of": "Quadratic adjoint bound from a norm",
-  "Breakdown.CertReduction.convectionIdentity_holds": "Convection integration identity",
+  "Breakdown.CertReduction.adjointQuadCoeff": "Coefficient for the chosen norm",
+  "Breakdown.CertReduction.adjointQuadTerm_of": "Bound a quadratic adjoint slice",
+  "Breakdown.CertReduction.adjointQuadraticBridge_of": "Integrate the quadratic adjoint bound",
+  "Breakdown.CertReduction.convectionIdentity_holds": "Integrate convection by parts",
   "Breakdown.CertReduction.cubicWeightProductHolds_proof": "Cubic multiplier Sobolev product",
-  "Breakdown.CertReduction.energyBoundsHolds_proof": "Weighted energy and supremum bounds",
+  "Breakdown.CertReduction.energyBoundsHolds_proof": "Bound norms by the energy",
   "Breakdown.CertReduction.formShiftBridgeHolds_proof": "Norm bounds imply form shift",
   "Breakdown.CertReduction.frozenFormBridgeHolds_of_convection": "Reference frozen form lower bound",
   "Breakdown.CertReduction.gapGradTermHolds_proof": "Bound transport by profile gradient",
   "Breakdown.CertReduction.gapSupTermHolds_proof": "Bound transport by profile supremum",
   "Breakdown.CertReduction.gapTransferBridgeHolds_proof": "Norm bounds imply gap transfer",
-  "Breakdown.CoerciveWeak.IsAdmissibleWeak": "Admissible weak multiplier data",
+  "Breakdown.CoerciveWeak.IsAdmissibleWeak": "Weak weight admissibility",
   "Breakdown.CoerciveWeak.PieceMultiplierDensityWeakHolds": "Multiplier existence and density bound",
   "Breakdown.CoerciveWeak.RowRestClause": "Density lower bound with rows",
   "Breakdown.CoerciveWeak.extendedCoerciveClause_of_pieceData_proved": "Derive the coercive certificate bound",
-  "Breakdown.CoerciveWeak.pieceMultiplierDensityWeakHolds_proof": "Multiplier density proof",
-  "Breakdown.CoerciveWeak.rowMultiplierInequality_of_pieceDensity": "Combine both density inequalities",
+  "Breakdown.CoerciveWeak.pieceMultiplierDensityWeakHolds_proof": "Multiplier and density inequality",
+  "Breakdown.CoerciveWeak.rowMultiplierInequality_of_pieceDensity": "Combine the two density bounds",
   "Breakdown.CoerciveWeak.stretchFormWith": "Stretching with weak second data",
   "Breakdown.ContractionStatement": "Quadratic correction on time pieces",
   "Breakdown.DichotomyHolds": "Finite-rank spectral splitting",
@@ -4960,7 +8712,7 @@
   "Breakdown.HeatBilinear.pieceBil": "Duhamel operator on one time piece",
   "Breakdown.Held.testSetZero_of": "Zero of the parameter multiplier",
   "Breakdown.IsDecayField": "Velocity and gradient decay",
-  "Breakdown.IsPerturbation": "Admissible perturbation",
+  "Breakdown.IsPerturbation": "Weak perturbation domain",
   "Breakdown.IsRightSide": "Equality modulo gradients",
   "Breakdown.IsSimilarityProfile": "Smooth profile with decay",
   "Breakdown.IsSmoothSolution": "Smooth Navier–Stokes solution",
@@ -5037,19 +8789,19 @@
   "Breakdown.Piece": "Continuous curves on one time piece",
   "Breakdown.PieceOperatorStatement": "Bounds for operators on a time piece",
   "Breakdown.PiecePerturbationStatement": "Correct one exact solution piece",
-  "Breakdown.PieceWeights.IsMultiplierField": "Weak multiplier characterisation",
-  "Breakdown.PieceWeights.coefA": "Curl coefficient with corrections",
-  "Breakdown.PieceWeights.coefAA": "Gradient coefficient with corrections",
-  "Breakdown.PieceWeights.coefB": "Velocity coefficient with corrections",
-  "Breakdown.PieceWeights.frameFreq": "Frequency in a rotating frame",
-  "Breakdown.PieceWeights.modeDensity": "Five term mode density",
+  "Breakdown.PieceWeights.IsMultiplierField": "Variational multiplier",
+  "Breakdown.PieceWeights.coefA": "Curl coefficient before conversion",
+  "Breakdown.PieceWeights.coefAA": "Gradient coefficient",
+  "Breakdown.PieceWeights.coefB": "Velocity coefficient",
+  "Breakdown.PieceWeights.frameFreq": "Rotating-frame frequency",
+  "Breakdown.PieceWeights.modeDensity": "Five-term mode density",
   "Breakdown.PieceWeights.modeTerm": "Density evaluated on derivatives",
   "Breakdown.PieceWeights.multiplierGap": "Multiplier coercive difference",
-  "Breakdown.PieceWeights.shareHat": "Curl Hessian error allocation",
-  "Breakdown.PotentialShape.IsPotentialSeries": "Detailed spline potential conditions",
+  "Breakdown.PieceWeights.shareHat": "Curl-gradient shares",
+  "Breakdown.PotentialShape.IsPotentialSeries": "Potential joins and endpoint conditions",
   "Breakdown.PotentialShape.PinShapeEntry.pinData": "Synthesis of pin and generator fields",
-  "Breakdown.PotentialShape.potentialData_of_series": "Potential series yield weak fields",
-  "Breakdown.PotentialShape.potentialParts_holds": "Closed potential analysis components",
+  "Breakdown.PotentialShape.potentialData_of_series": "Build potentials from finite series",
+  "Breakdown.PotentialShape.potentialParts_holds": "Close the potential-shape proofs",
   "Breakdown.ProfilePieceStatement": "Matching and bounds of profile pieces",
   "Breakdown.Realization": "Read abstract curves as velocity fields",
   "Breakdown.RestrictStatement": "Restart a mild solution",
@@ -5090,7 +8842,7 @@
   "Breakdown.physicalMild_unconditional": "Build the physical mild profile",
   "Breakdown.pieceOperator": "Prove the time-piece operator bounds",
   "Breakdown.piecePerturbation": "The corrected piece solves the equation",
-  "Breakdown.pinValue": "Linear gradient constraint",
+  "Breakdown.pinValue": "Pin functional",
   "Breakdown.profilePiece": "Build the recurrent profile pieces",
   "Breakdown.pushForward": "Rotate a vector field",
   "Breakdown.restrict": "Restart the integral equation",
@@ -5101,12 +8853,12 @@
   "Breakdown.stepData": "Construct the correction data",
   "Breakdown.stepMap": "Linear flow across one time piece",
   "Breakdown.stretchForm": "Stretching quadratic expression",
-  "Breakdown.supBoundFactor": "Weighted velocity-bound constant",
+  "Breakdown.supBoundFactor": "Define the uniform-norm constant",
   "Breakdown.transferHolds_of_dichotomy": "Transfer from spectral splitting",
   "Breakdown.varConstIntegral": "Integrate the bilinear term",
   "Breakdown.weakDefectField": "Explicit residual field",
   "Breakdown.weakPeriodicSimilarityProfileExists_of_sigma": "Return to similarity time",
-  "Breakdown.weightedEnergy": "Weighted energy over one period",
+  "Breakdown.weightedEnergy": "Weighted perturbation energy",
   "Breakdown.CertCell.GaugeKey.RealLabelOmitted": "Omit the imaginary zero mode",
   "Breakdown.CertCell.CellMesh.closedHalfPlane": "Closed meridian quadrant",
   "Breakdown.CellCert.CellEnergy.radialOuterTest": "Weighted outer radial test",
@@ -6471,7 +10223,25 @@
   "Breakdown.FarField.kernelConv": "Convolution with the Leray kernel",
   "Breakdown.CertCell.TreeEntry.fieldGauge": "Gauge coefficient of a field",
   "Breakdown.FarField.heatKernelThird": "Third derivative of the heat kernel",
-  "Breakdown.Freq.L2R": "Real square-integrable fields"
+  "Breakdown.Freq.L2R": "Real square-integrable fields",
+  "Breakdown.FarField.heatConv": "Gaussian convolution",
+  "Breakdown.FarField.HeatVelocity": "Heat flow as Gaussian convolution",
+  "Breakdown.FarField.heatVelocity_of_heatConvTest": "Identify the physical heat flow",
+  "Breakdown.FarField.LerayKernelBound": "Decay of the Leray kernel",
+  "Breakdown.FarField.lerayKernelBound_holds": "Prove Leray kernel decay",
+  "Breakdown.FarField.BilinTestKernel": "Convolution for compact test fields",
+  "Breakdown.FarField.BilinKernel": "Bilinear flow as convolution",
+  "Breakdown.FarField.bilinKernel_of_test_decay": "Extend the convolution formula",
+  "Breakdown.Periodic.ShellTorus.Internal.sourceOp_threeHalves": "Bound projected torus forcing",
+  "Breakdown.Freq.velocityCov_holds": "Velocity rotation and dilation",
+  "Breakdown.CertCell.Assembly.Internal.RemainderAnnihilates.cross_identity": "Relate curl and advection",
+  "Breakdown.Coercive.Internal.TestDensityProof.negSsp_curl_curl": "Relate curl-curl and the Laplacian",
+  "Breakdown.CertCell.Assembly.remainderAnnihilates_holds": "Prove the remainder vanishes on tests",
+  "Breakdown.FarField.HeatConvTest": "Heat evolution of test fields",
+  "Breakdown.FarField.HeatKernelBounds": "Heat kernel derivative formulas",
+  "Breakdown.FarField.KernelConvL3Pointwise": "Pointwise L³ convolution estimate",
+  "Breakdown.FarField.KernelConvTestDecay": "Convolved test-field decay",
+  "Breakdown.Freq.VelocityRotate": "Velocity rotation and dilation"
  },
  "notes": {
   "Breakdown.AdjointDefect.AdjointDefectEntry.defectSum": {
@@ -6579,11 +10349,12 @@
    ]
   },
   "Breakdown.Cert.freeEnergyLocalHolds_of": {
-   "text": "The identity is stored in integrated form for a continuous energy representative of the Fourier-space inverse.",
+   "text": "The identity is stored in integrated form for a continuous energy representative of the Fourier-space inverse. For (7.45): Lean constructs a continuous periodic representative satisfying an integrated energy identity for freeInv in similarity time; the printed line is the physical-time identity obtained from a general Lions-Magenes argument.",
    "because": [
     "item-theorem-7-4",
     "item-equation-7-42",
-    "item-equation-7-43"
+    "item-equation-7-43",
+    "r5-corrected-comparison-equation-7-45"
    ]
   },
   "Breakdown.Cert.productBoundHolds_of": {
@@ -7072,6 +10843,36 @@
    "text": "The weak equation eliminates pressure by testing only against divergence-free fields.",
    "because": [
     "item-equation-7-1"
+   ]
+  },
+  "Breakdown.Freq.heat_holds": {
+   "text": "For (2.1): heatX is Fourier-defined on X, and source proofs identify its reconstructed L6 velocity with Gaussian convolution almost everywhere for positive time; the paper defines heat evolution on general Lp fields and includes time zero.",
+   "because": [
+    "r5-corrected-comparison-equation-2-1"
+   ]
+  },
+  "Breakdown.Periodic.trigHs": {
+   "text": "For (3.19): Lean supplies the tau^(-3/4) L^(3/2) forcing bound for compactly supported L2 data transplanted to its inhomogeneous unit-torus space, with mu*tau <= 1; the paper allows every period and all positive times in the mean-zero homogeneous space.",
+   "because": [
+    "r5-corrected-comparison-equation-3-19"
+   ]
+  },
+  "Breakdown.Cert.Internal.FreeEnergyLocal.exists_energyCurve": {
+   "text": "For (7.45): Lean constructs a continuous periodic representative satisfying an integrated energy identity for freeInv in similarity time; the printed line is the physical-time identity obtained from a general Lions-Magenes argument.",
+   "because": [
+    "r5-corrected-comparison-equation-7-45"
+   ]
+  },
+  "Breakdown.CellReduction.Instantiation.centreDefect": {
+   "text": "For (C.1): centreDefect encodes a continuum residual in derivative and pressure-adjusted advection form with extra period and actuator parameters; source proofs supply curl algebra, while the printed curl-cross PDE and the surrounding numerical computation are not one verified package.",
+   "because": [
+    "r5-corrected-comparison-equation-C-1"
+   ]
+  },
+  "Breakdown.CellReduction.Instantiation.linearDefect": {
+   "text": "For (C.2): Lean defines the two curl-cross linear coupling terms and proves their weak-testing bridge with explicit derivative, pressure and actuator data; these continuum results do not verify the matrix-free Newton or flexible-GMRES procedure described around the displayed operator.",
+   "because": [
+    "r5-corrected-comparison-equation-C-2"
    ]
   }
  },
@@ -8583,9 +12384,9 @@
   },
   "Breakdown.FarField.DecayBounds": {
    "verdict": "different",
-   "text": "(7.66): The formal theorem gives velocity, derivative and pressure-gradient decay for an IsRegularOrbitField, which includes a profile integral equation and additional regularity and tail data; after similarity rescaling its velocity bound has the printed form, without identifying the two full premises.",
+   "text": "(7.66): The decay theorem assumes IsRegularOrbitField, including an integral equation, uniform derivatives, a vanishing tail and square-integrable pressure gradient; its rescaled velocity estimate corresponds to the display without identifying those premises with the paper's weaker written input.",
    "because": [
-    "item-equation-7-66"
+    "r5-gap-paper-index-0183"
    ]
   },
   "Breakdown.FarField.IsVelocityOf": {
@@ -8604,9 +12405,9 @@
   },
   "Breakdown.FarField.farFieldDecay_holds": {
    "verdict": "different",
-   "text": "(7.66): The formal theorem gives velocity, derivative and pressure-gradient decay for an IsRegularOrbitField, which includes a profile integral equation and additional regularity and tail data; after similarity rescaling its velocity bound has the printed form, without identifying the two full premises.",
+   "text": "(7.66): The decay theorem assumes IsRegularOrbitField, including an integral equation, uniform derivatives, a vanishing tail and square-integrable pressure gradient; its rescaled velocity estimate corresponds to the display without identifying those premises with the paper's weaker written input.",
    "because": [
-    "item-equation-7-66"
+    "r5-gap-paper-index-0183"
    ]
   },
   "Breakdown.FarField.periodicLerayProfileExists_of_weak": {
@@ -8772,16 +12573,16 @@
   },
   "Breakdown.Freq.heatFactor": {
    "verdict": "different",
-   "text": "(2.1): The formal heat flow is a Fourier multiplier on the gradient-weighted Hilbert space; this display defines Gaussian convolution for general Lp fields.",
+   "text": "(2.1): heatX is Fourier-defined on X, and source proofs identify its reconstructed L6 velocity with Gaussian convolution almost everywhere for positive time; the paper defines heat evolution on general Lp fields and includes time zero.",
    "because": [
-    "item-equation-2-1"
+    "r5-corrected-comparison-equation-2-1"
    ]
   },
   "Breakdown.Freq.heatX": {
    "verdict": "different",
-   "text": "(2.1): The formal heat flow is a Fourier multiplier on the gradient-weighted Hilbert space; this display defines Gaussian convolution for general Lp fields.",
+   "text": "(2.1): heatX is Fourier-defined on X, and source proofs identify its reconstructed L6 velocity with Gaussian convolution almost everywhere for positive time; the paper defines heat evolution on general Lp fields and includes time zero.",
    "because": [
-    "item-equation-2-1"
+    "r5-corrected-comparison-equation-2-1"
    ]
   },
   "Breakdown.Freq.heat_holds": {
@@ -9521,9 +13322,9 @@
   },
   "Breakdown.WeakProfile.physicalCurve": {
    "verdict": "different",
-   "text": "(7.63): The scaling and physical curve are formalized, but this exact physical-time supremum equality is not a separate exposed declaration in the audited route.",
+   "text": "(7.63): physicalCurve and velocity covariance give the rescaling at the level of Fourier states and almost-everywhere physical representatives; the displayed equality of physical-time suprema is not an exposed theorem conclusion.",
    "because": [
-    "item-equation-7-63"
+    "r5-gap-paper-index-0180"
    ]
   },
   "Breakdown.WeakProfile.physicalIdentity_of_parts": {
@@ -9818,6 +13619,153 @@
    "text": "(7.14): The physical energies agree; the internal sizeZ norm uses omega = 1 after a proved rescaling of forcing fields and multipliers.",
    "because": [
     "item-equation-7-14"
+   ]
+  },
+  "Breakdown.FarField.heatConv": {
+   "verdict": "different",
+   "text": "(2.1): heatX is Fourier-defined on X, and source proofs identify its reconstructed L6 velocity with Gaussian convolution almost everywhere for positive time; the paper defines heat evolution on general Lp fields and includes time zero.",
+   "because": [
+    "r5-corrected-comparison-equation-2-1"
+   ]
+  },
+  "Breakdown.FarField.HeatVelocity": {
+   "verdict": "different",
+   "text": "(2.1): heatX is Fourier-defined on X, and source proofs identify its reconstructed L6 velocity with Gaussian convolution almost everywhere for positive time; the paper defines heat evolution on general Lp fields and includes time zero.",
+   "because": [
+    "r5-corrected-comparison-equation-2-1"
+   ]
+  },
+  "Breakdown.FarField.heatVelocity_of_heatConvTest": {
+   "verdict": "different",
+   "text": "(2.1): heatX is Fourier-defined on X, and source proofs identify its reconstructed L6 velocity with Gaussian convolution almost everywhere for positive time; the paper defines heat evolution on general Lp fields and includes time zero.",
+   "because": [
+    "r5-corrected-comparison-equation-2-1"
+   ]
+  },
+  "Breakdown.FarField.lerayKernel": {
+   "verdict": "different",
+   "text": "(3.9): Lean defines the Leray-divergence kernel and supplies a proof of its power-four parabolic decay; the paper states bounds for every derivative order of the Oseen tensor.",
+   "because": [
+    "r5-corrected-comparison-equation-3-9"
+   ]
+  },
+  "Breakdown.FarField.LerayKernelBound": {
+   "verdict": "different",
+   "text": "(3.9): Lean defines the Leray-divergence kernel and supplies a proof of its power-four parabolic decay; the paper states bounds for every derivative order of the Oseen tensor.",
+   "because": [
+    "r5-corrected-comparison-equation-3-9"
+   ]
+  },
+  "Breakdown.FarField.lerayKernelBound_holds": {
+   "verdict": "different",
+   "text": "(3.9): Lean defines the Leray-divergence kernel and supplies a proof of its power-four parabolic decay; the paper states bounds for every derivative order of the Oseen tensor.",
+   "because": [
+    "r5-corrected-comparison-equation-3-9"
+   ]
+  },
+  "Breakdown.FarField.BilinTestKernel": {
+   "verdict": "different",
+   "text": "(3.10): Lean supplies an almost-everywhere physical convolution formula for K(tau)(u,u), with a compact test-field version; the display also quantifies over arbitrary tensor divergences and distinct inputs u and v.",
+   "because": [
+    "r5-corrected-comparison-equation-3-10"
+   ]
+  },
+  "Breakdown.FarField.BilinKernel": {
+   "verdict": "different",
+   "text": "(3.10): Lean supplies an almost-everywhere physical convolution formula for K(tau)(u,u), with a compact test-field version; the display also quantifies over arbitrary tensor divergences and distinct inputs u and v.",
+   "because": [
+    "r5-corrected-comparison-equation-3-10"
+   ]
+  },
+  "Breakdown.FarField.bilinKernel_of_test_decay": {
+   "verdict": "different",
+   "text": "(3.10): Lean supplies an almost-everywhere physical convolution formula for K(tau)(u,u), with a compact test-field version; the display also quantifies over arbitrary tensor divergences and distinct inputs u and v.",
+   "because": [
+    "r5-corrected-comparison-equation-3-10"
+   ]
+  },
+  "Breakdown.Periodic.ShellTorus.Internal.sourceOp_threeHalves": {
+   "verdict": "different",
+   "text": "(3.19): Lean supplies the tau^(-3/4) L^(3/2) forcing bound for compactly supported L2 data transplanted to its inhomogeneous unit-torus space, with mu*tau <= 1; the paper allows every period and all positive times in the mean-zero homogeneous space.",
+   "because": [
+    "r5-corrected-comparison-equation-3-19"
+   ]
+  },
+  "Breakdown.Periodic.sourceOp": {
+   "verdict": "different",
+   "text": "(3.19): Lean supplies the tau^(-3/4) L^(3/2) forcing bound for compactly supported L2 data transplanted to its inhomogeneous unit-torus space, with mu*tau <= 1; the paper allows every period and all positive times in the mean-zero homogeneous space.",
+   "because": [
+    "r5-corrected-comparison-equation-3-19"
+   ]
+  },
+  "Breakdown.Cert.Internal.FreeEnergyLocal.IsEnergyCurve": {
+   "verdict": "different",
+   "text": "(7.45): Lean constructs a continuous periodic representative satisfying an integrated energy identity for freeInv in similarity time; the printed line is the physical-time identity obtained from a general Lions-Magenes argument.",
+   "because": [
+    "r5-corrected-comparison-equation-7-45"
+   ]
+  },
+  "Breakdown.Freq.VelocityDilate": {
+   "verdict": "different",
+   "text": "(7.63): physicalCurve and velocity covariance give the rescaling at the level of Fourier states and almost-everywhere physical representatives; the displayed equality of physical-time suprema is not an exposed theorem conclusion.",
+   "because": [
+    "r5-gap-paper-index-0180"
+   ]
+  },
+  "Breakdown.Freq.velocityCov_holds": {
+   "verdict": "different",
+   "text": "(7.63): physicalCurve and velocity covariance give the rescaling at the level of Fourier states and almost-everywhere physical representatives; the displayed equality of physical-time suprema is not an exposed theorem conclusion.",
+   "because": [
+    "r5-gap-paper-index-0180"
+   ]
+  },
+  "Breakdown.FarField.IsRegularOrbitField": {
+   "verdict": "different",
+   "text": "(7.66): The decay theorem assumes IsRegularOrbitField, including an integral equation, uniform derivatives, a vanishing tail and square-integrable pressure gradient; its rescaled velocity estimate corresponds to the display without identifying those premises with the paper's weaker written input.",
+   "because": [
+    "r5-gap-paper-index-0183"
+   ]
+  },
+  "Breakdown.FarField.IsSmoothOrbitField": {
+   "verdict": "different",
+   "text": "(7.66): The decay theorem assumes IsRegularOrbitField, including an integral equation, uniform derivatives, a vanishing tail and square-integrable pressure gradient; its rescaled velocity estimate corresponds to the display without identifying those premises with the paper's weaker written input.",
+   "because": [
+    "r5-gap-paper-index-0183"
+   ]
+  },
+  "Breakdown.CertCell.Assembly.Internal.RemainderAnnihilates.cross_identity": {
+   "verdict": "different",
+   "text": "(C.1): centreDefect encodes a continuum residual in derivative and pressure-adjusted advection form with extra period and actuator parameters; source proofs supply curl algebra, while the printed curl-cross PDE and the surrounding numerical computation are not one verified package.",
+   "because": [
+    "r5-corrected-comparison-equation-C-1"
+   ]
+  },
+  "Breakdown.Coercive.Internal.TestDensityProof.negSsp_curl_curl": {
+   "verdict": "different",
+   "text": "(C.1): centreDefect encodes a continuum residual in derivative and pressure-adjusted advection form with extra period and actuator parameters; source proofs supply curl algebra, while the printed curl-cross PDE and the surrounding numerical computation are not one verified package.",
+   "because": [
+    "r5-corrected-comparison-equation-C-1"
+   ]
+  },
+  "Breakdown.CertCell.CellCalculus.couplingField": {
+   "verdict": "different",
+   "text": "(C.2): Lean defines the two curl-cross linear coupling terms and proves their weak-testing bridge with explicit derivative, pressure and actuator data; these continuum results do not verify the matrix-free Newton or flexible-GMRES procedure described around the displayed operator.",
+   "because": [
+    "r5-corrected-comparison-equation-C-2"
+   ]
+  },
+  "Breakdown.CertCell.CellCalculus.IsStrongRightSide": {
+   "verdict": "different",
+   "text": "(C.2): Lean defines the two curl-cross linear coupling terms and proves their weak-testing bridge with explicit derivative, pressure and actuator data; these continuum results do not verify the matrix-free Newton or flexible-GMRES procedure described around the displayed operator.",
+   "because": [
+    "r5-corrected-comparison-equation-C-2"
+   ]
+  },
+  "Breakdown.CertCell.Assembly.remainderAnnihilates_holds": {
+   "verdict": "different",
+   "text": "(C.2): Lean defines the two curl-cross linear coupling terms and proves their weak-testing bridge with explicit derivative, pressure and actuator data; these continuum results do not verify the matrix-free Newton or flexible-GMRES procedure described around the displayed operator.",
+   "because": [
+    "r5-corrected-comparison-equation-C-2"
    ]
   }
  }

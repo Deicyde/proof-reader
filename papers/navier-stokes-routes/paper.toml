@@ -13,7 +13,7 @@ text = "Paper and Lean: Levent Alpöge and Tristan Buckmaster, github.com/trista
 
 [lean]
 project = "../navier-stokes-paper/lean"
-modules = ["Breakdown.Base.Framework", "Breakdown.Base.Realization", "Breakdown.CellReduction.AdjointAssembly", "Breakdown.CellReduction.AdjointQuadraticBridge", "Breakdown.CellReduction.AdjointStatements", "Breakdown.CellReduction.CellLayerBreakdownClosed", "Breakdown.CellReduction.CellLayerBreakdownCompose", "Breakdown.CellReduction.InstAssembly", "Breakdown.CellReduction.InstOffsetClause", "Breakdown.CellReduction.InstanceStatements", "Breakdown.CellReduction.ReductionClosed", "Breakdown.CellReduction.ReductionStatements", "Breakdown.Cert.Assembly", "Breakdown.Cert.CoerciveMain", "Breakdown.Cert.ContractionFixedPoint", "Breakdown.Cert.ExtendedAdjointEnclosure", "Breakdown.Cert.ExtendedAssembly", "Breakdown.Cert.ExtendedAtProfile", "Breakdown.Cert.ExtendedBorderedInvertible", "Breakdown.Cert.ExtendedCoerciveBordered", "Breakdown.Cert.ExtendedCoerciveMain", "Breakdown.Cert.ExtendedConvection", "Breakdown.Cert.ExtendedConvectionCompact", "Breakdown.Cert.ExtendedDataContinuity", "Breakdown.Cert.ExtendedExistsZeroHeld", "Breakdown.Cert.ExtendedHeldContracts", "Breakdown.Cert.ExtendedHeldExistsUnique", "Breakdown.Cert.ExtendedHeldLimit", "Breakdown.Cert.ExtendedHeldMapsTo", "Breakdown.Cert.ExtendedHeldNonzero", "Breakdown.Cert.ExtendedHeldWeakEquation", "Breakdown.Cert.ExtendedMain", "Breakdown.Cert.ExtendedMultiplierContinuity", "Breakdown.Cert.ExtendedNodes", "Breakdown.Cert.ExtendedSigmaProfileOfHeld", "Breakdown.Cert.ExtendedStatement", "Breakdown.Cert.ExtendedStiffEnclosure", "Breakdown.Cert.ExtendedUnitWeight", "Breakdown.Cert.FreeInv", "Breakdown.Cert.FreePerturbation", "Breakdown.Cert.HalfOrderGraphMem", "Breakdown.Cert.LocalCompactness", "Breakdown.Cert.Main", "Breakdown.Cert.Nodes", "Breakdown.Cert.ProductBound", "Breakdown.Cert.ReadingEnergy", "Breakdown.Cert.ReadingExists", "Breakdown.Cert.Rescale", "Breakdown.Cert.SliceReading", "Breakdown.Cert.Statement", "Breakdown.Cert.TestDense", "Breakdown.Cert.TestPairing", "Breakdown.CertCell.AssemblyCellRange", "Breakdown.CertCell.AssemblyEliminationStage", "Breakdown.CertCell.AssemblyStatements", "Breakdown.CertCell.AssemblyTreeState", "Breakdown.CertCell.CellCalculusStatements", "Breakdown.CertCell.CellLayerClosed", "Breakdown.CertCell.CellLayerConclusion", "Breakdown.CertCell.CellLayerPartProofs", "Breakdown.CertCell.CellLayerResidualClosed", "Breakdown.CertCell.CellLayerStatements", "Breakdown.CertCell.CertificateEnclosureStatements", "Breakdown.CertCell.HarmonicRelations", "Breakdown.CertCell.RowsMatchBridge", "Breakdown.CertCell.StatementDefs", "Breakdown.CertTorus.CertificateCorollary", "Breakdown.CertTorus.DecayCompose", "Breakdown.CertTorus.Defs", "Breakdown.CertTorus.FarFieldDecayClosed", "Breakdown.CertTorus.IntegralEquationClosed", "Breakdown.CertTorus.LocalGainOfPicard", "Breakdown.CertTorus.Main", "Breakdown.CertTorus.MildSmoothing", "Breakdown.CertTorus.OrbitSmoothOfWindows", "Breakdown.CertTorus.OrbitTailOfSymbolCurve", "Breakdown.CertTorus.RegularStatements", "Breakdown.CertTorus.SmoothFieldClosed", "Breakdown.Defs", "Breakdown.Frac.SpaceExports", "Breakdown.Frac.TorusBlowupExports", "Breakdown.FracCell.Assembly", "Breakdown.FracCell.FinalChain", "Breakdown.FracCell.StatementDefs", "Breakdown.FracCert.Defs", "Breakdown.FracCert.Main", "Breakdown.FracCert.StFree", "Breakdown.FracCert.StHeld", "Breakdown.FracCert.StWeak", "Breakdown.FreqTr.Basic", "Breakdown.FreqTr.EmbedDilate", "Breakdown.FreqTr.GradSixDecay", "Breakdown.FreqTr.Realization", "Breakdown.FreqTr.Statements", "Breakdown.FreqTr.StatementsExport", "Breakdown.Held.AdjointEnclosure", "Breakdown.Held.Exports", "Breakdown.Held.Statements", "Breakdown.Profile.L2", "Breakdown.Profile.Orbit", "Breakdown.Profile.Parts", "Breakdown.Profile.SliceContinuity", "Breakdown.Profile.StatementsEmbed", "Breakdown.Profile.StatementsField", "Breakdown.Profile.StatementsFlow", "Breakdown.Profile.StatementsPhysical", "Breakdown.Profile.StatementsSlice", "Breakdown.Profile.Weak", "Breakdown.Spectral.CompactPart", "Breakdown.Spectral.ComplexDichotomy", "Breakdown.Spectral.FiniteSpectrum", "Breakdown.Spectral.RealDichotomy", "Breakdown.Spectral.SpectralProjection", "Breakdown.Torus.ApproxClose", "Breakdown.Torus.ApproxResidual", "Breakdown.Torus.ApproxSizes", "Breakdown.Torus.Approximants", "Breakdown.Torus.Assembly", "Breakdown.Torus.BaseInverse", "Breakdown.Torus.CompareFinal", "Breakdown.Torus.CompareLambdaAssembly", "Breakdown.Torus.CompareSeedAssembly", "Breakdown.Torus.CompareStatements", "Breakdown.Torus.Glue", "Breakdown.Torus.GlueUnbounded", "Breakdown.Torus.HeatComparison", "Breakdown.Torus.InverseAlgebra", "Breakdown.Torus.Main", "Breakdown.Torus.MovingFrame", "Breakdown.Torus.Reduction", "Breakdown.Torus.SeqPerturbation", "Breakdown.Torus.StatementsAnalysis", "Breakdown.Torus.StatementsApprox", "Breakdown.Torus.StatementsApproxSteps", "Breakdown.Torus.StatementsInverse", "Breakdown.Torus.StatementsSeqOps", "Breakdown.Torus.StatementsShell", "Breakdown.Torus.StatementsSmooth", "Breakdown.Torus.StatementsSteps", "Breakdown.Torus.Transplant", "Breakdown.Transfer.Contraction", "Breakdown.Transfer.DiscreteDichotomy", "Breakdown.Transfer.Exports", "Breakdown.Transfer.Main", "Breakdown.Transfer.OrbitNorm", "Breakdown.Transfer.Section", "Breakdown.Transfer.StatementsAbstract", "Breakdown.Transfer.StatementsDefs", "Breakdown.Transfer.StatementsFrame", "Breakdown.Transfer.StatementsLocal", "Breakdown.Transfer.VarConstIntegral", "Breakdown.Uniqueness.Basic", "Breakdown.Uniqueness.Blowup", "Breakdown.Uniqueness.LocalBlowup", "Breakdown.Uniqueness.Main", "Breakdown.Uniqueness.RegDefs", "Breakdown.Uniqueness.RegGlue", "Breakdown.Uniqueness.RegPhys", "Breakdown.Uniqueness.Restrict", "Breakdown.Uniqueness.Scaling", "Breakdown.Uniqueness.Space", "Breakdown.Weak.Basic", "Breakdown.Weak.GoodTimes", "Breakdown.Weak.Main", "Breakdown.Weak.MildFromGood", "Breakdown.Weak.OrbitBreakdown", "Breakdown.Weak.OrbitOfParts", "Breakdown.Weak.PhysicalIdentity", "Breakdown.Weak.Representative", "Breakdown.Weak.SimilarityIdentity", "Breakdown.Weak.SliceEmbedding", "Breakdown.Weak.StatementsOrbit", "Breakdown.Weak.StatementsSlice", "Breakdown.Weak.StatementsTime", "Breakdown.Weak.ZeroGradient", "Solution"]
+modules = ["Breakdown.Base.Framework", "Breakdown.Base.Realization", "Breakdown.CellReduction.AdjointStatements", "Breakdown.CellReduction.CellLayerBreakdownClosed", "Breakdown.CellReduction.CellLayerBreakdownCompose", "Breakdown.CellReduction.InstanceStatements", "Breakdown.CellReduction.ReductionStatements", "Breakdown.Cert.ExtendedAssembly", "Breakdown.Cert.ExtendedExistsZeroHeld", "Breakdown.Cert.ExtendedHeldExistsUnique", "Breakdown.Cert.ExtendedMain", "Breakdown.Cert.ExtendedNodes", "Breakdown.Cert.ExtendedSigmaProfileOfHeld", "Breakdown.Cert.ExtendedStatement", "Breakdown.Cert.HalfOrderGraphMem", "Breakdown.Cert.Nodes", "Breakdown.Cert.ReadingEnergy", "Breakdown.Cert.Statement", "Breakdown.CertCell.AssemblyStatements", "Breakdown.CertCell.CellCalculusStatements", "Breakdown.CertCell.CellLayerClosed", "Breakdown.CertCell.CellLayerStatements", "Breakdown.CertCell.CertificateEnclosureStatements", "Breakdown.CertCell.StatementDefs", "Breakdown.CertTorus.Defs", "Breakdown.CertTorus.Main", "Breakdown.CertTorus.SmoothFieldClosed", "Breakdown.Defs", "Breakdown.FracCell.StatementDefs", "Breakdown.FracCert.Defs", "Breakdown.FreqTr.Basic", "Breakdown.FreqTr.EmbedDilate", "Breakdown.FreqTr.Realization", "Breakdown.FreqTr.Statements", "Breakdown.Held.Exports", "Breakdown.Held.Statements", "Breakdown.Profile.StatementsEmbed", "Breakdown.Profile.StatementsSlice", "Breakdown.Spectral.RealDichotomy", "Breakdown.Torus.Assembly", "Breakdown.Torus.Main", "Breakdown.Torus.MovingFrame", "Breakdown.Torus.StatementsAnalysis", "Breakdown.Torus.StatementsApprox", "Breakdown.Torus.StatementsApproxSteps", "Breakdown.Torus.StatementsInverse", "Breakdown.Torus.StatementsSeqOps", "Breakdown.Torus.StatementsShell", "Breakdown.Torus.StatementsSmooth", "Breakdown.Torus.StatementsSteps", "Breakdown.Transfer.Exports", "Breakdown.Transfer.Main", "Breakdown.Transfer.StatementsAbstract", "Breakdown.Transfer.StatementsDefs", "Breakdown.Transfer.StatementsFrame", "Breakdown.Transfer.StatementsLocal", "Breakdown.Uniqueness.Basic", "Breakdown.Uniqueness.Restrict", "Breakdown.Uniqueness.Space", "Breakdown.Weak.Basic", "Breakdown.Weak.Main", "Breakdown.Weak.OrbitOfParts", "Breakdown.Weak.StatementsOrbit", "Breakdown.Weak.StatementsSlice", "Breakdown.Weak.StatementsTime", "Solution"]
 source = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546/lean"
 source_name = "navier-stokes at ad53419"
 source_lines = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/{path}#L{line}-L{end}"
@@ -28,14 +28,52 @@ language = "lean"
 "../navier-stokes-cell-guide/paper.md" = "navier-stokes-cell-guide"
 "../navier-stokes-cell-reference/paper.md" = "navier-stokes-cell-reference"
 "../navier-stokes-index/paper.md" = "navier-stokes-index"
+"../navier-stokes-library-01/paper.md" = "navier-stokes-library-01"
+"../navier-stokes-library-02/paper.md" = "navier-stokes-library-02"
+"../navier-stokes-library-03/paper.md" = "navier-stokes-library-03"
+"../navier-stokes-library-04/paper.md" = "navier-stokes-library-04"
+"../navier-stokes-library-05/paper.md" = "navier-stokes-library-05"
+"../navier-stokes-library-06/paper.md" = "navier-stokes-library-06"
+"../navier-stokes-library-07/paper.md" = "navier-stokes-library-07"
+"../navier-stokes-library-08/paper.md" = "navier-stokes-library-08"
+"../navier-stokes-library-09/paper.md" = "navier-stokes-library-09"
+"../navier-stokes-library-10/paper.md" = "navier-stokes-library-10"
+"../navier-stokes-library-11/paper.md" = "navier-stokes-library-11"
+"../navier-stokes-library-12/paper.md" = "navier-stokes-library-12"
+"../navier-stokes-library-13/paper.md" = "navier-stokes-library-13"
+"../navier-stokes-library-14/paper.md" = "navier-stokes-library-14"
+"../navier-stokes-library-15/paper.md" = "navier-stokes-library-15"
+"../navier-stokes-library-16/paper.md" = "navier-stokes-library-16"
+"../navier-stokes-library-17/paper.md" = "navier-stokes-library-17"
+"../navier-stokes-library-18/paper.md" = "navier-stokes-library-18"
+"../navier-stokes-library-19/paper.md" = "navier-stokes-library-19"
+"../navier-stokes-library-20/paper.md" = "navier-stokes-library-20"
+"../navier-stokes-library-21/paper.md" = "navier-stokes-library-21"
+"../navier-stokes-library-22/paper.md" = "navier-stokes-library-22"
+"../navier-stokes-library-23/paper.md" = "navier-stokes-library-23"
+"../navier-stokes-library-24/paper.md" = "navier-stokes-library-24"
+"../navier-stokes-library-25/paper.md" = "navier-stokes-library-25"
+"../navier-stokes-library-26/paper.md" = "navier-stokes-library-26"
+"../navier-stokes-library-27/paper.md" = "navier-stokes-library-27"
+"../navier-stokes-library-28/paper.md" = "navier-stokes-library-28"
+"../navier-stokes-library-29/paper.md" = "navier-stokes-library-29"
+"../navier-stokes-library-30/paper.md" = "navier-stokes-library-30"
 "../navier-stokes-paper/paper.pdf" = "navier-stokes-paper"
 "../navier-stokes-part-1/paper.md" = "navier-stokes-part-1"
 "../navier-stokes-part-2/paper.md" = "navier-stokes-part-2"
+"../navier-stokes-route-details/paper.md" = "navier-stokes-route-details"
 "../navier-stokes-statement-files/paper.md" = "navier-stokes-statement-files"
 "../navier-stokes/cell-layer-fidelity.md" = "navier-stokes-cell-fidelity"
 "../navier-stokes/certificate-checker.md" = "navier-stokes-certificate-checker"
 "../navier-stokes/digest.md" = "navier-stokes-digest"
 "../navier-stokes/paper.md" = "navier-stokes"
+
+
+
+
+
+
+
 
 [shelf]
 with = "navier-stokes-paper"

@@ -13,7 +13,7 @@ text = "Paper and Lean: Levent Alpöge and Tristan Buckmaster, github.com/trista
 
 [lean]
 project = "../navier-stokes-paper/lean"
-modules = ["Breakdown.CellReduction.AdjointAssembly", "Breakdown.CellReduction.AdjointAssemblyPairing", "Breakdown.CellReduction.AdjointDualBounded", "Breakdown.CellReduction.AdjointEntryDefs", "Breakdown.CellReduction.AdjointFreeShift", "Breakdown.CellReduction.AdjointPinCharge", "Breakdown.CellReduction.AdjointPotentialBound", "Breakdown.CellReduction.AdjointQuadTerm", "Breakdown.CellReduction.AdjointQuadraticBridge", "Breakdown.CellReduction.AdjointRemainderAzimuthal", "Breakdown.CellReduction.AdjointRemainderAzimuthalPairing", "Breakdown.CellReduction.AdjointRemainderAzimuthalSmooth", "Breakdown.CellReduction.AdjointRemainderAzimuthalTime", "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak", "Breakdown.CellReduction.AdjointRemainderPlain", "Breakdown.CellReduction.AdjointRepresentation", "Breakdown.CellReduction.AdjointTestDensity", "Breakdown.CellReduction.CellLayerBreakdownClosed", "Breakdown.CellReduction.CellLayerBreakdownCompose", "Breakdown.CellReduction.ConvectionIdentityClosed", "Breakdown.CellReduction.FormShiftBridge", "Breakdown.CellReduction.FrozenFormBridge", "Breakdown.CellReduction.GapTransferBridge", "Breakdown.CellReduction.InstBallAgreement", "Breakdown.CellReduction.InstOffsetClause", "Breakdown.CellReduction.InstOffsetIdentity", "Breakdown.CellReduction.InstStepPhase", "Breakdown.CellReduction.PotentialPartsClosed", "Breakdown.CellReduction.PotentialShape", "Breakdown.CellReduction.ReductionClosed", "Breakdown.Cert.CoerciveFrequencySeminorm", "Breakdown.Cert.CoerciveFrequencySeminormTransport", "Breakdown.Cert.CoercivePieceField", "Breakdown.Cert.CoerciveSmoothApprox", "Breakdown.Cert.CoerciveSmoothBase", "Breakdown.Cert.CoerciveStatement", "Breakdown.Cert.CoerciveStretch", "Breakdown.Cert.ExtendedCoerciveAbsorbStep", "Breakdown.Cert.ExtendedCoerciveDefs", "Breakdown.Cert.ExtendedCoerciveEnergyIdentity", "Breakdown.Cert.ExtendedCoerciveMain", "Breakdown.Cert.ExtendedCoercivePieceDensityPassage", "Breakdown.Cert.ExtendedCoercivePieceEps", "Breakdown.Cert.ExtendedCoercivePieceMu", "Breakdown.Cert.ExtendedStatement", "Breakdown.Cert.Statement", "Breakdown.CertCell.AssemblyCellRange", "Breakdown.CertCell.AssemblyEliminationStage", "Breakdown.CertCell.AssemblyExteriorStretch", "Breakdown.CertCell.AssemblyPotentialGroups", "Breakdown.CertCell.AssemblyPotentialModelCharges", "Breakdown.CertCell.AssemblyPotentialSharpFrame", "Breakdown.CertCell.AssemblyResidual", "Breakdown.CertCell.AssemblyTailGain", "Breakdown.CertCell.AssemblyTopBound", "Breakdown.CertCell.AssemblyTreeState", "Breakdown.CertCell.BridgeStatements", "Breakdown.CertCell.CellCalculusStatements", "Breakdown.CertCell.CellLayerClosed", "Breakdown.CertCell.CellLayerConclusion", "Breakdown.CertCell.CellLayerJunctions", "Breakdown.CertCell.CellLayerPartProofs", "Breakdown.CertCell.CertComplexSlackBound", "Breakdown.CertCell.CertCoordinateSlack", "Breakdown.CertCell.CertPivotCount", "Breakdown.CertCell.CertRealRestriction", "Breakdown.CertCell.CertSlackBound", "Breakdown.CertCell.CertTerminalTest", "Breakdown.CertCell.CertTreeLowerBound", "Breakdown.CertCell.Certificate", "Breakdown.CertCell.CertificateEnclosureStatements", "Breakdown.CertCell.CertificateStatements", "Breakdown.CertCell.EnergyLeafBound", "Breakdown.CertCell.FormNegativeFinite", "Breakdown.CertCell.HalfPlaneReduction", "Breakdown.CertCell.InstancePairSurrogateClosed", "Breakdown.CertCell.ModeDensityBridgeLinks", "Breakdown.CertCell.ModeFlip", "Breakdown.CertCell.ModeTermFlip", "Breakdown.CertCell.RowSharesInstance", "Breakdown.CertCell.RowsMatchBridge", "Breakdown.CertCell.StatementDefs", "Breakdown.CertCell.StretchFlip", "Breakdown.CertCell.StretchTripleBound", "Breakdown.CertCell.TailAngular", "Breakdown.CertCell.TailExteriorLinks", "Breakdown.CertCell.TailPointwise", "Breakdown.CertCell.TailRayBound", "Breakdown.CertCell.TailRayModes", "Breakdown.CertCell.TailSquareModes", "Breakdown.CertCell.TailSquareSmooth", "Breakdown.CertCell.TopStatements", "Breakdown.FracCell.StatementDefs", "Solution"]
+modules = ["Breakdown.CellReduction.AdjointAssembly", "Breakdown.CellReduction.AdjointAssemblyPairing", "Breakdown.CellReduction.AdjointDualBounded", "Breakdown.CellReduction.AdjointEntryDefs", "Breakdown.CellReduction.AdjointFreeShift", "Breakdown.CellReduction.AdjointPinCharge", "Breakdown.CellReduction.AdjointPotentialBound", "Breakdown.CellReduction.AdjointQuadTerm", "Breakdown.CellReduction.AdjointQuadraticBridge", "Breakdown.CellReduction.AdjointRemainderAzimuthal", "Breakdown.CellReduction.AdjointRemainderAzimuthalPairing", "Breakdown.CellReduction.AdjointRemainderAzimuthalSmooth", "Breakdown.CellReduction.AdjointRemainderAzimuthalTime", "Breakdown.CellReduction.AdjointRemainderAzimuthalWeak", "Breakdown.CellReduction.AdjointRemainderPlain", "Breakdown.CellReduction.AdjointRepresentation", "Breakdown.CellReduction.AdjointTestDensity", "Breakdown.CellReduction.CellLayerBreakdownClosed", "Breakdown.CellReduction.CellLayerBreakdownCompose", "Breakdown.CellReduction.ConvectionIdentityClosed", "Breakdown.CellReduction.FormShiftBridge", "Breakdown.CellReduction.FrozenFormBridge", "Breakdown.CellReduction.GapTransferBridge", "Breakdown.CellReduction.InstAdjointField", "Breakdown.CellReduction.InstBallAgreement", "Breakdown.CellReduction.InstFieldDecayOrder", "Breakdown.CellReduction.InstOffsetClause", "Breakdown.CellReduction.InstOffsetIdentity", "Breakdown.CellReduction.InstStepPhase", "Breakdown.CellReduction.PotentialPartsClosed", "Breakdown.CellReduction.PotentialShape", "Breakdown.CellReduction.ReductionClosed", "Breakdown.Cert.Basic", "Breakdown.Cert.CoerciveFrequencySeminorm", "Breakdown.Cert.CoerciveFrequencySeminormTransport", "Breakdown.Cert.CoercivePieceField", "Breakdown.Cert.CoerciveSmoothApprox", "Breakdown.Cert.CoerciveSmoothBase", "Breakdown.Cert.CoerciveStatement", "Breakdown.Cert.CoerciveStretch", "Breakdown.Cert.ExtendedCoerciveAbsorbStep", "Breakdown.Cert.ExtendedCoerciveDefs", "Breakdown.Cert.ExtendedCoerciveEnergyIdentity", "Breakdown.Cert.ExtendedCoerciveMain", "Breakdown.Cert.ExtendedCoercivePieceDensityPassage", "Breakdown.Cert.ExtendedCoercivePieceEps", "Breakdown.Cert.ExtendedCoercivePieceMu", "Breakdown.Cert.ExtendedStatement", "Breakdown.Cert.Statement", "Breakdown.CertCell.AssemblyCellRange", "Breakdown.CertCell.AssemblyEliminationStage", "Breakdown.CertCell.AssemblyExteriorStretch", "Breakdown.CertCell.AssemblyPotentialGroups", "Breakdown.CertCell.AssemblyPotentialModelCharges", "Breakdown.CertCell.AssemblyPotentialSharpFrame", "Breakdown.CertCell.AssemblyResidual", "Breakdown.CertCell.AssemblyTailGain", "Breakdown.CertCell.AssemblyTopBound", "Breakdown.CertCell.AssemblyTreeState", "Breakdown.CertCell.BridgeStatements", "Breakdown.CertCell.CellCalculusStatements", "Breakdown.CertCell.CellLayerClosed", "Breakdown.CertCell.CellLayerConclusion", "Breakdown.CertCell.CellLayerJunctions", "Breakdown.CertCell.CellLayerPartProofs", "Breakdown.CertCell.CertComplexSlackBound", "Breakdown.CertCell.CertCoordinateSlack", "Breakdown.CertCell.CertPivotCount", "Breakdown.CertCell.CertRealRestriction", "Breakdown.CertCell.CertSlackBound", "Breakdown.CertCell.CertTerminalTest", "Breakdown.CertCell.CertTreeLowerBound", "Breakdown.CertCell.Certificate", "Breakdown.CertCell.CertificateEnclosureStatements", "Breakdown.CertCell.CertificateStatements", "Breakdown.CertCell.EnergyLeafBound", "Breakdown.CertCell.FormNegativeFinite", "Breakdown.CertCell.HalfPlaneReduction", "Breakdown.CertCell.InstancePairSurrogateClosed", "Breakdown.CertCell.InstanceStatements", "Breakdown.CertCell.ModeDensityBridgeLinks", "Breakdown.CertCell.ModeFlip", "Breakdown.CertCell.ModeTermFlip", "Breakdown.CertCell.RowSharesInstance", "Breakdown.CertCell.RowsMatchBridge", "Breakdown.CertCell.ShapeFieldDiv", "Breakdown.CertCell.StatementDefs", "Breakdown.CertCell.StretchFlip", "Breakdown.CertCell.StretchTripleBound", "Breakdown.CertCell.TailAngular", "Breakdown.CertCell.TailExteriorLinks", "Breakdown.CertCell.TailPointwise", "Breakdown.CertCell.TailRayBound", "Breakdown.CertCell.TailRayModes", "Breakdown.CertCell.TailSquareModes", "Breakdown.CertCell.TailSquareSmooth", "Breakdown.CertCell.TopStatements", "Breakdown.FracCell.StatementDefs", "Breakdown.FreqTr.Basic", "Solution"]
 source = "https://github.com/tristanbuckmaster/navier-stokes/tree/ad53419de079eb8f95f60313473374624a348546/lean"
 source_name = "navier-stokes at ad53419"
 source_lines = "https://github.com/tristanbuckmaster/navier-stokes/blob/ad53419de079eb8f95f60313473374624a348546/lean/{path}#L{line}-L{end}"
@@ -27,15 +27,53 @@ language = "lean"
 "../navier-stokes-cell-guide/paper.md" = "navier-stokes-cell-guide"
 "../navier-stokes-cell-reference/paper.md" = "navier-stokes-cell-reference"
 "../navier-stokes-index/paper.md" = "navier-stokes-index"
+"../navier-stokes-library-01/paper.md" = "navier-stokes-library-01"
+"../navier-stokes-library-02/paper.md" = "navier-stokes-library-02"
+"../navier-stokes-library-03/paper.md" = "navier-stokes-library-03"
+"../navier-stokes-library-04/paper.md" = "navier-stokes-library-04"
+"../navier-stokes-library-05/paper.md" = "navier-stokes-library-05"
+"../navier-stokes-library-06/paper.md" = "navier-stokes-library-06"
+"../navier-stokes-library-07/paper.md" = "navier-stokes-library-07"
+"../navier-stokes-library-08/paper.md" = "navier-stokes-library-08"
+"../navier-stokes-library-09/paper.md" = "navier-stokes-library-09"
+"../navier-stokes-library-10/paper.md" = "navier-stokes-library-10"
+"../navier-stokes-library-11/paper.md" = "navier-stokes-library-11"
+"../navier-stokes-library-12/paper.md" = "navier-stokes-library-12"
+"../navier-stokes-library-13/paper.md" = "navier-stokes-library-13"
+"../navier-stokes-library-14/paper.md" = "navier-stokes-library-14"
+"../navier-stokes-library-15/paper.md" = "navier-stokes-library-15"
+"../navier-stokes-library-16/paper.md" = "navier-stokes-library-16"
+"../navier-stokes-library-17/paper.md" = "navier-stokes-library-17"
+"../navier-stokes-library-18/paper.md" = "navier-stokes-library-18"
+"../navier-stokes-library-19/paper.md" = "navier-stokes-library-19"
+"../navier-stokes-library-20/paper.md" = "navier-stokes-library-20"
+"../navier-stokes-library-21/paper.md" = "navier-stokes-library-21"
+"../navier-stokes-library-22/paper.md" = "navier-stokes-library-22"
+"../navier-stokes-library-23/paper.md" = "navier-stokes-library-23"
+"../navier-stokes-library-24/paper.md" = "navier-stokes-library-24"
+"../navier-stokes-library-25/paper.md" = "navier-stokes-library-25"
+"../navier-stokes-library-26/paper.md" = "navier-stokes-library-26"
+"../navier-stokes-library-27/paper.md" = "navier-stokes-library-27"
+"../navier-stokes-library-28/paper.md" = "navier-stokes-library-28"
+"../navier-stokes-library-29/paper.md" = "navier-stokes-library-29"
+"../navier-stokes-library-30/paper.md" = "navier-stokes-library-30"
 "../navier-stokes-paper/paper.pdf" = "navier-stokes-paper"
 "../navier-stokes-part-1/paper.md" = "navier-stokes-part-1"
 "../navier-stokes-part-2/paper.md" = "navier-stokes-part-2"
+"../navier-stokes-route-details/paper.md" = "navier-stokes-route-details"
 "../navier-stokes-routes/paper.md" = "navier-stokes-routes"
 "../navier-stokes-statement-files/paper.md" = "navier-stokes-statement-files"
 "../navier-stokes/cell-layer-fidelity.md" = "navier-stokes-cell-fidelity"
 "../navier-stokes/certificate-checker.md" = "navier-stokes-certificate-checker"
 "../navier-stokes/digest.md" = "navier-stokes-digest"
 "../navier-stokes/paper.md" = "navier-stokes"
+
+
+
+
+
+
+
 
 [shelf]
 with = "navier-stokes-paper"

@@ -3,7 +3,7 @@
  "claims": [
   {
    "id": "cell-0788-claim",
-   "title": "Cell conditions imply blow-up on ℝ³",
+   "title": "Obtain conditional blow-up on space",
    "section": "fifteen-fields",
    "passage": "cell-0788",
    "lean": [
@@ -12,7 +12,7 @@
   },
   {
    "id": "cell-0789-claim",
-   "title": "Cell conditions imply blow-up on 𝕋³",
+   "title": "Obtain conditional blow-up on the torus",
    "section": "fifteen-fields",
    "passage": "cell-0789",
    "lean": [
@@ -21,7 +21,7 @@
   },
   {
    "id": "cell-0790-claim",
-   "title": "Cell conditions imply both conclusions",
+   "title": "Obtain both conditional conclusions",
    "section": "fifteen-fields",
    "passage": "cell-0790",
    "lean": [
@@ -38723,22 +38723,1270 @@
     "heading": "Cell conditions imply both conclusions (L7075)",
     "block": 1
    }
+  },
+  {
+   "id": "r5-cell-reference-0001",
+   "section": "Analytic interfaces",
+   "role": "mentions",
+   "quote": "Abstract fields, forms, norms and error data that the later representations must supply.",
+   "lean": [
+    "Breakdown.SteadyCert.FracCertData",
+    "Breakdown.CellCert.FracCellData"
+   ],
+   "anchor": {
+    "heading": "Analytic interfaces",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-cell-reference-0002",
+   "section": "Abstract cell approximation data (L91)",
+   "role": "explains",
+   "quote": "Also inherits the 46 directly declared fields of Breakdown.SteadyCert.FracCertData; those glosses are stored at the parent declaration.",
+   "lean": [
+    "Breakdown.CellCert.FracCellData",
+    "Breakdown.SteadyCert.FracCertData"
+   ],
+   "anchor": {
+    "heading": "Abstract cell approximation data (L91)",
+    "block": 4
+   }
+  },
+  {
+   "id": "r5-cell-reference-0004",
+   "section": "Identify the approximate profile (L3843)",
+   "role": "explains",
+   "quote": "**exact-pin-target**: Bind target to the actual decoded profile-gradient pin value, for every α and pin index. A separately rounded target vector breaks the exact target_eq identity; on this route it is the reason the target-gap quantity vanishes.",
+   "lean": [
+    "Breakdown.CellReduction.Instantiation.IsProfileShapeEntry"
+   ],
+   "anchor": {
+    "heading": "Identify the approximate profile (L3843)",
+    "block": 5
+   },
+   "title": "Identify the profile and target"
+  },
+  {
+   "id": "r5-cell-reference-0006",
+   "section": "Perturbation with finite form energy (L4997)",
+   "role": "explains",
+   "quote": "**similarity-transport-field**: The field g is T_P v, not the time derivative alone: its weak transport identity includes v/2 and (y·∇)v/2. Decode the right-hand side with this convention.",
+   "lean": [
+    "Breakdown.CertCell.AdmissibleTuple"
+   ],
+   "anchor": {
+    "heading": "Perturbation with finite form energy (L4997)",
+    "block": 5
+   },
+   "title": "Perturbation with finite form energy"
+  },
+  {
+   "id": "r5-cell-reference-0007",
+   "section": "Data representation",
+   "role": "mentions",
+   "quote": "Coordinate types, polynomial containers, linear maps and real or complex quadratic forms.",
+   "lean": [
+    "Breakdown.CertCell.CellPoly",
+    "Breakdown.CertCell.CellPoly.eval",
+    "Breakdown.CertCell.Instance.InstanceData"
+   ],
+   "anchor": {
+    "heading": "Data representation",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-cell-reference-0008",
+   "section": "Corner stream-function slot (L562)",
+   "role": "explains",
+   "quote": "**unlabelled-stream-block**: Corner-stream indices have no harmonic parameter. Multiplying this block by the number of modes silently changes every later packed coordinate position.",
+   "lean": [
+    "Breakdown.CellCert.CellFormula.CellDatum.cornerStream"
+   ],
+   "anchor": {
+    "heading": "Corner stream-function slot (L562)",
+    "block": 4
+   },
+   "title": "Corner stream-function slot"
+  },
+  {
+   "id": "r5-cell-reference-0010",
+   "section": "Mesh and cells",
+   "role": "mentions",
+   "quote": "Cell geometry, weights, mode sets, spatial support and the mesh complement.",
+   "lean": [
+    "Breakdown.CellCert.CellAnalysis.CellBox",
+    "Breakdown.CertCell.CellMesh",
+    "Breakdown.CertCell.CellMesh.exterior"
+   ],
+   "anchor": {
+    "heading": "Mesh and cells",
+    "block": 1
+   }
+  },
+  {
+   "id": "r5-cell-reference-0011",
+   "section": "Forcing support lies in the cells (L4832)",
+   "role": "explains",
+   "quote": "**support-radius-vacuity**: Do not infer a nonempty mesh from mesh_covers alone: H may be negative, and for k=0 the radius constraints are vacuous. Use the complete cell condition.",
+   "lean": [
+    "Breakdown.CertCell.GivenShape.ActuatorSupportFacts"
+   ],
+   "anchor": {
+    "heading": "Forcing support lies in the cells (L4832)",
+    "block": 5
+   },
+   "title": "Forcing support lies in the cells"
+  },
+  {
+   "id": "r5-cell-reference-0012",
+   "section": "Zero spline pieces after a cutoff (L1241)",
+   "role": "explains",
+   "quote": "**getd-support-default**: VanishesFrom quantifies over every natural i,j and reads a missing radial knot as 1. For a support cutoff below 1, all out-of-range radial pieces must also be zero; finite stored-piece checks need a matching continuation theorem.",
+   "lean": [
+    "Breakdown.CellCert.GivenFields.Spline.VanishesFrom"
+   ],
+   "anchor": {
+    "heading": "Zero spline pieces after a cutoff (L1241)",
+    "block": 4
+   },
+   "title": "Zero spline pieces after a cutoff"
+  },
+  {
+   "id": "r5-cell-reference-0013",
+   "section": "Polynomial joins of a chosen order (L2363)",
+   "role": "explains",
+   "quote": "**getd-join-default**: Knot reads in t_joins and x_joins default to zero, but their valid-mesh and interval-index guards keep these reads in range. Verify those guards exactly and use polynomial identities for every derivative through the required order.",
+   "lean": [
+    "Breakdown.CertCell.Instance.SplineJoins"
+   ],
+   "anchor": {
+    "heading": "Polynomial joins of a chosen order (L2363)",
+    "block": 5
+   },
+   "title": "Polynomial joins of a chosen order"
+  },
+  {
+   "id": "r5-cell-reference-0014",
+   "section": "Joins across cells and the plane (L2372)",
+   "role": "explains",
+   "quote": "**reflected-derivative-sign**: At the symmetry plane, the o-th height derivative carries the factor (−1)^o. Equality of upper and lower coefficient arrays without that sign is not the required join.",
+   "lean": [
+    "Breakdown.CertCell.Instance.IsJoinedScalar"
+   ],
+   "anchor": {
+    "heading": "Joins across cells and the plane (L2372)",
+    "block": 5
+   },
+   "title": "Joins across cells and the plane"
+  },
+  {
+   "id": "r5-cell-reference-0015",
+   "section": "Common constant near the origin (L2380)",
+   "role": "explains",
+   "quote": "**getd-core-and-outer-conjuncts**: The next-knot lookup defaults to one. Retain the valid index range and the independently required positive cutoff and knot membership; they are outside the universal implication and cannot become vacuous.",
+   "lean": [
+    "Breakdown.CertCell.Instance.IsConstantCore"
+   ],
+   "anchor": {
+    "heading": "Common constant near the origin (L2380)",
+    "block": 4
+   },
+   "title": "Common constant near the origin"
+  },
+  {
+   "id": "r5-cell-reference-0016",
+   "section": "Nonnegative values on both charts (L2390)",
+   "role": "explains",
+   "quote": "**nonnegativity-on-whole-chart**: The inequality covers every point of the unit square. A coefficient-based certificate can be sufficient only with the proved polynomial-to-value implication and the exact selected spline pieces.",
+   "lean": [
+    "Breakdown.CertCell.Instance.HasNonnegValues"
+   ],
+   "anchor": {
+    "heading": "Nonnegative values on both charts (L2390)",
+    "block": 4
+   },
+   "title": "Nonnegative values on both charts"
+  },
+  {
+   "id": "r5-cell-reference-0017",
+   "section": "Piecewise constant auxiliary weight (L2394)",
+   "role": "explains",
+   "quote": "**integer-decay-power**: Decode decay as an integer, not an unsigned count. Negative exponents are permitted by this data type and are controlled by the later shape and growth conditions.",
+   "lean": [
+    "Breakdown.CertCell.Instance.StepDatum"
+   ],
+   "anchor": {
+    "heading": "Piecewise constant auxiliary weight (L2394)",
+    "block": 5
+   },
+   "title": "Piecewise constant auxiliary weight"
+  },
+  {
+   "id": "r5-cell-reference-0018",
+   "section": "Equality on active spline pieces (L2666)",
+   "role": "explains",
+   "quote": "**active-piece-equality**: SplineAgrees compares active pieces only. Do not infer equality of the total piece functions outside their active ranges; separately check predicates such as VanishesFrom that quantify over all natural indices.",
+   "lean": [
+    "Breakdown.CertCell.GivenShape.SplineAgrees"
+   ],
+   "anchor": {
+    "heading": "Equality on active spline pieces (L2666)",
+    "block": 5
+   },
+   "title": "Equality on active spline pieces"
+  },
+  {
+   "id": "r5-cell-reference-0020",
+   "section": "Smoothly joined origin profile (L2783)",
+   "role": "explains",
+   "quote": "**origin-profile-endpoint**: When the origin-profile edge equals 1, the tail-joining implication has a false guard. Preserve that allowed case; the physical chart of a valid L>0 field stays below 1.",
+   "lean": [
+    "Breakdown.CertCell.GivenShape.IsOriginProfile"
+   ],
+   "anchor": {
+    "heading": "Smoothly joined origin profile (L2783)",
+    "block": 5
+   },
+   "title": "The joined origin correction"
+  },
+  {
+   "id": "r5-cell-reference-0021",
+   "section": "Divergence-free reduced components (L2823)",
+   "role": "explains",
+   "quote": "**shape-branch-and-axis-division**: Select the branch by exact ι₁=0. In the other branch division by κι₁ is legitimate only with positive κ and nonzero ι₁; keep the (1−η²)² and origin powers needed at the axis and origin.",
+   "lean": [
+    "Breakdown.CertCell.GivenShape.reducedComps"
+   ],
+   "anchor": {
+    "heading": "Divergence-free reduced components (L2823)",
+    "block": 4
+   },
+   "title": "Divergence-free amplitudes"
+  },
+  {
+   "id": "r5-cell-reference-0022",
+   "section": "Compactly supported harmonic data (L2905)",
+   "role": "explains",
+   "quote": "**compact-support-continuation**: VanishesFrom quantifies over all natural piece indices with a support-side default. A finite stored spline needs a continuation that vanishes outside the stored range, as well as the interior cutoff breakpoint and γ=0 clauses.",
+   "lean": [
+    "Breakdown.CertCell.GivenShape.IsCompactTimeFieldData"
+   ],
+   "anchor": {
+    "heading": "Compactly supported harmonic data (L2905)",
+    "block": 5
+   },
+   "title": "Compact forcing-field shape"
+  },
+  {
+   "id": "r5-cell-reference-0026",
+   "section": "Forcing modes avoid multiplier sets (L2563)",
+   "role": "explains",
+   "quote": "**full-forcing-exclusion-rectangle**: The multiplier exclusion covers every lattice label in the j_* rectangle for every α∈K, not only the labels actually stored in a forcing field. Its two bounds are |ι₂|≤j_* and |ι₂−ι₁|≤j_*.",
+   "lean": [
+    "Breakdown.CertCell.Instance.IsActuatorInstance"
+   ],
+   "anchor": {
+    "heading": "Forcing modes avoid multiplier sets (L2563)",
+    "block": 5
+   },
+   "title": "Forcing modes avoid multiplier sets"
+  },
+  {
+   "id": "r5-cell-reference-0027",
+   "section": "Allowed symmetry group elements (L2572)",
+   "role": "explains",
+   "quote": "**symmetry-normal-form**: A finite list of symmetry generators does not by itself prove that every element of the declared symmetry set has the required rotation/flip/integer-time form. Bind the set representation to this normal-form property.",
+   "lean": [
+    "Breakdown.CertCell.Instance.GeneratedByClassSymmetries"
+   ],
+   "anchor": {
+    "heading": "Allowed symmetry group elements (L2572)",
+    "block": 4
+   },
+   "title": "Allowed symmetry words"
+  },
+  {
+   "id": "r5-cell-reference-0029",
+   "section": "Admissible scalar weight shapes (L2498)",
+   "role": "explains",
+   "quote": "**scalar-weight-side-conditions**: Check the different obligations for D, Z, λ and μ separately: there is no Z-nonnegativity field here, whereas λ/μ nonnegativity, different decay exponents and positive auxiliary steps are explicit. The rational-weight helper discussed in the prior audit is conditional on six representation implications.",
+   "lean": [
+    "Breakdown.CertCell.Instance.IsWeightValues"
+   ],
+   "anchor": {
+    "heading": "Admissible scalar weight shapes (L2498)",
+    "block": 5
+   },
+   "title": "Admissible scalar weight shapes"
+  },
+  {
+   "id": "r5-cell-reference-0031",
+   "section": "Uniform reciprocal-period enclosure (L4618)",
+   "role": "explains",
+   "quote": "**reciprocal-period-not-period**: Enclose 1/S(α) against periodInverse uniformly over K. An interval for S or a centre-point period error is not this bound unless it is converted with a proved positive-period enclosure.",
+   "lean": [
+    "Breakdown.CertCell.CellCalculus.IsPeriodModel"
+   ],
+   "anchor": {
+    "heading": "Uniform reciprocal-period enclosure (L4618)",
+    "block": 4
+   },
+   "title": "Uniform reciprocal-period enclosure"
+  },
+  {
+   "id": "r5-cell-reference-0032",
+   "section": "Data fixed across the parameter set (L5011)",
+   "role": "explains",
+   "quote": "**uniform-parameter-equalities**: Check these equalities over the complete allowed parameter set; agreement at α=0 alone does not establish IsBoxUniform.",
+   "lean": [
+    "Breakdown.CertCell.IsBoxUniform"
+   ],
+   "anchor": {
+    "heading": "Data fixed across the parameter set (L5011)",
+    "block": 5
+   },
+   "title": "Fixed data across the parameter set"
+  },
+  {
+   "id": "r5-cell-reference-0034",
+   "section": "Regularity of each forcing field (L2548)",
+   "role": "explains",
+   "quote": "**weak-gradient-and-ae-symmetry**: Finite harmonic storage must establish the weak-gradient, period, integrability and almost-everywhere symmetry claims, not only a pointwise formula. The mode-support statement excludes the axis and uses physical modes derived from lattice labels.",
+   "lean": [
+    "Breakdown.CertCell.Instance.ActuatorShapeFacts"
+   ],
+   "anchor": {
+    "heading": "Regularity of each forcing field (L2548)",
+    "block": 5
+   },
+   "title": "Regularity of each forcing field"
+  },
+  {
+   "id": "r5-cell-reference-0035",
+   "section": "Zero coefficients beyond support (L6853)",
+   "role": "explains",
+   "quote": "**support-getd-default**: getD defaults to R, making the support guard true past the stored lists. All corresponding out-of-range coefficient continuations must be exactly zero.",
+   "lean": [
+    "Breakdown.PotentialShape.VanishesBeyond"
+   ],
+   "anchor": {
+    "heading": "Zero coefficients beyond support (L6853)",
+    "block": 4
+   },
+   "title": "Jet coefficients beyond the support"
+  },
+  {
+   "id": "r5-cell-reference-0036",
+   "section": "Azimuthal dual bound (L3576)",
+   "role": "explains",
+   "quote": "**azimuthal-uniform-expansion**: The expansion holds for every time outside a spatial null set that may depend on that time, while amplitude rotation covariance is pointwise for every angle and point. Retain these distinct quantifier scopes and measurability obligations.",
+   "lean": [
+    "Breakdown.AdjointDefect.AzimuthalBounded"
+   ],
+   "anchor": {
+    "heading": "Azimuthal dual bound (L3576)",
+    "block": 4
+   },
+   "title": "Record the azimuthal dual bound"
+  },
+  {
+   "id": "r5-cell-reference-0041",
+   "section": "Certified offset expansion (L3991)",
+   "role": "explains",
+   "quote": "**frame-column-in-offset-pairing**: The centre and linear frame pairings use frame l j, so j selects a column and l is summed against the forcing coefficients. Transposing this access changes the offset bounds.",
+   "lean": [
+    "Breakdown.CellReduction.Instantiation.IsOffsetExpansionEntry"
+   ],
+   "anchor": {
+    "heading": "Certified offset expansion (L3991)",
+    "block": 5
+   },
+   "title": "Require the offset enclosures"
+  },
+  {
+   "id": "r5-cell-reference-0042",
+   "section": "Decode a scalar potential mode (L6743)",
+   "role": "explains",
+   "quote": "**potential-phase-convention**: Preserve the integer time label, shifted azimuthal frequency and phaseIndex multiplier separately; they are different inputs to the complex exponential.",
+   "lean": [
+    "Breakdown.PotentialShape.scalarValue"
+   ],
+   "anchor": {
+    "heading": "Decode a scalar potential mode (L6743)",
+    "block": 4
+   },
+   "title": "Potential amplitude and phase"
+  },
+  {
+   "id": "r5-cell-reference-0043",
+   "section": "Recover Cartesian components (L6755)",
+   "role": "explains",
+   "quote": "**complex-component-factors**: The half factors in the horizontal reconstruction are essential. Do not treat plus/minus amplitudes as independent Cartesian coordinates.",
+   "lean": [
+    "Breakdown.PotentialShape.coordsOfComponents"
+   ],
+   "anchor": {
+    "heading": "Recover Cartesian components (L6755)",
+    "block": 4
+   },
+   "title": "Cartesian values from helical components"
+  },
+  {
+   "id": "r5-cell-reference-0044",
+   "section": "Flux as a continuous linear map (L6783)",
+   "role": "explains",
+   "quote": "**flux-matrix-convention**: Keep the output-row/input-column convention when matching the paper’s div F_jᵀ. Frobenius norms survive transpose, but divergence orientation does not.",
+   "lean": [
+    "Breakdown.PotentialShape.fluxMap"
+   ],
+   "anchor": {
+    "heading": "Flux as a continuous linear map (L6783)",
+    "block": 4
+   },
+   "title": "Flux as a continuous linear map"
+  },
+  {
+   "id": "r5-cell-reference-0045",
+   "section": "Ordered jet breakpoints only (L6792)",
+   "role": "explains",
+   "quote": "**jet-mesh-versus-jet-axis**: Do not replace IsJetMesh by IsJetAxis or assume it proves continuity. The flux conditions use the stronger predicate only in the direction needed for normal-flux continuity.",
+   "lean": [
+    "Breakdown.PotentialShape.IsJetMesh"
+   ],
+   "anchor": {
+    "heading": "Ordered jet breakpoints only (L6792)",
+    "block": 5
+   },
+   "title": "Ordered jet breakpoints only"
+  },
+  {
+   "id": "r5-cell-reference-0046",
+   "section": "Degree of freedom touches an end (L6803)",
+   "role": "explains",
+   "quote": "**end-cell-natural-subtraction**: Decode N−1 as truncated natural subtraction; for small N the endpoint conditions cover more degrees of freedom, rather than wrapping to a large unsigned index.",
+   "lean": [
+    "Breakdown.PotentialShape.dofMeetsEndCells"
+   ],
+   "anchor": {
+    "heading": "Degree of freedom touches an end (L6803)",
+    "block": 4
+   },
+   "title": "Degree of freedom touches an end"
+  },
+  {
+   "id": "r5-cell-reference-0047",
+   "section": "Sufficient potential shape conditions (L6820)",
+   "role": "explains",
+   "quote": "**normal-flux-continuity**: Retain the asymmetric radialFlux_mesh and polarFlux_mesh requirements; they are what prevent surface-supported divergence terms at the respective partition seams.",
+   "lean": [
+    "Breakdown.PotentialShape.IsPotentialSeries"
+   ],
+   "anchor": {
+    "heading": "Sufficient potential shape conditions (L6820)",
+    "block": 5
+   },
+   "title": "Potential joins and endpoint conditions"
+  },
+  {
+   "id": "r5-cell-reference-0048",
+   "section": "Ratio of radial measures (L370)",
+   "role": "explains",
+   "quote": "**axis-ratio-default**: At r=0 on an axis cell, r/lineWeight(r) is 0/0 and hence zero in Lean. The simplification to one is valid only away from that endpoint; integral arguments must retain their domain conditions.",
+   "lean": [
+    "Breakdown.CellCert.CellAnalysis.CellScalars.rHat"
+   ],
+   "anchor": {
+    "heading": "Ratio of radial measures (L370)",
+    "block": 4
+   },
+   "title": "Ratio of radial measures"
+  },
+  {
+   "id": "r5-cell-reference-0049",
+   "section": "All cell relation rows (L643)",
+   "role": "explains",
+   "quote": "**relation-guards-and-zero-rows**: Retain the ten tagged branches and their zero-degree, missing-mode and axis guards. The relation family contains intentional zero rows; selected rows must still satisfy the invertible solved-block condition.",
+   "lean": [
+    "Breakdown.CellCert.CellFormula.CellLayout.relationRow"
+   ],
+   "anchor": {
+    "heading": "All cell relation rows (L643)",
+    "block": 4
+   },
+   "title": "All cell relation rows"
+  },
+  {
+   "id": "r5-cell-reference-0053",
+   "section": "Validity of a trace-credit patch (L4279)",
+   "role": "explains",
+   "quote": "**credit-global-domains**: charge_between is global on ℝ², test_slope_bound is globally Lipschitz, and the side/top vanishing identities hold on entire lines. Restricting those checks to the closed patch changes the predicate.",
+   "lean": [
+    "Breakdown.CertCell.Bridge.IsCreditPatch"
+   ],
+   "anchor": {
+    "heading": "Validity of a trace-credit patch (L4279)",
+    "block": 5
+   },
+   "title": "Credit rectangle conditions"
+  },
+  {
+   "id": "r5-cell-reference-0054",
+   "section": "Resolved leaf inequalities (L4381)",
+   "role": "explains",
+   "quote": "**strict-and-nonstrict-floors**: Require hessFloor>0 on resolved modes but only curlHessFloor≥0. Do not silently turn non-strict admissible boundary cases into failed certificates or accept zero where the source requires a strict margin.",
+   "lean": [
+    "Breakdown.CertCell.CellCalculus.IsLeafValues"
+   ],
+   "anchor": {
+    "heading": "Resolved leaf inequalities (L4381)",
+    "block": 5
+   },
+   "title": "The local analytic leaf inequalities"
+  },
+  {
+   "id": "r5-cell-reference-0058",
+   "section": "Surrogate forcing-gradient pairings (L4789)",
+   "role": "explains",
+   "quote": "**surrogate-slack-domain**: Prove exact forcing-gradient equality on every declared pairing label outside the slack set and exact pin equality on all labels. On slack labels use strictly positive weights and the full radial-weighted squared error sum; small pointwise samples do not imply that integral bound.",
+   "lean": [
+    "Breakdown.CertCell.InstancePair.IsPairSurrogate"
+   ],
+   "anchor": {
+    "heading": "Surrogate forcing-gradient pairings (L4789)",
+    "block": 5
+   },
+   "title": "Surrogate forcing-gradient pairings"
+  },
+  {
+   "id": "r5-cell-reference-0059",
+   "section": "Certified complex node inequality (L2213)",
+   "role": "explains",
+   "quote": "**zero-complex-node-factor**: The factor is allowed to be zero. Together with positive pivot slack and slack_le this permits no real pivots at that node; it does not by itself invalidate a node with an empty pivot set. This is a source-level algebraic consequence, not a new Lean replay.",
+   "lean": [
+    "Breakdown.CertCell.Certificate.PassesComplexNodeEnclosure"
+   ],
+   "anchor": {
+    "heading": "Certified complex node inequality (L2213)",
+    "block": 5
+   },
+   "title": "Complex node enclosure conditions"
+  },
+  {
+   "id": "r5-cell-reference-0060",
+   "section": "Real or complex node certificate (L2244)",
+   "role": "explains",
+   "quote": "**real-or-complex-witness**: Keep one chosen branch and all its shared existential data. Requiring both branches or allowing different matrices for separate fields misstates the proposition.",
+   "lean": [
+    "Breakdown.CertCell.Certificate.PassesNodeEnclosure"
+   ],
+   "anchor": {
+    "heading": "Real or complex node certificate (L2244)",
+    "block": 4
+   },
+   "title": "Real or complex node certificate"
+  },
+  {
+   "id": "r5-cell-reference-0061",
+   "section": "Gauge endpoint indicator (L4873)",
+   "role": "explains",
+   "quote": "**missing-gauge-end**: Decode none as absence rather than a default class index; it changes the incidence direction.",
+   "lean": [
+    "Breakdown.CertCell.GaugeKey.GaugeKeyValues.endWeight"
+   ],
+   "anchor": {
+    "heading": "Gauge endpoint indicator (L4873)",
+    "block": 4
+   },
+   "title": "Gauge endpoint indicator"
+  },
+  {
+   "id": "r5-cell-reference-0062",
+   "section": "Weight of a deleted pressure key (L4894)",
+   "role": "explains",
+   "quote": "**gauge-weight-nonzero**: A deleted key with zero weight cannot pass GaugeKeyValues.Conditions.weight_ne; preserve exact nonzero tests.",
+   "lean": [
+    "Breakdown.CertCell.GaugeKey.GaugeKeyValues.deletedWeight"
+   ],
+   "anchor": {
+    "heading": "Weight of a deleted pressure key (L4894)",
+    "block": 4
+   },
+   "title": "Weight of a deleted pressure key"
+  },
+  {
+   "id": "r5-cell-reference-0063",
+   "section": "Valid pressure gauge data (L4950)",
+   "role": "explains",
+   "quote": "**exact-gauge-inverse**: Check the rational inverse and gauge-moment identities exactly or prove exact equality from their encoding; a residual near zero is insufficient.",
+   "lean": [
+    "Breakdown.CertCell.GaugeKey.GaugeKeyValues.Conditions"
+   ],
+   "anchor": {
+    "heading": "Valid pressure gauge data (L4950)",
+    "block": 5
+   },
+   "title": "Valid pressure gauge data"
+  },
+  {
+   "id": "r5-cell-reference-0064",
+   "section": "Carry a complex form to real data (L5026)",
+   "role": "explains",
+   "quote": "**conjugate-pullback**: Use Re(P* Ψ P), with complex conjugation in the adjoint. A transpose-only or lower-triangle substitution changes the form.",
+   "lean": [
+    "Breakdown.CertCell.realLeafForm"
+   ],
+   "anchor": {
+    "heading": "Carry a complex form to real data (L5026)",
+    "block": 4
+   },
+   "title": "Carry a complex form to real data"
+  },
+  {
+   "id": "r5-cell-reference-0065",
+   "section": "Cell matrices on a rooted tree (L5030)",
+   "role": "explains",
+   "quote": "**abstract-types-need-decoders**: The finite types and function fields need explicit enumerations and interpretation from bytes. Tree.root already prevents an empty node type; no general positive-rank claim follows.",
+   "lean": [
+    "Breakdown.CertCell.TreeEntry"
+   ],
+   "anchor": {
+    "heading": "Cell matrices on a rooted tree (L5030)",
+    "block": 5
+   },
+   "title": "The matrix tree data"
+  },
+  {
+   "id": "r5-cell-reference-0066",
+   "section": "Real form attached to a leaf (L5089)",
+   "role": "explains",
+   "quote": "**signed-leaf-factor**: Keep both signs of null pairs and the factor 2 for rectangle credits. Omitting an occurrence changes the assembled matrix.",
+   "lean": [
+    "Breakdown.CertCell.TreeEntry.leafForm"
+   ],
+   "anchor": {
+    "heading": "Real form attached to a leaf (L5089)",
+    "block": 4
+   },
+   "title": "Physical global and credit leaves"
+  },
+  {
+   "id": "r5-cell-reference-0067",
+   "section": "Tree enclosure and pivot count (L5128)",
+   "role": "explains",
+   "quote": "**shared-tree-fronts**: A separate successful choice of front matrix at each independently checked edge is insufficient: one consistent family must satisfy all node checks and the pivot count.",
+   "lean": [
+    "Breakdown.CertCell.TreeConditionsGiven"
+   ],
+   "anchor": {
+    "heading": "Tree enclosure and pivot count (L5128)",
+    "block": 5
+   },
+   "title": "Tree enclosure and pivot count"
+  },
+  {
+   "id": "r5-cell-reference-0068",
+   "section": "Gauge action on a global unknown (L5257)",
+   "role": "explains",
+   "quote": "**gauge-evaluation-priority**: Preserve the option-match order: a cell evaluation takes precedence over a multiplier evaluation; absent data contribute zero only in the stated branches.",
+   "lean": [
+    "Breakdown.CertCell.TreeEntry.varDir"
+   ],
+   "anchor": {
+    "heading": "Gauge action on a global unknown (L5257)",
+    "block": 4
+   },
+   "title": "Gauge action on a global unknown"
+  },
+  {
+   "id": "r5-cell-reference-0069",
+   "section": "Gauge directions are invisible (L5276)",
+   "role": "explains",
+   "quote": "**two-sided-gauge-kernel**: Check both matrix and adjoint annihilation unless Hermitian symmetry has already been established for exactly this matrix.",
+   "lean": [
+    "Breakdown.CertCell.TreeEntry.GaugeKeyConditions"
+   ],
+   "anchor": {
+    "heading": "Gauge directions are invisible (L5276)",
+    "block": 5
+   },
+   "title": "Gauge directions are invisible"
+  },
+  {
+   "id": "r5-cell-reference-0070",
+   "section": "Conjugate cell coordinates (L6222)",
+   "role": "explains",
+   "quote": "**conjugate-coordinate-geometry**: Validate the branch-specific equalities of boxes, bases, segments and corners; a negated mode label does not by itself identify a conjugate datum.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.ConjDatum"
+   ],
+   "anchor": {
+    "heading": "Conjugate cell coordinates (L6222)",
+    "block": 4
+   },
+   "title": "Conjugate cell coordinates"
+  },
+  {
+   "id": "r5-cell-reference-0071",
+   "section": "Valid stored or omitted component (L6265)",
+   "role": "explains",
+   "quote": "**option-none-is-a-claim**: Do not treat none as a missing coefficient silently filled with zero. It must be justified by the specified symmetry, gauge or axis-stream condition.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.PartBound"
+   ],
+   "anchor": {
+    "heading": "Valid stored or omitted component (L6265)",
+    "block": 4
+   },
+   "title": "Valid stored or omitted component"
+  },
+  {
+   "id": "r5-cell-reference-0072",
+   "section": "Sparse rows for global coordinates (L6308)",
+   "role": "explains",
+   "quote": "**free-type-inhabited**: portRe : ℕ → Free supplies a free coordinate even when k=0 or no active ports are used. An empty Free type cannot decode this record.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowEntry"
+   ],
+   "anchor": {
+    "heading": "Sparse rows for global coordinates (L6308)",
+    "block": 5
+   },
+   "title": "Sparse rows for global coordinates"
+  },
+  {
+   "id": "r5-cell-reference-0073",
+   "section": "Sparse complex row vector (L6324)",
+   "role": "explains",
+   "quote": "**sparse-row-support**: Treat rowVars as the declared finite support. A serializer with repeated indices must combine them consistently before it can represent this Finset-indexed row.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowEntry.rowVec"
+   ],
+   "anchor": {
+    "heading": "Sparse complex row vector (L6324)",
+    "block": 4
+   },
+   "title": "Sparse complex row vector"
+  },
+  {
+   "id": "r5-cell-reference-0074",
+   "section": "Flux reconstruction on a subsegment (L6352)",
+   "role": "explains",
+   "quote": "**split-flux-denominators**: The raw formula permits zero denominators through Lean’s totalized division. SplitRow requires the appropriate denominator to be nonzero when that flux branch is used.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowEntry.tileFlux"
+   ],
+   "anchor": {
+    "heading": "Flux reconstruction on a subsegment (L6352)",
+    "block": 4
+   },
+   "title": "Flux reconstruction on a subsegment"
+  },
+  {
+   "id": "r5-cell-reference-0075",
+   "section": "Check a subdivided moment row (L6365)",
+   "role": "explains",
+   "quote": "**subdivision-cover-and-identities**: Check strict tile widths, adjacent endpoints, both outer endpoints and polynomial identities for every real argument. A pointwise quadrature check does not prove SplitRow.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowEntry.SplitRow"
+   ],
+   "anchor": {
+    "heading": "Check a subdivided moment row (L6365)",
+    "block": 4
+   },
+   "title": "Check a subdivided moment row"
+  },
+  {
+   "id": "r5-cell-reference-0076",
+   "section": "Check a stream-flux row (L6402)",
+   "role": "explains",
+   "quote": "**flux-rank-and-denominators**: Retain the radial positive-radius test, the horizontal nonzero leading coefficient and the smaller-rank dependency; the reconstruction formula alone is insufficient.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowEntry.FluxRow"
+   ],
+   "anchor": {
+    "heading": "Check a stream-flux row (L6402)",
+    "block": 4
+   },
+   "title": "Check a stream-flux row"
+  },
+  {
+   "id": "r5-cell-reference-0077",
+   "section": "Solve a relation for one row (L6429)",
+   "role": "explains",
+   "quote": "**derived-row-acyclic**: Check the exact unit target coefficient, pressure cancellation and every strict rank decrease. Permitting a self-dependent cycle would change the justification.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowEntry.DerivedRow"
+   ],
+   "anchor": {
+    "heading": "Solve a relation for one row (L6429)",
+    "block": 4
+   },
+   "title": "Solve a relation for one row"
+  },
+  {
+   "id": "r5-cell-reference-0078",
+   "section": "Coordinate invisible to the forms (L6447)",
+   "role": "explains",
+   "quote": "**unused-does-not-mean-zero**: Do not set an unused coordinate to zero when checking local inequalities. Its cell form and credit effects vanish, but InRowRange still permits an arbitrary complex value.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowEntry.UnusedRow"
+   ],
+   "anchor": {
+    "heading": "Coordinate invisible to the forms (L6447)",
+    "block": 4
+   },
+   "title": "Coordinate invisible to the forms"
+  },
+  {
+   "id": "r5-cell-reference-0079",
+   "section": "Velocity-moment row with cutoff (L6454)",
+   "role": "explains",
+   "quote": "**out-of-range-velocity-row**: Preserve the explicit zero fallback; use velReady when an actual lower-rank row is needed instead of assuming every natural index names a stored datum.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowEntry.velRow"
+   ],
+   "anchor": {
+    "heading": "Velocity-moment row with cutoff (L6454)",
+    "block": 4
+   },
+   "title": "Velocity-moment row with cutoff"
+  },
+  {
+   "id": "r5-cell-reference-0080",
+   "section": "Reconstruct a normal derivative row (L6475)",
+   "role": "explains",
+   "quote": "**normal-row-polynomial-identity**: The test derivative expansion must hold for every real argument, with radial factors and boundary signs preserved. Every velocity and corner row used must be ready.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowEntry.NormalRow"
+   ],
+   "anchor": {
+    "heading": "Reconstruct a normal derivative row (L6475)",
+    "block": 4
+   },
+   "title": "Reconstruct a normal derivative row"
+  },
+  {
+   "id": "r5-cell-reference-0081",
+   "section": "Angular derivative matrix (L5397)",
+   "role": "explains",
+   "quote": "**angular-inverse-domain**: Before using the inverse in turnedVec, check n≠0 and n²≠1 on eliminated modes; the raw matrix inverse is totalized outside that domain.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.turnMatrix"
+   ],
+   "anchor": {
+    "heading": "Angular derivative matrix (L5397)",
+    "block": 4
+   },
+   "title": "Angular derivative matrix"
+  },
+  {
+   "id": "r5-cell-reference-0082",
+   "section": "Remove the angular velocity term (L5454)",
+   "role": "explains",
+   "quote": "**twelve-slot-order**: Keep gradient slots 0–8, velocity slots 9–11 and the condition j mod 3=1 exactly; changing the tensor order changes the eliminated form.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.turnedVec"
+   ],
+   "anchor": {
+    "heading": "Remove the angular velocity term (L5454)",
+    "block": 4
+   },
+   "title": "Remove the angular velocity term"
+  },
+  {
+   "id": "r5-cell-reference-0083",
+   "section": "Eliminated-harmonic form (L5465)",
+   "role": "explains",
+   "quote": "**zero-band-slack**: Do not divide numerically when bandSlack=0. Preserve Lean’s totalized value and check EliminationConditions.slack_zero, or impose and prove a strictly positive slack.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.bandEliminated"
+   ],
+   "anchor": {
+    "heading": "Eliminated-harmonic form (L5465)",
+    "block": 4
+   },
+   "title": "Eliminated-harmonic form"
+  },
+  {
+   "id": "r5-cell-reference-0084",
+   "section": "Eliminated tested-row form (L5472)",
+   "role": "explains",
+   "quote": "**row-full-inverse**: Use the full row matrix including the band correction; the positive-definite row weight and domination condition justify the inverse on the accepted path.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.rowsEliminated"
+   ],
+   "anchor": {
+    "heading": "Eliminated tested-row form (L5472)",
+    "block": 4
+   },
+   "title": "Eliminated tested-row form"
+  },
+  {
+   "id": "r5-cell-reference-0085",
+   "section": "Comparison with the eliminated forms (L5484)",
+   "role": "explains",
+   "quote": "**full-row-domain**: Check residual_value_le on every InRowRange vector, including its free unused, port, gauge and pressure-head directions; checking only the image of X_Q is insufficient.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.EliminationConditions"
+   ],
+   "anchor": {
+    "heading": "Comparison with the eliminated forms (L5484)",
+    "block": 5
+   },
+   "title": "Local elimination comparison"
+  },
+  {
+   "id": "r5-cell-reference-0086",
+   "section": "Highest-degree coefficient charge (L5519)",
+   "role": "explains",
+   "quote": "**top-degree-boundaries**: Preserve the ≤ degree tests and the radial/vertical split; an off-by-one change loses highest-degree coefficients.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.topValue"
+   ],
+   "anchor": {
+    "heading": "Highest-degree coefficient charge (L5519)",
+    "block": 4
+   },
+   "title": "Highest-degree coefficient charge"
+  },
+  {
+   "id": "r5-cell-reference-0087",
+   "section": "Gram matrix of tested row fields (L5540)",
+   "role": "explains",
+   "quote": "**row-gram-conjugation**: Use the declared i,i′ ordering and complex conjugation, together with the radial measure; a Euclidean coefficient dot product is a different Gram matrix.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.rowGram"
+   ],
+   "anchor": {
+    "heading": "Gram matrix of tested row fields (L5540)",
+    "block": 4
+   },
+   "title": "Gram matrix of tested row fields"
+  },
+  {
+   "id": "r5-cell-reference-0088",
+   "section": "Row enumeration and matrix bounds (L5560)",
+   "role": "explains",
+   "quote": "**row-bijection**: Validate both injectivity and surjectivity against the declared tested pairs. A missing or duplicate row cannot be repaired by a Gram check alone.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowConditions"
+   ],
+   "anchor": {
+    "heading": "Row enumeration and matrix bounds (L5560)",
+    "block": 5
+   },
+   "title": "Row enumeration and matrix bounds"
+  },
+  {
+   "id": "r5-cell-reference-0089",
+   "section": "Read the gradient slots (L5620)",
+   "role": "explains",
+   "quote": "**gradient-slot-order**: Keep slot 3a+b throughout matrix assembly, curl extraction and row tests; a transpose is not an innocuous storage change.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.gradOf"
+   ],
+   "anchor": {
+    "heading": "Read the gradient slots (L5620)",
+    "block": 4
+   },
+   "title": "Read the gradient slots"
+  },
+  {
+   "id": "r5-cell-reference-0090",
+   "section": "Potential coupling data (L5627)",
+   "role": "explains",
+   "quote": "**split-matrix-not-projector**: bandProjection is stored as a matrix; the final PotentialConditions do not require idempotence or orthogonality. Use the supplied map in x−Px and Px instead of silently reconstructing a projector.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.PotentialData"
+   ],
+   "anchor": {
+    "heading": "Potential coupling data (L5627)",
+    "block": 5
+   },
+   "title": "Potential coupling data"
+  },
+  {
+   "id": "r5-cell-reference-0091",
+   "section": "Reshape the gradient entries (L5724)",
+   "role": "explains",
+   "quote": "**strain-name-does-not-symmetrise**: Do not symmetrise this array in a decoder: strainOfVec is exactly gradOf with curried indices.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.strainOfVec"
+   ],
+   "anchor": {
+    "heading": "Reshape the gradient entries (L5724)",
+    "block": 4
+   },
+   "title": "Reshape the gradient entries"
+  },
+  {
+   "id": "r5-cell-reference-0092",
+   "section": "Tail of a coupling field (L5741)",
+   "role": "explains",
+   "quote": "**tail-degree-truncation**: The velocity degree uses natural subtraction d−1. Active layout conditions supply the relevant lower degree; do not reinterpret the subtraction as an unbounded integer operation.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.couplingTailFull"
+   ],
+   "anchor": {
+    "heading": "Tail of a coupling field (L5741)",
+    "block": 4
+   },
+   "title": "Tail of a coupling field"
+  },
+  {
+   "id": "r5-cell-reference-0093",
+   "section": "Model harmonics active on this cell (L5753)",
+   "role": "explains",
+   "quote": "**active-model-labels**: A safe finite check may cover the union of all four support sets. Dropping a label requires exact vanishing throughout the cell of all 24 scalar coefficients, not an interval that merely contains zero.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.modelLabels"
+   ],
+   "anchor": {
+    "heading": "Model harmonics active on this cell (L5753)",
+    "block": 4
+   },
+   "title": "Model harmonics active in a cell"
+  },
+  {
+   "id": "r5-cell-reference-0094",
+   "section": "Conditions for the potential form (L5762)",
+   "role": "explains",
+   "quote": "**potential-domain**: Prove the kept and port inequalities for all InRowRange vectors; retain its independent complex gauge, head, unused and port directions.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.PotentialConditions"
+   ],
+   "anchor": {
+    "heading": "Conditions for the potential form (L5762)",
+    "block": 5
+   },
+   "title": "Potential coupling conditions"
+  },
+  {
+   "id": "r5-cell-reference-0095",
+   "section": "Conditions for the pairing form (L5927)",
+   "role": "explains",
+   "quote": "**pairing-zero-test**: gamma_resolved and gamma_other branch on nonzero almost-everywhere profiles. Omitting a profile requires exact a.e. vanishing, not small sampled values.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.PairingConditions"
+   ],
+   "anchor": {
+    "heading": "Conditions for the pairing form (L5927)",
+    "block": 5
+   },
+   "title": "Conditions for the pairing form"
+  },
+  {
+   "id": "r5-cell-reference-0096",
+   "section": "Reciprocal long-range row charge (L5998)",
+   "role": "explains",
+   "quote": "**long-error-exact-zero**: The zero branch requires equality of both error bounds to zero. An interval containing zero or a numerical tolerance does not justify it.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.longRowTerm"
+   ],
+   "anchor": {
+    "heading": "Reciprocal long-range row charge (L5998)",
+    "block": 4
+   },
+   "title": "Reciprocal long-range row charge"
+  },
+  {
+   "id": "r5-cell-reference-0097",
+   "section": "Conditions for tested row formulas (L6001)",
+   "role": "explains",
+   "quote": "**natural-index-extension**: actuatorModel is indexed by ℕ and actuator_model_regular checks every natural index. A decoder that stores only k models must specify and validate a continuation, such as a justified zero extension.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.RowFunctionalConditions"
+   ],
+   "anchor": {
+    "heading": "Conditions for tested row formulas (L6001)",
+    "block": 5
+   },
+   "title": "Conditions for tested row formulas"
+  },
+  {
+   "id": "r5-cell-reference-0098",
+   "section": "Allowed vectors for local inequalities (L6547)",
+   "role": "explains",
+   "quote": "**row-range-free-directions**: Form the full real generator space, including unused and port real/imaginary unit vectors, complex gauge and head directions, and real β,ζ directions. Checking only rowEmbed’s image does not imply the three required local inequalities.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.InRowRange"
+   ],
+   "anchor": {
+    "heading": "Allowed vectors for local inequalities (L6547)",
+    "block": 4
+   },
+   "title": "All compatible local row vectors"
+  },
+  {
+   "id": "r5-cell-reference-0099",
+   "section": "Potential checks after regularity (L6639)",
+   "role": "explains",
+   "quote": "**implication-scope**: Preserve antecedents and their polarity when expanding obligations; this declaration is not an unconditional copy of PotentialConditions or an independent list of eight new numerical checks.",
+   "lean": [
+    "Breakdown.CertCell.PotentialEntryConditions"
+   ],
+   "anchor": {
+    "heading": "Potential checks after regularity (L6639)",
+    "block": 4
+   },
+   "title": "Potential checks after regularity"
+  },
+  {
+   "id": "r5-cell-reference-0100",
+   "section": "Conditions joining all cell entries (L6657)",
+   "role": "explains",
+   "quote": "**pressure-blind-two-sided**: pressure_blind requires zero rows and columns for several matrices plus zero source coefficients. Merely deleting pressure coordinates from one matrix check is insufficient.",
+   "lean": [
+    "Breakdown.CertCell.CellLayerEntryConditions"
+   ],
+   "anchor": {
+    "heading": "Conditions joining all cell entries (L6657)",
+    "block": 5
+   },
+   "title": "Assembly entries and exterior bounds"
+  },
+  {
+   "id": "r5-cell-reference-0101",
+   "section": "Validity on a full mode region (L3414)",
+   "role": "explains",
+   "quote": "**infinite-mode-set-coverage**: Class, membership and frequency bounds are required for every mode in the supplied set, which may be infinite. Give a finite case decomposition or exact lower-bound argument for the set; do not reduce it to the resolved modes.",
+   "lean": [
+    "Breakdown.CertCell.TailBand.SetPieceBounds.IsValidOn"
+   ],
+   "anchor": {
+    "heading": "Validity on a full mode region (L3414)",
+    "block": 5
+   },
+   "title": "Validity on a full mode region"
+  },
+  {
+   "id": "r5-cell-reference-0103",
+   "section": "Coefficient lower bounds cover space (L5147)",
+   "role": "explains",
+   "quote": "**all-labels-and-exterior**: The cover is over all integer labels and every half-plane point; enumerating only stored modes or sampled cells cannot establish it.",
+   "lean": [
+    "Breakdown.CertCell.CoefficientConditions"
+   ],
+   "anchor": {
+    "heading": "Coefficient lower bounds cover space (L5147)",
+    "block": 5
+   },
+   "title": "Uniform coefficient lower bounds"
+  },
+  {
+   "id": "r5-cell-reference-0104",
+   "section": "Every unresolved mode is covered (L6111)",
+   "role": "explains",
+   "quote": "**unresolved-is-infinite**: The quantifier is every harmonic not resolved, not merely every label in a stored finite list; include eliminated modes and the infinite remainder.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.IsOffModeCover"
+   ],
+   "anchor": {
+    "heading": "Every unresolved mode is covered (L6111)",
+    "block": 5
+   },
+   "title": "Every unresolved mode is covered"
+  },
+  {
+   "id": "r5-cell-reference-0105",
+   "section": "Exterior cover for every harmonic (L6141)",
+   "role": "explains",
+   "quote": "**exterior-no-cutoff**: Cover the actual unbounded exterior for every integer harmonic, with null overlaps and common charge identities. A large finite box cannot replace this predicate.",
+   "lean": [
+    "Breakdown.CertCell.Assembly.IsExteriorCover"
+   ],
+   "anchor": {
+    "heading": "Exterior cover for every harmonic (L6141)",
+    "block": 5
+   },
+   "title": "Coverage of the unbounded exterior"
+  },
+  {
+   "id": "r5-cell-reference-0106",
+   "section": "Cell certificate’s first condition (L5182)",
+   "role": "explains",
+   "quote": "**nested-not-flat**: Retain shared existential witnesses in pair_surrogate, bound_valueSets and given_shape; the seventeen fields cannot be flattened into independent numerical assertions.",
+   "lean": [
+    "Breakdown.CertCell.CellHypothesis"
+   ],
+   "anchor": {
+    "heading": "Cell certificate’s first condition (L5182)",
+    "block": 5
+   },
+   "title": "The cell structure and constants"
+  },
+  {
+   "id": "r5-cell-reference-0107",
+   "section": "Numerical certificate inequalities (L6911)",
+   "role": "explains",
+   "quote": "**strictness-and-finiteness**: Preserve strict transfer, contraction and nontriviality inequalities. The .toReal gradient integral must be read with the full positive-weight hypotheses; an infinite integral is not a large finite number.",
+   "lean": [
+    "Breakdown.CellLayerSystem.CertificateClauses"
+   ],
+   "anchor": {
+    "heading": "Numerical certificate inequalities (L6911)",
+    "block": 5
+   },
+   "title": "Remaining certificate inequalities"
+  },
+  {
+   "id": "r5-cell-reference-0108",
+   "section": "Bounds for the profile shift (L6981)",
+   "role": "explains",
+   "quote": "**different-gradient-exponents**: Use L² for centre_grad and L³ for box_grad, with the correct powers of their bounds. A single uniform L² error estimate cannot replace both.",
+   "lean": [
+    "Breakdown.CellLayerSystem.ShiftNumbersBounded"
+   ],
+   "anchor": {
+    "heading": "Bounds for the profile shift (L6981)",
+    "block": 5
+   },
+   "title": "Reference and parameter shift bounds"
+  },
+  {
+   "id": "r5-cell-reference-0109",
+   "section": "Potentials match the adjoint data (L7007)",
+   "role": "explains",
+   "quote": "**pin-equality-scope**: pinField_eq is an equality of full families over Fin k; do not restrict it to the selected adjointSet as with the preceding two equalities.",
+   "lean": [
+    "Breakdown.CellLayerSystem.PotentialEntriesBounded"
+   ],
+   "anchor": {
+    "heading": "Potentials match the adjoint data (L7007)",
+    "block": 5
+   },
+   "title": "Admissible potential and pin data"
+  },
+  {
+   "id": "r5-cell-reference-0110",
+   "section": "The fifteen certificate conditions (L7027)",
+   "role": "explains",
+   "quote": "**conditional-certificate-boundary**: This is a premise about specific decoded data, not evidence that such data have been supplied. A checker acceptance must imply all fifteen fields for the same seven arguments.",
+   "lean": [
+    "Breakdown.CellLayerSystem.CellSystemCondition"
+   ],
+   "anchor": {
+    "heading": "The fifteen certificate conditions (L7027)",
+    "block": 5
+   },
+   "title": "The fifteen cell conditions"
   }
  ],
  "plain": {
   "Breakdown.SteadyCert.FracCertData": "Abstract steady certificate data",
   "Breakdown.CellCert.permSign": "Orientation of three components",
   "Breakdown.CellCert.FracCellData": "Abstract cell approximation data",
-  "Breakdown.CertCell.CellLayerData.pinField": "Constraint matrix field",
+  "Breakdown.CertCell.CellLayerData.pinField": "Cell polynomial pinning tensor",
   "Breakdown.CertCell.CellLayerData.labelDensity": "Mode density on the quarter-plane",
   "Breakdown.CertCell.CellLayerData.stretchPosMean": "Mean positive stretching part",
   "Breakdown.CertCell.CellLayerData.formPos": "Positive reduced form integral",
-  "Breakdown.CertCell.Bridge.IsModeClass": "Two required symmetry generators",
+  "Breakdown.CertCell.Bridge.IsModeClass": "Twist and reflection generators",
   "Breakdown.CertCell.Bridge.HasMeasurableBoundData": "Measurable multiplier bounds",
   "Breakdown.CertCell.Bridge.IsHarmonicExpansion": "Exact finite harmonic expansion",
   "Breakdown.CertCell.Bridge.azimuthPhase": "Pure angular phase",
   "Breakdown.CertCell.Bridge.patch": "Rectangle above the symmetry plane",
-  "Breakdown.CertCell.Bridge.patchGradSq": "Mode Dirichlet density",
+  "Breakdown.CertCell.Bridge.patchGradSq": "Full modal test-gradient energy",
   "Breakdown.CertCell.Bridge.PlaneSegment": "Segment and its trace tests",
   "Breakdown.CertCell.Bridge.IsPlaneSegment": "Valid trace-credit segment",
   "Breakdown.CertCell.Bridge.CrossWaveEntry": "Nonmean stretching bounds",
@@ -38747,20 +39995,20 @@
   "Breakdown.CertCell.GivenShape.keyHess": "Second derivative of one harmonic",
   "Breakdown.CertCell.GivenShape.realPartVec": "Real part as a linear map",
   "Breakdown.CertCell.GivenShape.shapeHess": "Hessian from the harmonic sum",
-  "Breakdown.CertReduction.gapGradCoeff": "Gradient coefficient for the gap",
-  "Breakdown.CertReduction.shiftGradCoeff": "Gradient coefficient for the shift",
+  "Breakdown.CertReduction.gapGradCoeff": "Define the convection-change cost",
+  "Breakdown.CertReduction.shiftGradCoeff": "Define the frozen-form change cost",
   "Breakdown.CertReduction.ModelFormNumbers": "Reference-form norm data",
-  "Breakdown.CertReduction.FrozenFormBounded": "Lower bound for the frozen form",
+  "Breakdown.CertReduction.FrozenFormBounded": "Frozen quadratic-form bound",
   "Breakdown.CertReduction.AdjointQuadNumbers": "Choice of adjoint norm bound",
-  "Breakdown.CertReduction.adjointQuadCoeff": "Coefficient for the adjoint norm",
-  "Breakdown.CertReduction.AdjointSizeBound": "Squared or cubic adjoint norm",
-  "Breakdown.CertReduction.AdjointQuadraticBounded": "Quadratic adjoint estimate data",
+  "Breakdown.CertReduction.adjointQuadCoeff": "Coefficient for the chosen norm",
+  "Breakdown.CertReduction.AdjointSizeBound": "L3 or L2 adjoint size bound",
+  "Breakdown.CertReduction.AdjointQuadraticBounded": "Quadratic adjoint coefficient",
   "Breakdown.CellReduction.Instantiation.affineSecondDeriv": "Second derivative of affine fields",
   "Breakdown.CellReduction.Instantiation.ProfileShapeEntry.secondDeriv": "Prescribed profile Hessian",
-  "Breakdown.CellReduction.Instantiation.IsProfileShapeEntry": "Identify the approximate profile",
-  "Breakdown.CellReduction.Instantiation.IsPressureShapeEntry": "Identify the pressure gradient",
-  "Breakdown.CellReduction.Instantiation.IsAdjointShapeEntry": "Parameter-independent adjoints",
-  "Breakdown.CellReduction.Instantiation.InstantiationBounded": "Profile, pressure and adjoint links",
+  "Breakdown.CellReduction.Instantiation.IsProfileShapeEntry": "Identify the profile and target",
+  "Breakdown.CellReduction.Instantiation.IsPressureShapeEntry": "Identify the corrected pressure gradient",
+  "Breakdown.CellReduction.Instantiation.IsAdjointShapeEntry": "Identify the fixed adjoint fields",
+  "Breakdown.CellReduction.Instantiation.InstantiationBounded": "Identify profile, pressure and adjoints",
   "Breakdown.CertCell.CellLayerData.withFormCoercivity": "Replace the form’s coercivity",
   "Breakdown.CertCell.AdmissibleTuple": "Perturbation with finite form energy",
   "Breakdown.CertCell.ContinuumConditionsGiven": "Uniform continuum hypotheses",
@@ -38783,12 +40031,12 @@
   "Breakdown.CertCell.ModelErrors": "Errors of the polynomial models",
   "Breakdown.CertCell.ModeCharges": "Stretching loss by harmonic",
   "Breakdown.CertCell.RowValues": "Polynomial tests for the rows",
-  "Breakdown.CertCell.CellLayerData": "Data of the time-periodic cell layer",
+  "Breakdown.CertCell.CellLayerData": "The cell problem data",
   "Breakdown.CertCell.ModeCoefficients": "Five coefficients of a mode form",
   "Breakdown.CertCell.CellPoly.scale": "Scale every polynomial coefficient",
-  "Breakdown.CertCell.Instance.InstanceData": "Data for the multiplier instance",
+  "Breakdown.CertCell.Instance.InstanceData": "Rows, weights and forcing instances",
   "Breakdown.CertCell.GivenShape.KeyAmp": "One harmonic's amplitude data",
-  "Breakdown.CertCell.GivenShape.ShapeParams": "Chart and phase parameters",
+  "Breakdown.CertCell.GivenShape.ShapeParams": "Radial chart and symmetry parameters",
   "Breakdown.CertCell.GivenShape.TimeFieldData": "Finite harmonic field data",
   "Breakdown.CertCell.GivenShape.GivenShapeEntry": "Reference and forcing shape data",
   "Breakdown.CertCell.TailBand.bit": "Membership as a scalar",
@@ -38798,7 +40046,7 @@
   "Breakdown.CellReduction.Instantiation.AdjointShapeEntry": "Shape data for the adjoints",
   "Breakdown.CertCell.CellCalculus.CellVar": "Resolved-mode cell coordinates",
   "Breakdown.CertCell.CellCalculus.CellIndex": "Cell, port and actuator coordinates",
-  "Breakdown.CertCell.CellCalculus.CellCalculusEntry": "Local calculus and assembly data",
+  "Breakdown.CertCell.CellCalculus.CellCalculusEntry": "Cell calculus data",
   "Breakdown.CellCert.CellAnalysis.cylRadius": "Cylindrical radius",
   "Breakdown.CellCert.CellAnalysis.cylHeight": "Cylindrical height",
   "Breakdown.CellCert.CellAnalysis.cylPoint": "Point in cylindrical coordinates",
@@ -38814,15 +40062,15 @@
   "Breakdown.CellCert.CellAnalysis.CellBox.refR": "Reference radial coordinate",
   "Breakdown.CellCert.CellAnalysis.CellBox.refZ": "Reference height coordinate",
   "Breakdown.CellCert.CellAnalysis.IsCellBox": "Valid meridian rectangle",
-  "Breakdown.CellCert.CellAnalysis.CellBox.innerRadius": "Radial factor in the tail bound",
+  "Breakdown.CellCert.CellAnalysis.CellBox.innerRadius": "Axis adjusted radial factor",
   "Breakdown.CellCert.CellAnalysis.CellBox.radialDeriv": "Derivative in the radial variable",
   "Breakdown.CellCert.CellAnalysis.CellBox.heightDeriv": "Derivative in the height variable",
-  "Breakdown.CertCell.CellMesh": "Cells and their harmonic sets",
+  "Breakdown.CertCell.CellMesh": "Physical cylindrical cells",
   "Breakdown.CertCell.CellMesh.closedHalfPlane": "Closed meridian quadrant",
   "Breakdown.CertCell.CellMesh.region": "Union of stored cell rectangles",
   "Breakdown.CertCell.CellMesh.exterior": "Meridian complement of the cells",
   "Breakdown.CertCell.CellMesh.maxVolumeDeg": "Largest resolved polynomial degree",
-  "Breakdown.CertCell.IsCellMesh": "Valid cell and harmonic mesh",
+  "Breakdown.CertCell.IsCellMesh": "Cell geometry and mode sets",
   "Breakdown.CertCell.halfPlane": "Open meridian quarter-plane",
   "Breakdown.CertCell.Bridge.CreditPatch.region": "Region of a credit rectangle",
   "Breakdown.CertCell.CellCalculus.ownSolid": "Points belonging to one cell only",
@@ -38831,18 +40079,18 @@
   "Breakdown.CertCell.GivenShape.ActuatorSupportFacts": "Forcing support lies in the cells",
   "Breakdown.CellCert.GivenFields.ChartParams": "Parameters of the compactified chart",
   "Breakdown.CellCert.GivenFields.IsChartParams": "Valid compactified chart",
-  "Breakdown.CellCert.GivenFields.heightRatio": "Normalised signed height",
+  "Breakdown.CellCert.GivenFields.heightRatio": "Polar height coordinate",
   "Breakdown.CellCert.GivenFields.qOf": "Squared polar sine",
   "Breakdown.CellCert.GivenFields.chartT": "Compactified radial coordinate",
   "Breakdown.CellCert.GivenFields.radialVec": "Radial chart vector",
-  "Breakdown.CellCert.GivenFields.polarVecQ": "Weighted polar chart vector",
-  "Breakdown.CellCert.GivenFields.azimVecQ": "Weighted angular chart vector",
+  "Breakdown.CellCert.GivenFields.polarVecQ": "Weighted polar frame vector",
+  "Breakdown.CellCert.GivenFields.azimVecQ": "Weighted azimuthal frame vector",
   "Breakdown.CellCert.GivenFields.TensorMesh": "Two knot lists for a spline",
   "Breakdown.CellCert.GivenFields.IsTensorMesh": "Ordered knots on the unit square",
-  "Breakdown.CellCert.GivenFields.cellIndex": "Choose the spline rectangle",
+  "Breakdown.CellCert.GivenFields.cellIndex": "The interval containing a coordinate",
   "Breakdown.CellCert.GivenFields.cellCount": "Number of spline intervals",
   "Breakdown.CellCert.GivenFields.Spline": "Polynomial pieces on a tensor mesh",
-  "Breakdown.CellCert.GivenFields.Spline.evalHalf": "Evaluate the selected spline piece",
+  "Breakdown.CellCert.GivenFields.Spline.evalHalf": "Evaluation of one spline chart",
   "Breakdown.CellCert.GivenFields.atFirst": "Substitute the radial coordinate",
   "Breakdown.CellCert.GivenFields.atSecond": "Substitute the height coordinate",
   "Breakdown.CellCert.GivenFields.tDeriv": "Repeated radial polynomial derivative",
@@ -38861,21 +40109,21 @@
   "Breakdown.CertCell.Instance.IsFlatAtOrigin": "Constant boundary value at radius zero",
   "Breakdown.CertCell.Instance.HasNonnegValues": "Nonnegative values on both charts",
   "Breakdown.CertCell.Instance.StepDatum": "Piecewise constant auxiliary weight",
-  "Breakdown.CertCell.GivenShape.IsFullMesh": "Full chart partition",
-  "Breakdown.CertCell.GivenShape.IsJoinedSpline": "Anisotropic spline joins",
+  "Breakdown.CertCell.GivenShape.IsFullMesh": "The full radial and polar mesh",
+  "Breakdown.CertCell.GivenShape.IsJoinedSpline": "Spline joins in both variables",
   "Breakdown.CertCell.GivenShape.reflectPoly": "Reflect a chart polynomial",
   "Breakdown.CertCell.GivenShape.reflectSpline": "Reflect a chart spline",
   "Breakdown.CertCell.GivenShape.SplineAgrees": "Equality on active spline pieces",
   "Breakdown.CertCell.GivenShape.KeyAmp.conj": "Conjugate amplitude data",
   "Breakdown.CertCell.GivenShape.KeyAmp.reflect": "Reflected amplitude data",
-  "Breakdown.CertCell.GivenShape.JetDof": "Nodal jets and cell bubbles",
+  "Breakdown.CertCell.GivenShape.JetDof": "Nodal and interior coefficients",
   "Breakdown.CertCell.GivenShape.JetAxis": "One-dimensional jet axis",
-  "Breakdown.CertCell.GivenShape.jetUnit": "Unit Hermite jet polynomial",
-  "Breakdown.CertCell.GivenShape.nodalLeft": "Left endpoint jet on an interval",
-  "Breakdown.CertCell.GivenShape.nodalRight": "Right endpoint jet on an interval",
-  "Breakdown.CertCell.GivenShape.bubblePoly": "Interior polynomial bubble",
+  "Breakdown.CertCell.GivenShape.jetUnit": "Unit-interval Hermite polynomial",
+  "Breakdown.CertCell.GivenShape.nodalLeft": "Left endpoint derivative basis",
+  "Breakdown.CertCell.GivenShape.nodalRight": "Right endpoint derivative basis",
+  "Breakdown.CertCell.GivenShape.bubblePoly": "Interior Hermite polynomial",
   "Breakdown.CertCell.GivenShape.JetAxis.dofPoly": "Polynomial of one jet coordinate",
-  "Breakdown.CertCell.GivenShape.JetAxis.dofs": "Finite active jet coordinates",
+  "Breakdown.CertCell.GivenShape.JetAxis.dofs": "Active jet degrees of freedom",
   "Breakdown.CertCell.GivenShape.JetAxis.reflectDof": "Reflect a jet coordinate",
   "Breakdown.CertCell.GivenShape.JetAxis.dofSign": "Sign of a reflected jet",
   "Breakdown.CertCell.GivenShape.IsJetAxis": "Valid jet axis",
@@ -38883,23 +40131,23 @@
   "Breakdown.CertCell.GivenShape.JetSpline": "Tensor product jet spline",
   "Breakdown.CertCell.GivenShape.embedFirst": "Embed a radial polynomial",
   "Breakdown.CertCell.GivenShape.embedSecond": "Embed a height polynomial",
-  "Breakdown.CertCell.GivenShape.JetSpline.toSpline": "Convert jets to spline pieces",
+  "Breakdown.CertCell.GivenShape.JetSpline.toSpline": "Spline from tensor-product jets",
   "Breakdown.CertCell.GivenShape.JetSpline.IsReflectFixed": "Reflection-fixed jet coefficients",
   "Breakdown.CertCell.GivenShape.JetSpline.IsConjReflectFixed": "Conjugate-reflected coefficients",
   "Breakdown.CertCell.GivenShape.JetSpline.VanishesAtStart": "Zero initial-value jets",
   "Breakdown.CertCell.GivenShape.OriginProfile": "Origin profile g",
   "Breakdown.CertCell.GivenShape.OriginProfile.eval": "Evaluate the origin profile",
-  "Breakdown.CertCell.GivenShape.IsOriginProfile": "Smoothly joined origin profile",
-  "Breakdown.CertCell.GivenShape.chartCoord": "Compactified radius σ",
-  "Breakdown.CertCell.GivenShape.chartRadius": "Radius from chart coordinate",
-  "Breakdown.CertCell.GivenShape.phaseSlope": "Radial-phase derivative factor",
+  "Breakdown.CertCell.GivenShape.IsOriginProfile": "The joined origin correction",
+  "Breakdown.CertCell.GivenShape.chartCoord": "Compactified radius",
+  "Breakdown.CertCell.GivenShape.chartRadius": "Radius from the compactified coordinate",
+  "Breakdown.CertCell.GivenShape.phaseSlope": "Radial phase derivative factor",
   "Breakdown.CertCell.GivenShape.shiftedScale": "Radial derivative with phase",
   "Breakdown.CertCell.GivenShape.polarFactor": "Polar vanishing factor",
   "Breakdown.CertCell.GivenShape.axisFactor": "Double polar vanishing factor",
-  "Breakdown.CertCell.GivenShape.streamValue": "Stream function Ψ",
-  "Breakdown.CertCell.GivenShape.reducedComps": "Divergence-free reduced components",
-  "Breakdown.CertCell.GivenShape.IsTimeFieldData": "Joined and symmetric field data",
-  "Breakdown.CertCell.GivenShape.IsCompactTimeFieldData": "Compactly supported harmonic data",
+  "Breakdown.CertCell.GivenShape.streamValue": "Axisymmetric stream coefficient",
+  "Breakdown.CertCell.GivenShape.reducedComps": "Divergence-free amplitudes",
+  "Breakdown.CertCell.GivenShape.IsTimeFieldData": "Profile shape and symmetry conditions",
+  "Breakdown.CertCell.GivenShape.IsCompactTimeFieldData": "Compact forcing-field shape",
   "Breakdown.CertCell.GivenShape.JetKeyData": "Jet data for one harmonic",
   "Breakdown.CertCell.GivenShape.JetKeyData.toAmp": "Decode one harmonic's jets",
   "Breakdown.CertCell.GivenShape.GivenJetData": "Representative harmonic jets",
@@ -38907,22 +40155,22 @@
   "Breakdown.CertCell.GivenShape.JetSpline.HasRealCoef": "Real jet coefficients",
   "Breakdown.CertCell.GivenShape.IsJetClass": "Jet depth for spline regularity",
   "Breakdown.CertCell.GivenShape.IsGivenJetData": "Consistent representative jets",
-  "Breakdown.CellReduction.Instantiation.movedParams": "Add the moving radial phase",
-  "Breakdown.CellReduction.Instantiation.phaseRate": "Parameter coefficient of the phase",
+  "Breakdown.CellReduction.Instantiation.movedParams": "Parameter dependent radial phase",
+  "Breakdown.CellReduction.Instantiation.phaseRate": "Linear phase rate",
   "Breakdown.CellReduction.Instantiation.withOrigin": "Replace the origin profile",
-  "Breakdown.CellReduction.Instantiation.affineField": "Affine amplitude field",
+  "Breakdown.CellReduction.Instantiation.affineField": "Affine profile in parameters",
   "Breakdown.CellReduction.Instantiation.StepProfile": "Radial step profile χ",
   "Breakdown.CellReduction.Instantiation.StepProfile.eval": "Evaluate the radial step profile",
-  "Breakdown.CellReduction.Instantiation.IsStepProfile": "Joined step with a constant tail",
-  "Breakdown.CellReduction.Instantiation.stepPhase": "Moving phase from the step profile",
+  "Breakdown.CellReduction.Instantiation.IsStepProfile": "Joined radial step profile",
+  "Breakdown.CellReduction.Instantiation.stepPhase": "Radial phase from a step spline",
   "Breakdown.CellReduction.Instantiation.ProfileShapeEntry.moving": "The moving phase f_*",
-  "Breakdown.CellReduction.Instantiation.ProfileShapeEntry.matchRadius": "Radius of the affine core",
+  "Breakdown.CellReduction.Instantiation.ProfileShapeEntry.matchRadius": "Radius of the affine region",
   "Breakdown.CellReduction.Instantiation.ProfileShapeEntry.paramsAt": "Shape parameters at α",
-  "Breakdown.CellReduction.Instantiation.ProfileShapeEntry.field": "Approximate profile Wᵃ at α",
+  "Breakdown.CellReduction.Instantiation.ProfileShapeEntry.field": "The moving approximate profile",
   "Breakdown.CellReduction.Instantiation.PressureKeyAmp": "One pressure harmonic amplitude",
   "Breakdown.CellReduction.Instantiation.pressureKeyValue": "One complex pressure term",
   "Breakdown.CellReduction.Instantiation.shapePressure": "Real pressure correction q",
-  "Breakdown.CellReduction.Instantiation.IsPressureFieldData": "Continuous pressure field data",
+  "Breakdown.CellReduction.Instantiation.IsPressureFieldData": "Pressure shape conditions",
   "Breakdown.CellReduction.Instantiation.PressureShapeEntry.pressure": "Pressure correction at α",
   "Breakdown.CellReduction.Instantiation.profileCentreAt": "Moved centre field at α",
   "Breakdown.CellReduction.Instantiation.profileTangentAt": "Moved tangent field at α",
@@ -38935,15 +40183,15 @@
   "Breakdown.CertCell.GivenShape.keyKnots": "Knots of one amplitude record",
   "Breakdown.CertCell.GivenShape.shapeKnots": "All exceptional shape knots",
   "Breakdown.CertCell.GivenShape.mirrorKnots": "Reflection-closed knot set",
-  "Breakdown.CertCell.GivenShape.knotZeroHess": "Reference Hessian off its knots",
+  "Breakdown.CertCell.GivenShape.knotZeroHess": "Reference Hessian at spline seams",
   "Breakdown.CertCell.GivenShape.ScaledJetAxis": "Scaled Hermite and bubble axis",
   "Breakdown.CertCell.GivenShape.symmetricJacobi": "Symmetric Jacobi polynomial",
   "Breakdown.CertCell.GivenShape.ScaledJetAxis.base": "Underlying unscaled jet axis",
-  "Breakdown.CertCell.GivenShape.ScaledJetAxis.convert": "Convert scaled jet coordinates",
-  "Breakdown.CertCell.GivenShape.HasSymmetricScale": "Reflection symmetry of node scales",
+  "Breakdown.CertCell.GivenShape.ScaledJetAxis.convert": "Conversion from scaled jet data",
+  "Breakdown.CertCell.GivenShape.HasSymmetricScale": "Symmetric node scales",
   "Breakdown.CertCell.GivenShape.ScaledJetSpline": "Spline in scaled jet coordinates",
   "Breakdown.CertCell.GivenShape.ScaledJetSpline.coefValues": "Read scaled coefficients directly",
-  "Breakdown.CertCell.GivenShape.ScaledJetSpline.toJet": "Convert a scaled tensor spline",
+  "Breakdown.CertCell.GivenShape.ScaledJetSpline.toJet": "Ordinary jets from scaled coefficients",
   "Breakdown.CertCell.GivenShape.ScaledKeyData": "Scaled jets for one harmonic",
   "Breakdown.CertCell.GivenShape.ScaledKeyData.coefValueSets": "Unconverted harmonic coefficients",
   "Breakdown.CertCell.GivenShape.ScaledKeyData.toJets": "Convert all harmonic amplitudes",
@@ -38951,49 +40199,49 @@
   "Breakdown.CertCell.GivenShape.ScaledJetData.coefValueSets": "Representative coefficient view",
   "Breakdown.CertCell.GivenShape.ScaledJetData.toJets": "Convert representative scaled jets",
   "Breakdown.CertCell.GivenShape.IsScaledJetData": "Consistent scaled representative jets",
-  "Breakdown.CertCell.GivenShape.IsScaledJetEntry": "Identify the scaled reference field",
+  "Breakdown.CertCell.GivenShape.IsScaledJetEntry": "Bind the scaled reference-field jets",
   "Breakdown.CertCell.GivenShape.HasEdgeBreak": "Support boundary is a spline knot",
-  "Breakdown.CertCell.labelTime": "Temporal harmonic integer",
-  "Breakdown.CertCell.labelAzimuth": "Azimuthal harmonic integer",
-  "Breakdown.CertCell.labelHarmonic": "Frequency pair of a lattice label",
-  "Breakdown.CertCell.labelFlip": "Reflection of a lattice label",
-  "Breakdown.CertCell.flipLabel": "Reflection of a frequency pair",
+  "Breakdown.CertCell.labelTime": "Temporal frequency",
+  "Breakdown.CertCell.labelAzimuth": "Azimuthal frequency",
+  "Breakdown.CertCell.labelHarmonic": "Paper label to frequency",
+  "Breakdown.CertCell.labelFlip": "Reflection of paper labels",
+  "Breakdown.CertCell.flipLabel": "Reflection of frequency pairs",
   "Breakdown.CertCell.IsLatticeHarmonic": "Allowed frequency pair",
   "Breakdown.CertCell.planePoint": "Meridian point at angle zero",
-  "Breakdown.CertCell.labelVel": "Velocity mode on the meridian plane",
+  "Breakdown.CertCell.labelVel": "The velocity Fourier component",
   "Breakdown.CertCell.labelGrad": "Gradient mode on the meridian plane",
   "Breakdown.CertCell.flipPoint": "Spatial reflection symmetry",
-  "Breakdown.CertCell.frameSign": "Frame sign under reflection",
+  "Breakdown.CertCell.frameSign": "Signs under cylindrical reflection",
   "Breakdown.CertCell.frameUnit": "Moving cylindrical frame",
   "Breakdown.CertCell.pointAngle": "Angle of a Cartesian point",
   "Breakdown.CertCell.pointPlane": "Radius and signed height",
-  "Breakdown.CertCell.labelPhase": "Time and angle harmonic",
-  "Breakdown.CertCell.labelValueAt": "Reflect a cell coefficient",
+  "Breakdown.CertCell.labelPhase": "Lattice harmonic phase",
+  "Breakdown.CertCell.labelValueAt": "Reflect a cell polynomial value",
   "Breakdown.CertCell.CellVecField.planeValue": "Reflected vector coefficient",
-  "Breakdown.CertCell.CellVecField.field": "Vector field from cell polynomials",
+  "Breakdown.CertCell.CellVecField.field": "Vector field from closed cell solids",
   "Breakdown.CertCell.CellVecField.IsConjugateClosed": "Reality and reflection of vector data",
   "Breakdown.CertCell.CellMatField.planeValue": "Reflected matrix coefficient",
-  "Breakdown.CertCell.CellMatField.frameMap": "Matrix in the moving frame",
-  "Breakdown.CertCell.CellMatField.field": "Matrix field from cell polynomials",
+  "Breakdown.CertCell.CellMatField.frameMap": "Matrix in the cylindrical frame",
+  "Breakdown.CertCell.CellMatField.field": "Matrix field from closed cell solids",
   "Breakdown.CertCell.CellMatField.IsConjugateClosed": "Reality and reflection of matrix data",
   "Breakdown.CertCell.rowPartFactor": "Real or imaginary row selector",
   "Breakdown.CertCell.Instance.IsActuatorInstance": "Forcing modes avoid multiplier sets",
-  "Breakdown.CertCell.Instance.GeneratedByClassSymmetries": "Allowed symmetry group elements",
-  "Breakdown.CertCell.GivenShape.FieldKey": "Harmonic and radial-phase key",
+  "Breakdown.CertCell.Instance.GeneratedByClassSymmetries": "Allowed symmetry words",
+  "Breakdown.CertCell.GivenShape.FieldKey": "A harmonic and radial phase index",
   "Breakdown.CertCell.GivenShape.FieldKey.negKey": "Conjugate harmonic key",
   "Breakdown.CertCell.GivenShape.FieldKey.flipKey": "Reflected harmonic key",
-  "Breakdown.CertCell.GivenShape.keyPhase": "Time, angular and radial phase",
-  "Breakdown.CertCell.GivenShape.keyVector": "One complex vector harmonic",
-  "Breakdown.CertCell.GivenShape.complexField": "Sum of complex harmonic fields",
-  "Breakdown.CertCell.GivenShape.shapeInfoField": "Real field from harmonic data",
+  "Breakdown.CertCell.GivenShape.keyPhase": "The full oscillatory factor",
+  "Breakdown.CertCell.GivenShape.keyVector": "One vector harmonic",
+  "Breakdown.CertCell.GivenShape.complexField": "Finite harmonic sum",
+  "Breakdown.CertCell.GivenShape.shapeInfoField": "Real represented field",
   "Breakdown.CertCell.GivenShape.harmonicsOf": "Physical harmonic support",
   "Breakdown.CertCell.GivenShape.labelsOf": "Lattice-label support",
-  "Breakdown.CertCell.GivenShape.orbitClosure": "Close keys under both symmetries",
+  "Breakdown.CertCell.GivenShape.orbitClosure": "Complete symmetry orbit",
   "Breakdown.CertCell.GivenShape.closureAmp": "Choose the symmetry-derived amplitude",
   "Breakdown.CertCell.GivenShape.closureData": "Complete a representative field",
   "Breakdown.AdjointDefect.axisRotation": "Rotation about the vertical axis",
   "Breakdown.AdjointDefect.complexComponent": "Circular vector component",
-  "Breakdown.AdjointDefect.componentWeight": "Weights of the circular components",
+  "Breakdown.AdjointDefect.componentWeight": "Weight the complex components",
   "Breakdown.CertCell.CellCalculus.gradAt": "One harmonic of a gradient",
   "Breakdown.CertCell.CellCalculus.velAt": "One harmonic of a vector",
   "Breakdown.CertCell.CellCalculus.CellModelLong.IsLowLabel": "Labels within the long cutoff",
@@ -39015,83 +40263,83 @@
   "Breakdown.CertCell.Instance.IsWeightInstance": "Identify the multiplier weights",
   "Breakdown.CertCell.GivenShape.IsRadialPhase": "Admissible radial phase",
   "Breakdown.CertCell.GivenShape.IsShapeParams": "Validity of chart and phase data",
-  "Breakdown.CertCell.InstanceSplit.EnclosureAdmissibleClauses": "Admissible bounds for the multiplier",
+  "Breakdown.CertCell.InstanceSplit.EnclosureAdmissibleClauses": "Uniform multiplier enclosure bounds",
   "Breakdown.CertCell.InstanceSplit.ValuesFlipClauses": "Symmetry of the reference bounds",
-  "Breakdown.CertCell.GivenShape.ShapeValuesFacts": "Periods, weights and support sets",
-  "Breakdown.CertCell.ScalarShape.planeMinEval": "Step bound on the reflection plane",
+  "Breakdown.CertCell.GivenShape.ShapeValuesFacts": "Positive values and harmonic closure",
+  "Breakdown.CertCell.ScalarShape.planeMinEval": "The lower equatorial chart value",
   "Breakdown.CertCell.ScalarShape.ChartBound": "A scalar chart enclosure",
-  "Breakdown.CertCell.ScalarShape.ChartBound.eval": "Evaluate the chart enclosure",
+  "Breakdown.CertCell.ScalarShape.ChartBound.eval": "Bound at the origin and on a chart",
   "Breakdown.CertCell.ScalarShape.BoundValues": "Decoded harmonic amplitude bounds",
   "Breakdown.CertCell.ScalarShape.BoundValues.bounds": "Function-valued harmonic bounds",
   "Breakdown.CertCell.GivenShape.BoundValuesEntry": "Bounds used by one cell instance",
   "Breakdown.CertCell.GivenShape.IsBoundValuesEntry": "Identify the decoded enclosures",
   "Breakdown.CertCell.TailBand.ampOf": "The four harmonic envelopes",
   "Breakdown.CertCell.CellCalculus.IsPeriodModel": "Uniform reciprocal-period enclosure",
-  "Breakdown.CertCell.IsBoxUniform": "Data fixed across the parameter set",
+  "Breakdown.CertCell.IsBoxUniform": "Fixed data across the parameter set",
   "Breakdown.CertCell.RowValues.generator": "One real polynomial row generator",
   "Breakdown.CertCell.RowValues.generatorField": "Row generator as a space-time field",
   "Breakdown.CertCell.RowValues.testValue": "Test polynomial for a selected row",
-  "Breakdown.CertCell.RowValues.fieldPairingMatrix": "Gram matrix of real row generators",
-  "Breakdown.CertCell.RowValues.mix": "Inverse square root of the row Gram",
-  "Breakdown.CertCell.RowValues.rowFieldOf": "Orthonormalised row field",
-  "Breakdown.CertCell.RowValues.rowWeightOf": "Weight of an orthonormal row",
+  "Breakdown.CertCell.RowValues.fieldPairingMatrix": "Gram matrix of row generators",
+  "Breakdown.CertCell.RowValues.mix": "Gram orthogonalisation of row fields",
+  "Breakdown.CertCell.RowValues.rowFieldOf": "Normalised row fields",
+  "Breakdown.CertCell.RowValues.rowWeightOf": "Separate row norm weights",
   "Breakdown.CertCell.RowValues.testBlockMatrix": "Complex Gram matrix of tests",
-  "Breakdown.CertCell.Instance.IsRowValues": "Complete independent polynomial rows",
-  "Breakdown.CertCell.Instance.IsRowInstance": "Rows bound to the certificate",
+  "Breakdown.CertCell.Instance.IsRowValues": "Polynomial row-field conditions",
+  "Breakdown.CertCell.Instance.IsRowInstance": "Rows linked to the certificate",
   "Breakdown.CertCell.Instance.ActuatorShapeFacts": "Regularity of each forcing field",
   "Breakdown.CertCell.Instance.IsPinInstance": "Identify the cell pin fields",
   "Breakdown.PotentialShape.CylModeData": "Cylindrical pin-potential series",
   "Breakdown.PotentialShape.cylField": "Decode a cylindrical pin potential",
-  "Breakdown.PotentialShape.VanishesBeyond": "Zero coefficients beyond support",
+  "Breakdown.PotentialShape.VanishesBeyond": "Jet coefficients beyond the support",
   "Breakdown.PotentialShape.IsCylModeData": "Compact cylindrical pin data",
   "Breakdown.PotentialShape.PinShapeEntry": "Pin fields and compact generators",
-  "Breakdown.PotentialShape.PinShapeEntry.pinData": "Pair pin potentials with generators",
+  "Breakdown.PotentialShape.PinShapeEntry.pinData": "Synthesis of pin and generator fields",
   "Breakdown.PotentialShape.PinShapeEntry.pinField": "Decode a cell pin matrix field",
-  "Breakdown.PotentialShape.IsPinShapeEntry": "Valid pin shape representations",
+  "Breakdown.PotentialShape.IsPinShapeEntry": "Compact pin-field representation",
   "Breakdown.AdjointDefect.secondDeriv": "Spatial second derivative",
   "Breakdown.AdjointDefect.matrixDivergence": "Divergence of a linear-map field",
   "Breakdown.AdjointDefect.transposeApply": "Transpose action on a vector",
   "Breakdown.AdjointDefect.timeDerivative": "Derivative in normalized time",
   "Breakdown.AdjointDefect.advectionShift": "Adjoint advection difference",
-  "Breakdown.AdjointDefect.adjointTransport": "Transport part of the adjoint",
-  "Breakdown.AdjointDefect.PotentialData": "Adjoint potential fields",
-  "Breakdown.AdjointDefect.remainderField": "Adjoint residual after potentials",
+  "Breakdown.AdjointDefect.adjointTransport": "Define the adjoint transport",
+  "Breakdown.AdjointDefect.PotentialData": "Name the four potential fields",
+  "Breakdown.AdjointDefect.remainderField": "Define the potential remainder",
   "Breakdown.AdjointDefect.PotentialNumbers": "Norm bounds for the potentials",
   "Breakdown.AdjointDefect.potentialDefect": "Combined potential defect",
-  "Breakdown.AdjointDefect.PotentialNorms": "Potential norm inequalities",
-  "Breakdown.AdjointDefect.RemainderBounded": "Hardy bound for a remainder",
-  "Breakdown.AdjointDefect.AzimuthalBounded": "Azimuthal dual bound",
-  "Breakdown.AdjointDefect.DualBounded": "Split dual bound",
+  "Breakdown.AdjointDefect.PotentialNorms": "Numerical potential norm bounds",
+  "Breakdown.AdjointDefect.RemainderBounded": "Record the plain weighted norm",
+  "Breakdown.AdjointDefect.AzimuthalBounded": "Record the azimuthal dual bound",
+  "Breakdown.AdjointDefect.DualBounded": "Define the dual-bound decomposition",
   "Breakdown.AdjointDefect.PinData": "Pin potentials and generators",
   "Breakdown.AdjointDefect.AdjointDefectEntry": "Data for one adjoint defect",
-  "Breakdown.AdjointDefect.AdjointDefectEntry.pinFlux": "Adjoint flux with pin correction",
-  "Breakdown.AdjointDefect.AdjointDefectEntry.centreResidual": "Residual about the profile centre",
+  "Breakdown.AdjointDefect.AdjointDefectEntry.pinFlux": "Use the skew pin flux",
+  "Breakdown.AdjointDefect.AdjointDefectEntry.centreResidual": "Adjoint residual at the centre period",
   "Breakdown.AdjointDefect.AdjointDefectEntry.fittedResidual": "Residual of one fitted direction",
-  "Breakdown.AdjointDefect.AdjointDefectEntry.defectSum": "Total adjoint defect budget",
-  "Breakdown.AdjointDefect.AdjointDefectEntry.pinCharge": "Pin approximation charge",
-  "Breakdown.AdjointDefect.AdjointDefectBounded": "Bounds for one adjoint entry",
+  "Breakdown.AdjointDefect.AdjointDefectEntry.defectSum": "Add the adjoint-defect budgets",
+  "Breakdown.AdjointDefect.AdjointDefectEntry.pinCharge": "Add the pin-error budgets",
+  "Breakdown.AdjointDefect.AdjointDefectBounded": "The complete adjoint defect bound",
   "Breakdown.CellReduction.Instantiation.ballPairing": "Pairing on the affine-core ball",
   "Breakdown.CellReduction.Instantiation.timeDeriv": "Normalized time derivative",
-  "Breakdown.CellReduction.Instantiation.centreDefect": "Constant residual coefficient",
-  "Breakdown.CellReduction.Instantiation.linearDefect": "Linear residual coefficient",
+  "Breakdown.CellReduction.Instantiation.centreDefect": "Define the constant residual term",
+  "Breakdown.CellReduction.Instantiation.linearDefect": "Define the linear residual term",
   "Breakdown.CellReduction.Instantiation.quadraticDefect": "Ordered quadratic residual term",
   "Breakdown.CellReduction.Instantiation.OffsetExpansionEntry": "Numbers for the offset expansion",
   "Breakdown.CellReduction.Instantiation.OffsetExpansionEntry.centreCoefficient": "Centre field used by the expansion",
   "Breakdown.CellReduction.Instantiation.OffsetExpansionEntry.linearCoefficient": "Linear field used by the expansion",
-  "Breakdown.CellReduction.Instantiation.OffsetExpansionEntry.orderedQuadratic": "One ordered quadratic field",
-  "Breakdown.CellReduction.Instantiation.OffsetExpansionEntry.quadraticCoefficient": "Symmetric quadratic coefficient",
-  "Breakdown.CellReduction.Instantiation.coordRadius": "Coordinate bound on K",
-  "Breakdown.CellReduction.Instantiation.offsetSum": "Offset error bound oⱼ",
-  "Breakdown.CellReduction.Instantiation.IsOffsetExpansionEntry": "Certified offset expansion",
-  "Breakdown.CellReduction.Instantiation.AdjointEntryLinks": "Link adjoint and profile data",
+  "Breakdown.CellReduction.Instantiation.OffsetExpansionEntry.orderedQuadratic": "Define ordered quadratic terms",
+  "Breakdown.CellReduction.Instantiation.OffsetExpansionEntry.quadraticCoefficient": "Symmetrised quadratic coefficient",
+  "Breakdown.CellReduction.Instantiation.coordRadius": "Define each parameter radius",
+  "Breakdown.CellReduction.Instantiation.offsetSum": "Add the offset error budgets",
+  "Breakdown.CellReduction.Instantiation.IsOffsetExpansionEntry": "Require the offset enclosures",
+  "Breakdown.CellReduction.Instantiation.AdjointEntryLinks": "Identify the cell adjoint objects",
   "Breakdown.PotentialShape.PotComponent": "Complex vector components",
-  "Breakdown.PotentialShape.PotComponent.shift": "Azimuthal shift of a component",
+  "Breakdown.PotentialShape.PotComponent.shift": "Helical component frequency shift",
   "Breakdown.PotentialShape.PotComponent.carriesSine": "Components carrying a polar sine",
   "Breakdown.PotentialShape.PotScalar": "One potential amplitude",
   "Breakdown.PotentialShape.polarSine": "Polar sine from the height ratio",
-  "Breakdown.PotentialShape.scalarValue": "Decode a scalar potential mode",
-  "Breakdown.PotentialShape.componentValue": "Decode one vector component",
-  "Breakdown.PotentialShape.coordsOfComponents": "Recover Cartesian components",
+  "Breakdown.PotentialShape.scalarValue": "Potential amplitude and phase",
+  "Breakdown.PotentialShape.componentValue": "A helical potential component",
+  "Breakdown.PotentialShape.coordsOfComponents": "Cartesian values from helical components",
   "Breakdown.PotentialShape.PotKeyData": "Potentials for one harmonic key",
   "Breakdown.PotentialShape.PotentialSeries": "Finite harmonic potential series",
   "Breakdown.PotentialShape.vectorPotential": "Decode G or U from its series",
@@ -39099,15 +40347,15 @@
   "Breakdown.PotentialShape.fluxEntry": "One entry of the potential flux",
   "Breakdown.PotentialShape.fluxMap": "Flux as a continuous linear map",
   "Breakdown.PotentialShape.pressureValue": "Decode the potential pressure",
-  "Breakdown.PotentialShape.PotentialSeries.toPotentialData": "Bind series to four potential fields",
+  "Breakdown.PotentialShape.PotentialSeries.toPotentialData": "Construct the four potential fields",
   "Breakdown.PotentialShape.IsJetMesh": "Ordered jet breakpoints only",
   "Breakdown.PotentialShape.StartVanishOrder": "Zero radial jets at the origin",
   "Breakdown.PotentialShape.EndVanishOrder": "Zero radial jets at infinity",
   "Breakdown.PotentialShape.dofMeetsEndCells": "Degree of freedom touches an end",
   "Breakdown.PotentialShape.AxisCellsVanish": "Amplitude vanishes in axis cells",
   "Breakdown.PotentialShape.StartRowConstant": "Constant angular row at the origin",
-  "Breakdown.PotentialShape.IsPotentialScalar": "Radial orders and C¹ amplitudes",
-  "Breakdown.PotentialShape.IsPotentialSeries": "Sufficient potential shape conditions",
+  "Breakdown.PotentialShape.IsPotentialScalar": "Effective endpoint orders",
+  "Breakdown.PotentialShape.IsPotentialSeries": "Potential joins and endpoint conditions",
   "Breakdown.CellCert.Finite.quadValue": "Real quadratic form",
   "Breakdown.CellCert.CellAnalysis.curlComp": "Curl from gradient components",
   "Breakdown.CellCert.CellAnalysis.CellBases": "Polynomial basis coefficients",
@@ -39220,41 +40468,41 @@
   "Breakdown.CellCert.CellAnalysis.CellBox.proj": "Weighted polynomial projection",
   "Breakdown.CellCert.CellAnalysis.CellBox.tailNormSq": "Squared projection remainder",
   "Breakdown.CellCert.CellAnalysis.sesqValue": "Real local matrix form",
-  "Breakdown.CellCert.CellAnalysis.supremumLoss": "Stretching majorant",
+  "Breakdown.CellCert.CellAnalysis.supremumLoss": "Stretching loss majorant",
   "Breakdown.CertCell.Coupling.quadForm": "Real complex quadratic form",
   "Breakdown.CertCell.Coupling.inverseWeightedSq": "Inverse-matrix quadratic form",
   "Breakdown.CertCell.Coupling.realQuadForm": "Real matrix on complex coordinates",
-  "Breakdown.CertCell.ModeCoefficients.ofPieces": "Five coefficients from multiplier data",
-  "Breakdown.CertCell.TailBand.tailGain": "Cell spectral and angular gain",
-  "Breakdown.CertCell.TailBand.hessTailGain": "Gain for the Hessian tail",
-  "Breakdown.CertCell.TailBand.curlTailGain": "Gain for the curl tail",
-  "Breakdown.CertCell.TailBand.velTailGain": "Velocity polynomial-tail gain",
+  "Breakdown.CertCell.ModeCoefficients.ofPieces": "Five explicit cell coefficients",
+  "Breakdown.CertCell.TailBand.tailGain": "Spectral and angular tail gain",
+  "Breakdown.CertCell.TailBand.hessTailGain": "Hessian tail gain",
+  "Breakdown.CertCell.TailBand.curlTailGain": "Curl-gradient tail gain",
+  "Breakdown.CertCell.TailBand.velTailGain": "Velocity tail gain",
   "Breakdown.CertCell.TailBand.TailBudget": "Budget for unresolved polynomial tails",
   "Breakdown.CertCell.TailBand.TailBudget.velCharge": "Nonnegative velocity charge",
   "Breakdown.CertCell.TailBand.TailBudget.gradCharge": "Gradient charge after curl gain",
-  "Breakdown.CertCell.TailBand.TailBudget.Holds": "Resolved-mode tail budget",
+  "Breakdown.CertCell.TailBand.TailBudget.Holds": "Complete tail absorption budget",
   "Breakdown.CertCell.TailBand.PointCoef": "Six coefficients of the tail form",
   "Breakdown.CertCell.TailBand.PointCoef.curlWithGain": "Curl coefficient after angular gain",
   "Breakdown.CertCell.TailBand.PointCoef.gradFloor": "Effective gradient coefficient",
   "Breakdown.CertCell.TailBand.PointCoef.velWithShift": "Velocity coefficient after shift",
-  "Breakdown.CertCell.TailBand.PointCoef.PassesTest": "Scalar positivity test for a mode",
+  "Breakdown.CertCell.TailBand.PointCoef.PassesTest": "Scalar positive quadratic test",
   "Breakdown.CertCell.TailBand.EntryCharges": "Stretching and extra charges",
-  "Breakdown.CertCell.TailBand.PointCoef.withStretch": "Subtract the stretching charges",
+  "Breakdown.CertCell.TailBand.PointCoef.withStretch": "Subtract stretching and local charges",
   "Breakdown.CertCell.TailBand.PointCoef.charged": "Apply charges at one point",
   "Breakdown.CertCell.TailBand.EntryCharges.Covers": "Charges cover a mode region",
   "Breakdown.CertCell.Bridge.CreditPatch": "Rectangle and trace-credit data",
   "Breakdown.CertCell.Bridge.CreditPatch.testCombination": "Complex combination of credit tests",
   "Breakdown.CertCell.Bridge.CreditPatch.traceData": "Trace coordinates of the test field",
-  "Breakdown.CertCell.Bridge.IsCreditPatch": "Validity of a trace-credit patch",
+  "Breakdown.CertCell.Bridge.IsCreditPatch": "Credit rectangle conditions",
   "Breakdown.CertCell.CellCalculus.IsHarmonicLayout": "Layout for selected angular modes",
   "Breakdown.CertCell.CellCalculus.CellModeLayouts": "Layouts for the modes of a cell",
-  "Breakdown.CertCell.CellCalculus.IsCellModeLayouts": "Validity of cell mode layouts",
+  "Breakdown.CertCell.CellCalculus.IsCellModeLayouts": "Resolved harmonic layouts",
   "Breakdown.CertCell.CellCalculus.coefPairValue": "Lower-order coefficient form",
   "Breakdown.CertCell.CellCalculus.LeafValues": "Coefficients of a resolved cell leaf",
   "Breakdown.CertCell.CellCalculus.LeafValues.boxPenalty": "Penalty for polynomial model error",
   "Breakdown.CertCell.CellCalculus.LeafValues.boxPairPenalty": "Penalty for pairing model error",
   "Breakdown.CertCell.CellCalculus.LeafValues.absorbValue": "Lower-order tail absorption",
-  "Breakdown.CertCell.CellCalculus.IsLeafValues": "Resolved leaf inequalities",
+  "Breakdown.CertCell.CellCalculus.IsLeafValues": "The local analytic leaf inequalities",
   "Breakdown.CertCell.CellCalculus.IsSplitPart": "Pointwise three-part model split",
   "Breakdown.CertCell.CellCalculus.IsSplitPartAE": "Almost-everywhere model split",
   "Breakdown.CertCell.CellCalculus.IsVecOrthogonal": "High vector moments vanish",
@@ -39297,7 +40545,7 @@
   "Breakdown.CertCell.InstancePair.IsPairSurrogate": "Surrogate forcing-gradient pairings",
   "Breakdown.CertCell.Certificate.SignedTree": "Forms, fronts and columns at nodes",
   "Breakdown.CertCell.Certificate.SignedTree.nodeInput": "Leaf forms and incoming fronts",
-  "Breakdown.CertCell.Certificate.PassesPivotCount": "Global pivots and column budget",
+  "Breakdown.CertCell.Certificate.PassesPivotCount": "Pivot coverage and column count",
   "Breakdown.CertCell.Certificate.pivotDiagonal": "Diagonal on selected pivots",
   "Breakdown.CertCell.Certificate.slackRemainder": "Residual of a real node split",
   "Breakdown.CertCell.Certificate.complexDiagonal": "Pivot diagonal in complex form",
@@ -39315,7 +40563,7 @@
   "Breakdown.CertCell.Certificate.RealNodeData": "Data for a real node enclosure",
   "Breakdown.CertCell.Certificate.ComplexNodeData": "Data for a complex node enclosure",
   "Breakdown.CertCell.Certificate.PassesRealNodeEnclosure": "Certified real node inequality",
-  "Breakdown.CertCell.Certificate.PassesComplexNodeEnclosure": "Certified complex node inequality",
+  "Breakdown.CertCell.Certificate.PassesComplexNodeEnclosure": "Complex node enclosure conditions",
   "Breakdown.CertCell.Certificate.PassesNodeEnclosure": "Real or complex node certificate",
   "Breakdown.CertCell.GaugeKey.GaugeKeyValues": "Pressure gauge classes",
   "Breakdown.CertCell.GaugeKey.GaugeKeyValues.endWeight": "Gauge endpoint indicator",
@@ -39332,15 +40580,15 @@
   "Breakdown.CertCell.GaugeKey.PlaneOddOmitted": "Omit an odd axisymmetric trace",
   "Breakdown.CertCell.GaugeKey.GaugeKeyValues.DeletedOmitted": "Coordinate deleted by gauge choice",
   "Breakdown.CertCell.GaugeKey.GaugeKeyValues.Conditions": "Valid pressure gauge data",
-  "Breakdown.CertCell.globalForm": "Global negative multiplier form",
+  "Breakdown.CertCell.globalForm": "Global multiplier and pinning penalty",
   "Breakdown.CertCell.realLeafForm": "Carry a complex form to real data",
-  "Breakdown.CertCell.TreeEntry": "Cell matrices on a rooted tree",
+  "Breakdown.CertCell.TreeEntry": "The matrix tree data",
   "Breakdown.CertCell.keySeg": "Segment for a skeleton key",
   "Breakdown.CertCell.TreeEntry.Leaf": "Four kinds of tree leaves",
   "Breakdown.CertCell.TreeEntry.leafFintype": "Finite enumeration of tree leaves",
   "Breakdown.CertCell.TreeEntry.pieceForm": "One ordered cell-matrix block",
   "Breakdown.CertCell.TreeEntry.creditEmbed": "Embed a rectangle’s trace data",
-  "Breakdown.CertCell.TreeEntry.leafForm": "Real form attached to a leaf",
+  "Breakdown.CertCell.TreeEntry.leafForm": "Physical global and credit leaves",
   "Breakdown.CertCell.TreeEntry.leafNode": "Node receiving each leaf",
   "Breakdown.CertCell.TreeEntry.tree": "Instantiate the signed tree",
   "Breakdown.CertCell.TreeEntry.gaugeDir": "Gauge direction in a cell",
@@ -39392,7 +40640,7 @@
   "Breakdown.CertCell.Assembly.RowEntry.cornerReady": "All corner components are ready",
   "Breakdown.CertCell.Assembly.RowEntry.NormalRow": "Reconstruct a normal derivative row",
   "Breakdown.CertCell.Assembly.RowEntry.Accounted": "Validate the chosen row reason",
-  "Breakdown.CertCell.Assembly.TreeRowConditions": "Global rows satisfy the tree setup",
+  "Breakdown.CertCell.Assembly.TreeRowConditions": "Global row and matrix conditions",
   "Breakdown.CertCell.Assembly.CellVars": "All coordinates of one cell",
   "Breakdown.CertCell.Assembly.IsRegionChargeBound": "Bounds for stretching on a region",
   "Breakdown.CertCell.Assembly.CellBlocks": "Blocks and budgets for one cell",
@@ -39415,7 +40663,7 @@
   "Breakdown.CertCell.Assembly.rowsEliminated": "Eliminated tested-row form",
   "Breakdown.CertCell.Assembly.bandGram": "Gram matrix of eliminated row terms",
   "Breakdown.CertCell.Assembly.IsBoundedOnCell": "Bounded measurable scalar on a cell",
-  "Breakdown.CertCell.Assembly.EliminationConditions": "Comparison with the eliminated forms",
+  "Breakdown.CertCell.Assembly.EliminationConditions": "Local elimination comparison",
   "Breakdown.CertCell.Assembly.TailConditions": "Allocate resolved tail absorption",
   "Breakdown.CertCell.Assembly.topValue": "Highest-degree coefficient charge",
   "Breakdown.CertCell.Assembly.testAt": "Evaluate one polynomial row test",
@@ -39455,8 +40703,8 @@
   "Breakdown.CertCell.Assembly.highOwnAmount": "Integrated high-error charge",
   "Breakdown.CertCell.Assembly.couplingTailFull": "Tail of a coupling field",
   "Breakdown.CertCell.Assembly.rHatMax": "Maximum radial weight ratio",
-  "Breakdown.CertCell.Assembly.modelLabels": "Model harmonics active on this cell",
-  "Breakdown.CertCell.Assembly.PotentialConditions": "Conditions for the potential form",
+  "Breakdown.CertCell.Assembly.modelLabels": "Model harmonics active in a cell",
+  "Breakdown.CertCell.Assembly.PotentialConditions": "Potential coupling conditions",
   "Breakdown.CertCell.Assembly.pairWeightOf": "Pairing weights β and twice ζ",
   "Breakdown.CertCell.Assembly.pairingProfile": "Weighted forcing and pin gradient",
   "Breakdown.CertCell.Assembly.pairingExact": "Exact kept pairing expression",
@@ -39473,11 +40721,11 @@
   "Breakdown.CertCell.Assembly.longSourceCost": "Long-range cost for the source",
   "Breakdown.CertCell.Assembly.longRowTerm": "Reciprocal long-range row charge",
   "Breakdown.CertCell.Assembly.RowFunctionalConditions": "Conditions for tested row formulas",
-  "Breakdown.CertCell.Assembly.InRowRange": "Allowed vectors for local inequalities",
+  "Breakdown.CertCell.Assembly.InRowRange": "All compatible local row vectors",
   "Breakdown.CertCell.PotentialEntryConditions": "Potential checks after regularity",
-  "Breakdown.CertCell.CellLayerEntries": "All cell-assembly entries",
-  "Breakdown.CertCell.CellLayerEntryConditions": "Conditions joining all cell entries",
-  "Breakdown.CellCert.Exterior.traceFreeConst": "Trace-free stretching constant",
+  "Breakdown.CertCell.CellLayerEntries": "Cell assembly data",
+  "Breakdown.CertCell.CellLayerEntryConditions": "Assembly entries and exterior bounds",
+  "Breakdown.CellCert.Exterior.traceFreeConst": "Trace free contraction constant",
   "Breakdown.CertCell.TailBand.SetPieceBounds": "Uniform bounds on a set of modes",
   "Breakdown.CertCell.TailBand.SetPieceBounds.shareHatHigh": "Upper bound on λ shares",
   "Breakdown.CertCell.TailBand.SetPieceBounds.curlLow": "Lower bound for the curl coefficient",
@@ -39493,29 +40741,29 @@
   "Breakdown.CertCell.TailBand.IsDirectionRadius": "Admissible directional radius",
   "Breakdown.CertCell.TailBand.rayInverseSquareConst": "Angular Hardy constant",
   "Breakdown.CertCell.TailBand.ExteriorCondition": "Integrated exterior test data",
-  "Breakdown.CertCell.TailBand.IsExteriorCondition": "Integrated exterior conditions",
+  "Breakdown.CertCell.TailBand.IsExteriorCondition": "Exterior coefficient and Hardy tests",
   "Breakdown.CertCell.CoefficientEntry": "Lower bounds for all coefficients",
-  "Breakdown.CertCell.CoefficientConditions": "Coefficient lower bounds cover space",
+  "Breakdown.CertCell.CoefficientConditions": "Uniform coefficient lower bounds",
   "Breakdown.CertCell.Assembly.OffModeCover": "Cover of unresolved cell modes",
   "Breakdown.CertCell.Assembly.IsOffModeCover": "Every unresolved mode is covered",
   "Breakdown.CertCell.Assembly.ExteriorCover": "Pointwise and unbounded exterior parts",
   "Breakdown.CertCell.Assembly.ExteriorCover.region": "Region of an exterior part",
   "Breakdown.CertCell.Assembly.ExteriorCover.modes": "Modes of an exterior part",
-  "Breakdown.CertCell.Assembly.IsExteriorCover": "Exterior cover for every harmonic",
+  "Breakdown.CertCell.Assembly.IsExteriorCover": "Coverage of the unbounded exterior",
   "Breakdown.CertCell.Assembly.FarFieldValueSets": "Exterior stretching value sets",
   "Breakdown.CertCell.Assembly.FarFieldConditions": "Exterior field bounds and charges",
-  "Breakdown.CertCell.CellHypothesis": "Cell certificate’s first condition",
-  "Breakdown.CellLayerSystem.CertificateClauses": "Numerical certificate inequalities",
-  "Breakdown.CellLayerSystem.CoerciveNumbers": "Coercivity enclosure constants",
+  "Breakdown.CertCell.CellHypothesis": "The cell structure and constants",
+  "Breakdown.CellLayerSystem.CertificateClauses": "Remaining certificate inequalities",
+  "Breakdown.CellLayerSystem.CoerciveNumbers": "Multiplier and global error bounds",
   "Breakdown.CellLayerSystem.ShiftNumbers": "Reference-to-profile error constants",
-  "Breakdown.CellLayerSystem.ShiftNumbersBounded": "Bounds for the profile shift",
+  "Breakdown.CellLayerSystem.ShiftNumbersBounded": "Reference and parameter shift bounds",
   "Breakdown.CellLayerSystem.PotentialEntries": "Adjoint potential and pin entries",
-  "Breakdown.CellLayerSystem.PotentialEntriesBounded": "Potentials match the adjoint data",
-  "Breakdown.CellLayerSystem.ReductionEntries": "Data reducing cells to a certificate",
-  "Breakdown.CellLayerSystem.CellSystemCondition": "The fifteen certificate conditions",
-  "Breakdown.CellLayerSystem.breakdownOnSpace_of_cell_system_condition": "Cell conditions imply blow-up on ℝ³",
-  "Breakdown.CellLayerSystem.breakdownOnTorus_of_cell_system_condition": "Cell conditions imply blow-up on 𝕋³",
-  "Breakdown.CellLayerSystem.breakdownOnSpaceAndTorus_of_cell_system_condition": "Cell conditions imply both conclusions"
+  "Breakdown.CellLayerSystem.PotentialEntriesBounded": "Admissible potential and pin data",
+  "Breakdown.CellLayerSystem.ReductionEntries": "Profile and adjoint reduction data",
+  "Breakdown.CellLayerSystem.CellSystemCondition": "The fifteen cell conditions",
+  "Breakdown.CellLayerSystem.breakdownOnSpace_of_cell_system_condition": "Obtain conditional blow-up on space",
+  "Breakdown.CellLayerSystem.breakdownOnTorus_of_cell_system_condition": "Obtain conditional blow-up on the torus",
+  "Breakdown.CellLayerSystem.breakdownOnSpaceAndTorus_of_cell_system_condition": "Obtain both conditional conclusions"
  },
  "notes": {
   "Breakdown.SteadyCert.FracCertData": {

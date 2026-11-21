@@ -145,8 +145,20 @@ export function Shelf() {
                   {(papers ?? []).some((q) => q.with === p.slug) && (
                     <p className="shelf__with">
                       <span>Read with it: </span>
-                      {(papers ?? []).filter((q) => q.with === p.slug).sort((a, b) => (a.place ?? 0) - (b.place ?? 0)).map((q, i, all) => (
-                        <span key={q.slug}><a href={routeHref({ paper: q.slug })}>{companionLabel(q, p)}</a>{i < all.length - 1 ? ", " : ""}</span>
+                      {companionRows((papers ?? []).filter((q) => q.with === p.slug)).map((row, i, all) => (
+                        <span key={row.key}>
+                          {"group" in row ? (
+                            <>
+                              {row.group}:{" "}
+                              {row.items.map((q, j) => (
+                                <span key={q.slug}><a href={routeHref({ paper: q.slug })} title={q.title}>{j + 1}</a>{j < row.items.length - 1 ? " " : ""}</span>
+                              ))}
+                            </>
+                          ) : (
+                            <a href={routeHref({ paper: row.item.slug })}>{companionLabel(row.item, p)}</a>
+                          )}
+                          {i < all.length - 1 ? ", " : ""}
+                        </span>
                       ))}
                     </p>
                   )}
@@ -264,6 +276,24 @@ function Specimen({ paper, example }: { paper: ShelfItem; example: ShelfExample 
       </figcaption>
     </figure>
   );
+}
+
+/** Companions in place order; those sharing a `group` become one numbered row at the first one's place. */
+function companionRows(items: ShelfItem[]): ({ key: string; item: ShelfItem } | { key: string; group: string; items: ShelfItem[] })[] {
+  const rows: ({ key: string; item: ShelfItem } | { key: string; group: string; items: ShelfItem[] })[] = [];
+  const groups = new Map<string, ShelfItem[]>();
+  for (const q of [...items].sort((a, b) => (a.place ?? 0) - (b.place ?? 0))) {
+    if (!q.group) {
+      rows.push({ key: q.slug, item: q });
+    } else if (groups.has(q.group)) {
+      groups.get(q.group)!.push(q);
+    } else {
+      const members = [q];
+      groups.set(q.group, members);
+      rows.push({ key: `group:${q.group}`, group: q.group, items: members });
+    }
+  }
+  return rows;
 }
 
 /** A companion's short title without the stem it shares with the paper it is listed under ("Navier–Stokes blow-up: proof routes" → "Proof routes"). */
