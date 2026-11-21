@@ -213,5 +213,39 @@
    "citation": "2.0 ⟨keyword⟩"
   }
  ],
- "records": "https://github.com/wcook04/proof-reader/tree/main/papers/smtlib-2-7/evaluation"
+ "records": "https://github.com/wcook04/proof-reader/tree/main/papers/smtlib-2-7/evaluation",
+ "headline": [
+  {
+   "value": [
+    73,
+    81
+   ],
+   "label": "rules named exactly, from the code alone",
+   "compare": "names alone: 60"
+  },
+  {
+   "value": [
+    62,
+    63
+   ],
+   "label": "cited passages where it named the authors' definition",
+   "compare": "names alone: 55"
+  },
+  {
+   "value": [
+    12,
+    12
+   ],
+   "label": "one-detail changes to the Lean caught",
+   "compare": "untouched called exact: 5 of 5"
+  },
+  {
+   "value": [
+    4,
+    12
+   ],
+   "label": "Readings explained, from the code alone",
+   "compare": "with comments kept: 7"
+  }
+ ]
 }

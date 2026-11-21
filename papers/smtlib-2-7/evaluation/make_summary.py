@@ -86,6 +86,12 @@ def main() -> int:
         ],
         "misses": missed_both,
         "records": RECORDS,
+        "headline": [
+            {"value": code["rule_found"], "label": "rules named exactly, from the code alone", "compare": f"names alone: {names['rule_found'][0]}"},
+            {"value": code_rev["found"], "label": "cited passages where it named the authors' definition", "compare": f"names alone: {names_rev['found'][0]}"},
+            {"value": [meaning["changed"]["right"], meaning["changed"]["of"]], "label": "one-detail changes to the Lean caught", "compare": f"untouched called exact: {meaning['as_written']['right']} of {meaning['as_written']['of']}"},
+            {"value": [code_full, 12], "label": "Readings explained, from the code alone", "compare": f"with comments kept: {docs_full}"},
+        ],
     }
     (HERE / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     for row in rows:

@@ -39,7 +39,10 @@ or beside it on a very wide screen. As you scroll, the proof pane shows the decl
 for the linked passage you are reading, and the graph shows that declaration with what it
 uses. Clicking a sentence or a graph card keeps its Lean open until you read on to
 another linked statement. **Back** returns to where you were. Use the **Graph / Lean**
-toggle to choose what stays beside the paper. Both dividers can be dragged, and the site
+toggle to choose what stays beside the paper: in Graph mode the graph keeps the top half,
+fitted to the declaration in hand and its neighbours, and that declaration's Lean is under it;
+in Lean mode the Lean has the pane. A click never changes the mode, and Escape lets go of
+what was clicked. Both dividers can be dragged, and the site
 remembers where you leave them.
 
 Citations and figures open beneath the paragraph that mentions them. Each linked

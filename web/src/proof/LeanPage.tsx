@@ -9,7 +9,7 @@ import { DeclLink, LeanCode, useFileLines, type LeanActions } from "../lean/code
 import { sectionLabel, shapeOf } from "../model/fromEdition";
 import { READING_LINE } from "../paper/reading-line";
 import { DeclBlock, KIND_WORDS, list } from "./DeclBlock";
-import { AllChecks, checksOf, EvaluationResults, FidelityLines, HowMade, MatchSummary, reviewers, SupplementaryProofs } from "./Fidelity";
+import { AllChecks, checksOf, EvaluationResults, FidelityLines, HowMade, MatchSummary, reviewers, StandardStart, SupplementaryProofs } from "./Fidelity";
 import { ComparatorIndex } from "./Comparator";
 import { MadeLink } from "./MadeLink";
 import { Quote } from "../paper/Quote";
@@ -157,12 +157,14 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
           <WholeFile edition={edition} step={step} act={act} names={names} scroller={body} />
         ) : (
           <>
-            {step.untied && (
+            {step.untied && (standard ? (
+              <StandardStart edition={edition} onPassage={onPassage} onResults={() => onTab("index")} />
+            ) : (
               <>
                 <Untied edition={edition} untied={step.untied} onPassage={onPassage} />
                 <AllDeclarations edition={edition} act={act} />
               </>
-            )}
+            ))}
             {step.passage && (
               <header className="stepline">
                 {step.title && (!supplementary.length || step.decls.length > 0) && <p className="stepline__title">{step.title}</p>}
@@ -258,8 +260,8 @@ function Untied({ edition, untied, onPassage }: { edition: Edition; untied: NonN
   const last = untied.last;
   return (
     <div className="untied">
-      <h3>{untied.section ? `No statement in ${untied.section} is linked to this Lean.` : "No statement here is linked to this Lean."}</h3>
-      <p>The {edition.coverage.ties} statements linked to it are in {list(tied)}. {edition.lean.scope}</p>
+      <h3>No Lean is linked to this passage.</h3>
+      <p>{untied.section ? `No statement in ${untied.section} is linked to this Lean.` : "No statement here is linked to this Lean."} The {edition.coverage.ties} statements linked to it are in {list(tied)}. {edition.lean.scope}</p>
       <p className="untied__go">
         {last && <button type="button" onClick={() => onPassage(last.id)}>Go to the last statement, in {sectionLabel(last.section)}</button>}
       </p>
@@ -275,7 +277,8 @@ function AllDeclarations({ edition, act }: { edition: Edition; act: LeanActions 
   const standard = Object.entries(analytics.standard_axioms);
   const extracted = declarations.some((d) => declEvidence(edition, d) === "lean");
   const unreportedProofs = declarations.filter((d) => shapeOf(d) === "theorem" && declEvidence(edition, d) !== "lean").length;
-  const plain = (names: string[]) => list(names.map((name) => declarations.find((d) => d.id === name)?.plain ?? name));
+  // A long list of names says less than its count.
+  const plain = (names: string[]) => (names.length > 8 ? `${names.length} declarations` : list(names.map((name) => declarations.find((d) => d.id === name)?.plain ?? name)));
   return (
     <div className="index">
       {edition.evaluation && <EvaluationResults evaluation={edition.evaluation} />}

@@ -159,11 +159,13 @@ export function PaperPage({ edition }: { edition: Edition }) {
     });
   }, [slug]);
   const withSource = useMemo(() => (source ? { ...edition, mentions: source.mentions, lean: { ...edition.lean, files: source.files } } : edition), [edition, source]);
-  const [leanSeen, setLeanSeen] = useState(entry.lean);
+  // The Lean is on show in Lean mode and docked under the graph in Graph mode.
+  const leanShown = entry.lean || !plain;
+  const [leanSeen, setLeanSeen] = useState(leanShown);
   useEffect(() => {
-    if (entry.lean) setLeanSeen(true);
-    if (entry.lean || pdfSeen) askSource();
-  }, [askSource, entry.lean, pdfSeen]);
+    if (leanShown) setLeanSeen(true);
+    if (leanShown || pdfSeen) askSource();
+  }, [askSource, leanShown, pdfSeen]);
   // Fetch the Lean while the reader reads, so that the first click answers at once.
   useEffect(() => {
     const later = window.setTimeout(() => {
@@ -286,7 +288,9 @@ export function PaperPage({ edition }: { edition: Edition }) {
         tab: o.tab ?? "step",
         top: o.target ? null : cur.top,
         leanTop: 0,
-        lean: o.lean ?? (o.pin ? true : plain || layoutRef.current.lean),
+        // Opening something changes what is in hand, not the mode: Graph mode docks the Lean under
+        // the graph, so a click there shows its Lean without leaving the graph.
+        lean: o.lean ?? (plain || (o.pin ? cur.lean : layoutRef.current.lean)),
         wentToLean: !!o.wentToLean,
         opened: (o.pin === undefined ? cur.pin : o.pin) || (o.tab ?? "step") !== "step"
           ? cur.opened ? { steps: cur.opened.steps + 1, fromGraph: cur.opened.fromGraph } : cur.pin || cur.tab !== "step" ? null : { steps: 1, fromGraph: !cur.lean }
@@ -711,7 +715,9 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (shown.mode === "between") return <><b>No statement at this line.</b> The last was {name}.</>;
     if (shown.mode === "start") return markdown
       ? <><b>Main claim</b> {name}</>
-      : <><b>Before the first statement,</b> in {sectionLabel(edition.coverage.sections[0])}. Showing the main claim.</>;
+      : edition.paper.standard
+        ? <><b>Before the first linked passage,</b> in {sectionLabel(edition.coverage.sections[0])}.</>
+        : <><b>Before the first statement,</b> in {sectionLabel(edition.coverage.sections[0])}. Showing the main claim.</>;
     // The statement by its plain name and section; its exact place is under "In the paper".
     return <><b>Following the {noun(edition)}:</b> {name && stepView.passage ? `${name}, ${sectionLabel(stepView.passage.section)}` : stepView.title}</>;
   })();
@@ -727,7 +733,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     <p><b>{point.title}.</b> {point.text}</p>
   ) : named.length ? (
     <p><b>{named.map((d) => d.plain).join(", ")}</b> <code className="proof__sig">{named.map((d) => d.id).join(", ")}</code>. Has Lean, {named.map((d) => `lines ${d.line} to ${d.end_line}`).join(", ")}. Click to read it.</p>
-  ) : entry.lean ? null : line.zone === "after" ? (
+  ) : entry.lean || !plain ? null : line.zone === "after" ? (
     <p>{lean.scope}</p>
   ) : (
     <p className="proof__key">
@@ -927,6 +933,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
                 selected={pin?.decl ?? null}
                 stay={mapStays}
                 leanOpen={entry.lean}
+                held={pin ? (pin.decl ?? `@${pin.passage ?? ""}`) : null}
                 onSelect={openCard}
                 onHover={onCardHover}
                 onPauseChange={onPauseChange}
@@ -935,7 +942,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
             )}
             lean={leanSeen && source && (
               <Suspense fallback={null}>
-                <LeanPage ref={leanPage} edition={withSource} step={stepView} open={entry.lean} startTop={entry.leanTop} tab={entry.tab} onTab={onTab} onPassage={goToPassage} act={act} />
+                <LeanPage ref={leanPage} edition={withSource} step={stepView} open={leanShown && !!showRight} startTop={entry.leanTop} tab={entry.tab} onTab={onTab} onPassage={goToPassage} act={act} />
               </Suspense>
             )}
           />
