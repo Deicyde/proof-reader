@@ -32,8 +32,8 @@ const MIN_SCALE = 0.82;
 const LINE_H = 16;
 
 /** Lines a title wraps to in a card of CARD_W at the card's type size. */
-function titleLines(title: string, width = CARD_W): number {
-  const perLine = Math.floor((width - 16) / 6.9);
+function titleLines(title: string, width = CARD_W, charW = 6.9): number {
+  const perLine = Math.floor((width - 16) / charW);
   let lines = 1;
   let used = 0;
   for (const w of title.split(/\s+/)) {
@@ -227,7 +227,8 @@ export function NearMap({ graph, heads, plate, kicker = "Main result", alone, li
       const owner = levels[r - 1].find((q) => levels[r].every((m) => edges.some((e) => e.from === q && e.to === m)));
       if (owner) bandOf.set(r, owner);
     }
-    let y = plate ? 74 : 12;
+    // The plate is at most 420px wide at the serif heading size; leave room for every line its title wraps to.
+    let y = plate ? 74 + (titleLines(plate, Math.min(width - 32, 420) - 8, 10) - 1) * 26 : 12;
     for (let r = 0; r <= depth; r++) {
       const stack = stacks[r];
       if (!stack || !stack.size) continue;

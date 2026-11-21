@@ -1166,7 +1166,16 @@ def write_shelf() -> None:
             continue
         built = json.loads(path.read_text(encoding="utf-8"))
         source = json.loads((PUBLIC / slug / "source.json").read_text(encoding="utf-8"))
-        shelf.append(shelf_entry(slug, built, source["files"]))
+        entry = shelf_entry(slug, built, source["files"])
+        listing = load_paper(slug)[1].get("shelf", {})
+        if listing.get("with"):
+            entry["with"] = listing["with"]
+            entry["place"] = int(listing.get("place", 0))
+        shelf.append(entry)
+    parents = {e["slug"] for e in shelf if "with" not in e}
+    for e in shelf:
+        if "with" in e and e["with"] not in parents:
+            raise SystemExit(f"{e['slug']}: [shelf] with = {e['with']!r} names no paper listed on its own")
     (PUBLIC / "index.json").write_text(json.dumps({"papers": shelf}, ensure_ascii=False), encoding="utf-8")
 
 
