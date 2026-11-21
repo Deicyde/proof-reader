@@ -52,6 +52,12 @@ jobs:
           python "$archive/tools/paper.py" build
           npm run build --prefix "$archive/web"
           diff -qr web/dist "$archive/web/dist"
+      # Private sources (tools/private_sources.txt) must never reach the site or this repository.
+      - name: Check that no private source is tracked or about to be published
+        run: |
+          python tools/private_guard.py --self-test
+          python tools/private_guard.py --tracked
+          python tools/private_guard.py web/dist
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9
         with:
           path: web/dist

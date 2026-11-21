@@ -2,10 +2,11 @@
 // any paper is read, and on the right a page with two modes, Graph and Lean.
 //
 // Four verbs. Follow: the reading line picks a statement and the right page answers.
-// Point: a dwell names it under the graph, and previews it in Lean mode. Open: a click goes
-// to Lean mode on that thing, pushes one history entry and gives it an address. Back: the
-// browser's own Back, named on the page, which restores everything an entry remembers. The
-// toggle, Escape and Unpin land where Back lands. Chosen on the toggle, the Lean follows.
+// Point: a sentence lights its card in the graph; a card previews its Lean in the dock.
+// Open: a click makes something the subject of the right page in the view on show, pushes
+// one history entry and gives it an address. Back: the browser's own Back, named on the
+// page, which restores everything an entry remembers. Escape and Unpin return to following
+// the paper. Only the Graph and Lean buttons change the view (docs/graph-pane.md).
 
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { blankEntry, newEntryId, pushEntry, readEntry, replaceEntry, returning, type Copy, type Entry, type Pin, type Tab } from "../app/history";
@@ -70,7 +71,7 @@ function resolve(edition: Edition, record: string | undefined, extra: string | u
   if (record === "@file") return { entry: { tab: "file", lean: true }, target: null, bad: null };
   if (record.startsWith("@")) {
     const at = record.slice(1);
-    if (edition.passages.some((p) => p.id === at)) return { entry: { pin: { passage: at, decl: null, at: null }, lean: true }, target: { passage: at }, bad: null };
+    if (edition.passages.some((p) => p.id === at)) return { entry: { pin: { passage: at, decl: null, at: null } }, target: { passage: at }, bad: null };
     const page = /^page-(\d+)$/.exec(at);
     if (page) {
       const n = Number(page[1]);
@@ -82,10 +83,10 @@ function resolve(edition: Edition, record: string | undefined, extra: string | u
     return { entry: {}, target: { place }, bad: null };
   }
   const claim = edition.claims.find((c) => c.id === record);
-  if (claim) return { entry: { pin: { passage: claim.passage, decl: null, at: null }, lean: true }, target: { passage: claim.passage }, bad: null };
+  if (claim) return { entry: { pin: { passage: claim.passage, decl: null, at: null } }, target: { passage: claim.passage }, bad: null };
   if (edition.declarations.some((d) => d.id === record)) {
     const passage = bestPassage(edition, record);
-    return { entry: { pin: { passage, decl: record, at: null }, lean: true }, target: passage ? { passage } : null, bad: null };
+    return { entry: { pin: { passage, decl: record, at: null } }, target: passage ? { passage } : null, bad: null };
   }
   return { entry: {}, target: { start: true }, bad: record };
 }
@@ -135,7 +136,6 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const [point, setPoint] = useState<Pointed>(null);
   const [cardPoint, setCardPoint] = useState<string | null>(null);
   const [rail, setRail] = useState(false);
-  const [mapStays, setMapStays] = useState(false);
   const [tick, setTick] = useState(0);
 
   const wide = useMedia(WIDE);
@@ -185,6 +185,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const stepAt = useRef(-1);
   const dwell = useRef(0);
   const cardsQuiet = useRef(0);
+  /** Escape went back over opened entries: the view it was pressed in is kept. */
+  const keepView = useRef<boolean | null>(null);
 
   const spread = useRef<HTMLElement>(null);
   const pane = useCallback(() => (entryRef.current.copy === "pdf" ? pdf.current : reading.current), []);
@@ -288,9 +290,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
         tab: o.tab ?? "step",
         top: o.target ? null : cur.top,
         leanTop: 0,
-        // Opening something changes what is in hand, not the mode: Graph mode docks the Lean under
-        // the graph, so a click there shows its Lean without leaving the graph.
-        lean: o.lean ?? (plain || (o.pin ? cur.lean : layoutRef.current.lean)),
+        // Opening something changes the subject, never the view.
+        lean: o.lean ?? (plain || cur.lean),
         wentToLean: !!o.wentToLean,
         opened: (o.pin === undefined ? cur.pin : o.pin) || (o.tab ?? "step") !== "step"
           ? cur.opened ? { steps: cur.opened.steps + 1, fromGraph: cur.opened.fromGraph } : cur.pin || cur.tab !== "step" ? null : { steps: 1, fromGraph: !cur.lean }
@@ -310,7 +311,6 @@ export function PaperPage({ edition }: { edition: Edition }) {
       window.clearTimeout(dwell.current);
       // The graph may pan under a resting pointer now: that is not pointing.
       cardsQuiet.current = Date.now() + 1200;
-      setMapStays(!!o.stay);
       if (copy === "pdf") setPdfSeen(true);
       if (o.target) {
         pending.current = { target: o.target, instant: false, record: o.record };
@@ -336,7 +336,12 @@ export function PaperPage({ edition }: { edition: Edition }) {
     setPoint(null);
     setCardPoint(null);
     setRail(false);
-    setMapStays(false);
+    const view = keepView.current;
+    keepView.current = null;
+    if (saved && view !== null && saved.lean !== view) {
+      saved.lean = view;
+      replaceEntry(saved);
+    }
     if (saved) {
       entryRef.current = saved;
       setEntry(saved);
@@ -416,39 +421,21 @@ export function PaperPage({ edition }: { edition: Edition }) {
     const next: Entry = { ...entryRef.current, pin: null, tab: "step", lean, opened: null, wentToLean: false };
     entryRef.current = next;
     setEntry(next);
-    setMapStays(false);
     settled();
   }, [settled]);
 
-  /**
-   * The toggle. Choosing Lean with nothing open is one history entry, so Back undoes it.
-   * Choosing Graph lands where Back from an opened statement lands: the browser's own Back
-   * when that is where the reader came from, and in place otherwise. As Lean Exposition does.
-   */
+  /** The toggle: the view changes in place and the subject stays. */
   const setMode = useCallback((mode: PaneMode) => {
     if (plain && mode === "graph") return;
     const cur = entryRef.current;
-    // A sentence or declaration in hand stays in hand: only the mode changes, in place.
-    if (cur.pin && cur.tab === "step" && cur.lean !== (mode === "lean")) {
-      chooseMode(mode === "lean");
-      const next = { ...cur, lean: mode === "lean" };
-      entryRef.current = next;
-      setEntry(next);
-      replaceEntry(next);
-      return;
-    }
-    if (mode === "lean") {
-      if (cur.lean) return;
-      chooseMode(true);
-      open({ record: readRoute().record, pin: null, lean: true, wentToLean: true, stay: true, tab: "step" });
-      return;
-    }
-    if (!cur.lean) return;
-    chooseMode(false);
-    if (cur.opened?.fromGraph) window.history.go(-cur.opened.steps);
-    else if (cur.wentToLean && !cur.pin && cur.tab === "step") window.history.back();
-    else letGo(false);
-  }, [chooseMode, letGo, open, plain]);
+    const lean = mode === "lean";
+    chooseMode(lean);
+    if (cur.lean === lean) return;
+    const next = { ...cur, lean };
+    entryRef.current = next;
+    setEntry(next);
+    replaceEntry(next);
+  }, [chooseMode, plain]);
 
   const closeSheet = useCallback(() => {
     const next = { ...entryRef.current, sheet: false, pin: null, lean: false };
@@ -457,15 +444,19 @@ export function PaperPage({ edition }: { edition: Edition }) {
     replaceEntry(next);
   }, []);
 
-  /** Escape and Unpin: one level, from an opened statement to what was there, or from Lean to Graph. */
+  /** Escape and Unpin: back to following the paper, in the view on show. */
   const closeLean = useCallback(() => {
     const cur = entryRef.current;
-    if (!cur.pin && cur.tab === "step") setMode("graph");
-    else if (cur.opened) window.history.go(-cur.opened.steps);
+    if (!cur.pin && cur.tab === "step") return;
+    if (cur.opened) {
+      // Back over the opens, in the view on show.
+      keepView.current = cur.lean;
+      window.history.go(-cur.opened.steps);
+    }
     // An address opened directly on a sheet: close it, where Back from a tapped statement lands.
     else if (cur.sheet && !wide) closeSheet();
-    else letGo(plain || layoutRef.current.lean);
-  }, [closeSheet, letGo, setMode, wide]);
+    else letGo(plain || cur.lean);
+  }, [closeSheet, letGo, plain, wide]);
 
   const lineId = useRef<string | null>(null);
   const onFollow = useCallback<Follow>((id, zone, above, byReader) => {
@@ -473,11 +464,10 @@ export function PaperPage({ edition }: { edition: Edition }) {
     // statement, the Lean and the graph follow the reading line again.
     const cur = entryRef.current;
     if (byReader && cur.pin && cur.tab === "step" && id && id !== lineId.current && id !== cur.pin.passage) {
-      const unpinned = { ...cur, pin: null, lean: plain || layoutRef.current.lean, opened: null };
+      const unpinned = { ...cur, pin: null, opened: null };
       entryRef.current = unpinned;
       setEntry(unpinned);
-      setMapStays(false);
-    }
+      }
     lineId.current = id;
     setLine({ id, zone, above });
     const at = id ?? above;
@@ -489,9 +479,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (cur.pin?.passage === id && !cur.pin.decl && (wide || cur.sheet)) return;
     // The sheet takes the lower part of a small screen: keep the statement above it.
     const target = !wide && !cur.sheet ? { passage: id } : null;
-    // A click changes the sentence, not the mode: the pane keeps the mode on screen, so a
-    // click on the Graph shows the sentence's cards there and a click on the Lean its Lean.
-    open({ record: `@${id}`, pin: { passage: id, decl: null, at: null }, target, lean: plain || entryRef.current.lean });
+    // A click changes the subject, not the view.
+    open({ record: `@${id}`, pin: { passage: id, decl: null, at: null }, target });
   }, [open, plain, wide]);
 
   /** A Lean name: the Lean page walks there and the paper stays put. */
@@ -545,12 +534,14 @@ export function PaperPage({ edition }: { edition: Edition }) {
     open({ record: next === "pdf" ? `@page-${onPage}` : `@${where?.section ?? outline.find((e) => e.page !== null && e.page >= onPage)?.id ?? "s-1"}`, copy: next, target, stay: true });
   }, [hasPdf, open, outline, pane]);
 
-  const onTab = useCallback((tab: Tab) => {
-    if (entryRef.current.tab === tab) return;
+  /** A tab of the Lean page. From the dock it stays in the dock; `toLean` is for a control that names the index. */
+  const onTab = useCallback((tab: Tab, toLean = false) => {
+    if (entryRef.current.tab === tab && (!toLean || entryRef.current.lean)) return;
     const pin = entryRef.current.pin;
     const record = tab === "index" ? "@declarations" : tab === "file" ? "@file" : pin ? (pin.decl ?? `@${pin.passage}`) : hereRecord();
-    open({ record, tab, from: "right", stay: true, lean: true });
-  }, [hereRecord, open]);
+    if (toLean) chooseMode(true);
+    open({ record, tab, from: "right", stay: true, lean: toLean ? true : undefined });
+  }, [chooseMode, hereRecord, open]);
 
   /** A reference opens in place. Back closes it, as it undoes any other open. */
   const openInset = useCallback((show: () => void) => {
@@ -569,11 +560,10 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (!next) return;
     stepAt.current = index;
     if (entryRef.current.pin) {
-      const unpinned = { ...entryRef.current, pin: null, lean: plain || layoutRef.current.lean, opened: null };
+      const unpinned = { ...entryRef.current, pin: null, opened: null };
       entryRef.current = unpinned;
       setEntry(unpinned);
     }
-    setMapStays(false);
     handle.place({ passage: next.id });
     handle.focusPassage(next.id);
   }, [edition, line.zone, pane]);
@@ -586,10 +576,6 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (id === null) setCardPoint(null);
     else if (Date.now() < cardsQuiet.current) return;
     else dwell.current = window.setTimeout(() => setCardPoint(id), DWELL_MS);
-  }, []);
-
-  const onPauseChange = useCallback((paused: boolean) => {
-    if (!paused) setMapStays(false);
   }, []);
 
   const closePage = useCallback(() => onLayout({ ...layoutRef.current, graph: false }), [onLayout]);
@@ -651,10 +637,9 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const here = useMemo(() => outline.find((e) => e.id === section), [outline, section]);
   const hereLabel = here ? (here.number ? sectionLabel(here.number) : here.title) : null;
 
-  const shown = useMemo((): { mode: "preview" | "pin" | "line" | "start" | "between" | "after"; passage: Passage | null; decl: string | null } => {
-    if (entry.lean && pointedPassage) return { mode: "preview", passage: pointedPassage, decl: null };
-    if (entry.lean && pointedCard) return { mode: "preview", passage: null, decl: pointedCard };
-    if (entry.lean && pointedClaim) return { mode: "preview", passage: passages.get(pointedClaim.passage) ?? null, decl: null };
+  type Shown = { mode: "preview" | "pin" | "line" | "start" | "between" | "after"; passage: Passage | null; decl: string | null };
+  // What is in hand, before any preview: the subject of the graph and of the Lean.
+  const held = useMemo((): Shown => {
     if (pin?.decl) return { mode: "pin", passage: null, decl: pin.decl };
     if (pin?.passage) return { mode: "pin", passage: passages.get(pin.passage) ?? null, decl: null };
     if (line.id) return { mode: "line", passage: passages.get(line.id) ?? null, decl: null };
@@ -662,7 +647,15 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (!plain && line.zone === "after") return { mode: "after", passage: null, decl: null };
     if (line.above) return { mode: plain ? "line" : "between", passage: passages.get(line.above) ?? null, decl: null };
     return { mode: "start", passage: claimPassage, decl: null };
-  }, [claimPassage, entry.lean, line, passages, pin, plain, pointedCard, pointedClaim, pointedPassage]);
+  }, [claimPassage, line, passages, pin, plain]);
+  // A card under the pointer previews its Lean, in the dock or in the Lean view. In the Lean
+  // view a sentence under the pointer previews its Lean too.
+  const shown = useMemo((): Shown => {
+    if (pointedCard) return { mode: "preview", passage: null, decl: pointedCard };
+    if (pointedClaim) return { mode: "preview", passage: passages.get(pointedClaim.passage) ?? null, decl: null };
+    if (entry.lean && pointedPassage) return { mode: "preview", passage: pointedPassage, decl: null };
+    return held;
+  }, [entry.lean, held, passages, pointedCard, pointedClaim, pointedPassage]);
 
   const stepView = useMemo((): Step => {
     if (shown.mode === "after") return { key: "after", title: null, passage: null, decls: [], exact: null, untied: { section: hereLabel, last: lastTie } };
@@ -673,7 +666,14 @@ export function PaperPage({ edition }: { edition: Edition }) {
     return { key: `p:${passage.id}`, title, passage, decls: passage.lean, exact: passage.lines ?? null, untied: null };
   }, [hereLabel, lastTie, shown]);
 
-  const lit = useMemo(() => stepView.decls, [stepView]);
+  // The graph's subject: the declarations in hand. Where the paragraph has none, the graph
+  // keeps the last ones and says which statement they belong to.
+  const heldDecls = useMemo(() => (held.decl ? [held.decl] : held.mode === "after" ? [] : held.passage?.lean ?? []), [held]);
+  // After the last statement, the statement before the reading line is the paper's last one.
+  const before = held.mode === "after" ? lastTie : held.mode === "between" ? held.passage : null;
+  const lastSubject = useRef<string[]>([]);
+  if (heldDecls.length) lastSubject.current = heldDecls;
+  const graphSubject = heldDecls.length ? heldDecls : before?.lean.length ? before.lean : lastSubject.current;
   const pointedName = point?.kind === "name" ? point.id : null;
   const pointedIds = useMemo(() => {
     const ids = pointedName ? [pointedName] : cardPoint ? [cardPoint] : pointedPassage?.lean ?? [];
@@ -694,14 +694,20 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const order = activeId ? edition.passages.findIndex((p) => p.id === activeId) : -1;
   const aboveIndex = line.above ? edition.passages.findIndex((p) => p.id === line.above) : -1;
   const reached = line.zone === "after" ? edition.passages.length : Math.max(aboveIndex + 1, line.id ? edition.passages.findIndex((p) => p.id === line.id) + 1 : 0);
-  const passed = useMemo(() => {
-    const out = new Set<string>();
-    edition.passages.slice(0, Math.max(0, reached - 1)).forEach((p) => p.lean.forEach((id) => out.add(id)));
-    return out;
-  }, [edition, reached]);
-  const reachedDecls = useMemo(() => (reached === 0 ? 0 : new Set([...passed, ...lit]).size), [lit, passed, reached]);
+  // Where the reader is, for "read" and "stated later" on the cards.
+  const position = order >= 0 ? order : line.zone === "after" ? edition.passages.length : aboveIndex >= 0 ? aboveIndex : -1;
 
   const back = useCallback(() => window.history.back(), []);
+
+  const placeOf = (p: Passage) => `${sectionLabel(p.section)}, ${passageLocation(p)}`;
+  const offMap = held.mode === "pin" && held.decl && !(declarations.get(held.decl)?.passages.length) ? declarations.get(held.decl) : undefined;
+  const graphLabel = offMap
+    ? <>Lean only: the {noun(edition)} does not state this.<button type="button" onClick={() => closeLean()}>Back to this paragraph’s steps</button></>
+    : before
+      ? <span title={placeOf(before)}>No Lean is linked to this paragraph. This is the statement before it.</span>
+      : !heldDecls.length && graphSubject.length
+        ? <>No Lean is linked to this paragraph. This is the last statement opened.</>
+        : undefined;
 
   const plainOf = useCallback((id: string | undefined) => (id ? declarations.get(id)?.plain ?? id : ""), [declarations]);
   const name = plainOf(stepView.decls[0]) || stepView.passage?.title;
@@ -750,7 +756,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const credit = markdown ? (
     <p>
       {edition.credit?.text ?? `Text: ${paper.authors.join(", ")}, ${paper.licence}`}.
-      {" "}<a href={sourceUrl}>Source Markdown</a>. <MadeLink onOpen={() => onTab("index")} />.
+      {" "}<a href={sourceUrl}>Source Markdown</a>. <MadeLink onOpen={() => onTab("index", true)} />.
     </p>
   ) : (
     <p>
@@ -759,7 +765,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
       {" "}{edition.reading
         ? "A program checked the reading copy against text extracted from the PDF. The check omits margins and figures and can miss changes in text order. Use the original PDF to verify the wording."
         : "Each linked quotation was found in text extracted from the authors’ PDF."}
-      {" "}{leanOrigin(edition)} Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index")} />.
+      {" "}{leanOrigin(edition)} Links, notes, plain titles{hasComparisons(edition) ? " and comparisons" : ""} were made with AI and have not been reviewed by the authors. <MadeLink onOpen={() => onTab("index", true)} />.
     </p>
   );
 
@@ -803,7 +809,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
             <span className="bar__film-mark" aria-hidden="true" />Video, {clockTime(SHORT_FILM.seconds)}<span className="sr-only"> on YouTube</span>
           </a>}
           {!!edition.sheets?.length && <a className="bar__link" href={routeHref({ paper: slug, record: "@sheet" })} title={fromLean(edition) ? "The theorem and every definition it needs, on one page" : "Selected source declarations and linked passages"}>Statement sheet</a>}
-          {edition.evaluation && <button type="button" className="bar__link" onClick={() => onTab("index")}>Results</button>}
+          {edition.evaluation && <button type="button" className="bar__link" onClick={() => onTab("index", true)}>Results</button>}
           <a className="bar__link" href={sourceUrl}>{markdown ? "Source Markdown" : "Published paper"}</a>
           <a className="bar__link" href={lean.source}>Lean artifact</a>
         </div>
@@ -832,7 +838,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
             onName={walk}
             onPage={jumpPage}
             onBlock={jumpBlock}
-            onIndex={() => onTab("index")}
+            onIndex={() => onTab("index", true)}
             onClose={() => setRail(false)}
             onSearch={askSource}
           />
@@ -865,7 +871,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
                 <div className="start">
                 <p className="firstline firstline--status">{hasComparisons(edition)
                   ? `The links from this ${noun(edition)} to its proof in Lean, the notes and the comparisons were made with AI`
-                  : `The links from this ${noun(edition)} to its proof in Lean, and the notes, were made with AI`} and have not been reviewed by {markdown ? "the authors of the Lean" : "the authors"}. <MadeLink onOpen={() => onTab("index")} />.</p>
+                  : `The links from this ${noun(edition)} to its proof in Lean, and the notes, were made with AI`} and have not been reviewed by {markdown ? "the authors of the Lean" : "the authors"}. <MadeLink onOpen={() => onTab("index", true)} />.</p>
                 <p className="firstline">
                   Click a statement with a mark<span className="firstline__mark" aria-hidden="true" /> beside it to read its Lean.
                   {(firstSection || claimSection) && (
@@ -926,23 +932,19 @@ export function PaperPage({ edition }: { edition: Edition }) {
                 ref={map}
                 edition={edition}
                 graph={graph}
-                lit={lit}
+                subjects={graphSubject}
                 pointed={pointedIds}
-                passed={passed}
-                reached={reachedDecls}
-                selected={pin?.decl ?? null}
-                stay={mapStays}
-                leanOpen={entry.lean}
-                held={pin ? (pin.decl ?? `@${pin.passage ?? ""}`) : null}
-                onSelect={openCard}
+                held={pointedCard}
+                position={position}
+                label={graphLabel}
+                onSubject={openCard}
                 onHover={onCardHover}
-                onPauseChange={onPauseChange}
               />
               </Suspense>
             )}
             lean={leanSeen && source && (
               <Suspense fallback={null}>
-                <LeanPage ref={leanPage} edition={withSource} step={stepView} open={leanShown && !!showRight} startTop={entry.leanTop} tab={entry.tab} onTab={onTab} onPassage={goToPassage} act={act} />
+                <LeanPage ref={leanPage} edition={withSource} step={stepView} open={leanShown && !!showRight} startTop={entry.leanTop} tab={entry.tab} onTab={onTab} onPassage={goToPassage} act={act} onOpenLean={entry.lean || plain ? undefined : () => setMode("lean")} />
               </Suspense>
             )}
           />

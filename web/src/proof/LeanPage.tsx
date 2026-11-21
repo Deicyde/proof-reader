@@ -46,11 +46,13 @@ interface Props {
   onTab(tab: Tab): void;
   onPassage(id: string): void;
   act: LeanActions;
+  /** Docked under the graph: a button opens the same thing in the Lean view. */
+  onOpenLean?(): void;
 }
 
 const SHORT_PROOF = 8;
 
-export const LeanPage = memo(function LeanPage({ ref, edition, step, open, startTop, tab, onTab, onPassage, act }: Props) {
+export const LeanPage = memo(function LeanPage({ ref, edition, step, open, startTop, tab, onTab, onPassage, act, onOpenLean }: Props) {
   const body = useRef<HTMLDivElement>(null);
   const names = useMemo(() => new Set(edition.declarations.map((d) => d.id)), [edition]);
   // The reader's own folds outlast the step that showed them.
@@ -126,7 +128,12 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
     if (!row || !paper) return;
     const box = el.getBoundingClientRect();
     const line = paper.getBoundingClientRect().top + paper.clientHeight * READING_LINE - box.top;
-    const room = Math.max(64, Math.min(line, el.clientHeight * 0.6));
+    // The declaration's heading sticks to the top, so the lines in hand rest below it even
+    // when the reading line is above this page (the dock under the graph).
+    const head = row.closest(".decl")?.querySelector<HTMLElement>(".decl__head")?.offsetHeight ?? 0;
+    // With the reading line above this page, they rest just under the heading: a fixed margin
+    // there showed a line and a half of what comes before, the half cut by the heading.
+    const room = line < head + 6 ? Math.min(head + 6, el.clientHeight * 0.6) : Math.max(64, Math.min(line, el.clientHeight * 0.6));
     const at = row.getBoundingClientRect().top - box.top;
     let target = at - room;
     // A comparison Lean has checked against the statement is read first, while the lines
@@ -149,6 +156,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
         <button type="button" aria-pressed={visibleTab === "step"} onClick={() => onTab("step")}>This step</button>
         <button type="button" aria-pressed={visibleTab === "file"} disabled={!hasWholeFile} onClick={() => onTab("file")}>Whole file</button>
         <button type="button" aria-pressed={visibleTab === "index"} onClick={() => onTab("index")}>Index</button>
+        {onOpenLean && <button type="button" className="leaf__open" onClick={onOpenLean}>Open its Lean</button>}
       </div>
       <div className={`leaf__body${visibleTab === "step" && supplementary.length > 0 ? " leaf__body--supplementary" : ""}`} ref={body} tabIndex={-1}>
         {visibleTab === "index" ? (
@@ -260,7 +268,7 @@ function Untied({ edition, untied, onPassage }: { edition: Edition; untied: NonN
   const last = untied.last;
   return (
     <div className="untied">
-      <h3>No Lean is linked to this passage.</h3>
+      <h3>No Lean is linked to this paragraph.</h3>
       <p>{untied.section ? `No statement in ${untied.section} is linked to this Lean.` : "No statement here is linked to this Lean."} The {edition.coverage.ties} statements linked to it are in {list(tied)}. {edition.lean.scope}</p>
       <p className="untied__go">
         {last && <button type="button" onClick={() => onPassage(last.id)}>Go to the last statement, in {sectionLabel(last.section)}</button>}

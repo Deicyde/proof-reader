@@ -17,9 +17,12 @@ Keep these true:
   certify an exact copy. Read code listings by eye, including side-by-side columns.
 - Every other word on a paper's page is a quotation, Lean's own output, a marked note, a
   comparison of a statement with its Lean, or a declaration's short plain title.
-- Reading the paper is the way in. The right pane has two modes, Graph and Lean, with the same
-  words and behaviour as Lean Exposition. A click goes to Lean as one history entry, and every
-  way back lands where Back lands. The list of declarations is an index at the back.
+- Reading the paper is the way in. The right pane has two modes. Graph is the drawing around
+  one declaration with its Lean docked underneath; Lean is the Lean alone. The drawing is
+  `web/src/proof/FocusGraph.tsx` and `focus-graph.css`, specified in `docs/graph-pane.md`
+  and checked by `tests/graph_pane_checks.py`. The other readers carry the same three files;
+  keep them byte-identical and make any change in all of them. A click opens its Lean as one
+  history entry, and every way back lands where Back lands. The list of declarations is an index at the back.
 - Plain words first wherever a person reads. A raw Lean name is small, beside its plain title,
   and in the code.
 - Opening something, a reference in place included, pushes one history entry that holds the
@@ -29,7 +32,7 @@ Keep these true:
   graph to follow the reading.
 - The address names the statement carrying the highlighter, and the counter reads the same.
 - Failing to find a quote or a name stops the build.
-- `web/src/map/` is copied from lean-exposition. Keep it close to that source so fixes
+- `web/src/map/` (the whole proof map) is copied from lean-exposition. Keep it close to that source so fixes
   can move between them. Its few local changes are marked "Proof Reader".
 
 Before committing a change, run:
@@ -39,6 +42,7 @@ python3 -m unittest discover -s tests
 python3 tools/paper.py check contextual-embeddings
 cd web && npm run test:source && VITE_BASE_PATH=/proof-reader/ npm run build && cd ..
 python3 tests/journey.py
+python3 tests/graph_pane.py
 ```
 
 Look at any visual change in a browser at laptop and monitor widths.
