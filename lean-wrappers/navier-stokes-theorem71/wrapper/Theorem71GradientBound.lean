@@ -68,10 +68,16 @@ theorem gradient_integral_continuous {V : ℝ → Space → Space} {C : ℝ}
   have hG := Cert.Internal.AtProfile.continuous_fderiv_slice hC1
   have hF : Continuous (fun z : ℝ × Space => matSq (fderiv ℝ (V z.1) z.2)) :=
     Cert.Internal.ReadingEnergy.continuous_matSq.comp hG
-  have hspace : ∀ σ : ℝ, Continuous (fun y : Space => matSq (fderiv ℝ (V σ) y)) := fun σ =>
-    hF.comp (Continuous.prodMk (continuous_const : Continuous fun _ : Space => σ) continuous_id)
-  have htime : ∀ y : Space, Continuous (fun σ : ℝ => matSq (fderiv ℝ (V σ) y)) := fun y =>
-    hF.comp (Continuous.prodMk continuous_id (continuous_const : Continuous fun _ : ℝ => y))
+  have hspace : ∀ σ : ℝ, Continuous (fun y : Space => matSq (fderiv ℝ (V σ) y)) := by
+    intro σ
+    have h1 : Continuous fun y : Space => ((σ, y) : ℝ × Space) := by fun_prop
+    have h := hF.comp h1
+    exact h
+  have htime : ∀ y : Space, Continuous (fun σ : ℝ => matSq (fderiv ℝ (V σ) y)) := by
+    intro y
+    have h1 : Continuous fun σ : ℝ => ((σ, y) : ℝ × Space) := by fun_prop
+    have h := hF.comp h1
+    exact h
   exact continuous_of_dominated
     (fun σ => (hspace σ).aestronglyMeasurable)
     (fun σ => ae_of_all _ (gradient_density_bound hdec σ))
@@ -123,8 +129,10 @@ theorem gradient_lintegral_bound_everywhere {u : XX} {V : VelField}
   have hF : Continuous (fun z : ℝ × Space => matSq (fderiv ℝ (V z.1) z.2)) :=
     Cert.Internal.ReadingEnergy.continuous_matSq.comp hG
   intro σ
-  have hspace : Continuous (fun y : Space => matSq (fderiv ℝ (V σ) y)) :=
-    hF.comp (Continuous.prodMk (continuous_const : Continuous fun _ : Space => σ) continuous_id)
+  have hspace : Continuous (fun y : Space => matSq (fderiv ℝ (V σ) y)) := by
+    have h1 : Continuous fun y : Space => ((σ, y) : ℝ × Space) := by fun_prop
+    have h := hF.comp h1
+    exact h
   have hint : Integrable (fun y => matSq (fderiv ℝ (V σ) y)) :=
     (gradient_dominator_integrable C).mono' hspace.aestronglyMeasurable
       (ae_of_all _ (gradient_density_bound hdec σ))
