@@ -121,7 +121,7 @@ theorem normalized_error_gradient_decay {P C D : ℝ} {A W : VelField}
     hW1.comp (contDiff_const.prodMk contDiff_id)
   have hAs : ContDiff ℝ 1 (A σ) :=
     hA.comp (contDiff_const.prodMk contDiff_id)
-  rw [fderiv_sub (hWs.differentiable one_ne_zero y) (hAs.differentiable one_ne_zero y)]
+  rw [fderiv_fun_sub (hWs.differentiable one_ne_zero y) (hAs.differentiable one_ne_zero y)]
   calc
     ‖fderiv ℝ (W (P * σ)) y - fderiv ℝ (A σ) y‖
       ≤ ‖fderiv ℝ (W (P * σ)) y‖ + ‖fderiv ℝ (A σ) y‖ := norm_sub_le _ _

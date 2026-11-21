@@ -1,6 +1,6 @@
 --- a/Breakdown/Cert/ExtendedSigmaProfileOfHeld.lean
 +++ b/Breakdown/Cert/ExtendedSigmaProfileOfHeld.lean
-@@ -228,41 +228,68 @@
+@@ -228,41 +228,67 @@
  
  end Internal.ExtendedSigmaProfileOfHeld
  
@@ -15,7 +15,6 @@
 +          (fun σ y => d.profileSecondDeriv q σ y + H σ y) C
 +
 +set_option maxHeartbeats 1600000 in
-+set_option diagnostics true in
  open Internal.ExtendedSigmaProfileOfHeld in
 +theorem extendedSigmaProfileOfHeld_keep (h1 : SliceReadingHolds)
 +    (h2 : ExtendedHeldWeakEquationHolds) (h3 : ExtendedHeldNonzeroHolds) :

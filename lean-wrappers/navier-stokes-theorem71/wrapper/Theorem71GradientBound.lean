@@ -66,12 +66,17 @@ theorem gradient_integral_continuous {V : ℝ → Space → Space} {C : ℝ}
     (hdec : ∀ σ y, ‖fderiv ℝ (V σ) y‖ ≤ C / (1 + ‖y‖) ^ 2) :
     Continuous (fun σ => ∫ y, matSq (fderiv ℝ (V σ) y)) := by
   have hG := Cert.Internal.AtProfile.continuous_fderiv_slice hC1
-  have hF := Cert.Internal.ReadingEnergy.continuous_matSq.comp hG
+  have hF : Continuous (fun z : ℝ × Space => matSq (fderiv ℝ (V z.1) z.2)) :=
+    Cert.Internal.ReadingEnergy.continuous_matSq.comp hG
+  have hspace : ∀ σ : ℝ, Continuous (fun y : Space => matSq (fderiv ℝ (V σ) y)) := fun σ =>
+    hF.comp (Continuous.prodMk (continuous_const : Continuous fun _ : Space => σ) continuous_id)
+  have htime : ∀ y : Space, Continuous (fun σ : ℝ => matSq (fderiv ℝ (V σ) y)) := fun y =>
+    hF.comp (Continuous.prodMk continuous_id (continuous_const : Continuous fun _ : ℝ => y))
   exact continuous_of_dominated
-    (fun σ => (hF.comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable)
+    (fun σ => (hspace σ).aestronglyMeasurable)
     (fun σ => ae_of_all _ (gradient_density_bound hdec σ))
     (gradient_dominator_integrable C)
-    (ae_of_all _ fun y => hF.comp (continuous_id.prodMk continuous_const))
+    (ae_of_all _ htime)
 
 /-- A reading's essential gradient bound holds at every time for a C1
 representative with the stated uniform derivative decay. -/
@@ -115,11 +120,13 @@ theorem gradient_lintegral_bound_everywhere {u : XX} {V : VelField}
     (hM : 0 ≤ M) (hsup : supGrad u ≤ ENNReal.ofReal M) :
     ∀ σ, ∫⁻ y, ENNReal.ofReal (matSq (fderiv ℝ (V σ) y)) ≤ ENNReal.ofReal (M ^ 2) := by
   have hG := Cert.Internal.AtProfile.continuous_fderiv_slice hC1
-  have hF := Cert.Internal.ReadingEnergy.continuous_matSq.comp hG
+  have hF : Continuous (fun z : ℝ × Space => matSq (fderiv ℝ (V z.1) z.2)) :=
+    Cert.Internal.ReadingEnergy.continuous_matSq.comp hG
   intro σ
+  have hspace : Continuous (fun y : Space => matSq (fderiv ℝ (V σ) y)) :=
+    hF.comp (Continuous.prodMk (continuous_const : Continuous fun _ : Space => σ) continuous_id)
   have hint : Integrable (fun y => matSq (fderiv ℝ (V σ) y)) :=
-    (gradient_dominator_integrable C).mono'
-      (hF.comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable
+    (gradient_dominator_integrable C).mono' hspace.aestronglyMeasurable
       (ae_of_all _ (gradient_density_bound hdec σ))
   rw [← ofReal_integral_eq_lintegral_ofReal hint
     (ae_of_all _ fun y => matSq_nonneg' _)]
