@@ -2478,7 +2478,7 @@
     "PCP.Algebraic.ThreeColorParameterChoice.volume": "Grid parameter volume $\\nu2^\\nu$",
     "PCP.oracleOfWitness": "A finite witness read as a proof"
   },
-  "fidelity_held": "Sentence-by-sentence comparisons of this page's statements with their Lean have not been written yet. Comparator has judged the three headline statements; papers/pcp-full-argument/source-review.md records that run.",
+  "fidelity_held": "Sentence-by-sentence comparisons of this page's statements with their Lean are written and AI-assessed; no mathematician has reviewed them. Comparator has judged the three headline statements; papers/pcp-full-argument/source-review.md records that run.",
   "notes": {
     "PCP.np_subset_pcp": {
       "text": "For each language in NP, one verifier and one polynomial-time implementation are chosen independently of the input. Its randomness is exactly $\\alpha\\lceil\\log_2(n+2)\\rceil+\\beta$, its query bound is a fixed constant, and every reachable proof address is below a fixed polynomial in $n$. Every yes-instance has one proof accepted on every seed; every proof for a no-instance is accepted on at most half the seeds. The machine model is the concrete model described in Section 2.3.",
