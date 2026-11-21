@@ -69,6 +69,16 @@ same as the paper, more, less, or something different. When a page has compariso
 `fidelity_held` keeps the comparisons in the file and leaves them off the page.
 [What the checks show](what-the-checks-show.md) says what these comparisons are based on.
 
+## Notes on the Lean and the whole library
+
+A note normally rests on passages of the paper (`because`). A reading note on the Lean itself
+sets `"on": "lean"`, rests on the declaration's own source, and may carry a longer `summary`
+title beside the short plain title. Its `$…$` formulas and `` `…` `` code are typeset when the
+page is built. `"show_also"` in `links.json` lists declarations the page shows although no
+passage names them, such as lemmas used only inside proofs, so that the index and the names
+inside a proof can open them. A project whose declaration report is too large to keep can
+commit `generated/lean.json.gz` in place of `generated/lean.json`.
+
 ## Comparator runs
 
 A page can show a [Comparator](https://github.com/leanprover/comparator) run. Name the
