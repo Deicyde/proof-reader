@@ -1,9 +1,9 @@
 # Result index
 
-**41 proved statements; one open proposition.** Each row names one of the
+**42 proved statements.** Each row names one of the
 42 requested targets. The section link opens its statement and proof, or
 the complete open proposition. The verification record is in `VALIDATION.md`.
-The open target is not an assumption of any proved theorem.
+Theorem 7.1 is proved by rerunning the authors' construction proof with its conclusions extended to keep the two identifications their local proofs establish; the copied proof text is the authors'.
 
 | Paper result | Status | Declaration | Section file |
 | --- | --- | --- | --- |
@@ -33,7 +33,7 @@ The open target is not an assumption of any proved theorem.
 | Lemma 5.10 | Proved | `Adapted.S5.lemma_5_10` | [S5.lean](lean/Adapted/S5.lean) |
 | Proposition 5.11 | Proved | `Adapted.S5.proposition_5_11` | [S5.lean](lean/Adapted/S5.lean) |
 | Lemma 6.1 | Proved | `Adapted.S6.lemma_6_1` | [S6.lean](lean/Adapted/S6.lean) |
-| Theorem 7.1 | **Open** | `Adapted.S7.theorem_7_1` | [S7.lean](lean/Adapted/S7.lean) |
+| Theorem 7.1 | Proved | `Adapted.S7.theorem_7_1` | [S7.lean](lean/Adapted/S7.lean) |
 | Proposition 8.1 | Proved | `Adapted.S8.proposition_8_1` | [S8.lean](lean/Adapted/S8.lean) |
 | Proposition 8.2 | Proved | `Adapted.S8.proposition_8_2` | [S8.lean](lean/Adapted/S8.lean) |
 | Corollary 8.3 | Proved | `Adapted.S8.corollary_8_3` | [S8.lean](lean/Adapted/S8.lean) |

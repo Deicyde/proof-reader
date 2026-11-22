@@ -16,10 +16,10 @@ rests on are the authors'.
 
 Theorem 1.1 is stated in its global form (existence, every blow-up property and uniqueness of
 the maximal solution) against the definitions of the authors' `Statement.lean`, and is proved
-from their `Paper.theorem_1_1`. 41 results are proved; Theorem 7.1 is an open target: the
-authors' exported interfaces do not identify the central covector with the transported covector
-of the same localized step on one common construction, so this layer does not derive the
-paper-faithful form. That is an unsupplied reduction, not a claim that the result fails.
+from their `Paper.theorem_1_1`. All 42 results are proved. Theorem 7.1 reruns the authors' construction proof (their Section 6 to 8 library)
+with its conclusions extended: their local proofs establish that the central covector is the transported
+covector of the same step and that the first wave is the prescribed one of (6.3), and the rerun keeps both.
+The copied proof text is the authors', in the namespace `TorusEuler.Paper.Lib.S678a.AdaptedS7`.
 
 `.github/workflows/euler-adapted-lean.yml` builds the layer against the authors' project on
 public CI, checks that every proof uses only `propext`, `Classical.choice` and `Quot.sound`, and
