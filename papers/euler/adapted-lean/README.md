@@ -11,8 +11,8 @@ rests on are the authors'.
 - `Adapted/S1.lean` … `Adapted/SD.lean`, `Adapted/Auxiliary.lean`: one file per section; the
   helper files (`Norms`, `RealPowers`, `ActiveRelay*`) state shared definitions once.
 - `Adapted.lean` imports them all; `VerifyAdapted.lean` checks every name, kind and axiom set.
-- `TARGETS.json` / `TARGETS.md`: for each of the 42 numbered results, whether it is proved and
-  from which of the authors' declarations, or left as a named open target with the reason.
+- `TARGETS.json` / `TARGETS.md`: for each of the 42 numbered results, the authors' declarations it is
+  proved from.
 
 Theorem 1.1 is stated in its global form (existence, every blow-up property and uniqueness of
 the maximal solution) against the definitions of the authors' `Statement.lean`, and is proved
@@ -24,4 +24,4 @@ The copied proof text is the authors', in the namespace `TorusEuler.Paper.Lib.S6
 `.github/workflows/euler-adapted-lean.yml` builds the layer against the authors' project on
 public CI, checks that every proof uses only `propext`, `Classical.choice` and `Quot.sound`, and
 judges the adapted Theorem 1.1 with Comparator (five kernels) together with two controls that
-must be rejected; `receipt.json` records the run.
+must be rejected; `papers/euler/comparator/adapted/receipt.json` records the run.
