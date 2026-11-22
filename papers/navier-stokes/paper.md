@@ -590,15 +590,23 @@ own kernel code).
 The diagnostic outside the gate, Comparator with the readable
 `CellLayerChallenge.lean` as the challenge, stopped at one constant:
 "Const does not match between challenge and target
-'Breakdown.AdjointDefect.transposeApply'". Its source text and surrounding
-`open` and namespace lines are identical in the readable file and in the
-library file `Breakdown/CertCell/StatementDefs.lean`; the two are elaborated
-in different environments (the library file also imports the
-fractional-certificate definitions), and the same text produces a different
-constant there. We have not yet found which instance or definition differs.
-So the readable file is a faithful copy of the library's text but not, for
-this constant at least, of its elaborated terms; the accepted cell-layer
-judgment above uses the library's definitions.
+'Breakdown.AdjointDefect.transposeApply'". The cause is the name of an
+auxiliary proof, and no statement differs. Printing the elaborated constant
+in two separate Lean processes, one importing the readable file and one
+importing `Breakdown/CertCell/StatementDefs.lean`
+([run 44963653045](https://github.com/wcook04/proof-reader/actions/runs/44963653045)),
+gives identical types and reducibility hints and values that differ in one
+subterm: the proof of `Nat.AtLeastTwo (1 + 1)` inside the numeral 2 that is
+the exponent of the Euclidean space `PiLp 2`. Lean stores that proof as an
+auxiliary theorem and reuses the first one of its module, which is
+`traceFreeConst._proof_2` in the readable file and `labelPhase._proof_1` in
+the library; the two have the same statement and proof. With auxiliary proofs
+renamed by the hash of their statement, all 1,923 `Breakdown` constants in the
+statement closure of the three cell theorems agree between the readable file
+and the library
+([run 44964522151](https://github.com/wcook04/proof-reader/actions/runs/44964522151);
+[probe notes](https://github.com/wcook04/proof-reader/blob/main/lean-wrappers/navier-stokes/transpose-probe/README.md)).
+The accepted cell-layer judgment above uses the library's definitions.
 
 Earlier runs judged nothing: run 44774695098 failed at export, and run
 [44796269901](https://github.com/wcook04/proof-reader/actions/runs/44796269901)
