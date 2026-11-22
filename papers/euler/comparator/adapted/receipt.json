@@ -1,0 +1,41 @@
+{
+ "workflow": ".github/workflows/euler-adapted-lean.yml",
+ "run": "https://github.com/wcook04/proof-reader/actions/runs/45006284225",
+ "authors_commit": "fd3a1588967810b9abe42a1dcf46ee662d6434e2",
+ "lean": "4.34.0-rc2 (build), 4.36.0 (Comparator kernels)",
+ "lean4export_commit": "cacf989bd75f608700820f6afc595f32e7a99a4d",
+ "build": "build exit 0 after 2201s",
+ "axioms": {
+  "proved_statements_checked": 42,
+  "axiom_sets": [
+   [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ]
+  ],
+  "non_standard": {}
+ },
+ "comparator": {
+  "theorem": "Adapted.S1.theorem_1_1",
+  "status": "accepted_adapted_theorem_1_1",
+  "kernels_accepting": [
+   "Lean paranoid kernel accepts the solution",
+   "con-leche kernel accepts the solution",
+   "con-ron kernel accepts the solution",
+   "nanoda kernel accepts the solution",
+   "Lean default kernel accepts the solution"
+  ],
+  "controls": {
+   "statement negated": "rejected: statements do not match",
+   "uniqueness without the equal lifespan": "rejected: statements do not match"
+  },
+  "exit_codes": {
+   "control-statement": 1,
+   "control-uniqueness": 1,
+   "challenge": 0
+  },
+  "scope": "Adapted.S1.theorem_1_1, the adapted edition's Theorem 1.1 in global form (existence, every blow-up property, uniqueness of the maximal solution), stated against the authors' Statement.lean definitions only and proved from their library at fd3a158."
+ },
+ "earlier_run_41_of_42": "https://github.com/wcook04/proof-reader/actions/runs/45004856461"
+}
