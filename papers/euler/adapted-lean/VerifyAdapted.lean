@@ -44,7 +44,7 @@ import Adapted
 #check Adapted.S5.eq_5_59
 #check Adapted.S5.eq_5_13
 #check Adapted.S5.eq_5_14
-example : Prop := Adapted.S7.theorem_7_1
+#check Adapted.S7.theorem_7_1
 
 open Lean in
 run_cmd do
@@ -128,7 +128,7 @@ run_cmd do
   | some (.thmInfo _) => pure ()
   | _ => throwError "Unexpected declaration kind: Adapted.S6.lemma_6_1"
   match env.find? `Adapted.S7.theorem_7_1 with
-  | some (.defnInfo _) => pure ()
+  | some (.thmInfo _) => pure ()
   | _ => throwError "Unexpected declaration kind: Adapted.S7.theorem_7_1"
   match env.find? `Adapted.S8.proposition_8_1 with
   | some (.thmInfo _) => pure ()
@@ -222,3 +222,4 @@ run_cmd do
 #print axioms Adapted.S5.eq_5_59
 #print axioms Adapted.S5.eq_5_13
 #print axioms Adapted.S5.eq_5_14
+#print axioms Adapted.S7.theorem_7_1
