@@ -1872,10 +1872,13 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
         if lean_mode(page):
             page.locator(".mode-toggle button", has_text="Graph").click()
         wait_until(page, lambda: page.locator(".proof[data-dock]").count() == 1, f"{slug}: the Graph view has the dock under the drawing")
+        if w < 600:
+            # The small-screen summary belongs to the lazy graph, which can mount after the dock.
+            page.locator(".graph[data-folded] .graph__strip").wait_for()
         panes = page.locator(".proof__panes").bounding_box()
         graph = page.locator(".proof__graph").bounding_box()
         if w < 600:
-            check(page.locator(".graph[data-folded] .graph__strip").count() == 1 and graph["height"] <= 120,
+            check(graph["height"] <= 120,
                   f"{slug}: on a phone the graph folds to one line")
             check("uses" in page.locator(".graph__strip").inner_text(), f"{slug}: and the line counts what the subject uses")
         else:
@@ -1890,14 +1893,17 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
         mark = page.locator(".sheet__text p .q[data-p]").filter(has_not=page.locator("a.nm")).nth(3)
         passage = mark.get_attribute("data-p").split(" ")[0]
         # Bring it to the upper part of the paper, clear of a phone's sheet.
-        aim = mark.evaluate("""(el) => {
+        mark.evaluate("""(el) => {
           const pane = el.closest('[data-paper-pane]');
           const r0 = el.getBoundingClientRect(), p0 = pane.getBoundingClientRect();
           pane.scrollTop += r0.top - (p0.top + Math.min(160, p0.height * 0.2));
-          const r = el.getClientRects()[0];
-          return [r.left + Math.min(8, r.width / 2), r.top + r.height / 2];
         }""")
         page.wait_for_timeout(300)
+        aim = mark.evaluate("""(el) => {
+          // Leading whitespace that wraps can leave an empty rectangle.
+          const r = [...el.getClientRects()].find((rect) => rect.width > 0);
+          return [r.left + Math.min(8, r.width / 2), r.top + r.height / 2];
+        }""")
         page.mouse.click(*aim)
         wait_until(page, lambda: "Pinned" in caption(page) and page.url.endswith(f"@{passage}"), f"{slug}: a click pins the sentence")
         check(not lean_mode(page), f"{slug}: and the view stays on Graph")
