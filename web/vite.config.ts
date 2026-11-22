@@ -1,7 +1,12 @@
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { defineConfig, loadEnv, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
+import redirectTable from "./library-redirects.json" with { type: "json" };
+
+const { pages } = redirectTable;
+
+const redirects: Partial<Record<string, { to: string; retired?: boolean }>> = pages;
 
 const SITE_URL = "https://wcook04.github.io/proof-reader/";
 
@@ -13,9 +18,8 @@ interface ShelfItem {
   declarations: number;
 }
 
-function shelf(): ShelfItem[] {
-  const path = resolve("public/papers/index.json");
-  return existsSync(path) ? (JSON.parse(readFileSync(path, "utf8")) as { papers: ShelfItem[] }).papers : [];
+function shelf(path: string): { papers: ShelfItem[] } {
+  return existsSync(path) ? JSON.parse(readFileSync(path, "utf8")) : { papers: [] };
 }
 
 const escapeHtml = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -30,7 +34,7 @@ The papers, guides and their Lean are their authors'. A program checks each PDF 
 
 ## Papers
 
-${papers.map((p) => `- [${p.title}](${SITE_URL}${p.slug}/): ${p.authors.join(", ")}. ${p.venue}. ${p.declarations} declarations.`).join("\n")}
+${papers.map((p) => `- [${p.title}](${redirects[p.slug]?.to ?? `${SITE_URL}${p.slug}/`}): ${p.authors.join(", ")}. ${p.venue}. ${p.declarations} declarations.`).join("\n")}
 
 ## Data
 
@@ -70,6 +74,7 @@ function notFound(base: string, papers: ShelfItem[]): string {
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Page not found · Proof Reader</title>
+<script src="${base}library-redirects.js"></script>
 <meta name="robots" content="noindex" />
 <meta name="color-scheme" content="light dark" />
 <link rel="icon" href="${base}favicon.svg" type="image/svg+xml" />
@@ -93,7 +98,7 @@ function notFound(base: string, papers: ShelfItem[]): string {
 <h1>There is nothing at this address.</h1>
 <p>Proof Reader shows a paper beside its Lean proof. These are the papers on the site:</p>
 <ul>
-${papers.map((p) => `<li><a href="${base}#/${encodeURIComponent(p.slug)}">${escapeHtml(p.title)}</a></li>`).join("\n")}
+${papers.map((p) => `<li><a href="${escapeHtml(redirects[p.slug]?.to ?? `${base}#/${encodeURIComponent(p.slug)}`)}">${escapeHtml(p.title)}</a></li>`).join("\n")}
 </ul>
 <p><a href="${base}">Go to the front page</a></p>
 </main>
@@ -117,6 +122,24 @@ function paperPage(html: string, paper: ShelfItem, base: string): string {
     .replace("<head>", `<head>\n    <script>if (!location.hash) location.replace(${JSON.stringify(`${base}#/${paper.slug}`)});</script>`);
 }
 
+/** A moved address has the shared bookmark mapper and a no-script link to its paper. */
+function libraryPage(base: string, url: string): string {
+  const target = escapeHtml(url);
+  return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>This paper is in the library</title>
+<link rel="canonical" href="${target}" />
+<meta name="robots" content="noindex" />
+<script src="${base}library-redirects.js"></script>
+</head>
+<body><main><p><a href="${target}">Read the paper in the library</a></p></main></body>
+</html>
+`;
+}
+
 /** What a static host needs beside the app, written after the bundle. */
 function publicFiles(base: string): Plugin {
   let out = resolve("dist");
@@ -135,15 +158,26 @@ function publicFiles(base: string): Plugin {
     },
     closeBundle() {
       if (!existsSync(out)) return;
-      const papers = shelf();
+      const indexPath = resolve(out, "papers/index.json");
+      const index = shelf(indexPath);
+      const papers = index.papers.filter((paper) => !redirects[paper.slug]?.retired);
+      if (existsSync(indexPath)) {
+        writeFileSync(indexPath, JSON.stringify({ ...index, papers }) + "\n");
+      }
       const html = readFileSync(resolve(out, "index.html"), "utf8");
       writeFileSync(resolve(out, "llms.txt"), llmsText(papers));
-      writeFileSync(resolve(out, "sitemap.xml"), sitemap(papers));
+      writeFileSync(resolve(out, "sitemap.xml"), sitemap(papers.filter((paper) => !redirects[paper.slug])));
       writeFileSync(resolve(out, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}sitemap.xml\n`);
       writeFileSync(resolve(out, "404.html"), notFound(base, papers));
       for (const paper of papers) {
+        if (redirects[paper.slug]) continue;
         mkdirSync(resolve(out, paper.slug), { recursive: true });
         writeFileSync(resolve(out, paper.slug, "index.html"), paperPage(html, paper, base));
+      }
+      for (const [slug, entry] of Object.entries(pages)) {
+        mkdirSync(resolve(out, slug), { recursive: true });
+        writeFileSync(resolve(out, slug, "index.html"), libraryPage(base, entry.to));
+        if (redirects[slug]?.retired) rmSync(resolve(out, "papers", slug), { recursive: true, force: true });
       }
       if (existsSync(resolve("public/.nojekyll"))) copyFileSync(resolve("public/.nojekyll"), resolve(out, ".nojekyll"));
     },

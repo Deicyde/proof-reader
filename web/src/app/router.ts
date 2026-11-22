@@ -32,6 +32,8 @@ export const readRoute = () => parseRoute(window.location.hash);
 
 export function routeHref(route: Route): string {
   if (!route.paper) return "./";
-  const base = `./#/${encodeURIComponent(route.paper)}`;
-  return route.record ? `${base}/${encodeURIComponent(route.record).replace(/^%40/, "@")}` : base;
+  const base = `#/${encodeURIComponent(route.paper)}`;
+  const hash = route.record ? `${base}/${encodeURIComponent(route.record).replace(/^%40/, "@")}` : base;
+  const library = (window as Window & { __libraryTarget?: (hash: string) => string | null }).__libraryTarget;
+  return library?.(hash) ?? `./${hash}`;
 }

@@ -26,8 +26,11 @@ SIZES = ((1440, 900), (2560, 1440))
 
 def graph_papers() -> list[str]:
     index = json.loads((ROOT / "web" / "public" / "papers" / "index.json").read_text())
+    moved = json.loads((ROOT / "web" / "library-redirects.json").read_text())["pages"]
     out = []
     for paper in index["papers"]:
+        if paper["slug"] in moved:
+            continue
         edition = json.loads((ROOT / "web" / "public" / "papers" / paper["slug"] / "edition.json").read_text())
         if edition["paper"].get("graph", True) is not False:
             out.append(paper["slug"])
