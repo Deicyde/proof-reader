@@ -1,0 +1,381 @@
+[
+  {
+    "result": "Theorem 1.1",
+    "status": "proved",
+    "lean_name": "Adapted.S1.theorem_1_1",
+    "reduces_to": [
+      "TorusEuler.Paper.theorem_1_1"
+    ]
+  },
+  {
+    "result": "Remark 1.2",
+    "status": "proved",
+    "lean_name": "Adapted.S1.remark_1_2",
+    "reduces_to": [
+      "TorusEuler.Paper.remark_1_2"
+    ]
+  },
+  {
+    "result": "Lemma 1.3",
+    "status": "proved",
+    "lean_name": "Adapted.S1.lemma_1_3",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_1_3"
+    ]
+  },
+  {
+    "result": "Lemma 2.1",
+    "status": "proved",
+    "lean_name": "Adapted.S2.lemma_2_1",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_2_1"
+    ]
+  },
+  {
+    "result": "Lemma 2.2",
+    "status": "proved",
+    "lean_name": "Adapted.S2.lemma_2_2",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_2_2"
+    ]
+  },
+  {
+    "result": "Lemma 2.3",
+    "status": "proved",
+    "lean_name": "Adapted.S2.lemma_2_3",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_2_3",
+      "TorusEuler.Paper.Lib.S2b.clock_mem_slab"
+    ]
+  },
+  {
+    "result": "Lemma 2.4",
+    "status": "proved",
+    "lean_name": "Adapted.S2.lemma_2_4",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_2_4",
+      "TorusEuler.Paper.Lib.S2b.clock_mem_slab"
+    ]
+  },
+  {
+    "result": "Lemma 2.5",
+    "status": "proved",
+    "lean_name": "Adapted.S2.lemma_2_5",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_2_5"
+    ]
+  },
+  {
+    "result": "Lemma 2.6",
+    "status": "proved",
+    "lean_name": "Adapted.S2.lemma_2_6",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_2_6",
+      "TorusEuler.Paper.Lib.S2b.clock_mem_slab"
+    ]
+  },
+  {
+    "result": "Lemma 2.7",
+    "status": "proved",
+    "lean_name": "Adapted.S2.lemma_2_7",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_2_7",
+      "TorusEuler.Paper.Lib.S2b.clock_mem_slab"
+    ]
+  },
+  {
+    "result": "Proposition 2.8",
+    "status": "proved",
+    "lean_name": "Adapted.S2.proposition_2_8",
+    "reduces_to": [
+      "TorusEuler.Paper.proposition_2_8",
+      "TorusEuler.Paper.Lib.S2b.clock_mem_slab"
+    ]
+  },
+  {
+    "result": "Lemma 3.1",
+    "status": "proved",
+    "lean_name": "Adapted.S3.lemma_3_1",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_3_1"
+    ]
+  },
+  {
+    "result": "Lemma 4.1",
+    "status": "proved",
+    "lean_name": "Adapted.S4.lemma_4_1",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_4_1"
+    ]
+  },
+  {
+    "result": "Theorem 4.2",
+    "status": "proved",
+    "lean_name": "Adapted.S4.theorem_4_2",
+    "reduces_to": [
+      "TorusEuler.Paper.theorem_4_2",
+      "TorusEuler.norm_le_endpointClosedTimeNorm",
+      "TorusEuler.endpointClosedTimeNorm_nonneg",
+      "TorusEuler.HalfHolder.norm_le_iff"
+    ]
+  },
+  {
+    "result": "Proposition 5.1",
+    "status": "proved",
+    "lean_name": "Adapted.S5.proposition_5_1",
+    "reduces_to": [
+      "TorusEuler.Paper.proposition_5_1",
+      "TorusEuler.Paper.Lib.S5a.norm_iteratedFDeriv_le_coefficientOrderNorm",
+      "TorusEuler.Paper.Lib.S5a.labelWord_eq_iteratedFDeriv"
+    ]
+  },
+  {
+    "result": "Proposition 5.2",
+    "status": "proved",
+    "lean_name": "Adapted.S5.proposition_5_2",
+    "reduces_to": [
+      "TorusEuler.Paper.proposition_5_2"
+    ]
+  },
+  {
+    "result": "Lemma 5.3",
+    "status": "proved",
+    "lean_name": "Adapted.S5.lemma_5_3",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_5_3",
+      "TorusEuler.exists_paper_hierarchy_inverse_of_active_profiles",
+      "TorusEuler.Paper.Lib.S5a.exists_velocityJets_of_lemmaB1",
+      "TorusEuler.Paper.lemma_B_1"
+    ]
+  },
+  {
+    "result": "Proposition 5.4",
+    "status": "proved",
+    "lean_name": "Adapted.S5.proposition_5_4",
+    "reduces_to": [
+      "TorusEuler.Paper.proposition_5_4"
+    ]
+  },
+  {
+    "result": "Lemma 5.5",
+    "status": "proved",
+    "lean_name": "Adapted.S5.lemma_5_5",
+    "reduces_to": [
+      "TorusEuler.hierarchyFiniteWordNorm_waveCompletion_le",
+      "TorusEuler.hierarchyFiniteWordNorm_waveLinearRelay_le",
+      "TorusEuler.HierarchyTwistedProfile.exists_transportedWaveRelayCoefficientBudget",
+      "TorusEuler.paperHierarchyActiveWord_bddAbove",
+      "TorusEuler.hasDerivWithinAt_relayLabelJet_of_smoothProfile",
+      "TorusEuler.hasDerivWithinAt_wavePotential_time",
+      "TorusEuler.derivWithin_waveCompletion_add_pressure",
+      "TorusEuler.Paper.Lib.S5a.exists_leading_representatives",
+      "TorusEuler.Paper.Lib.S5a.leading_homogeneous",
+      "TorusEuler.Paper.lemma_B_1"
+    ]
+  },
+  {
+    "result": "Theorem 5.6",
+    "status": "proved",
+    "lean_name": "Adapted.S5.theorem_5_6",
+    "reduces_to": [
+      "TorusEuler.Paper.theorem_5_6"
+    ]
+  },
+  {
+    "result": "Lemma 5.7",
+    "status": "proved",
+    "lean_name": "Adapted.S5.lemma_5_7",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_5_7"
+    ]
+  },
+  {
+    "result": "Lemma 5.8",
+    "status": "proved",
+    "lean_name": "Adapted.S5.lemma_5_8",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_5_8"
+    ]
+  },
+  {
+    "result": "Lemma 5.9",
+    "status": "proved",
+    "lean_name": "Adapted.S5.lemma_5_9",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_5_9"
+    ]
+  },
+  {
+    "result": "Lemma 5.10",
+    "status": "proved",
+    "lean_name": "Adapted.S5.lemma_5_10",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_5_10",
+      "TorusEuler.spatialHolderHalf_of_contDiff_periodic",
+      "TorusEuler.norm_le_spatialSupNorm"
+    ]
+  },
+  {
+    "result": "Proposition 5.11",
+    "status": "proved",
+    "lean_name": "Adapted.S5.proposition_5_11",
+    "reduces_to": [
+      "TorusEuler.Paper.proposition_5_11"
+    ]
+  },
+  {
+    "result": "Lemma 6.1",
+    "status": "proved",
+    "lean_name": "Adapted.S6.lemma_6_1",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_6_1"
+    ]
+  },
+  {
+    "result": "Theorem 7.1",
+    "status": "open",
+    "lean_name": "Adapted.S7.theorem_7_1",
+    "reduces_to": [],
+    "reason": "The exported existential interfaces do not identify the central covector with the transported covector of the same localized step, or the first central pair with the prescribed initial covector, positive amplitude direction and attained normalization of (6.3). The target requires both identifications on one common construction. It also records the temporal continuity in (7.4), which follows from exported step smoothness and the existing slab norm-continuity results; that regularity is not a separate analytic obstruction. Local construction proofs retain more information, but this layer does not recover both identifications for the same exported witnesses. This is an unsupplied reduction, not a claim of mathematical non-derivability. One suitable envelope exponent is chosen before B and N."
+  },
+  {
+    "result": "Proposition 8.1",
+    "status": "proved",
+    "lean_name": "Adapted.S8.proposition_8_1",
+    "reduces_to": [
+      "TorusEuler.Paper.proposition_8_1",
+      "TorusEuler.Paper.proposition_8_2",
+      "TorusEuler.Paper.corollary_8_3",
+      "TorusEuler.IsEulerSolution.velocity_eq_on_common_interval"
+    ]
+  },
+  {
+    "result": "Proposition 8.2",
+    "status": "proved",
+    "lean_name": "Adapted.S8.proposition_8_2",
+    "reduces_to": [
+      "TorusEuler.Paper.proposition_8_2"
+    ]
+  },
+  {
+    "result": "Corollary 8.3",
+    "status": "proved",
+    "lean_name": "Adapted.S8.corollary_8_3",
+    "reduces_to": [
+      "TorusEuler.Paper.proposition_8_2",
+      "TorusEuler.Paper.corollary_8_3",
+      "TorusEuler.IsEulerSolution.velocity_eq_on_common_interval"
+    ]
+  },
+  {
+    "result": "Proposition 8.4",
+    "status": "proved",
+    "lean_name": "Adapted.S8.proposition_8_4",
+    "reduces_to": [
+      "TorusEuler.Paper.proposition_8_4"
+    ]
+  },
+  {
+    "result": "Theorem A.1",
+    "status": "proved",
+    "lean_name": "Adapted.SA.theorem_A_1",
+    "reduces_to": [
+      "TorusEuler.Paper.theorem_A_1",
+      "TorusEuler.norm_le_endpointClosedTimeNorm",
+      "TorusEuler.endpointClosedTimeNorm_nonneg",
+      "TorusEuler.HalfHolder.norm_le_iff"
+    ]
+  },
+  {
+    "result": "Lemma A.2",
+    "status": "proved",
+    "lean_name": "Adapted.SA.lemma_A_2",
+    "reduces_to": [
+      "TorusEuler.Paper.lemma_A_2",
+      "TorusEuler.halfHolder_lipschitz_of_spatialHolderHalf_one"
+    ]
+  },
+  {
+    "result": "Lemma B.1",
+    "status": "proved",
+    "lean_name": "Adapted.SB.lemma_B_1",
+    "reduces_to": [
+      "TorusEuler.Paper.Proof.lemma_B_1",
+      "TorusEuler.Paper.AppendixB.CutoffSymbol.of_radial",
+      "TorusEuler.paperLemmaB1_realCutoff_LInfinity",
+      "TorusEuler.realVectorFourierCutoffOfFunction",
+      "TorusEuler.continuous_realVectorFourierCutoffOfFunction",
+      "TorusEuler.smoothFourierCutoff_neg_arg",
+      "TorusEuler.realBanachFourierCutoff_vec_eq",
+      "TorusEuler.realBanachFourierCutoff_scalarization",
+      "TorusEuler.mFourierCoeff_smoothFourierCutoff_eq_zero"
+    ]
+  },
+  {
+    "result": "Text eq_D_2",
+    "status": "proved",
+    "lean_name": "Adapted.SD.eq_D_2",
+    "reduces_to": [
+      "TorusEuler.Paper.Proof.Text.eq_D_2"
+    ]
+  },
+  {
+    "result": "Lemma D.1",
+    "status": "proved",
+    "lean_name": "Adapted.SD.lemma_D_1",
+    "reduces_to": [
+      "TorusEuler.Paper.Proof.lemma_D_1"
+    ]
+  },
+  {
+    "result": "Lemma D.2",
+    "status": "proved",
+    "lean_name": "Adapted.SD.lemma_D_2",
+    "reduces_to": [
+      "TorusEuler.Paper.Proof.lemma_D_2"
+    ]
+  },
+  {
+    "result": "Lemma D.3",
+    "status": "proved",
+    "lean_name": "Adapted.SD.lemma_D_3",
+    "reduces_to": [
+      "TorusEuler.Paper.Proof.lemma_D_3"
+    ]
+  },
+  {
+    "result": "Text section8_setting",
+    "status": "proved",
+    "lean_name": "Adapted.S8.section8_setting",
+    "reduces_to": [
+      "TorusEuler.Paper.proposition_8_1",
+      "TorusEuler.Paper.Lib.S678b.closedSlab_velocity_limit"
+    ]
+  },
+  {
+    "result": "Text eq_5_59",
+    "status": "proved",
+    "lean_name": "Adapted.S5.eq_5_59",
+    "reduces_to": [
+      "TorusEuler.Paper.Text.eq_5_59"
+    ]
+  },
+  {
+    "result": "Text eq_5_13",
+    "status": "proved",
+    "lean_name": "Adapted.S5.eq_5_13",
+    "reduces_to": [
+      "TorusEuler.Paper.Text.eq_5_13"
+    ]
+  },
+  {
+    "result": "Text eq_5_14",
+    "status": "proved",
+    "lean_name": "Adapted.S5.eq_5_14",
+    "reduces_to": [
+      "TorusEuler.Paper.Text.eq_5_14",
+      "TorusEuler.exists_bound_spatial_jet_of_contDiffOn_periodic",
+      "TorusEuler.hierarchyJetValues_true_label_bddAbove_csSup_le_of_iteratedFDeriv"
+    ]
+  }
+]
