@@ -171,33 +171,57 @@ replayed theorem carrying every clause of printed Theorem 1.1 and its
 subsequent uniform family assertion. The exact torus convergence estimate
 on `B₁/₁₆` remains an unmatched part of that full statement comparison.
 
-### Lean we added: Theorem 1.1 on every compact time interval
+### Lean we added: Theorem 1.1 on R³, one solution on [0,1), from the profile premise
 
 We wrote new Lean that states the paper's conclusion in physical terms and
-proves most of it from the authors' library. [`Theorem11Challenge`](https://github.com/wcook04/proof-reader/tree/claude/navier-stokes-20261120/lean-wrappers/navier-stokes/theorem11/Theorem11Challenge.lean)
+proves its R³ part from the authors' library. [`Theorem11Challenge`](https://github.com/wcook04/proof-reader/tree/main/lean-wrappers/navier-stokes/theorem11/Theorem11Challenge.lean)
 states the target with Mathlib only, so it can be read without the authors'
-definitions. [`Theorem11.theorem11SpaceSlabs`](https://github.com/wcook04/proof-reader/tree/claude/navier-stokes-20261120/lean-wrappers/navier-stokes/theorem11/Theorem11Solution.lean)
-proves: for every profile satisfying the library's profile premise and every
-$\varepsilon>0$ there are one smooth compactly supported divergence-free
-datum $\phi$ with $\|\nabla(\phi-W(0))\|_2<\varepsilon$ and constants
-$0<c\le C$, $0<\kappa<\tfrac14$ such that, for every $T<1$, a smooth
-solution $u$ from $\phi$ on $[0,T)$ with bounded energy satisfies, for all
-$0\le t<T$,
+definitions. [`Theorem11.theorem11Space`](https://github.com/wcook04/proof-reader/tree/main/lean-wrappers/navier-stokes/theorem11/Theorem11Solution.lean)
+proves, conditionally on the profile premise of the authors' route (a smooth
+nonzero periodic profile solving (1.2) with
+$|\nabla^jW(s,y)|\le A(1+|y|)^{-j-1}$ for $j\le2$ and
+$|\nabla q(s,y)|\le A(1+|y|)^{-3}$, stronger than the printed (1.3)): for
+every such profile and every $\varepsilon>0$ there are a smooth compactly supported divergence-free datum
+$u_0$ with $\|\nabla(u_0-W(0))\|_2<\varepsilon$, one smooth solution $u$ of
+the Navier–Stokes equations on $[0,1)\times\mathbb R^3$ with datum $u_0$,
+with smooth pressure and with energy bounded on all of $[0,1)$, and constants
+$0<c\le C$, $0<\kappa<\tfrac14$ such that, for all $0\le t<1$,
 
 $$
 c(1-t)^{-1/4}\le\|\nabla u(t)\|_2\le C(1-t)^{-1/4},\qquad
 \|\nabla(D_{1-t}u(t)-W(-\log(1-t)))\|_2\le C(1-t)^{\kappa},
 $$
 
-where $D_{1-t}$ rescales to similarity variables. The datum and constants
-are fixed once; the solution and its energy bound may depend on $T$. The full
-statement also wants one solution on all of $[0,1)$ with one energy bound,
-which needs the local pressures glued and an energy bound uniform up to time
-one; both are stated in the file and not yet proved. The torus helpers (exact
-agreement on $B_{1/16}$, the full $H^1$ comparison, the geometric rate) are
-proved as conditional bridges. All 16 modules compile against the package,
-and the theorems use only `propext`, `Classical.choice` and `Quot.sound`
-([run 44837689921](https://github.com/wcook04/proof-reader/actions/runs/44837689921)).
+where $D_{1-t}$ rescales to similarity variables. [`Theorem11.theorem11SpaceBlowup`](https://github.com/wcook04/proof-reader/tree/main/lean-wrappers/navier-stokes/theorem11/Theorem11Solution.lean)
+adds that every smooth finite-energy solution from $u_0$ on an interval
+$[0,T)$, $T\le1$, equals $u$ there, and that no smooth solution from $u_0$
+with finite energy exists on the closed interval $[0,1]$.
+
+The proof glues the library's solutions on the slabs $[0,T]$, $T<1$. Their
+velocities agree by the library's uniqueness theorem. Their pressures agree
+once each is normalized to vanish at the origin, since the momentum equation
+fixes the pressure gradient. The energy bound comes from an energy inequality,
+proved with the authors' localized energy estimate run against the zero
+solution: the energy at every time is at most that of the datum, whatever the
+slab. The non-continuation clause uses the authors' argument that a field
+continuous up to time one cannot converge in self-similar variables to a
+nonzero profile.
+
+All modules compile against the package; both endpoints use only `propext`,
+`Classical.choice` and `Quot.sound`; and Comparator, with the Mathlib-only
+statement file `Theorem11Endpoints` as challenge, accepted both, with the
+solution accepted by Lean's paranoid kernel, con-leche, con-ron, nanoda and
+Lean's default kernel, while a control that gives `theorem11Space` the weaker
+slab-wise conclusion was rejected for a statement mismatch
+([run 44970487624](https://github.com/wcook04/proof-reader/actions/runs/44970487624)). Three paper-faithful forms remain open and are recorded as named
+propositions in [`Theorem11OpenTargets`](https://github.com/wcook04/proof-reader/tree/main/lean-wrappers/navier-stokes/theorem11/Theorem11OpenTargets.lean):
+the torus statement, which needs a periodic analogue of the library's
+mild-to-smooth regularity theorem; and the statements with the printed
+hypothesis (1.2)–(1.3) on R³ and on the torus, which need Remark 1.2 (the
+interior estimate that gives the library's bounds on $\nabla^2W$ and on the
+pressure gradient) and, on R³, the change of variables to the error in the
+original variables. The torus helpers (exact agreement on $B_{1/16}$, the
+full $H^1$ comparison, the geometric rate) are proved as conditional bridges.
 
 ### What a referee's reading of §§1–6 finds
 
