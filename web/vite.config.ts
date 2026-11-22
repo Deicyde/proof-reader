@@ -177,7 +177,8 @@ function publicFiles(base: string): Plugin {
       for (const [slug, entry] of Object.entries(pages)) {
         mkdirSync(resolve(out, slug), { recursive: true });
         writeFileSync(resolve(out, slug, "index.html"), libraryPage(base, entry.to));
-        if (redirects[slug]?.retired) rmSync(resolve(out, "papers", slug), { recursive: true, force: true });
+        // A forwarded reader only publishes its redirect shell.
+        rmSync(resolve(out, "papers", slug), { recursive: true, force: true });
       }
       if (existsSync(resolve("public/.nojekyll"))) copyFileSync(resolve("public/.nojekyll"), resolve(out, ".nojekyll"));
     },
