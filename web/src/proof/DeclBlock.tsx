@@ -127,14 +127,20 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
   const bodyUses = d.uses_proof;
   const passages = d.passages.map((id) => edition.passages.find((p) => p.id === id)).filter((p): p is Passage => !!p);
   const path = d.file.replace(/^lean\//, "");
-  const source = edition.lean.source_lines?.replace("{path}", path).replace("{line}", String(d.line)).replace("{end}", String(d.end_line)) ?? edition.lean.source;
+  const sourceLines = edition.lean.source_lines?.replace("{path}", path).replace("{line}", String(d.line)).replace("{end}", String(d.end_line));
+  const source = sourceLines ?? edition.lean.source;
+  const range = d.line === d.end_line ? `line ${d.line}` : `lines ${d.line}–${d.end_line}`;
   return (
     <article className="decl" data-shape={shapeOf(d)} data-decl={d.id} data-source-read={evidence !== "lean" || undefined}>
       <header className="decl__head">
         <h3 className="decl__name"><a href={routeHref({ paper: edition.slug, record: d.id })}>{d.plain}</a></h3>
         <code className="decl__raw">{d.id}</code>
         <CopyName name={d.id} />
-        <span className="decl__kind">{KIND_WORDS[d.keyword] ?? d.keyword}, line{d.lines > 1 ? `s ${d.line} to ${d.end_line}` : ` ${d.line}`}; {declOrigin(edition, d)}</span>
+        <span className="decl__kind">
+          {KIND_WORDS[d.keyword] ?? d.keyword} · {sourceLines ? (
+            <a href={sourceLines} target="_blank" rel="noopener noreferrer" title={`Open ${d.id} in its Lean file`}>{range}</a>
+          ) : range} · {declOrigin(edition, d)}
+        </span>
       </header>
       {passage && !compact && <p className="decl__relation">{relation(passage)}</p>}
       {d.note && <DeclNote note={d.note} />}

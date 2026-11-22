@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
+import { fileURLToPath } from "node:url";
 import { plainMaths } from "../src/paper/plainMaths.ts";
 
 const cases = {
@@ -27,8 +28,8 @@ test("formulas read as Physlib writes them", () => {
 });
 
 test("the site copies every coupled-spring formula as the GitHub edition writes it", () => {
-  const paper = new URL("../../papers/coupled-spring/paper.md", import.meta.url).pathname;
-  const tools = new URL("../../tools", import.meta.url).pathname;
+  const paper = fileURLToPath(new URL("../../papers/coupled-spring/paper.md", import.meta.url));
+  const tools = fileURLToPath(new URL("../../tools", import.meta.url));
   const script = `
 import json, re, sys
 sys.path.insert(0, ${JSON.stringify(tools)})
