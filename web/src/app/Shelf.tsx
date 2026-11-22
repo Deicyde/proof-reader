@@ -124,7 +124,7 @@ export function Shelf() {
 
         <section className="band band--papers" id="papers" aria-labelledby="papers-title">
           <div className="band__in">
-            <h2 id="papers-title">{papers && papers.length > 1 ? "Papers on this site" : "The paper on this site"}</h2>
+            <h2 id="papers-title">{papers && papers.length > 1 ? "Papers" : "The paper"}</h2>
             <ul className="shelf__list">
               {(papers ?? []).filter((p) => !p.with).map((p) => (
                 <li key={p.slug}>
