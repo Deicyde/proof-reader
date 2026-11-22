@@ -32,8 +32,10 @@ export function PaperSplit() {
   const bounds = () => {
     const el = root.current;
     const width = el?.clientWidth || window.innerWidth;
-    const rail = el ? parseFloat(getComputedStyle(el).getPropertyValue("--rail-width")) || 0 : 0;
-    return { width, low: MIN_PAPER / width, high: Math.max(MIN_PAPER / width, (width - rail - GUTTER - MIN_PROOF) / width) };
+    const style = el && getComputedStyle(el);
+    const rail = parseFloat(style?.getPropertyValue("--rail-width") || "0");
+    const proof = parseFloat(style?.getPropertyValue("--proof-min") || String(MIN_PROOF));
+    return { width, low: MIN_PAPER / width, high: Math.max(MIN_PAPER / width, (width - rail - GUTTER - proof) / width) };
   };
   const write = (value: number | null) => {
     const el = root.current;

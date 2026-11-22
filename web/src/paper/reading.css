@@ -60,12 +60,13 @@
 .q { cursor: pointer; border-radius: 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-color 140ms linear; }
 /* At rest a linked sentence carries a thin line in the thread's colour, so it reads as
    something to click before the pointer reaches it. Code listings keep their margin mark only. */
-.sheet__text .q { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.24em; text-decoration-color: color-mix(in oklab, var(--thread) 55%, transparent); text-decoration-skip-ink: auto; }
+.sheet__text .q { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.24em; text-decoration-color: color-mix(in oklab, var(--thread) var(--tie-line-opacity, 8%), transparent); text-decoration-skip-ink: auto; }
+.sheet__text .q:not(pre *, .is-lit, .is-hover, .is-active, .is-pinned) { background-color: color-mix(in oklab, var(--thread) 10%, transparent); }
 .sheet__text .cl .q, .sheet__text pre .q, .sheet__text .q.is-active, .sheet__text .q.is-pinned { text-decoration: none; }
-.q.is-lit, .q.is-hover { background: var(--highlight-soft); }
+.q.is-lit, .q.is-hover { --tie-line-opacity: 55%; background: var(--highlight-soft); }
 .q.is-active, .q.is-pinned { background: var(--highlight); }
 .q.is-pinned { box-shadow: 0 2px 0 var(--thread); }
-.q:focus-visible { outline: 2px solid var(--lit); outline-offset: 1px; }
+.q:focus-visible { --tie-line-opacity: 55%; outline: 2px solid var(--lit); outline-offset: 1px; }
 .q::selection, .sheet__text ::selection { background: rgb(180 101 10 / 0.24); }
 
 /* The page marks of the PDF */

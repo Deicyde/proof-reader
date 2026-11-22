@@ -42,6 +42,7 @@ import { useReducedMotion } from "./canvas/useReducedMotion";
 import { SIDES, beyond, chipAt, chipText, freeSpot, panToward, sameBeyond, screenRects, type Beyond, type Side } from "./canvas/chips";
 import { traceTiming } from "./canvas/trace";
 import { SimplifiedMap } from "./canvas/SimplifiedMap";
+import { graphWheel } from "../proof/graphWheel";
 import "./tree.css";
 
 /**
@@ -1745,15 +1746,12 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
     const onWheel = (event: WheelEvent) => {
       if ((event.target as Element).closest?.(".tree__ui")) return;
       event.preventDefault();
-      const t = viewRef.current;
-      const unit = event.deltaMode === 1 ? 16 : 1;
-      // Two fingers on a trackpad or a wheel pan, as they scroll any page. A pinch arrives with
-      // the Ctrl flag, and Ctrl or Cmd with a wheel zooms about the pointer.
-      if (event.ctrlKey || event.metaKey) {
+      const gesture = graphWheel(event, wrap);
+      if ("zoom" in gesture) {
         const rect = wrap.getBoundingClientRect();
         const point: [number, number] = [event.clientX - rect.left, event.clientY - rect.top];
-        s.call(behaviour.scaleBy, Math.pow(2, -event.deltaY * (event.deltaMode === 1 ? 0.05 : 0.0022) * 3.2), point);
-      } else s.call(behaviour.translateBy, (-event.deltaX * unit) / t.k, (-event.deltaY * unit) / t.k);
+        s.call(behaviour.scaleBy, gesture.zoom, point);
+      } else s.call(behaviour.translateBy, gesture.panX / viewRef.current.k, 0);
       userMoved.current = true;
       userMovedSinceAsk.current = true;
       pendingCamera.current = null;

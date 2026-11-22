@@ -102,7 +102,11 @@ button:disabled { cursor: default; }
 /* The open book */
 .spread { --rail-width: 212px; position: relative; flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr); justify-content: center; background: var(--desk); }
 .spread.has-right { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-.spread--reading { --paper-w: clamp(480px, calc(44vw - 26px), 1000px); }
+.spread--reading {
+  --proof-min: 600px;
+  --paper-measure: clamp(480px, calc(44vw - 26px), 1000px);
+  --paper-w: min(var(--paper-measure), calc(100% - var(--rail-width) - 26px - var(--proof-min)));
+}
 .spread--reading.has-right { grid-template-columns: var(--rail-width) minmax(0, var(--paper-w)) minmax(0, 1fr); column-gap: 0; }
 /* The divider stands in the gutter between the paper and the proof (after the Quartic Reader). */
 .papersplit { position: absolute; z-index: 13; top: 0; bottom: 0; left: calc(var(--rail-width) + var(--paper-w)); width: 26px; display: grid; place-items: center; cursor: col-resize; touch-action: none; }
@@ -278,6 +282,8 @@ button:disabled { cursor: default; }
 .decl__name a:hover { color: var(--lit); text-decoration: underline; text-underline-offset: 3px; }
 .decl[data-shape="axiom"] .decl__name a { color: var(--rel-assumes-lit); }
 .decl__kind { font-size: var(--fs-sm); color: var(--ink-2); }
+.decl__kind a { color: inherit; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
+.decl__kind a:hover { color: var(--lit); }
 .decl__copy { min-height: 24px; font-size: var(--fs-xs); color: var(--ink-2); text-decoration: underline; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
 .decl__copy:hover { color: var(--lit); }
 .decl__relation, .decl__facts { margin: 3px 0 0; font-size: var(--fs-sm); line-height: 1.42; color: var(--ink-2); text-wrap: pretty; }
@@ -453,7 +459,7 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
 }
 @media (min-width: 2100px) {
   .spread { --rail-width: 260px; }
-  .spread--reading { --paper-w: 1000px; }
+  .spread--reading { --paper-measure: 1000px; }
   .lean-code { font-size: 0.875rem; }
   .rail { font-size: var(--fs-ui); }
 }
