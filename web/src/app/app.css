@@ -105,7 +105,8 @@ button:disabled { cursor: default; }
 .spread--reading {
   --proof-min: 600px;
   --paper-measure: clamp(480px, calc(44vw - 26px), 1000px);
-  --paper-w: min(var(--paper-measure), calc(100% - var(--rail-width) - 26px - var(--proof-min)));
+  /* Leave one keyboard step to widen the paper from its default. */
+  --paper-w: min(var(--paper-measure), max(420px, calc(100% - var(--rail-width) - 26px - var(--proof-min) - 2.5vw)));
 }
 .spread--reading.has-right { grid-template-columns: var(--rail-width) minmax(0, var(--paper-w)) minmax(0, 1fr); column-gap: 0; }
 /* The divider stands in the gutter between the paper and the proof (after the Quartic Reader). */

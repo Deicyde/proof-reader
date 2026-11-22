@@ -21,8 +21,6 @@ function stored(): number | null {
 }
 
 export function PaperSplit() {
-  // The paper's share of the window; none until the reader chooses one.
-  const [share, setShare] = useState<number | null>(stored);
   const [now, setNow] = useState(44);
   const handle = useRef<HTMLDivElement>(null);
   // The open book this divider stands in. Read from the handle: a parent's ref is not yet
@@ -47,7 +45,6 @@ export function PaperSplit() {
     const { low, high } = bounds();
     const next = value === null ? null : Math.min(high, Math.max(low, value));
     write(next);
-    setShare(next);
     if (!save) return;
     try {
       if (next === null) localStorage.removeItem(KEY);
@@ -66,7 +63,7 @@ export function PaperSplit() {
   useLayoutEffect(() => {
     const el = root.current;
     if (!el) return;
-    apply(share, false);
+    apply(stored(), false);
     const measure = () => setNow(Math.round(measured() * 100));
     measure();
     // A narrower window may no longer hold the stored share: clamp it again.
@@ -107,7 +104,7 @@ export function PaperSplit() {
         event.preventDefault();
         event.stopPropagation();
         if (event.key === "Home" || event.key === "Enter") apply(null);
-        else apply((share ?? measured()) + (event.key === "ArrowRight" ? 0.025 : -0.025));
+        else apply(measured() + (event.key === "ArrowRight" ? 0.025 : -0.025));
       }}
       onPointerDown={(event) => {
         const el = root.current;
