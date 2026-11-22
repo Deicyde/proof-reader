@@ -1,10 +1,33 @@
 # Building and checking the Theorem 7.1 wrapper
 
-**Status of every new Lean module and every patched Lean file: NOT COMPILED.**
-The return supplies complete candidate proof bodies for the extended-certificate
-and cell endpoints. It contains no new Lean build, axiom audit, exported proof
-or Comparator verdict. The ordinary-certificate proposition is stated but its
-new proof is not supplied.
+**Status: compiled, axioms checked, and accepted by Comparator.** On
+GitHub Actions run
+[44961961637](https://github.com/wcook04/proof-reader/actions/runs/44961961637)
+(22 November 2026, the same Lean files as the earlier green run
+[44844164476](https://github.com/wcook04/proof-reader/actions/runs/44844164476)),
+the three patched library files and all thirteen new modules compiled with
+Lean 4.33.1 against the authors' package at commit `ad53419`; every module
+exited 0.
+
+- **Axioms.** `Breakdown.theorem71_extended` and `Breakdown.theorem71_cell`
+  depend only on `propext`, `Classical.choice` and `Quot.sound`, and so do the
+  supporting declarations printed by `Theorem71Axioms.lean`
+  (`check_axioms.py` result: `axiom_log_pass`).
+- **Comparator.** With `comparator-theorem71.json`, Comparator (Lean 4.36.0
+  judge, exports written by `lean4export` at Lean 4.33.1) accepted both
+  endpoints: the statements in `Theorem71Challenge` and `Theorem71Solution`
+  agree, and the solution was accepted by Lean's paranoid kernel, con-leche,
+  con-ron (102,848 declarations each), nanoda and Lean's default kernel,
+  using only the three permitted axioms. The control
+  (`comparator-theorem71-control.json`, whose conclusion is `P ∧ True`) was
+  rejected with "Challenge and solution theorem statement do not match:
+  'Breakdown.theorem71_extended'", as intended.
+
+The ordinary-certificate proposition is stated but has no new proof here. The
+`Status: NOT COMPILED` lines at the top of the Lean files predate these runs;
+the files were left byte-identical to the compiled ones. Sections 2 to 6 below
+describe the procedure, which the workflow
+`.github/workflows/navier-stokes-theorem71.yml` now carries out.
 
 ## 1. Inputs and outputs
 
@@ -101,24 +124,23 @@ synthetic tests of the parser.
 
 ### Module inventory
 
-| Module | Purpose | Compilation status |
+| Module | Purpose | Compilation status (run 44961961637) |
 |---|---|---|
-| `Theorem71Statements` | Readable physical contract and ordinary proposition | NOT COMPILED |
-| `Theorem71KeepTypes` | Weak profile with explicit witnesses | NOT COMPILED |
-| `Theorem71Keep` | Concrete analytic nodes, selected witness, energy and pins | NOT COMPILED |
-| `Theorem71Transport` | Same orbit, actual correction, weak derivatives, finiteness and symmetries | NOT COMPILED |
-| `Theorem71Smooth` | Smooth profile at the retained period and identity isometry | NOT COMPILED |
-| `Theorem71GradientBound` | Continuity of the physical gradient integral and bound at every time | NOT COMPILED |
-| `Theorem71Assembly` | Complete candidate extended proof | NOT COMPILED |
-| `Theorem71Cells` | Cell constructor, zero correction pins and decay-field adapter | NOT COMPILED |
-| `Theorem71Norms` | Squared norm, Sobolev constant and symmetry translations | NOT COMPILED |
-| `Theorem71Challenge` | Two exact statement endpoints with ordinary proof terms | NOT COMPILED |
-| `Theorem71Solution` | Two solution endpoints | NOT COMPILED |
-| `Theorem71Control` | Deliberate endpoint type mismatch | NOT COMPILED |
-| `Theorem71Axioms` | Endpoint checks and axiom-print commands | NOT COMPILED |
+| `Theorem71Statements` | Readable physical contract and ordinary proposition | compiled, exit 0 |
+| `Theorem71KeepTypes` | Weak profile with explicit witnesses | compiled, exit 0 |
+| `Theorem71Keep` | Concrete analytic nodes, selected witness, energy and pins | compiled, exit 0 |
+| `Theorem71Transport` | Same orbit, actual correction, weak derivatives, finiteness and symmetries | compiled, exit 0 |
+| `Theorem71Smooth` | Smooth profile at the retained period and identity isometry | compiled, exit 0 |
+| `Theorem71GradientBound` | Continuity of the physical gradient integral and bound at every time | compiled, exit 0 |
+| `Theorem71Assembly` | Complete candidate extended proof | compiled, exit 0 |
+| `Theorem71Cells` | Cell constructor, zero correction pins and decay-field adapter | compiled, exit 0 |
+| `Theorem71Norms` | Squared norm, Sobolev constant and symmetry translations | compiled, exit 0 |
+| `Theorem71Challenge` | Two exact statement endpoints with ordinary proof terms | compiled, exit 0 |
+| `Theorem71Solution` | Two solution endpoints | compiled, exit 0 |
+| `Theorem71Control` | Deliberate endpoint type mismatch | compiled, exit 0 |
+| `Theorem71Axioms` | Endpoint checks and axiom-print commands | compiled, exit 0 |
 
-Elaboration may require local interface or tactic corrections. Preserve the
-contract while fixing them: in particular the same parameter and actual field,
+Any future correction must preserve the contract: in particular the same parameter and actual field,
 the original multiplier penalty, the finite weighted integral and the bound at
 every time. Adding a hypothesis that asserts one of these conclusions would
 change the requested theorem.
