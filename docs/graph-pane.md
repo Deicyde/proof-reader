@@ -74,7 +74,7 @@ A phrase can be tied to a Lean declaration for which no paper-argument route is 
 
 ### The dock
 
-A strip under the drawing, about 30% of the pane's height, shows one card in detail. A handle between the two sets its height (15% to 70%), and the height is remembered. The dock scrolls by itself. It shows, in this order of precedence:
+A strip under the drawing shows one card in detail. Before the reader moves the divider, the drawing takes up to 70% of the pane and gives the dock any height it does not need. Dragging the divider sets and remembers the share. The dock scrolls by itself. It shows, in this order of precedence:
 
 1. the node under the pointer or holding the keyboard focus, as a preview: its title, kind, Lean name, and the first lines of its Lean statement;
 2. the clicked phrase: the quotation, its topic, the comparison of phrase and Lean, the AI-drafted reading note, and the Lean with the tied lines lit;

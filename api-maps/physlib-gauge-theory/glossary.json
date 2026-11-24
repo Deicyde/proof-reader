@@ -3,7 +3,7 @@
   "StandardModel.GaugeGroupI.toSU3": "Projection to the SU(3) factor of the gauge group",
   "StandardModel.GaugeGroupI.toSU2": "Projection to the SU(2) factor of the gauge group",
   "StandardModel.GaugeGroupI.toU1": "Projection to the U(1) factor of the gauge group",
-  "StandardModel.gaugeGroupℤ₆SubGroup": "Sixth-root subgroup acting trivially on Standard Model particles",
+  "StandardModel.gaugeGroupℤ₆SubGroup": "Central subgroup from the sixth roots of unity",
   "Electromagnetism.ElectromagneticPotential": "Electromagnetic potential as a Lorentz-vector field",
   "Electromagnetism.ElectromagneticPotential.toFieldStrength": "Field-strength tensor from antisymmetrised derivatives of the potential",
   "Electromagnetism.ElectromagneticPotential.ofGradient": "Pure-gauge potential from the gradient with its index raised",

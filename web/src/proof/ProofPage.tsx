@@ -5,13 +5,14 @@
 // A caption says what the page is following. Adapted from Lean Exposition's docked record sheet.
 
 import { ModeToggle, type PaneMode } from "./ModeToggle";
-import { memo, useEffect, useRef, useState, type ReactNode } from "react";
+import { memo, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 
 // The key changes when the layout does, so a layout saved under the old one does not apply.
 const KEY = "proof-reader-pane-5";
-/** The drawing's share of the Graph view: the dock under it has the rest, 15% to 70%. */
+/** The drawing takes up to this much of the pane before the reader moves the divider. */
 const OPENING = 0.7;
-const GRAPH_MIN = 0.3;
+const GRAPH_MIN = 0.15;
+const MIN_AUTOMATIC_GRAPH_HEIGHT = 220;
 const GRAPH_MAX = 0.85;
 const pull = (value: number) => Math.max(GRAPH_MIN, Math.min(GRAPH_MAX, value));
 
@@ -22,6 +23,7 @@ export interface Layout {
   lean: boolean;
   /** In the Graph view, the drawing's share of the page above the dock. */
   dock: number;
+  dockManual?: boolean;
 }
 
 export function readLayout(): Layout {
@@ -30,7 +32,8 @@ export function readLayout(): Layout {
     const stored = JSON.parse(localStorage.getItem(KEY) ?? "null") as Partial<Layout> | null;
     if (!stored) return fallback;
     // Closing the right page lasts only for this visit.
-    return { graph: true, lean: stored.lean ?? false, dock: pull(stored.dock ?? OPENING) };
+    const dock = pull(stored.dock ?? OPENING);
+    return { graph: true, lean: stored.lean ?? false, dock, dockManual: stored.dockManual ?? dock !== OPENING };
   } catch {
     return fallback;
   }
@@ -38,8 +41,8 @@ export function readLayout(): Layout {
 
 export function saveLayout(layout: Layout) {
   try {
-    const { lean, dock } = layout;
-    localStorage.setItem(KEY, JSON.stringify({ lean, dock }));
+    const { lean, dock, dockManual } = layout;
+    localStorage.setItem(KEY, JSON.stringify({ lean, dock, dockManual }));
   } catch {
     /* storage unavailable: the choice lasts until the page closes */
   }
@@ -49,7 +52,7 @@ interface Props {
   caption: ReactNode;
   /** One line under the Lean view: what is under the pointer. */
   reading: ReactNode;
-  graph: ReactNode;
+  graph(availableHeight: number, onFitHeight: (height: number) => void): ReactNode;
   lean: ReactNode;
   leanOpen: boolean;
   /** No graph: the page is the Lean alone, with no toggle and no handle. */
@@ -64,9 +67,23 @@ interface Props {
 export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean, leanOpen, plain, onMode, layout, onLayout, onClose }: Props) {
   const panes = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
+  const [paneHeight, setPaneHeight] = useState(0);
+  const [fitHeight, setFitHeight] = useState(0);
   const dock = !plain && !leanOpen;
-  const share = layout.dock;
-  useEffect(() => panes.current?.style.setProperty("--share", String(share)), [share]);
+  const availableHeight = layout.dock * paneHeight;
+  const share = !layout.dockManual && fitHeight > 0 && paneHeight > 0
+    ? Math.min(layout.dock, Math.max(MIN_AUTOMATIC_GRAPH_HEIGHT, fitHeight) / paneHeight)
+    : layout.dock;
+  useLayoutEffect(() => {
+    const element = panes.current;
+    if (!element) return;
+    const measure = () => setPaneHeight(element.clientHeight);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+  useLayoutEffect(() => panes.current?.style.setProperty("--share", String(share)), [share]);
 
   // The drag writes one custom property; the panes hear the new room when it ends.
   const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -88,7 +105,7 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
       handle.removeEventListener("pointerup", end);
       handle.removeEventListener("pointercancel", end);
       setDragging(false);
-      if (moved) onLayout({ ...layout, dock: value });
+      if (moved) onLayout({ ...layout, dock: value, dockManual: true });
     };
     handle.addEventListener("pointermove", move);
     handle.addEventListener("pointerup", end);
@@ -99,7 +116,7 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
     if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
     event.preventDefault();
     event.stopPropagation();
-    onLayout({ ...layout, dock: pull(share + (event.key === "ArrowDown" ? 0.05 : -0.05)) });
+    onLayout({ ...layout, dock: pull(share + (event.key === "ArrowDown" ? 0.05 : -0.05)), dockManual: true });
   };
 
   return (
@@ -110,13 +127,13 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
         {onClose && <button type="button" className="proof__close" onClick={onClose}>Close</button>}
       </div>
       <div className={`proof__panes${dragging ? " is-dragging" : ""}`} ref={panes}>
-        {!plain && <div className="proof__graph" hidden={!dock}>{graph}</div>}
+        {!plain && <div className="proof__graph" hidden={!dock}>{graph(availableHeight, setFitHeight)}</div>}
         {dock && <div
           className="proof__handle"
           role="separator"
           aria-orientation="horizontal"
           aria-label="Drag to share the page between the graph and the Lean under it"
-          aria-valuemin={Math.round(GRAPH_MIN * 100)}
+          aria-valuemin={Math.round(Math.min(GRAPH_MIN, share) * 100)}
           aria-valuemax={Math.round(GRAPH_MAX * 100)}
           aria-valuenow={Math.round(share * 100)}
           tabIndex={0}

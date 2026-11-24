@@ -136,7 +136,7 @@ def check_graph_pane(page: Page, label: str, dock: str | None = None, expect_sub
         bad.append(f"{label}: wires miss node borders: {', '.join(m['detached'][:5])}")
     if not m["opened"] and m["zoom"] > 1.15:
         bad.append(f"{label}: the opening fit exceeds 115%: {m['zoom']:.2%}")
-    if m["view"][1] < 180:
+    if m["view"][1] < 140:
         bad.append(f"{label}: the graph area is only {m['view'][1]}px tall")
     if dock is not None and (m["dock"] is None or m["dock"] < 20):
         bad.append(f"{label}: the part under the graph is empty")

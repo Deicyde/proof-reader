@@ -11,7 +11,7 @@
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { blankEntry, newEntryId, pushEntry, readEntry, replaceEntry, returning, type Copy, type Entry, type Pin, type Tab } from "../app/history";
 import { declEvidence, hasComparisons, leanOrigin, loadSource, noun, paperFile, passageLocation, type Edition, type Passage } from "../app/edition";
-import { Lockup, ReaderMenu, SisterSites } from "../app/Family";
+import { OwnerLink, ReaderHome, ReaderMark, ReaderMenu, SisterSites } from "../app/Family";
 import { readRoute, routeHref } from "../app/router";
 import { setScheme, useScheme } from "../app/theme";
 import type { LeanActions } from "../lean/code";
@@ -584,6 +584,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   // The keys a reader of a long page reaches for.
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
+      if (event.defaultPrevented) return;
       const target = event.target as HTMLElement;
       if (target.closest?.("input, textarea, select, dialog")) return;
       if (event.altKey && event.key === "ArrowLeft") {
@@ -618,7 +619,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
       } else if (event.key === "k" || event.key === "ArrowLeft") {
         event.preventDefault();
         step(-1);
-      } else if (event.key === "Enter" && !target.closest?.("a, button, [tabindex='0'].q")) {
+      } else if (event.key === "Enter" && !target.closest?.("a, button, summary, [tabindex='0'].q")) {
         const id = pane()?.where().passage;
         if (id) pinPassage(id);
       }
@@ -797,11 +798,12 @@ export function PaperPage({ edition }: { edition: Edition }) {
       }}>Skip to the paper</a>
       <header className={`bar bar--reader${showRight && wide && edition.reading ? " bar--spread" : ""}`}>
         <div className="bar__left">
-          <Lockup />
+          <ReaderHome />
         </div>
         {!phone && <div className="bar__column">{readingControls}</div>}
         <div className="bar__right">
           <div className="bar__title">
+            <ReaderMark paper={slug} />
             {copy === "reading" && edition.reading ? <p className="bar__paper">{paper.short_title}</p> : <h1 className="bar__paper">{paper.short_title}</h1>}
           </div>
           {(wide ? !showRight : !entry.sheet) && <button type="button" className="bar__open" onClick={() => (wide ? onLayout({ ...layout, graph: true }) : open({ sheet: true, record: readRoute().record, tab: entry.tab, lean: plain || entry.lean }))}>{plain ? "Lean" : "Graph"}</button>}
@@ -823,6 +825,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
             </>}
             <button type="button" className="bar__theme" onClick={() => setScheme(scheme === "dark" ? "light" : "dark")}>{scheme === "dark" ? "Use the day theme" : "Use the night theme"}</button>
           </ReaderMenu>
+          <OwnerLink />
         </div>
       </header>
       {entry.bad !== null && (
@@ -919,7 +922,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
             caption={<p role="status">{says}</p>}
             reading={readingStrip}
             onClose={wide ? (entry.lean ? undefined : closePage) : closeSheet}
-            graph={(
+            graph={(availableHeight, onFitHeight) => (
               <Suspense fallback={null}>
               <MapPane
                 ref={map}
@@ -932,6 +935,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
                 label={graphLabel}
                 onSubject={openCard}
                 onHover={onCardHover}
+                availableHeight={availableHeight}
+                onFitHeight={onFitHeight}
               />
               </Suspense>
             )}

@@ -155,6 +155,7 @@ export interface TreeProps {
   persist?: boolean;
   /** The reader moved the map themselves: a pan, a zoom, an unfold or an edge chip. */
   onUserMove?(): void;
+  onFitHeight?(height: number): void;
   /** An arrow key moved the selection from a focused card; defaults to onSelect. */
   onWalk?(id: string): void;
   /** With a paper lens on, the section where that paper first discusses each record. */
@@ -283,6 +284,8 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
   onSettledRef.current = props.onSceneSettled;
   const onUserMoveRef = useRef(props.onUserMove);
   onUserMoveRef.current = props.onUserMove;
+  const fitHeightRef = useRef(props.onFitHeight);
+  fitHeightRef.current = props.onFitHeight;
   const persist = props.persist ?? true;
   const litIds = props.litIds && props.litIds.size ? props.litIds : null;
 
@@ -1228,7 +1231,13 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
     (l: Layout): View => {
       const b = layoutBounds(l);
       const box = { x0: b.x0 - 16, y0: b.y0 - 16, x1: b.x1 + 16, y1: b.y1 + 16 };
-      return fitBounds(box, viewport(), { min: denseRef.current ? 0 : floorK(false, compact), max: denseRef.current ? OVERVIEW_FIT_MAX : 1 });
+      const vp = viewport();
+      if (denseRef.current && vp.width > 0) {
+        const availableWidth = Math.max(1, vp.width - vp.insets.left - vp.insets.right);
+        const scale = Math.min(OVERVIEW_FIT_MAX, availableWidth / Math.max(1, box.x1 - box.x0));
+        fitHeightRef.current?.(Math.ceil((box.y1 - box.y0) * scale + vp.insets.top + vp.insets.bottom));
+      }
+      return fitBounds(box, vp, { min: denseRef.current ? 0 : floorK(false, compact), max: denseRef.current ? OVERVIEW_FIT_MAX : 1 });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],

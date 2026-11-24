@@ -85,6 +85,13 @@ button:disabled { cursor: default; }
 
 .bar__theme, .bar__menu, .bar__open { flex: none; min-height: 28px; padding: 0 8px; border-radius: var(--radius-s); font-size: var(--fs-sm); color: var(--ink-2); white-space: nowrap; }
 .bar__theme:hover, .bar__menu:hover, .bar__open:hover { color: var(--ink); background: var(--hover-wash); }
+.bar--reader .bar__title { display: flex; align-items: center; }
+.bar--reader .bar__right { gap: 8px; }
+.bar__reader-home { font: 500 var(--fs-sm)/1.25 var(--font-sans); color: var(--ink); text-decoration: none; white-space: nowrap; }
+.bar__reader-home:hover { text-decoration: underline; }
+.bar--reader .fam-lockup__home { flex: none; }
+.bar__paper-mark { flex: none; width: 22px; height: 22px; background: currentColor; mask-size: contain; mask-repeat: no-repeat; }
+@media (max-width: 767px) { .bar--reader .bar__title { gap: 5px; } }
 .bar__menu { border: 1px solid var(--rule-control); }
 .reader-menu {
   position: fixed; inset: 46px 12px auto auto; box-sizing: border-box; margin: 0; padding: 6px;
@@ -311,7 +318,10 @@ button:disabled { cursor: default; }
 .decl__axiom { margin: 3px 0 0; font-size: var(--fs-sm); font-weight: 600; color: var(--rel-assumes-lit); }
 .decl__note { margin: 5px 0 0; padding-left: 10px; border-left: 2px solid var(--rule-strong); font-family: var(--font-serif); font-size: 0.9375rem; line-height: 1.42; color: var(--ink); text-wrap: pretty; }
 .decl__note-summary { font-weight: 600; }
-.decl__note-by { display: block; margin-bottom: 2px; font-family: var(--font-sans); font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); }
+.decl__note > p { margin: 0; }
+.note-credit { margin-top: 6px; color: var(--ink-3); font: 400 var(--fs-xs)/1.45 var(--font-sans); }
+.note-credit summary { min-height: 22px; cursor: pointer; }
+.note-credit > p { margin: 0 0 4px; }
 /* The paper and the Lean: a comparison made with AI, and the checks Lean ran */
 .fid { margin: 8px 0 0; padding-left: 10px; border-left: 2px solid var(--rule-strong); font-size: var(--fs-sm); line-height: 1.42; color: var(--ink-2); }
 .fid:not([data-verdict="same"]), .fid:has(.fid__check) { border-left-color: var(--rel-assumes-lit); }
@@ -504,7 +514,9 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
   .bar.bar--reader { flex-wrap: nowrap; height: 46px; }
   .bar.bar--reader .bar__title { display: flex; }
   .bar.bar--reader > .bar__title { order: 1; }
-  .bar.bar--reader > .bar__left { order: 0; flex: none; }
+  .bar.bar--reader > .bar__left { display: none; }
+  .bar.bar--reader .fam-lockup__home { gap: 4px; }
+  .bar.bar--reader .fam-lockup__home img { width: 20px; height: 20px; }
   .bar.bar--reader .bar__right:has(.bar__title) { flex: 1; }
   .bar { flex-wrap: wrap; height: auto; gap: 0 6px; padding: 2px 8px; }
   .bar__left { order: 1; gap: 6px; }
@@ -520,6 +532,7 @@ a.source__ref:hover { color: var(--lit); text-decoration: underline solid; }
   .stepper button { padding: 0 4px; }
   .switch button { padding: 0 5px; }
   .rail { top: 0; }
+  .page:has(> .bar--reader) .rail { top: 46px; }
   .proof__caption { padding-left: 10px; }
 }
 

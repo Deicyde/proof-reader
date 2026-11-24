@@ -1569,7 +1569,7 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
           "the combined view opens both panes with one layout control")
     check(not structure.is_visible() and evidence.get_attribute("open") is None, "Lean starts folded")
     page.evaluate("document.fonts.ready")
-    evidence.locator("summary").click()
+    evidence.locator(":scope > summary").click()
     check(structure.is_visible(), "the fold opens the cited structure")
     wait_until(page, lambda: viewport.evaluate(fitted), "the whole map fits and centres again after the opened proof resizes its window")
     pane_graph.get_by_role("button", name="Inspect map").click()
@@ -1609,14 +1609,18 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     check(annotation.get_by_role("link").get_attribute("href").endswith("API-map.md#L58-L62"),
           "the note links to the exact upstream passage")
     shot(page, shots, f"physlib-annotation-{'phone' if mobile else 'desktop'}")
-    evidence.locator("summary").click()
+    evidence.locator(":scope > summary").click()
     check(entries.first.get_by_role("heading").inner_text() == "Iterated formal derivative on Lie algebra jets"
           and entries.first.locator(".api-map__raw-name").inner_text() == "LocalGaugeData.iteratedDeriv",
           "the declaration leads with its glossary title and retains its exact Lean name")
     check(paper.evaluate("(el) => el.scrollTop") == left_top, "selecting a citation keeps the reading position")
     check(entries.evaluate_all("(cards) => cards.every((c) => c.querySelector('.api-map__note .katex'))"),
           "every declaration in the citation has a reading note with typeset formulas")
-    check("ai-drafted" in entries.first.locator(".api-map__note").inner_text().lower(), "a reading note is marked as AI-drafted")
+    credit = entries.first.locator(".api-map__note .note-credit")
+    check(not credit.locator("p").is_visible(), "the reading note keeps its credit folded below the prose")
+    credit.locator("summary").click()
+    check("AI drafted" in credit.locator("p").inner_text(), "the reading note credit records its draft source")
+    credit.locator("summary").click()
     copied_note = entries.first.locator(".api-map__note").evaluate("""(note) => {
       const formula = [...note.querySelectorAll('.katex')].find((k) =>
         k.querySelector('annotation')?.textContent.trim() === '\\\\partial_0 \\\\partial_0 \\\\partial_2');
@@ -1664,7 +1668,10 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
               "the glossary groups its citations under six physics topics")
         check(page.locator(".rail .api-map__topic-bars").count() == 3 and page.locator(".rail .api-map__key .api-map__topic").count() == 6,
               "the contents list marks three sections with topic colours above a six-topic key")
-    check("AI-drafted" in pane.locator(".api-map__glossary-credit").inner_text(), "the glossary identifies the origin of the added titles")
+    glossary_credit = pane.locator(".api-map__reference-body > .note-credit")
+    glossary_credit.locator("summary").click()
+    check("AI to draft the reading titles" in glossary_credit.locator("p").inner_text(), "the glossary identifies the origin of the added titles")
+    glossary_credit.locator("summary").click()
     pane.get_by_role("button", name=re.compile("Iterated Leibniz rule for the Lie bracket")).click()
     focused = pane.locator('[data-lean-name="LocalGaugeData.iteratedDeriv_bracket"]')
     wait_until(page, lambda: focused.evaluate("(el) => el === document.activeElement"),
@@ -1726,7 +1733,7 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     wait_until(page, lambda: pane.locator("[data-reference]").count() == 2,
                "Back restores the paragraph view")
     abelian.locator("xpath=following-sibling::p[1]").get_by_role("link", name="Open references for this paragraph").click()
-    evidence.locator("summary").click()
+    evidence.locator(":scope > summary").click()
     wait_until(page, lambda: pane.locator('[data-reference="ref-1"] a').is_visible(),
                "the paragraph gutter opens a bibliography reference beside the Lean groups")
     check(pane.locator("[data-reference]").count() == 9,
@@ -2015,7 +2022,8 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
                   f"{slug}: on a phone the graph folds to one line")
             check("uses" in page.locator(".graph__strip").inner_text(), f"{slug}: and the line counts what the subject uses")
         else:
-            check(0.6 <= graph["height"] / panes["height"] <= 0.8, f"{slug}: the drawing has about 70% of the pane and the dock the rest")
+            check(min(215, panes["height"] * 0.6) <= graph["height"] <= panes["height"] * 0.8,
+                  f"{slug}: the drawing gives unused height to the dock")
         lean = page.locator(".proof__lean")
         wait_until(page, lambda: lean.is_visible() and len(lean.inner_text().strip()) > 40, f"{slug}: the dock is never empty while following")
         if w >= 600:
@@ -2117,6 +2125,31 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
         page.evaluate("localStorage.removeItem('proof-reader-pane-5')")
 
 
+def graph_split(page: Page, url: str, size: tuple[int, int]) -> None:
+    keep_proof_reader(page)
+    page.goto(f"{url}#/pcp-specialist/PCP.Algebraic.GeneratorLowDegreeTest.exists_close", wait_until="load")
+    graph = page.locator(".fg__scroll")
+    graph.wait_for()
+    page.evaluate("document.fonts.ready")
+    panes = page.locator(".proof__panes")
+    wait_until(page, lambda: panes.evaluate("""(p) =>
+      p.querySelector('.proof__graph').clientHeight < p.clientHeight * .43
+    """), "a sparse graph gives room back to the text dock")
+    world = graph.locator(".fg__world")
+    transform = lambda: world.evaluate("(el) => el.style.transform")
+    subject = graph.locator(".fg__card.is-subject")
+    chosen = subject.get_attribute("data-card")
+    page.get_by_role("button", name="Zoom in", exact=True).click()
+    zoomed = transform()
+    graph.press("ArrowRight")
+    panned = transform()
+    check(panned != zoomed, "the graph's arrow key pans")
+    page.set_viewport_size({"width": size[0], "height": size[1] + 80})
+    page.wait_for_timeout(300)
+    check(subject.get_attribute("data-card") == chosen and transform() == panned,
+          "keyboard panning keeps the reading position and the camera survives a resize")
+
+
 def physlib_cards(page: Page, url: str, shots: Path | None, size: tuple[int, int]) -> None:
     print(f"Gauge theory dependency map cards, {size[0]}x{size[1]}")
     page.goto(f"{url}#/physlib-gauge-theory", wait_until="load")
@@ -2169,6 +2202,7 @@ def main() -> int:
                     context = graph_first(browser.new_context(viewport={"width": w, "height": h}, has_touch=w < 600, is_mobile=w < 600 and args.browser != "firefox"))
                     graph_mode(context.new_page(), url, args.shots, (w, h))
                     if w >= 600:
+                        graph_split(context.new_page(), url, (w, h))
                         physlib_cards(context.new_page(), url, args.shots, (w, h))
                     context.close()
             if args.only in (None, "coupled-spring"):

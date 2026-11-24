@@ -11,10 +11,7 @@ const THIS_SITE = "proof-reader";
 export function Lockup({ here = false }: { here?: boolean }) {
   return (
     <span className="fam-lockup">
-      <a className="fam-lockup__home" href={family.owner.home} rel="author" title="All of Will Cook's projects and videos">
-        <img src={`${import.meta.env.BASE_URL}plectis.svg`} alt="" width={26} height={26} />
-        <span className="fam-lockup__owner" translate="no">Will Cook</span>
-      </a>
+      <OwnerLink />
       <span className="fam-lockup__rule" aria-hidden="true" />
       <a className="fam-lockup__site" href={routeHref({})} aria-label="Proof Reader, all papers" title="Proof Reader, all papers" aria-current={here ? "page" : undefined}>
         <BookMark />
@@ -22,6 +19,36 @@ export function Lockup({ here = false }: { here?: boolean }) {
       </a>
     </span>
   );
+}
+
+export function OwnerLink() {
+  return (
+    <a className="fam-lockup__home" href={family.owner.home} rel="author" title="All of Will Cook's projects and videos">
+      <img src={`${import.meta.env.BASE_URL}plectis.svg`} alt="" width={26} height={26} />
+      <span className="fam-lockup__owner" translate="no">Will Cook</span>
+    </a>
+  );
+}
+
+const PAPER_MARKS: Record<string, string> = {
+  "contextual-embeddings": "contextual-embeddings",
+  "coupled-spring": "coupled-spring",
+  "pcp-exposition": "pcp",
+  "pcp-full-argument": "pcp",
+  "pcp-reading-guide": "pcp",
+  "pcp-specialist": "pcp",
+  "physlib-gauge-theory": "physlib-gauge-theory",
+  "smtlib-2-7": "smtlib",
+};
+
+export function ReaderMark({ paper }: { paper: string }) {
+  const mark = PAPER_MARKS[paper];
+  return mark ? <span className="bar__paper-mark" aria-hidden="true" data-paper-mark={mark}
+    style={{ maskImage: `url(${import.meta.env.BASE_URL}mark-${mark}.svg)` }} /> : null;
+}
+
+export function ReaderHome() {
+  return <a className="bar__reader-home" href={routeHref({})}>Proof Reader</a>;
 }
 
 export function ReaderMenu({ children, onOpen }: { children: ReactNode; onOpen(): void }) {

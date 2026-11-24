@@ -1,13 +1,14 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { selecting } from "../paper/clickIntent";
 import type { OutlineEntry } from "../app/edition";
-import { Lockup, ReaderMenu } from "../app/Family";
+import { Lockup, OwnerLink, ReaderHome, ReaderMark, ReaderMenu } from "../app/Family";
 import { readRoute, routeHref } from "../app/router";
 import { setScheme, useScheme } from "../app/theme";
 import { LeanCode, useFileLines } from "../lean/code";
 import { Contents } from "../paper/Contents";
 import { PaperSplit } from "../paper/PaperSplit";
 import { Doc } from "../proof/Fidelity";
+import { NoteCredit } from "../proof/Note";
 import { DependencyMap, type MapNode } from "./DependencyMap";
 import "./physlib-map.css";
 
@@ -111,6 +112,7 @@ const sourceOf = (edition: Edition, file: string, line?: number) =>
 function MapReader({ edition }: { edition: Edition }) {
   const [record, setRecord] = useState(selectedRecord);
   const [mode, setMode] = useState(savedPane);
+  const [graphFitHeight, setGraphFitHeight] = useState(0);
   const [graphMinimised, setGraphMinimised] = useState(savedMinimised);
   const [section, setSection] = useState<string | null>(null);
   const [rail, setRail] = useState(false);
@@ -380,8 +382,8 @@ function MapReader({ edition }: { edition: Edition }) {
     }}>
       <a className="skip" href="#map-text" onClick={(event) => { event.preventDefault(); paper.current?.focus(); }}>Skip to the map</a>
       <header className="bar bar--reader api-map__bar">
-        <div className="bar__left"><Lockup /></div>
-        <div className="bar__title"><p className="bar__paper">{edition.title}</p></div>
+        <div className="bar__left"><ReaderHome /></div>
+        <div className="bar__title"><ReaderMark paper={PHYSLIB_MAP} /><p className="bar__paper">{edition.title}</p></div>
         <div className="bar__right">
           <ReaderMenu onOpen={() => setRail(false)}>
             <button type="button" onClick={() => {
@@ -396,6 +398,7 @@ function MapReader({ edition }: { edition: Edition }) {
             <button type="button" title="Copy the original Markdown with Unicode formulas" onClick={() => void copy(() => markdown ?? getFile("API-map.md", (response) => response.text()), "Markdown copied")}>Copy page</button>
             <button type="button" className="bar__theme" onClick={() => setScheme(scheme === "dark" ? "light" : "dark")}>{scheme === "dark" ? "Use the day theme" : "Use the night theme"}</button>
           </ReaderMenu>
+          <OwnerLink />
         </div>
         <div className="api-map__copy-status" role="status" hidden={!message}>{message}</div>
       </header>
@@ -480,7 +483,8 @@ function MapReader({ edition }: { edition: Edition }) {
                 <button type="button" aria-label="Next citation" title="Next citation (j)" onClick={() => step(1)} disabled={position === order.length - 1}>→</button>
               </div>
             </nav>}
-            <div className={`api-map__windows${combined ? " is-combined" : ""}`}>
+            <div className={`api-map__windows${combined ? " is-combined" : ""}`}
+              style={graphFitHeight > 0 ? { "--api-graph-height": `${graphFitHeight}px` } as CSSProperties : undefined}>
               {!showGraph && <div className="leaf__body api-map__reference-body" ref={right} tabIndex={0} aria-label="Lean and reading notes">
                 {(group || paragraph) && sourceLine === null && annotation && paragraphId && (
                   <PassageAnnotation note={annotation} paragraphId={paragraphId} edition={edition}
@@ -498,8 +502,8 @@ function MapReader({ edition }: { edition: Edition }) {
                     {sourceLine === null ? (
                       <details className="api-map__evidence" key={citation}>
                         <summary>Lean declarations</summary>
-                        <p className="api-map__glossary-credit">AI-drafted reading titles, phrase matches and topics added by Proof Reader.</p>
                         {declarationsFor(group)}
+                        <NoteCredit>Proof Reader used AI to draft the reading titles and match phrases to Lean.</NoteCredit>
                       </details>
                     ) : files ? (
                       <div className="decl__code api-map__whole-file">
@@ -524,7 +528,6 @@ function MapReader({ edition }: { edition: Edition }) {
                       </nav>
                       <button type="button" onClick={() => void copy(() => location.href, "Paragraph link copied")}>Copy link</button>
                     </div>
-                    {paragraphReferences.some((item) => item.lean) && <p className="api-map__glossary-credit">AI-drafted reading titles, phrase matches and topics added by Proof Reader.</p>}
                     {paragraphReferences.map(({ id, lean, general }) => (
                       <section className="api-map__paragraph-group" key={id} data-reference={id} data-tone={lean ? edition.tones[id] : undefined}>
                         <button type="button" className="api-map__paragraph-name" onClick={() => navigate(`@${id}`)}>{lean ? `Lean citation [${lean.index}], ${lean.declarations.length} ${lean.declarations.length === 1 ? "declaration" : "declarations"}` : `Reference {${general?.index}}`}</button>
@@ -532,11 +535,11 @@ function MapReader({ edition }: { edition: Edition }) {
                         {general && <BibliographyReference reference={general} />}
                       </section>
                     ))}
+                    {paragraphReferences.some((item) => item.lean) && <NoteCredit>Proof Reader used AI to draft the reading titles and match phrases to Lean.</NoteCredit>}
                   </details>
                 ) : (
                   <>
                     <p className="api-map__aside-note api-map__lede">The map cites {edition.leanReferences.reduce((n, item) => n + item.declarations.length, 0)} Lean declarations in {edition.leanReferences.length} numbered citations, listed here under {edition.concepts.length} topics. In the map, the phrases a declaration states are underlined in its topic’s colour. Point at a title to highlight its phrase in the map.</p>
-                    <p className="api-map__glossary-credit">AI-drafted reading titles, phrase matches and topics added by Proof Reader. Lean names and signatures are from Physlib.</p>
                     {edition.concepts.map((concept, topic) => <section key={concept.name} className="api-map__topic-group">
                     <h3 className="api-map__topic-name" data-tone={topic * 2}><span className="api-map__topic">{concept.name}</span></h3>
                     <ol className="api-map__references">
@@ -553,13 +556,15 @@ function MapReader({ edition }: { edition: Edition }) {
                       </li>)}
                     </ol>
                     </section>)}
+                    <NoteCredit>Lean names and signatures are from Physlib. Proof Reader used AI to draft the reading titles, match phrases and assign topics.</NoteCredit>
                   </>
                 )}
               </div>}
               {(showGraph || combined) && (
                 <div className="api-map__graph-window">
                   <DependencyMap maps={edition.maps} current={edition.path} tracker={tracker} home={indexRoute()}
-                    id="pane-dependency-map" compact onMinimise={combined ? () => changeLayout(true) : undefined} />
+                    id="pane-dependency-map" compact onFitHeight={combined ? setGraphFitHeight : undefined}
+                    onMinimise={combined ? () => changeLayout(true) : undefined} />
                 </div>
               )}
             </div>
@@ -577,7 +582,6 @@ function PassageAnnotation({ note, paragraphId, edition, phrase, onPhrase }: {
   const source = `${sourceOf(edition, edition.file, first)}-L${note.endLine}`;
   return (
     <section className="api-map__annotation" aria-labelledby="api-map-annotation-title">
-      <p className="api-map__glossary-credit">Reading note · AI-drafted</p>
       <h2 id="api-map-annotation-title">{note.title}</h2>
       <blockquote>
         <button type="button" className="api-map__said-quote" data-tone={phrase.tone}
@@ -586,6 +590,7 @@ function PassageAnnotation({ note, paragraphId, edition, phrase, onPhrase }: {
         <a href={source}>API map, lines {first}–{note.endLine}</a>
       </blockquote>
       <div dangerouslySetInnerHTML={{ __html: note.html }} />
+      <NoteCredit>AI drafted this note for Proof Reader.</NoteCredit>
     </section>
   );
 }
@@ -629,8 +634,8 @@ function DeclarationCard({ decl, title, tone, phrases, note, onPhrase, onLight, 
       <p className="api-map__raw-name"><code>{decl.fullName}</code></p>
       <PhraseQuotes phrases={phrases} onPhrase={onPhrase} />
       {note && <div className="api-map__note">
-        <p className="api-map__said-label">Reading note <span>AI-drafted</span></p>
         <p dangerouslySetInnerHTML={{ __html: note }} />
+        <NoteCredit>AI drafted this note for Proof Reader.</NoteCredit>
       </div>}
       {decl.doc && <div className="api-map__docstring">
         <p className="api-map__said-label">Docstring in Physlib</p>

@@ -65,9 +65,11 @@ interface Props {
   label?: ReactNode;
   onSubject(id: string): void;
   onHover(id: string | null): void;
+  availableHeight: number;
+  onFitHeight(height: number): void;
 }
 
-export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, pointed, held, position, label, onSubject, onHover }: Props) {
+export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, pointed, held, position, label, onSubject, onHover, availableHeight, onFitHeight }: Props) {
   const data = useMemo(() => focusData(edition), [edition]);
   const [whole, setWhole] = useState(false);
   const tree = useRef<MapViewHandle>(null);
@@ -132,6 +134,8 @@ export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, po
   const noTrace = useCallback(() => undefined, []);
 
   const folded = narrow && !unfolded;
+  const switchHeight = narrow ? 34 : 0;
+  const reportFitHeight = useCallback((height: number) => onFitHeight(height + switchHeight), [onFitHeight, switchHeight]);
   const first = shown[0] ? data.card(shown[0]) : undefined;
   const subjectWords = first ? (shown.length > 1 ? `${first.title} and ${shown.length - 1} more stated here` : first.title) : "Nothing is drawn here";
 
@@ -162,6 +166,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, po
             onSelect={chooseOnMap}
             onTrace={noTrace}
             onHover={onHover}
+            onFitHeight={reportFitHeight}
           />
           <div className="graph__map-tools" role="group" aria-label="Whole proof map controls">
             <button type="button" onClick={() => tree.current?.zoomBy(0.8)} aria-label="Zoom out">−</button>
@@ -181,6 +186,8 @@ export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, po
           held={held}
           onSubject={onSubject}
           onHover={onHover}
+          availableHeight={availableHeight - switchHeight}
+          onFitHeight={reportFitHeight}
         />
       )}
       {!folded && (

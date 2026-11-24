@@ -5,7 +5,7 @@
 // cite each other are one line with an arrowhead at each end. Every card opens that map on
 // physlib.io, the same address the tracker's own map uses.
 
-import { useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useCallback, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { layoutTree } from "../map/engine/layout";
 import { transitiveReduction } from "../map/engine/skeleton";
 import { polygonPath, roundedPath, route, type Pt } from "../map/engine/router";
@@ -208,10 +208,11 @@ interface FigureProps {
   home: string;
   single?: boolean;
   extraTools?: ReactNode;
+  onFitHeight?(height: number): void;
 }
 
 /** The drawings of the shown maps: one per group joined by citations, then the maps with no citation either way. */
-function Figure({ maps, byPath, shown, current, tracker, home, single = false, extraTools }: FigureProps) {
+function Figure({ maps, byPath, shown, current, tracker, home, single = false, extraTools, onFitHeight }: FigureProps) {
   const [lit, setLit] = useState<string | null>(null);
   const [scale, setScale] = useState<number | null>(null);
   const [{ width, height, naturalHeight }, setSize] = useState({ width: 0, height: 0, naturalHeight: 0 });
@@ -246,8 +247,14 @@ function Figure({ maps, byPath, shown, current, tracker, home, single = false, e
     drawing.alone.length ? 3 * CARD.w + 36 : 1,
     ...drawing.stages.map((d) => d.w),
   );
-  const fittedScale = Math.min(1.15, Math.max(1, width - 12) / naturalWidth, Math.max(1, height - 12) / Math.max(1, naturalHeight));
+  const widthScale = Math.min(1.15, Math.max(1, width - 12) / naturalWidth);
+  const fittedScale = Math.min(widthScale, Math.max(1, height - 12) / Math.max(1, naturalHeight));
   const k = scale ?? fittedScale;
+  useLayoutEffect(() => {
+    if (scale === null && width > 0 && naturalHeight > 0) {
+      onFitHeight?.(Math.ceil(naturalHeight * widthScale + 12));
+    }
+  }, [scale, width, widthScale, naturalHeight, onFitHeight]);
   const left = Math.max(0, (width - naturalWidth * k) / 2);
   const top = Math.max(0, (height - naturalHeight * k) / 2);
   const setZoom = (next: number | null) => {
@@ -372,11 +379,17 @@ function Figure({ maps, byPath, shown, current, tracker, home, single = false, e
 }
 
 
-export function DependencyMap({ maps, current, tracker, home, id = "dependency-map", compact = false, onMinimise }: {
-  maps: readonly MapNode[]; current: string; tracker: string; home: string; id?: string; compact?: boolean; onMinimise?(): void;
+export function DependencyMap({ maps, current, tracker, home, id = "dependency-map", compact = false, onMinimise, onFitHeight }: {
+  maps: readonly MapNode[]; current: string; tracker: string; home: string; id?: string; compact?: boolean; onMinimise?(): void; onFitHeight?(height: number): void;
 }) {
   const [all, setAll] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
+  const section = useRef<HTMLElement>(null);
+  const reportFitHeight = useCallback((height: number) => {
+    const root = section.current;
+    const view = root?.querySelector<HTMLElement>(".deps__figure--viewport");
+    if (root && view) onFitHeight?.(height + root.clientHeight - view.clientHeight);
+  }, [onFitHeight]);
   const byPath = useMemo(() => new Map(maps.map((m) => [m.path, m])), [maps]);
   const { near, below, above } = useMemo(() => {
     const citedBy = (p: string) => maps.filter((m) => m.cites.includes(p)).map((m) => m.path);
@@ -394,7 +407,7 @@ export function DependencyMap({ maps, current, tracker, home, id = "dependency-m
   const fullMap = <button type="button" className={compact ? "api-map__graph-action" : "deps__open"} onClick={open}>See all {maps.length} API maps in Physlib</button>;
 
   return (
-    <section className="api-map__deps" id={id} aria-labelledby={`${id}-title`}>
+    <section className="api-map__deps" ref={section} id={id} aria-labelledby={`${id}-title`}>
       <div className="api-map__graph-heading">
         <h2 id={`${id}-title`}>{compact ? "API dependency map" : "Dependency map"}</h2>
         {onMinimise && <button type="button" className="api-map__graph-action" onClick={onMinimise}>Minimise graph</button>}
@@ -403,7 +416,8 @@ export function DependencyMap({ maps, current, tracker, home, id = "dependency-m
         <p className="deps__lede">{title} cites {below} {below === 1 ? "API map" : "API maps"}, directly or through other maps, and {above === 1 ? "1 map cites" : `${above} maps cite`} it in the same way.</p>
         {fullMap}
       </>}
-      <Figure {...shared} shown={near} single={compact} extraTools={compact ? fullMap : undefined} />
+      <Figure {...shared} shown={near} single={compact} extraTools={compact ? fullMap : undefined}
+        onFitHeight={onFitHeight ? reportFitHeight : undefined} />
       <dialog ref={dialog} className="deps__dialog" aria-labelledby={`${id}-all-title`} onClose={() => setAll(false)}
         onClick={(event) => { if (event.target === dialog.current) dialog.current.close(); }}>
         <div className="deps__dialog-bar">

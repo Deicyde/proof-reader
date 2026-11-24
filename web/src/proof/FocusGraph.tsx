@@ -82,6 +82,8 @@ export const FG_ROLES: Record<FGRole, FGRoleWords> = {
 export interface FocusGraphProps {
   /** The card or cards in the middle. */
   subjects: readonly string[];
+  availableHeight?: number;
+  onFitHeight?(height: number): void;
   card(id: string): FGCard | undefined;
   /** Every edge with a subject at one end (others are ignored). */
   edges: readonly FGEdge[];
@@ -193,9 +195,11 @@ function diagramBounds(world: HTMLElement): Box | null {
 
 export function FocusGraph(props: FocusGraphProps) {
   const { subjects, card, edges, route, routeNote, routeLabel, label, lit, held, onSubject, onHover, renderTitle } = props;
+  const pane = useRef<HTMLDivElement>(null);
   const scroller = useRef<HTMLDivElement>(null);
   const world = useRef<HTMLDivElement>(null);
-  const [size, setSize] = useState({ w: 0, h: 0 });
+  const [size, setSize] = useState({ w: 0, h: 0, chrome: 0 });
+  const layoutHeight = Math.max(size.h, (props.availableHeight ?? 0) - size.chrome);
   const fittedKey = useRef<string | null>(null);
   const [drawn, setDrawn] = useState<Drawn | null>(null);
   const [hot, setHot] = useState<string | null>(null);
@@ -285,11 +289,13 @@ export function FocusGraph(props: FocusGraphProps) {
     if (!bounds || vh <= 2 * margin || vw <= 2 * margin) return false;
     const byHeight = (vh - 2 * margin) / bounds.h;
     const byWidth = (vw - 2 * margin) / bounds.w;
-    if (!overview && byHeight < MIN_READ && !openedNow.current && tightNow.current < 6) {
+    if (!overview && (layoutHeight - TOOLS_ROOM - 2 * margin) / bounds.h < MIN_READ && !openedNow.current && tightNow.current < 6) {
       setTight((t) => Math.min(6, t + 1));
       return false;
     }
-    const k = Math.min(FIT_MAX, byHeight, byWidth);
+    const widthScale = Math.min(FIT_MAX, byWidth);
+    props.onFitHeight?.(Math.ceil(bounds.h * widthScale + 2 * margin + TOOLS_ROOM + size.chrome));
+    const k = Math.min(widthScale, byHeight);
     // The midpoint of everything drawn stays in the midpoint of the usable viewport.
     // The limits for a manual pan apply to the canvas box and would bias this fit.
     cam.current = {
@@ -361,7 +367,7 @@ export function FocusGraph(props: FocusGraphProps) {
   // The widths of the three columns, for the room there is. The height a column may take is the
   // pane's at the smallest readable scale: a taller drawing is grouped further, a shorter one is fitted.
   const W = size.w || 640;
-  const H = (size.h || 420) / MIN_READ;
+  const H = (layoutHeight || 420) / MIN_READ;
   const both = model.left.length > 0 && model.right.length > 0;
   const gap = Math.round(Math.max(30, Math.min(96, W * 0.07)));
   // The subject is at least 190 wide where two side columns of 150 still fit beside it, and 168 in a narrower pane.
@@ -482,22 +488,15 @@ export function FocusGraph(props: FocusGraphProps) {
   useLayoutEffect(() => {
     const el = scroller.current;
     if (!el) return;
-    // A hover preview in the separate Graph tab can change the dock height. Keep the
-    // hovered card still, but refit on a viewport resize even with the pointer over it.
-    const measurePane = (viewportChanged: boolean) => {
+    const measurePane = () => {
       const w = el.clientWidth, h = el.clientHeight;
-      const holdHover = !viewportChanged && el.matches(":hover");
-      setSize((s) => s.w === w && (s.h === h || holdHover) ? s : { w, h });
+      const chrome = (pane.current?.clientHeight ?? h) - h;
+      setSize((s) => s.w === w && s.h === h && s.chrome === chrome ? s : { w, h, chrome });
     };
-    const viewportResize = () => measurePane(true);
-    measurePane(true);
-    const ro = new ResizeObserver(() => measurePane(false));
-    ro.observe(el);
-    window.addEventListener("resize", viewportResize);
-    return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", viewportResize);
-    };
+    measurePane();
+    const observer = new ResizeObserver(measurePane);
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   // The lines, measured from the nodes as the browser laid them out.
@@ -612,7 +611,7 @@ export function FocusGraph(props: FocusGraphProps) {
   // drawing and pane together, after both the HTML and SVG have laid out.
   useLayoutEffect(() => {
     if (!drawn || !size.w || !size.h) return;
-    const fitFor = JSON.stringify([key, size.w, size.h, model.left, model.right]);
+    const fitFor = JSON.stringify([key, size.w, size.h, layoutHeight, model.left, model.right]);
     let frame = requestAnimationFrame(() => {
       frame = requestAnimationFrame(() => {
         // A dock preview can redraw the separate graph under the pointer.
@@ -627,7 +626,7 @@ export function FocusGraph(props: FocusGraphProps) {
     });
     return () => cancelAnimationFrame(frame);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [drawn, key, size.w, size.h, model.left, model.right]);
+  }, [drawn, key, size.w, size.h, layoutHeight, model.left, model.right]);
 
   // Drag to pan, two fingers to pinch. A drag that starts on a card and moves is a pan, not a click.
   const drag = useRef<{ x: number; y: number; cx: number; cy: number; far: boolean } | null>(null);
@@ -875,6 +874,7 @@ export function FocusGraph(props: FocusGraphProps) {
 
   return (
     <div
+      ref={pane}
       className="fg"
       data-subjects={key}
       data-users={model.left.length}
