@@ -134,6 +134,11 @@ def graph_first(context):
     return context
 
 
+def keep_proof_reader(page: Page) -> None:
+    """The following checks exercise the original reader and its local navigation."""
+    page.route("**/library-redirects.js", lambda route: route.fulfill(body="", content_type="application/javascript"))
+
+
 def opening(page: Page, url: str) -> None:
     """A first visit with nothing saved: the Graph view and its dock follow the reading, and a typed address is obeyed."""
     print("A first visit")
@@ -165,6 +170,7 @@ def opening(page: Page, url: str) -> None:
 def reopen_proof(page: Page, url: str) -> None:
     """A previously closed proof pane must not hide the split on later visits."""
     print("Reopening the proof pane")
+    keep_proof_reader(page)
     page.goto(f"{url}#/{SLUG}", wait_until="load")
     page.locator(".proof").wait_for()
     page.evaluate("""localStorage.setItem('proof-reader-pane-5', JSON.stringify({
@@ -196,6 +202,7 @@ def graph_follows(page: Page, url: str, shots: Path | None) -> None:
     """A paper with many results: the graph shows the statement being read, and the
     divider between paper and proof moves, is remembered and can be put back."""
     print("The graph follows the reading")
+    keep_proof_reader(page)
     page.goto(f"{url}#/pcp-exposition", wait_until="load")
     page.locator(".fg__card.is-subject").first.wait_for()
     head = lambda: page.eval_on_selector_all(".fg__card.is-subject .fg__title", "els => els.map(e => e.textContent)")
@@ -1343,6 +1350,7 @@ def static_files(page: Page, url: str) -> None:
 
 
 def companions(page: Page, url: str, shots: Path | None) -> None:
+    keep_proof_reader(page)
     width = page.viewport_size["width"]
     print(f"Companion navigation and reading layout at {width}px")
     exposition = f"{url}#/pcp-exposition"
@@ -1461,6 +1469,7 @@ def companions(page: Page, url: str, shots: Path | None) -> None:
 def narrow_header(page: Page, url: str, shots: Path | None) -> None:
     """A long history label stays in its column when Graph is closed."""
     print("Narrow reader header at 1363px")
+    keep_proof_reader(page)
     page.goto(f"{url}#/pcp-exposition", wait_until="load")
     page.locator(".sheet__text h1").wait_for()
     items = page.locator(".rail__item")
@@ -1808,6 +1817,7 @@ def opened(page: Page, physlib: bool, slug: str = "") -> bool:
 
 
 def every_link_clicks(page: Page, url: str) -> dict[str, dict[str, int]]:
+    keep_proof_reader(page)
     """Click every phrase and linked passage on every page with a real pointer; none opens nothing."""
     print("Every linked phrase and passage opens its Lean")
     # A phrase that is wholly a source link also opens that source in a new tab: close it.
@@ -1894,6 +1904,7 @@ def pane_rules(page: Page, label: str) -> None:
 
 
 def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) -> None:
+    keep_proof_reader(page)
     """The Graph view on every graph page: the focus graph of the subject with the dock under it,
     following the paper, after a click on a sentence and after a click on a card. No click
     changes the view, and Escape returns to following the paper."""

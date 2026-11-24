@@ -6,7 +6,7 @@ import redirectTable from "./library-redirects.json" with { type: "json" };
 
 const { pages } = redirectTable;
 
-const redirects: Partial<Record<string, { to: string; retired?: boolean }>> = pages;
+const redirects: Partial<Record<string, { to: string; retired?: boolean; bookmarks?: Record<string, string> }>> = pages;
 
 const SITE_URL = "https://wcook04.github.io/proof-reader/";
 
@@ -170,11 +170,14 @@ function publicFiles(base: string): Plugin {
       writeFileSync(resolve(out, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}sitemap.xml\n`);
       writeFileSync(resolve(out, "404.html"), notFound(base, papers));
       for (const paper of papers) {
-        if (redirects[paper.slug]) continue;
+        const redirect = redirects[paper.slug];
+        if (redirect && !redirect.bookmarks) continue;
         mkdirSync(resolve(out, paper.slug), { recursive: true });
         writeFileSync(resolve(out, paper.slug, "index.html"), paperPage(html, paper, base));
       }
-      for (const [slug, entry] of Object.entries(pages)) {
+      for (const [slug, entry] of Object.entries(redirects)) {
+        // A paper with verified bookmark moves still serves its original reader for all other views.
+        if (!entry || entry.bookmarks) continue;
         mkdirSync(resolve(out, slug), { recursive: true });
         writeFileSync(resolve(out, slug, "index.html"), libraryPage(base, entry.to));
         // A forwarded reader only publishes its redirect shell.
