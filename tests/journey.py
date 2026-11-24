@@ -1532,11 +1532,29 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     structure = pane.locator('[data-lean-name="LocalGaugeData"]')
     evidence = pane.locator(".api-map__evidence")
     annotation = pane.locator(".api-map__annotation")
+    windows = pane.locator(".api-map__windows")
+    pane_graph = pane.locator("#pane-dependency-map")
+    modes = pane.get_by_role("navigation", name="What the right pane shows")
     wait_until(page, lambda: annotation.is_visible() and structure.count() == 1,
                "a direct link opens the note for the Physlib structure")
+    check(pane_graph.is_visible() and modes.count() == 0 and pane.get_by_role("button", name="Minimise graph").is_visible(),
+          "the combined view opens both panes with one layout control")
     check(not structure.is_visible() and evidence.get_attribute("open") is None, "Lean starts folded")
     evidence.locator("summary").click()
     check(structure.is_visible(), "the fold opens the cited structure")
+    check(windows.evaluate("""(win) => {
+      const [lean, graph] = win.children;
+      const share = lean.getBoundingClientRect().height / win.getBoundingClientRect().height;
+      const leanTop = lean.scrollTop, graphTop = graph.scrollTop;
+      lean.scrollTop = leanTop + 100;
+      const leanMoved = lean.scrollTop > leanTop && graph.scrollTop === graphTop;
+      const leanAfter = lean.scrollTop;
+      graph.scrollTop = graphTop + 100;
+      const graphMoved = graph.scrollTop > graphTop && lean.scrollTop === leanAfter;
+      lean.scrollTop = leanTop;
+      graph.scrollTop = graphTop;
+      return Math.abs(share - 0.6) < 0.02 && leanMoved && graphMoved;
+    }"""), "the note and API map use a 3:2 split and scroll independently")
     page.evaluate("document.fonts.ready")
     check(article.get_by_role("link", name="Lean citation 9", exact=True).evaluate("""(link) => {
       const mark = link.getBoundingClientRect();
@@ -1702,15 +1720,18 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     }"""), "a quoted phrase scrolls the map back to its place")
     check(page.url.endswith("/@lean-7"), "showing a phrase does not change the open citation")
 
-    modes = pane.get_by_role("navigation", name="What the right pane shows")
     unlinked = article.locator("#p-87").get_by_role("link", name="Open references for this paragraph")
     unlinked.click()
-    pane_graph = pane.locator("#pane-dependency-map")
-    check(pane_graph.is_visible() and modes.get_by_role("button", name="Auto", exact=True).get_attribute("aria-pressed") == "true",
-          "Auto shows the existing dependency graph for an uncited Lean passage")
-    modes.get_by_role("button", name="Lean", exact=True).click()
+    check(pane_graph.is_visible() and modes.count() == 0 and pane.get_by_role("button", name="Minimise graph").count() == 0,
+          "the API map fills the pane when the selected passage has no linked Lean")
+    cite.click()
+    pane.get_by_role("button", name="Minimise graph").click()
+    check(annotation.is_visible() and pane_graph.count() == 0 and modes.get_by_role("button", name="Lean", exact=True).get_attribute("aria-pressed") == "true",
+          "Minimise graph keeps Lean visible and reveals the pane choices")
+    unlinked.click()
     check(pane.get_by_text("This passage has no linked Lean.").is_visible() and pane_graph.count() == 0,
           "explicit Lean stays selected for the same passage")
+    check(pane.get_by_role("button", name="Combine views").count() == 0, "an unlinked passage has no combine control")
     cite.click()
     check(annotation.is_visible() and modes.get_by_role("button", name="Lean", exact=True).get_attribute("aria-pressed") == "true",
           "explicit Lean follows a linked selection")
@@ -1723,8 +1744,10 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     wait_until(page, lambda: page.url.endswith("/@lean-12") and pane_graph.is_visible(),
                "Back restores the selected citation and its explicit tab")
     modes.get_by_role("button", name="Auto", exact=True).click()
-    check(annotation.is_visible() and pane_graph.is_visible(),
-          "Auto shows the note followed by the dependency graph for a linked passage")
+    check(annotation.is_visible() and pane_graph.count() == 0, "tabbed Auto follows linked passages with the note")
+    pane.get_by_role("button", name="Combine views").click()
+    check(annotation.is_visible() and pane_graph.is_visible() and modes.count() == 0,
+          "Combine views restores the two windows and hides the pane choices")
 
     deps = page.locator("#dependency-map")
     deps.scroll_into_view_if_needed()

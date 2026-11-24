@@ -309,8 +309,8 @@ function Figure({ maps, byPath, shown, current, tracker, home, wrap }: FigurePro
 
 const KEY = "Each map sits above the maps it cites, and the arrow points to the map that does the citing. A dashed line with an arrowhead at both ends joins two maps that cite each other. Each card opens that map on physlib.io.";
 
-export function DependencyMap({ maps, current, tracker, home, id = "dependency-map", compact = false }: {
-  maps: readonly MapNode[]; current: string; tracker: string; home: string; id?: string; compact?: boolean;
+export function DependencyMap({ maps, current, tracker, home, id = "dependency-map", compact = false, onMinimise }: {
+  maps: readonly MapNode[]; current: string; tracker: string; home: string; id?: string; compact?: boolean; onMinimise?(): void;
 }) {
   const [all, setAll] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -332,7 +332,10 @@ export function DependencyMap({ maps, current, tracker, home, id = "dependency-m
 
   return (
     <section className="api-map__deps" id={id} aria-labelledby={`${id}-title`}>
-      <h2 id={`${id}-title`}>Dependency map</h2>
+      <div className="api-map__graph-heading">
+        <h2 id={`${id}-title`}>{compact ? "API dependency map" : "Dependency map"}</h2>
+        {onMinimise && <button type="button" className="api-map__graph-action" onClick={onMinimise}>Minimise graph</button>}
+      </div>
       <p className="deps__lede">
         {compact ? "Arrows point from a cited API map to the map that cites it." : (
           <>{title} cites {below} {below === 1 ? "API map" : "API maps"}, directly or through other maps, and {above === 1 ? "1 map cites" : `${above} maps cite`} it in the same way. {KEY}</>

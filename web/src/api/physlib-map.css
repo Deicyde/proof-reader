@@ -151,10 +151,44 @@
 .api-map__evidence { max-width: 75ch; border-block-start: 1px solid var(--rule); }
 .api-map__evidence > summary { padding: 8px 0; font-size: var(--fs-sm); font-weight: 600; cursor: pointer; }
 .api-map__evidence[open] > summary { margin-bottom: 10px; }
-.api-map__reference-body > .api-map__deps { --deps: 100%; margin: 0; padding: 0; border: 0; }
-.api-map__reference-body > .api-map__evidence ~ .api-map__deps { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--rule); }
-.api-map__reference-body > .api-map__deps h2 { font: 600 calc(var(--pane) * 1.32)/1.23 var(--font-serif); }
-.api-map__reference-body .deps__lede { font: var(--fs-sm)/1.45 var(--font-sans); }
+.api-map__windows { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.api-map__windows.is-combined { display: grid; grid-template-rows: minmax(0, 3fr) minmax(0, 2fr); }
+.api-map__windows.is-combined > * { overscroll-behavior: contain; }
+.api-map__windows.is-combined > .api-map__reference-body::after { height: 16px; }
+.api-map__graph-window {
+  flex: 1;
+  min-height: 0;
+  padding: 0 20px 24px;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+.api-map__windows.is-combined > .api-map__graph-window { border-top: 1px solid var(--rule-strong); }
+.api-map__graph-window > .api-map__deps { --deps: 100%; margin: 0; padding: 0; border: 0; }
+.api-map__graph-window .api-map__graph-heading {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-block: 8px;
+  background: var(--sheet);
+}
+.api-map__graph-window .api-map__graph-heading h2 {
+  margin: 0;
+  font: 600 var(--pane)/1.3 var(--font-serif);
+}
+.api-map__graph-window .deps__lede { font: var(--fs-sm)/1.45 var(--font-sans); }
+.api-map .api-map__graph-action {
+  min-height: 26px;
+  margin-left: auto;
+  color: var(--lit);
+  font-size: var(--fs-sm);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
 
 @media (max-width: 1279px) {
   .api-map__bar .api-map__contents-toggle { display: inline; }
@@ -170,7 +204,7 @@
   .api-map__bar .api-map__source-link { display: none; }
   .api-map__bar .bar__right { gap: 2px; }
   .api-map .sheet__text { font-size: 1.0625rem; }
-  .api-map__reference-body { padding-inline: 10px; }
+  .api-map__reference-body, .api-map__graph-window { padding-inline: 10px; }
 }
 
 /* Dependency map: wider than the text column, drawn by the reader's map engine. */
