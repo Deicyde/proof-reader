@@ -83,15 +83,15 @@ MEASURE = r"""
     const [from, to] = wire.dataset.edge.split('>');
     const node = (id) => cards.get(id) ?? groups.get(id);
     const shared = frame && groups.has(from || to) ? [frame] : subjects;
-    const source = from ? [node(from)].filter(Boolean) : shared;
-    const target = to ? [node(to)].filter(Boolean) : shared;
+    const source = to ? [node(to)].filter(Boolean) : shared;
+    const target = from ? [node(from)].filter(Boolean) : shared;
     const matrix = wire.getScreenCTM();
     const start = wire.getPointAtLength(0).matrixTransform(matrix);
     const end = wire.getPointAtLength(wire.getTotalLength()).matrixTransform(matrix);
     const inner = from && to;
     const attached = inner
-      ? (onEdge(start, source, 'bottom') && onEdge(end, target, 'top')) || (onEdge(start, source, 'right') && onEdge(end, target, 'right'))
-      : onEdge(start, source, stacked ? 'left' : 'right') && onEdge(end, target, 'left');
+      ? (onEdge(start, source, 'top') && onEdge(end, target, 'bottom')) || (onEdge(start, source, 'right') && onEdge(end, target, 'right'))
+      : onEdge(start, source, 'left') && onEdge(end, target, stacked ? 'left' : 'right');
     if (!attached) out.detached.push(wire.dataset.edge);
   }
   const dock = dockSel ? document.querySelector(dockSel) : null;
