@@ -47,8 +47,17 @@ export function ReaderMark({ paper }: { paper: string }) {
     style={{ maskImage: `url(${import.meta.env.BASE_URL}mark-${mark}.svg)` }} /> : null;
 }
 
+/** The Reading library's index. A reader's wordmark at the start of its bar opens it. */
+export const LIBRARY_HOME = "https://wcook04.github.io/library/";
+
+/** The reader bar's wordmark: the Reading library, shortened to "Library" on phones. The menu keeps "All editions". */
 export function ReaderHome() {
-  return <a className="bar__reader-home" href={routeHref({})}>Proof Reader</a>;
+  return (
+    <a className="bar__reader-home bar__library" href={LIBRARY_HOME}>
+      <span className="bar__library-long">Reading library</span>
+      <span className="bar__library-short">Library</span>
+    </a>
+  );
 }
 
 export function ReaderMenu({ children, onOpen }: { children: ReactNode; onOpen(): void }) {
