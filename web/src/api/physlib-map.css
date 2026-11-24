@@ -152,7 +152,7 @@
 .api-map__evidence > summary { padding: 8px 0; font-size: var(--fs-sm); font-weight: 600; cursor: pointer; }
 .api-map__evidence[open] > summary { margin-bottom: 10px; }
 .api-map__windows { flex: 1; min-height: 0; display: flex; flex-direction: column; }
-.api-map__windows.is-combined { display: grid; grid-template-rows: minmax(0, 3fr) minmax(0, 2fr); }
+.api-map__windows.is-combined { display: grid; grid-template-rows: fit-content(60%) minmax(40%, 1fr); }
 .api-map__windows.is-combined > * { overscroll-behavior: contain; }
 .api-map__windows.is-combined > .api-map__reference-body::after { height: 16px; }
 .api-map__graph-window {

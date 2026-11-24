@@ -1525,7 +1525,7 @@ def coupled_spring(page: Page, url: str) -> None:
 def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     print(f"Physlib API map on {'phone' if mobile else 'desktop'}")
     address = f"{url}#/physlib-gauge-theory"
-    page.goto(address + "/@lean-9")
+    page.goto(address + ("/@lean-9" if mobile else "/@p-82"))
     article = page.locator(".api-map article")
     pane = page.locator(".api-map__aside")
     cite = article.get_by_role("link", name="Lean citation 12", exact=True)
@@ -1535,11 +1535,21 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     windows = pane.locator(".api-map__windows")
     pane_graph = pane.locator("#pane-dependency-map")
     modes = pane.get_by_role("navigation", name="What the right pane shows")
+    if not mobile:
+        annotation.get_by_role("heading", name="The product group and its central subgroup").wait_for()
+        page.evaluate("document.fonts.ready")
+        check(windows.evaluate("""(win) => {
+          const [lean, graph] = win.children;
+          const height = win.getBoundingClientRect().height;
+          return lean.scrollHeight <= lean.clientHeight + 1 && graph.getBoundingClientRect().height > height * 0.4 + 8;
+        }"""), "the dependency map takes the room left by the short reading note")
+        page.goto(address + "/@lean-9")
     wait_until(page, lambda: annotation.is_visible() and structure.count() == 1,
                "a direct link opens the note for the Physlib structure")
     check(pane_graph.is_visible() and modes.count() == 0 and pane.get_by_role("button", name="Minimise graph").is_visible(),
           "the combined view opens both panes with one layout control")
     check(not structure.is_visible() and evidence.get_attribute("open") is None, "Lean starts folded")
+    page.evaluate("document.fonts.ready")
     evidence.locator("summary").click()
     check(structure.is_visible(), "the fold opens the cited structure")
     check(windows.evaluate("""(win) => {
@@ -1554,8 +1564,7 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
       lean.scrollTop = leanTop;
       graph.scrollTop = graphTop;
       return Math.abs(share - 0.6) < 0.02 && leanMoved && graphMoved;
-    }"""), "the note and API map use a 3:2 split and scroll independently")
-    page.evaluate("document.fonts.ready")
+    }"""), "a long open proof uses up to 60 percent and both windows scroll independently")
     check(article.get_by_role("link", name="Lean citation 9", exact=True).evaluate("""(link) => {
       const mark = link.getBoundingClientRect();
       const pane = link.closest(".reading").getBoundingClientRect();
