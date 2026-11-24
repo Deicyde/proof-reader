@@ -319,7 +319,7 @@ button:disabled { cursor: default; }
 .decl__copy:hover { color: var(--lit); }
 .decl__relation, .decl__facts { margin: 3px 0 0; font-size: var(--fs-sm); line-height: 1.42; color: var(--ink-2); text-wrap: pretty; }
 .decl__axiom { margin: 3px 0 0; font-size: var(--fs-sm); font-weight: 600; color: var(--rel-assumes-lit); }
-.decl__note { margin: 5px 0 0; padding-left: 10px; border-left: 2px solid var(--rule-strong); font-family: var(--font-serif); font-size: 0.9375rem; line-height: 1.42; color: var(--ink); text-wrap: pretty; }
+.decl__note { margin: 5px 0 0; padding-left: 10px; border-left: 2px solid var(--rule-strong); font-family: var(--font-serif); font-size: var(--fs-read); line-height: 1.5; color: var(--ink); overflow-wrap: anywhere; text-wrap: pretty; }
 .decl__note-summary { font-weight: 600; }
 .decl__note > p { margin: 0; }
 .note-credit { margin-top: 6px; color: var(--ink-3); font: 400 var(--fs-xs)/1.45 var(--font-sans); }

@@ -200,8 +200,9 @@ dialog.plot p { margin: 8px 0 0; font-family: var(--font-sans); font-size: var(-
 
 /* A big monitor gets a bigger book, not wider margins of desk. */
 @media (min-width: 2100px) {
+  .spread--reading, .sheet__text { --fs-read: 1.3125rem; }
   .sheet { --code-cap: 0.9375rem; --column: 42rem; --bleed-max: 54rem; }
-  .sheet__text { --bleed: min(100cqi - 2 * clamp(10px, 3.2cqi, 28px), 54rem); font-size: 1.3125rem; }
+  .sheet__text { --bleed: min(100cqi - 2 * clamp(10px, 3.2cqi, 28px), 54rem); }
   .sheet__text > * { max-width: 42rem; }
   .sheet__text h2 { font-size: 1.75rem; }
   .sheet__text h3 { font-size: 1.4375rem; }

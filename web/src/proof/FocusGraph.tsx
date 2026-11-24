@@ -298,12 +298,13 @@ export function FocusGraph(props: FocusGraphProps) {
     const widthScale = Math.min(FIT_MAX, byWidth);
     props.onFitHeight?.(Math.ceil(bounds.h * widthScale + 2 * margin + TOOLS_ROOM + size.chrome));
     const k = Math.min(widthScale, byHeight);
-    // The midpoint of everything drawn stays in the midpoint of the usable viewport.
-    // The limits for a manual pan apply to the canvas box and would bias this fit.
+    // Centre in the full pane when there is room. A tall drawing moves just far
+    // enough up to leave the overlaid controls clear.
+    const centreY = Math.min(el.clientHeight / 2, vh - margin - bounds.h * k / 2);
     cam.current = {
       k,
       x: vw / 2 - (bounds.x + bounds.w / 2) * k,
-      y: vh / 2 - (bounds.y + bounds.h / 2) * k,
+      y: centreY - (bounds.y + bounds.h / 2) * k,
     };
     applyCam();
     return true;
