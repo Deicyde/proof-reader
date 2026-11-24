@@ -179,24 +179,6 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
                 <blockquote><Quote passage={step.passage} /></blockquote>
                 <FidelityLines edition={edition} ids={step.decls} act={act} onGo={goTo} />
                 <MatchSummary edition={edition} passage={step.passage} />
-                {standard && step.decls.length > 1 && (
-                  <p className="alsostate">Also in the Lean for this rule:{" "}
-                    {step.decls.slice(1).map((id, i) => (
-                      <span key={id}>{i > 0 && ", "}<a className="alsostate__link" href={routeHref({ paper: edition.slug, record: id })}>{act.plain(id)}</a></span>
-                    ))}
-                  </p>
-                )}
-                {!standard && step.decls.length > 1 && (
-                  <nav className="crumbs" aria-label="The declarations of this statement">
-                    <span>{step.decls.length} declarations here</span>
-                    {step.decls.map((id) => (
-                      <button key={id} type="button" onClick={(event) => {
-                        goTo(id);
-                        event.currentTarget.blur();
-                      }}>{act.plain(id)}</button>
-                    ))}
-                  </nav>
-                )}
               </header>
             )}
             {!step.untied && !standard && <Crumbs edition={edition} id={step.decls[0]} onPassage={onPassage} />}
@@ -216,6 +198,19 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
                   act={act}
                   names={names}
                   compact={standard}
+                  linkedDeclarations={id === step.decls[0] && step.decls.length > 1 && (
+                    <nav className="crumbs" aria-label="The declarations of this statement">
+                      <span>{step.decls.length} linked declarations</span>
+                      {standard ? step.decls.slice(1).map((name) => (
+                        <a key={name} href={routeHref({ paper: edition.slug, record: name })}>{act.plain(name)}</a>
+                      )) : step.decls.map((name) => (
+                        <button key={name} type="button" onClick={(event) => {
+                          goTo(name);
+                          event.currentTarget.blur();
+                        }}>{act.plain(name)}</button>
+                      ))}
+                    </nav>
+                  )}
                 />
               );
             })}

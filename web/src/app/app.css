@@ -305,7 +305,10 @@ button:disabled { cursor: default; }
 .decl__head { position: sticky; top: 0; z-index: 1; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 0 -16px; padding: 4px 16px 6px; background: var(--sheet); box-shadow: 0 1px 0 color-mix(in srgb, currentColor 14%, transparent); }
 .decl[data-source-read] .decl__head { position: static; }
 .decl__name { margin: 0; font-family: var(--font-serif); font-size: 1.0625rem; font-weight: 500; overflow-wrap: anywhere; }
-.decl__raw { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--ink-2); }
+.decl__sources { margin-top: 8px; font-size: var(--fs-sm); color: var(--ink-2); }
+.decl__sources > summary { width: fit-content; padding: 2px 0; cursor: pointer; }
+.decl__source-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; }
+.decl__raw { overflow-wrap: anywhere; font-family: var(--font-mono); font-size: 0.8125rem; color: var(--ink-2); }
 .decl__name a { color: var(--ink); text-decoration: none; }
 .decl__name a:hover { color: var(--lit); text-decoration: underline; text-underline-offset: 3px; }
 .decl[data-shape="axiom"] .decl__name a { color: var(--rel-assumes-lit); }

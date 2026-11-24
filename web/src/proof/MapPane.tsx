@@ -144,7 +144,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, po
       {folded ? (
         <p className="graph__strip">
           <span className="graph__strip-subject">{subjectWords}</span>
-          <span className="graph__strip-counts">uses {counts.uses}, used by {counts.users}</span>
+          <span className="graph__strip-counts">This uses {counts.uses} · {counts.users} {counts.users === 1 ? "uses" : "use"} this</span>
           <button type="button" onClick={() => setUnfolded(true)}>Show the graph</button>
         </p>
       ) : whole ? (

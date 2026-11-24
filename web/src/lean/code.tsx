@@ -66,7 +66,7 @@ export interface LeanActions {
   plain(name: string): string;
 }
 
-export function DeclLink({ paper, name, className, act, children }: { paper: string; name: string; className?: string; act: LeanActions; children?: ReactNode }) {
+export function DeclLink({ paper, name, className, act, children, preview = true }: { paper: string; name: string; className?: string; act: LeanActions; children?: ReactNode; preview?: boolean }) {
   return (
     <a
       className={className}
@@ -77,10 +77,10 @@ export function DeclLink({ paper, name, className, act, children }: { paper: str
         act.name(null);
         act.walk(name);
       }}
-      onMouseEnter={() => act.name(name)}
-      onMouseLeave={() => act.name(null)}
-      onFocus={() => act.name(name)}
-      onBlur={() => act.name(null)}
+      onMouseEnter={preview ? () => act.name(name) : undefined}
+      onMouseLeave={preview ? () => act.name(null) : undefined}
+      onFocus={preview ? () => act.name(name) : undefined}
+      onBlur={preview ? () => act.name(null) : undefined}
     >
       {children ?? <><span>{act.plain(name)}</span> <code>{name}</code></>}
     </a>
@@ -117,7 +117,7 @@ export function LeanCode({ paper, lines, from, to, names, self, on, exact, act, 
             const typed = piece.kind === "ident" && /^[A-Z]/.test(piece.text);
             if (paper && act && names?.has(piece.text)) {
               if (piece.text === self) return <span key={i} className="source__self">{piece.text}</span>;
-              return <DeclLink key={i} paper={paper} name={piece.text} act={act} className={`source__ref${typed ? " lk--type" : ""}`}>{piece.text}</DeclLink>;
+              return <DeclLink key={i} paper={paper} name={piece.text} act={act} preview={false} className={`source__ref${typed ? " lk--type" : ""}`}>{piece.text}</DeclLink>;
             }
             if (piece.kind === "space" || piece.kind === "punct") return piece.text;
             return <span key={i} className={`lk lk--${typed ? "type" : piece.kind}`}>{piece.text}</span>;

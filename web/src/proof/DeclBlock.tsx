@@ -3,7 +3,7 @@
 // reports about its axioms, what Comparator checked, where the paper states it and the
 // authors' source.
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { declEvidence, declOrigin, noun, passageLocation, type Declaration, type Edition, type Passage } from "../app/edition";
 
 /** Past this many characters, a passage in a declaration's list is named by its opening words. */
@@ -116,9 +116,10 @@ interface Props {
   names: ReadonlySet<string>;
   /** The code and the authors' comment only: no uses, no list of places. */
   compact?: boolean;
+  linkedDeclarations?: ReactNode;
 }
 
-export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassage, act, names, compact }: Props) {
+export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassage, act, names, compact, linkedDeclarations }: Props) {
   const lines = useFileLines(edition.lean.files[d.file]);
   const rest = d.end_line - d.statement_end;
   const word = foldWord(d);
@@ -134,13 +135,6 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
     <article className="decl" data-shape={shapeOf(d)} data-decl={d.id} data-source-read={evidence !== "lean" || undefined}>
       <header className="decl__head">
         <h3 className="decl__name"><a href={routeHref({ paper: edition.slug, record: d.id })}>{d.plain}</a></h3>
-        <code className="decl__raw">{d.id}</code>
-        <CopyName name={d.id} />
-        <span className="decl__kind">
-          {KIND_WORDS[d.keyword] ?? d.keyword} · {sourceLines ? (
-            <a href={sourceLines} target="_blank" rel="noopener noreferrer" title={`Open ${d.id} in its Lean file`}>{range}</a>
-          ) : range} · {declOrigin(edition, d)}
-        </span>
       </header>
       {passage && !compact && <p className="decl__relation">{relation(passage)}</p>}
       {d.note && <DeclNote note={d.note} />}
@@ -162,6 +156,19 @@ export function DeclBlock({ edition, d, passage, exact, open, onToggle, onPassag
           )}
         </>
       )}
+      <details className="decl__sources">
+        <summary>Sources and details</summary>
+        <div className="decl__source-row">
+          <code className="decl__raw">{d.id}</code>
+          <CopyName name={d.id} />
+          <span className="decl__kind">
+            {KIND_WORDS[d.keyword] ?? d.keyword} · {sourceLines ? (
+              <a href={sourceLines} target="_blank" rel="noopener noreferrer" title={`Open ${d.id} in its Lean file`}>{range}</a>
+            ) : range} · {declOrigin(edition, d)}
+          </span>
+        </div>
+        {linkedDeclarations}
+      </details>
       {d.comment && (
         <div className="decl__comment">
           <p className="decl__label">The authors’ comment above it</p>
