@@ -10,8 +10,8 @@
 
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { blankEntry, newEntryId, pushEntry, readEntry, replaceEntry, returning, type Copy, type Entry, type Pin, type Tab } from "../app/history";
-import { declEvidence, fromLean, hasComparisons, leanOrigin, loadSource, noun, paperFile, passageLocation, type Edition, type Passage } from "../app/edition";
-import { Lockup, SisterSites } from "../app/Family";
+import { declEvidence, hasComparisons, leanOrigin, loadSource, noun, paperFile, passageLocation, type Edition, type Passage } from "../app/edition";
+import { Lockup, ReaderMenu, SisterSites } from "../app/Family";
 import { readRoute, routeHref } from "../app/router";
 import { setScheme, useScheme } from "../app/theme";
 import type { LeanActions } from "../lean/code";
@@ -139,6 +139,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const [tick, setTick] = useState(0);
 
   const wide = useMedia(WIDE);
+  const phone = useMedia(PHONE);
   const [layout, setLayoutState] = useState<Layout>(readLayout);
   const layoutRef = useRef(layout);
   layoutRef.current = layout;
@@ -597,6 +598,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
       }
       if (event.metaKey || event.ctrlKey || event.altKey) return;
       if (event.key === "Escape") {
+        if (document.querySelector(".reader-menu:popover-open")) return;
         if (pane()?.closeInsets()) return;
         if (rail) return setRail(false);
         if (entryRef.current.sheet && !wide) closeSheet();
@@ -771,8 +773,21 @@ export function PaperPage({ edition }: { edition: Edition }) {
 
   const showRight = wide ? layout.graph || entry.lean : entry.sheet;
   const threadLine = (stepView.exact ?? null)?.[0] ?? declarations.get(stepView.decls[0])?.line ?? null;
-  const firstSection = outline.find((e) => e.ties > 0);
-  const claimSection = claimPassage ? outline.find((e) => e.number === claimPassage.section) : undefined;
+
+  const readingControls = (<>
+    {backButton}
+    <div className="stepper" role="group" aria-label="Step through the statements">
+      <button type="button" title="The previous statement (k)" onClick={() => step(-1)} disabled={reached === 0 || order === 0}>Previous</button>
+      <span>{tiedLine}</span>
+      <button type="button" title="The next statement (j)" onClick={() => step(1)} disabled={reached >= edition.passages.length}>Next</button>
+    </div>
+    {edition.reading && hasPdf && (
+      <div className="switch" role="group" aria-label="The left-hand page">
+        <button type="button" aria-pressed={copy === "reading"} onClick={() => switchCopy("reading")}>Reading copy</button>
+        <button type="button" aria-pressed={copy === "pdf"} onClick={() => switchCopy("pdf")}>PDF</button>
+      </div>
+    )}
+  </>);
 
   return (
     <div className="page" data-copy={copy}>
@@ -780,38 +795,34 @@ export function PaperPage({ edition }: { edition: Edition }) {
         event.preventDefault();
         document.querySelector<HTMLElement>("[data-paper-pane]")?.focus();
       }}>Skip to the paper</a>
-      <header className={`bar${showRight && wide && edition.reading ? " bar--spread" : ""}`}>
+      <header className={`bar bar--reader${showRight && wide && edition.reading ? " bar--spread" : ""}`}>
         <div className="bar__left">
           <Lockup />
-          {edition.reading && !wide && <button type="button" className="bar__contents" aria-expanded={rail} onClick={() => setRail(!rail)}>Contents</button>}
         </div>
-        <div className="bar__column">
-          {backButton}
-          <div className="stepper" role="group" aria-label="Step through the statements">
-            <button type="button" title="The previous statement (k)" onClick={() => step(-1)} disabled={reached === 0 || order === 0}>Previous</button>
-            <span>{tiedLine}</span>
-            <button type="button" title="The next statement (j)" onClick={() => step(1)} disabled={reached >= edition.passages.length}>Next</button>
-          </div>
-          {edition.reading && hasPdf && (
-            <div className="switch" role="group" aria-label="The left-hand page">
-              <button type="button" aria-pressed={copy === "reading"} onClick={() => switchCopy("reading")}>Reading copy</button>
-              <button type="button" aria-pressed={copy === "pdf"} onClick={() => switchCopy("pdf")}>PDF</button>
-            </div>
-          )}
-        </div>
+        {!phone && <div className="bar__column">{readingControls}</div>}
         <div className="bar__right">
           <div className="bar__title">
             {copy === "reading" && edition.reading ? <p className="bar__paper">{paper.short_title}</p> : <h1 className="bar__paper">{paper.short_title}</h1>}
           </div>
           {(wide ? !showRight : !entry.sheet) && <button type="button" className="bar__open" onClick={() => (wide ? onLayout({ ...layout, graph: true }) : open({ sheet: true, record: readRoute().record, tab: entry.tab, lean: plain || entry.lean }))}>{plain ? "Lean" : "Graph"}</button>}
-          <button type="button" className="bar__theme" aria-label={scheme === "dark" ? "Use the day theme" : "Use the night theme"} onClick={() => setScheme(scheme === "dark" ? "light" : "dark")}>{scheme === "dark" ? "Day" : "Night"}</button>
-          {paper.films && <a className="bar__film" href={SHORT_FILM.youtube} target="_blank" rel="noopener noreferrer" title={`${SHORT_FILM.title}, video on YouTube`}>
-            <span className="bar__film-mark" aria-hidden="true" />Video, {clockTime(SHORT_FILM.seconds)}<span className="sr-only"> on YouTube</span>
-          </a>}
-          {!!edition.sheets?.length && <a className="bar__link" href={routeHref({ paper: slug, record: "@sheet" })} title={fromLean(edition) ? "The theorem and every definition it needs, on one page" : "Selected source declarations and linked passages"}>Statement sheet</a>}
-          {edition.evaluation && <button type="button" className="bar__link" onClick={() => onTab("index", true)}>Results</button>}
-          <a className="bar__link" href={sourceUrl}>{markdown ? "Source Markdown" : "Published paper"}</a>
-          <a className="bar__link" href={lean.source}>Lean artifact</a>
+          <ReaderMenu onOpen={() => setRail(false)}>
+            {edition.reading && <button type="button" onClick={() => {
+              setRail(true);
+              requestAnimationFrame(() => document.querySelector<HTMLElement>(".rail__search input")?.focus());
+            }}>Search the {noun(edition)}</button>}
+            {edition.reading && !wide && <button type="button" onClick={() => setRail(true)}>Contents</button>}
+            {phone && <div className="reader-menu__mobile">{readingControls}</div>}
+            <a href={routeHref({})}>All editions</a>
+            {!!edition.sheets?.length && <a href={routeHref({ paper: slug, record: "@sheet" })}>Statement sheet</a>}
+            {edition.evaluation && <button type="button" onClick={() => onTab("index", true)}>Results</button>}
+            <a href={sourceUrl}>{markdown ? "Source Markdown" : "Published paper"}</a>
+            <a href={lean.source}>Lean artifact</a>
+            {paper.films && <>
+              <a className="bar__film" href={SHORT_FILM.youtube} target="_blank" rel="noopener noreferrer">{SHORT_FILM.title}, {clockTime(SHORT_FILM.seconds)}</a>
+              <a className="bar__film" href={LONG_FILM.youtube} target="_blank" rel="noopener noreferrer">{LONG_FILM.title}, {clockTime(LONG_FILM.seconds)}</a>
+            </>}
+            <button type="button" className="bar__theme" onClick={() => setScheme(scheme === "dark" ? "light" : "dark")}>{scheme === "dark" ? "Use the day theme" : "Use the night theme"}</button>
+          </ReaderMenu>
         </div>
       </header>
       {entry.bad !== null && (
@@ -865,28 +876,10 @@ export function PaperPage({ edition }: { edition: Edition }) {
               onInsetClosed={saveNow}
               onPoint={onPoint}
               onReady={() => setTick((t) => t + 1)}
-              hint={markdown ? (
-                <p className="firstline firstline--status">Click a marked passage<span className="firstline__mark" aria-hidden="true" /> to read its Lean.</p>
-              ) : (
-                <div className="start">
+              hint={markdown ? null : (
                 <p className="firstline firstline--status">{hasComparisons(edition)
                   ? `The links from this ${noun(edition)} to its proof in Lean, the notes and the comparisons were made with AI`
-                  : `The links from this ${noun(edition)} to its proof in Lean, and the notes, were made with AI`} and have not been reviewed by {markdown ? "the authors of the Lean" : "the authors"}. <MadeLink onOpen={() => onTab("index", true)} />.</p>
-                <p className="firstline">
-                  Click a statement with a mark<span className="firstline__mark" aria-hidden="true" /> beside it to read its Lean.
-                  {(firstSection || claimSection) && (
-                    <span className="start__go">
-                      {firstSection && <button type="button" onClick={() => jumpTo(firstSection.id)}>{firstSection.number ? sectionLabel(firstSection.number) : firstSection.title}: the first linked statement</button>}
-                      {claimSection && <button type="button" onClick={() => jumpTo(claimSection.id)}>{sectionLabel(claimSection.number)}: the main claim</button>}
-                      {!!edition.sheets?.length && <a className="start__sheet" data-leave href={routeHref({ paper: slug, record: "@sheet" })}>{fromLean(edition) ? "Statement sheet: the theorem and every definition it needs" : "Statement sheet: selected source declarations"}</a>}
-                    </span>
-                  )}
-                </p>
-                {paper.films && <p className="firstfilm">
-                  <a href={SHORT_FILM.youtube} target="_blank" rel="noopener noreferrer"><span className="bar__film-mark" aria-hidden="true" />{SHORT_FILM.title}, {clockTime(SHORT_FILM.seconds)}</a>
-                  <a href={LONG_FILM.youtube} target="_blank" rel="noopener noreferrer"><span className="bar__film-mark" aria-hidden="true" />{LONG_FILM.title}, {clockTime(LONG_FILM.seconds)}</a>
-                </p>}
-                </div>
+                  : `The links from this ${noun(edition)} to its proof in Lean, and the notes, were made with AI`} and have not been reviewed by the authors.</p>
               )}
               foot={<footer className="foot">{credit}<SisterSites /></footer>}
             />

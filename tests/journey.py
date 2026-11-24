@@ -134,6 +134,13 @@ def graph_first(context):
     return context
 
 
+def open_site_menu(page: Page):
+    page.get_by_role("button", name="Site menu").click()
+    menu = page.get_by_role("navigation", name="Site menu")
+    menu.wait_for()
+    return menu
+
+
 def keep_proof_reader(page: Page) -> None:
     """The following checks exercise the original reader and its local navigation."""
     page.route("**/library-redirects.js", lambda route: route.fulfill(body="", content_type="application/javascript"))
@@ -406,8 +413,6 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     check("Contextual Embeddings" in page.title(), f"the tab names the paper: {page.title()}")
     check(page.locator(".firstline--status").is_visible() and page.locator(".firstline--status").bounding_box()["y"] < page.locator(".sheet__text h1").bounding_box()["y"], "the status line stands above the title")
     check("not been reviewed by the authors" in page.locator(".firstline--status").inner_text(), "and says who made the links")
-    check(page.locator(".firstline").last.is_visible(), "the first screen says what to do")
-    check("Click a statement with a mark" in page.locator(".firstline").last.inner_text(), "in plain words")
     check("Before the first statement" in caption(page), f"the caption says where the ties are: {caption(page)}")
     check(page.locator(".proof__graph").is_visible() and not lean_mode(page), "at rest the right page is the graph, and the Lean waits")
     check(page.locator(".skip").count() == 1, "there is a skip link")
@@ -419,9 +424,13 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     check(home.locator(".fam-lockup__owner").inner_text() == "Will Cook" and home.locator("img").get_attribute("alt") == "", "it names Will Cook beside the plait")
     check(home.locator("img").evaluate("(img) => img.complete && img.naturalWidth > 0"), "and its picture loads from this site")
     check(page.locator(".bar").bounding_box()["height"] <= 47, "the header keeps its height")
-    check(page.locator(".bar__film").get_attribute("href") == "https://www.youtube.com/watch?v=LZxaDZ-gQm8", "the header opens the short video")
-    check(page.locator(".firstfilm a").count() == 2, "and the first screen names both videos")
-    check(page.locator(".start .start__go button").count() == 2, "the opening panel has a button to the first linked statement and one to the main claim")
+    menu = open_site_menu(page)
+    check(menu.get_by_role("link", name="All editions").is_visible(), "the site menu opens the editions")
+    check(menu.get_by_role("button", name="Search the paper").is_visible(), "the site menu exposes paper search")
+    check(menu.locator(".bar__film").count() == 2 and menu.locator(".bar__film").first.get_attribute("href") == "https://www.youtube.com/watch?v=LZxaDZ-gQm8",
+          "the site menu opens both videos")
+    page.keyboard.press("Escape")
+    check(not menu.is_visible(), "Escape dismisses the site menu")
     check(page.locator(".sheet__text .q").first.evaluate("(el) => getComputedStyle(el).textDecorationLine") in ("underline", "none"), "linked statements carry a resting line outside code")
     foot = page.locator(".foot .fam-sites").first
     check(foot.count() == 1 and "All projects and videos" in foot.text_content() and "Plectis Atlas" in foot.text_content(), "the end of the paper lists the sister sites")
@@ -1067,7 +1076,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     wait_until(page, lambda: page.locator(".proof__graph").is_visible(), "and opens again")
 
     print("Night")
-    page.locator(".bar__theme").click()
+    open_site_menu(page).locator(".bar__theme").click()
     check(page.evaluate("document.documentElement.getAttribute('data-theme')") == "dark" or page.evaluate("matchMedia('(prefers-color-scheme: dark)').matches"), "night is chosen")
     background = page.evaluate("getComputedStyle(document.querySelector('.reading')).backgroundColor")
     check(background != "rgb(255, 253, 248)", f"the reading copy is dark: {background}")
@@ -1079,7 +1088,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     page.locator(".switch button", has_text="PDF").click()
     page.wait_for_selector(".pdf__page", state="attached")
     check(page.evaluate("getComputedStyle(document.querySelector('.pdf__page')).backgroundColor") == "rgb(255, 253, 248)", "the PDF stays paper-coloured")
-    page.locator(".bar__theme").click()
+    open_site_menu(page).locator(".bar__theme").click()
     check(not errors, f"nothing went wrong in the console: {errors[:3]}")
 
 
@@ -1676,7 +1685,7 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     check(copied == "F_μν = ∂_μ A_ν − ∂_ν A_μ + ⁅A_μ, A_ν⁆", "selected KaTeX copies as the exact source Unicode")
     if page.context.browser.browser_type.name == "chromium":
         page.context.grant_permissions(["clipboard-read", "clipboard-write"])
-        page.get_by_role("button", name="Copy page").click()
+        open_site_menu(page).get_by_role("button", name="Copy page").click()
         wait_until(page, lambda: page.get_by_role("status").get_by_text("Markdown copied").is_visible(),
                    "Copy page finishes writing the original Markdown")
         source = (ROOT / "api-maps" / "physlib-gauge-theory" / "API-map.md").read_text(encoding="utf-8")
@@ -1775,9 +1784,22 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
           "Combine views restores the two windows and hides the pane choices")
 
     deps = page.locator("#dependency-map")
-    deps.scroll_into_view_if_needed()
+    menu = open_site_menu(page)
+    menu.get_by_role("button", name="Dependency map", exact=True).click()
+    check(not menu.is_visible(), "the site menu closes after opening the dependency map")
+    full_fit = """(el, count) => {
+      const drawing = el.querySelector('.deps__world');
+      const view = el.getBoundingClientRect(), world = drawing.getBoundingClientRect();
+      const scale = new DOMMatrixReadOnly(drawing.style.transform).a;
+      return world.width > 0 && world.height > 0 && scale <= 1.15
+        && world.left >= view.left && world.right <= view.right
+        && world.top >= view.top && world.bottom <= view.bottom
+        && el.querySelectorAll('.deps__card').length === count;
+    }"""
     cards = deps.locator(".deps__figure .deps__card")
     wait_until(page, lambda: cards.count() == 13, "the dependency map shows Gauge theory and the 12 maps it reaches")
+    article_graph = deps.locator(".deps__figure--viewport").first
+    wait_until(page, lambda: article_graph.evaluate(full_fit, 13), "the complete inline dependency map fits its viewport")
     here = deps.locator('.deps__card[aria-current="page"]')
     check(here.count() == 1 and "Gauge theory" in here.inner_text(), "the current map is marked on the dependency map")
     lattice = deps.get_by_role("link", name=re.compile("^Lattice QFT"))
@@ -1801,9 +1823,22 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
       return [...card.querySelectorAll('.deps__title, .deps__count')].every((el) =>
         el.getBoundingClientRect().right <= box.right + 0.5 && el.scrollWidth <= el.clientWidth + 1);
     })"""), "every card's title and claim count stay inside the card")
-    check(dialog.locator(".deps__stage").first.evaluate("(el) => getComputedStyle(el).transform") == "none",
-          "the full view draws the maps at full size and scrolls instead of shrinking")
+    full_graph = dialog.locator(".deps__figure--viewport")
+    wait_until(page, lambda: full_graph.evaluate(full_fit, 39), "the full view fits all 39 maps")
+    shot(page, shots, f"physlib-all-maps-{'phone' if mobile else 'desktop'}")
     check(dialog.get_by_role("button", name="Close").evaluate("(el) => el === document.activeElement"), "the full view starts on its Close button")
+    size = page.viewport_size
+    page.set_viewport_size({"width": size["width"], "height": size["height"] + 90})
+    wait_until(page, lambda: full_graph.evaluate(full_fit, 39), "the fitted full view adapts to a taller viewport")
+    full_graph.locator("xpath=..").get_by_role("button", name="Inspect map").click()
+    full_graph.evaluate("(el) => el.scrollTo(70, 120)")
+    manual = "(el) => [el.querySelector('.deps__world').style.transform, el.scrollLeft, el.scrollTop]"
+    camera = full_graph.evaluate(manual)
+    check(camera[0] == "scale(1)" and camera[2] > 0, "the full view supports manual zoom and pan")
+    page.set_viewport_size(size)
+    check(full_graph.evaluate(manual) == camera, "resizing keeps the manually positioned full map")
+    full_graph.locator("xpath=..").get_by_role("button", name="Fit map").click()
+    wait_until(page, lambda: full_graph.evaluate(full_fit, 39), "Fit map restores the full drawing")
     page.keyboard.press("Escape")
     wait_until(page, lambda: not dialog.is_visible(), "Escape closes the full view")
     check(page.evaluate("document.documentElement.scrollWidth === innerWidth"), "the page still fits the viewport")
@@ -2030,9 +2065,38 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
         # The whole proof map is one button away, and a button brings the drawing back.
         page.locator(".graph__switch button", has_text="Whole proof map").click()
         wait_until(page, lambda: page.locator(".graph .tree .card[data-record]").count() > 0, f"{slug}: the whole proof map opens in the same place")
-        page.wait_for_timeout(900)
-        if slug == "pcp-full-argument":
+        tree = page.locator(".graph .tree")
+        fit = """(el) => {
+          const world = el.querySelector('.tree__world');
+          if (!world?.style.transform) return false;
+          const view = el.getBoundingClientRect();
+          const scale = new DOMMatrixReadOnly(world.style.transform).a;
+          const cards = [...world.querySelectorAll('.card[data-record]')];
+          return cards.length > 1 && scale <= 1.15 && cards.every((card) => {
+            const r = card.getBoundingClientRect();
+            return r.left >= view.left && r.right <= view.right && r.top >= view.top && r.bottom <= view.bottom;
+          });
+        }"""
+        wait_until(page, lambda: tree.evaluate(fit), f"{slug}: the whole drawing fits when opened")
+        if slug == GRAPH_PAGES[0]:
             shot_to(page, shots, f"proofreader-whole-map-{w}")
+            world = tree.locator(".tree__world")
+            read_camera = lambda: world.evaluate("(el) => el.style.transform")
+            initial = read_camera()
+            size = page.viewport_size
+            shorter = {"width": size["width"], "height": size["height"] - 90}
+            page.set_viewport_size(shorter)
+            wait_until(page, lambda: read_camera() != initial and tree.evaluate(fit), "a fitted whole map refits when resized")
+            fitted = read_camera()
+            page.get_by_role("button", name="Zoom in", exact=True).click()
+            wait_until(page, lambda: read_camera() != fitted, "the whole map zoom control moves the camera")
+            page.wait_for_timeout(450)
+            zoomed = read_camera()
+            page.set_viewport_size(size)
+            page.wait_for_timeout(300)
+            check(read_camera() == zoomed, "resizing preserves the manually zoomed camera")
+            page.get_by_role("button", name="Fit", exact=True).click()
+            wait_until(page, lambda: read_camera() != zoomed and tree.evaluate(fit), "Fit restores the complete map")
         page.locator(".graph__switch button", has_text="Around this step").click()
         wait_until(page, lambda: page.locator(".fg__card.is-subject").count() > 0, f"{slug}: and Around this step brings the drawing back")
     # The handle between the drawing and the dock moves, and its place is kept.

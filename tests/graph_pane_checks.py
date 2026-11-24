@@ -23,10 +23,14 @@ MEASURE = r"""
   // The camera's scale: the drawing is moved and zoomed by a transform on the world.
   const t = getComputedStyle(world).transform;
   const zoom = t && t !== 'none' ? new DOMMatrixReadOnly(t).a : 1;
-  const drawing = world.getBoundingClientRect();
+  const bounds = [...world.querySelectorAll('.fg__card, .fg__grouphead, .fg__wire, .fg__subjects--many')].map((el) => el.getBoundingClientRect());
+  const drawing = {
+    left: Math.min(...bounds.map((r) => r.left)), right: Math.max(...bounds.map((r) => r.right)),
+    top: Math.min(...bounds.map((r) => r.top)), bottom: Math.max(...bounds.map((r) => r.bottom)),
+  };
   const out = {subjects: 0, nodes: 0, groups: 0, grouped: 0, small: [], cut: [], blank: [], outside: [],
                users: +fg.dataset.users, uses: +fg.dataset.uses, opened: +fg.dataset.opened,
-               lines: fg.querySelectorAll('.fg__lines path[data-edge]').length, tops: 0,
+               lines: fg.querySelectorAll('.fg__lines path[data-edge]').length, tops: 0, zoom, detached: [], invalidPreviews: [],
                extraX: Math.round(Math.max(0, view.left - drawing.left, drawing.right - view.right)),
                extraY: Math.round(Math.max(0, view.top - drawing.top, drawing.bottom - view.bottom)),
                bars: sc.offsetWidth - sc.clientWidth + sc.offsetHeight - sc.clientHeight,
@@ -55,8 +59,40 @@ MEASURE = r"""
   }
   for (const g of fg.querySelectorAll('.fg__grouphead')) {
     out.groups += 1;
+    const preview = +g.dataset.previewCount;
+    if (preview && (preview >= +g.dataset.count || preview !== g.parentElement.querySelectorAll(':scope > .fg__members > .fg__card').length)) {
+      out.invalidPreviews.push(g.dataset.group);
+    }
     text(g.querySelector('.fg__groupname'), 'group ' + g.dataset.group);
     if (!inside(g.getBoundingClientRect())) out.outside.push('group ' + g.dataset.group);
+  }
+  const cards = new Map([...fg.querySelectorAll('.fg__card')].map((c) => [c.dataset.card, c]));
+  const groups = new Map([...fg.querySelectorAll('.fg__grouphead')].map((g) => ['group:' + g.dataset.group, g]));
+  const subjects = [...fg.querySelectorAll('.fg__card[data-band="subject"]')];
+  const frame = fg.querySelector('.fg__subjects--many');
+  const stacked = world.classList.contains('fg__world--narrow');
+  const onEdge = (point, nodes, side) => nodes.some((node) => {
+    const box = node.getBoundingClientRect();
+    const epsilon = 2 * zoom;
+    const vertical = side === 'left' || side === 'right';
+    const [along, cross] = vertical ? [point.y, point.x] : [point.x, point.y];
+    const [start, end] = vertical ? [box.top, box.bottom] : [box.left, box.right];
+    return Math.abs(cross - box[side]) <= epsilon && along >= start - epsilon && along <= end + epsilon;
+  });
+  for (const wire of fg.querySelectorAll('.fg__wire[data-edge]')) {
+    const [from, to] = wire.dataset.edge.split('>');
+    const node = (id) => cards.get(id) ?? groups.get(id);
+    const shared = frame && groups.has(from || to) ? [frame] : subjects;
+    const source = from ? [node(from)].filter(Boolean) : shared;
+    const target = to ? [node(to)].filter(Boolean) : shared;
+    const matrix = wire.getScreenCTM();
+    const start = wire.getPointAtLength(0).matrixTransform(matrix);
+    const end = wire.getPointAtLength(wire.getTotalLength()).matrixTransform(matrix);
+    const inner = from && to;
+    const attached = inner
+      ? (onEdge(start, source, 'bottom') && onEdge(end, target, 'top')) || (onEdge(start, source, 'right') && onEdge(end, target, 'right'))
+      : onEdge(start, source, stacked ? 'left' : 'right') && onEdge(end, target, 'left');
+    if (!attached) out.detached.push(wire.dataset.edge);
   }
   const dock = dockSel ? document.querySelector(dockSel) : null;
   out.dock = dockSel ? (dock ? dock.innerText.replace(/\s+/g, ' ').trim().length : -1) : null;
@@ -71,6 +107,12 @@ def check_graph_pane(page: Page, label: str, dock: str | None = None, expect_sub
     if m.get("error"):
         return [f"{label}: {m['error']}"]
     bad: list[str] = []
+    if page.locator(".fg__key, .fg__sidekinds").count():
+        bad.append(f"{label}: the reader graph displays a legend or relation counts")
+    if m["invalidPreviews"]:
+        bad.append(f"{label}: invalid group previews: {m['invalidPreviews']}")
+    if page.locator(".fg__mini").count():
+        bad.append(f"{label}: the reader graph shows an inset overview")
     if expect_subject and not m["subjects"]:
         bad.append(f"{label}: no subject card is drawn")
     if m["small"]:
@@ -90,6 +132,10 @@ def check_graph_pane(page: Page, label: str, dock: str | None = None, expect_sub
             bad.append(f"{label}: {m['users'] + m['uses']} neighbours, but the nodes and group counts on show come to {m.get('loose', 0) + m['grouped']}")
     if m["lines"] < m["tops"]:
         bad.append(f"{label}: {m['tops']} nodes and groups but only {m['lines']} lines")
+    if m["detached"]:
+        bad.append(f"{label}: wires miss node borders: {', '.join(m['detached'][:5])}")
+    if not m["opened"] and m["zoom"] > 1.15:
+        bad.append(f"{label}: the opening fit exceeds 115%: {m['zoom']:.2%}")
     if m["view"][1] < 180:
         bad.append(f"{label}: the graph area is only {m['view'][1]}px tall")
     if dock is not None and (m["dock"] is None or m["dock"] < 20):
@@ -243,8 +289,8 @@ def _check_in_place(page: Page, label: str, head, name: str, count: int) -> list
         page.wait_for_timeout(200)
         if sc.evaluate("(el) => el.querySelector('.fg__world').style.transform") == before:
             bad.append(f"{label}: with the group {name} open, dragging does not pan the graph")
-        if page.locator(".fg__mini").count() == 0 and page.viewport_size["width"] > 600:
-            bad.append(f"{label}: the drawing overflows but there is no overview")
+        if page.locator(".fg__mini").count():
+            bad.append(f"{label}: the reader graph shows an inset overview when panning")
         hidden = page.evaluate(
             """async () => { const sc = document.querySelector('.fg__scroll'); const v = sc.getBoundingClientRect(); const out = [];
             for (const c of sc.querySelectorAll('.fg__card')) { c.focus(); await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))); const r = c.getBoundingClientRect();

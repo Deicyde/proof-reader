@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { selecting } from "../paper/clickIntent";
 import type { OutlineEntry } from "../app/edition";
-import { Lockup } from "../app/Family";
+import { Lockup, ReaderMenu } from "../app/Family";
 import { readRoute, routeHref } from "../app/router";
 import { setScheme, useScheme } from "../app/theme";
 import { LeanCode, useFileLines } from "../lean/code";
@@ -368,6 +368,7 @@ function MapReader({ edition }: { edition: Edition }) {
     <div className="page api-map" onKeyDown={(event) => {
       if (event.defaultPrevented) return;
       if (event.key === "Escape") {
+        if (document.querySelector(".reader-menu:popover-open")) return;
         if (rail) setRail(false);
         else if (citation) close();
       }
@@ -378,15 +379,24 @@ function MapReader({ edition }: { edition: Edition }) {
       }
     }}>
       <a className="skip" href="#map-text" onClick={(event) => { event.preventDefault(); paper.current?.focus(); }}>Skip to the map</a>
-      <header className="bar api-map__bar">
-        <div className="bar__left"><Lockup /><button type="button" className="bar__contents api-map__contents-toggle" aria-expanded={rail} onClick={() => setRail(!rail)}>Contents</button></div>
+      <header className="bar bar--reader api-map__bar">
+        <div className="bar__left"><Lockup /></div>
         <div className="bar__title"><p className="bar__paper">{edition.title}</p></div>
-        <nav className="bar__right" aria-label="Map actions">
-          <button type="button" className="bar__open api-map__index-toggle" onClick={() => navigate("@index")}>Glossary</button>
-          <a className="bar__link api-map__source-link" href={sourceOf(edition, edition.file)}>Source Markdown</a>
-          <button type="button" className="bar__open" title="Copy the original Markdown with Unicode formulas" onClick={() => void copy(() => markdown ?? getFile("API-map.md", (response) => response.text()), "Markdown copied")}>Copy page</button>
-          <button type="button" className="bar__theme" aria-label={scheme === "dark" ? "Use the day theme" : "Use the night theme"} onClick={() => setScheme(scheme === "dark" ? "light" : "dark")}>{scheme === "dark" ? "Day" : "Night"}</button>
-        </nav>
+        <div className="bar__right">
+          <ReaderMenu onOpen={() => setRail(false)}>
+            <button type="button" onClick={() => {
+              setRail(true);
+              requestAnimationFrame(() => document.querySelector<HTMLElement>(".rail__search input")?.focus());
+            }}>Search the map</button>
+            <button type="button" className="reader-menu__contents" onClick={() => setRail(true)}>Contents</button>
+            <button type="button" onClick={() => document.querySelector<HTMLElement>("#dependency-map")?.scrollIntoView({ block: "start" })}>Dependency map</button>
+            <button type="button" onClick={() => navigate("@index")}>Glossary</button>
+            <a href={routeHref({})}>All editions</a>
+            <a href={sourceOf(edition, edition.file)}>Source Markdown</a>
+            <button type="button" title="Copy the original Markdown with Unicode formulas" onClick={() => void copy(() => markdown ?? getFile("API-map.md", (response) => response.text()), "Markdown copied")}>Copy page</button>
+            <button type="button" className="bar__theme" onClick={() => setScheme(scheme === "dark" ? "light" : "dark")}>{scheme === "dark" ? "Use the day theme" : "Use the night theme"}</button>
+          </ReaderMenu>
+        </div>
         <div className="api-map__copy-status" role="status" hidden={!message}>{message}</div>
       </header>
       <main className={`spread spread--reading has-right api-map__spread${group || ref || paragraph || record === "@index" ? " is-open" : ""}`}>

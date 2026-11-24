@@ -127,16 +127,15 @@ type Item =
   | { type: "group"; key: string; name: string; tone?: string; role?: FGRole; said?: string; ids: string[]; open: boolean; children: Item[] };
 /** How one side is divided when it does not fit: named parts, some of them drawn out as their own nodes. */
 interface Part { key: string; name: string; list: string[]; depth: number }
-type Plan = { flat: true } | { flat: false; parts: Part[]; out: ReadonlySet<string> };
+type Plan = { flat: true } | { flat: false; parts: Part[]; out: ReadonlySet<string>; previews: ReadonlyMap<string, number> };
 
 /** Below this scale a title is too small to read: a side that needs it is grouped further instead. */
 const MIN_READ = 0.85;
 /** The scales the reader can reach with the buttons, wheel, pinch and keys. */
 const K_MIN = 0.2;
 const K_MAX = 2.5;
-/** A fitted drawing grows to fill its area up to 1.3 times its own size (a small neighbourhood in a large pane is not left small), and is never set below this when grouping cannot help. */
-const FIT_MAX = 1.3;
-const FIT_FLOOR = 0.45;
+/** A fitted drawing can grow modestly in a large pane or shrink when grouping cannot make it fit. */
+const FIT_MAX = 1.15;
 /** Room kept around a fitted drawing, and how much of it a pan always leaves in view. */
 const FIT_MARGIN = 18;
 const KEEP_IN_VIEW = 60;
@@ -157,15 +156,47 @@ const relation = (kind: string) => {
 };
 /** A kind's words inside a sentence: "Definitions" becomes "definitions"; "Lean helper lemmas" keeps its capital. */
 const inSentence = (words: string) => (words.startsWith("Lean ") ? words : words.charAt(0).toLowerCase() + words.slice(1));
-const MINI_W = 150;
-const MINI_H = 58;
-const MINI_MIN_W = 64;
+
+/** The visible diagram in world coordinates. Text ranges exclude the unused part of a
+ * column, and SVG curve bounds include the wires that run outside the cards on phones. */
+function diagramBounds(world: HTMLElement): Box | null {
+  const origin = world.getBoundingClientRect();
+  if (!origin.width || !world.offsetWidth) return null;
+  const scale = new DOMMatrixReadOnly(world.style.transform || undefined).a;
+  const range = world.ownerDocument.createRange();
+  let left = Infinity, right = -Infinity, top = Infinity, bottom = -Infinity;
+  const include = (x: number, y: number, width: number, height: number) => {
+    if (!width && !height) return;
+    left = Math.min(left, x);
+    top = Math.min(top, y);
+    right = Math.max(right, x + width);
+    bottom = Math.max(bottom, y + height);
+  };
+  const fromViewport = (rect: DOMRect) => include(
+    (rect.left - origin.left) / scale, (rect.top - origin.top) / scale,
+    rect.width / scale, rect.height / scale,
+  );
+  for (const card of world.querySelectorAll(".fg__card, .fg__grouphead, .fg__subjects--many")) {
+    fromViewport(card.getBoundingClientRect());
+  }
+  for (const wire of world.querySelectorAll<SVGPathElement>(".fg__wire")) {
+    const box = wire.getBBox();
+    include(box.x, box.y, box.width, box.height);
+  }
+  for (const label of world.querySelectorAll(".fg__sidehead, .fg__edge-note")) {
+    range.selectNodeContents(label);
+    for (const rect of range.getClientRects()) fromViewport(rect);
+  }
+  if (right <= left || bottom <= top) return null;
+  return { x: left, y: top, w: right - left, h: bottom - top };
+}
 
 export function FocusGraph(props: FocusGraphProps) {
   const { subjects, card, edges, route, routeNote, routeLabel, label, lit, held, onSubject, onHover, renderTitle } = props;
   const scroller = useRef<HTMLDivElement>(null);
   const world = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
+  const fittedKey = useRef<string | null>(null);
   const [drawn, setDrawn] = useState<Drawn | null>(null);
   const [hot, setHot] = useState<string | null>(null);
   /** The sentence of a use the paper's text states, while it is pointed at or after a click. */
@@ -195,27 +226,12 @@ export function FocusGraph(props: FocusGraphProps) {
   const auto = useRef(true);
   const drawnRef = useRef<Drawn | null>(null);
   drawnRef.current = drawn;
-  const miniView = useRef<HTMLElement>(null);
-  const miniScale = useRef({ x: 0, y: 0 });
-  const [overflow, setOverflow] = useState(false);
-  const overflowNow = useRef(false);
   const applyCam = () => {
-    const w = world.current, el = scroller.current;
-    if (!w || !el) return;
+    const w = world.current;
+    if (!w) return;
     const c = cam.current;
     const t = `translate(${c.x.toFixed(1)}px, ${c.y.toFixed(1)}px) scale(${c.k.toFixed(4)})`;
     if (w.style.transform !== t) w.style.transform = t;
-    const d = drawnRef.current;
-    const vw = el.clientWidth, vh = el.clientHeight;
-    const over = !!d && (c.x < -2 || c.y < -2 || c.x + d.w * c.k > vw + 2 || c.y + d.h * c.k > vh + 2);
-    if (over !== overflowNow.current) { overflowNow.current = over; setOverflow(over); }
-    const b = miniView.current, m = miniScale.current;
-    if (b && d && m.x) {
-      const left = clampTo(-c.x / c.k, 0, d.w), top = clampTo(-c.y / c.k, 0, d.h);
-      const right = clampTo((vw - c.x) / c.k, 0, d.w), bottom = clampTo((vh - c.y) / c.k, 0, d.h);
-      b.style.left = `${left * m.x}px`; b.style.top = `${top * m.y}px`;
-      b.style.width = `${Math.max(0, right - left) * m.x}px`; b.style.height = `${Math.max(0, bottom - top) * m.y}px`;
-    }
   };
   /** Move the camera, keeping some of the drawing in view whatever the reader does. */
   const setCam = (next: { x: number; y: number; k: number }) => {
@@ -232,7 +248,7 @@ export function FocusGraph(props: FocusGraphProps) {
     const el = scroller.current;
     if (!el) return;
     const c = cam.current;
-    const k = clampTo(c.k * factor, K_MIN, K_MAX);
+    const k = clampTo(c.k * factor, Math.min(K_MIN, c.k), K_MAX);
     const ox = px ?? el.clientWidth / 2, oy = py ?? el.clientHeight / 2;
     auto.current = false;
     setCam({ k, x: ox - ((ox - c.x) * k) / c.k, y: oy - ((oy - c.y) * k) / c.k });
@@ -255,35 +271,33 @@ export function FocusGraph(props: FocusGraphProps) {
     if (dx || dy) panBy(dx, dy);
   };
   /**
-   * Fit the whole drawing in view with a margin, no larger than its own size. When that would set the
+   * Fit the whole drawing in view with a margin and bounded magnification. When that would set the
    * titles below a readable size, the sides are grouped further first (up to six times) and the fit
    * waits for the new layout. Returns false while it waits.
    */
-  const fitNow = (): boolean => {
+  const fitNow = (overview = false): boolean => {
     const d = drawnRef.current, el = scroller.current, w = world.current;
     if (!d || !el || !w || !el.clientWidth || !el.clientHeight || !d.w || !d.h) return false;
     // The buttons stand over the bottom of the view: a fitted drawing stays above them.
-    const vw = el.clientWidth, vh = el.clientHeight - TOOLS_ROOM;
-    const byH = (vh - 2 * FIT_MARGIN) / d.h, byW = (vw - 2 * FIT_MARGIN) / d.w;
-    if (byH < MIN_READ && !openedNow.current && tightNow.current < 6) {
+    const vw = el.clientWidth, vh = Math.max(1, el.clientHeight - TOOLS_ROOM);
+    const margin = Math.min(FIT_MARGIN, vw / 6, vh / 6);
+    const bounds = diagramBounds(w);
+    if (!bounds || vh <= 2 * margin || vw <= 2 * margin) return false;
+    const byHeight = (vh - 2 * margin) / bounds.h;
+    const byWidth = (vw - 2 * margin) / bounds.w;
+    if (!overview && byHeight < MIN_READ && !openedNow.current && tightNow.current < 6) {
       setTight((t) => Math.min(6, t + 1));
       return false;
     }
-    const k = Math.max(FIT_FLOOR, Math.min(FIT_MAX, byH, byW));
-    let x = (vw - d.w * k) / 2, y = (vh - d.h * k) / 2;
-    // Stacked on a phone the drawing reads from its top: what uses the subject, the subject, what it uses.
-    if (w.classList.contains("fg__world--narrow")) y = FIT_MARGIN;
-    else if (d.w * k > vw || d.h * k > vh) {
-      // Even grouped it is larger than the view: the subject is in the middle, and the rest is a pan away.
-      const f = d.boxes.filter((b) => b.band === "subject").map((b) => b.box);
-      if (f.length) {
-        const left = Math.min(...f.map((b) => b.x)), right = Math.max(...f.map((b) => b.x + b.w));
-        const top = Math.min(...f.map((b) => b.y)), bottom = Math.max(...f.map((b) => b.y + b.h));
-        if (d.w * k > vw) x = vw / 2 - ((left + right) / 2) * k;
-        if (d.h * k > vh) y = Math.min(FIT_MARGIN - top * k + 12, vh / 2 - ((top + bottom) / 2) * k);
-      }
-    }
-    setCam({ x, y, k });
+    const k = Math.min(FIT_MAX, byHeight, byWidth);
+    // The midpoint of everything drawn stays in the midpoint of the usable viewport.
+    // The limits for a manual pan apply to the canvas box and would bias this fit.
+    cam.current = {
+      k,
+      x: vw / 2 - (bounds.x + bounds.w / 2) * k,
+      y: vh / 2 - (bounds.y + bounds.h / 2) * k,
+    };
+    applyCam();
     return true;
   };
 
@@ -338,12 +352,10 @@ export function FocusGraph(props: FocusGraphProps) {
   const key = model.subj.join("|");
   const many = model.subj.length > 1;
   useLayoutEffect(() => { setOpened(new Set()); setTight(0); setHot(null); setListed(null); setLists({}); auto.current = true; }, [key]);
-  // A new size of the pane (never of the drawing) is laid out and fitted afresh while the view is the fitted one.
+  // Reconsider the grouping at the new pane size. The camera follows the drawing that commits.
   useLayoutEffect(() => {
     if (!size.w || !auto.current || openedNow.current) return;
     if (tightNow.current) setTight(0);
-    else fitNow();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [size.w, size.h]);
 
   // The widths of the three columns, for the room there is. The height a column may take is the
@@ -375,6 +387,8 @@ export function FocusGraph(props: FocusGraphProps) {
       return [...groups.entries()];
     };
     let parts: Part[] = by(ids, (c) => c.role).map(([role, list]) => ({ key: role, name: words(role as FGRole).many, list, depth: 0 }));
+    // Leave room for actual dependencies before subdividing the column into more headings.
+    const previewRoom = size.h && size.w ? Math.min(room * 0.38, 152) : 0;
     const total = (ps: Part[]) => ps.reduce((sum, p) => sum + headH(p.name), 0);
     // The pieces a part divides into, largest first: by topic, and a part that is one topic by file or section.
     const pieces = (p: Part): Part[] | null => {
@@ -402,7 +416,7 @@ export function FocusGraph(props: FocusGraphProps) {
           const merged: Part[] = [];
           for (const k of kept) { const same = merged.find((m) => m.name === k.name); if (same) same.list = [...same.list, ...k.list]; else merged.push({ ...k }); }
           const next = [...parts.slice(0, i), ...merged, ...parts.slice(i + 1)];
-          if (total(next) <= room) { parts = next; done = true; }
+          if (total(next) <= room - previewRoom) { parts = next; done = true; }
         }
         if (done) break;
       }
@@ -414,8 +428,26 @@ export function FocusGraph(props: FocusGraphProps) {
       const cost = p.list.reduce((sum, id) => sum + nodeH(id), 0) - headH(p.name);
       if (p.list.length === 1 || cost <= left) { out.add(p.key); left -= Math.max(0, cost); }
     }
-    return { flat: false, parts, out };
-  }, [card, words, sideW, H, tight, narrow]);
+    // Deal row space to the groups in turns. A wrapped title costs more than a short one.
+    // Each preview is a real child of its group; opening the header still exposes every member.
+    const previews = new Map<string, number>();
+    if (size.w && size.h) {
+      const grouped = parts.filter((p) => !out.has(p.key));
+      for (let row = 0; row < 4; row++) {
+        for (const part of grouped) {
+          if ((previews.get(part.key) ?? 0) !== row || row >= part.list.length - 1) continue;
+          const item = card(part.list[row])!;
+          const text = [item.kicker, item.title].filter(Boolean).join(" ");
+          const lines = Math.max(1, Math.ceil(text.length * 6.9 / Math.max(1, sideW - 46)));
+          const cost = 12 + lines * 17.5 + ITEM_GAP;
+          if (cost > left) continue;
+          previews.set(part.key, row + 1);
+          left -= cost;
+        }
+      }
+    }
+    return { flat: false, parts, out, previews };
+  }, [card, words, sideW, H, tight, narrow, size.w, size.h]);
 
   // While the reader has a group open or listed the division is kept as it was, so that the group stays where it is.
   const kept = useRef<{ key: string; users: Plan; uses: Plan } | null>(null);
@@ -434,7 +466,7 @@ export function FocusGraph(props: FocusGraphProps) {
       const tones = new Set(list.map((id) => card(id)!.tone));
       const kinds = new Set(list.map((id) => card(id)!.role));
       const isOpen = list.length <= LIST_ABOVE && open(path);
-      return { type: "group", key: path, name, tone: tones.size === 1 ? [...tones][0] : undefined, role: kinds.size === 1 ? [...kinds][0] : undefined, ids: list, open: isOpen, children: isOpen ? list.map(node) : [] };
+      return { type: "group", key: path, name, tone: tones.size === 1 ? [...tones][0] : undefined, role: kinds.size === 1 ? [...kinds][0] : undefined, ids: list, open: isOpen, children: (isOpen ? list : list.slice(0, how.previews.get(path) ?? 0)).map(node) };
     };
     const items = how.parts.flatMap((p) => (how.out.has(p.key) && !open(p.key) ? p.list.map(node) : [group(p.key, p.name, p.list)]));
     // Two groups of one name (one topic among the definitions and again among the lemmas) each say their kind.
@@ -450,25 +482,36 @@ export function FocusGraph(props: FocusGraphProps) {
   useLayoutEffect(() => {
     const el = scroller.current;
     if (!el) return;
-    const read = () => setSize((s) => (s.w === el.clientWidth && s.h === el.clientHeight ? s : { w: el.clientWidth, h: el.clientHeight }));
-    read();
-    const ro = new ResizeObserver(read);
+    // A hover preview in the separate Graph tab can change the dock height. Keep the
+    // hovered card still, but refit on a viewport resize even with the pointer over it.
+    const measurePane = (viewportChanged: boolean) => {
+      const w = el.clientWidth, h = el.clientHeight;
+      const holdHover = !viewportChanged && el.matches(":hover");
+      setSize((s) => s.w === w && (s.h === h || holdHover) ? s : { w, h });
+    };
+    const viewportResize = () => measurePane(true);
+    measurePane(true);
+    const ro = new ResizeObserver(() => measurePane(false));
     ro.observe(el);
-    return () => ro.disconnect();
+    window.addEventListener("resize", viewportResize);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", viewportResize);
+    };
   }, []);
 
   // The lines, measured from the nodes as the browser laid them out.
   const measure = useCallback(() => {
     const w = world.current;
     if (!w) return;
-    // Rectangles on the screen carry the camera's scale; the drawing's own units do not.
-    const k = cam.current.k;
+    // Measure the actual rendered border boxes and undo the world's current scale.
     const origin = w.getBoundingClientRect();
-    const box = (el: Element): Box => {
+    const k = new DOMMatrixReadOnly(w.style.transform || undefined).a;
+    const box = (el: HTMLElement): Box => {
       const r = el.getBoundingClientRect();
       return { x: (r.left - origin.left) / k, y: (r.top - origin.top) / k, w: r.width / k, h: r.height / k };
     };
-    const frame = w.querySelector(".fg__subjects");
+    const frame = w.querySelector<HTMLElement>(".fg__subjects");
     if (!frame) { setDrawn(null); return; }
     const F = box(frame);
     const stackedNow = w.classList.contains("fg__world--narrow");
@@ -515,10 +558,10 @@ export function FocusGraph(props: FocusGraphProps) {
         const ty = e.to.y + e.to.h / 2 + (n > 1 ? -spread / 2 + (spread * i) / (n - 1) : 0);
         const ny = e.b.y + e.b.h / 2;
         // Stacked, every line runs in the left margin, from the left edge of one to the left edge of the other.
-        const loop = (x1: number, y1: number, x2: number, y2: number) => { const m = Math.min(x1, x2) - 16; return `M${x1.toFixed(1)} ${y1.toFixed(1)} C${m.toFixed(1)} ${y1.toFixed(1)}, ${m.toFixed(1)} ${y2.toFixed(1)}, ${(x2 - 5).toFixed(1)} ${y2.toFixed(1)}`; };
+        const loop = (x1: number, y1: number, x2: number, y2: number) => { const m = Math.min(x1, x2) - 16; return `M${x1.toFixed(1)} ${y1.toFixed(1)} C${m.toFixed(1)} ${y1.toFixed(1)}, ${m.toFixed(1)} ${y2.toFixed(1)}, ${x2.toFixed(1)} ${y2.toFixed(1)}`; };
         const d = stackedNow
           ? (side === "users" ? loop(e.b.x, ny, e.to.x, ty) : loop(e.to.x, ty, e.b.x, ny))
-          : side === "users" ? curve(e.b.x + e.b.w, ny, e.to.x - 5, ty) : curve(e.to.x + e.to.w, ty, e.b.x - 5, ny);
+          : side === "users" ? curve(e.b.x + e.b.w, ny, e.to.x, ty) : curve(e.to.x + e.to.w, ty, e.b.x, ny);
         const isGroup = !e.el.dataset.card;
         const kind = isGroup ? (e.el.dataset.kind ?? "use") : (rels.get(e.id)?.kind ?? "use");
         const rel = isGroup ? undefined : rels.get(e.id);
@@ -533,11 +576,16 @@ export function FocusGraph(props: FocusGraphProps) {
     model.inner.forEach((e, i) => {
       const a = subjectBox.get(e.from), b = subjectBox.get(e.to);
       if (!a || !b) return;
-      const bulge = 14 + (i % 3) * 9;
-      const x = a.x + a.w - 14 - (i % 4) * 12;
-      const d = b.y > a.y + a.h + 30 || b.y < a.y
-        ? `M${x} ${a.y + a.h} C${x + bulge * 3} ${a.y + a.h + 20}, ${x + bulge * 3} ${b.y - 20}, ${x} ${b.y - 5}`
-        : `M${x} ${a.y + a.h} L${x} ${b.y - 5}`;
+      // Neighbouring subjects can connect across their vertical gap. Longer and
+      // backward links use the outer edge so they never pass through another title.
+      const consecutive = model.subj.indexOf(e.to) === model.subj.indexOf(e.from) + 1;
+      const x = (Math.max(a.x, b.x) + Math.min(a.x + a.w, b.x + b.w)) / 2;
+      const endA = a.x + a.w, endB = b.x + b.w;
+      const yA = a.y + a.h / 2, yB = b.y + b.h / 2;
+      const gutter = Math.max(endA, endB) + 13 + (i % 3) * 3;
+      const d = consecutive
+        ? `M${x} ${a.y + a.h} V${b.y}`
+        : `M${endA} ${yA} C${gutter} ${yA}, ${gutter} ${yB}, ${endB} ${yB}`;
       segs.push({ d, cls: `fg__wire fg__edge fg__edge--${e.kind ?? "use"} fg__inner`, kind: e.kind ?? "use", edge: `${e.from}>${e.to}`, why: e.kind === "paper" ? e.why : undefined, href: e.kind === "paper" ? e.href : undefined });
     });
     // The world's own size: offsetWidth is not scaled by the camera.
@@ -551,17 +599,35 @@ export function FocusGraph(props: FocusGraphProps) {
     // Fonts and typeset titles can arrive after the first layout.
     const ro = new ResizeObserver(() => measure());
     ro.observe(w);
-    for (const c of w.querySelectorAll(".fg__card, .fg__grouphead")) ro.observe(c);
-    return () => ro.disconnect();
+    for (const c of w.querySelectorAll(".fg__card, .fg__grouphead, .fg__side, .fg__subjects, .fg__sidehead, .fg__edge-note")) ro.observe(c);
+    const fonts = w.ownerDocument.fonts;
+    fonts?.addEventListener("loadingdone", measure);
+    return () => {
+      ro.disconnect();
+      fonts?.removeEventListener("loadingdone", measure);
+    };
   }, [measure, key, leftItems, rightItems, sideW, subjectW]);
 
-  // A new drawing is fitted while the view is the fitted one; otherwise the camera only keeps some of it in view.
+  // The pane and its new SVG can commit in different frames. Fit the latest
+  // drawing and pane together, after both the HTML and SVG have laid out.
   useLayoutEffect(() => {
-    if (!drawn) return;
-    if (auto.current && !openedNow.current) fitNow();
-    else applyCam();
+    if (!drawn || !size.w || !size.h) return;
+    const fitFor = JSON.stringify([key, size.w, size.h, model.left, model.right]);
+    let frame = requestAnimationFrame(() => {
+      frame = requestAnimationFrame(() => {
+        // A dock preview can redraw the separate graph under the pointer.
+        // A new subject, arriving neighbours or a genuine resize still merits a fit.
+        const held = fittedKey.current === fitFor && scroller.current?.matches(":hover");
+        if (!auto.current || held) {
+          applyCam();
+          return;
+        }
+        if (fitNow()) fittedKey.current = fitFor;
+      });
+    });
+    return () => cancelAnimationFrame(frame);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [drawn]);
+  }, [drawn, key, size.w, size.h, model.left, model.right]);
 
   // Drag to pan, two fingers to pinch. A drag that starts on a card and moves is a pan, not a click.
   const drag = useRef<{ x: number; y: number; cx: number; cy: number; far: boolean } | null>(null);
@@ -572,7 +638,7 @@ export function FocusGraph(props: FocusGraphProps) {
     return { x: e.clientX - r.left, y: e.clientY - r.top };
   };
   const onPointerDown = (e: React.PointerEvent) => {
-    if ((e.target as HTMLElement).closest(".fg__mini, .fg__tools")) return;
+    if ((e.target as HTMLElement).closest(".fg__tools")) return;
     if (e.pointerType === "touch") touches.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (touches.current.size === 2) {
       const [a, b] = [...touches.current.values()];
@@ -649,14 +715,14 @@ export function FocusGraph(props: FocusGraphProps) {
   };
   // A double click on the drawing (not on a card) zooms in there.
   const onDoubleClick = (e: React.MouseEvent) => {
-    if ((e.target as HTMLElement).closest("button, .fg__mini, .fg__tools")) return;
+    if ((e.target as HTMLElement).closest("button, .fg__tools")) return;
     const p = local(e);
     zoomBy(1.6, p.x, p.y);
   };
   /** Frame the drawing as it is: Fit only moves the camera, and folds, closes and forgets nothing. From here the view is kept fitted again. */
   const fit = () => {
     auto.current = true;
-    fitNow();
+    fitNow(true);
   };
 
   const hover = (id: string | null) => { setHot(id); onHover?.(id); };
@@ -748,6 +814,8 @@ export function FocusGraph(props: FocusGraphProps) {
             data-count={it.ids.length}
             data-kind={kind}
             data-opens={large ? "list" : "here"}
+            data-preview-count={it.open ? undefined : it.children.length || undefined}
+            aria-description={!it.open && it.children.length ? `${it.children.length} of ${it.ids.length} members shown. Open for the full group.` : undefined}
             aria-expanded={large ? isListed : it.open}
             title={large ? (isListed ? `Close the list of these members (${how})` : `List these ${it.ids.length} members (${how})`) : it.open ? `Fold these back into one group (${how})` : `Show these ${it.ids.length} cards here (${how})`}
             onClick={() => toggle(side, it.key, it.ids.length)}
@@ -756,7 +824,7 @@ export function FocusGraph(props: FocusGraphProps) {
             <span className="fg__count">{it.ids.length}</span>
             <span className="fg__sign" aria-hidden="true">{it.open ? "−" : "+"}</span>
           </button>
-          {it.open && <div className="fg__members">{renderItems(side, it.children, rels)}</div>}
+          {it.children.length > 0 && <div className="fg__members">{renderItems(side, it.children, rels)}</div>}
         </div>
       );
     });
@@ -765,8 +833,7 @@ export function FocusGraph(props: FocusGraphProps) {
   // and one line under the subject says that the side is empty.
   const renderSide = (side: Side, items: Item[], ids: string[], rels: Map<string, Rel>) => ids.length > 0 && (
     <div className="fg__side" data-band={side} data-total={ids.length} style={{ width: sideW }}>
-      <h4 className="fg__sidehead">{side === "users" ? (many ? "Use these" : "Use this") : (many ? "These use" : "This uses")} <span>{ids.length}</span></h4>
-      <p className="fg__sidekinds" data-band-kinds={side}>{relationCounts(countKinds(ids, rels))}</p>
+      <h4 className="fg__sidehead">{side === "users" ? "Used by" : "Uses"} <span>{ids.length}</span></h4>
       {renderItems(side, items, rels)}
     </div>
   );
@@ -774,24 +841,7 @@ export function FocusGraph(props: FocusGraphProps) {
     <p className="fg__edge-note" data-band-note={side}>{side === "users" ? `Nothing drawn here uses ${many ? "these" : "this"}.` : `${many ? "These use" : "This uses"} nothing else drawn here.`}</p>
   );
 
-  const mini = drawn ? Math.min(MINI_W / drawn.w, MINI_H / drawn.h) : 0;
-  // A very tall drawing keeps an overview wide enough to read: its width is stretched to at least MINI_MIN_W.
-  const miniX = drawn ? Math.max(mini, Math.min(MINI_W, MINI_MIN_W) / drawn.w) : 0;
-  miniScale.current = { x: miniX, y: mini };
-  // The overview's frame is drawn by the camera; when it first appears, it is drawn once here.
-  useLayoutEffect(() => { if (overflow) applyCam(); });
-  const miniMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!drawn || !(e.buttons & 1)) return;
-    const r = e.currentTarget.getBoundingClientRect();
-    const el = scroller.current!;
-    const k = cam.current.k;
-    auto.current = false;
-    setCam({ k, x: el.clientWidth / 2 - ((e.clientX - r.left) / miniX) * k, y: el.clientHeight / 2 - ((e.clientY - r.top) / mini) * k });
-  };
-  // The key names the kinds of line actually drawn, a group's line included.
-  const kinds = new Set((drawn?.segs ?? []).map((s) => s.kind));
   const groups = (items: Item[]) => items.filter((it) => it.type === "group").length;
-  const roles = new Set([...model.left, ...model.right].map((id) => card(id)!.role));
 
   // The listed group, found among the groups on show; if it is no longer drawn, nothing is listed.
   const find = (items: Item[], path: string): Extract<Item, { type: "group" }> | null => {
@@ -833,7 +883,6 @@ export function FocusGraph(props: FocusGraphProps) {
       data-opened={opened.size}
       data-cards={drawn?.boxes.filter((b) => b.band !== "group").length ?? 0}
       data-lines={drawn?.segs.filter((s) => s.edge).length ?? 0}
-      data-overflow={overflow ? "true" : "false"}
       data-listed={listGroup ? listKey : undefined}
     >
       {label && <p className="fg__label">{label}</p>}
@@ -872,8 +921,8 @@ export function FocusGraph(props: FocusGraphProps) {
           {drawn && (
             <svg className="fg__lines" width={drawn.w} height={drawn.h} aria-hidden="true">
               <defs>
-                <marker id="fg-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 L7.4 4 L0 7.4 z" className="fg__arrow" /></marker>
-                <marker id="fg-arrow-hot" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 L7.4 4 L0 7.4 z" className="fg__arrow fg__arrow--hot" /></marker>
+                <marker id="fg-arrow" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 L7.4 4 L0 7.4 z" className="fg__arrow" /></marker>
+                <marker id="fg-arrow-hot" viewBox="0 0 8 8" refX="7.4" refY="4" markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0.6 L7.4 4 L0 7.4 z" className="fg__arrow fg__arrow--hot" /></marker>
               </defs>
               {drawn.segs.map((s, i) => <path key={i} d={s.d} className={s.cls} data-edge={s.edge} markerEnd="url(#fg-arrow)"><title>{relation(s.kind)}</title></path>)}
               {/* A wide, invisible line over each line answers the pointer with its relation's name; over a use the
@@ -910,22 +959,6 @@ export function FocusGraph(props: FocusGraphProps) {
         <button type="button" onClick={() => zoomBy(1.25)} aria-label="Zoom in" title="Zoom in (+)">+</button>
         <button type="button" onClick={fit} title="Fit the whole graph in view (0)">Fit</button>
       </div>
-      {overflow && drawn && (
-        <div
-          className="fg__mini"
-          inert={listCoversGraph}
-          style={{ width: drawn.w * miniX, height: drawn.h * mini }}
-          role="img"
-          aria-label="Overview of the whole drawing; drag to move the view"
-          onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); miniMove(e); }}
-          onPointerMove={miniMove}
-        >
-          {drawn.boxes.map((b) => (
-            <i key={b.band + b.id} className={b.band === "subject" ? "is-subject" : hot === b.id ? "is-hot" : undefined} style={{ left: b.box.x * miniX, top: b.box.y * mini, width: Math.max(2, b.box.w * miniX), height: Math.max(2, b.box.h * mini) }} />
-          ))}
-          <b ref={miniView} />
-        </div>
-      )}
       {listGroup && (
         <section
           // Beside the drawing only where the pane is wide enough to leave the subject in view; else over all of it.
@@ -996,15 +1029,6 @@ export function FocusGraph(props: FocusGraphProps) {
           {paperNote.held && (
             <button type="button" className="fg__edge-why-close" aria-label="Close this sentence" onClick={() => setPaperNote(null)}>×</button>
           )}
-        </p>
-      )}
-      {model.subj.length > 0 && (
-        <p className="fg__key">
-          <span className="fg__keydir">Arrows run from a statement to what it uses.</span>
-          {RELATION_ORDER.filter((k) => kinds.has(k)).map((k) => <span key={k} data-key-kind={k}><i className={`fg__keyline fg__keyline--${k}`} /> {relation(k)}</span>)}
-          {(roles.has("helper") || roles.has("library")) && <span><i className="fg__keybox fg__keybox--helper" /> Lean helper</span>}
-          {roles.has("definition") && <span><i className="fg__keybox fg__keybox--definition" /> definition</span>}
-          {groups(leftItems) + groups(rightItems) > 0 && <span><i className="fg__keybox fg__keybox--group" /> group, opens its members</span>}
         </p>
       )}
     </div>

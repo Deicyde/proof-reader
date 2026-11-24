@@ -12,14 +12,12 @@ import { FocusGraph, type FGCard } from "./FocusGraph";
 import { focusData } from "./focusCards";
 import "./graph-pane.css";
 
-const INSETS: Insets = { top: 10, right: 12, bottom: 10, left: 12 };
+const INSETS: Insets = { top: 42, right: 12, bottom: 44, left: 12 };
 /** Narrow tiles, so that at the 11px floor the proof fits half a laptop's window. */
 const TILE_W = 134;
 const TILE_H = 64;
 /** On a screen narrower than this the drawing folds to one line. */
 const FOLD_BELOW = 600;
-/** The margin, in drawing pixels, the whole map keeps round the cards it frames. */
-const FIT_PAD = 14;
 
 const tileHeight = (title: string, width: number, raw = "") => {
   // Proof Reader: the map keeps its type a constant size on screen, so at the reading floor
@@ -109,49 +107,15 @@ export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, po
   }, [edges, shown]);
 
   // The whole map's camera is what a history entry keeps.
-  const restoring = useRef<MapScene | null>(null);
   useImperativeHandle(ref, (): MapPaneHandle => ({
     scene: () => (whole ? tree.current?.getScene() ?? null : null),
     paused: () => false,
     restore: (scene) => {
       if (!scene) return;
-      restoring.current = scene;
       setWhole(true);
       window.setTimeout(() => tree.current?.restoreScene(scene), 80);
     },
   }), [whole]);
-
-  // The whole map opens on the subject and what is joined to it, at a readable scale.
-  const frame = useCallback((animate: boolean) => {
-    const near = new Set<string>(shown);
-    for (const e of edges) {
-      near.add(e.from);
-      near.add(e.to);
-    }
-    const ids = [...near].filter((id) => graph.nodes.has(id));
-    if (ids.length) tree.current?.fitNodes(ids, animate, 250, FIT_PAD);
-    else tree.current?.fitAll(animate);
-  }, [edges, graph, shown]);
-  useEffect(() => {
-    if (!whole) return;
-    const open = window.setTimeout(() => tree.current?.expandAll(), 0);
-    const fit = window.setTimeout(() => {
-      if (restoring.current) restoring.current = null;
-      else frame(false);
-    }, 90);
-    return () => {
-      window.clearTimeout(open);
-      window.clearTimeout(fit);
-    };
-    // Only on opening: the reader moves the whole map themselves after that.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [whole]);
-  // Reading on brings the new subject into view on the whole map, without changing its scale.
-  const key = shown.join("|");
-  useEffect(() => {
-    if (whole && shown.length) tree.current?.panTo(shown.filter((id) => graph.nodes.has(id)));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [key]);
 
   const litIds = useMemo(() => (shown.length ? new Set(shown) : null), [shown]);
   const goal = edition.claims[0]?.id ?? "";
@@ -192,7 +156,6 @@ export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, po
             tileHeight={TILE_H}
             tileHeightOf={heightOf}
             oneCardEach
-            fitMax={1.8}
             litIds={litIds}
             previewIds={pointed}
             rootExcerpt={<span>{claim?.title}</span>}
@@ -200,6 +163,11 @@ export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, po
             onTrace={noTrace}
             onHover={onHover}
           />
+          <div className="graph__map-tools" role="group" aria-label="Whole proof map controls">
+            <button type="button" onClick={() => tree.current?.zoomBy(0.8)} aria-label="Zoom out">−</button>
+            <button type="button" onClick={() => tree.current?.zoomBy(1.25)} aria-label="Zoom in">+</button>
+            <button type="button" onClick={() => tree.current?.fitAll()} title="Fit the whole proof map in view">Fit</button>
+          </div>
         </div>
       ) : (
         <FocusGraph

@@ -41,8 +41,6 @@
 
 .api-map__bar { position: relative; }
 .api-map__bar .bar__right { margin-left: auto; }
-.api-map__bar .api-map__source-link { display: inline; }
-.api-map__bar .api-map__contents-toggle { display: none; }
 .api-map__copy-status { position: absolute; z-index: 45; right: 12px; top: calc(100% + 8px); padding: 6px 12px; border: 1px solid var(--rule-strong); border-radius: var(--radius-s); background: var(--sheet); font-size: var(--fs-sm); }
 .api-map__credit { padding-top: 22px; font-size: var(--fs-sm); color: var(--ink-2); }
 .api-map__credit a, .api-map__file a { color: inherit; text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
@@ -199,7 +197,6 @@
 .api-map .api-map__graph-tools > :first-child { margin-left: 0; }
 
 @media (max-width: 1279px) {
-  .api-map__bar .api-map__contents-toggle { display: inline; }
   .api-map__spread .papersplit { display: none; }
 }
 @media (max-width: 900px) {
@@ -209,7 +206,6 @@
   .api-map__aside { border-top: 2px solid var(--rule-strong); }
 }
 @media (max-width: 560px) {
-  .api-map__bar .api-map__source-link { display: none; }
   .api-map__bar .bar__right { gap: 2px; }
   .api-map .sheet__text { font-size: 1.0625rem; }
   .api-map__reference-body, .api-map__graph-window { padding-inline: 10px; }
@@ -232,8 +228,18 @@
   scrollbar-width: thin;
   overscroll-behavior: contain;
 }
+.api-map__deps-wrap > .api-map__deps > .deps__figure--viewport {
+  width: var(--deps);
+  height: clamp(320px, 70dvh, 820px);
+  margin-left: calc(50% - var(--deps) / 2);
+}
+.api-map__deps-wrap > .api-map__deps > .api-map__graph-tools { margin: 6px 0 12px; }
 .deps__figure--viewport.is-inspecting { overflow: auto; }
-.deps__figure--viewport .deps__frame { overflow: hidden; }
+.deps__viewport-frame { position: relative; overflow: hidden; }
+.deps__world { position: absolute; top: 0; left: 0; transform-origin: 0 0; }
+.deps__zoom { display: flex; gap: 4px; }
+.deps__zoom button[aria-label] { min-width: 24px; }
+.deps__zoom button:disabled { opacity: 0.4; cursor: default; }
 .deps__figure--viewport:not(.is-inspecting) .deps__line path:not(.deps__head) {
   stroke-width: calc(1px / var(--deps-scale));
 }
@@ -248,9 +254,8 @@
 .deps__stage[data-lit] .deps__line:not(.is-lit) { opacity: 0.28; }
 .deps__line.is-lit path { stroke: var(--lit); stroke-width: 2; }
 .deps__line.is-lit .deps__head { fill: var(--lit); }
-.api-map__deps .deps__card { position: absolute; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 4px; padding: 8px 11px 9px; border: 1px solid var(--rule-strong); border-radius: var(--radius-s); background: var(--sheet); color: var(--ink); text-decoration: none; transition: border-color 150ms, opacity 150ms, transform 120ms; }
+.api-map__deps .deps__card { position: absolute; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 4px; padding: 8px 11px 9px; border: 1px solid var(--rule-strong); border-radius: var(--radius-s); background: var(--sheet); color: var(--ink); text-decoration: none; transition: border-color 150ms, opacity 150ms; }
 .api-map__deps .deps__card:hover, .api-map__deps .deps__card:focus-visible { border-color: var(--lit); }
-.deps__card:active { transform: scale(0.98); }
 .deps__card.is-dim { opacity: 0.4; }
 .deps__card.is-current { border: 1.5px solid var(--lit); background: color-mix(in oklab, var(--highlight-soft) 60%, var(--sheet)); }
 .deps__title { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font: 1rem/1.2 var(--font-serif); letter-spacing: -0.005em; text-wrap: balance; }
@@ -268,7 +273,6 @@
 .deps__hidden { font-family: var(--font-sans); font-size: var(--fs-sm); color: var(--ink-2); }
 .deps__hidden summary { min-height: 24px; cursor: pointer; }
 .deps__hidden ul { margin: 6px 0 0; padding-left: 1.2em; columns: 2 18rem; }
-.deps__stage { transform-origin: 0 0; }
 .deps__open { display: inline-flex; align-items: center; gap: 8px; min-height: 34px; margin: 0 0 14px; padding: 0 16px; border: 1px solid var(--rule-strong); border-radius: 999px; font: 500 var(--fs-ui)/1 var(--font-sans); color: var(--ink); transition: border-color 150ms, background-color 150ms; }
 .deps__open:hover { border-color: var(--lit); background: var(--hover-wash); }
 .deps__dialog { box-sizing: border-box; width: calc(100vw - 32px); max-width: none; height: calc(100vh - 32px); max-height: none; margin: auto; padding: 0; border: 1px solid var(--rule-strong); border-radius: var(--radius-m); background: var(--sheet); color: var(--ink); }
@@ -279,9 +283,9 @@
 .deps__dialog-bar p { max-width: 82ch; margin: 0; font: var(--fs-ui)/1.45 var(--font-sans); color: var(--ink-2); }
 .deps__close { flex: none; min-height: 32px; padding: 0 14px; border: 1px solid var(--rule-strong); border-radius: 999px; font: var(--fs-ui)/1 var(--font-sans); }
 .deps__close:hover { border-color: var(--lit); }
-.deps__dialog-body { flex: 1; min-height: 0; overflow: auto; padding: 22px 24px 30px; }
+.deps__dialog-body { display: flex; flex: 1; flex-direction: column; min-height: 0; overflow: hidden; padding: 12px 24px 18px; }
 .deps__dialog-body .deps__figure { width: auto; margin: 0; padding: 0; border: 0; }
-.deps__dialog-body .deps__hidden { margin-top: 18px; }
+.deps__dialog-body .deps__hidden { flex: none; max-height: 25%; margin-top: 8px; overflow: auto; }
 
 /* Topic colours (papers/physlib-gauge-theory/concepts.json): tone 2t and 2t+1 are two shades
    of topic t, so neighbouring citations of one topic still differ. Bars, never dots, and hues

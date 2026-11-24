@@ -2,6 +2,7 @@
 // wcook04.github.io), adapted from Lean Exposition's TopBar and SisterSites: the
 // lockup at the start of the header, and the other sites in the footer.
 
+import { useId, useRef, type ReactNode } from "react";
 import family from "./family.json";
 import { routeHref } from "./router";
 
@@ -20,6 +21,20 @@ export function Lockup({ here = false }: { here?: boolean }) {
         <span className="fam-lockup__name" translate="no">Proof Reader</span>
       </a>
     </span>
+  );
+}
+
+export function ReaderMenu({ children, onOpen }: { children: ReactNode; onOpen(): void }) {
+  const id = useId();
+  const panel = useRef<HTMLElement>(null);
+  return (
+    <>
+      <button type="button" className="bar__menu" aria-label="Site menu" popoverTarget={id}
+        onClick={() => { if (!panel.current?.matches(":popover-open")) onOpen(); }}>Menu</button>
+      <nav ref={panel} id={id} className="reader-menu" aria-label="Site menu" popover="auto" onClick={(event) => {
+        if ((event.target as Element).closest("a, button")) panel.current?.hidePopover();
+      }}>{children}</nav>
+    </>
   );
 }
 

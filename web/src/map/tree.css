@@ -722,6 +722,7 @@
 }
 
 .tree[data-dense] .card__compact {
+  --k: var(--tile-k, 1);
   gap: calc(1px / var(--k));
   /* DENSE_TILE in canvas/representation.ts. */
   padding: calc(4px / var(--k)) calc(6px / var(--k));

@@ -45,37 +45,6 @@ import { SimplifiedMap } from "./canvas/SimplifiedMap";
 import { graphWheel } from "../proof/graphWheel";
 import "./tree.css";
 
-/**
- * Proof Reader: when the whole map is wider than the pane at the reading floor, pan
- * so that as few cards as possible are cut by the pane's edges, keeping the goal whole
- * and staying as near the centred view as that allows.
- */
-function uncutX(l: Layout, v: View, vp: Viewport, goal: Bounds | null): number {
-  const left = vp.insets.left;
-  const right = vp.width - vp.insets.right;
-  const cards = [...l.boxes.values()];
-  if (!cards.length) return v.x;
-  const x0 = Math.min(...cards.map((r) => r.x));
-  const x1 = Math.max(...cards.map((r) => r.x + r.w));
-  if ((x1 - x0) * v.k <= right - left + 0.5) return v.x;
-  const cut = (x: number) => cards.filter((r) => x + r.x * v.k < left - 0.5 && x + (r.x + r.w) * v.k > left + 0.5
-    || x + r.x * v.k < right - 0.5 && x + (r.x + r.w) * v.k > right + 0.5).length;
-  const lo = right - x1 * v.k;
-  const hi = left - x0 * v.k;
-  let best = v.x;
-  let bestCut = cut(v.x);
-  for (let x = lo; x <= hi; x += 2) {
-    if (goal && (x + goal.x0 * v.k < left || x + goal.x1 * v.k > right)) continue;
-    const c = cut(x);
-    if (c < bestCut || (c === bestCut && Math.abs(x - v.x) < Math.abs(best - v.x))) {
-      best = x;
-      bestCut = c;
-    }
-  }
-  return best;
-}
-
-
 export type { MapScene } from "./canvas/scene";
 export type { MapMode } from "./canvas/representation";
 
@@ -83,6 +52,8 @@ export type { MapMode } from "./canvas/representation";
 // a tile's title is its label and only a declaration has Lean.
 const tileTitle = (_id: string, label: string) => label;
 const hasLean = (_id: string, node?: ArgNode) => node?.kind === "declaration" || node?.kind === "assumption";
+const OVERVIEW_MIN_K = 0.01;
+const OVERVIEW_FIT_MAX = 1.15;
 
 export interface Insets {
   top: number;
@@ -178,8 +149,6 @@ export interface TreeProps {
   tileHeightOf?: (id: string) => number;
   /** Proof Reader: the small word above the root's title ("Main result" unless the root is a centred card). */
   rootLabel?: string;
-  /** The largest scale the overview fits to. */
-  fitMax?: number;
   /** Draw a shared record once, with every use, instead of once under each use. */
   oneCardEach?: boolean;
   /** Remember unfolded branches for the session (default). Off for a map that follows something else. */
@@ -479,12 +448,10 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
         pin = r;
       } else pin = null;
     }
-    // Proof Reader: the overview's rows wrap to what the pane holds at the reading floor.
-    const wrapWidth = dense && paneW > 10 ? Math.max(DENSE_ROOT_W, (paneW - insets.left - insets.right - 32) / DENSE_MIN_K) : undefined;
-    const { layout, plan } = layoutTree({ root: goal, nodes: split.nodes, edges: split.edges, size, metrics, prev: prevLayout, pin, keepOrder: hold, wrapWidth });
+    const { layout, plan } = layoutTree({ root: goal, nodes: split.nodes, edges: split.edges, size, metrics, prev: prevLayout, pin, keepOrder: hold });
     return { layout, plan, skeleton: split.edges, shared: split.shared, implied: skel.implied, provisional, pin };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [graph, goal, visible, skel, heights, compact, metrics, rootW, dense, lens, dense ? paneW : 0]);
+  }, [graph, goal, visible, skel, heights, compact, metrics, rootW, dense, lens]);
   const layout = built.layout;
   /** For each assumption, the drawn cards that carry it as a tag. */
   const tagHolders = useMemo(() => {
@@ -594,7 +561,7 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
   /** The plate's first sentence: its height on screen at STATEMENT_W wide, 0 until measured. */
   const statementH = useRef(0);
   const applyLines = useCallback(() => {
-    const k = viewRef.current.k;
+    const k = denseRef.current ? Math.max(DENSE_MIN_K, viewRef.current.k) : viewRef.current.k;
     const rep = repRef.current;
     const layout = builtRef.current.layout;
     const box = denseRef.current ? DENSE_TILE : TILE;
@@ -686,6 +653,7 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
     const wrap = wrapRef.current;
     if (!wrap || paintedScale.current === k) return;
     wrap.style.setProperty("--k", String(k));
+    wrap.style.setProperty("--tile-k", String(Math.max(DENSE_MIN_K, k)));
     paintedScale.current = k;
   }
   const refreshChips = useCallback(() => {
@@ -1222,7 +1190,7 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
 
   const floor = compact ? COMPACT_FLOOR : STEPS_FLOOR;
   /** The camera never goes below the scale at which a tile still shows its words. */
-  const minK = floorK(dense, compact);
+  const minK = dense ? OVERVIEW_MIN_K : floorK(false, compact);
 
   /** Reading scale for a box: k = 1, or down to the floor if that fits the box across; never lower. */
   const readingK = (b: Bounds, max = STEPS_K) => {
@@ -1256,19 +1224,11 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
     [graph, goal, within, compact, echo, boundsOf, floor],
   );
 
-  const fitMaxRef = useRef(1.15);
-  fitMaxRef.current = props.fitMax ?? 1.15;
   const overviewView = useCallback(
     (l: Layout): View => {
       const b = layoutBounds(l);
       const box = { x0: b.x0 - 16, y0: b.y0 - 16, x1: b.x1 + 16, y1: b.y1 + 16 };
-      // As large as fits, never below the 11px floor: what does not fit then pans.
-      if (denseRef.current) {
-        const vp = viewport();
-        const v = frameBox(box, vp, { min: DENSE_MIN_K, max: fitMaxRef.current, anchor: boxOf(l, goalRef.current), top: fitMaxRef.current <= 1.15 });
-        return { ...v, x: uncutX(l, v, vp, boxOf(l, goalRef.current)) };
-      }
-      return fitBounds(box, viewport(), { max: 1, min: floorK(false, compact) });
+      return fitBounds(box, viewport(), { min: denseRef.current ? 0 : floorK(false, compact), max: denseRef.current ? OVERVIEW_FIT_MAX : 1 });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
@@ -1457,7 +1417,7 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
   getSceneRef.current = getScene;
 
   function restoredView(scene: MapScene, l: Layout): View {
-    const k = Math.max(floorK(scene.mode === "overview" && !compact, compact), scene.camera.k);
+    const k = scene.mode === "overview" && !compact ? scene.camera.k : Math.max(floorK(false, compact), scene.camera.k);
     const aid = scene.anchor ? (l.boxes.has(scene.anchor.id) ? scene.anchor.id : pick(l, recordOf(scene.anchor.id))) : null;
     const a = aid ? l.boxes.get(aid) : undefined;
     if (a && scene.anchor) return { k, x: scene.anchor.x - a.x * k, y: scene.anchor.y - a.y * k };
@@ -1549,6 +1509,7 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
       fitAll: (animate = true) => {
         const l = builtRef.current.layout;
         if (mode === "overview" || compact) {
+          userMoved.current = false;
           moveCamera(overviewView(l), animate);
           return;
         }
@@ -1564,7 +1525,7 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
         const fn = (l: Layout) => {
           const b = boundsOf(l, list, pad ?? (compact ? 24 : 40));
           // Proof Reader: up to the map's own fitting scale, never below reading size.
-          return b ? fitBounds(b, viewport(), { max: Math.max(1, fitMaxRef.current), min: compact ? COMPACT_FLOOR : floor }) : null;
+          return b ? fitBounds(b, viewport(), { max: OVERVIEW_FIT_MAX, min: compact ? COMPACT_FLOOR : floor }) : null;
         };
         if (list.every((id) => hasRec(builtRef.current.layout, id))) {
           const v = fn(builtRef.current.layout);
@@ -1572,12 +1533,14 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
         } else pendingCamera.current = fn;
       },
       zoomBy: (factor) => {
-        const v = viewRef.current;
+        const v = targetView();
         const vp = viewport();
         const px = vp.insets.left + (vp.width - vp.insets.left - vp.insets.right) / 2;
         const py = vp.insets.top + (vp.height - vp.insets.top - vp.insets.bottom) / 2;
-        const k = Math.max(floorK(denseRef.current, compact), Math.min(MAX_K, v.k * factor));
+        const k = Math.max(denseRef.current ? Math.min(OVERVIEW_MIN_K, v.k) : floorK(false, compact), Math.min(MAX_K, v.k * factor));
+        userMoved.current = true;
         userMovedSinceAsk.current = true;
+        focusHeld.current = false;
         moveCamera({ k, x: px - ((px - v.x) / v.k) * k, y: py - ((py - v.y) / v.k) * k }, true, CAMERA_MS);
       },
       focusNode: (id) => {
@@ -1685,7 +1648,7 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
     const wrap = wrapRef.current!;
     const world = worldRef.current!;
     const behaviour = d3zoom<HTMLDivElement, unknown>()
-      .scaleExtent([floorK(denseRef.current, compact), MAX_K])
+      .scaleExtent([minK, MAX_K])
       // A press that moves less than this is still a click: it opens what it is on.
       .clickDistance(5)
       // Panning stops while part of the drawing is still on the canvas.
@@ -1842,12 +1805,14 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
       const v = focusReq.current ? focusFrame(focusReq.current)(layout) : mode === "overview" ? overviewView(layout) : startView(layout);
       if (v) moveCamera(v, !first);
       setFramed(true);
+    } else if (!userMoved.current && !focusReq.current && !selected && mode === "overview") {
+      moveCamera(overviewView(layout), false);
     } else if (!userMoved.current && !focusReq.current && !selected && !moving && mode === "steps" && !(compact && echo?.size) && !built.provisional) {
       const v = startView(layout);
       if (v) moveCamera(v, false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready, goal, rootH, rootW, paneH, insets.bottom, insets.top, firstRowKey, holdOver, built.provisional]);
+  }, [ready, goal, rootH, rootW, paneW, paneH, insets.bottom, insets.top, insets.left, insets.right, firstRowKey, holdOver, built.provisional]);
 
   // A held focus re-centres when the canvas is resized or an inspector opens or closes over it.
   useEffect(() => {
@@ -2336,6 +2301,11 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
     >
       <div ref={worldRef} className="tree__world" style={{ width: Math.max(1, bounds.x1), height: Math.max(1, bounds.y1) }}>
         <svg className="tree__links" width={1} height={1} aria-hidden="true">
+          <defs>
+            <marker id={`${uid}-formalizes-port`} viewBox="0 0 4 1" refX="4" refY="0.5" markerWidth="4" markerHeight="1" orient="auto">
+              <rect width="4" height="1" fill="context-stroke" />
+            </marker>
+          </defs>
           {entering && enterMask && (
             <defs>
               <mask id={`${uid}-enter`} maskUnits="userSpaceOnUse" x={-100000} y={-100000} width={200000} height={200000}>
@@ -2358,7 +2328,8 @@ export const ArgumentTree = forwardRef<MapViewHandle, TreeProps>(function Argume
               .map((pe) => (
                 <g key={pe.key}>
                   <path ref={pathRef(`case:${pe.key}`)} className="casing" />
-                  <path ref={pathRef(`edge:${pe.key}`)} className={`link link--${pe.kind}`} />
+                  <path ref={pathRef(`edge:${pe.key}`)} className={`link link--${pe.kind}`}
+                    markerEnd={pe.kind === "formalizes" ? `url(#${uid}-formalizes-port)` : undefined} />
                 </g>
               ))}
             {ghostsAndFresh.ghosts.map((g) => (
