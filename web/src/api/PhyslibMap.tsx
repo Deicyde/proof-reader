@@ -547,7 +547,7 @@ function MapReader({ edition }: { edition: Edition }) {
                 )}
               </div>}
               {(showGraph || combined) && (
-                <div className="api-map__graph-window" tabIndex={0} aria-label="API dependency map">
+                <div className="api-map__graph-window">
                   <DependencyMap maps={edition.maps} current={edition.path} tracker={tracker} home={indexRoute()}
                     id="pane-dependency-map" compact onMinimise={combined ? () => changeLayout(true) : undefined} />
                 </div>

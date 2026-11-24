@@ -157,29 +157,36 @@
 .api-map__windows.is-combined > .api-map__reference-body::after { height: 16px; }
 .api-map__graph-window {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   min-height: 0;
-  padding: 0 20px 24px;
-  overflow: auto;
-  scrollbar-width: thin;
+  min-width: 0;
+  padding-inline: 20px;
+  overflow: hidden;
 }
 .api-map__windows.is-combined > .api-map__graph-window { border-top: 1px solid var(--rule-strong); }
-.api-map__graph-window > .api-map__deps { --deps: 100%; margin: 0; padding: 0; border: 0; }
+.api-map__graph-window > .api-map__deps {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
 .api-map__graph-window .api-map__graph-heading {
-  position: sticky;
-  top: 0;
-  z-index: 2;
+  flex: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
   padding-block: 8px;
-  background: var(--sheet);
 }
 .api-map__graph-window .api-map__graph-heading h2 {
   margin: 0;
   font: 600 var(--pane)/1.3 var(--font-serif);
 }
-.api-map__graph-window .deps__lede { font: var(--fs-sm)/1.45 var(--font-sans); }
+.api-map__graph-tools { flex: none; display: flex; gap: 8px; justify-content: space-between; }
 .api-map .api-map__graph-action {
   min-height: 26px;
   margin-left: auto;
@@ -189,6 +196,7 @@
   text-underline-offset: 3px;
   white-space: nowrap;
 }
+.api-map .api-map__graph-tools > :first-child { margin-left: 0; }
 
 @media (max-width: 1279px) {
   .api-map__bar .api-map__contents-toggle { display: inline; }
@@ -205,6 +213,7 @@
   .api-map__bar .bar__right { gap: 2px; }
   .api-map .sheet__text { font-size: 1.0625rem; }
   .api-map__reference-body, .api-map__graph-window { padding-inline: 10px; }
+  .api-map__graph-window .api-map__graph-heading { padding-block: 3px; }
 }
 
 /* Dependency map: wider than the text column, drawn by the reader's map engine. */
@@ -213,6 +222,24 @@
 .api-map__deps h2 { margin: 0 0 0.35em; }
 .deps__lede { margin: 0 0 0.9em; }
 .deps__figure { width: var(--deps); margin: 0 0 0.6em calc(50% - var(--deps) / 2); padding: 18px 0 22px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-family: var(--font-sans); hyphens: none; }
+.deps__figure--viewport {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  scrollbar-width: thin;
+  overscroll-behavior: contain;
+}
+.deps__figure--viewport.is-inspecting { overflow: auto; }
+.deps__figure--viewport .deps__frame { overflow: hidden; }
+.deps__figure--viewport:not(.is-inspecting) .deps__line path:not(.deps__head) {
+  stroke-width: calc(1px / var(--deps-scale));
+}
+.deps__figure--viewport:not(.is-inspecting) .deps__line:not(.is-lit) path:not(.deps__head) { stroke: var(--rule-control); }
+.deps__figure--viewport:not(.is-inspecting) .deps__card { box-shadow: inset 0 0 0 calc(1px / var(--deps-scale)) var(--rule-control); }
+.deps__figure--viewport:not(.is-inspecting) .deps__card.is-current { box-shadow: inset 0 0 0 calc(1px / var(--deps-scale)) var(--lit); }
 .deps__stage { position: relative; }
 .deps__lines { position: absolute; inset: 0; overflow: visible; }
 .deps__line path { fill: none; stroke: var(--rule-strong); stroke-width: 1.4; stroke-linejoin: round; transition: stroke 150ms, opacity 150ms; }

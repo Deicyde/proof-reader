@@ -1534,7 +1534,16 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     annotation = pane.locator(".api-map__annotation")
     windows = pane.locator(".api-map__windows")
     pane_graph = pane.locator("#pane-dependency-map")
+    viewport = pane_graph.locator(".deps__figure--viewport")
     modes = pane.get_by_role("navigation", name="What the right pane shows")
+    fitted = """(el) => {
+      const stage = el.querySelector('.deps__stage')?.getBoundingClientRect();
+      const view = el.getBoundingClientRect();
+      if (!stage || !stage.height || el.querySelectorAll('.deps__card').length !== 13) return false;
+      return stage.width <= view.width && stage.height <= view.height
+        && Math.abs((stage.left + stage.right - view.left - view.right) / 2) < 2
+        && Math.abs((stage.top + stage.bottom - view.top - view.bottom) / 2) < 2;
+    }"""
     if not mobile:
         annotation.get_by_role("heading", name="The product group and its central subgroup").wait_for()
         page.evaluate("document.fonts.ready")
@@ -1543,6 +1552,7 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
           const height = win.getBoundingClientRect().height;
           return lean.scrollHeight <= lean.clientHeight + 1 && graph.getBoundingClientRect().height > height * 0.4 + 8;
         }"""), "the dependency map takes the room left by the short reading note")
+        wait_until(page, lambda: viewport.evaluate(fitted), "the whole dependency map fits and centres beneath a short note")
         page.goto(address + "/@lean-9")
     wait_until(page, lambda: annotation.is_visible() and structure.count() == 1,
                "a direct link opens the note for the Physlib structure")
@@ -1552,8 +1562,12 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     page.evaluate("document.fonts.ready")
     evidence.locator("summary").click()
     check(structure.is_visible(), "the fold opens the cited structure")
+    wait_until(page, lambda: viewport.evaluate(fitted), "the whole map fits and centres again after the opened proof resizes its window")
+    pane_graph.get_by_role("button", name="Inspect map").click()
+    check(viewport.evaluate("(el) => el.querySelector('.deps__stage').getBoundingClientRect().height >= 1000"),
+          "Inspect map shows the drawing at full size")
     check(windows.evaluate("""(win) => {
-      const [lean, graph] = win.children;
+      const lean = win.children[0], graph = win.querySelector('.deps__figure--viewport');
       const share = lean.getBoundingClientRect().height / win.getBoundingClientRect().height;
       const leanTop = lean.scrollTop, graphTop = graph.scrollTop;
       lean.scrollTop = leanTop + 100;
@@ -1565,6 +1579,8 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
       graph.scrollTop = graphTop;
       return Math.abs(share - 0.6) < 0.02 && leanMoved && graphMoved;
     }"""), "a long open proof uses up to 60 percent and both windows scroll independently")
+    pane_graph.get_by_role("button", name="Fit map").click()
+    wait_until(page, lambda: viewport.evaluate(fitted), "Fit map restores the whole centred map after inspection")
     check(article.get_by_role("link", name="Lean citation 9", exact=True).evaluate("""(link) => {
       const mark = link.getBoundingClientRect();
       const pane = link.closest(".reading").getBoundingClientRect();

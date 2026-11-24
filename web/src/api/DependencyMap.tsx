@@ -5,7 +5,7 @@
 // cite each other are one line with an arrowhead at each end. Every card opens that map on
 // physlib.io, the same address the tracker's own map uses.
 
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { layoutTree } from "../map/engine/layout";
 import { transitiveReduction } from "../map/engine/skeleton";
 import { polygonPath, roundedPath, route, type Pt } from "../map/engine/router";
@@ -207,33 +207,55 @@ interface FigureProps {
   current: string;
   tracker: string;
   home: string;
-  /** Fit the drawing to its box by wrapping wide rows; otherwise draw it at its natural width and scale it down to fit. */
+  /** Wrap wide rows in the article. The window uses the whole shape at one scale. */
   wrap: boolean;
+  fit?: boolean;
+  inspect?: boolean;
 }
 
 /** The drawings of the shown maps: one per group joined by citations, then the maps with no citation either way. */
-function Figure({ maps, byPath, shown, current, tracker, home, wrap }: FigureProps) {
+function Figure({ maps, byPath, shown, current, tracker, home, wrap, fit = false, inspect = false }: FigureProps) {
   const [lit, setLit] = useState<string | null>(null);
-  const [width, setWidth] = useState(0);
+  const [{ width, height }, setSize] = useState({ width: 0, height: 0 });
   const box = useRef<HTMLDivElement>(null);
   useLayoutEffect(() => {
     const el = box.current;
     if (!el) return;
-    const read = () => setWidth(Math.floor(el.clientWidth));
+    const read = () => {
+      const width = el.clientWidth;
+      const height = fit ? el.clientHeight : 0;
+      setSize((last) => last.width === width && last.height === height ? last : { width, height });
+    };
     read();
     const observer = new ResizeObserver(read);
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [fit]);
+  const ready = width > 0 && (!fit || height > 0);
+  const wrapWidth = wrap ? width : null;
   const drawing = useMemo(() => {
-    if (!width) return null;
+    if (!ready) return null;
+    if (fit) return { stages: [draw(maps, shown, null)], alone: [] };
     const { groups, alone } = citationGroups(maps, shown);
     const title = (p: string) => byPath.get(p)?.title ?? p;
-    const stages = groups.map((g) => draw(maps, g, wrap ? width : null));
-    // Drawn at full size, as on physlib.io: a drawing wider than its box scrolls instead of shrinking.
-    const k = 1;
-    return { stages, k, alone: alone.sort((a, b) => title(a).localeCompare(title(b))) };
-  }, [maps, shown, width, byPath, wrap]);
+    const stages = groups.map((g) => draw(maps, g, wrapWidth));
+    return { stages, alone: alone.sort((a, b) => title(a).localeCompare(title(b))) };
+  }, [maps, shown, ready, byPath, wrapWidth, fit]);
+  useLayoutEffect(() => {
+    const el = box.current;
+    if (!el || !fit || !drawing) return;
+    if (!inspect) {
+      el.scrollTo(0, 0);
+      return;
+    }
+    // Full size uses the browser's native scrolling, starting at the current map.
+    const currentCard = el.querySelector(".deps__card.is-current")?.getBoundingClientRect();
+    if (currentCard) {
+      const viewport = el.getBoundingClientRect();
+      el.scrollBy(currentCard.left + currentCard.width / 2 - viewport.left - viewport.width / 2,
+        currentCard.top + currentCard.height / 2 - viewport.top - viewport.height / 2);
+    }
+  }, [fit, inspect, drawing]);
   const neighbours = useMemo(() => {
     if (!lit) return null;
     const m = byPath.get(lit);
@@ -264,10 +286,17 @@ function Figure({ maps, byPath, shown, current, tracker, home, wrap }: FigurePro
 
   return (
     <>
-      <div className="deps__figure" ref={box}>
-        {drawing?.stages.map((d) => (
-          <div key={d.key} className="deps__frame" style={{ width: d.w * drawing.k, height: d.h * drawing.k, marginLeft: Math.max(0, (width - d.w * drawing.k) / 2) }}>
-            <div className="deps__stage" style={{ width: d.w, height: d.h, transform: drawing.k < 1 ? `scale(${drawing.k})` : undefined }}
+      <div className={`deps__figure${fit ? " deps__figure--viewport" : ""}${inspect ? " is-inspecting" : ""}`}
+        ref={box} tabIndex={fit ? 0 : undefined} role={fit ? "region" : undefined}
+        aria-label={fit ? "API dependencies. Arrows point from a cited map to the map that cites it." : undefined}>
+        {drawing?.stages.map((d) => {
+          const k = fit && !inspect ? Math.max(0, Math.min(1, (width - 12) / d.w, (height - 12) / d.h)) : 1;
+          const frame: CSSProperties & { "--deps-scale": number } = {
+            width: d.w * k, height: d.h * k, marginLeft: Math.max(0, (width - d.w * k) / 2),
+            marginTop: fit ? Math.max(0, (height - d.h * k) / 2) : undefined, "--deps-scale": k || 1,
+          };
+          return <div key={d.key} className="deps__frame" style={frame}>
+            <div className="deps__stage" style={{ width: d.w, height: d.h, transform: k < 1 ? `scale(${k})` : undefined }}
               data-lit={lit && d.cards.some((c) => c.id === lit) ? "" : undefined}>
               <svg className="deps__lines" width={d.w} height={d.h} viewBox={`${d.x0} ${d.y0} ${d.w} ${d.h}`} aria-hidden="true">
                 {d.lines.map((l) => (
@@ -285,8 +314,8 @@ function Figure({ maps, byPath, shown, current, tracker, home, wrap }: FigurePro
               </svg>
               {d.cards.map(({ id, rect }) => card(id, rect, { x: d.x0, y: d.y0 }))}
             </div>
-          </div>
-        ))}
+          </div>;
+        })}
         {drawing && drawing.alone.length > 0 && (
           <div className="deps__alone">
             <h3>Maps that cite no other map and are not cited</h3>
@@ -294,7 +323,7 @@ function Figure({ maps, byPath, shown, current, tracker, home, wrap }: FigurePro
           </div>
         )}
       </div>
-      {(implied.length > 0 || dropped.length > 0) && (
+      {!fit && (implied.length > 0 || dropped.length > 0) && (
         <details className="deps__hidden">
           <summary>{implied.length + dropped.length} {implied.length + dropped.length === 1 ? "citation is" : "citations are"} not drawn</summary>
           {implied.length > 0 && <p>A citation is left out when a longer chain of drawn citations already joins the same two maps.</p>}
@@ -313,6 +342,7 @@ export function DependencyMap({ maps, current, tracker, home, id = "dependency-m
   maps: readonly MapNode[]; current: string; tracker: string; home: string; id?: string; compact?: boolean; onMinimise?(): void;
 }) {
   const [all, setAll] = useState(false);
+  const [inspecting, setInspecting] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const byPath = useMemo(() => new Map(maps.map((m) => [m.path, m])), [maps]);
   const { near, below, above } = useMemo(() => {
@@ -328,7 +358,7 @@ export function DependencyMap({ maps, current, tracker, home, id = "dependency-m
     setAll(true);
     dialog.current?.showModal();
   };
-  const fullMap = <button type="button" className="deps__open" onClick={open}>See all {maps.length} API maps in Physlib</button>;
+  const fullMap = <button type="button" className={compact ? "api-map__graph-action" : "deps__open"} onClick={open}>See all {maps.length} API maps in Physlib</button>;
 
   return (
     <section className="api-map__deps" id={id} aria-labelledby={`${id}-title`}>
@@ -336,14 +366,15 @@ export function DependencyMap({ maps, current, tracker, home, id = "dependency-m
         <h2 id={`${id}-title`}>{compact ? "API dependency map" : "Dependency map"}</h2>
         {onMinimise && <button type="button" className="api-map__graph-action" onClick={onMinimise}>Minimise graph</button>}
       </div>
-      <p className="deps__lede">
-        {compact ? "Arrows point from a cited API map to the map that cites it." : (
-          <>{title} cites {below} {below === 1 ? "API map" : "API maps"}, directly or through other maps, and {above === 1 ? "1 map cites" : `${above} maps cite`} it in the same way. {KEY}</>
-        )}
-      </p>
-      {!compact && fullMap}
-      <Figure {...shared} shown={near} wrap />
-      {compact && fullMap}
+      {!compact && <>
+        <p className="deps__lede">{title} cites {below} {below === 1 ? "API map" : "API maps"}, directly or through other maps, and {above === 1 ? "1 map cites" : `${above} maps cite`} it in the same way. {KEY}</p>
+        {fullMap}
+      </>}
+      <Figure {...shared} shown={near} wrap={!compact} fit={compact} inspect={inspecting} />
+      {compact && <div className="api-map__graph-tools">
+        <button type="button" className="api-map__graph-action" onClick={() => setInspecting(!inspecting)}>{inspecting ? "Fit map" : "Inspect map"}</button>
+        {fullMap}
+      </div>}
       <dialog ref={dialog} className="deps__dialog" aria-labelledby={`${id}-all-title`} onClose={() => setAll(false)}
         onClick={(event) => { if (event.target === dialog.current) dialog.current.close(); }}>
         <div className="deps__dialog-bar">
