@@ -19,6 +19,17 @@ export interface MapNode {
   cites: string[];
 }
 
+/** The tracker path stays authoritative; the drawing expands compact tracker names. */
+const MAP_TITLES: Readonly<Record<string, string>> = {
+  "Physlib/FluidDynamics": "Fluid dynamics",
+  "Physlib/LatticeQFT": "Lattice quantum field theory",
+  "Physlib/QuantumMechanics/QuantumSystem": "Quantum system",
+  "Physlib/SpaceAndTime/SpaceTime": "Spacetime",
+  "Physlib/SpaceAndTime/TimeAndSpace": "Time and space",
+};
+
+const mapTitle = (node: MapNode) => MAP_TITLES[node.path] ?? node.title;
+
 const ROOT = "∅top";
 const CARD = { w: 232, h: 92 };
 const METRICS = { ...METRICS_COMPACT, sepCard: 28, gapMin: 58 };
@@ -287,21 +298,25 @@ function Figure({ maps, byPath, shown, current, tracker, home, single = false, e
     const m = byPath.get(lit);
     return new Set([lit, ...(m?.cites ?? []), ...maps.filter((x) => x.cites.includes(lit)).map((x) => x.path)]);
   }, [lit, byPath, maps]);
-  const name = (p: string) => byPath.get(p)?.title ?? p;
+  const name = (p: string) => {
+    const node = byPath.get(p);
+    return node ? mapTitle(node) : p;
+  };
   const implied = drawing.stages.flatMap((s) => s.implied);
   const dropped = drawing.stages.flatMap((s) => s.dropped);
 
   const card = (id: string, rect?: Rect, origin?: { x: number; y: number }) => {
     const m = byPath.get(id)!;
+    const title = mapTitle(m);
     const here = id === current;
     const share = m.total ? m.done / m.total : 0;
     return (
       <a key={id} href={here ? home : `${tracker}#${id}`} className={`deps__card${here ? " is-current" : ""}${rect ? "" : " is-flow"}${neighbours && !neighbours.has(id) ? " is-dim" : ""}`}
         style={rect && origin ? { left: rect.x - origin.x, top: rect.y - origin.y, width: rect.w, height: rect.h } : undefined}
         aria-current={here ? "page" : undefined}
-        aria-label={`${m.title}, ${claims(m)}${here ? ", this page" : ", opens on physlib.io"}`}
+        aria-label={`${title}, ${claims(m)}${here ? ", this page" : ", opens on physlib.io"}`}
         onPointerEnter={() => setLit(id)} onPointerLeave={() => setLit(null)} onFocus={() => setLit(id)} onBlur={() => setLit(null)}>
-        <span className="deps__title">{m.title}</span>
+        <span className="deps__title">{title}</span>
         <span className="deps__claims">
           <span className="deps__bar" aria-hidden="true"><span style={{ width: `${Math.round(share * 100)}%` }} /></span>
           <span className="deps__count">{claims(m)}</span>

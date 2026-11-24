@@ -70,6 +70,10 @@ class LibraryRedirects(unittest.TestCase):
                 self.assertRedirect(destination, hash=f"#/{slug}")
                 self.assertRedirect(destination, pathname=f"/proof-reader/{slug}/")
         self.assertRedirect("pcp/full-argument/#2.3", hash="#/pcp-full-argument/@s-2.3")
+        self.assertRedirect("pcp/full-argument/#references", hash="#/pcp-full-argument/@s-references")
+        self.assertRedirect("pcp/exposition/#abstract", hash="#/pcp-exposition/@abstract")
+        self.assertRedirect("pcp/exposition/#formalization-and-sources",
+                            pathname="/proof-reader/pcp-exposition/", hash="#s-formalization-and-sources")
         self.assertRedirect("pcp/exposition/?n=pcp.theorem-1.1&l=b1596-1763&v=lean",
                             hash="#/pcp-exposition/@pcp-expository-opening")
         self.assertRedirect("pcp/reading-guide/#4", pathname="/proof-reader/pcp-reading-guide/", hash="#4-the-pcp-theorem")

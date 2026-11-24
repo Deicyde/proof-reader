@@ -1809,7 +1809,7 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     wait_until(page, lambda: article_graph.evaluate(full_fit, 13), "the complete inline dependency map fits its viewport")
     here = deps.locator('.deps__card[aria-current="page"]')
     check(here.count() == 1 and "Gauge theory" in here.inner_text(), "the current map is marked on the dependency map")
-    lattice = deps.get_by_role("link", name=re.compile("^Lattice QFT"))
+    lattice = deps.get_by_role("link", name=re.compile("^Lattice quantum field theory"))
     check(lattice.get_attribute("href") == "https://physlib.io/api-tracker#Physlib/LatticeQFT",
           "another map's card opens that map on physlib.io")
     check(lattice.bounding_box()["y"] < here.bounding_box()["y"], "a map that cites Gauge theory sits above it")

@@ -111,7 +111,7 @@
     },
     {
       "id": "claim-14",
-      "title": "The reverse inclusion",
+      "title": "PCP is contained in NP",
       "section": "2",
       "passage": "linked-source-17",
       "lean": [
@@ -147,7 +147,7 @@
     },
     {
       "id": "local-correction",
-      "title": "Local correction",
+      "title": "Error bound for binary local correction",
       "passage": "pcp-expository-local-correction",
       "lean": [
         "PCP.Algebraic.BinaryLocalCorrection.failure_le"
@@ -1161,7 +1161,7 @@
     "PCP.Algebraic.Hadamard.test": "Accepting a Hadamard test sample",
     "PCP.Algebraic.Hadamard.testQueries": "Positions used by Hadamard testing",
     "PCP.Algebraic.SetMultilinear.Variables": "Coordinates grouped by digit position",
-    "PCP.Algebraic.SetMultilinear.digitMonomial": "One variable from each digit group",
+    "PCP.Algebraic.SetMultilinear.digitMonomial": "Monomial from one digit in each block",
     "PCP.Algebraic.SetMultilinear.encode": "Replacing powers by digit monomials",
     "PCP.Algebraic.ThreeColorAmplifiedVerifier.repetitions": "Repetitions chosen from the gap",
     "PCP.Algebraic.ThreeColorAmplifiedVerifier.verifier": "Repeated checks of one proof",
@@ -1213,7 +1213,7 @@
     "PCP.Algebraic.ThreeColorVerifier.queries": "Concatenating all seven query lists",
     "PCP.Algebraic.ThreeColorVerifier.queries_length_le": "At most 20c + 107 graph queries",
     "PCP.Algebraic.GridVanishing.exists_decomposition": "Quotient degrees in grid decomposition",
-    "PCP.Algebraic.SetMultilinear.IsSetMultilinear": "One variable from each digit group",
+    "PCP.Algebraic.SetMultilinear.IsSetMultilinear": "Set-multilinearity condition",
     "PCP.Algebraic.SetMultilinear.encode_isSetMultilinear": "The encoding is set-multilinear",
     "PCP.Algebraic.ThreeColorVerifier.branchQueries_length_le": "Bit-query budget of each check",
     "PCP.Algebraic.ThreeColorVerifier.branchQueryBound": "Bit-query budgets of the seven checks",
