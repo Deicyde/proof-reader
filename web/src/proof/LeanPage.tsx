@@ -122,6 +122,13 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
       return;
     }
     el.scrollTop = 0;
+    // In the combined view start at the annotation, even if the selected Lean lines
+    // are farther down than the dock can show at once.
+    const annotated = onOpenLean ? el.querySelector(".decl:has(.decl__note)") : null;
+    if (annotated) {
+      el.scrollTop = Math.max(0, annotated.getBoundingClientRect().top - el.getBoundingClientRect().top);
+      return;
+    }
     // Comparator's challenge numbers its own file's lines, so its rows are never the authors'.
     const row = el.querySelector<HTMLElement>(step.exact ? `.decl .source__line[data-line="${step.exact[0]}"]:not(.cmp__code *)` : ".decl .source__line:not(.cmp__code *)");
     const paper = document.querySelector<HTMLElement>("[data-paper-pane]");
