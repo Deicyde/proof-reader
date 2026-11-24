@@ -43,7 +43,8 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- The reader bar's Reading library link, there before the script runs and without it; the app replaces it. -->
+    <div id="root"><header class="bar bar--reader"><div class="bar__left"><a class="bar__reader-home bar__library" href="https://wcook04.github.io/library/"><span class="bar__library-long">Reading library</span><span class="bar__library-short">Library</span></a></div></header></div>
     <noscript>This site draws the paper and its Lean proof in the browser and needs JavaScript. The papers and their data are under <a href="%BASE_URL%papers/index.json">papers/</a>.</noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
