@@ -21,6 +21,7 @@ interface MapDeclaration {
   doc?: string;
   line: number;
   signature: string;
+  source?: string;
 }
 interface Group {
   index: number;
@@ -40,6 +41,18 @@ interface Phrase {
   tone: number;
   html: string;
 }
+interface PassageNote {
+  title: string;
+  anchor: number;
+  endLine: number;
+  html: string;
+}
+const panes = ["auto", "graph", "lean"] as const;
+type Pane = typeof panes[number];
+const savedPane = (): Pane => {
+  const mode = history.state?.apiMapPane;
+  return panes.includes(mode) ? mode : "auto";
+};
 interface Edition {
   title: string;
   repo: string;
@@ -54,6 +67,7 @@ interface Edition {
   glossary: Record<string, string>;
   noteHtml: Record<string, string>;
   paragraphs: Record<string, string[]>;
+  passageNotes: Record<string, PassageNote>;
   phrases: Phrase[];
   tones: Record<string, number>;
   concepts: { name: string; citations: number[] }[];
@@ -95,6 +109,7 @@ const sourceOf = (edition: Edition, file: string, line?: number) =>
 
 function MapReader({ edition }: { edition: Edition }) {
   const [record, setRecord] = useState(selectedRecord);
+  const [mode, setMode] = useState(savedPane);
   const [section, setSection] = useState<string | null>(null);
   const [rail, setRail] = useState(false);
   const [sourceLine, setSourceLine] = useState<number | null>(null);
@@ -116,6 +131,11 @@ function MapReader({ edition }: { edition: Edition }) {
   const group = edition.leanReferences.find((item) => citeKey(item) === citation);
   const ref = edition.references.find((item) => `ref-${item.index}` === citation);
   const paragraph = edition.paragraphs[citation];
+  const paragraphId = paragraph ? citation : Object.keys(edition.paragraphs).find((id) => edition.paragraphs[id].includes(citation));
+  const annotation = paragraphId && edition.passageNotes?.[paragraphId];
+  const hasLean = !!group || paragraph?.some((id) => id.startsWith("lean-"));
+  const showGraph = record !== "@index" && (mode === "graph" || (mode === "auto" && !hasLean && !ref));
+  const showGraphBelow = mode === "auto" && hasLean && sourceLine === null;
   const picked = new Set(paragraph ?? [citation]);
   const paragraphReferences = paragraph?.flatMap((id) => {
     const lean = edition.leanReferences.find((item) => citeKey(item) === id);
@@ -143,16 +163,18 @@ function MapReader({ edition }: { edition: Edition }) {
     const top = element.getBoundingClientRect().top - pane.getBoundingClientRect().top + pane.scrollTop;
     pane.scrollTop = top - (center ? pane.clientHeight * 0.23 : 20);
   };
-  const navigate = (next: string | null, jump = false) => {
+  const navigate = (next: string | null, jump = false, nextMode = mode) => {
     if (selectedRecord() !== next) {
-      history.replaceState({ ...history.state, apiMapTop: paper.current?.scrollTop ?? 0 }, "");
-      history.pushState(jump ? {} : { apiMapTop: paper.current?.scrollTop ?? 0 }, "", indexRoute(next ?? undefined));
+      const top = paper.current?.scrollTop ?? 0;
+      history.replaceState({ ...history.state, apiMapPane: mode, apiMapTop: top }, "");
+      history.pushState({ apiMapPane: nextMode, apiMapTop: jump ? undefined : top }, "", indexRoute(next ?? undefined));
     }
     if (jump && next === record) {
       const id = next?.slice(1);
       if (id) locate(findCitation(id) ?? find(id), !!findCitation(id));
       else if (paper.current) paper.current.scrollTop = 0;
     } else if (jump) scrollTarget.current = "address";
+    scrollDeclaration.current = null;
     setSourceLine(null);
     setRecord(next);
     setRail(false);
@@ -163,6 +185,8 @@ function MapReader({ edition }: { edition: Edition }) {
     const panel = right.current;
     const entry = panel?.querySelector<HTMLElement>(`[data-lean-name="${CSS.escape(name)}"]`);
     if (!panel || !entry) return;
+    const fold = entry.closest("details");
+    if (fold) fold.open = true;
     panel.scrollTop += entry.getBoundingClientRect().top - panel.getBoundingClientRect().top - 10;
     entry.focus({ preventScroll: true });
     scrollDeclaration.current = null;
@@ -170,18 +194,21 @@ function MapReader({ edition }: { edition: Edition }) {
   const openDeclaration = (name: string) => {
     const hit = edition.leanReferences.find((item) => item.declarations.some((d) => d.fullName === name));
     if (!hit) return;
-    scrollDeclaration.current = name;
     navigate(`@${citeKey(hit)}`, true);
+    scrollDeclaration.current = name;
     if (hit === group && sourceLine === null) focusDeclaration(name);
   };
 
   useEffect(() => {
     const onAddress = () => {
       const next = selectedRecord();
+      setMode(savedPane());
       if (next === record) return;
       scrollTarget.current = typeof history.state?.apiMapTop === "number" ? history.state.apiMapTop : "address";
+      scrollDeclaration.current = null;
       setSourceLine(null);
       setRecord(next);
+      setPickedPhrase(null);
     };
     window.addEventListener("hashchange", onAddress);
     window.addEventListener("popstate", onAddress);
@@ -238,8 +265,8 @@ function MapReader({ edition }: { edition: Edition }) {
   }, [citation]);
 
   useLayoutEffect(() => {
-    if (sourceLine === null && scrollDeclaration.current) focusDeclaration(scrollDeclaration.current);
-  }, [citation, sourceLine]);
+    if (!showGraph && sourceLine === null && scrollDeclaration.current) focusDeclaration(scrollDeclaration.current);
+  }, [citation, sourceLine, showGraph]);
 
   const useFiles = () => {
     if (files || sourceFailed) return;
@@ -267,8 +294,8 @@ function MapReader({ edition }: { edition: Edition }) {
   };
   const openPhrase = (id: number) => {
     const phrase = edition.phrases[id];
-    scrollDeclaration.current = phrase.names[0];
     navigate(`@${phrase.citation}`);
+    scrollDeclaration.current = phrase.names[0];
     setPickedPhrase(id);
     if (citation === phrase.citation && sourceLine === null) focusDeclaration(phrase.names[0]);
   };
@@ -306,6 +333,12 @@ function MapReader({ edition }: { edition: Edition }) {
         openSource(d.line);
       }} />
   ));
+  const selectMode = (next: Pane) => {
+    if (record === "@index") navigate(null, false, next);
+    else if (mode !== next) history.replaceState({ ...history.state, apiMapPane: next }, "");
+    setMode(next);
+    if (right.current) right.current.scrollTop = 0;
+  };
   const copy = async (read: () => string | Promise<string>, success: string) => {
     try {
       const content = read();
@@ -407,11 +440,17 @@ function MapReader({ edition }: { edition: Edition }) {
         <PaperSplit />
         <aside className="proof api-map__aside" id="api-map-references" aria-label="Map references">
           <div className="proof__caption">
-            <div className="proof__says"><p><b>{group ? `Lean citation [${group.index}]` : ref ? `Reference {${ref.index}}` : paragraph ? "References in this paragraph" : "Lean glossary"}</b>{group && `, ${group.declarations.length} ${group.declarations.length === 1 ? "declaration" : "declarations"}`}</p></div>
+            <div className="proof__says"><p><b>{showGraph ? "Dependency graph" : group ? `Lean citation [${group.index}]` : ref ? `Reference {${ref.index}}` : paragraph ? "References in this paragraph" : "Lean glossary"}</b>{!showGraph && group && `, ${group.declarations.length} ${group.declarations.length === 1 ? "declaration" : "declarations"}`}</p></div>
             {citation && <button type="button" className="proof__close" onClick={close}>Close</button>}
           </div>
           <div className="leaf">
-            {group && <nav className="leaf__tabs" aria-label="Citation view">
+            <nav className="leaf__tabs api-map__modes" aria-label="What the right pane shows">
+              {panes.map((pane) => (
+                <button key={pane} type="button" aria-pressed={record !== "@index" && mode === pane}
+                  onClick={() => selectMode(pane)}>{pane === "auto" ? "Auto" : pane === "graph" ? "Graph" : "Lean"}</button>
+              ))}
+            </nav>
+            {!showGraph && group && <nav className="leaf__tabs" aria-label="Citation view">
               <button type="button" aria-pressed={sourceLine === null} onClick={() => { setSourceLine(null); if (right.current) right.current.scrollTop = 0; }}>This citation</button>
               <button type="button" aria-pressed={sourceLine !== null} onClick={() => openSource(group.declarations[0].line)}>Whole file</button>
               <button type="button" onClick={() => navigate("@index")}>Glossary</button>
@@ -420,18 +459,26 @@ function MapReader({ edition }: { edition: Edition }) {
                 <button type="button" aria-label="Next citation" title="Next citation (j)" onClick={() => step(1)} disabled={position === order.length - 1}>→</button>
               </div>
             </nav>}
-            <div className="leaf__body api-map__reference-body" ref={right} tabIndex={0}>
-              {group ? (
+            <div className="leaf__body api-map__reference-body" ref={right} tabIndex={0} key={showGraph ? "graph" : "lean"}>
+              {!showGraph && (group || paragraph) && sourceLine === null && annotation && paragraphId && (
+                <PassageAnnotation note={annotation} paragraphId={paragraphId} edition={edition}
+                  phrase={(pickedPhrase === null ? undefined : edition.phrases[pickedPhrase])
+                    ?? (group ? edition.phrases.find((item) => item.citation === citation) : undefined)
+                    ?? edition.phrases[annotation.anchor]}
+                  onPhrase={showPhrase} />
+              )}
+              {showGraph ? null : group ? (
                 <>
                   <div className="api-map__file">
                     <a href={sourceOf(edition, group.file)}>{group.file}</a>
                     <button type="button" onClick={() => void copy(() => location.href, "Citation link copied")}>Copy link</button>
                   </div>
                   {sourceLine === null ? (
-                    <>
+                    <details className="api-map__evidence" key={citation}>
+                      <summary>Lean declarations</summary>
                       <p className="api-map__glossary-credit">AI-drafted reading titles, phrase matches and topics added by Proof Reader.</p>
                       {declarationsFor(group)}
-                    </>
+                    </details>
                   ) : files ? (
                     <div className="decl__code api-map__whole-file">
                       <Code source={files[group.file]} active={sourceLine} />
@@ -441,7 +488,9 @@ function MapReader({ edition }: { edition: Edition }) {
               ) : ref ? (
                 <BibliographyReference reference={ref} />
               ) : paragraphReferences ? (
-                <>
+                <details className="api-map__evidence" key={citation} open={!hasLean || undefined}>
+                  <summary>{hasLean ? "Lean declarations and references" : "References"}</summary>
+                  {!hasLean && <p className="api-map__aside-note">This passage has no linked Lean.</p>}
                   <div className="api-map__file">
                     <nav className="api-map__paragraph-jumps" aria-label="References in this paragraph">
                       {paragraphReferences.map(({ id, lean, general }) => (
@@ -461,7 +510,7 @@ function MapReader({ edition }: { edition: Edition }) {
                       {general && <BibliographyReference reference={general} />}
                     </section>
                   ))}
-                </>
+                </details>
               ) : (
                 <>
                   <p className="api-map__aside-note api-map__lede">The map cites {edition.leanReferences.reduce((n, item) => n + item.declarations.length, 0)} Lean declarations in {edition.leanReferences.length} numbered citations, listed here under {edition.concepts.length} topics. In the map, the phrases a declaration states are underlined in its topic’s colour. Point at a title to highlight its phrase in the map.</p>
@@ -484,11 +533,34 @@ function MapReader({ edition }: { edition: Edition }) {
                   </section>)}
                 </>
               )}
+              {(showGraph || showGraphBelow) && (
+                <DependencyMap maps={edition.maps} current={edition.path} tracker={tracker} home={indexRoute()} id="pane-dependency-map" compact />
+              )}
             </div>
           </div>
         </aside>
       </main>
     </div>
+  );
+}
+
+function PassageAnnotation({ note, paragraphId, edition, phrase, onPhrase }: {
+  note: PassageNote; paragraphId: string; edition: Edition; phrase: Phrase; onPhrase(id: number): void;
+}) {
+  const first = Number(paragraphId.slice(2));
+  const source = `${sourceOf(edition, edition.file, first)}-L${note.endLine}`;
+  return (
+    <section className="api-map__annotation" aria-labelledby="api-map-annotation-title">
+      <p className="api-map__glossary-credit">Reading note · AI-drafted</p>
+      <h2 id="api-map-annotation-title">{note.title}</h2>
+      <blockquote>
+        <button type="button" className="api-map__said-quote" data-tone={phrase.tone}
+          title="Show this phrase in the map" onClick={() => onPhrase(phrase.id)}
+          dangerouslySetInnerHTML={{ __html: phrase.html }} />
+        <a href={source}>API map, lines {first}–{note.endLine}</a>
+      </blockquote>
+      <div dangerouslySetInnerHTML={{ __html: note.html }} />
+    </section>
   );
 }
 
@@ -538,10 +610,10 @@ function DeclarationCard({ decl, title, tone, phrases, note, onPhrase, onLight, 
         <p className="api-map__said-label">Docstring in Physlib</p>
         <p className="api-map__doc"><Doc text={decl.doc} /></p>
       </div>}
-      {decl.signature && (
-        <div className="decl__code api-map__signature" tabIndex={0} aria-label={decl.signature.includes("…") ? "Lean signature excerpt" : "Lean signature"}>
-          {decl.signature.includes("…") && <p className="api-map__excerpt">Signature excerpt</p>}
-          <Code source={decl.signature} />
+      {(decl.source || decl.signature) && (
+        <div className="decl__code api-map__signature" tabIndex={0} aria-label={decl.source ? "Lean declaration" : "Lean signature"}>
+          {!decl.source && decl.signature.includes("…") && <p className="api-map__excerpt">Signature excerpt</p>}
+          <Code source={decl.source ?? decl.signature} />
         </div>
       )}
       <div className="step-proof__meta">

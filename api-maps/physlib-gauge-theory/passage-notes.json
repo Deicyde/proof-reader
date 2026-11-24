@@ -1,0 +1,32 @@
+{
+  "p-36": {
+    "title": "What the local gauge data assumes",
+    "anchor": "We define *local gauge data* to be exactly this information",
+    "body": "At a fixed spacetime point $x$, the map uses a jet in place of a gauge transformation and a Lie algebra jet in place of an infinitesimal transformation. `LocalGaugeData` takes the group and Lie algebra of jets as inputs. Its fields specify how to evaluate a jet at $x$, form a constant jet, differentiate, or multiply by a coordinate.\n\nThe extra term $\\theta_\\mu(U)$ in the gauge-field transformation is the `maurerCartan` field. The cocycle identity explains why shifting first by $V$ and then by $U$ gives the shift for $UV$. Lean takes this identity and the flatness equation as fields of the structure. The construction of such jets from a Lie group is still marked TODO in the Lean file."
+  },
+  "p-53": {
+    "title": "What evaluation recovers from a constant jet",
+    "anchor": "evaluation G_J → G is surjective",
+    "body": "Make a constant jet from $g\\in G$, then evaluate it at $x$. You get $g$ back. In Lean, `eval_ofConstant` supplies this left inverse, so `eval_surjective` and `ofConstant_injective` follow from the same identity. The identities for Lie algebra values give the corresponding pair of results.\n\nThe constant jets also connect the two adjoint actions. `adjoint_bracket` applies the jet-level bracket identity to constant jets and evaluates at $x$. In `deriv_adjointJ_ofConstant`, the general derivative rule has a bracket with $\\theta_\\mu$ as its correction term. That term vanishes for a constant transformation."
+  },
+  "p-58": {
+    "title": "Repeated directions in an iterated derivative",
+    "anchor": "the iterated derivative ∂_s applies ∂_μ once for each μ in s",
+    "body": "Since the single derivatives commute, `iteratedDeriv` can take a multiset of directions and remember how often each direction occurs. `iteratedDeriv_bracket` extends the one-derivative product rule for the bracket. At each step the new derivative lands on the left or the right input. Lean's `s.antidiagonal` counts both choices even when they produce the same pair of multisets.\n\nFor $\\partial_s(x_\\mu a)$, evaluation at $x$ kills the term that still contains the coordinate. Each copy of $\\mu$ that differentiates the coordinate contributes one copy of the same remaining derivative. That is why `evalLie_iteratedDeriv_mulCoord` uses `s.count μ` as the multiplier and `s.erase μ` as the remaining directions."
+  },
+  "p-64": {
+    "title": "How the jet maps determine what happens at the point",
+    "anchor": "It intertwines Ad on 𝔤 and 𝔤'",
+    "body": "`LocalGaugeData.Hom` asks for four maps and records how they interact with the operations of local gauge data. To see why the adjoint action on Lie algebra values is preserved, first lift the group element and Lie algebra element to constant jets. Apply the morphism's condition on the adjoint action of jets, then evaluate. This is the route in `Hom.lie_adjoint`.\n\n`Hom.lieJ_iteratedDeriv` repeats the compatibility with a single derivative for each direction in the multiset. Identities and composites use the corresponding maps on all four components. Physlib marks the construction from a Lie group homomorphism as TODO."
+  },
+  "p-71": {
+    "title": "Why shifting the potential leaves the field strength alone",
+    "anchor": "Gauge transformations leave the field strength invariant",
+    "body": "`gaugeTransform` adds the pure-gauge potential `ofGradient` to $A$. The field strength of the sum is the sum of the field strengths under the differentiability hypotheses. For $\\chi$ twice continuously differentiable, `toFieldStrength_ofGradient` shows that the mixed partials of $\\chi$ cancel after both indices carry their Minkowski signs. The example in `toFieldStrength_bareGradient_ne_zero` shows what can go wrong when the gradient's index is left down.\n\n`toFieldStrength_gaugeTransform` puts these facts together for differentiable $A$. Successive shifts add their gauge functions, and `gaugeTransform_equivariant` says how a shift looks after a Lorentz transformation $\\Lambda$. The scalar function in the transformed frame is $x\\mapsto\\chi(\\Lambda^{-1}x)$."
+  },
+  "p-82": {
+    "title": "The product group and its central subgroup",
+    "anchor": "a central discrete subgroup of sixth roots of unity",
+    "body": "`GaugeGroupI` is the unquotiented product $\\mathrm{SU}(3)\\times\\mathrm{SU}(2)\\times\\mathrm{U}(1)$. The three projections `GaugeGroupI.toSU3`, `GaugeGroupI.toSU2` and `GaugeGroupI.toU1` take the corresponding coordinate of a group element. The last factor is represented in Lean by the unitary complex numbers.\n\n`gaugeGroupℤ₆SubGroup` is the range of the homomorphism from the complex sixth roots of unity into that product. The source proves this subgroup lies in the center."
+  }
+}

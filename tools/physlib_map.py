@@ -138,15 +138,19 @@ def build() -> None:
         for decl in group["declarations"]:
             first = decl.get("line")
             name = decl["text"].split(".")[-1]
-            if not first or not re.search(rf"\b{re.escape(name)}(?=\s|[:(\[{{]|$)", lines[first - 1]):
+            if not first or not re.match(rf"\S.*\b{re.escape(name)}(?=\s|[:(\[{{]|$)", lines[first - 1]):
                 raise ValueError(f"{decl['text']} was not found at its indexed source line")
+            # The pinned declarations all start at column one, with indented continuations.
+            end = next((i for i in range(first, len(lines)) if lines[i] and not lines[i][0].isspace()), len(lines))
+            decl["source"] = "\n".join(lines[first - 1:end]).rstrip("\n")
     maths = json.loads((FOLDER / "maths.json").read_text(encoding="utf-8"))
     phrases = check_phrases(json.loads((FOLDER / "phrases.json").read_text(encoding="utf-8")), groups)
+    passage_notes = json.loads((FOLDER / "passage-notes.json").read_text(encoding="utf-8"))
     here = next(m for m in snapshot["maps"] if m["path"] == snapshot["path"])
     rendered = subprocess.run(
         ["node", str(ROOT / "web" / "tools" / "render-paper.mjs"), str(source), SLUG, "lean", "--api-map"],
         input=json.dumps({"maths": maths, "references": refs, "phrases": phrases,
-                          "notes": notes,
+                          "notes": notes, "passageNotes": passage_notes,
                           "concepts": check_concepts(json.loads((FOLDER / "concepts.json").read_text(encoding="utf-8")), groups),
                           "status": {"done": here["done"], "total": here["total"]}}, ensure_ascii=False),
         text=True, capture_output=True, check=False,

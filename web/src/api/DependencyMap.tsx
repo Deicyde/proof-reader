@@ -309,7 +309,9 @@ function Figure({ maps, byPath, shown, current, tracker, home, wrap }: FigurePro
 
 const KEY = "Each map sits above the maps it cites, and the arrow points to the map that does the citing. A dashed line with an arrowhead at both ends joins two maps that cite each other. Each card opens that map on physlib.io.";
 
-export function DependencyMap({ maps, current, tracker, home }: { maps: readonly MapNode[]; current: string; tracker: string; home: string }) {
+export function DependencyMap({ maps, current, tracker, home, id = "dependency-map", compact = false }: {
+  maps: readonly MapNode[]; current: string; tracker: string; home: string; id?: string; compact?: boolean;
+}) {
   const [all, setAll] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const byPath = useMemo(() => new Map(maps.map((m) => [m.path, m])), [maps]);
@@ -326,20 +328,24 @@ export function DependencyMap({ maps, current, tracker, home }: { maps: readonly
     setAll(true);
     dialog.current?.showModal();
   };
+  const fullMap = <button type="button" className="deps__open" onClick={open}>See all {maps.length} API maps in Physlib</button>;
 
   return (
-    <section className="api-map__deps" id="dependency-map" aria-labelledby="dependency-map-title">
-      <h2 id="dependency-map-title">Dependency map</h2>
+    <section className="api-map__deps" id={id} aria-labelledby={`${id}-title`}>
+      <h2 id={`${id}-title`}>Dependency map</h2>
       <p className="deps__lede">
-        {title} cites {below} {below === 1 ? "API map" : "API maps"}, directly or through other maps, and {above === 1 ? "1 map cites" : `${above} maps cite`} it in the same way. {KEY}
+        {compact ? "Arrows point from a cited API map to the map that cites it." : (
+          <>{title} cites {below} {below === 1 ? "API map" : "API maps"}, directly or through other maps, and {above === 1 ? "1 map cites" : `${above} maps cite`} it in the same way. {KEY}</>
+        )}
       </p>
-      <button type="button" className="deps__open" onClick={open}>See all {maps.length} API maps in Physlib</button>
+      {!compact && fullMap}
       <Figure {...shared} shown={near} wrap />
-      <dialog ref={dialog} className="deps__dialog" aria-labelledby="dependency-all-title" onClose={() => setAll(false)}
+      {compact && fullMap}
+      <dialog ref={dialog} className="deps__dialog" aria-labelledby={`${id}-all-title`} onClose={() => setAll(false)}
         onClick={(event) => { if (event.target === dialog.current) dialog.current.close(); }}>
         <div className="deps__dialog-bar">
           <div>
-            <h2 id="dependency-all-title">All {maps.length} API maps in Physlib</h2>
+            <h2 id={`${id}-all-title`}>All {maps.length} API maps in Physlib</h2>
             <p>Grouped by the citations that join them. {KEY}</p>
           </div>
           <button type="button" className="deps__close" onClick={() => dialog.current?.close()} autoFocus>Close</button>

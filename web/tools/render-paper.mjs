@@ -174,6 +174,7 @@ function highlight(line, language) {
 
 const md = new MarkdownIt({ html: !apiMap, linkify: !!apiMap, typographer: false });
 const apiParagraphs = {};
+const apiSourceLines = {};
 // Each Lean citation gets the colour of its physics topic (concepts.json). Its phrases,
 // number and cards all carry that colour.
 const apiTones = {};
@@ -224,14 +225,14 @@ if (apiMap) {
       token.attrSet("id", id);
       token.attrSet("data-api-paragraph", id);
       apiParagraphs[id] = references;
+      apiSourceLines[id] = token.map[1];
     }
   });
   md.renderer.rules.paragraph_open = (tokens, index, options, _env, renderer) => {
     const paragraph = renderer.renderToken(tokens, index, options);
     const id = tokens[index].attrGet("data-api-paragraph");
     if (!id) return paragraph;
-    const target = apiParagraphs[id].length === 1 ? apiParagraphs[id][0] : id;
-    return paragraph.trimEnd() + `<a class="api-map__passage" href="#/${slug}/@${target}" aria-controls="api-map-references" aria-label="Open references for this paragraph"></a>`;
+    return paragraph.trimEnd() + `<a class="api-map__passage" href="#/${slug}/@${id}" aria-controls="api-map-references" aria-label="Open references for this paragraph"></a>`;
   };
 }
 
@@ -500,7 +501,7 @@ if (apiMap) {
     if (section && !(sectionTopics[section] ??= []).includes(topic)) sectionTopics[section].push(topic);
   }
   const { done, total } = apiMap.status;
-  html = html.replace("</h1>", `</h1>\n<p class="api-map__status"><span class="api-map__badge">Alpha</span> <span>${done} of ${total} claims formalized</span> <span class="api-map__progress" role="img" aria-label="${done} of ${total} claims formalized"><span style="width:${(100 * done / total).toFixed(1)}%"></span></span></p>\n<div class="api-map__guide"><p class="api-map__legend"><span class="api-map__legend-label">Topic colours</span>${apiMap.concepts.map((c, i) => ` <span class="api-map__topic" data-tone="${i * 2}">${escapeHtml(c.name)}</span>`).join("")}</p><p>Click an underlined phrase, a citation number or a paragraph to open the Lean declarations cited there.</p></div>\n`);
+  html = html.replace("</h1>", `</h1>\n<p class="api-map__status"><span class="api-map__badge">Alpha</span> <span>${done} of ${total} claims formalized</span> <span class="api-map__progress" role="img" aria-label="${done} of ${total} claims formalized"><span style="width:${(100 * done / total).toFixed(1)}%"></span></span></p>\n<div class="api-map__guide"><p class="api-map__legend"><span class="api-map__legend-label">Topic colours</span>${apiMap.concepts.map((c, i) => ` <span class="api-map__topic" data-tone="${i * 2}">${escapeHtml(c.name)}</span>`).join("")}</p><p>Click a marked passage, citation number or underlined phrase to inspect it.</p></div>\n`);
   html = html.replace(/ \(Alpha\)<\/h([23])>/g, ' <span class="api-map__badge"><span class="api-map__paren">(</span>Alpha<span class="api-map__paren">)</span></span></h$1>');
 }
 
@@ -509,12 +510,27 @@ for (const entry of outline) {
 }
 
 // Reading notes: plain text with $…$ TeX, typeset like the map, and `…` for Lean names.
-const noteHtml = Object.fromEntries(Object.entries(apiMap?.notes ?? {}).map(([name, note]) => {
+function renderApiNote(note, name, chip = false) {
   if ((note.match(/\$/g) ?? []).length % 2) throw new Error(`Unpaired $ in the reading note for ${name}`);
-  return [name, note.split(/(\$[^$]+\$|`[^`]+`)/).map((part) => {
+  return note.split(/(\$[^$]+\$|`[^`]+`)/).map((part) => {
     if (part.startsWith("$")) return katex.renderToString(part.slice(1, -1), { output: "htmlAndMathml", strict: "ignore", throwOnError: true, trust: false });
-    if (part.startsWith("`")) return `<code>${escapeHtml(part.slice(1, -1))}</code>`;
+    if (part.startsWith("`")) return `<code${chip ? ' class="api-map__chip"' : ""}>${escapeHtml(part.slice(1, -1))}</code>`;
     return escapeHtml(part);
-  }).join("")];
-}));
-process.stdout.write(JSON.stringify({ html, math, outline, ...(apiMap ? { paragraphs: apiParagraphs, phrases: apiPhrases, tones: apiTones, concepts: apiMap.concepts, sectionTopics, noteHtml } : {}), ...(guide ? { source_blocks: sourceBlocks, quote_html: quoteHtml, heading_aliases: headingAliases } : {}) }));
+  }).join("");
+}
+
+const noteHtml = Object.fromEntries(Object.entries(apiMap?.notes ?? {}).map(([name, note]) => [name, renderApiNote(note, name)]));
+const passageNotes = {};
+if (apiMap) {
+  const linked = Object.keys(apiParagraphs).filter((id) => apiParagraphs[id].some((mark) => mark.startsWith("lean-")));
+  if (Object.keys(apiMap.passageNotes).sort().join() !== linked.sort().join()) {
+    throw new Error("Passage notes must cover exactly the paragraphs with Lean citations");
+  }
+  for (const [id, { title, anchor, body }] of Object.entries(apiMap.passageNotes)) {
+    const matches = apiPhrases.filter((phrase) => apiParagraphs[id].includes(phrase.citation) && phrase.quote === anchor);
+    if (matches.length !== 1 || !title?.trim() || !body?.trim()) throw new Error(`Invalid passage note for ${id}`);
+    passageNotes[id] = { title, anchor: matches[0].id, endLine: apiSourceLines[id],
+      html: body.split("\n\n").map((paragraph) => `<p>${renderApiNote(paragraph, id, true)}</p>`).join("") };
+  }
+}
+process.stdout.write(JSON.stringify({ html, math, outline, ...(apiMap ? { paragraphs: apiParagraphs, phrases: apiPhrases, tones: apiTones, concepts: apiMap.concepts, sectionTopics, noteHtml, passageNotes } : {}), ...(guide ? { source_blocks: sourceBlocks, quote_html: quoteHtml, heading_aliases: headingAliases } : {}) }));

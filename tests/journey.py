@@ -1521,8 +1521,13 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     pane = page.locator(".api-map__aside")
     cite = article.get_by_role("link", name="Lean citation 12", exact=True)
     structure = pane.locator('[data-lean-name="LocalGaugeData"]')
-    wait_until(page, lambda: structure.is_visible(),
-               "a direct link opens the Physlib structure")
+    evidence = pane.locator(".api-map__evidence")
+    annotation = pane.locator(".api-map__annotation")
+    wait_until(page, lambda: annotation.is_visible() and structure.count() == 1,
+               "a direct link opens the note for the Physlib structure")
+    check(not structure.is_visible() and evidence.get_attribute("open") is None, "Lean starts folded")
+    evidence.locator("summary").click()
+    check(structure.is_visible(), "the fold opens the cited structure")
     page.evaluate("document.fonts.ready")
     check(article.get_by_role("link", name="Lean citation 9", exact=True).evaluate("""(link) => {
       const mark = link.getBoundingClientRect();
@@ -1537,6 +1542,13 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     cite.click()
     entries = pane.locator(".api-map__declaration")
     wait_until(page, lambda: entries.count() == 8, "citation 12 opens every indexed declaration")
+    check(annotation.get_by_role("heading").inner_text() == "Repeated directions in an iterated derivative"
+          and annotation.locator(".api-map__chip").count() >= 3 and annotation.locator(".katex").count() >= 2,
+          "the citation has one passage note with backtick chips and KaTeX")
+    check(annotation.get_by_role("link").get_attribute("href").endswith("API-map.md#L58-L62"),
+          "the note links to the exact upstream passage")
+    shot(page, shots, f"physlib-annotation-{'phone' if mobile else 'desktop'}")
+    evidence.locator("summary").click()
     check(entries.first.get_by_role("heading").inner_text() == "Iterated formal derivative on Lie algebra jets"
           and entries.first.locator(".api-map__raw-name").inner_text() == "LocalGaugeData.iteratedDeriv",
           "the declaration leads with its glossary title and retains its exact Lean name")
@@ -1560,12 +1572,14 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     check(copied_note == "∂₀ ∂₀ ∂₂", "a formula selected in a reading note copies as Unicode")
     check(cite.get_attribute("aria-expanded") == "true", "the related mark is selected in the article")
     shot(page, shots, f"physlib-gauge-theory-{'phone' if mobile else 'desktop'}")
+    check("μs.foldl" in entries.first.get_by_label("Lean declaration", exact=True).inner_text(),
+          "the folded source contains the exact Lean definition body")
     entries.first.get_by_role("button", name="View source at line 216").click()
     line = pane.locator('[data-line="216"].is-exact')
     wait_until(page, lambda: line.is_visible(), "the whole file opens at the indexed line")
     check("noncomputable def iteratedDeriv" in line.inner_text(), "the line contains the upstream Lean source")
     page.go_back()
-    wait_until(page, lambda: page.url.endswith("/@lean-9") and structure.is_visible(),
+    wait_until(page, lambda: page.url.endswith("/@lean-9") and annotation.is_visible() and structure.count() == 1,
                "Back restores the previous citation")
     check(paper.evaluate("(el) => el.scrollTop") == left_top, "Back restores the reading position")
     pane.get_by_role("button", name="Next citation").click()
@@ -1651,6 +1665,7 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
     wait_until(page, lambda: pane.locator("[data-reference]").count() == 2,
                "Back restores the paragraph view")
     abelian.locator("xpath=following-sibling::p[1]").get_by_role("link", name="Open references for this paragraph").click()
+    evidence.locator("summary").click()
     wait_until(page, lambda: pane.locator('[data-reference="ref-1"] a').is_visible(),
                "the paragraph gutter opens a bibliography reference beside the Lean groups")
     check(pane.locator("[data-reference]").count() == 9,
@@ -1677,6 +1692,30 @@ def physlib_map(page: Page, url: str, shots: Path | None, mobile: bool) -> None:
       return el.classList.contains('is-flash') && box.top >= pane.top && box.bottom <= pane.bottom;
     }"""), "a quoted phrase scrolls the map back to its place")
     check(page.url.endswith("/@lean-7"), "showing a phrase does not change the open citation")
+
+    modes = pane.get_by_role("navigation", name="What the right pane shows")
+    unlinked = article.locator("#p-87").get_by_role("link", name="Open references for this paragraph")
+    unlinked.click()
+    pane_graph = pane.locator("#pane-dependency-map")
+    check(pane_graph.is_visible() and modes.get_by_role("button", name="Auto", exact=True).get_attribute("aria-pressed") == "true",
+          "Auto shows the existing dependency graph for an uncited Lean passage")
+    modes.get_by_role("button", name="Lean", exact=True).click()
+    check(pane.get_by_text("This passage has no linked Lean.").is_visible() and pane_graph.count() == 0,
+          "explicit Lean stays selected for the same passage")
+    cite.click()
+    check(annotation.is_visible() and modes.get_by_role("button", name="Lean", exact=True).get_attribute("aria-pressed") == "true",
+          "explicit Lean follows a linked selection")
+    modes.get_by_role("button", name="Graph", exact=True).click()
+    check(pane_graph.is_visible() and annotation.count() == 0, "explicit Graph stays selected on a linked passage")
+    unlinked.click()
+    check(pane_graph.is_visible() and modes.get_by_role("button", name="Graph", exact=True).get_attribute("aria-pressed") == "true",
+          "explicit Graph follows an unlinked selection")
+    page.go_back()
+    wait_until(page, lambda: page.url.endswith("/@lean-12") and pane_graph.is_visible(),
+               "Back restores the selected citation and its explicit tab")
+    modes.get_by_role("button", name="Auto", exact=True).click()
+    check(annotation.is_visible() and pane_graph.is_visible(),
+          "Auto shows the note followed by the dependency graph for a linked passage")
 
     deps = page.locator("#dependency-map")
     deps.scroll_into_view_if_needed()
