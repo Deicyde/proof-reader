@@ -12,7 +12,7 @@ const KEY = "proof-reader-pane-5";
 /** The drawing takes up to this much of the pane before the reader moves the divider. */
 const OPENING = 0.7;
 const GRAPH_MIN = 0.15;
-const MIN_AUTOMATIC_GRAPH_HEIGHT = 220;
+const MIN_LEAN_HEIGHT = 144;
 const GRAPH_MAX = 0.85;
 const pull = (value: number) => Math.max(GRAPH_MIN, Math.min(GRAPH_MAX, value));
 
@@ -68,21 +68,45 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
   const panes = useRef<HTMLDivElement>(null);
   const [dragging, setDragging] = useState(false);
   const [paneHeight, setPaneHeight] = useState(0);
+  const [leanHeight, setLeanHeight] = useState<number>();
   const [fitHeight, setFitHeight] = useState(0);
   const dock = !plain && !leanOpen;
   const availableHeight = layout.dock * paneHeight;
-  const share = !layout.dockManual && fitHeight > 0 && paneHeight > 0
-    ? Math.min(layout.dock, Math.max(MIN_AUTOMATIC_GRAPH_HEIGHT, fitHeight) / paneHeight)
+  const graphLimit = Math.max(availableHeight, paneHeight - MIN_LEAN_HEIGHT);
+  const share = !layout.dockManual && fitHeight > 0 && paneHeight > 0 && leanHeight !== undefined
+    ? Math.max(Math.min(fitHeight, graphLimit), Math.min(availableHeight, paneHeight - leanHeight)) / paneHeight
     : layout.dock;
   useLayoutEffect(() => {
     const element = panes.current;
-    if (!element) return;
-    const measure = () => setPaneHeight(element.clientHeight);
-    measure();
+    if (!element || !dock) return;
+    const lean = element.querySelector(".proof__lean");
+    if (!lean) return;
+    const measure = () => {
+      setPaneHeight(element.clientHeight);
+      const body = lean.querySelector<HTMLElement>(".leaf__body");
+      const divider = element.querySelector<HTMLElement>(".proof__handle");
+      if (!body) return;
+      const top = body.getBoundingClientRect().top;
+      const bottom = Math.max(top, ...Array.from(body.children, (child) => child.getBoundingClientRect().bottom));
+      const chrome = lean.clientHeight - body.clientHeight + (divider?.offsetHeight ?? 0);
+      setLeanHeight(Math.ceil(bottom - top + body.scrollTop + chrome));
+    };
     const observer = new ResizeObserver(measure);
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, []);
+    const connect = () => {
+      observer.disconnect();
+      observer.observe(element);
+      const body = lean.querySelector(".leaf__body");
+      if (body) for (const child of body.children) observer.observe(child);
+      measure();
+    };
+    connect();
+    const content = new MutationObserver(connect);
+    content.observe(lean, { childList: true, subtree: true });
+    return () => {
+      content.disconnect();
+      observer.disconnect();
+    };
+  }, [dock]);
   useLayoutEffect(() => panes.current?.style.setProperty("--share", String(share)), [share]);
 
   // The drag writes one custom property; the panes hear the new room when it ends.

@@ -2022,8 +2022,9 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
                   f"{slug}: on a phone the graph folds to one line")
             check("uses" in page.locator(".graph__strip").inner_text(), f"{slug}: and the line counts what the subject uses")
         else:
-            check(min(215, panes["height"] * 0.6) <= graph["height"] <= panes["height"] * 0.8,
-                  f"{slug}: the drawing gives unused height to the dock")
+            graph_limit = max(panes["height"] * 0.7, panes["height"] - 144)
+            check(0 < graph["height"] <= graph_limit + 2,
+                  f"{slug}: the drawing leaves a scrollable Lean dock")
         lean = page.locator(".proof__lean")
         wait_until(page, lambda: lean.is_visible() and len(lean.inner_text().strip()) > 40, f"{slug}: the dock is never empty while following")
         if w >= 600:
@@ -2132,9 +2133,21 @@ def graph_split(page: Page, url: str, size: tuple[int, int]) -> None:
     graph.wait_for()
     page.evaluate("document.fonts.ready")
     panes = page.locator(".proof__panes")
-    wait_until(page, lambda: panes.evaluate("""(p) =>
-      p.querySelector('.proof__graph').clientHeight < p.clientHeight * .43
-    """), "a sparse graph gives room back to the text dock")
+    wait_until(page, lambda: panes.evaluate("""(p) => {
+      const graph = p.querySelector('.proof__graph');
+      const lean = p.querySelector('.proof__lean');
+      const body = lean?.querySelector('.leaf__body');
+      const note = body?.querySelector('.decl__note');
+      if (!body || !graph || !note) return false;
+      const top = body.getBoundingClientRect().top;
+      const bottom = Math.max(top, ...[...body.children].map(child => child.getBoundingClientRect().bottom));
+      const content = bottom - top + body.scrollTop + lean.clientHeight - body.clientHeight;
+      const divider = p.querySelector('.proof__handle')?.offsetHeight ?? 0;
+      const defaultGraph = p.clientHeight * .7;
+      return content + divider <= p.clientHeight - defaultGraph + 2
+        ? Math.abs(graph.clientHeight - defaultGraph) <= 2
+        : graph.clientHeight < defaultGraph;
+    }"""), "a sparse graph gives up only the space the Lean dock needs")
     world = graph.locator(".fg__world")
     transform = lambda: world.evaluate("(el) => el.style.transform")
     subject = graph.locator(".fg__card.is-subject")
