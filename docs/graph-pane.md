@@ -8,7 +8,7 @@ The readers are mathematicians in the field of each paper: query complexity and 
 
 | The reader asks | The pane answers with |
 | --- | --- |
-| What in the Lean corresponds to what I am reading? | The subject card in the middle of the graph: the step or declaration tied to the paragraph or to the clicked phrase, with its plain title and its Lean name. The dock under the graph shows its statement in Lean. |
+| What in the Lean corresponds to what I am reading? | The subject card in the middle of the graph: the step or declaration tied to the paragraph or to the clicked phrase, with its plain title and its Lean name. The dock shows its annotation and Lean statement. |
 | What does this step rest on? | The column on the right of the subject, each node joined to it by a line. |
 | Where is this used later? | The column on the left of the subject, each node joined to it by a line. A node the paper states further on is set in paler ink. |
 | Is this the paper's claim or a helper? | The look of each node: a numbered result carries its number ("Theorem 2.1") in bold on a filled node, a definition has square corners, a Lean helper lemma has a dashed outline. The paper's results and steps head each column. |
@@ -18,7 +18,7 @@ Five consequences follow for the design.
 
 **One subject, its whole neighbourhood, in one look.** A whole proof drawn at once answers none of the five questions at reading size: at 1440 pixels its type is 10 pixels tall and most of its cards are off the pane. A single card with its neighbours scrolled out of sight is no better. The drawing therefore shows one subject with everything that uses it and everything it uses, and it fits its area when it opens, at 12 neighbours, at 47 and at 283.
 
-**Nodes are one compact line; the detail is in the dock.** A node carries the plain title and, for a numbered result, its number. The Lean name, the statement and the reading note are shown under the drawing for the node under the pointer. Small nodes are what lets a whole neighbourhood be seen at once.
+**Nodes are one compact line; the detail is in the dock.** A node carries the plain title and, for a numbered result, its number. The dock shows the Lean name and statement for the node under the pointer. Small nodes are what lets a whole neighbourhood be seen at once.
 
 **A crowded side is drawn as named groups, with every member one click away.** When a side has more neighbours than fit, they are gathered by the topic the paper already gives them (the same topics that colour its phrases), and by kind where a card has no topic. A group shows its name, its colour and its count on a badge, and one line joins it to the subject; the line's weight says its kind of use and never grows with the count. Room left by the group headings shows a few real members of each group. The group count includes those members, so the standalone nodes and group counts still add up to the neighbourhood. Clicking a small group opens it in place; a group of more than eight opens as a list of its members beside the drawing, so that the subject does not move and the drawing is not redrawn.
 
@@ -30,7 +30,7 @@ Five consequences follow for the design.
 
 The pane has the views each reader already names: Graph, Lean and, where the reader has one, Passage. Each view fills the pane and does one job.
 
-- **Graph** is the drawing described below, with a dock under it.
+- **Graph** shows the annotation and Lean above the drawing.
 - **Lean** is the Lean of the subject, the whole height of the pane.
 - **Passage** is the reader's account of the paragraph: the same step in each paper and the comparison of statement and Lean.
 
@@ -74,7 +74,7 @@ A phrase can be tied to a Lean declaration for which no paper-argument route is 
 
 ### The dock
 
-A strip under the drawing shows one card in detail. Before the reader moves the divider, the drawing takes up to 70% of the pane and gives the dock any height it does not need. Dragging the divider sets and remembers the share. The dock scrolls by itself. It shows, in this order of precedence:
+The dock above the drawing shows one card in detail. The drawing starts with 70% of the pane. When the annotation and Lean need more room, the dock takes only the spare height beyond the fitted drawing and its controls. The dock scrolls when its content is taller than the available space. Dragging the divider sets and remembers the share. The dock shows, in this order of precedence:
 
 1. the node under the pointer or holding the keyboard focus, as a preview: its title, kind, Lean name, and the first lines of its Lean statement;
 2. the clicked phrase: the quotation, its topic, the comparison of phrase and Lean, the AI-drafted reading note, and the Lean with the tied lines lit;

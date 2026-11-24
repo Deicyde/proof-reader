@@ -232,7 +232,7 @@ button:disabled { cursor: default; }
 .mode-toggle button[aria-pressed="true"] { background: var(--ink); color: var(--ground); }
 .proof__close { flex: none; min-height: 28px; padding: 0 6px; font-size: var(--fs-sm); color: var(--lit); text-decoration: underline; text-underline-offset: 3px; }
 .proof__panes { --share: 0.7; position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
-/* The Graph view: the drawing has the top part of the page and the dock under it the rest. */
+/* In the combined view the Lean dock comes first. The drawing keeps its fitted height below. */
 .proof__graph { flex: 0 0 auto; height: calc(var(--share) * 100%); min-width: 0; min-height: 0; display: flex; }
 .proof__graph[hidden] { display: none; }
 .proof__lean { flex: 1 1 0; min-width: 0; min-height: 0; display: flex; }

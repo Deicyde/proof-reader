@@ -37,12 +37,11 @@ by the authors of the paper or the Lean.
 
 The paper is on the left and the proof pane on the right. As you scroll, the proof pane
 shows the declaration for the linked passage you are reading. Use the **Graph / Lean**
-toggle to choose what stays beside the paper. In Graph mode a drawing of that declaration
-takes the top of the pane, fitted to it: what uses it stands on the left, what it uses on the
-right, and the look of each node says what kind of thing it is. A side with more than fits is
-drawn as named groups, one for each part of the Lean proof, each with its count; a click opens
-a group in place, and **Fit** folds them again. The declaration's Lean is in the dock
-underneath, and pointing at a node shows that node's Lean there. **Whole proof map**
+toggle to choose what stays beside the paper. In Graph mode the reading note comes before
+the Lean statement, with the fitted drawing below. What uses the declaration stands on the
+left, and what it uses stands on the right. A crowded side gathers nodes into named groups.
+Click a group to open it or use **Fit** to fold it again. Pointing at a node previews its
+Lean in the dock. **Whole proof map**
 swaps the drawing for a map of every declaration. In Lean mode the Lean has the whole pane.
 Clicking a sentence or a node keeps its Lean open until you read on to another linked
 statement, and **Back** returns to where you were. A click never changes the mode, and

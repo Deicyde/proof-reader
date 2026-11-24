@@ -18,7 +18,7 @@ Keep these true:
 - Every other word on a paper's page is a quotation, Lean's own output, a marked note, a
   comparison of a statement with its Lean, or a declaration's short plain title.
 - Reading the paper is the way in. The right pane has two modes. Graph is the drawing around
-  one declaration with its Lean docked underneath; Lean is the Lean alone. The drawing is
+  one declaration below its annotation and Lean; Lean is the Lean alone. The drawing is
   `web/src/proof/FocusGraph.tsx` and `focus-graph.css`, specified in `docs/graph-pane.md`
   and checked by `tests/graph_pane_checks.py`. The other readers carry the same three files;
   keep them byte-identical and make any change in all of them. A click opens its Lean as one

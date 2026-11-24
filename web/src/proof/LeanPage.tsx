@@ -46,7 +46,7 @@ interface Props {
   onTab(tab: Tab): void;
   onPassage(id: string): void;
   act: LeanActions;
-  /** Docked under the graph: a button opens the same thing in the Lean view. */
+  /** In the combined pane, a button opens the same thing in the Lean view. */
   onOpenLean?(): void;
 }
 
@@ -136,7 +136,7 @@ export const LeanPage = memo(function LeanPage({ ref, edition, step, open, start
     const box = el.getBoundingClientRect();
     const line = paper.getBoundingClientRect().top + paper.clientHeight * READING_LINE - box.top;
     // The declaration's heading sticks to the top, so the lines in hand rest below it even
-    // when the reading line is above this page (the dock under the graph).
+    // when the reading line is above this page.
     const head = row.closest(".decl")?.querySelector<HTMLElement>(".decl__head")?.offsetHeight ?? 0;
     // With the reading line above this page, they rest just under the heading: a fixed margin
     // there showed a line and a half of what comes before, the half cut by the heading.

@@ -164,7 +164,7 @@ const inSentence = (words: string) => (words.startsWith("Lean ") ? words : words
 function diagramBounds(world: HTMLElement): Box | null {
   const origin = world.getBoundingClientRect();
   if (!origin.width || !world.offsetWidth) return null;
-  const scale = new DOMMatrixReadOnly(world.style.transform || undefined).a;
+  const scale = origin.width / world.offsetWidth;
   const range = world.ownerDocument.createRange();
   let left = Infinity, right = -Infinity, top = Infinity, bottom = -Infinity;
   const include = (x: number, y: number, width: number, height: number) => {
@@ -506,12 +506,22 @@ export function FocusGraph(props: FocusGraphProps) {
   const measure = useCallback(() => {
     const w = world.current;
     if (!w) return;
-    // Measure the actual rendered border boxes and undo the world's current scale.
-    const origin = w.getBoundingClientRect();
-    const k = new DOMMatrixReadOnly(w.style.transform || undefined).a;
+    // HTML cards and SVG wires share the world's layout space. Position them before
+    // the camera transform so a zoom, a drawer animation or a pan cannot detach a wire.
     const box = (el: HTMLElement): Box => {
-      const r = el.getBoundingClientRect();
-      return { x: (r.left - origin.left) / k, y: (r.top - origin.top) / k, w: r.width / k, h: r.height / k };
+      let x = 0, y = 0;
+      let node: HTMLElement | null = el;
+      while (node && node !== w) {
+        x += node.offsetLeft;
+        y += node.offsetTop;
+        const parent = node.offsetParent as HTMLElement | null;
+        if (parent && parent !== w) {
+          x += parent.clientLeft;
+          y += parent.clientTop;
+        }
+        node = parent;
+      }
+      return { x, y, w: el.offsetWidth, h: el.offsetHeight };
     };
     const frame = w.querySelector<HTMLElement>(".fg__subjects");
     if (!frame) { setDrawn(null); return; }

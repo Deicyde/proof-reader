@@ -17,7 +17,7 @@ from playwright.sync_api import Page, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tests"))
-from graph_pane_checks import check_graph_pane, check_groups  # noqa: E402
+from graph_pane_checks import MEASURE, check_graph_pane, check_groups  # noqa: E402
 from journey import serve  # noqa: E402
 
 DOCK = ".proof__lean"
@@ -110,6 +110,23 @@ def run(page: Page, url: str, slug: str, size: tuple[int, int], shots: Path | No
     return bad
 
 
+def check_scaled_connectors(page: Page, url: str) -> list[str]:
+    # An opening pane can temporarily have its own scale in addition to the graph camera.
+    page.add_init_script("""document.addEventListener('DOMContentLoaded', () => {
+      const style = document.createElement('style');
+      style.textContent = '.proof__panes {transform: scale(.875); transform-origin: 0 0}';
+      document.head.append(style);
+    });""")
+    open_paper(page, url, "pcp-specialist", "@pcp-short-abstract")
+    result = page.evaluate(MEASURE, DOCK)
+    if not result["lines"]:
+        return ["scaled pane: no connectors were drawn"]
+    if result["detached"]:
+        return [f"scaled pane: wires miss node borders: {', '.join(result['detached'])}"]
+    print(f"ok  scaled pane: {result['lines']} wires attach to both nodes")
+    return []
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--url", help="a running site, ending in /")
@@ -134,6 +151,9 @@ def main() -> int:
                 for slug in graph_papers():
                     bad += run(page, url, slug, size, args.shots)
                 page.close()
+            scaled = browser.new_page(viewport={"width": 1440, "height": 900}, reduced_motion="reduce")
+            bad += check_scaled_connectors(scaled, url)
+            scaled.close()
             browser.close()
     finally:
         if server:

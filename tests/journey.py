@@ -116,7 +116,7 @@ def reading_strip(page: Page) -> str:
 
 
 def lean_mode(page: Page) -> bool:
-    """The pane is in Lean mode. In Graph mode the Lean is docked under the graph."""
+    """The pane is in Lean mode. Graph mode also shows the drawing below the Lean dock."""
     return page.locator(".proof[data-lean]").count() > 0
 
 
@@ -214,7 +214,7 @@ def graph_follows(page: Page, url: str, shots: Path | None) -> None:
     page.locator(".fg__card.is-subject").first.wait_for()
     head = lambda: page.eval_on_selector_all(".fg__card.is-subject .fg__title", "els => els.map(e => e.textContent)")
     check(page.locator(".proof__graph").bounding_box()["height"] > 150 and not lean_mode(page),
-          "a fresh visit opens on the graph with the Lean docked under it")
+          "a fresh visit opens with the Lean dock and graph")
     seen = set()
     for _ in range(8):
         page.mouse.move(400, 500)
@@ -241,17 +241,18 @@ def graph_follows(page: Page, url: str, shots: Path | None) -> None:
             let_go = True
             break
     check(let_go, "reading on lets go of it: the Lean and the graph follow the scroll")
-    # Whole file and back: the step's Lean is in view again.
+    # Whole file and back: the step opens at its annotation or Lean statement.
     page.locator(".proof").get_by_role("button", name="Whole file", exact=True).click()
     page.wait_for_timeout(700)
     page.locator(".proof").get_by_role("button", name="This step", exact=True).click()
     page.wait_for_timeout(600)
     check(page.evaluate("""() => {
-        const body = document.querySelector('.leaf__body'), line = body.querySelector('.decl .source__line');
-        if (!line) return false;
-        const r = line.getBoundingClientRect(), b = body.getBoundingClientRect();
-        return r.top >= b.top - 2 && r.bottom <= b.bottom + 2;
-    }"""), "back from the whole file, the step's Lean is in view")
+        const body = document.querySelector('.leaf__body');
+        const start = body.querySelector('.decl__note') ?? body.querySelector('.decl .source__line');
+        if (!start) return false;
+        const r = start.getBoundingClientRect(), b = body.getBoundingClientRect();
+        return r.top >= b.top - 2 && r.top + Math.min(r.height, 18) <= b.bottom + 2;
+    }"""), "back from the whole file, the step starts at its annotation or Lean statement")
     page.goto(f"{url}#/pcp-exposition", wait_until="load")
     page.locator(".papersplit").wait_for()
     shot(page, shots, "05-graph-follows")
@@ -531,11 +532,11 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     page.mouse.click(box["x"] + 8, box["y"] + 6)
     wait_until(page, lambda: address(page).endswith(f"@{other}"), f"the sentence has an address: {other}")
     check("Pinned" in caption(page), "the caption says it is pinned")
-    wait_until(page, lambda: lean_open(page) and lean_head(page), "the click shows its Lean in the dock under the graph")
+    wait_until(page, lambda: lean_open(page) and lean_head(page), "the click shows its Lean in the dock")
     check(not lean_mode(page) and page.locator('.mode-toggle button[aria-pressed="true"]').inner_text() == "Graph",
           "the tab stays on Graph")
     panes = page.locator(".proof__panes").bounding_box()
-    check(0.6 <= page.locator(".proof__graph").bounding_box()["height"] / panes["height"] <= 0.8, "the drawing keeps its share of the pane over the dock")
+    check(0.6 <= page.locator(".proof__graph").bounding_box()["height"] / panes["height"] <= 0.8, "the drawing keeps room below the dock")
     check(page.locator(".crumbs a").count() > 0, "breadcrumbs say where the paper has it")
     check(abs(top(page) - was_top) <= 2, "the paper does not move")
     page.locator(".mode-toggle button", has_text="Lean").click()
@@ -701,7 +702,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     check("linked to this Lean" in caption(page), f"the caption says the Lean stops: {caption(page)}")
     check("After the last statement" in page.locator(".stepper").inner_text(), "the counter says so too")
     wait_until(page, lambda: page.locator(".proof__lean .untied").count() > 0 and "section 6.3" in page.locator(".proof__lean .untied").inner_text(),
-               "the dock under the graph says what is and is not covered, in the paper's own scope")
+               "the dock says what is and is not covered, in the paper's own scope")
     check("No Lean is linked to this paragraph" in page.locator(".proof__lean .untied h3").inner_text(), "in one plain line first")
     check("No Lean is linked to this paragraph" in page.locator(".fg__label").inner_text(), "and the graph keeps the statement before it, saying so")
     page.locator(".mode-toggle button", has_text="Lean").click()
@@ -960,7 +961,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
         check(passage, f"a statement to click: {passage}")
         spot = page.locator('[data-journey="mark"]').evaluate("(el) => { const b = el.getClientRects()[0]; return [b.left + Math.min(10, b.width / 2), b.top + b.height / 2]; }")
         page.mouse.click(spot[0], spot[1])
-        wait_until(page, lambda: "Pinned" in caption(page) and lean_open(page), "clicking a statement shows its Lean under the graph")
+        wait_until(page, lambda: "Pinned" in caption(page) and lean_open(page), "clicking a statement shows its Lean above the graph")
         check(not lean_mode(page), "and the tab stays on Graph")
         return passage
 
@@ -1054,7 +1055,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     handle = page.locator(".proof__handle")
     handle.click()
     page.wait_for_timeout(250)
-    check(not lean_mode(page) and lean_open(page), "in the Graph view the handle is the divider above the dock: a click changes nothing")
+    check(not lean_mode(page) and lean_open(page), "in the Graph view the handle is the divider below the dock: a click changes nothing")
     page.locator(".mode-toggle button", has_text="Lean").click()
     wait_until(page, lambda: lean_mode(page), "the Lean side of the toggle gives the Lean the pane")
     check(handle.count() == 0 and not page.locator(".proof__graph").is_visible(), "the Lean view fills the pane: no graph and no handle")
@@ -1290,7 +1291,7 @@ def monitors(page: Page, url: str, shots: Path | None, size: tuple[int, int]) ->
     page.wait_for_timeout(1400)
     check(page.evaluate("document.documentElement.scrollWidth <= innerWidth"), "no sideways scroll")
     graph, dock = page.locator(".proof__graph").bounding_box(), page.locator(".proof__lean").bounding_box()
-    check(graph and dock and dock["y"] >= graph["y"] + graph["height"] - 2, "the Lean is docked under the drawing at every width")
+    check(graph and dock and graph["y"] >= dock["y"] + dock["height"] - 2, "the drawing stays below the Lean at every width")
     box = page.locator(".proof").bounding_box()
     check(box["width"] >= 500, f"the right page is {box['width']:.0f}px wide")
     shot(page, shots, f"30-{w}")
@@ -1995,7 +1996,7 @@ def pane_rules(page: Page, label: str) -> None:
 
 def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) -> None:
     keep_proof_reader(page)
-    """The Graph view on every graph page: the focus graph of the subject with the dock under it,
+    """The Graph view on every graph page: the focus graph of the subject with the dock above it,
     following the paper, after a click on a sentence and after a click on a card. No click
     changes the view, and Escape returns to following the paper."""
     w, h = size
@@ -2011,12 +2012,14 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
         page.wait_for_timeout(600)
         if lean_mode(page):
             page.locator(".mode-toggle button", has_text="Graph").click()
-        wait_until(page, lambda: page.locator(".proof[data-dock]").count() == 1, f"{slug}: the Graph view has the dock under the drawing")
+        wait_until(page, lambda: page.locator(".proof[data-dock]").count() == 1, f"{slug}: the Graph view combines the Lean dock and drawing")
         if w < 600:
             # The small-screen summary belongs to the lazy graph, which can mount after the dock.
             page.locator(".graph[data-folded] .graph__strip").wait_for()
         panes = page.locator(".proof__panes").bounding_box()
         graph = page.locator(".proof__graph").bounding_box()
+        dock = page.locator(".proof__lean").bounding_box()
+        check(graph["y"] >= dock["y"] + dock["height"] - 2, f"{slug}: the drawing is below the Lean")
         if w < 600:
             check(graph["height"] <= 120,
                   f"{slug}: on a phone the graph folds to one line")
@@ -2113,16 +2116,24 @@ def graph_mode(page: Page, url: str, shots: Path | None, size: tuple[int, int]) 
         handle = page.locator(".proof__handle").bounding_box()
         page.mouse.move(handle["x"] + handle["width"] / 2, handle["y"] + 5)
         page.mouse.down()
-        page.mouse.move(handle["x"] + handle["width"] / 2, handle["y"] - 120, steps=6)
+        page.mouse.move(handle["x"] + handle["width"] / 2, handle["y"] + 120, steps=6)
         page.mouse.up()
         page.wait_for_timeout(300)
         kept = page.evaluate("JSON.parse(localStorage.getItem('proof-reader-pane-5')).dock")
-        check(kept < 0.65, f"dragging the handle changes the drawing's share and keeps it ({kept:.2f})")
+        check(kept < 0.65, f"dragging the handle down gives Lean more room and saves the split ({kept:.2f})")
         page.reload()
         page.locator(".proof[data-dock]").wait_for()
         page.wait_for_timeout(600)
         panes = page.locator(".proof__panes").bounding_box()
         check(abs(page.locator(".proof__graph").bounding_box()["height"] / panes["height"] - kept) < 0.05, "and a reload keeps it")
+        divider = page.get_by_role("separator", name="Resize the Lean and dependency graph")
+        previous = float(divider.get_attribute("aria-valuenow"))
+        divider.press("ArrowUp")
+        wait_until(page, lambda: float(divider.get_attribute("aria-valuenow")) > previous,
+                   "the up arrow enlarges the graph below the divider")
+        divider.press("ArrowDown")
+        wait_until(page, lambda: abs(float(divider.get_attribute("aria-valuenow")) - previous) <= 1,
+                   "the down arrow restores the previous split")
         page.evaluate("localStorage.removeItem('proof-reader-pane-5')")
 
 
@@ -2148,6 +2159,18 @@ def graph_split(page: Page, url: str, size: tuple[int, int]) -> None:
         ? Math.abs(graph.clientHeight - defaultGraph) <= 2
         : graph.clientHeight < defaultGraph;
     }"""), "a sparse graph gives up only the space the Lean dock needs")
+    check(panes.evaluate("""p => {
+      const lean = p.querySelector('.proof__lean');
+      const graph = p.querySelector('.proof__graph');
+      const note = lean.querySelector('.decl__note');
+      const code = note.closest('.decl').querySelector('.decl__code');
+      const noteBox = note.getBoundingClientRect();
+      const leanBox = lean.getBoundingClientRect();
+      return (note.compareDocumentPosition(code) & Node.DOCUMENT_POSITION_FOLLOWING)
+        && noteBox.top >= leanBox.top - 1 && noteBox.top < leanBox.bottom
+        && noteBox.bottom <= code.getBoundingClientRect().top + 1
+        && leanBox.bottom <= graph.getBoundingClientRect().top + 1;
+    }"""), "the annotation opens above the code, with the dependency graph below the Lean dock")
     world = graph.locator(".fg__world")
     transform = lambda: world.evaluate("(el) => el.style.transform")
     subject = graph.locator(".fg__card.is-subject")

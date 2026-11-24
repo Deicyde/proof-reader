@@ -1,7 +1,6 @@
 // The right-hand page has two views behind one toggle, Graph and Lean, as docs/graph-pane.md
-// describes. Each fills the page. The Graph view is the drawing with a dock under it that
-// shows one card in detail; a handle between them sets the dock's height, which is
-// remembered. The Lean view is the Lean of the same subject, the whole height of the page.
+// describes. Each fills the page. The Graph view shows the annotation and Lean above the drawing.
+// The divider saves the split. The Lean view gives the same subject the full pane.
 // A caption says what the page is following. Adapted from Lean Exposition's docked record sheet.
 
 import { ModeToggle, type PaneMode } from "./ModeToggle";
@@ -21,7 +20,7 @@ export interface Layout {
   graph: boolean;
   /** The Lean view; otherwise the Graph view. */
   lean: boolean;
-  /** In the Graph view, the drawing's share of the page above the dock. */
+  /** In the Graph view, the drawing's share of the page below the dock. */
   dock: number;
   dockManual?: boolean;
 }
@@ -115,13 +114,14 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
     event.preventDefault();
     const handle = event.currentTarget;
     handle.setPointerCapture(event.pointerId);
-    const box = panes.current.getBoundingClientRect();
+    const height = panes.current.clientHeight;
+    const startY = event.clientY;
     let value = share;
     let moved = false;
     setDragging(true);
     const move = (e: PointerEvent) => {
       moved = true;
-      value = pull((e.clientY - box.top) / box.height);
+      value = pull(share + (startY - e.clientY) / height);
       panes.current?.style.setProperty("--share", String(value));
     };
     const end = () => {
@@ -140,7 +140,7 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
     if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
     event.preventDefault();
     event.stopPropagation();
-    onLayout({ ...layout, dock: pull(share + (event.key === "ArrowDown" ? 0.05 : -0.05)), dockManual: true });
+    onLayout({ ...layout, dock: pull(share + (event.key === "ArrowUp" ? 0.05 : -0.05)), dockManual: true });
   };
 
   return (
@@ -151,12 +151,12 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
         {onClose && <button type="button" className="proof__close" onClick={onClose}>Close</button>}
       </div>
       <div className={`proof__panes${dragging ? " is-dragging" : ""}`} ref={panes}>
-        {!plain && <div className="proof__graph" hidden={!dock}>{graph(availableHeight, setFitHeight)}</div>}
+        <div className="proof__lean">{lean}</div>
         {dock && <div
           className="proof__handle"
           role="separator"
           aria-orientation="horizontal"
-          aria-label="Drag to share the page between the graph and the Lean under it"
+          aria-label="Resize the Lean and dependency graph"
           aria-valuemin={Math.round(Math.min(GRAPH_MIN, share) * 100)}
           aria-valuemax={Math.round(GRAPH_MAX * 100)}
           aria-valuenow={Math.round(share * 100)}
@@ -166,7 +166,7 @@ export const ProofPage = memo(function ProofPage({ caption, reading, graph, lean
         >
           <span aria-hidden="true" />
         </div>}
-        <div className="proof__lean">{lean}</div>
+        {!plain && <div className="proof__graph" hidden={!dock}>{graph(availableHeight, setFitHeight)}</div>}
       </div>
       {reading && leanOpen && <div className="proof__reading">{reading}</div>}
     </div>
