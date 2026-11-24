@@ -299,7 +299,6 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
     at: passageTop(p) / Math.max(1, pagesHeight),
     span: Math.max(0, (p.rects[p.rects.length - 1][3] - p.rects[0][1]) * scale) / Math.max(1, pagesHeight),
     kind: rulerKind(p),
-    label: `Page ${p.page}${p.title ? `, ${p.title}` : ""}: ${RULER_WORDS[rulerKind(p)]}`,
   })), [passages, passageTop, pagesHeight, scale]);
 
   useImperativeHandle(ref, (): PaperHandle => ({
@@ -408,7 +407,6 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
       <div
         className="ruler"
         aria-label="Where the linked passages are in the whole document"
-        title="Each mark is a linked passage; click one to open it, or anywhere to go there"
         onClick={(e) => {
           const el = scroller.current;
           if (!el) return;
@@ -436,7 +434,6 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
             key={m.id}
             className={`ruler__mark ruler__mark--${m.kind}${m.id === pin?.passage || m.id === active ? " is-active" : ""}`}
             style={{ top: `${m.at * 100}%`, height: `max(3px, ${m.span * 100}%)` }}
-            title={m.label}
           />
         ))}
       </div>
@@ -523,12 +520,6 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
 });
 
 type RulerKind = "agree" | "found" | "missed" | "linked";
-const RULER_WORDS: Record<RulerKind, string> = {
-  agree: "found by the matcher, and the authors cite it",
-  found: "found by the matcher; the authors cite it elsewhere or not at all",
-  missed: "the authors cite it; the matcher did not find it",
-  linked: "linked",
-};
 function rulerKind(p: Passage): RulerKind {
   const all = Object.values(p.match ?? {});
   if (!all.length) return "linked";
