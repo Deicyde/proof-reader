@@ -5,6 +5,7 @@
 // is as large as the page allows. Scrolling reports the passage at the reading
 // line. It stays paper-coloured at night: it is the authors' page.
 
+import { createPortal } from "react-dom";
 import { selecting } from "./clickIntent";
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import * as pdfjs from "pdfjs-dist";
@@ -33,6 +34,7 @@ interface Props {
   /** Every printed occurrence of a Lean name. */
   mentions: Mention[];
   hidden: boolean;
+  zoomSlot: HTMLDivElement | null;
   pin: Pin | null;
   lit: ReadonlySet<string>;
   onFollow: Follow;
@@ -46,7 +48,7 @@ interface Props {
 }
 
 export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, ref) {
-  const { url, sizes, crop, passages, mentions, hidden, pin, lit } = props;
+  const { url, sizes, crop, passages, mentions, hidden, zoomSlot, pin, lit } = props;
   const latest = useRef(props);
   latest.current = props;
   const scroller = useRef<HTMLDivElement>(null);
@@ -399,12 +401,14 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
 
   return (
     <>
-    {!hidden && width > 0 && (
+    {!hidden && width > 0 && zoomSlot && createPortal(
       <div className="pdfzoom" role="group" aria-label="Zoom the PDF">
         <button type="button" onClick={() => zoomStep(-1)} disabled={zoom <= ZOOMS[0] + 1e-6} aria-label="Zoom out">−</button>
-        <button type="button" className="pdfzoom__fit" onClick={() => zoomTo(1)} aria-label="Fit the page to the pane" title="Fit the page to the pane">{Math.round(zoom * 100)}%</button>
+        <output aria-label="Zoom level">{Math.round(zoom * 100)}%</output>
         <button type="button" onClick={() => zoomStep(1)} disabled={zoom >= ZOOMS[ZOOMS.length - 1] - 1e-6} aria-label="Zoom in">+</button>
-      </div>
+        <button type="button" className="pdfzoom__fit" onClick={() => zoomTo(1)}>Fit text</button>
+      </div>,
+      zoomSlot,
     )}
     {!hidden && width > 0 && marks.length > 0 && (
       <div

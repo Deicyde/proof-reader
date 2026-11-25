@@ -134,6 +134,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const [html, setHtml] = useState<string | null>(null);
   const [readingFailed, setReadingFailed] = useState(false);
   const [pdfSeen, setPdfSeen] = useState(entry.copy === "pdf");
+  const [pdfZoomSlot, setPdfZoomSlot] = useState<HTMLDivElement | null>(null);
   const [section, setSection] = useState<string | null>(null);
   const [line, setLine] = useState<{ id: string | null; zone: Zone; above: string | null }>({ id: null, zone: "before", above: null });
   const [atTop, setAtTop] = useState(true);
@@ -803,10 +804,15 @@ export function PaperPage({ edition }: { edition: Edition }) {
       <span>{tiedLine}</span>
       <button type="button" title="The next statement (j)" onClick={() => step(1)} disabled={reached >= edition.passages.length}>Next</button>
     </div>
-    {edition.reading && hasPdf && (
-      <div className="switch" role="group" aria-label="The left-hand page">
-        <button type="button" aria-pressed={copy === "reading"} onClick={() => switchCopy("reading")}>Reading copy</button>
-        <button type="button" aria-pressed={copy === "pdf"} onClick={() => switchCopy("pdf")}>PDF</button>
+    {hasPdf && (
+      <div className="bar__copy-tools">
+        {edition.reading && (
+          <div className="switch" role="group" aria-label="The left-hand page">
+            <button type="button" aria-pressed={copy === "reading"} onClick={() => switchCopy("reading")}>Reading copy</button>
+            <button type="button" aria-pressed={copy === "pdf"} onClick={() => switchCopy("pdf")}>PDF</button>
+          </div>
+        )}
+        {copy === "pdf" && <div ref={setPdfZoomSlot} />}
       </div>
     )}
   </>);
@@ -821,7 +827,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
         <div className="bar__left">
           <ReaderHome />
         </div>
-        {!phone && <div className="bar__column">{readingControls}</div>}
+        {!phone && <div className="bar__column">{copy === "reading" && readingControls}</div>}
         <div className="bar__right">
           <a className="bar__title" href={LIBRARY_HOME}>
             <ReaderMark paper={slug} />
@@ -834,7 +840,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
               requestAnimationFrame(() => document.querySelector<HTMLElement>(".rail__search input")?.focus());
             }}>Search the {noun(edition)}</button>}
             {edition.reading && !wide && <button type="button" onClick={() => setRail(true)}>Contents</button>}
-            {phone && <div className="reader-menu__mobile">{readingControls}</div>}
+            {phone && copy === "reading" && <div className="reader-menu__mobile">{readingControls}</div>}
             <a href={routeHref({})}>All editions</a>
             {!!edition.sheets?.length && <a href={routeHref({ paper: slug, record: "@sheet" })}>Statement sheet</a>}
             {edition.evaluation && <button type="button" onClick={() => onTab("index", true)}>Results</button>}
@@ -849,6 +855,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
           <OwnerLink />
         </div>
       </header>
+      {copy === "pdf" && <div className="bar__pdf-controls">{readingControls}</div>}
       {entry.bad !== null && (
         <p className="badline" role="alert">
           This address does not name anything in this paper: <code>{entry.bad}</code>. <a href={routeHref({ paper: slug })} onClick={(event) => {
@@ -924,6 +931,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
                 passages={edition.passages}
                 mentions={withSource.mentions}
                 hidden={copy !== "pdf"}
+                zoomSlot={pdfZoomSlot}
                 pin={pin}
                 lit={litPassages}
                 onFollow={onFollow}

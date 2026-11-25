@@ -1275,6 +1275,41 @@ def phone(page: Page, url: str, shots: Path | None) -> None:
     wait_until(page, lambda: address(page) == f"#/{SLUG}", "Back still returns from the selected phone section")
 
 
+def pdf_zoom(page: Page, url: str, shots: Path | None) -> None:
+    width = page.viewport_size["width"]
+    print(f"PDF zoom at {width}px")
+    page.goto(f"{url}#/{SLUG}/@page-4", wait_until="load")
+    controls = page.get_by_role("group", name="Zoom the PDF")
+    controls.wait_for()
+    paper = page.locator(".pdf[data-paper-pane]")
+    pdf_page = paper.locator(".pdf__page").first
+    pdf_page.wait_for(state="attached")
+    level = controls.locator("output")
+    before = pdf_page.evaluate("(el) => el.offsetWidth")
+    check(level.inner_text() == "100%", "the PDF starts fitted to the text")
+    check(
+        controls.evaluate("""zoom => {
+          const toolbar = zoom.closest('.bar__pdf-controls');
+          const paper = document.querySelector('.pdf[data-paper-pane]');
+          return toolbar?.querySelector('.stepper') && toolbar.querySelector('.switch')
+            && zoom.getBoundingClientRect().bottom <= paper.getBoundingClientRect().top
+            && zoom.getBoundingClientRect().right <= innerWidth;
+        }"""),
+        "zoom shares the toolbar with the linked passages and copy switch, above the paper",
+    )
+    controls.get_by_role("button", name="Zoom in").click()
+    wait_until(page, lambda: level.inner_text() == "125%" and pdf_page.evaluate("(el) => el.offsetWidth") > before, "Zoom in increases both the percentage and the printed text")
+    controls.get_by_role("button", name="Zoom out").click()
+    wait_until(page, lambda: level.inner_text() == "100%", "Zoom out steps back")
+    controls.get_by_role("button", name="Zoom in").click()
+    controls.get_by_role("button", name="Fit text").click()
+    wait_until(page, lambda: level.inner_text() == "100%" and pdf_page.evaluate("(el) => el.offsetWidth") == before, "Fit text restores the cropped width")
+    check(address(page) == f"#/{SLUG}/@page-4", "zoom keeps the shared PDF address")
+    shot(page, shots, f"classic-pdf-zoom-{width}")
+    page.get_by_role("button", name="Reading copy").click()
+    controls.wait_for(state="hidden")
+
+
 def shared_links(page: Page, url: str) -> None:
     print("Shared links")
     start = f"{url}#/{SLUG}"
@@ -2259,7 +2294,7 @@ def main() -> int:
     parser.add_argument("--url", help="a running site, ending in /")
     parser.add_argument("--dist", type=Path, default=ROOT / "web" / "dist")
     parser.add_argument("--shots", type=Path)
-    parser.add_argument("--only", choices=("journey", "fidelity", "sizes", "companions", "coupled-spring", "physlib", "rules", "shared-links"))
+    parser.add_argument("--only", choices=("journey", "fidelity", "sizes", "companions", "coupled-spring", "physlib", "rules", "shared-links", "pdf-zoom"))
     parser.add_argument("--browser", choices=("chromium", "firefox", "webkit"), default="chromium")
     parser.add_argument("--serve", type=Path, help=argparse.SUPPRESS)
     parser.add_argument("--port", type=int, help=argparse.SUPPRESS)
@@ -2297,6 +2332,11 @@ def main() -> int:
                 for w, h in ((1440, 900), (390, 844)):
                     context = browser.new_context(viewport={"width": w, "height": h})
                     physlib_map(context.new_page(), url, args.shots, mobile=w < 900)
+                    context.close()
+            if args.only in (None, "pdf-zoom"):
+                for w, h in ((1440, 900), (2560, 1440), (390, 844)):
+                    context = browser.new_context(viewport={"width": w, "height": h}, has_touch=w < 600)
+                    pdf_zoom(context.new_page(), url, args.shots)
                     context.close()
             if args.only in (None, "shared-links"):
                 context = graph_first(browser.new_context(viewport={"width": 1440, "height": 900}))
