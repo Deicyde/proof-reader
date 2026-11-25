@@ -133,6 +133,8 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const [pdfSeen, setPdfSeen] = useState(entry.copy === "pdf");
   const [section, setSection] = useState<string | null>(null);
   const [line, setLine] = useState<{ id: string | null; zone: Zone; above: string | null }>({ id: null, zone: "before", above: null });
+  const [atTop, setAtTop] = useState(true);
+  const lastLinked = useRef<string | null>(null);
   const [point, setPoint] = useState<Pointed>(null);
   const [cardPoint, setCardPoint] = useState<string | null>(null);
   const [rail, setRail] = useState(false);
@@ -470,10 +472,11 @@ export function PaperPage({ edition }: { edition: Edition }) {
       setEntry(unpinned);
       }
     lineId.current = id;
+    if (id && (pane()?.top() ?? 0) > 6) lastLinked.current = id;
     setLine({ id, zone, above });
     const at = id ?? above;
     stepAt.current = at ? edition.passages.findIndex((p) => p.id === at) : -1;
-  }, [edition]);
+  }, [edition, pane]);
 
   const pinPassage = useCallback((id: string) => {
     const cur = entryRef.current;
@@ -648,12 +651,12 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const held = useMemo((): Shown => {
     if (pin?.decl) return { mode: "pin", passage: null, decl: pin.decl };
     if (pin?.passage) return { mode: "pin", passage: passages.get(pin.passage) ?? null, decl: null };
+    if (atTop) return { mode: "start", passage: claimPassage, decl: null };
     if (line.id) return { mode: "line", passage: passages.get(line.id) ?? null, decl: null };
-    // The Lean-only reader keeps the previous proof when the next text has no link.
-    if (!plain && line.zone === "after") return { mode: "after", passage: null, decl: null };
-    if (line.above) return { mode: plain ? "line" : "between", passage: passages.get(line.above) ?? null, decl: null };
+    const previous = lastLinked.current ?? line.above;
+    if (previous) return { mode: plain ? "line" : "between", passage: passages.get(previous) ?? null, decl: null };
     return { mode: "start", passage: claimPassage, decl: null };
-  }, [claimPassage, line, passages, pin, plain]);
+  }, [atTop, claimPassage, line, passages, pin, plain]);
   // A card under the pointer previews its Lean, in the dock or in the Lean view. In the Lean
   // view a sentence under the pointer previews its Lean too.
   const shown = useMemo((): Shown => {
@@ -839,7 +842,11 @@ export function PaperPage({ edition }: { edition: Edition }) {
           }}>Go to the start of the paper</a>
         </p>
       )}
-      <main className={`spread${edition.reading ? " spread--reading" : ""}${showRight ? " has-right" : ""}`} ref={spread}>
+      <main className={`spread${edition.reading ? " spread--reading" : ""}${showRight ? " has-right" : ""}`} ref={spread}
+        onScrollCapture={(event) => {
+          const element = event.target;
+          if (element instanceof HTMLElement && element.hasAttribute("data-paper-pane")) setAtTop(element.scrollTop <= 6);
+        }}>
         {edition.reading && (
           <Contents
             noun={noun(edition)}
@@ -932,6 +939,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
                 edition={edition}
                 graph={graph}
                 subjects={graphSubject}
+                autoOverview={atTop && !pin}
                 pointed={pointedIds}
                 held={pointedCard}
                 position={position}

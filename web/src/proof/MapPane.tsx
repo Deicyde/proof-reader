@@ -55,6 +55,7 @@ interface Props {
   graph: ArgGraph;
   /** The declarations in the middle: the statement in hand or under the reading line. */
   subjects: readonly string[];
+  autoOverview?: boolean;
   /** Lit from the paper: the sentence or name under the pointer. */
   pointed: ReadonlySet<string> | null;
   /** The card previewed in the dock, if it is not the subject. */
@@ -69,9 +70,10 @@ interface Props {
   onFitHeight(height: number): void;
 }
 
-export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, pointed, held, position, label, onSubject, onHover, availableHeight, onFitHeight }: Props) {
+export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, autoOverview, pointed, held, position, label, onSubject, onHover, availableHeight, onFitHeight }: Props) {
   const data = useMemo(() => focusData(edition), [edition]);
-  const [whole, setWhole] = useState(false);
+  const [wholeRequested, setWhole] = useState(false);
+  const whole = autoOverview || wholeRequested;
   const tree = useRef<MapViewHandle>(null);
   const [narrow, setNarrow] = useState(false);
   const [unfolded, setUnfolded] = useState(false);
@@ -192,7 +194,7 @@ export const MapPane = memo(function MapPane({ ref, edition, graph, subjects, po
       )}
       {!folded && (
         <div className="graph__switch">
-          <button type="button" onClick={() => setWhole((w) => !w)}>{whole ? "Around this step" : "Whole proof map"}</button>
+          {!autoOverview && <button type="button" onClick={() => setWhole((w) => !w)}>{whole ? "Around this step" : "Whole proof map"}</button>}
           {narrow && <button type="button" onClick={() => { setWhole(false); setUnfolded(false); }}>Fold the graph</button>}
         </div>
       )}
