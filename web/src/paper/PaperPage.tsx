@@ -550,24 +550,26 @@ export function PaperPage({ edition }: { edition: Edition }) {
     open({ record: readRoute().record, pin: cur.pin, tab: cur.tab, lean: cur.lean, after: show, stay: true });
   }, [open]);
 
-  const step = useCallback((by: number) => {
+  const step = useCallback((by: number, focusedMark?: HTMLElement) => {
     const list = edition.passages;
     const handle = pane();
     if (!handle || !list.length) return;
-    let at = stepAt.current;
+    const pin = entryRef.current.pin;
+    const pinnedAt = pin?.passage ? list.findIndex((passage) => passage.id === pin.passage) : -1;
+    let at = pinnedAt < 0 ? stepAt.current : pinnedAt;
     if (at < 0) at = line.zone === "after" ? list.length : -1;
     const index = Math.max(0, Math.min(list.length - 1, at + by));
     const next = list[index];
-    if (!next) return;
+    if (!next || index === at) return;
     stepAt.current = index;
-    if (entryRef.current.pin) {
-      const unpinned = { ...entryRef.current, pin: null, opened: null };
-      entryRef.current = unpinned;
-      setEntry(unpinned);
+    if (pin) {
+      open({ record: `@${next.id}`, pin: { passage: next.id, decl: null, at: null }, target: { passage: next.id } });
+    } else {
+      setPoint(null);
+      handle.place({ passage: next.id });
     }
-    handle.place({ passage: next.id });
-    handle.focusPassage(next.id);
-  }, [edition, line.zone, pane]);
+    if (focusedMark?.matches(":focus")) handle.focusPassage(next.id);
+  }, [edition, line.zone, open, pane]);
 
   const onPoint = useCallback((pointed: Pointed) => setPoint(pointed), []);
 
@@ -586,7 +588,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
     const onKey = (event: KeyboardEvent) => {
       if (event.defaultPrevented) return;
       const target = event.target as HTMLElement;
-      if (target.closest?.("input, textarea, select, dialog")) return;
+      if (event.isComposing || target.closest?.("input, textarea, select, dialog, [contenteditable]")) return;
       if (event.altKey && event.key === "ArrowLeft") {
         event.preventDefault();
         window.history.back();
@@ -607,18 +609,19 @@ export function PaperPage({ edition }: { edition: Edition }) {
         return;
       }
       if (target.closest?.(".tree, [role='separator']")) return;
+      const focusedMark = target.matches?.(".q:focus-visible") ? target : undefined;
       if (event.key === "g") {
         setMode(entryRef.current.lean ? "graph" : "lean");
       } else if (event.key === "[") {
         window.history.back();
       } else if (event.key === "]") {
         window.history.forward();
-      } else if (event.key === "j" || event.key === "ArrowRight") {
+      } else if (event.key === "j" || (!event.shiftKey && event.key === "ArrowRight")) {
         event.preventDefault();
-        step(1);
-      } else if (event.key === "k" || event.key === "ArrowLeft") {
+        step(1, focusedMark);
+      } else if (event.key === "k" || (!event.shiftKey && event.key === "ArrowLeft")) {
         event.preventDefault();
-        step(-1);
+        step(-1, focusedMark);
       } else if (event.key === "Enter" && !target.closest?.("a, button, summary, [tabindex='0'].q")) {
         const id = pane()?.where().passage;
         if (id) pinPassage(id);
