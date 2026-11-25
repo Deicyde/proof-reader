@@ -817,8 +817,11 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     print("A pin holds until the reader lets it go")
     page.goto("about:blank")
     page.goto(f"{url}#/{SLUG}/@closed-world", wait_until="load")
-    page.wait_for_selector(".sheet__text .q.is-pinned", state="attached")
-    wait_until(page, lambda: "Pinned" in caption(page), "it pins")
+    mark = page.locator('.sheet__text .q.is-active[data-p~="closed-world"]').first
+    mark.wait_for(state="attached")
+    mark.focus()
+    page.keyboard.press("Enter")
+    wait_until(page, lambda: "Pinned" in caption(page), "Enter pins the statement opened by the shared address")
     held = top(page)
     wheel_to(page, held + 1600)
     page.wait_for_timeout(400)
@@ -843,14 +846,14 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     held = address(page)
     page.goto("about:blank")
     page.goto(f"{url}{held}", wait_until="load")
-    page.wait_for_selector(".sheet__text .q.is-pinned", state="attached")
+    page.wait_for_selector(".sheet__text .q.is-active", state="attached")
     wait_until(page, lambda: "Statement 5 of 66" in page.locator(".stepper").inner_text() and lean_head(page) == "Ctx", "and that address opens that statement")
 
     print("The bar reads the statement in hand")
     page.goto("about:blank")
     page.goto(f"{url}#/{SLUG}/@proxytop-only-top", wait_until="load")
-    page.wait_for_selector(".sheet__text .q.is-pinned", state="attached")
-    wait_until(page, lambda: "Statement 15 of 66" in page.locator(".stepper").inner_text(), "a pinned statement sets the counter")
+    page.wait_for_selector(".sheet__text .q.is-active", state="attached")
+    wait_until(page, lambda: "Statement 15 of 66" in page.locator(".stepper").inner_text(), "a shared statement sets the counter")
 
     print("A figure link is an open")
     page.goto("about:blank")
@@ -911,7 +914,7 @@ def journey(page: Page, url: str, shots: Path | None) -> None:
     fresh.wait_for_selector(".decl")
     wait_until(fresh, lambda: lean_head(fresh) == "closedWorld", "a declaration's address opens it in a new tab")
     check(fresh.locator(".decl__axiom").is_visible(), "an axiom says it is assumed")
-    wait_until(fresh, lambda: fresh.locator(".sheet__text .q.is-pinned").count() > 0, "and the paper goes to its statement")
+    wait_until(fresh, lambda: fresh.locator('.sheet__text .q.is-active[data-p~="closed-world"]').count() > 0, "and the paper goes to its statement")
     fresh.evaluate(f"location.hash = '#/{SLUG}/@isoL-statement'")
     wait_until(fresh, lambda: fresh.locator(".sheet__text .q.is-active").count() > 0 and address(fresh).endswith("@isoL-statement"), "changing only the hash in the same tab moves the page")
     fresh.go_back()
@@ -1207,7 +1210,7 @@ def held_paper(page: Page, url: str, shots: Path | None, errors: list[str]) -> N
 
 def phone(page: Page, url: str, shots: Path | None) -> None:
     print("Phone")
-    above_sheet = """() => { const pane = document.querySelector('[data-paper-pane]').getBoundingClientRect(); const b = document.querySelector('.q.is-pinned').getBoundingClientRect(); const sheet = document.querySelector('.proof').getBoundingClientRect(); return b.top >= pane.top && b.bottom <= pane.bottom && b.bottom <= sheet.top; }"""
+    above_sheet = """() => { const pane = document.querySelector('[data-paper-pane]').getBoundingClientRect(); const b = document.querySelector('.q.is-active[data-p~="isoR-clam"]').getBoundingClientRect(); const sheet = document.querySelector('.proof').getBoundingClientRect(); return b.top >= pane.top && b.bottom <= pane.bottom && b.bottom <= sheet.top; }"""
     paper_top = "document.querySelector('[data-paper-pane]').scrollTop"
 
     # An emailed statement address, opened afresh: the sentence and its Lean at once.
@@ -1218,7 +1221,8 @@ def phone(page: Page, url: str, shots: Path | None) -> None:
     wait_until(page, lambda: lean_head(page) == "isoR", "on that statement's Lean", timeout=8)
     wait_until(page, lambda: page.locator(".proof .source__line.is-exact").count() == 5, "with its five Lean lines lit")
     page.wait_for_timeout(1200)
-    check(page.evaluate(above_sheet), "and the pinned sentence in view above the sheet")
+    check(page.evaluate(above_sheet), "and the followed sentence is in view above the sheet")
+    check(page.locator(".proof__unpin").count() == 0, "the shared sentence opens without a pin")
     check(page.evaluate("document.documentElement.scrollWidth <= innerWidth"), "with no sideways scroll")
     check(address(page) == f"#/{SLUG}/@isoR-clam", "the address still names the statement")
     shot(page, shots, "20-phone-fresh-statement")
@@ -1228,17 +1232,6 @@ def phone(page: Page, url: str, shots: Path | None) -> None:
     page.wait_for_timeout(800)
     check(abs(page.evaluate(paper_top) - before) <= 2, "and leaves the paper where it was")
     check(page.locator(".q.is-pinned").count() == 0, "with nothing left pinned")
-
-    # Unpin on a fresh statement address lands where Back from a tapped one lands.
-    page.goto("about:blank")
-    page.goto(f"{url}#/{SLUG}/@isoR-clam", wait_until="load")
-    wait_until(page, lambda: page.locator(".proof__unpin").count() == 1, "a fresh statement address shows Unpin", timeout=8)
-    page.wait_for_timeout(1000)
-    before = page.evaluate(paper_top)
-    page.locator(".proof__unpin").tap()
-    wait_until(page, lambda: page.locator(".proof").count() == 0, "Unpin closes the sheet")
-    page.wait_for_timeout(800)
-    check(abs(page.evaluate(paper_top) - before) <= 2, "and leaves the paper where it was")
 
     # A declaration's address opens the sheet the same way.
     page.goto("about:blank")
@@ -1280,6 +1273,61 @@ def phone(page: Page, url: str, shots: Path | None) -> None:
     shot(page, shots, "22-phone-back-controls")
     page.go_back()
     wait_until(page, lambda: address(page) == f"#/{SLUG}", "Back still returns from the selected phone section")
+
+
+def shared_links(page: Page, url: str) -> None:
+    print("Shared links")
+    start = f"{url}#/{SLUG}"
+    for record, passage, declaration in (
+        ("@isoR-clam", "isoR-clam", "isoR"),
+        ("isomorphism", "proven", "isoL"),
+        ("closedWorld", "closed-world", "closedWorld"),
+    ):
+        page.goto("about:blank")
+        page.goto(f"{start}/{record}", wait_until="load")
+        page.locator(f'.sheet__text .q.is-active[data-p~="{passage}"]').first.wait_for()
+        wait_until(page, lambda: lean_head(page) == declaration, f"{record} shows its exact Lean")
+        check("Following" in caption(page) and page.locator(".q.is-pinned").count() == 0, f"{record} opens in Auto")
+        check(address(page) == f"#/{SLUG}/{record}", f"{record} keeps its address after landing")
+        if record == "@isoR-clam":
+            exact = page.locator(f'.sheet__text .q.is-active[data-p~="{passage}"]').first
+            exact.focus()
+            page.keyboard.press("Enter")
+            wait_until(page, lambda: "Pinned" in caption(page), "selecting the same passage in the reader still pins it")
+            page.go_back()
+            wait_until(page, lambda: "Following" in caption(page), "Back restores the shared passage in Auto")
+
+    before = top(page)
+    length = entries(page)
+    wheel_to(page, before + 1600)
+    wait_until(page, lambda: address(page) != f"#/{SLUG}/closedWorld", "scrolling updates the shared declaration address")
+    check("Pinned" not in caption(page), "scrolling from a shared declaration keeps Auto")
+    page.get_by_role("button", name="Next", exact=True).click()
+    wait_until(page, lambda: lean_head(page) and lean_head(page) != "closedWorld", "the next statement brings its own Lean")
+    check(entries(page) == length, "following keeps the same history entry")
+
+    page.goto("about:blank")
+    page.goto(f"{start}/@s-2", wait_until="load")
+    page.locator(".sheet__text").wait_for()
+    wait_until(page, lambda: page.locator('.sheet__text [id="s-2"]').evaluate("(el) => el.getBoundingClientRect().top >= 0 && el.getBoundingClientRect().top < innerHeight"), "the section is visible")
+    page.wait_for_timeout(450)
+    check(address(page) == f"#/{SLUG}/@s-2", "the initial scroll keeps the section address")
+
+    page.goto("about:blank")
+    page.goto(f"{start}/@page-4", wait_until="load")
+    page.locator('.page[data-copy="pdf"] [data-paper-pane]').wait_for()
+    wait_until(page, lambda: top(page) > 500, "the linked PDF page is visible")
+    check(address(page) == f"#/{SLUG}/@page-4" and page.locator(".proof__unpin").count() == 0, "the PDF starts in Auto at the requested page")
+    wheel_to(page, top(page) + 1600)
+    wait_until(page, lambda: address(page) != f"#/{SLUG}/@page-4", "the PDF address follows as reading resumes")
+
+    unlinked = "PCP.Algebraic.BinaryLocalCorrection.soundnessConstant"
+    page.goto("about:blank")
+    page.goto(f"{url}#/pcp-specialist/{unlinked}", wait_until="load")
+    wait_until(page, lambda: lean_head(page) == unlinked, "an unlinked declaration shows its exact Lean")
+    check(page.locator(".proof__unpin").count() == 0, "an unlinked declaration opens without a pin")
+    page.get_by_role("button", name="Back to this paragraph’s steps").click()
+    wait_until(page, lambda: lean_head(page) != unlinked, "the return control resumes following the paper")
 
 
 def monitors(page: Page, url: str, shots: Path | None, size: tuple[int, int]) -> None:
@@ -2211,7 +2259,7 @@ def main() -> int:
     parser.add_argument("--url", help="a running site, ending in /")
     parser.add_argument("--dist", type=Path, default=ROOT / "web" / "dist")
     parser.add_argument("--shots", type=Path)
-    parser.add_argument("--only", choices=("journey", "fidelity", "sizes", "companions", "coupled-spring", "physlib", "rules"))
+    parser.add_argument("--only", choices=("journey", "fidelity", "sizes", "companions", "coupled-spring", "physlib", "rules", "shared-links"))
     parser.add_argument("--browser", choices=("chromium", "firefox", "webkit"), default="chromium")
     parser.add_argument("--serve", type=Path, help=argparse.SUPPRESS)
     parser.add_argument("--port", type=int, help=argparse.SUPPRESS)
@@ -2250,6 +2298,10 @@ def main() -> int:
                     context = browser.new_context(viewport={"width": w, "height": h})
                     physlib_map(context.new_page(), url, args.shots, mobile=w < 900)
                     context.close()
+            if args.only in (None, "shared-links"):
+                context = graph_first(browser.new_context(viewport={"width": 1440, "height": 900}))
+                shared_links(context.new_page(), url)
+                context.close()
             if args.only in (None, "journey"):
                 context = browser.new_context(viewport={"width": 1440, "height": 790})
                 opening(context.new_page(), url)

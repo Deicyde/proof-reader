@@ -115,11 +115,14 @@ export function PaperPage({ edition }: { edition: Edition }) {
       replaceEntry(saved);
       started.current = { entry: saved, target: saved.top !== null ? { top: saved.top, width: saved.width, fallback: meaning.target ?? undefined } : meaning.target, record: route.record };
     } else {
-      // A statement's address opened afresh shows its Lean at once. On a phone, where the right
-      // page is a sheet under the paper, the sheet opens as a tap would open it and the
-      // statement sits above it. A wider screen keeps the right page waiting to be asked for.
-      const sheet = !!meaning.entry.pin && window.matchMedia(PHONE).matches;
-      const entry: Entry = { ...blankEntry(slug, homeCopy), lean: plain || readLayout().lean, ...meaning.entry, sheet, bad: meaning.bad };
+      // A shared address starts in follow. Its subject and address stay exact until reading
+      // resumes. On a phone, a statement or declaration also opens the sheet below the paper.
+      const { pin, ...view } = meaning.entry;
+      const sheet = !!pin && window.matchMedia(PHONE).matches;
+      const landing = route.record && !meaning.bad
+        ? { passage: pin?.passage ?? undefined, decl: pin?.decl ?? undefined }
+        : undefined;
+      const entry: Entry = { ...blankEntry(slug, homeCopy), lean: plain || readLayout().lean, ...view, landing, sheet, bad: meaning.bad };
       replaceEntry(entry);
       started.current = { entry, target: meaning.target, record: route.record };
     }
@@ -290,6 +293,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
         id: newEntryId(),
         copy,
         pin: o.pin === undefined ? cur.pin : o.pin,
+        landing: o.record === readRoute().record && !o.pin && !o.target ? cur.landing : undefined,
         tab: o.tab ?? "step",
         top: o.target ? null : cur.top,
         leanTop: 0,
@@ -400,14 +404,16 @@ export function PaperPage({ edition }: { edition: Edition }) {
   }, [pane]);
 
   /** The paper stopped: remember the pixel, and keep the address on the nearest sentence. */
-  const settled = useCallback(() => {
+  const settled = useCallback((byReader = false) => {
     const handle = pane();
     // A native fragment click can update the address before this page hears hashchange.
     if (!handle || pending.current || readEntry(slug)?.id !== entryRef.current.id) return;
     const cur = snapshot();
-    entryRef.current = cur;
-    const href = !cur.pin && cur.tab === "step" ? routeHref({ paper: slug, record: hereRecord() }) : undefined;
-    replaceEntry(cur, href);
+    const next = byReader && cur.landing ? { ...cur, landing: undefined } : cur;
+    entryRef.current = next;
+    if (next !== cur) setEntry(next);
+    const href = !next.pin && !next.landing && next.tab === "step" ? routeHref({ paper: slug, record: hereRecord() }) : undefined;
+    replaceEntry(next, href);
   }, [hereRecord, pane, slug, snapshot]);
 
   /** Remember the mode the reader chose. */
@@ -421,7 +427,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
 
   /** Let go here: an address that was opened directly has no entry to go back to. */
   const letGo = useCallback((lean: boolean) => {
-    const next: Entry = { ...entryRef.current, pin: null, tab: "step", lean, opened: null, wentToLean: false };
+    const next: Entry = { ...entryRef.current, pin: null, landing: undefined, tab: "step", lean, opened: null, wentToLean: false };
     entryRef.current = next;
     setEntry(next);
     settled();
@@ -441,7 +447,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   }, [chooseMode, plain]);
 
   const closeSheet = useCallback(() => {
-    const next = { ...entryRef.current, sheet: false, pin: null, lean: false };
+    const next = { ...entryRef.current, sheet: false, pin: null, landing: undefined, lean: false };
     entryRef.current = next;
     setEntry(next);
     replaceEntry(next);
@@ -450,7 +456,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   /** Escape and Unpin: back to following the paper, in the view on show. */
   const closeLean = useCallback(() => {
     const cur = entryRef.current;
-    if (!cur.pin && cur.tab === "step") return;
+    if (!cur.pin && !cur.landing?.decl && cur.tab === "step") return;
     if (cur.opened) {
       // Back over the opens, in the view on show.
       keepView.current = cur.lean;
@@ -557,9 +563,11 @@ export function PaperPage({ edition }: { edition: Edition }) {
     const list = edition.passages;
     const handle = pane();
     if (!handle || !list.length) return;
-    const pin = entryRef.current.pin;
-    const pinnedAt = pin?.passage ? list.findIndex((passage) => passage.id === pin.passage) : -1;
-    let at = pinnedAt < 0 ? stepAt.current : pinnedAt;
+    const cur = entryRef.current;
+    const pin = cur.pin;
+    const heldPassage = pin?.passage ?? cur.landing?.passage;
+    const heldAt = heldPassage ? list.findIndex((passage) => passage.id === heldPassage) : -1;
+    let at = heldAt < 0 ? stepAt.current : heldAt;
     if (at < 0) at = line.zone === "after" ? list.length : -1;
     const index = Math.max(0, Math.min(list.length - 1, at + by));
     const next = list[index];
@@ -568,6 +576,11 @@ export function PaperPage({ edition }: { edition: Edition }) {
     if (pin) {
       open({ record: `@${next.id}`, pin: { passage: next.id, decl: null, at: null }, target: { passage: next.id } });
     } else {
+      if (cur.landing) {
+        const following = { ...cur, landing: undefined };
+        entryRef.current = following;
+        setEntry(following);
+      }
       setPoint(null);
       handle.place({ passage: next.id });
     }
@@ -636,7 +649,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
 
   // ---- What the right page shows --------------------------------------------------
 
-  const pin = entry.pin;
+  const { pin, landing } = entry;
   const claimPassage = edition.claims[0] ? passages.get(edition.claims[0].passage) ?? null : null;
   const pointedId = point?.kind === "passage" ? point.id : point?.kind === "name" ? point.passage : undefined;
   const pointedPassage = pointedId && pointedId !== pin?.passage ? passages.get(pointedId) ?? null : null;
@@ -651,12 +664,13 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const held = useMemo((): Shown => {
     if (pin?.decl) return { mode: "pin", passage: null, decl: pin.decl };
     if (pin?.passage) return { mode: "pin", passage: passages.get(pin.passage) ?? null, decl: null };
+    if (landing?.decl || landing?.passage) return { mode: "line", passage: passages.get(landing.passage ?? "") ?? null, decl: landing.decl ?? null };
     if (atTop) return { mode: "start", passage: claimPassage, decl: null };
     if (line.id) return { mode: "line", passage: passages.get(line.id) ?? null, decl: null };
     const previous = lastLinked.current ?? line.above;
     if (previous) return { mode: plain ? "line" : "between", passage: passages.get(previous) ?? null, decl: null };
     return { mode: "start", passage: claimPassage, decl: null };
-  }, [atTop, claimPassage, line, passages, pin, plain]);
+  }, [atTop, claimPassage, landing, line, passages, pin, plain]);
   // A card under the pointer previews its Lean, in the dock or in the Lean view. In the Lean
   // view a sentence under the pointer previews its Lean too.
   const shown = useMemo((): Shown => {
@@ -699,7 +713,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   }, [cardPoint, declarations, pin, pointedClaim, pointedName]);
 
   // The bar reads the statement in hand; what has been reached is read from the page.
-  const activeId = pin?.passage ?? line.id;
+  const activeId = pin?.passage ?? landing?.passage ?? line.id;
   const order = activeId ? edition.passages.findIndex((p) => p.id === activeId) : -1;
   const aboveIndex = line.above ? edition.passages.findIndex((p) => p.id === line.above) : -1;
   const reached = line.zone === "after" ? edition.passages.length : Math.max(aboveIndex + 1, line.id ? edition.passages.findIndex((p) => p.id === line.id) + 1 : 0);
@@ -709,7 +723,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
   const back = useCallback(() => window.history.back(), []);
 
   const placeOf = (p: Passage) => `${sectionLabel(p.section)}, ${passageLocation(p)}`;
-  const offMap = held.mode === "pin" && held.decl && !(declarations.get(held.decl)?.passages.length) ? declarations.get(held.decl) : undefined;
+  const offMap = held.decl && !(declarations.get(held.decl)?.passages.length);
   const graphLabel = offMap
     ? <>Lean only: the {noun(edition)} does not state this.<button type="button" onClick={() => closeLean()}>Back to this paragraph’s steps</button></>
     : before
@@ -733,8 +747,9 @@ export function PaperPage({ edition }: { edition: Edition }) {
       : edition.paper.standard
         ? <><b>Before the first linked passage,</b> in {sectionLabel(edition.coverage.sections[0])}.</>
         : <><b>Before the first statement,</b> in {sectionLabel(edition.coverage.sections[0])}. Showing the main claim.</>;
+    if (offMap) return <b>{name}</b>;
     // The statement by its plain name and section; its exact place is under "In the paper".
-    return <><b>Following the {noun(edition)}:</b> {name && stepView.passage ? `${name}, ${sectionLabel(stepView.passage.section)}` : stepView.title}</>;
+    return <><b>Following the {noun(edition)}:</b> {name && shown.passage ? `${name}, ${sectionLabel(shown.passage.section)}` : name || stepView.title}</>;
   })();
 
   const backButton = entry.back && <button type="button" className="back" onClick={back} title="Your browser’s Back ( [ or Alt + Left )">Back to {entry.back}</button>;
@@ -939,7 +954,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
                 edition={edition}
                 graph={graph}
                 subjects={graphSubject}
-                autoOverview={atTop && !pin}
+                autoOverview={atTop && !pin && !landing?.passage && !landing?.decl}
                 pointed={pointedIds}
                 held={pointedCard}
                 position={position}
@@ -959,7 +974,7 @@ export function PaperPage({ edition }: { edition: Edition }) {
           />
         )}
         {wide && showRight && edition.reading && <PaperSplit />}
-        {wide && showRight && <Threads root={spread} target={{ passage: pin?.passage ?? line.id, line: threadLine }} />}
+        {wide && showRight && <Threads root={spread} target={{ passage: activeId, line: threadLine }} />}
       </main>
     </div>
   );

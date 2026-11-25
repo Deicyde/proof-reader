@@ -36,7 +36,7 @@ interface Props {
   pin: Pin | null;
   lit: ReadonlySet<string>;
   onFollow: Follow;
-  onSettle(): void;
+  onSettle(byReader: boolean): void;
   onPin(id: string): void;
   onName(name: string): void;
   onPoint(pointed: Pointed): void;
@@ -69,6 +69,7 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
   const dwell = useRef(0);
   const lastScroll = useRef(0);
   const lastTarget = useRef<Target | null>(null);
+  const userMoved = useRef(false);
   const line = useRef<string | null>(null);
   const zone = useRef<Zone>("before");
   const lineAbove = useRef<string | null>(null);
@@ -217,6 +218,7 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
       return !!el;
     }
     lastTarget.current = target;
+    userMoved.current = false;
     if ("start" in target) {
       scrollTo(0, instant, true);
       return true;
@@ -343,7 +345,7 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
       lastScroll.current = Date.now();
       if (!frame) frame = requestAnimationFrame(tick);
       window.clearTimeout(settle.current);
-      settle.current = window.setTimeout(() => latest.current.onSettle(), 220);
+      settle.current = window.setTimeout(() => latest.current.onSettle(userMoved.current), 220);
     };
     el.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -359,6 +361,7 @@ export const PdfPane = forwardRef<PaperHandle, Props>(function PdfPane(props, re
   }, []);
 
   const userInput = () => {
+    userMoved.current = true;
     lock.current = 0;
     goal.current = null;
     lastTarget.current = null;

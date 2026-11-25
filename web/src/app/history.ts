@@ -25,6 +25,8 @@ export interface Entry {
   copy: Copy;
   tab: Tab;
   pin: Pin | null;
+  /** The exact subject of a fresh address, until the reader moves on. */
+  landing?: { passage?: string; decl?: string };
   /** Lean mode. A click goes to it; chosen on the toggle, the Lean follows the text. */
   lean: boolean;
   /** How this entry was opened, so every way back lands where Back lands. */

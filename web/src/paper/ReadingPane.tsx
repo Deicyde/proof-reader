@@ -25,7 +25,7 @@ interface Props {
   onFollow: Follow;
   onSection(id: string | null): void;
   /** The paper has stopped moving. */
-  onSettle(): void;
+  onSettle(byReader: boolean): void;
   onPin(id: string): void;
   onName(name: string): void;
   onPage(page: number): void;
@@ -515,7 +515,7 @@ export const ReadingPane = forwardRef<PaperHandle, Props>(function ReadingPane(p
           }
         }
         if (nearest) anchor.current = { el: nearest, offset: nearest.getBoundingClientRect().top - top };
-        latest.current.onSettle();
+        latest.current.onSettle(userMoved.current);
       }, 220);
     };
     el.addEventListener("scroll", onScroll, { passive: true });
