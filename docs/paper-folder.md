@@ -86,8 +86,9 @@ commit `generated/lean.json.gz` in place of `generated/lean.json`.
 for each passage in `links.json`. The passage is the subject and its Lean declarations
 are the object. A PDF passage is a quote on its page, and a quote that runs over a page
 break stops the build. A Markdown passage keeps its heading, block and quotation. The
-Lean is the project that `[lean] source` names, at the commit in that address. The
-workflow checks these files with the Literature Links checker.
+Lean is the project that `[lean] source` names, at the commit in that address, and a
+paper without a `[lean] source` gets no file. The workflow checks these files with the
+Literature Links checker.
 
 ## Comparator runs
 

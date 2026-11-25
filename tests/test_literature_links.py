@@ -1,6 +1,7 @@
 """Each passage becomes one Literature Links annotation."""
 
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -67,9 +68,14 @@ class Annotations(unittest.TestCase):
         with self.assertRaises(ValueError):
             literature_links.annotations(edition("pdf", [pdf_passage(last_page=4)]))
 
-    def test_the_project_needs_an_address(self):
-        with self.assertRaises(ValueError):
-            literature_links.annotations(edition("pdf", [pdf_passage()], source=""))
+    def test_a_paper_whose_project_has_no_address_gets_no_file(self):
+        with tempfile.TemporaryDirectory() as scratch:
+            stale = Path(scratch) / literature_links.FILE
+            stale.write_text("{}\n", encoding="utf-8")
+            literature_links.write(edition("pdf", [pdf_passage()], source=""), Path(scratch))
+            self.assertFalse(stale.exists())
+            literature_links.write(edition("pdf", [pdf_passage()]), Path(scratch))
+            self.assertEqual(len(stale.read_text(encoding="utf-8").splitlines()), 1)
 
 
 if __name__ == "__main__":

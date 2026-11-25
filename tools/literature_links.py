@@ -75,5 +75,10 @@ def annotations(built: dict) -> list[dict]:
 
 
 def write(built: dict, folder: Path) -> None:
+    """Write the annotations; a paper whose Lean project has no address gets none."""
+    path = folder / FILE
+    path.unlink(missing_ok=True)
+    if not built["lean"].get("source"):
+        return
     lines = (json.dumps(a, ensure_ascii=False, separators=(",", ":")) + "\n" for a in annotations(built))
-    (folder / FILE).write_text("".join(lines), encoding="utf-8")
+    path.write_text("".join(lines), encoding="utf-8")
