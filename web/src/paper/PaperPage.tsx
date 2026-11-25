@@ -11,7 +11,7 @@
 import { lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { blankEntry, newEntryId, pushEntry, readEntry, replaceEntry, returning, type Copy, type Entry, type Pin, type Tab } from "../app/history";
 import { declEvidence, hasComparisons, leanOrigin, loadSource, noun, paperFile, passageLocation, type Edition, type Passage } from "../app/edition";
-import { OwnerLink, ReaderHome, ReaderMark, ReaderMenu, SisterSites } from "../app/Family";
+import { LIBRARY_HOME, OwnerLink, ReaderHome, ReaderMark, ReaderMenu, SisterSites } from "../app/Family";
 import { readRoute, routeHref } from "../app/router";
 import { setScheme, useScheme } from "../app/theme";
 import type { LeanActions } from "../lean/code";
@@ -808,10 +808,10 @@ export function PaperPage({ edition }: { edition: Edition }) {
         </div>
         {!phone && <div className="bar__column">{readingControls}</div>}
         <div className="bar__right">
-          <div className="bar__title">
+          <a className="bar__title" href={LIBRARY_HOME}>
             <ReaderMark paper={slug} />
             {copy === "reading" && edition.reading ? <p className="bar__paper">{paper.short_title}</p> : <h1 className="bar__paper">{paper.short_title}</h1>}
-          </div>
+          </a>
           {(wide ? !showRight : !entry.sheet) && <button type="button" className="bar__open" onClick={() => (wide ? onLayout({ ...layout, graph: true }) : open({ sheet: true, record: readRoute().record, tab: entry.tab, lean: plain || entry.lean }))}>{plain ? "Lean" : "Graph"}</button>}
           <ReaderMenu onOpen={() => setRail(false)}>
             {edition.reading && <button type="button" onClick={() => {
